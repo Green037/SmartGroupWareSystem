@@ -10,6 +10,7 @@ public class MemberAchieve {
 	private String mcMajor;
 	private double mcJumsu;
 	private String mcGrade;
+	private int mmCode;
 	
 	public int getMcCode() {
 		return mcCode;
@@ -74,11 +75,21 @@ public class MemberAchieve {
 	public void setMcGrade(String mcGrade) {
 		this.mcGrade = mcGrade;
 	}
+	
+	public int getmmCode() {
+		return mmCode;
+	}
+	
+	public void setmmCode(int mmCode) {
+		this.mmCode = mmCode;
+	}
 
 	@Override
 	public String toString() {
 		return "MemberAchieve [mcCode=" + mcCode + ", acCode=" + acCode + ", mcSchoolName=" + mcSchoolName
 				+ ", mcAdmissionDate=" + mcAdmissionDate + ", mcGraduationDate=" + mcGraduationDate + ", mcMajor="
-				+ mcMajor + ", mcJumsu=" + mcJumsu + ", mcGrade=" + mcGrade + "]";
+				+ mcMajor + ", mcJumsu=" + mcJumsu + ", mcGrade=" + mcGrade + ", mmCode=" + mmCode + "]";
 	}
+
+	
 }

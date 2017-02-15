@@ -6,8 +6,10 @@ public class Commute {
 	private int mmCode;
 	private String cmOnTime;
 	private String cmOffTime;
-	private String cmExeptionInput;
+	private String cmDate;
+	private String cmExceptionInput;
 	private String cmSituation;
+	private String cmExceptionReson;
 	private String cmGoOutTime;
 	private String cmReturnTime;
 	
@@ -38,17 +40,33 @@ public class Commute {
 	public String getCmOffTime() {
 		return cmOffTime;
 	}
+	public void setcmDate(String cmDate) {
+		this.cmDate = cmDate;
+	}
+	
+	public String getcmDate() {
+		return cmDate;
+	}
+	
 
 	public void setCmOffTime(String cmOffTime) {
 		this.cmOffTime = cmOffTime;
 	}
 	
-	public String getCmExeptionInput() {
-		return cmExeptionInput;
+	public String getcmExceptionInput() {
+		return cmExceptionInput;
 	}
 	
-	public void setCmExeptionInput(String cmExeptionInput) {
-		this.cmExeptionInput = cmExeptionInput;
+	public void setcmExceptionInput(String cmExceptionInput) {
+		this.cmExceptionInput = cmExceptionInput;
+	}
+	
+	public String getcmExceptionReson() {
+		return cmExceptionReson;
+	}
+	
+	public void setcmExceptionReson(String cmExceptionReson) {
+		this.cmExceptionReson = cmExceptionReson;
 	}
 	
 	public String getCmSituation() {
@@ -74,11 +92,13 @@ public class Commute {
 	public void setCmReturnTime(String cmReturnTime) {
 		this.cmReturnTime = cmReturnTime;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Commute [cmCode=" + cmCode + ", mmCode=" + mmCode + ", cmOnTime=" + cmOnTime + ", cmOffTime="
-				+ cmOffTime + ", cmExeptionInput=" + cmExeptionInput + ", cmSituation=" + cmSituation + ", cmGoOutTime="
-				+ cmGoOutTime + ", cmReturnTime=" + cmReturnTime + "]";
+				+ cmOffTime + ", cmDate=" + cmDate + ", cmExceptionInput=" + cmExceptionInput + ", cmSituation="
+				+ cmSituation + ", cmExceptionReson=" + cmExceptionReson + ", cmGoOutTime=" + cmGoOutTime
+				+ ", cmReturnTime=" + cmReturnTime + "]";
 	}
+
 }

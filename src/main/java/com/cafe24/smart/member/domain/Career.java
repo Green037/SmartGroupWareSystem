@@ -7,8 +7,10 @@ public class Career {
 	private int crService;
 	private String crPastJoinDay;
 	private String crPastResignDay;
+	private String crResponsibility;
 	private int maCode;
 	private int miCode;
+	private int mmCode;
 
 	public int getCrCode() {
 		return crCode;
@@ -50,6 +52,14 @@ public class Career {
 		this.crPastResignDay = crPastResignDay;
 	}
 	
+	public String getcrResponsibility() {
+		return crResponsibility;
+	}
+
+	public void setcrResponsibility(String crResponsibility) {
+		this.crResponsibility = crResponsibility;
+	}
+	
 	public int getMaCode() {
 		return maCode;
 	}
@@ -66,10 +76,19 @@ public class Career {
 		this.miCode = miCode;
 	}
 	
+	public int getmmCode() {
+		return mmCode;
+	}
+
+	public void setmmCode(int mmCode) {
+		this.mmCode = mmCode;
+	}
+
 	@Override
 	public String toString() {
 		return "Career [crCode=" + crCode + ", crData=" + crData + ", crService=" + crService + ", crPastJoinDay="
-				+ crPastJoinDay + ", crPastResignDay=" + crPastResignDay + ", maCode=" + maCode + ", miCode=" + miCode
-				+ "]";
+				+ crPastJoinDay + ", crPastResignDay=" + crPastResignDay + ", crResponsibility=" + crResponsibility
+				+ ", maCode=" + maCode + ", miCode=" + miCode + ", mmCode=" + mmCode + "]";
 	}
+
 }

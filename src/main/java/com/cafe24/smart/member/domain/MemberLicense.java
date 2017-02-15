@@ -5,7 +5,7 @@ public class MemberLicense {
 	private int mlCode;
 	private String lcCode;
 	private String mlIssueDate;
-
+	private int mmCode;
 	public int getMlCode() {
 		return mlCode;
 	}
@@ -29,9 +29,20 @@ public class MemberLicense {
 	public void setMlIssueDate(String mlIssueDate) {
 		this.mlIssueDate = mlIssueDate;
 	}
+	
+	public int getmmCode() {
+		return mmCode;
+	}
+
+	public void setmmCode(int mmCode) {
+		this.mmCode = mmCode;
+	}
 
 	@Override
 	public String toString() {
-		return "MemberLicense [mlCode=" + mlCode + ", lcCode=" + lcCode + ", mlIssueDate=" + mlIssueDate + "]";
+		return "MemberLicense [mlCode=" + mlCode + ", lcCode=" + lcCode + ", mlIssueDate=" + mlIssueDate + ", mmCode="
+				+ mmCode + "]";
 	}
+
+	
 }

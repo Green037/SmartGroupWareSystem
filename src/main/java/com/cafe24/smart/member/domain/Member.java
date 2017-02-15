@@ -3,12 +3,9 @@ package com.cafe24.smart.member.domain;
 //사원관리
 public class Member {
 	private int mmCode;	
-	private int mlCode;	
-	private int mcCode;
 	private int ctCode;
 	private int ptCode;
 	private int dpCode;
-	private int crCode;
 	private String mmName;
 	private int mmDailyPay;
 	private String mmJoinDate;
@@ -30,22 +27,6 @@ public class Member {
 	
 	public void setMmCode(int mmCode) {
 		this.mmCode = mmCode;
-	}
-	
-	public int getMlCode() {
-		return mlCode;
-	}
-
-	public void setMlCode(int mlCode) {
-		this.mlCode = mlCode;
-	}
-	
-	public int getMcCode() {
-		return mcCode;
-	}
-	
-	public void setMcCode(int mcCode) {
-		this.mcCode = mcCode;
 	}
 	
 	public int getCtCode() {
@@ -70,14 +51,6 @@ public class Member {
 
 	public void setDpCode(int dpCode) {
 		this.dpCode = dpCode;
-	}
-
-	public int getCrCode() {
-		return crCode;
-	}
-	
-	public void setCrCode(int crCode) {
-		this.crCode = crCode;
 	}
 
 	public String getMmName() {
@@ -194,11 +167,12 @@ public class Member {
 
 	@Override
 	public String toString() {
-		return "MemberManagement [mmCode=" + mmCode + ", mlCode=" + mlCode + ", mcCode=" + mcCode + ", ctCode=" + ctCode
-				+ ", ptCode=" + ptCode + ", dpCode=" + dpCode + ", crCode=" + crCode + ", mmName=" + mmName
-				+ ", mmDailyPay=" + mmDailyPay + ", mmJoinDate=" + mmJoinDate + ", resignDate=" + resignDate
-				+ ", mmAnnualLeave=" + mmAnnualLeave + ", mmArmy=" + mmArmy + ", mmEmail=" + mmEmail + ", mmMarriage="
-				+ mmMarriage + ", mmPassword=" + mmPassword + ", mmSign=" + mmSign + ", mmAddress=" + mmAddress
-				+ ", mmTel=" + mmTel + ", mmBank=" + mmBank + ", mmAccount=" + mmAccount + "]";
+		return "Member [mmCode=" + mmCode + ", ctCode=" + ctCode + ", ptCode=" + ptCode + ", dpCode=" + dpCode
+				+ ", mmName=" + mmName + ", mmDailyPay=" + mmDailyPay + ", mmJoinDate=" + mmJoinDate + ", resignDate="
+				+ resignDate + ", mmAnnualLeave=" + mmAnnualLeave + ", mmArmy=" + mmArmy + ", mmEmail=" + mmEmail
+				+ ", mmMarriage=" + mmMarriage + ", mmPassword=" + mmPassword + ", mmSign=" + mmSign + ", mmAddress="
+				+ mmAddress + ", mmTel=" + mmTel + ", mmBank=" + mmBank + ", mmAccount=" + mmAccount + "]";
 	}
+
+	
 }
