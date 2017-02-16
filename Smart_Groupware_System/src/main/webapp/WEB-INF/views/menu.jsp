@@ -33,8 +33,6 @@
 	<script src="resources/js/scripts.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 
-	
-
 	<script type="application/x-javascript">
 		addEventListener("load", function() {
 			 setTimeout(hideURLbar, 0);
@@ -44,16 +42,14 @@
 			window.scrollTo(0, 1);
 		} 
 	</script>
+	
 </head>
 <body>
 
 	<div class="page-container">
-		<!--/content-inner-->
 		<div class="left-content">
 			<div class="inner-content">
-				<!-- header-starts -->
 				<div class="header-section">
-					<!--menu-right-->
 					<div class="top_menu">
 						<div class="main-search">
 							<form>
@@ -68,17 +64,20 @@
 						<div class="srch">
 							<button></button>
 						</div>
+						
 						<script type="text/javascript">
 							$('.main-search').hide();
+							
 							$('button').click(function() {
 								$('.main-search').show();
 								$('.main-search text').focus();
 							});
+							
 							$('.close').click(function() {
 								$('.main-search').hide();
 							});
 						</script>
-						<!--/profile_details-->
+						
 						<div class="profile_details_left">
 							<ul class="nofitications-dropdown">
 								<li class="dropdown note"><a href="#"
@@ -340,30 +339,53 @@
 									Objects</a></li>
 
 						</ul></li>
-					<li><a href="chart.html"><i class="lnr lnr-chart-bars"></i>
-							<span>Charts</span> <span class="fa fa-angle-right"
-							style="float: right"></span></a>
+						
+						
+					<!-- Green037 menu -->	
+					<li>
+						<a href="chart.html">
+							<i class="lnr lnr-chart-bars"></i>
+								<span>급여관리</span>
+								<span class="fa fa-angle-right" style="float: right"></span>
+						</a>
 						<ul>
-							<li><a href="map.html"><i class="lnr lnr-map"></i> Maps</a></li>
-							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>
-									Graph Visualization</a></li>
-						</ul></li>
-					<li id="menu-comunicacao"><a href="#"><i
-							class="fa fa-smile-o"></i> <span>More</span><span
-							class="fa fa-angle-double-right" style="float: right"></span></a>
+							<!-- 자기꺼만 볼 수 있는 일반 사원들 -->
+							<li><a href="map.html"><i class="lnr lnr-map"></i>월급여조회</a></li>
+							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>연간급여내역조회</a></li>
+							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>최근 3년간 급여내역조회</a></li>
+							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>성과연봉액조회</a></li>
+							
+							<!-- 총무부의 경우 볼 수 있는 급여 삽입 + 조회 -->
+							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>급여내역추가</a></li>
+							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>급여내역수정</a></li>
+						</ul>
+					</li>
+					<li id="menu-comunicacao">
+						<a href="#">
+							<i class="fa fa-smile-o"></i>
+								<span>고과관리</span>
+								<span class="fa fa-angle-double-right" style="float: right"></span>
+						</a>
 						<ul id="menu-comunicacao-sub">
-							<li id="menu-mensagens" style="width: 120px"><a
-								href="project.html">Projects <i class="fa fa-angle-right"
-									style="float: right; margin-right: -8px; margin-top: 2px;"></i></a>
+							<li id="menu-mensagens" style="width: 120px">
+								<a href="project.html">Projects
+									<i class="fa fa-angle-right" style="float: right; margin-right: -8px; margin-top: 2px;"></i>
+								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width: 130px"><a
-										href="ribbon.html">Ribbons</a></li>
-									<li id="menu-mensagens-recebidas" style="width: 130px"><a
-										href="blank.html">Blank</a></li>
-								</ul></li>
+									<li id="menu-mensagens-enviadas" style="width: 130px">
+										<a href="ribbon.html">Ribbons</a>
+									</li>
+									<li id="menu-mensagens-recebidas" style="width: 130px">
+										<a href="blank.html">Blank</a>
+									</li>
+								</ul>
+							</li>
 							<li id="menu-arquivos"><a href="500.html">500</a></li>
-						</ul></li>
+						</ul>
+					</li>
 				</ul>
+				
+				
 			</div>
 		</div>
 		<div class="clearfix"></div>
