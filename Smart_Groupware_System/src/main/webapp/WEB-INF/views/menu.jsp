@@ -85,7 +85,6 @@
 									aria-expanded="false"><i class="fa fa-envelope-o"></i> <span
 										class="badge">3</span></a>
 
-
 									<ul class="dropdown-menu two first">
 										<li>
 											<div class="notification_header">
@@ -281,59 +280,111 @@
 								out</span><i class="lnr lnr-power-switch"></i></a></li>
 				</ul>
 			</div>
-			<!--//down-->
+			
+			<!-- menu -->
 			<div class="menu">
 				<ul id="menu">
-					<li><a href="index.html"><i class="fa fa-tachometer"></i>
-							<span>Dashboard</span></a></li>
-					<li id="menu-academico"><a href="#"><i
-							class="fa fa-table"></i> <span> Tabs &amp; Panels</span> <span
-							class="fa fa-angle-right" style="float: right"></span></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="tabs.html">
-									Tabs &amp; Panels</a></li>
-							<li id="menu-academico-boletim"><a href="widget.html">Widgets</a></li>
-							<li id="menu-academico-avaliacoes"><a href="calender.html">Calendar</a></li>
-
-						</ul></li>
-					<li id="menu-academico"><a href="#"><i
-							class="fa fa-file-text-o"></i> <span>Ui Elements</span> <span
-							class="fa fa-angle-right" style="float: right"></span></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="forms.html">Forms</a></li>
-							<li id="menu-academico-boletim"><a href="validation.html">Validation
-									Forms</a></li>
-							<li id="menu-academico-boletim"><a href="table.html">Tables</a></li>
-							<li id="menu-academico-boletim"><a href="buttons.html">Buttons</a></li>
-						</ul></li>
-					<li><a href="typography.html"><i class="lnr lnr-pencil"></i>
-							<span>Typography</span></a></li>
-					<li id="menu-academico"><a href="#"><i
-							class="lnr lnr-book"></i> <span>Pages</span> <span
-							class="fa fa-angle-right" style="float: right"></span></a>
-						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="login.html">Login</a></li>
-							<li id="menu-academico-boletim"><a href="register.html">Register</a></li>
-							<li id="menu-academico-boletim"><a href="404.html">404</a></li>
-							<li id="menu-academico-boletim"><a href="sign.html">Sign
-									up</a></li>
-							<li id="menu-academico-boletim"><a href="profile.html">Profile</a></li>
-						</ul></li>
-					
-					<!-- hsa nemu -->
-					<!-- 전자결제 -->	
-					<li id="menu-comunicacao">
+				
+					<!-- bbang menu -->
+					<li id="menu-academico">
 						<a href="#">
-							<i class="lnr lnr-envelope"></i> <span>전자결재</span>
-								<span class="fa fa-angle-right" style="float:right"></span>
+							<i class="glyphicon glyphicon-calendar"></i>
+							<span>출퇴근관리</span>
+							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
-						<ul>
-							<li><a href="#"><i class="fa fa-inbox"></i>결재목록</a></li>
-							<li><a href="#"><i class="fa fa-pencil-square-o"></i>문서결재신청</a></li>
+						<ul id="menu-academico-sub">
+							<li id="menu-academico-avaliacoes"><a href="#">출근등록</a></li>
+							<li id="menu-academico-boletim"><a href="#">퇴근등록</a></li>
+							<li id="menu-academico-avaliacoes"><a href="#">출퇴근기록조회</a></li>
+							<li id="menu-academico-avaliacoes"><a href="#">부서출퇴근기록조회</a></li>
+						</ul>
+					</li>		
+					<li id="menu-academico">
+						<a href="#">
+							<i class="glyphicon glyphicon-user"></i>
+							<span>인사관리</span>
+							<span class="fa fa-angle-right" style="float:right"></span>
+						</a>
+						<ul id="menu-academico-sub">
+							<li id="menu-academico-avaliacoes"><a href="#">사원추가</a></li>
+							<li id="menu-academico-boletim"><a href="#">사원정보수정</a></li>
+							<li id="menu-academico-avaliacoes"><a href="#">사원조회</a></li>
+							<li id="menu-academico-avaliacoes"><a href="#">개인정보조회</a></li>
 						</ul>
 					</li>
 					<li id="menu-academico">
-						<a href="#"><i class="lnr lnr-layers"></i> <span>문서 양식</span>
+						<a href="#">
+							<i class="glyphicon glyphicon-plane"></i>
+							<span>근외일정관리</span> 
+							<span class="fa fa-angle-right" style="float:right"></span>
+						</a>
+						<ul id="menu-academico-sub">
+							<li id="menu-academico-avaliacoes"><a href="#">근외일정등록</a></li>
+							<li id="menu-academico-boletim"><a href="#">근외일정조회</a></li>
+							<li id="menu-academico-boletim"><a href="#">부서근외일정조회</a></li>
+						</ul>
+					</li>
+					
+<!-- rang1536 Menu~!! dont touch plz.. -->
+					<li id="menu-comunicacao">
+						<a href="#">
+							<i class="lnr lnr-pencil"></i>
+							<span>프로젝트</span>
+							<span class="fa fa-angle-double-right" style="float:right"></span>
+						</a>
+						<ul id="menu-comunicacao-sub">
+							<li id="menu-mensagens" style="width:120px">
+								<a href="<c:url value='/prList.pr' />">목록
+									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
+								</a>
+								<ul id="menu-mensagens-sub">
+									<li id="menu-mensagens-enviadas" style="width:130px"><a href="#">모집중</a></li>
+									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">진행중</a></li>
+									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">완료된</a></li>
+								</ul>
+							</li>
+							<li id="menu-arquivos"><a href="<c:url value='/prAdd.pr'/>">등록</a></li>
+							<li id="menu-mensagens" style="width:120px">
+								<a href="#">완료보고서
+									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
+								</a>
+								<ul id="menu-mensagens-sub">
+									<li id="menu-mensagens-enviadas" style="width:130px"><a href="#">등록</a></li>
+									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">목록</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li id="menu-academico">
+						<a href="#">
+							<i class="lnr lnr-book"></i> 
+							<span>Project WBS</span> 
+							<span class="fa fa-angle-right" style="float:right"></span>
+						</a>
+						<ul id="menu-academico-sub">
+							<li id="menu-academico-avaliacoes"><a href="#">WBS등록</a></li>
+							<li id="menu-academico-boletim"><a href="#">프로젝트목록</a></li>
+						</ul>
+					</li>
+<!-- rang1536 menu end thank you~^^ -->
+									
+					<!-- hsa nemu -->
+					<!-- 전자결재 -->	
+					<li id="menu-academico">
+						<a href="#">
+							<i class="lnr lnr-envelope"></i>
+							<span>전자결재</span>
+							<span class="fa fa-angle-right" style="float:right"></span>
+						</a>
+						<ul id="menu-academico-sub">
+							<li id="menu-academico-avaliacoes"><a href="#">결재목록</a></li>
+							<li id="menu-academico-avaliacoes"><a href="#">문서결재신청</a></li>
+						</ul>
+					</li>
+					<li id="menu-academico">
+						<a href="#">
+							<i class="lnr lnr-layers"></i>
+							<span>문서양식</span>
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
@@ -355,22 +406,16 @@
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:200px">
-										<a href="#">총급여목록</a>
-									</li>
-									<li id="menu-mensagens-enviadas" style="width:200px">
-										<a href="#">급여내역추가</a>
-									</li>
-									<li id="menu-mensagens-recebidas" style="width:200px">
-										<a href="#">급여내역수정</a>
-									</li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">총급여목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">급여내역추가</a></li>
+									<li id="menu-mensagens-recebidas" style="width:200px"><a href="#">급여내역수정</a></li>
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
-							<li><a href="#">월급여조회</a></li>
-							<li><a href="#">연간급여내역조회</a></li>
-							<li><a href="#">최근 3년간 급여내역조회</a></li>
-							<li><a href="#">성과연봉액조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="#">월급여조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="#">연간급여내역조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="#">최근 3년간 급여내역조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="#">성과연봉액조회</a></li>
 						</ul>
 					</li>
 					<!-- 고과관리 -->
@@ -385,20 +430,14 @@
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:200px">
-										<a href="#">총고과목록</a>
-									</li>
-									<li id="menu-mensagens-enviadas" style="width:200px">
-										<a href="#">고과내역추가</a>
-									</li>
-									<li id="menu-mensagens-recebidas" style="width:200px">
-										<a href="#">고과내역수정</a>
-									</li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">총고과목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">고과내역추가</a></li>
+									<li id="menu-mensagens-recebidas" style="width:200px"><a href="#">고과내역수정</a></li>
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
-							<li><a href="#">고과기록정보조회</a></li>
-							<li><a href="#">연간고과내역조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="#">고과기록정보조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="#">연간고과내역조회</a></li>
 						</ul>
 					</li>
 					
