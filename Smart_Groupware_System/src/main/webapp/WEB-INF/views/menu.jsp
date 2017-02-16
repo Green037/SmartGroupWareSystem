@@ -324,16 +324,8 @@
 						<span>전자 결재</span><span class="fa fa-angle-right" style="float: right"></span>
 					</a>
 						<ul>
-							<li>
-								<a href="inbox.html">
-								<i class="fa fa-inbox"></i>결재 목록</a>
-							</li>
-							
-							<li>
-								<a href="compose.html">
-								<i class="fa fa-pencil-square-o"></i>문서 결재 신청</a>
-							</li>
-							
+							<li><a href="inbox.html"><i class="fa fa-inbox"></i>결재 목록</a></li>
+							<li><a href="compose.html"><i class="fa fa-pencil-square-o"></i>문서 결재 신청</a></li>
 						</ul>
 					</li>
 					<li id="menu-academico">
@@ -342,58 +334,72 @@
 							<span class="fa fa-angle-right" style="float: right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes">
-								<a href="grids.html">문서함</a>
-							</li>
+							<li id="menu-academico-avaliacoes"><a href="grids.html">문서함</a></li>
 						</ul>
 					</li>
 						
-						
-					<!-- Green037 menu -->	
-					<li>
-						<a href="chart.html">
-							<i class="lnr lnr-chart-bars"></i>
-								<span>급여관리</span>
-								<span class="fa fa-angle-right" style="float: right"></span>
-						</a>
-						<ul>
-							<!-- 자기꺼만 볼 수 있는 일반 사원들 -->
-							<li><a href="map.html"><i class="lnr lnr-map"></i>월급여조회</a></li>
-							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>연간급여내역조회</a></li>
-							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>최근 3년간 급여내역조회</a></li>
-							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>성과연봉액조회</a></li>
-							
-							<!-- 총무부의 경우 볼 수 있는 급여 삽입 + 조회 -->
-							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>급여내역추가</a></li>
-							<li><a href="graph.html"><i class="lnr lnr-apartment"></i>급여내역수정</a></li>
-						</ul>
-					</li>
+					<!-- Green037 menu -->
+					<!-- 급여관리 -->
 					<li id="menu-comunicacao">
 						<a href="#">
-							<i class="fa fa-smile-o"></i>
-								<span>고과관리</span>
-								<span class="fa fa-angle-double-right" style="float: right"></span>
+							<i class="glyphicon glyphicon-usd"></i><span>급여관리</span>
+							<span class="fa fa-angle-double-right" style="float:right"></span>
 						</a>
 						<ul id="menu-comunicacao-sub">
-							<li id="menu-mensagens" style="width: 120px">
-								<a href="project.html">Projects
-									<i class="fa fa-angle-right" style="float: right; margin-right: -8px; margin-top: 2px;"></i>
+							<!-- 총무부 사원들만 볼 수 있는 메뉴 => 급여 목록/추가/삭제 -->
+							<li id="menu-mensagens">
+								<a href="#"><i class="glyphicon glyphicon-ok"></i> 총무부권한
+									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width: 130px">
-										<a href="ribbon.html">Ribbons</a>
+									<li id="menu-mensagens-enviadas" style="width:200px">
+										<a href="#">총급여목록</a>
 									</li>
-									<li id="menu-mensagens-recebidas" style="width: 130px">
-										<a href="blank.html">Blank</a>
+									<li id="menu-mensagens-enviadas" style="width:200px">
+										<a href="#">급여내역추가</a>
+									</li>
+									<li id="menu-mensagens-recebidas" style="width:200px">
+										<a href="#">급여내역수정</a>
 									</li>
 								</ul>
 							</li>
-							<li id="menu-arquivos"><a href="500.html">500</a></li>
+							<!-- 일반 사원들만 보이는 메뉴 -->
+							<li><a href="#">월급여조회</a></li>
+							<li><a href="#">연간급여내역조회</a></li>
+							<li><a href="#">최근 3년간 급여내역조회</a></li>
+							<li><a href="#">성과연봉액조회</a></li>
 						</ul>
 					</li>
-				</ul>
-				
-				
+					<!-- 고과관리 -->
+					<li id="menu-academico">
+						<a href="#"><i class="glyphicon glyphicon-chevron-up"></i><span>고과관리</span>
+							<span class="fa fa-angle-double-right" style="float:right"></span>
+						</a>
+						<ul id="menu-academico-sub">
+							<!-- 인사부 사원들만 볼 수 있는 메뉴 => 고과 목록/추가/수정 -->
+							<li id="menu-mensagens">
+								<a href="#"><i class="glyphicon glyphicon-ok"></i> 인사부권한
+									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
+								</a>
+								<ul id="menu-mensagens-sub">
+									<li id="menu-mensagens-enviadas" style="width:200px">
+										<a href="#">총고과목록</a>
+									</li>
+									<li id="menu-mensagens-enviadas" style="width:200px">
+										<a href="#">고과내역추가</a>
+									</li>
+									<li id="menu-mensagens-recebidas" style="width:200px">
+										<a href="#">고과내역수정</a>
+									</li>
+								</ul>
+							</li>
+							<!-- 일반 사원들만 보이는 메뉴 -->
+							<li><a href="#">고과기록정보조회</a></li>
+							<li><a href="#">연간고과내역조회</a></li>
+						</ul>
+					</li>
+					
+				</ul>		
 			</div>
 		</div>
 		<div class="clearfix"></div>

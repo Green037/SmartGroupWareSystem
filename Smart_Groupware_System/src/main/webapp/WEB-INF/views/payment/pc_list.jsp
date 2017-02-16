@@ -18,7 +18,7 @@
 					<!--sub-heard-part-->
 					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
-							<li><a href="index.html">Home</a></li>
+							<li><a href="/smart">Home</a></li>
 							<li class="active">월급여조회</li>
 						</ol>
 					</div>
