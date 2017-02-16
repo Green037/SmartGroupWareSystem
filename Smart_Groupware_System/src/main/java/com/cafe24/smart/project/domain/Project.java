@@ -3,9 +3,6 @@ package com.cafe24.smart.project.domain;
 //프로젝트
 public class Project {
 	private int prCode;
-	private int pmCode;
-	private int wbsCode;
-	private int fuCode;
 	private int prMemberCode;
 	private int drfCode;
 	private String prName;
@@ -26,30 +23,6 @@ public class Project {
 
 	public void setPrCode(int prCode) {
 		this.prCode = prCode;
-	}
-
-	public int getPmCode() {
-		return pmCode;
-	}
-
-	public void setPmCode(int pmCode) {
-		this.pmCode = pmCode;
-	}
-
-	public int getWbsCode() {
-		return wbsCode;
-	}
-
-	public void setWbsCode(int wbsCode) {
-		this.wbsCode = wbsCode;
-	}
-
-	public int getFuCode() {
-		return fuCode;
-	}
-
-	public void setFuCode(int fuCode) {
-		this.fuCode = fuCode;
 	}
 
 	public int getPrMemberCode() {
@@ -158,10 +131,10 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "Project [prCode=" + prCode + ", pmCode=" + pmCode + ", wbsCode=" + wbsCode + ", fuCode=" + fuCode
-				+ ", prMemberCode=" + prMemberCode + ", drfCode=" + drfCode + ", prName=" + prName + ", prMember="
-				+ prMember + ", prMoney=" + prMoney + ", prGoal=" + prGoal + ", prProgress=" + prProgress + ", prCate="
-				+ prCate + ", prRestration=" + prRestration + ", prStartDay=" + prStartDay + ", prEndDay=" + prEndDay
-				+ ", prForProgress=" + prForProgress + ", prFinishCheck=" + prFinishCheck + "]";
+		return "Project [prCode=" + prCode + ", prMemberCode=" + prMemberCode + ", drfCode=" + drfCode + ", prName="
+				+ prName + ", prMember=" + prMember + ", prMoney=" + prMoney + ", prGoal=" + prGoal + ", prProgress="
+				+ prProgress + ", prCate=" + prCate + ", prRestration=" + prRestration + ", prStartDay=" + prStartDay
+				+ ", prEndDay=" + prEndDay + ", prForProgress=" + prForProgress + ", prFinishCheck=" + prFinishCheck
+				+ "]";
 	}
 }

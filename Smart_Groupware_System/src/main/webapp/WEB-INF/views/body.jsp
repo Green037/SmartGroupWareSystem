@@ -7,22 +7,20 @@
 
 <body>
 
-<%@ include file="menu.jsp" %>
+	<%@ include file="menu.jsp" %>
 	
 	<!-- contents -->
 	<div class="page-container">
 		<div class="left-content">
 			<div class="inner-content">
-				<div class="outter-wp">
-					<h2>hello world</h2>
-					<div>ok?</div>
-					기초 page
+				<div class="outter-wp">	
+					body 들어갈 내용
 				</div>				
 			</div>
 		</div>
 	</div>
 			
-<%@ include file="footer.jsp"%>
+	<%@ include file="footer.jsp"%>
 
 </body>
 </html>
