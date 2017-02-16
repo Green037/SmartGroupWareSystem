@@ -2,36 +2,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 </head> 
 
 <body>
-<!-- menu: -->
-<%@ include file="menu.jsp" %>
-<!-- //menu: -->
 
-<div class="page-container">'
-	<!--/content-inner-->
-	<div class="left-content">
-		<div class="inner-content">
-			<div class="outter-wp">
-					<!-- 여기에 입력 -->
-					
+<%@ include file="menu.jsp" %>
+	
+	<!-- contents -->
+	<div class="page-container">
+		<div class="left-content">
+			<div class="inner-content">
+				<div class="outter-wp">
 					<h2>hello world</h2>
 					<div>ok?</div>
-					
 					기초 page
-					
-					<!-- //여기에 입력 -->
-			</div>				
+				</div>				
+			</div>
 		</div>
 	</div>
-
-</div>
-</div>
-
-<!-- 하단 -->			
+			
 <%@ include file="footer.jsp"%>
-<!-- //하단 -->
 
 </body>
 </html>
