@@ -9,7 +9,7 @@
 
 	<%@ include file="../menu.jsp" %>
 	
-	<!-- contents --> 
+	<!-- contents -->
 	<div class="page-container">
 		<div class="left-content">
 			<div class="inner-content">

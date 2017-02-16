@@ -360,7 +360,7 @@
 									</li>
 									<li id="menu-mensagens-recebidas" style="width:200px">
 										<a href="#">급여내역수정</a>
-									</li> 
+									</li>
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
