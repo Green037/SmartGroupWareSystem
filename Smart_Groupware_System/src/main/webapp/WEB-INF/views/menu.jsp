@@ -319,22 +319,25 @@
 									up</a></li>
 							<li id="menu-academico-boletim"><a href="profile.html">Profile</a></li>
 						</ul></li>
-					<li>
-					<a href="#"><i class="lnr lnr-envelope"></i> 
-						<span>전자 결재</span><span class="fa fa-angle-right" style="float: right"></span>
-					</a>
+					
+					<!-- hsa nemu -->
+					<!-- 전자결제 -->	
+					<li id="menu-comunicacao">
+						<a href="#">
+							<i class="lnr lnr-envelope"></i> <span>전자결재</span>
+								<span class="fa fa-angle-right" style="float:right"></span>
+						</a>
 						<ul>
-							<li><a href="inbox.html"><i class="fa fa-inbox"></i>결재 목록</a></li>
-							<li><a href="compose.html"><i class="fa fa-pencil-square-o"></i>문서 결재 신청</a></li>
+							<li><a href="#"><i class="fa fa-inbox"></i>결재목록</a></li>
+							<li><a href="#"><i class="fa fa-pencil-square-o"></i>문서결재신청</a></li>
 						</ul>
 					</li>
 					<li id="menu-academico">
-						<a href="#"><i class="lnr lnr-layers"></i> 
-							<span>문서 양식</span>
-							<span class="fa fa-angle-right" style="float: right"></span>
+						<a href="#"><i class="lnr lnr-layers"></i> <span>문서 양식</span>
+							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="grids.html">문서함</a></li>
+							<li id="menu-academico-avaliacoes"><a href="#">문서함</a></li>
 						</ul>
 					</li>
 						
