@@ -283,8 +283,8 @@
 		<div class="sidebar-menu">
 			<header class="logo">
 				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
-				</a> <a href="index.html"> <span id="logo">
-						<h1>Augment</h1>
+				</a> <a href="/smart"> <span id="logo">
+						<h1 align="center">Smart</h1>
 				</span> <!--<img id="logo" src="" alt="Logo"/>-->
 				</a>
 			</header>
@@ -292,13 +292,12 @@
 			<!--/down-->
 			<div class="down">
 				<a href="index.html"><img src="resources/images/admin.jpg"></a>
-				<a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
-				<p>System Administrator in Company</p>
+				<a href="index.html"><span class=" name-caret"><b>홍길동</b></span></a>
+				<p>님이 로그인 중입니다.</p>
 				<ul>
 					<li><a class="tooltips" href="index.html"><span>Profile</span><i
 							class="lnr lnr-user"></i></a></li>
-					<li><a class="tooltips" href="index.html"><span>Settings</span><i
-							class="lnr lnr-cog"></i></a></li>
+					
 					<li><a class="tooltips" href="index.html"><span>Log
 								out</span><i class="lnr lnr-power-switch"></i></a></li>
 				</ul>
