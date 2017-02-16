@@ -371,7 +371,7 @@
 						</ul>
 					</li>
 					<!-- 고과관리 -->
-					<li id="menu-academico">
+					<li id="menu-academico"> 
 						<a href="#"><i class="glyphicon glyphicon-chevron-up"></i><span>고과관리</span>
 							<span class="fa fa-angle-double-right" style="float:right"></span>
 						</a>
