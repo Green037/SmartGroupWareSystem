@@ -1,7 +1,11 @@
 package com.cafe24.smart.approve.dao;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ApproveDAOImpl implements ApproveDAO {
-	final static Logger log = Logger.getLogger(ApproveDAOImpl.class);
+	
+	private static final Logger log = LoggerFactory.getLogger(ApproveDAOImpl.class);
 }

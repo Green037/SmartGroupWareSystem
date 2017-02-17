@@ -6,16 +6,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cafe24.smart.HomeController;
-
 @Controller
 public class ProjectController {
 	
 	private static final Logger log = LoggerFactory.getLogger(ProjectController.class);
 	
-	@RequestMapping(value = "prAdd.pr", method = RequestMethod.GET)
+	@RequestMapping(value = "pr/add", method = RequestMethod.GET)
 	public String add() {
 						
-		return "/project/pr_addForm";
+		return "project/pr_addForm";
 	}	
 }

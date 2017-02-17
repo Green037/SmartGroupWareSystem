@@ -2,13 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
-</head> 
-
+</head>
 <body>
 
-	<%@ include file="menu.jsp" %>
+	<%@ include file="../menu.jsp" %>
 	
 	<!-- contents -->
 	<div class="page-container">
@@ -21,7 +20,7 @@
 		</div>
 	</div>
 			
-	<%@ include file="footer.jsp"%>
+	<%@ include file="../footer.jsp"%>
 
 </body>
 </html>

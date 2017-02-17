@@ -1,7 +1,10 @@
 package com.cafe24.smart.approve.controller;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class ApproveController {
-	final static Logger log = Logger.getLogger(ApproveController.class);
+	private static final Logger log = LoggerFactory.getLogger(ApproveController.class);
 }

@@ -1,7 +1,11 @@
 package com.cafe24.smart.commute.controller;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class CommuteController {
-	final static Logger log = Logger.getLogger(CommuteController.class);
+	
+	private static final Logger log = LoggerFactory.getLogger(CommuteController.class);
 }

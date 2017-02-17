@@ -1,7 +1,11 @@
 package com.cafe24.smart.project.dao;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProjectDAOImpl implements ProjectDAO {
-	final static Logger log = Logger.getLogger(ProjectDAOImpl.class);
+	
+	private static final Logger log = LoggerFactory.getLogger(ProjectDAOImpl.class);
 }

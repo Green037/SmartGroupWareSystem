@@ -1,7 +1,9 @@
 package com.cafe24.smart.member.service;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public interface MemberService {
-	final static Logger log = Logger.getLogger(MemberService.class);
+public class MemberService {
+	
+	private static final Logger log = LoggerFactory.getLogger(MemberService.class);
 }

@@ -1,37 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="Augment Responsive web template, Bootstrap Web Templates, Flat Web Templates,
 								  Android Compatible web template, Smartphone Compatible web template,
 								  free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design"/>
 	
-	<link href="resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-	<link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
-	<link href="resources/css/font-awesome.css" rel="stylesheet"/>
-	<link href="resource/font/font.ttf" rel="stylesheet"/>
-	<link href="resources/css/barChart.css" rel="stylesheet" type="text/css"/>
-	<link href="resources/css/fabochart.css" rel="stylesheet"type="text/css"/>
-	<link rel="stylesheet" href="resources/css/icon-font.min.css" type="text/css"/>
-	<link rel="stylesheet" href="resources/css/vroom.css">
+	<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/font-awesome.css'/>" rel="stylesheet"/>
+	<link href="<c:url value='/resources/font/font.ttf'/>" rel="stylesheet"/>
+	<link href="<c:url value='/resources/css/barChart.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/fabochart.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/icon-font.min.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/vroom.css'/>" rel="stylesheet"/>
 	
-	<script src="resources/js/jquery-1.10.2.min.js"></script>
-	<script src="resources/js/amcharts.js"></script>
-	<script src="resources/js/serial.js"></script>
-	<script src="resources/js/light.js"></script>
-	<script src="resources/js/radar.js"></script>
-	<script src="resources/js/css3clock.js"></script>
-	<script src="resources/js/skycons.js"></script>
-	<script src="resources/js/jquery.easydropdown.js"></script>
-	<script type="text/javascript" src="resources/js/vroom.js"></script>
-	<script type="text/javascript" src="resources/js/TweenLite.min.js"></script>
-	<script type="text/javascript" src="resources/js/CSSPlugin.min.js"></script>
-	<script src="resources/js/jquery.nicescroll.js"></script>
-	<script src="resources/js/scripts.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/amcharts.js'/>"></script>
+	<script src="<c:url value='/resources/js/serial.js'/>"></script>
+	<script src="<c:url value='/resources/js/light.js'/>"></script>
+	<script src="<c:url value='/resources/js/radar.js'/>"></script>
+	<script src="<c:url value='/resources/js/css3clock.js'/>"></script>
+	<script src="<c:url value='/resources/js/skycons.js'/>"></script>
+	<script src="<c:url value='/resources/js/jquery.easydropdown.js'/>"></script>
+	<script src="<c:url value='/resources/js/vroom.js'/>" type="text/javascript" ></script>
+	<script src="<c:url value='/resources/js/TweenLite.min.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/resources/js/CSSPlugin.min.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/resources/js/jquery.nicescroll.js'/>"></script>
+	<script src="<c:url value='/resources/js/scripts.js'/>"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
 
 	<script type="application/x-javascript">
 		addEventListener("load", function() {
@@ -58,7 +59,7 @@
 									class="text" /> <input type="submit" value="">
 							</form>
 							<div class="close">
-								<img src="resources/images/cross.png" />
+								<img src="<c:url value='/resources/images/cross.png'/>"/>
 							</div>
 						</div>
 						<div class="srch">
@@ -93,7 +94,7 @@
 										</li>
 										<li><a href="#">
 												<div class="user_img">
-													<img src="resources/images/1.jpg" alt="">
+													<img src="<c:url value='/resources/images/1.jpg'/>" alt="">
 												</div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor sit amet</p>
@@ -105,7 +106,7 @@
 										</a></li>
 										<li class="odd"><a href="#">
 												<div class="user_img">
-													<img src="resources/images/in.jpg" alt="">
+													<img src="<c:url value='/resources/images/in.jpg'/>" alt="">
 												</div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor sit amet</p>
@@ -117,7 +118,7 @@
 										</a></li>
 										<li><a href="#">
 												<div class="user_img">
-													<img src="resources/images/in1.jpg" alt="">
+													<img src="<c:url value='/resources/images/in1.jpg'/>" alt="">
 												</div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor sit amet</p>
@@ -147,7 +148,7 @@
 										</li>
 										<li><a href="#">
 												<div class="user_img">
-													<img src="resources/images/in.jpg" alt="">
+													<img src="<c:url value='/resources/images/in.jpg'/>" alt="">
 												</div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor sit amet</p>
@@ -159,7 +160,7 @@
 										</a></li>
 										<li class="odd"><a href="#">
 												<div class="user_img">
-													<img src="resources/images/in5.jpg" alt="">
+													<img src="<c:url value='/resources/images/in5.jpg'/>" alt="">
 												</div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor sit amet</p>
@@ -171,7 +172,7 @@
 										</a></li>
 										<li><a href="#">
 												<div class="user_img">
-													<img src="resources/images/in8.jpg" alt="">
+													<img src="<c:url value='/resources/images/in8.jpg'/>" alt="">
 												</div>
 												<div class="notification_desc">
 													<p>Lorem ipsum dolor sit amet</p>
@@ -269,7 +270,7 @@
 			<div style="border-top: 1px solid rgba(69, 74, 84, 0.7)"></div>
 			<!--/down-->
 			<div class="down">
-				<a href="index.html"><img src="resources/images/admin.jpg"></a>
+				<a href="index.html"><img src="<c:url value='/resources/images/admin.jpg'/>"></a>
 				<a href="index.html"><span class=" name-caret"><b>홍길동</b></span></a>
 				<p>님이 로그인 중입니다.</p>
 				<ul>
@@ -334,7 +335,7 @@
 						</a>
 						<ul id="menu-comunicacao-sub">
 							<li id="menu-mensagens" style="width:120px">
-								<a href="<c:url value='/prList.pr' />">목록
+								<a href="#"><i class="glyphicon glyphicon-ok"></i> 목록
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
@@ -343,9 +344,9 @@
 									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">완료된</a></li>
 								</ul>
 							</li>
-							<li id="menu-arquivos"><a href="prAdd.pr">등록</a></li>
+							<li id="menu-arquivos"><a href="<c:url value='/pr/add'/>">등록</a></li>
 							<li id="menu-mensagens" style="width:120px">
-								<a href="#">완료보고서
+								<a href="#"><i class="glyphicon glyphicon-ok"></i> 완료보고서
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
@@ -411,8 +412,8 @@
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
-							<li id="menu-mensagens-enviadas"><a href="#">월급여조회</a></li>
-							<li id="menu-mensagens-enviadas"><a href="#">연간급여내역조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="<c:url value='/pc/content'/>">월급여조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="<c:url value='/pc/list'/>">연간급여내역조회</a></li>
 						</ul>
 					</li>
 					<!-- 고과관리 -->
@@ -432,8 +433,8 @@
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
-							<li id="menu-mensagens-enviadas"><a href="#">고과기록정보조회</a></li>
-							<li id="menu-mensagens-enviadas"><a href="#">연간고과내역조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="<c:url value='/re/content'/>">고과기록정보조회</a></li>
+							<li id="menu-mensagens-enviadas"><a href="<c:url value='/re/list'/>">연간고과내역조회</a></li>
 						</ul>
 					</li>
 					

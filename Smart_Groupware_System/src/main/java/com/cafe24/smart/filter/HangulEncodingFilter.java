@@ -9,13 +9,14 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 //한글 인코딩 설정
 @WebFilter("/HangulEncodingFilter")
 public class HangulEncodingFilter implements Filter {
 
-	final static Logger log = Logger.getLogger(HangulEncodingFilter.class);
+	private static final Logger log = LoggerFactory.getLogger(HangulEncodingFilter.class);
 	
 //	eincoding charset
 	String encoding;

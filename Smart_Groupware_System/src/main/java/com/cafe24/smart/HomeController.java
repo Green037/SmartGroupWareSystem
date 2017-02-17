@@ -27,6 +27,6 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate);
 		
-		return "/payment/re_content";
+		return "home";
 	}	
 }

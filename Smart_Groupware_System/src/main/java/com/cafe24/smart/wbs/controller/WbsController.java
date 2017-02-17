@@ -1,7 +1,11 @@
 package com.cafe24.smart.wbs.controller;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
 
+@Controller
 public class WbsController {
-	final static Logger log = Logger.getLogger(WbsController.class);
+	
+	private static final Logger log = LoggerFactory.getLogger(WbsController.class);
 }

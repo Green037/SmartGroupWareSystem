@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-	<link href="resources/css/prAdd.css" rel="stylesheet" type="text/css"/>
-	<script src="resources/js/jquery-3.1.1.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<link href="<c:url value='/resources/css/prAdd.css'/>" rel="stylesheet" type="text/css"/>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	
 	<script>
 	$(document).ready(function () {
 	    //Initialize tooltips
@@ -64,7 +67,6 @@
 	});
 	</script>
 </head> 
-
 <body>
 <%@ include file="../menu.jsp" %>
 	

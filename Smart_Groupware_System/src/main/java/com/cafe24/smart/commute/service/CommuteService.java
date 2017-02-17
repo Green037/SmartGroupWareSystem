@@ -1,7 +1,9 @@
 package com.cafe24.smart.commute.service;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommuteService {
-	final static Logger log = Logger.getLogger(CommuteService.class);
+	
+	private static final Logger log = LoggerFactory.getLogger(CommuteService.class);
 }

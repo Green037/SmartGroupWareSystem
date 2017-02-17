@@ -1,7 +1,9 @@
 package com.cafe24.smart.extraSchedule.service;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExtraScheduleService {
-	final static Logger log = Logger.getLogger(ExtraScheduleService.class);
+	
+	private static final Logger log = LoggerFactory.getLogger(ExtraScheduleService.class);
 }
