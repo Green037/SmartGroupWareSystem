@@ -1330,7 +1330,7 @@ text.highcharts-title {
 	/* dev table */
 .dev-table {
   display: table;
-  width: 100%;
+  width: 80%;
 }
 .dev-table .dev-row {
   display: table-row;
