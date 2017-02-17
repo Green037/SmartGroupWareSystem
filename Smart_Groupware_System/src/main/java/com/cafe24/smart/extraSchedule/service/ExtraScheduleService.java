@@ -1,5 +1,7 @@
 package com.cafe24.smart.extraSchedule.service;
 
-public class ExtraScheduleService {
+import org.apache.log4j.Logger;
 
+public class ExtraScheduleService {
+	final static Logger log = Logger.getLogger(ExtraScheduleService.class);
 }

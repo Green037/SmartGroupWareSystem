@@ -1,5 +1,7 @@
 package com.cafe24.smart.approve.dao;
 
-public class ApproveDAOImpl implements ApproveDAO {
+import org.apache.log4j.Logger;
 
+public class ApproveDAOImpl implements ApproveDAO {
+	final static Logger log = Logger.getLogger(ApproveDAOImpl.class);
 }

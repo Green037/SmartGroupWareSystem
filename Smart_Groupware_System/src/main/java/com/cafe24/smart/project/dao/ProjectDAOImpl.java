@@ -1,5 +1,7 @@
 package com.cafe24.smart.project.dao;
 
-public class ProjectDAOImpl implements ProjectDAO {
+import org.apache.log4j.Logger;
 
+public class ProjectDAOImpl implements ProjectDAO {
+	final static Logger log = Logger.getLogger(ProjectDAOImpl.class);
 }
