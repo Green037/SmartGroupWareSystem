@@ -18,7 +18,7 @@
 					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart"><b>Home</b></a></li>
-							<li>연간급여내역조회</li>
+							<li>연간고과내역조회</li>
 						</ol>
 					</div>
 			

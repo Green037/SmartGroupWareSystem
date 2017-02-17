@@ -408,14 +408,11 @@
 								<ul id="menu-mensagens-sub">
 									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">총급여목록</a></li>
 									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">급여내역추가</a></li>
-									<li id="menu-mensagens-recebidas" style="width:200px"><a href="#">급여내역수정</a></li>
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
 							<li id="menu-mensagens-enviadas"><a href="#">월급여조회</a></li>
 							<li id="menu-mensagens-enviadas"><a href="#">연간급여내역조회</a></li>
-							<li id="menu-mensagens-enviadas"><a href="#">최근 3년간 급여내역조회</a></li>
-							<li id="menu-mensagens-enviadas"><a href="#">성과연봉액조회</a></li>
 						</ul>
 					</li>
 					<!-- 고과관리 -->
@@ -432,7 +429,6 @@
 								<ul id="menu-mensagens-sub">
 									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">총고과목록</a></li>
 									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">고과내역추가</a></li>
-									<li id="menu-mensagens-recebidas" style="width:200px"><a href="#">고과내역수정</a></li>
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
