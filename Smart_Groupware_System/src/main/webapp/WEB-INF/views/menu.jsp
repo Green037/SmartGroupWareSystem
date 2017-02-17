@@ -262,7 +262,7 @@
 			<header class="logo">
 				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
 				</a> <a href="/smart"> <span id="logo">
-						<h1><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>Smart</h1>
+						<h1><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Smart</h1>
 				</span> <!--<img id="logo" src="" alt="Logo"/>-->
 				</a>
 			</header>
@@ -343,7 +343,7 @@
 									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">완료된</a></li>
 								</ul>
 							</li>
-							<li id="menu-arquivos"><a href="<c:url value='/prAdd.pr'/>">등록</a></li>
+							<li id="menu-arquivos"><a href="prAdd.pr">등록</a></li>
 							<li id="menu-mensagens" style="width:120px">
 								<a href="#">완료보고서
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
