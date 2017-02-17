@@ -15,7 +15,6 @@
 			<div class="inner-content">
 				<div class="outter-wp">
 					
-					<!--sub-heard-part-->
 					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart">Home</a></li>
@@ -25,14 +24,28 @@
 					
 					<div class="graph">
 						<div class="block-page">
+							<div class="graph">
+
+					
+			
+					<div class="form-body">
+						<form class="form-horizontal">
+							<div class="form-group">
+								
+								<div class="col-sm-8">
+									<input type="text" class="form-control1" id="focusedinput"
+										placeholder="Default Input">
+								</div>
+								
+							</div>
 						
-						</div>
+						</form>
 					</div>
-				
-				
-				
-				
+</div>
 				</div>
+			</div>
+		</div>
+			
 			</div>
 		</div>	
 	</div>
