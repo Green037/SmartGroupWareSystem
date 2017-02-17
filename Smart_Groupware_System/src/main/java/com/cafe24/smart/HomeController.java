@@ -27,6 +27,6 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "/payment/pc_list";
+		return "/member/mmInsert";
 	}	
 }

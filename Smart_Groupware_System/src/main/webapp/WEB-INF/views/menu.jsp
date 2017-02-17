@@ -258,7 +258,7 @@
 		</div>
 		<!--//content-inner-->
 		<!--/sidebar-menu-->
-		<div class="sidebar-menu">
+		<div class="sidebar-menu" style="position:fixed ; z-index:999999;">
 			<header class="logo">
 				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
 				</a> <a href="/smart"> <span id="logo">
