@@ -262,7 +262,7 @@
 			<header class="logo">
 				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
 				</a> <a href="/smart"> <span id="logo">
-						<h1><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Smart</h1>
+						<h1><span class="glyphicon glyphicon-globe" aria-hidden="true"></span>Smart</h1>
 				</span> <!--<img id="logo" src="" alt="Logo"/>-->
 				</a>
 			</header>

@@ -122,52 +122,94 @@
 				                    <div class="tab-pane active" role="tabpanel" id="step1">
 				                        <div class="step1">
 				                            <div class="row">
-				                            <div class="col-md-6">
-				                                <label for="exampleInputEmail1">First Name</label>
-				                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="First Name">
-				                            </div>
-				                            <div class="col-md-6">
-				                                <label for="exampleInputEmail1">Last Name</label>
-				                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Last Name">
-				                            </div>
-				                        </div>
-				                        <div class="row">
-				                            <div class="col-md-6">
-				                                <label for="exampleInputEmail1">Email address</label>
-				                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-				                            </div>
-				                            <div class="col-md-6">
-				                                <label for="exampleInputEmail1">Confirm Email address</label>
-				                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-				                            </div>
-				                        </div>
-				                        <div class="row">
-				                            <div class="col-md-6">
-				                                <label for="exampleInputEmail1">Mobile Number</label>
-				                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-				                            </div>
-				                            <div class="col-md-6">
-				                            <label for="exampleInputEmail1">Email address</label>
-				                                <div class="row">
-				                                    <div class="col-md-3 col-xs-3">
-				                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-				                                    </div>
-				                                    <div class="col-md-9 col-xs-9">
-				                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-				                                    </div>
-				                                </div>
-				                            </div>
-				                        </div>
-				                        </div>
+					                            <div class="col-md-6">
+					                                <label for="prMemberCode">팀장</label>
+					                                <input type="text" class="form-control" name="prMemberCode" id="prMemberCode">
+					                            </div>
+					                            <div class="col-md-6">
+					                                <label for="drfCode">기안코드</label>
+					                                <input type="text" class="form-control" name="drfCode" id="drfCode" >
+					                            </div>
+				                        	</div>
+					                        <div class="row">
+					                            <div class="col-md-6">
+					                                <label for=""prName"">프로젝트명</label>
+					                                <input type="text" class="form-control" name="prName" id="prName" placeholder="프로젝트명을 입력하세요">
+					                            </div>
+					                            <div class="col-md-6">
+					                                <label for="prMember">참여인원</label>
+					                                <input type="text" class="form-control" name="prMember" id="prMember" placeholder="참여인원을 입력하세요">
+					                            </div>
+					                        </div>
+					                        <div class="row">
+					                            <div class="col-md-6">
+					                                <label for="prMoney">프로젝트자금</label>
+					                                <input type="text" class="form-control" name="prMoney" id="prMoney" placeholder="Email">
+					                           	</div>
+					                            <div class="col-md-6">
+					                                <label for="prMember">진행상황</label>
+					                                <div>
+						                                <select name="prMember" id="prMember" class="dropselectsec1" >
+							                                <option>::선택::</option>
+							                                <option value="모집중">모집중</option>
+							                                <option value="모집완료">모집완료</option>
+						                                	
+						                                </select>
+					                                </div>
+					                            </div>
+					                        </div>
+					                        <div class="row">
+					                        	<div class="col-md-6">
+					                                <label for="prStartDay">시작일시</label>
+					                                <input type="date" class="form-control" name="prStartDay" id="prStartDay">
+					                            </div>
+					                            <div class="col-md-6">
+					                                <label for=""prCate"">프로젝트분류</label>
+					                                <div>
+						                                <select name="prCate" id="prCate" class="dropselectsec1" >
+							                                <option>::선택::</option>
+							                                <option value="개발">개발</option>
+							                                <option value="연구">연구</option>
+						                                	<option value="유지보수">유지보수</option>
+						                                </select>
+					                                </div>
+					                            </div>
+					                        </div>
+					                        <div class="row">
+					                            <div class="col-md-6">
+					                                <label for="prEndDay">종료일시</label>
+					                                <input type="date" class="form-control" name="prEndDay" id="prEndDay">
+					                            </div>
+					                            <div class="col-md-6">
+					                                <label for="prForProgress">최종진행여부</label>
+					                                <div>
+						                                <select name="prForProgress" id="prForProgress" class="dropselectsec1" >
+							                                <option>::선택::</option>
+							                                <option value="승인">승인</option>
+						                                	<option value="반려">반려</option>
+						                                </select>
+					                                </div>
+					                            </div>
+					                        </div>
+					                        <div class="row">
+					                            <div class="col-md-6">
+					                            	<label for="exampleInputEmail1">프로젝트목적</label>
+					                            	<div>
+					                                	<textarea rows="3" cols="80" name="prGoal" id="prGoal"></textarea>
+					                                </div>
+					                            </div>
+					                        </div>
+				                    	</div>        			   
 				                        <ul class="list-inline pull-right">
 				                            <li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
 				                        </ul>
 				                    </div>
+<!--본문입력 step1 폼 끝 -->	
 				                    <div class="tab-pane" role="tabpanel" id="step2">
 				                        <div class="step2">
 				                            <div class="step_21">
 				                                <div class="row">
-				                                   
+				                                 
 				                                </div>
 				                            </div>
 				                            <div class="step-22">
