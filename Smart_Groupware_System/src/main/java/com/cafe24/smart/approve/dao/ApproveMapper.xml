@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="AprDAO">
+	<resultMap id="resultApr" type="Approval">
+		<result property="aprCode" column="apr_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="aprApproval1" column="apr_approval1"/>
+		<result property="aprApproval2" column="apr_approval2"/>
+		<result property="aprApproval3" column="apr_approval3"/>
+	</resultMap>
+
+</mapper>
