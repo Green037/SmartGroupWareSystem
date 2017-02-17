@@ -9,42 +9,43 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-/**
- * Servlet Filter implementation class HangulEncodingFilter
- */
+import org.apache.log4j.Logger;
+
+//한글 인코딩 설정
 @WebFilter("/HangulEncodingFilter")
 public class HangulEncodingFilter implements Filter {
 
-    /**
-     * Default constructor. 
-     */
-    public HangulEncodingFilter() {
-        // TODO Auto-generated constructor stub
-    }
+	final static Logger log = Logger.getLogger(HangulEncodingFilter.class);
+	
+//	eincoding charset
+	String encoding;
+//	filter setting manager
+	FilterConfig filterConfig;
+	
+    public HangulEncodingFilter() { }
 
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		// TODO Auto-generated method stub
+    public void init(FilterConfig fConfig) throws ServletException {
+    	
+    	this.filterConfig = fConfig;
+    	this.encoding = fConfig.getInitParameter("charset");
 	}
 
-	/**
-	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
-	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-
-		// pass the request along the filter chain
+	
+		if (request.getCharacterEncoding() == null) {
+			if (encoding != null) {
+				request.setCharacterEncoding(encoding);
+			}
+		}
+		
+		log.debug("console> doFilter : " + request.getCharacterEncoding());
+		
 		chain.doFilter(request, response);
 	}
 
-	/**
-	 * @see Filter#init(FilterConfig)
-	 */
-	public void init(FilterConfig fConfig) throws ServletException {
-		// TODO Auto-generated method stub
+	public void destroy() {
+		
+		this.encoding = null;
+		this.filterConfig = null;
 	}
-
 }
