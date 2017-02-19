@@ -17,6 +17,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		log.info("Smart Groupware System is start! The client locale is {}.", locale);
+		log.debug("ssss");
 		
 		return "home";
 	}	

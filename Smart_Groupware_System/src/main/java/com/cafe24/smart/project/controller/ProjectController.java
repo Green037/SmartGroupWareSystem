@@ -12,7 +12,7 @@ public class ProjectController {
 	private static final Logger log = LoggerFactory.getLogger(ProjectController.class);
 	
 	@RequestMapping(value = "pr/add", method = RequestMethod.GET)
-	public String add() {
+	public String prAddCtrl() {
 						
 		return "project/pr_addForm";
 	}	
