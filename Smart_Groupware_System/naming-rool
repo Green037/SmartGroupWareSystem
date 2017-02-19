@@ -30,7 +30,7 @@
 	테이블명 앞 2~3글자(db 테이블 컬럼 앞 글자와 동일하게) + / + 기능으로 통일한다.
 	(create => add / read => list / update => modify / delete => remove)
 	(ex. ProjectController의 prAddCtrl() 메소드의 value 값은 pr/add이기 때문에,
-		.jsp 파일 내에서 경로 이동이 이루어질 경우 <c:jsp file='/pr/add'/>로 입력하면 된다.)
+		.jsp 파일 내에서 경로 이동이 이루어질 경우 <c:jsp value='/pr/add'/>로 입력하면 된다.)
 		
 		
 <Service 파일명 규칙>
