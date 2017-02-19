@@ -2,3 +2,19 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="WbsDAO">
+	<resultMap id="resulWbs" type="Wbs">
+		<result property="wbsCode" column="wbs_code"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="wbsCate" column="wbs_cate"/>
+		<result property="wbsName" column="wbs_name"/>
+		<result property="wbsContents" column="wbs_contents"/>
+		<result property="wbsStartDate" column="wbs_startDate"/>
+		<result property="wbsEndDate" column="wbs_endDate"/>
+		<result property="wbsWorkingDays" column="wbs_workingDays"/>
+		<result property="wbsUncompletedReason" column="wbs_uncompletedReason"/>
+		<result property="wbsFinalEndDate" column="wbs_finalEndDate"/>
+	</resultMap>
+	
+</mapper>
