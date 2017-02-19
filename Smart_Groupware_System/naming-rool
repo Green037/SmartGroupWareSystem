@@ -15,7 +15,7 @@
 
 
 <Controller 파일명 규칙>
-1. 도메인명 + Contrller
+1. 도메인명 + Controller
 	(ex. MemberController)
 
 
@@ -77,8 +77,8 @@
 	
 <log 작성시 규칙>
 1. 메소드명 + 파라미터 or 메소드명 + 출력 메세지 등..
-	(ex. log.degug("paAddServ() is called ..."); )
-	(ex. log.degug("paAddServ() value : " + value); )
+	(ex. log.debug("paAddServ() is called ..."); ) 
+	(ex. log.debug("paAddServ() value : " + value); )
 	- console 창을 보시면 알겠지만 로그는 출력시 로그의 단계와 클래스 정보와 라인, 메세지만 출력합니다.
 	  즉슨, 클래스의 어떤 메소드 내의 로그인지는 라인을 일일히 찾아봐야 알 수 있습니다.
 	  그렇기 때문에 반드시 메소드를 적어주세요. 콘솔 창을 보기가 한결 편해집니다.
