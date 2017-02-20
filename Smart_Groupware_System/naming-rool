@@ -1,0 +1,103 @@
+------------------------- 2017. 02. 19 Green037 update
+
+<views 내 .jsp 파일명 규칙>
+1. 테이블명 앞 2~3글자(db 테이블 컬럼 앞 글자와 동일하게) + 언더바 + 기능
+	(ex. member/mm_add.jsp)
+	
+2. 기능이 들어갈 시 CRUD에 관련된 기능은
+	(create => add / read => list / update => modify / delete => remove)
+	로 통일한다.
+	(ex. mm_add.jsp / mm_list.jsp / mm_modify.jsp / mm_remove.jsp)
+	
+3. 해당 테이블의 인덱스를 받아 특정 인덱스의 전체 정보를 보여주는 페이지가 따로 존재할 경우에는
+	content로 통일한다.
+	(ex. mm_content.jsp)
+
+
+<Controller 파일명 규칙>
+1. 도메인명 + Controller
+	(ex. MemberController)
+
+
+<Controller 메소드명 규칙>
+1. 테이블명 앞 2~3글자(db 테이블 컬럼 앞 글자와 동일하게) + 기능 + Ctrl로 통일한다.
+	(ex. ProjectController의 prAddCtrl() 메소드)
+	
+2. 기능이 들어갈 시 기능은
+	(create => add / read => list / update => modify / delete => remove) 로 통일한다.
+	
+3. Controller에서 @RequestMapping으로 잡는 value 값은 
+	테이블명 앞 2~3글자(db 테이블 컬럼 앞 글자와 동일하게) + / + 기능으로 통일한다.
+	(create => add / read => list / update => modify / delete => remove)
+	(ex. ProjectController의 prAddCtrl() 메소드의 value 값은 pr/add이기 때문에,
+		.jsp 파일 내에서 경로 이동이 이루어질 경우 <c:jsp value='/pr/add'/>로 입력하면 된다.)
+		
+		
+<Service 파일명 규칙>
+1. 도메인 + Service
+	(ex. PaymentService)
+
+
+<Service 메소드명 규칙>
+1. 테이블명 앞 2~3글자(db 테이블 컬럼 앞 글자와 동일하게) + 기능 + Serv로 통일한다.
+	(create => add / read => list / update => modify / delete => remove)
+	(ex. PaymentService의 paAddServ() 메소드
+	
+	
+<DAO 파일명 규칙>
+1. 도메인 + DAO
+	(ex. PaymentDAO)
+	
+
+<DAO 메소드명 규칙>
+1. 기능 + 테이블명 앞 2~3글자(db 테이블 컬럼 앞 글자와 동일하게) 으로 통일한다.
+	(ex. PaymentDAO의 selectAllPa() 메소드)
+	
+2. 기능이 들어갈 시 기능은
+	(create => insert / read => selectAll / update => update / delete => delete) 로 통일한다.
+	
+3. 해당 테이블의 인덱스를 받아 특정 인덱스의 전체 정보를 보여주는 메소드가 따로 존재할 경우에는
+	기능명을 selectBy + 테이블명 으로 통일한다.
+	(ex. PaymentDAO의 selectByPa() 메소드)
+	- selectBy + 인덱스명 으로 할 경우 겹칠 경우가 있어 테이블명으로 통일합니다.
+	
+	
+* Service 메소드와 DAO 메소드 명명 규칙에 차이를 두는 이유
+	- DAO는 쿼리에 직접 접근하는 클래스이기 때문에 서비스와 규칙이 같게 되면 
+	  두 클래스를 굉장히 혼동하기가 쉽습니다. 오류를 방지하기 위함입니다.
+	
+	- 또한 DAO 클래스는 쿼리에 직접 접근하기 때문에 쿼리에서 사용하는 명령어를 붙여 명명하는 것이
+	  본인이 기억하기도 쉽고 메소드명을 지을 때도 시간낭비를 덜 합니다.
+
+
+<mapper.xml 쿼리 규칙>
+1. 쿼리 작성시 쿼리는 대문자, 테이블명과 컬럼명은 소문자로 통일한다.
+	(ex. SELECT * FROM member ORDER BY mm_name;)
+	- 쿼리문은 대소문자를 구분하지 않습니다. 그렇기 때문에 쿼리와 테이블을 구분하기 위함입니다.
+	
+	
+<log 작성시 규칙>
+1. 메소드명 + 파라미터 or 메소드명 + 출력 메세지 등..
+	(ex. log.debug("paAddServ() is called ..."); ) 
+	(ex. log.debug("paAddServ() value : " + value); )
+	- console 창을 보시면 알겠지만 로그는 출력시 로그의 단계와 클래스 정보와 라인, 메세지만 출력합니다.
+	  즉슨, 클래스의 어떤 메소드 내의 로그인지는 라인을 일일히 찾아봐야 알 수 있습니다.
+	  그렇기 때문에 반드시 메소드를 적어주세요. 콘솔 창을 보기가 한결 편해집니다.
+
+------------------------------------------------------ +)
+	
+* 한 view 페이지에서 해당 테이블의 리스트와 그 리스트 갯수를 함께 출력해야 하시는 분은 그 때 알려주세요.
+	select 쿼리와 select count 쿼리를 함께 사용하면 속도가 현저히 낮아지기 때문에
+	속도를 보완하는 쿼리 + 메소드를 두 번 쓰지 않아도 되는 법이 있습니다.
+	
+	
+* paging을 해야 하시는 분은 view 화면에 리스트를 출력한 뒤 알려주세요.
+  페이징 알고리즘 소스를 가지고 있습니다. 한꺼번에 적용시킬 예정입니다.
+  
+  
+* form 유효성 검사를 해야 하는 분은 form을 작성하고 난 뒤 알려주세요.
+ 	연락처, 주민등록번호 등 정규식 자바스크립트 코드를 가지고 있습니다.
+ 	
+ 
+* update하는 jsp 페이지를 열 때 팝업창으로 따로 띄우시는 분 혹시 있으면 페이지를 만든 뒤 알려주세요.
+	파라미터를 가져가고, 팝업창을 가운데 띄우는 등의 자바스크립트 코드를 가지고 있습니다.

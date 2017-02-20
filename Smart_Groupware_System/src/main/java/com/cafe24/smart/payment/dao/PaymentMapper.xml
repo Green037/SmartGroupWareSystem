@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="PaDAO">
+	<resultMap id="resultPa" type="PamentView">
+		<result property="paCode" column="pa_code"/>
+		<result property="pcCode" column="pc_code"/>
+		<result property="cmCode" column="cm_code"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="paDay" column="pa_day"/>
+		<result property="inGroup" column="in_group"/>
+		<result property="paInsurance" column="pa_insurance"/>
+		<result property="paIncentive" column="pa_incentive"/>
+	</resultMap>
+	
+</mapper>
