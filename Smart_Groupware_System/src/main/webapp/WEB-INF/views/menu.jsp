@@ -307,7 +307,7 @@
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="#">사원추가</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_add'/>">사원등록</a></li>
 							<li id="menu-academico-boletim"><a href="#">사원정보수정</a></li>
 							<li id="menu-academico-avaliacoes"><a href="#">사원조회</a></li>
 							<li id="menu-academico-avaliacoes"><a href="#">개인정보조회</a></li>
