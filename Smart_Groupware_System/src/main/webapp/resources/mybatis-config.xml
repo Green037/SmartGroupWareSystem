@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+	
+<configuration>
+	<typeAliases>
+		<!-- bbang -->
+		<typeAlias alias="Achieve" type="com.cafe24.smart.member.domain.Achieve"/>
+		<typeAlias alias="Career" type="com.cafe24.smart.member.domain.Career"/>
+		<typeAlias alias="Contract" type="com.cafe24.smart.member.domain.Contract"/>
+		<typeAlias alias="Department" type="com.cafe24.smart.member.domain.Department"/>
+		<typeAlias alias="License" type="com.cafe24.smart.member.domain.License"/>
+		<typeAlias alias="MajorTypeOfBusiness" type="com.cafe24.smart.member.domain.MajorTypeOfBusiness"/>
+		<typeAlias alias="Member" type="com.cafe24.smart.member.domain.Member"/>
+		<typeAlias alias="MemberAchieve" type="com.cafe24.smart.member.domain.MemberAchieve"/>
+		<typeAlias alias="MemberLicense" type="com.cafe24.smart.member.domain.MemberLicense"/>
+		<typeAlias alias="MinorTypeOfBusiness" type="com.cafe24.smart.member.domain.MinorTypeOfBusiness"/>
+		<typeAlias alias="Position" type="com.cafe24.smart.member.domain.Position"/>
+		
+		<typeAlias alias="Commute" type="com.cafe24.smart.commute.domain.Commute"/>
+		
+		<typeAlias alias="ExtraSchedule" type="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"/>
+		
+		<!-- rang -->
+		<typeAlias alias="Evaluation" type="com.cafe24.smart.project.domain.Evaluation"/>
+		<typeAlias alias="Funds" type="com.cafe24.smart.project.domain.Funds"/>
+		<typeAlias alias="Project" type="com.cafe24.smart.project.domain.Project"/>
+		<typeAlias alias="ProjectMeber" type="com.cafe24.smart.project.domain.ProjectMember"/>
+		
+		<typeAlias alias="Wbs" type="com.cafe24.smart.wbs.domain.Wbs"/>
+				
+		<!-- green037 -->
+		<typeAlias alias="PayContent" type="com.cafe24.smart.payment.domain.PayContent"/>
+		<typeAlias alias="PaymentView" type="com.cafe24.smart.payment.domain.PaymentView"/>
+		
+		<typeAlias alias="Incentive" type="com.cafe24.smart.reward.domain.Incentive"/>
+		<typeAlias alias="Reward" type="com.cafe24.smart.reward.domain.Reward"/>
+				
+		<!-- hsa -->
+		<typeAlias alias="Approval" type="com.cafe24.smart.approve.domain.Approval"/>
+		<typeAlias alias="Document" type="com.cafe24.smart.approve.domain.Document"/>
+		<typeAlias alias="Draft" type="com.cafe24.smart.approve.domain.Draft"/>
+		<typeAlias alias="Progress" type="com.cafe24.smart.approve.domain.Progress"/>
+	</typeAliases>
+	
+	<mappers>
+		<!-- bbang -->
+		<mapper resource="com.cafe24.smart.member.dao.MemberMapper.xml"/>
+		<mapper resource="com.cafe24.smart.commute.dao.CommuteMapper.xml"/>
+		<mapper resource="com.cafe24.smart.extraSchedule.dao.ExtraScheduleMapper.xml"/>
+		
+		<!-- rang -->
+		<mapper resource="com.cafe24.smart.project.dao.ProjectMapper.xml"/>
+		<mapper resource="com.cafe24.smart.wbs.dao.WbsMapper.xml"/>
+		
+		<!-- green037 -->
+		<mapper resource="com.cafe24.smart.payment.dao.PaymentMapper.xml"/>
+		<mapper resource="com.cafe24.smart.reward.dao.RewardMapper.xml"/>
+		
+		<!-- hsa -->
+		<mapper resource="com.cafe24.smart.approve.dao.ApproveMapper.xml"/>
+	</mappers>
+</configuration>

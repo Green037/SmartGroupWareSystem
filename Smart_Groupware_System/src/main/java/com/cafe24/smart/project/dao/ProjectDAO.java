@@ -1,5 +1,13 @@
 package com.cafe24.smart.project.dao;
 
-public interface ProjectDAO {
+import java.util.List;
 
+import com.cafe24.smart.project.domain.Funds;
+import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.project.domain.ProjectMember;
+
+public interface ProjectDAO {
+	int insertPr(Project project);
+	int insertFu(Funds funds);
+	int insertPm(ProjectMember projectMember);
 }

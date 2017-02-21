@@ -335,18 +335,13 @@
 						</a>
 						<ul id="menu-comunicacao-sub">
 							<li id="menu-mensagens" style="width:120px">
-								<a href="#"><i class="glyphicon glyphicon-ok"></i> 목록
+								<a href="#"></i> 목록
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
-								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:130px"><a href="#">모집중</a></li>
-									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">진행중</a></li>
-									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">완료된</a></li>
-								</ul>
 							</li>
 							<li id="menu-arquivos"><a href="<c:url value='/pr/add'/>">등록</a></li>
 							<li id="menu-mensagens" style="width:120px">
-								<a href="#"><i class="glyphicon glyphicon-ok"></i> 완료보고서
+								<a href="#"></i> 완료보고서
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
@@ -467,4 +462,5 @@
 	</script>
 	
 </body>
+
 </html>
