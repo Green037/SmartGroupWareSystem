@@ -18,18 +18,29 @@
 		<property name="prefix" value="/WEB-INF/views/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-	
 	<!-- MySql connect -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
-		<property name="username" value="tsuyu040913"/>
-		<property name="password" value="eunbi3800*"/>
+		<property name="url" value="jdbc:mysql://rang1536.cafe24.com:3306/rang1536?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
+		<property name="username" value="rang1536"/>
+		<property name="password" value="sora1358"/>
 	</bean>
 	
-	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
+		<property name="mapperLocations">
+			<value>
+				classpath:com/cafe24/smart/project/dao/ProjectMapper.xml
+			</value>
+		</property>
+		
 	</bean>
+	
+	
+	<bean id="SqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+	  <constructor-arg index="0" ref="sqlSessionFactory" />
+	</bean>
+	
 	
 	<context:component-scan base-package="com.cafe24.smart"/>
 	

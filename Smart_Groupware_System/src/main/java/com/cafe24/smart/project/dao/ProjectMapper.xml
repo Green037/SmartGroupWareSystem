@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="PrDAO">
-	<resultMap id="resultPr" type="Project">
+	<resultMap id="resultPr" type="com.cafe24.smart.project.domain.Project">
 		<result property="prCode" column="pr_code"/>
 		<result property="prMemberCode" column="pr_memberCode"/>
 		<result property="dftCode" column="dft_code"/>
@@ -12,7 +12,7 @@
 		<result property="prMember" column="pr_member"/>
 		<result property="prMoney" column="pr_money"/>
 		<result property="prGoal" column="pr_goal"/>
-		<result property="prGrogress" column="pr_grogress"/>
+		<result property="prProgress" column="pr_progress"/>
 		<result property="prCate" column="pr_cate"/>
 		<result property="prRestration" column="pr_resitration"/>
 		<result property="prStartDay" column="pr_startDay"/>
@@ -21,4 +21,72 @@
 		<result property="prFinishCheck" column="pr_finishCheck"/>
 	</resultMap>
 	
+	<insert id="insertPr" 
+			parameterType="com.cafe24.smart.project.domain.Project" 
+			useGeneratedKeys="true"  keyProperty="prCode"
+			>
+		INSERT INTO project(
+			pr_memberCode,
+			dft_code,
+			pr_name,
+			pr_member,
+			pr_money,
+			pr_goal,
+			pr_progress,
+			pr_cate,
+			pr_startDay,
+			pr_endDay,
+			pr_forProgress)
+		VALUES(
+			#{prMemberCode},
+			#{dftCode},
+			#{prName},
+			#{prMember},
+			#{prMoney},
+			#{prGoal},
+			#{prProgress},
+			#{prCate},
+			#{prStartDay},
+			#{prEndDay},
+			#{prForProgress})
+	</insert>
+	
+	<insert id="insertFu"
+			parameterType="com.cafe24.smart.project.domain.Funds">
+		INSERT INTO funds(
+			pr_code,
+			fu_history,
+			fu_expectedMoney)
+		VALUES(
+			#{prCode},
+			#{fuHistory},
+			#{fuExpectedMoney})
+	</insert>
+	
+	<insert id="insertPm"
+			parameterType="com.cafe24.smart.project.domain.ProjectMember"
+			>
+		INSERT INTO projectMember(
+			pr_code,
+			mm_code,
+			pm_level,
+			pm_field,
+			pm_startDate,
+			pm_note)
+		VALUES(
+			#{prCode},
+			#{mmCode},
+			#{pmLevel},
+			#{pmField},
+			#{pmStartDate},
+			#{pmNote})
+	</insert>
+	
+	<select id="selectByPr">
+		SELECT 
+			*
+		FROM
+			project
+	
+	</select>
 </mapper>

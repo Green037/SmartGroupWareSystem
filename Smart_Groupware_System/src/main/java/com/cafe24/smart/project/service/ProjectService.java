@@ -1,9 +1,13 @@
 package com.cafe24.smart.project.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-public class ProjectService {
-	
-	private static final Logger log = LoggerFactory.getLogger(ProjectService.class);
+import com.cafe24.smart.project.domain.Funds;
+import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.project.domain.ProjectMember;
+
+@Service
+public interface ProjectService {
+	int prAddServ(ProjectMember projectMember, Project project, Funds funds);
+
 }
