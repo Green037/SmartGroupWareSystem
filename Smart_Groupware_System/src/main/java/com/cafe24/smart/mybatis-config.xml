@@ -49,6 +49,7 @@
 		<mapper resource="com.cafe24.smart.member.dao.MemberMapper.xml"/>
 		<mapper resource="com.cafe24.smart.commute.dao.CommuteMapper.xml"/>
 		<mapper resource="com.cafe24.smart.extraSchedule.dao.ExtraScheduleMapper.xml"/>
+		<mapper resource="com.cafe24.smart.member.dao.DataMapper.xml"/>
 		
 		<!-- rang -->
 		<mapper resource="com.cafe24.smart.project.dao.ProjectMapper.xml"/>

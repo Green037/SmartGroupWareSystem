@@ -1,9 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
+<script>
+$(document).on('click','.add',function(){
+    var addcr = $('#addcrCopy').html();
+    $('#addcr').prepend(addcr);
+});
+$(document).on('click','.del',function(){
+    console.log($('this').parent());
+    $(this).parent().remove();
+});
+</script>
 <title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+
 </head>
 
 <body>
@@ -125,12 +139,12 @@
 												<div class="col-sm-8">
 													<div class="marry-inline1">
 														<label for="marrycheck"><input type="radio"
-															name="Armycheck" value="gun_yes" id="marrycheck"
+															name="marrycheck" value="gun_yes" id="marrycheck"
 															checked="checked"> 기혼 </label>
 													</div>
 													<div class="marry-inline1">
 														<label for="marrycheck"><input type="radio"
-															name="Armycheck" value="gun_no" id="marrycheck1"
+															name="marrycheck" value="gun_no" id="marrycheck"
 															checked="checked"> 미혼 </label>
 													</div>
 												</div>
@@ -139,9 +153,13 @@
 											<div class="form-group">
 												<label for="schoolselector" class="col-sm-2 control-label"> 최종학력 </label>
 												<div class="col-sm-2">
-													<select name="Bankselector" id="schoolselector"
+													<select name="schoolselector" id="schoolselector"
 														class="form-control1">
 														<option> 학력을 선택하세요</option>
+															<c:forEach var="achieve" items="${achieve}">
+			      										<option value="${achieve.acCode}">${achieve.acName}</option>
+			      											</c:forEach> 
+														
 													</select>
 												</div>
 											</div>
@@ -193,23 +211,77 @@
 													<input type="date" class="form-control1"
 														id="graduationDateinput">
 												</div>
-											</div>
-
+											</div>			
 											
-
-
-
+										<div id="addcr">
 											<div class="form-group">
-												<label for="checkbox" class="col-sm-2 control-label"> 보유 자격증 </label>
-												<div class="col-sm-8">
-													<div class="checkbox-inline1">
-														<label><input type="checkbox"> Unchecked</label>
-														<label><input type="checkbox"> Unchecked1</label>
-													</div>
-													<div class="checkbox-inline1">
-														<label><input type="checkbox" checked="">
-															Checked</label>
-													</div>
+												<label for="crinput" class="col-sm-2 control-label"> 경력사항 </label>
+												<div class="col-sm-2">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="경력사항">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="기간">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="입사날짜">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="퇴사날짜">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="직책">	
+												</div>
+												<button type = "button" class = "add">추가</button>
+           									    <button type = "button" class = "del">삭제</button>		
+											</div>
+										</div>
+										
+										<div id="addcrCopy" style="display:none;">
+											<div class="form-group">
+												<label for="crinput" class="col-sm-2 control-label"> 경력사항 </label>
+												<div class="col-sm-2">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="경력사항">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="기간">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="입사날짜">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="퇴사날짜">	
+												</div>
+												<div class="col-sm-1">
+													<input type="text" class="form-control1" id="crinput"
+														placeholder="직책">	
+												</div>
+												<button type = "button" class = "add">추가</button>
+           									    <button type = "button" class = "del">삭제</button>		
+											</div>
+										</div>
+											
+											
+																	
+											
+											<div class="form-group">
+												<label for="licenseselector" class="col-sm-2 control-label"> 보유 자격증 </label>
+												<div class="col-sm-2">
+													<select name="licenseselector" id="licenseselector"
+														class="form-control1" multiple="multiple">
+															<c:forEach var="license" items="${license}">
+			      										<option value="${license.lcCode}">${license.lcName}</option>
+			      											</c:forEach> 
+														
+													</select>
 												</div>
 											</div>
 											

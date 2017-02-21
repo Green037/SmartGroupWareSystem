@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="acDAO">
+		<resultMap id="resultAc" type="com.cafe24.smart.member.domain.Achieve">
+			<result property="acCode" column="ac_code"/>
+			<result property="acName" column="ac_name"/>
+		</resultMap>
+		
+		<resultMap id="resultLc" type="com.cafe24.smart.member.domain.License">
+			<result property="lcCode" column="lc_code"/>
+			<result property="lcName" column="lc_name"/>
+		</resultMap>
+		
+		
+		
+		<!-- 학력 불러오기 -->	
+		<select id="selectAc" resultMap="resultAc">
+			SELECT 
+				ac_code,
+				ac_name
+			FROM 
+				achieve
+		</select>
+		<!-- 자격증 불러오기 -->	
+		<select id="selectLc" resultMap="resultLc" >
+			SELECT
+				lc_code,
+				lc_name
+			FROM
+				license
+			
+		</select>
+	
+	</mapper>
