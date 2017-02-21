@@ -50,6 +50,13 @@ public class ProjectServiceImpl implements ProjectService {
 		return result;
 	}
 
+	@Override
+	public List<Project> prListServ() {
+		List<Project> projectList = new ArrayList<Project>();
+		projectList = projectDao.selectAllPr();
+		return projectList;
+	}
+
 	
 
 }

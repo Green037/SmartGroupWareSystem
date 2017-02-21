@@ -23,8 +23,7 @@
 	
 	<insert id="insertPr" 
 			parameterType="com.cafe24.smart.project.domain.Project" 
-			useGeneratedKeys="true"  keyProperty="prCode"
-			>
+			useGeneratedKeys="true"  keyProperty="prCode">
 		INSERT INTO project(
 			pr_memberCode,
 			dft_code,
@@ -64,8 +63,7 @@
 	</insert>
 	
 	<insert id="insertPm"
-			parameterType="com.cafe24.smart.project.domain.ProjectMember"
-			>
+			parameterType="com.cafe24.smart.project.domain.ProjectMember">
 		INSERT INTO projectMember(
 			pr_code,
 			mm_code,
@@ -82,7 +80,8 @@
 			#{pmNote})
 	</insert>
 	
-	<select id="selectByPr">
+	<select id="selectAll"
+			resultMap="resultPr">
 		SELECT 
 			*
 		FROM

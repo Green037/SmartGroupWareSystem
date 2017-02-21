@@ -10,4 +10,5 @@ public interface ProjectDAO {
 	int insertPr(Project project);
 	int insertFu(Funds funds);
 	int insertPm(ProjectMember projectMember);
+	List<Project> selectAllPr();
 }

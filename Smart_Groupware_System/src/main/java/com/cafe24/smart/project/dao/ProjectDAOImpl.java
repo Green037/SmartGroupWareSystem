@@ -42,4 +42,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("PrDAO.insertPm",projectMember);
 	}
+
+	@Override
+	public List<Project> selectAllPr() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PrDAO.selectAll");
+	}
 }

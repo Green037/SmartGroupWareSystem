@@ -19,6 +19,6 @@ public class HomeController {
 		log.info("Smart Groupware System is start! The client locale is {}.", locale);
 		log.debug("ssss");
 		
-		return "/member/mm_add";
+		return "home";
 	}	
 }
