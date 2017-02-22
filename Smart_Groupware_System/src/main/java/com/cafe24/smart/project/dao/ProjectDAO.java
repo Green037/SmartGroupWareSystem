@@ -11,4 +11,6 @@ public interface ProjectDAO {
 	int insertFu(Funds funds);
 	int insertPm(ProjectMember projectMember);
 	List<Project> selectAllPr();
+	List<Project> selectByProgressPr(String progress);
+	List<Project> selectByFinishPr(String progress);
 }

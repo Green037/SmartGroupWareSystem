@@ -5,6 +5,21 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<script>
+	$(document).ready(function(){
+		$(document).on('click','#putInBtn',function(){
+			$('#putInFor').modal();
+			var prCode = $('#_prCode').val().trim();
+			console.log(prCode);
+			$('#prCode').val(prCode);
+		});
+		
+		$(document).on('click','#approvalBtn',function(){
+			$('#approvalForm').attr({action:"<c:url value='/pr/addPm'/>", method:"post"}).submit();
+		});
+	});
+	</script>
 </head> 
 
 <body>
@@ -18,8 +33,18 @@
 <!-- 본문 -->
 <div class="container">
 <center><h2>프로젝트 리스트</h2>
-<p>If you click projectName, show detail information. </p></center>           
-
+<p>If you click projectName, show detail information.!! </p></center>           
+	<div class="btn-group btn-group-justified">
+		<a href="<c:url value='/pr/list?prProgress=1'/>" class="btn btn-primary">
+			<span class="glyphicon glyphicon-search">팀원모집중목록</span>
+		</a>
+		<a href="<c:url value='/pr/list?prProgress=2'/>" class="btn btn-primary">
+			<span class="glyphicon glyphicon-play">진행중인프로젝트목록</span>
+		</a>
+		<a href="<c:url value='/pr/list?prProgress=3'/>" class="btn btn-primary">
+			<span class="glyphicon glyphicon-check">완료된프로젝트목록</span>
+		</a>
+	</div>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -35,6 +60,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="projectList" items="${projectList}">
+				<input type="hidden" id="_prCode" value="${projectList.prCode}"/>
 				<tr>
 					<td>${projectList.prCode}</td>
 					<td><a href="#">${projectList.prName}</a></td>
@@ -44,7 +70,11 @@
 					<td>${projectList.prStartDay}</td>
 					<c:choose>
 						<c:when test="${projectList.prProgress eq '모집중'}">
-							<td><a href="#">참여신청</a></td>
+							<td>
+								<button type="button" id="putInBtn">참여신청</button>
+								<c:import url="./pm_addForm.jsp"></c:import>
+							</td>
+							
 						</c:when>
 						<c:when test="${projectList.prProgress eq '모집완료'}">
 							<td>-</td>

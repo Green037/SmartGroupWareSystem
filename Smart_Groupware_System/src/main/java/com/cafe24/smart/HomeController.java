@@ -18,9 +18,8 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		log.info("Smart Groupware System is start! The client locale is {}.", locale);
 		log.debug("ssss");
-		
-
-		return "home";
+		//ㅎ2
+		return "home"; 
 
 	}	
 }

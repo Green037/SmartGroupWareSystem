@@ -11,5 +11,5 @@ import com.cafe24.smart.project.domain.ProjectMember;
 @Service
 public interface ProjectService {
 	int prAddServ(ProjectMember projectMember, Project project, Funds funds);
-	List<Project> prListServ();
+	List<Project> prListServ(int prProgress);
 }

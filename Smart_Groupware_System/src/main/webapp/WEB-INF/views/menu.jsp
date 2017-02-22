@@ -335,7 +335,7 @@
 						</a>
 						<ul id="menu-comunicacao-sub">
 							<li id="menu-mensagens" style="width:120px">
-								<a href="<c:url value='/pr/list'/>">목록</a>
+								<a href="<c:url value='/pr/list?prProgress=0'/>">목록</a>
 							</li>
 							<li id="menu-arquivos"><a href="<c:url value='/pr/add'/>">등록</a></li>
 							<li id="menu-mensagens" style="width:120px">

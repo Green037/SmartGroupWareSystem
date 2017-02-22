@@ -281,7 +281,7 @@
 					                                </div>
 					                            </div>
 					                        </div>
-				                    	</div>        			   
+					                    </div>        			   
 				                        <ul class="list-inline pull-right">
 				                            <li><button type="button" class="btn btn-primary next-step">다음</button></li>
 				                        </ul>
