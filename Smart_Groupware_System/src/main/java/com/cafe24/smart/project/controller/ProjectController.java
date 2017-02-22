@@ -64,8 +64,10 @@ public class ProjectController {
 	// 프로젝트 참여신청자등록 포스트요청
 		@RequestMapping(value = "pr/addPm", method = RequestMethod.POST)
 		public String pmAddCtrl(ProjectMember projectMember) {
-			System.out.println("h2 Post!!");
-			System.out.println(projectMember);
+			/*System.out.println("h2 Post!!");
+			System.out.println(projectMember);*/
+			
+			
 			// 세션에 회원정보 가져와서 회원정보 세팅해줘야함.
 			return "redirect:/pr/list";
 		}

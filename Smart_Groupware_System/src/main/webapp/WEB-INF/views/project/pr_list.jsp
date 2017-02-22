@@ -7,18 +7,18 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script>
-	$(document).ready(function(){
 		$(document).on('click','#putInBtn',function(){
 			$('#putInFor').modal();
-			var prCode = $('#_prCode').val().trim();
+			var prCode = $(this).parent().parent().children('#_prCode').val();
 			console.log(prCode);
 			$('#prCode').val(prCode);
 		});
 		
+		
 		$(document).on('click','#approvalBtn',function(){
 			$('#approvalForm').attr({action:"<c:url value='/pr/addPm'/>", method:"post"}).submit();
 		});
-	});
+	
 	</script>
 </head> 
 
@@ -60,8 +60,9 @@
 		</thead>
 		<tbody>
 			<c:forEach var="projectList" items="${projectList}">
-				<input type="hidden" id="_prCode" value="${projectList.prCode}"/>
+				
 				<tr>
+					<input type="hidden" id="_prCode" value="${projectList.prCode}"/>
 					<td>${projectList.prCode}</td>
 					<td><a href="#">${projectList.prName}</a></td>
 					<td>${projectList.prMemberCode}</td>
@@ -72,9 +73,7 @@
 						<c:when test="${projectList.prProgress eq '모집중'}">
 							<td>
 								<button type="button" id="putInBtn">참여신청</button>
-								<c:import url="./pm_addForm.jsp"></c:import>
 							</td>
-							
 						</c:when>
 						<c:when test="${projectList.prProgress eq '모집완료'}">
 							<td>-</td>
@@ -83,6 +82,7 @@
 				</tr>
 				
 			</c:forEach>
+			<c:import url="./pm_addForm.jsp"></c:import>
 		</tbody>
 	</table>
 </div>
