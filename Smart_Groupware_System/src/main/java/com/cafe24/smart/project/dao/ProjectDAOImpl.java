@@ -63,4 +63,18 @@ public class ProjectDAOImpl implements ProjectDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("PrDAO.selectByFinish", progress);
 	}
+
+	// 프로젝트 상세보기 prCode값으로 단일행 조회.
+	@Override
+	public Project selectByPrCodePr(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectByPrCode", prCode);
+	}
+
+	//프로젝트참여인원조회 - 해당 프로젝트별 조회
+	@Override
+	public List<ProjectMember> selectByPrCodePm(int prCode) {
+		//System.out.println(prCode);
+		return sqlSession.selectList("PrDAO.selectByPrCodePm",prCode);
+	}
 }

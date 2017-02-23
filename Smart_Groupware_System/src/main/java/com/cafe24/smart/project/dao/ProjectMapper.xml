@@ -20,10 +20,21 @@
 		<result property="prForProgress" column="pr_forProgress"/>
 		<result property="prFinishCheck" column="pr_finishCheck"/>
 	</resultMap>
+	<resultMap type="com.cafe24.smart.project.domain.ProjectMember" id="resultPm">
+		<result property="pmCode" column="pm_code"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="pmLevel" column="pm_level"/>
+		<result property="pmField" column="pm_field"/>
+		<result property="pmStartDate" column="pm_startDate"/>
+		<result property="pmEndDate" column="pm_endDate"/>
+		<result property="pmNote" column="pm_note"/>
+		<result property="pmApproval" column="pm_approval"/>
+	</resultMap>
 	
 	<insert id="insertPr" 
 			parameterType="com.cafe24.smart.project.domain.Project" 
-			useGeneratedKeys="true"  keyProperty="prCode">
+			useGeneratedKeys="true" keyProperty="prCode">
 		INSERT INTO project(
 			pr_memberCode,
 			dft_code,
@@ -112,5 +123,27 @@
 			project
 		WHERE 
 			pr_finishCheck = #{progress} 
+	</select>
+	
+	<select id="selectByPrCode"
+			parameterType="int"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM
+			project
+		WHERE 
+			pr_code = #{prCode} 
+	</select>
+	
+	<select id="selectByPrCodePm"
+			parameterType="int"
+			resultMap="resultPm">
+		SELECT 
+			*
+		FROM
+			projectMember
+		WHERE 
+			pr_code = #{prCode} 
 	</select>
 </mapper>

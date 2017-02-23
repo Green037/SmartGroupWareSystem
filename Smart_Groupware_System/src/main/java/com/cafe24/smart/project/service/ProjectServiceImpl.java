@@ -98,6 +98,37 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectList;
 	}
 
+	//프로젝트 참여신청
+	@Override
+	public int pmAddServ(ProjectMember projectMember) {
+		projectMember.setPmApproval("대기");
+		// 추후 사원테이블 연계시 사원정보 가져와서 직급확인하여 사원-초급, 대리-중급, 과장이상급 - 고급 으로 분류 하는 로직추가 해야함.
+		// 최초 입력이므로 참여수락여부 대기로 해놓고 승인으로 바뀌면 프로젝트 시작일로 참여일 수정처리로직도 필요함.
+		return projectDao.insertPm(projectMember);
+	}
+
+	@Override
+	public Project prDetailServ(int prCode) {
+		// 프로젝트 조회
+		Project project = new Project();
+		project = projectDao.selectByPrCodePr(prCode);
+		System.out.println(project);
+		// 참여인원 조회
+		
+		// 상세자금 조회
+		
+		return project;
+	}
+
+	@Override
+	public List<ProjectMember> pmListServ(int prCode) {
+		List<ProjectMember> pmList = new ArrayList<ProjectMember>();
+		
+		pmList = projectDao.selectByPrCodePm(prCode);
+		System.out.println(pmList);
+		return pmList;
+	}
+
 	
 
 }

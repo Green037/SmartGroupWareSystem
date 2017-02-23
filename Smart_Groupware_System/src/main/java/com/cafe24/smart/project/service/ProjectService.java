@@ -12,4 +12,7 @@ import com.cafe24.smart.project.domain.ProjectMember;
 public interface ProjectService {
 	int prAddServ(ProjectMember projectMember, Project project, Funds funds);
 	List<Project> prListServ(int prProgress);
+	int pmAddServ(ProjectMember projectMember);
+	Project prDetailServ(int prCode);
+	List<ProjectMember> pmListServ(int prCode);
 }

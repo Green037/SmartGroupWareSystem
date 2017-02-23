@@ -13,4 +13,6 @@ public interface ProjectDAO {
 	List<Project> selectAllPr();
 	List<Project> selectByProgressPr(String progress);
 	List<Project> selectByFinishPr(String progress);
+	Project selectByPrCodePr(int prCode);
+	List<ProjectMember> selectByPrCodePm(int prCode);
 }

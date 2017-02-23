@@ -64,7 +64,7 @@
 				<tr>
 					<input type="hidden" id="_prCode" value="${projectList.prCode}"/>
 					<td>${projectList.prCode}</td>
-					<td><a href="#">${projectList.prName}</a></td>
+					<td><a href="<c:url value='/pr/detail?prCode=${projectList.prCode}' />">${projectList.prName}</a></td>
 					<td>${projectList.prMemberCode}</td>
 					<td>${projectList.prProgress}</td>
 					<td>${projectList.prCate}</td>
@@ -82,7 +82,7 @@
 				</tr>
 				
 			</c:forEach>
-			<c:import url="./pm_addForm.jsp"></c:import>
+			<c:import url="./pm_addForm.jsp"></c:import> <!--팝업창, 참여신청폼  -->
 		</tbody>
 	</table>
 </div>
