@@ -4,7 +4,7 @@ package com.cafe24.smart.member.domain;
 public class MemberLicense {
 	private int mlCode;
 	private int mmCode;
-	private int lcCode;
+	private String lcCode;
 	private String mlIssueDate;
 	
 	public int getMlCode() {
@@ -15,11 +15,11 @@ public class MemberLicense {
 		this.mlCode = mlCode;
 	}
 
-	public int getLcCode() {
+	public String getLcCode() {
 		return lcCode;
 	}
 
-	public void setLcCode(int lcCode) {
+	public void setLcCode(String lcCode) {
 		this.lcCode = lcCode;
 	}
 

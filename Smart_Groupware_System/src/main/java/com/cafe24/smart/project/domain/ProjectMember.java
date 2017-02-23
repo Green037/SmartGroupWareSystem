@@ -10,16 +10,6 @@ public class ProjectMember {
 	private String pmStartDate;
 	private String pmEndDate;
 	private String pmNote;
-	private String pmApproval;
-	
-
-	public String getPmApproval() {
-		return pmApproval;
-	}
-
-	public void setPmApproval(String pmApproval) {
-		this.pmApproval = pmApproval;
-	}
 
 	public int getPmCode() {
 		return pmCode;
@@ -89,8 +79,6 @@ public class ProjectMember {
 	public String toString() {
 		return "ProjectMember [pmCode=" + pmCode + ", prCode=" + prCode + ", mmCode=" + mmCode + ", pmLevel=" + pmLevel
 				+ ", pmField=" + pmField + ", pmStartDate=" + pmStartDate + ", pmEndDate=" + pmEndDate + ", pmNote="
-				+ pmNote + ", pmApproval=" + pmApproval + "]";
+				+ pmNote + "]";
 	}
-
-	
 }

@@ -3,7 +3,7 @@ package com.cafe24.smart.member.domain;
 //부서
 public class Department {
 	private int dpCode;
-	private String dpName;
+	private String dpType;
 
 	public int getDpCode() {
 		return dpCode;
@@ -13,16 +13,16 @@ public class Department {
 		this.dpCode = dpCode;
 	}
 
-	public String getDpName() {
-		return dpName;
+	public String getDpType() {
+		return dpType;
 	}
 	
-	public void setDpName(String dpName) {
-		this.dpName = dpName;
+	public void setDpType(String dpType) {
+		this.dpType = dpType;
 	}
 
 	@Override
 	public String toString() {
-		return "Depart [dpCode=" + dpCode + ", dpType=" + dpName + "]";
+		return "Depart [dpCode=" + dpCode + ", dpType=" + dpType + "]";
 	}
 }

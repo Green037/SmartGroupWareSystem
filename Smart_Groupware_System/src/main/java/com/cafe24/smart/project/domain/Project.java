@@ -4,7 +4,7 @@ package com.cafe24.smart.project.domain;
 public class Project {
 	private int prCode;
 	private int prMemberCode;
-	private int dftCode;
+	private int drfCode;
 	private String prName;
 	private int prMember;
 	private int prMoney;
@@ -14,7 +14,7 @@ public class Project {
 	private String prRestration;
 	private String prStartDay;
 	private String prEndDay;
-	private String prForProgress;
+	private boolean prForProgress;
 	private String prFinishCheck;
 
 	public int getPrCode() {
@@ -33,12 +33,12 @@ public class Project {
 		this.prMemberCode = prMemberCode;
 	}
 
-	public int getDftCode() {
-		return dftCode;
+	public int getDrfCode() {
+		return drfCode;
 	}
 
-	public void setDftCode(int dftCode) {
-		this.dftCode = dftCode;
+	public void setDrfCode(int drfCode) {
+		this.drfCode = drfCode;
 	}
 
 	public String getPrName() {
@@ -113,11 +113,11 @@ public class Project {
 		this.prEndDay = prEndDay;
 	}
 
-	public String getPrForProgress() {
+	public boolean isPrForProgress() {
 		return prForProgress;
 	}
 
-	public void setPrForProgress(String prForProgress) {
+	public void setPrForProgress(boolean prForProgress) {
 		this.prForProgress = prForProgress;
 	}
 
@@ -131,7 +131,7 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "Project [prCode=" + prCode + ", prMemberCode=" + prMemberCode + ", dftCode=" + dftCode + ", prName="
+		return "Project [prCode=" + prCode + ", prMemberCode=" + prMemberCode + ", drfCode=" + drfCode + ", prName="
 				+ prName + ", prMember=" + prMember + ", prMoney=" + prMoney + ", prGoal=" + prGoal + ", prProgress="
 				+ prProgress + ", prCate=" + prCate + ", prRestration=" + prRestration + ", prStartDay=" + prStartDay
 				+ ", prEndDay=" + prEndDay + ", prForProgress=" + prForProgress + ", prFinishCheck=" + prFinishCheck

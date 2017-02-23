@@ -5,10 +5,10 @@ public class Funds {
 	private int fuCode;
 	private int prCode;
 	private String fuHistory;
-	private String fuExpectedMoney;
+	private int fuExpectedMoney;
 	private int fuUsedMoney;
 	private String fuAddReason;
-	private String fuDraftCheck;
+	private char fuDraftCheck;
 
 	public int getFuCode() {
 		return fuCode;
@@ -34,14 +34,14 @@ public class Funds {
 		this.fuHistory = fuHistory;
 	}
 	
-	public String getFuExpectedMoney() {
+	public int getFuExpectedMoney() {
 		return fuExpectedMoney;
 	}
-
-	public void setFuExpectedMoney(String fuExpectedMoney) {
+	
+	public void setFuExpectedMoney(int fuExpectedMoney) {
 		this.fuExpectedMoney = fuExpectedMoney;
 	}
-
+	
 	public int getFuUsedMoney() {
 		return fuUsedMoney;
 	}
@@ -58,11 +58,11 @@ public class Funds {
 		this.fuAddReason = fuAddReason;
 	}
 
-	public String getFuDraftCheck() {
+	public char getFuDraftCheck() {
 		return fuDraftCheck;
 	}
 
-	public void setFuDraftCheck(String fuDraftCheck) {
+	public void setFuDraftCheck(char fuDraftCheck) {
 		this.fuDraftCheck = fuDraftCheck;
 	}
 

@@ -7,7 +7,7 @@ public class Career {
 	private int maCode;
 	private int miCode;
 	private String crData;
-	private String crService;
+	private int crService;
 	private String crPastJoinDay;
 	private String crPastResignDay;
 	private String crResponsibility;
@@ -28,11 +28,11 @@ public class Career {
 		this.crData = crData;
 	}
 	
-	public String getCrService() {
+	public int getCrService() {
 		return crService;
 	}
 	
-	public void setCrService(String crService) {
+	public void setCrService(int crService) {
 		this.crService = crService;
 	}
 	
