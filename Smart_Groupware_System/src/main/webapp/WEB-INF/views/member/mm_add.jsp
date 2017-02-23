@@ -45,115 +45,147 @@ $(document).on('click','.del',function(){
 								<h3 class="inner-tittle two"> 사원 등록 </h3>
 								<div class="grid-1">
 									<div class="form-body">
-										<form class="form-horizontal">
+										<form class="form-horizontal" action="<c:url value='/member/mm_add'/>" method="post">
 											
 											<div class="form-group">
-												<label for="nameinput" class="col-sm-2 control-label"> 사원이름 </label>
+												<label for="mmName" class="col-sm-2 control-label"> 사원이름 </label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="nameinput"
+													<input type="text" class="form-control1" id="mmName" name="mmName"
 														placeholder="사원 이름">
-												</div>
-												<div class="col-sm-2">
-													<p class="help-block"></p>
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="Emailinput" class="col-sm-2 control-label"> Email </label>
+												<label for="mmEmail" class="col-sm-2 control-label"> Email </label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="Emailinput"
+													<input type="text" class="form-control1" id="mmEmail" name="mmEmail"
 														placeholder="사원 이메일">
 												</div>
 
 											</div>
 											<div class="form-group">
-												<label for="Passwordinput" class="col-sm-2 control-label"> 비밀번호 </label>
+												<label for="mmPassword" class="col-sm-2 control-label"> 비밀번호 </label>
 												<div class="col-sm-3">
-													<input type="password" class="form-control1"
-														id="Passwordinput" placeholder="비밀번호">
+													<input type="password" class="form-control1" id="mmPassword" name="mmPassword"
+													placeholder="비밀번호">
 												</div>
 											</div>
+											
+											
+											<div class="form-group">
+												<label for="memberInfo" class="col-sm-2 control-label"> 사원계약정보 </label>
+												<div class="col-sm-1">
+													<select name="ctCode" id="ctCode"
+														class="form-control1">
+														<option> 계약형태</option>
+															<c:forEach var="contract" items="${contract}">
+			      											<option value="${contract.ctCode}">${contract.ctType}</option>
+			      											</c:forEach> 
+			      									</select>
+												</div>
+												
+												<div class="col-sm-1">
+													<select name="ptCode" id="ptCode"
+														class="form-control1">
+														<option> 직급</option>
+															<c:forEach var="position" items="${position}">
+			      										<option value="${position.ptCode}">${position.ptName}</option>
+			      											</c:forEach> 
+			      									</select>
+												</div>
+												
+												<div class="col-sm-1">
+													<select name="dpCode" id="dpCode"
+														class="form-control1">
+														<option> 부서</option>
+															<c:forEach var="department" items="${department}">
+			      										<option value="${department.dpCode}">${department.dpName}</option>
+			      											</c:forEach> 
+			      									</select>
+												</div>
+															
+											</div>
+											
 
 											<div class="form-group">
-												<label for="dayliyPayinput" class="col-sm-2 control-label"> 일급 </label>
+												<label for
+												="mmDailyPay" class="col-sm-2 control-label"> 일급 </label>
 												<div class="col-sm-2">
-													<input type="text" class="form-control1"
-														id="dayliyPay" placeholder="사원 일급">
+													<input type="text" class="form-control1" id="mmDailyPay" name="mmDailyPay"
+													placeholder="사원 일급">
 												</div>
 											</div>	
 			
 											<div class="form-group">
-												<label for="joinDateinput" class="col-sm-2 control-label"> 입사 날짜 </label>
+												<label for="mmJoinDate" class="col-sm-2 control-label"> 입사 날짜 </label>
 												<div class="col-sm-2">
-													<input type="date" class="form-control1"
-														id="joinDateinput" placeholder="사원 입사날짜">
+													<input type="date" class="form-control1" id="mmJoinDate" name="mmJoinDate"
+													placeholder="사원 입사날짜">
 												</div>
 											</div>	
 											
 											
 											<div class="form-group">
-												<label for="annualLeaveinput" class="col-sm-2 control-label"> 남은 연차 </label>
+												<label for="mmAnnualLeave" class="col-sm-2 control-label"> 남은 연차 </label>
 												<div class="col-sm-2">
-													<input type="text" class="form-control1"
-														id="annualLeaveinput" placeholder="남은 연차">
+													<input type="text" class="form-control1" id="mmAnnualLeave" name="mmAnnualLeave"
+													placeholder="남은 연차">
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="addressinput" class="col-sm-2 control-label"> 주소 </label>
+												<label for="mmAddress" class="col-sm-2 control-label"> 주소 </label>
 												<div class="col-sm-8">
-													<input type="text" class="form-control1"
-														id="addressinput" placeholder="사원 주소">
+													<input type="text" class="form-control1" id="mmAddress" name="mmAddress"
+													placeholder="사원 주소">
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="telinput" class="col-sm-2 control-label"> 연락처 </label>
+												<label for="mmTel" class="col-sm-2 control-label"> 연락처 </label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1"
-														id="telinput" placeholder="연락처">
+													<input type="text" class="form-control1" id="mmTel" name="mmTel"
+													placeholder="연락처">
 												</div>
 												
 											</div>
 											
-
-
 											<div class="form-group">
-												<label class="col-sm-2 control-label" for="Armycheck"> 군필여부 </label>
+												<label class="col-sm-2 control-label" for="mmArmy"> 군필여부 </label>
 												<div class="col-sm-8">
 													<div class="radio-inline1">
-														<label for="Armycheck"><input type="radio"
-															name="Armycheck" value="gun_yes" id="Armycheck"
+														<label for="mmArmy"><input type="radio"
+															name="mmArmy" value="1" id="mmArmy"
 															checked="checked"> 군필 </label>
 													</div>
 													<div class="radio-inline1">
-														<label for="Armycheck"><input type="radio"
-															name="Armycheck" value="gun_no" id="Armycheck1"
+														<label for="mmArmy"><input type="radio"
+															name="mmArmy" value="0" id="mmArmy"
 															checked="checked"> 미필 </label>
 													</div>
 												</div>
 											</div>
 
 											<div class="form-group">
-												<label class="col-sm-2 control-label" for="marrycheck"> 결혼여부 </label>
+												<label class="col-sm-2 control-label" for="mmMarriage"> 결혼여부 </label>
 												<div class="col-sm-8">
 													<div class="marry-inline1">
-														<label for="marrycheck"><input type="radio"
-															name="marrycheck" value="gun_yes" id="marrycheck"
+														<label for="mmMarriage"><input type="radio"
+															name="mmMarriage" value="1" id="mmMarriage"
 															checked="checked"> 기혼 </label>
 													</div>
 													<div class="marry-inline1">
-														<label for="marrycheck"><input type="radio"
-															name="marrycheck" value="gun_no" id="marrycheck"
+														<label for="mmMarriage"><input type="radio"
+															name="mmMarriage" value="0" id="mmMarriage"
 															checked="checked"> 미혼 </label>
 													</div>
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="schoolselector" class="col-sm-2 control-label"> 최종학력 </label>
+												<label for="ac_code" class="col-sm-2 control-label"> 최종학력 </label>
 												<div class="col-sm-2">
-													<select name="schoolselector" id="schoolselector"
+													<select name="acCode" id="acCode"
 														class="form-control1">
 														<option> 학력을 선택하세요</option>
 															<c:forEach var="achieve" items="${achieve}">
@@ -165,51 +197,51 @@ $(document).on('click','.del',function(){
 											</div>
 											
 											<div class="form-group">
-												<label for="schoolNameinput" class="col-sm-2 control-label"> 학교명 </label>
+												<label for="mcSchoolName" class="col-sm-2 control-label"> 학교명 </label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="schoolNameinput"
+													<input type="text" class="form-control1" id="mcSchoolName" name="mcSchoolName"
 														placeholder="학교명">
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="majorinput" class="col-sm-2 control-label"> 전공 </label>
+												<label for="mcMajor" class="col-sm-2 control-label"> 전공 </label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="majorinput"
+													<input type="text" class="form-control1" id="mcMajor" name="mcMajor"
 														placeholder="전공">
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="jumsuinput" class="col-sm-2 control-label"> 최종성적 </label>
+												<label for="mcGrade" class="col-sm-2 control-label"> 최종성적 </label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="jumsuinput"
+													<input type="text" class="form-control1" id="mcGrade" name="mcGrade"
 														placeholder="최종성적">
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="gradeinput" class="col-sm-2 control-label"> 졸업학점 </label>
+												<label for="mcJumsu" class="col-sm-2 control-label"> 졸업학점 </label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="gradeinput"
+													<input type="text" class="form-control1" id="mcJumsu" name="mcJumsu"
 														placeholder="졸업학점">
 												</div>
 											</div>
 											
 											
 											<div class="form-group">
-												<label for="admissionDateinput" class="col-sm-2 control-label"> 입학 날짜 </label>
+												<label for="mcAdmissionDate" class="col-sm-2 control-label"> 입학 날짜 </label>
 												<div class="col-sm-2">
 													<input type="date" class="form-control1"
-														id="admissionDateinput">
+														id="mcAdmissionDate" name="mcAdmissionDate">
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="graduationDateinput" class="col-sm-2 control-label"> 졸업 날짜 </label>
+												<label for="mcGraduationDate" class="col-sm-2 control-label"> 졸업 날짜 </label>
 												<div class="col-sm-2">
 													<input type="date" class="form-control1"
-														id="graduationDateinput">
+														id="mcGraduationDate" name="mcGraduationDate">
 												</div>
 											</div>			
 											
@@ -217,27 +249,48 @@ $(document).on('click','.del',function(){
 											<div class="form-group">
 												<label for="crinput" class="col-sm-2 control-label"> 경력사항 </label>
 												<div class="col-sm-2">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crData" name="crData"
 														placeholder="경력사항">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crService" name="crService"
 														placeholder="기간">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crPastJoinDay" name="crPastJoinDay"
 														placeholder="입사날짜">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crPastResignDay" name="crPastResignDay"
 														placeholder="퇴사날짜">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crResponsibility" name="crResponsibility"
 														placeholder="직책">	
 												</div>
+												<div class="col-sm-1">
+													<select name="maCode" id="maCode"
+														class="form-control1">
+														<option> 상위업종</option>
+															<c:forEach var="majorTypeOfBusiness" items="${majorTypeOfBusiness}">
+			      										<option value="${majorTypeOfBusiness.maCode}">${majorTypeOfBusiness.maType}</option>
+			      											</c:forEach> 
+			      									</select>
+												</div>
+												
+												<div class="col-sm-1">
+													<select name="miCode" id="miCode"
+														class="form-control1">
+														<option> 하위업종</option>
+															<c:forEach var="minorTypeOfBusiness" items="${minorTypeOfBusiness}">
+			      										<option value="${minorTypeOfBusiness.miCode}">${minorTypeOfBusiness.miType}</option>
+			      											</c:forEach> 
+			      									</select>
+												</div>
+												
+												
 												<button type = "button" class = "add">추가</button>
-           									    <button type = "button" class = "del">삭제</button>		
+           									    	
 											</div>
 										</div>
 										
@@ -245,25 +298,48 @@ $(document).on('click','.del',function(){
 											<div class="form-group">
 												<label for="crinput" class="col-sm-2 control-label"> 경력사항 </label>
 												<div class="col-sm-2">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crData" name="crData"
 														placeholder="경력사항">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crService" name="crService"
 														placeholder="기간">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crPastJoinDay" name="crPastJoinDay"
 														placeholder="입사날짜">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crPastResignDay" name="crPastResignDay"
 														placeholder="퇴사날짜">	
 												</div>
 												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crinput"
+													<input type="text" class="form-control1" id="crResponsibility" name="crResponsibility"
 														placeholder="직책">	
 												</div>
+												
+												<div class="col-sm-1">
+													<select name="maCode" id="maCode"
+														class="form-control1">
+														<option> 상위업종</option>
+															<c:forEach var="majorTypeOfBusiness" items="${majorTypeOfBusiness}">
+			      										<option value="${majorTypeOfBusiness.maCode}">${majorTypeOfBusiness.maType}</option>
+			      											</c:forEach> 
+			      									</select>
+												</div>
+												
+												<div class="col-sm-1">
+													<select name="miCode" id="miCode"
+														class="form-control1">
+														<option> 하위업종</option>
+															<c:forEach var="minorTypeOfBusiness" items="${minorTypeOfBusiness}">
+			      										<option value="${minorTypeOfBusiness.miCode}">${minorTypeOfBusiness.miType}</option>
+			      											</c:forEach> 
+			      									</select>
+												</div>
+												
+												
+												
 												<button type = "button" class = "add">추가</button>
            									    <button type = "button" class = "del">삭제</button>		
 											</div>
@@ -275,29 +351,27 @@ $(document).on('click','.del',function(){
 											<div class="form-group">
 												<label for="licenseselector" class="col-sm-2 control-label"> 보유 자격증 </label>
 												<div class="col-sm-2">
-													<select name="licenseselector" id="licenseselector"
+													<select name="lcCode" id="lcCode"
 														class="form-control1" multiple="multiple">
 															<c:forEach var="license" items="${license}">
 			      										<option value="${license.lcCode}">${license.lcName}</option>
 			      											</c:forEach> 
-														
 													</select>
 												</div>
 											</div>
 											
 											<div class="form-group">
-												<label for="graduationDateinput" class="col-sm-2 control-label"> 자격증 발급일자 </label>
+												<label for="mlIssueDate" class="col-sm-2 control-label"> 자격증 발급일자 </label>
 												<div class="col-sm-2">
-													<input type="date" class="form-control1"
-														id="issueDateinput">
+													<input type="date" class="form-control1" id="mlIssueDate" name="mlIssueDate"
+													placeholder="자격증 발급일자">
 												</div>
 											</div>
-
-
+											
 											<div class="form-group">
-												<label for="Bankselector" class="col-sm-2 control-label">지급은행</label>
+												<label for="mmBank" class="col-sm-2 control-label">지급은행</label>
 												<div class="col-sm-2">
-													<select name="Bankselector" id="Bankselector"
+													<select name="mmBank" id="mmBank"
 														class="form-control1">
 														<option>은행을 선택하세요</option>
 														<option>신한은행</option>
@@ -311,27 +385,25 @@ $(document).on('click','.del',function(){
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="Bankpin" class="col-sm-2 control-label">계좌번호</label>
+												<label for="mmAccount" class="col-sm-2 control-label">계좌번호</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="Bankpin"
+													<input type="text" class="form-control1" id="mmAccount" name="mmAccount"
 														placeholder="은행계좌를 입력하세요(-제외)">
 												</div>
 											</div>
 
 
 
-											<div class="form-group">
+											<!-- <div class="form-group">
 												<label for="txtarea1" class="col-sm-2 control-label">기타 사항</label>
 												<div class="col-sm-8">
 													<textarea name="txtarea1" id="txtarea1" cols="50" rows="4"
 														class="form-control1"></textarea>
 												</div>
-											</div>
+											</div> -->
 
-											<div class="form-group">
-												<center>
+											<div class="form-group" align="center">
 													<button type="submit" class="btn btn-default">등록</button>
-												</center>
 											</div>
 											<!--사원등록 end -->
 

@@ -40,13 +40,11 @@
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-<<<<<<< HEAD
+
 		<property name="mapperLocations"> 
 		<list>
 			<value>classpath:com/cafe24/smart/member/dao/*.xml</value>
-			<value>
-				classpath:com/cafe24/smart/project/dao/ProjectMapper.xml
-			</value>
+			<value>classpath:com/cafe24/smart/project/dao/ProjectMapper.xml</value>
 		</list>
 		</property>
 

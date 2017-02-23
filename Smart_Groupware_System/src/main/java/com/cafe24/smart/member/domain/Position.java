@@ -3,7 +3,7 @@ package com.cafe24.smart.member.domain;
 //직급
 public class Position {
 	private int ptCode;
-	private int ptName;
+	private String ptName;
 	
 	public int getPtCode() {
 		return ptCode;
@@ -13,11 +13,11 @@ public class Position {
 		this.ptCode = ptCode;
 	}
 	
-	public int getPtName() {
+	public String getPtName() {
 		return ptName;
 	}
 	
-	public void setPtName(int ptName) {
+	public void setPtName(String ptName) {
 		this.ptName = ptName;
 	}
 
