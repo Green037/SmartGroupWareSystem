@@ -1,11 +1,16 @@
 package com.cafe24.smart.project.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
@@ -40,4 +45,30 @@ public class ProjectController {
 		
 		return "home";
 	}	
+	
+	//프로젝트 리스트 - 겟요청
+	@RequestMapping(value = "pr/list", method = RequestMethod.GET)
+	public String prListCtrl(Model model, @RequestParam(value="prProgress", defaultValue="0")int prProgress) {
+		//System.out.println("h2");
+		
+		//모든 프로젝트 내용 조회
+		List<Project> projectList = new ArrayList<Project>();
+		projectList = projectService.prListServ(prProgress);
+		//System.out.println(projectList);
+		
+		model.addAttribute("projectList", projectList);
+		
+		return "project/pr_list";
+	}
+	
+	// 프로젝트 참여신청자등록 포스트요청
+		@RequestMapping(value = "pr/addPm", method = RequestMethod.POST)
+		public String pmAddCtrl(ProjectMember projectMember) {
+			/*System.out.println("h2 Post!!");
+			System.out.println(projectMember);*/
+			
+			
+			// 세션에 회원정보 가져와서 회원정보 세팅해줘야함.
+			return "redirect:/pr/list";
+		}
 }

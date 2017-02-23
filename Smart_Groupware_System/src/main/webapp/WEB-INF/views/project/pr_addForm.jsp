@@ -6,7 +6,7 @@
 	<link href="<c:url value='/resources/css/prAdd.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/prAdd2.css'/>" rel="stylesheet" type="text/css"/>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script>
 	$(document).ready(function () {
@@ -281,7 +281,7 @@
 					                                </div>
 					                            </div>
 					                        </div>
-				                    	</div>        			   
+					                    </div>        			   
 				                        <ul class="list-inline pull-right">
 				                            <li><button type="button" class="btn btn-primary next-step">다음</button></li>
 				                        </ul>

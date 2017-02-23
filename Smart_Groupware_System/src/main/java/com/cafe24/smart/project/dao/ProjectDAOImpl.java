@@ -42,4 +42,25 @@ public class ProjectDAOImpl implements ProjectDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("PrDAO.insertPm",projectMember);
 	}
+
+	//전체프로젝트 목록
+	@Override
+	public List<Project> selectAllPr() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PrDAO.selectAll");
+	}
+
+	//인원모집중인 프로젝트목록
+	@Override
+	public List<Project> selectByProgressPr(String progress) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PrDAO.selectByProgress", progress);
+	}
+
+	// 진행,완료된 프로젝트목록 
+	@Override
+	public List<Project> selectByFinishPr(String progress) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PrDAO.selectByFinish", progress);
+	}
 }

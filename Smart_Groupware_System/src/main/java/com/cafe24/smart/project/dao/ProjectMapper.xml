@@ -23,8 +23,7 @@
 	
 	<insert id="insertPr" 
 			parameterType="com.cafe24.smart.project.domain.Project" 
-			useGeneratedKeys="true"  keyProperty="prCode"
-			>
+			useGeneratedKeys="true"  keyProperty="prCode">
 		INSERT INTO project(
 			pr_memberCode,
 			dft_code,
@@ -36,7 +35,9 @@
 			pr_cate,
 			pr_startDay,
 			pr_endDay,
-			pr_forProgress)
+			pr_forProgress,
+			pr_restration,
+			pr_finishCheck)
 		VALUES(
 			#{prMemberCode},
 			#{dftCode},
@@ -48,7 +49,9 @@
 			#{prCate},
 			#{prStartDay},
 			#{prEndDay},
-			#{prForProgress})
+			#{prForProgress},
+			now(),
+			#{prFinishCheck})
 	</insert>
 	
 	<insert id="insertFu"
@@ -64,8 +67,7 @@
 	</insert>
 	
 	<insert id="insertPm"
-			parameterType="com.cafe24.smart.project.domain.ProjectMember"
-			>
+			parameterType="com.cafe24.smart.project.domain.ProjectMember">
 		INSERT INTO projectMember(
 			pr_code,
 			mm_code,
@@ -82,11 +84,33 @@
 			#{pmNote})
 	</insert>
 	
-	<select id="selectByPr">
+	<select id="selectAll"
+			resultMap="resultPr">
 		SELECT 
 			*
 		FROM
 			project
+	</select>
 	
+	<select id="selectByProgress"
+			parameterType="String"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM
+			project
+		WHERE 
+			pr_progress = #{progress} 
+	</select>
+	
+	<select id="selectByFinish"
+			parameterType="String"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM
+			project
+		WHERE 
+			pr_finishCheck = #{progress} 
 	</select>
 </mapper>
