@@ -46,7 +46,16 @@ public class ApproveDAOImpl implements ApproveDAO {
 	@Override
 	public List<Progress> selectAllhv(){
 		System.out.println("dao hvList> test" );
-		return null;
+		return sqlSession.selectList("AprDAO.selectAllHv");
 	}
+
+	//Tem List
+	@Override
+	public List<Draft> SelectAllTem() {
+		System.out.println("dao temList> test");
+		return sqlSession.selectList("AprDAO.selectAllTem");
+	}
+
+
 	
 	}

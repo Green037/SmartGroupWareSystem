@@ -55,11 +55,11 @@ public class ApproveServiceImpl implements ApproveService {
 	//list Progress
 	@Override
 	public List<Progress> pgListServ() {
-		System.out.println("serv pgList> test1" );
+		//System.out.println("serv pgList> test1" );
 		List<Progress> pgList = new ArrayList<Progress>();
 		pgList = approveDAO.selectAllPg();
-		System.out.println("serv pgList> test2");
-		System.out.println(pgList);
+		//System.out.println("serv pgList> test2");
+		//System.out.println(pgList);
 	
 		return pgList;
 	}
@@ -70,7 +70,23 @@ public class ApproveServiceImpl implements ApproveService {
 		System.out.println("serv hvList> test1" );
 		List<Progress> hvList = new ArrayList<Progress>();
 		hvList = approveDAO.selectAllhv();
-		return null;
+		System.out.println(hvList);
+		System.out.println("serv hvList> test2" );
+		
+		return hvList;
 	}
+
+	//tem List
+	@Override
+	public List<Draft> temListServ() {
+		System.out.println("serv temList> test1");
+		List<Draft> temList= new ArrayList<Draft>();
+		temList = approveDAO.SelectAllTem();
+		System.out.println("serv temList> test2");
+		return temList;
+	}
+
+
+	
 
 }

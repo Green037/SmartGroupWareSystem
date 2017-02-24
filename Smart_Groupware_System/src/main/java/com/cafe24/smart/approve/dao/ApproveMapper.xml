@@ -38,9 +38,6 @@
 	<resultMap id="resultPro" type="com.cafe24.smart.approve.domain.Progress">
 		<result property="proCode" column="pro_code"/>
 		<result property="dftCode" column="dft_code"/>
-		<result property="mmCode" column="mm_code"/>
-		<result property="docCode" column="doc_code"/>
-		<result property="aprCode" column="apr_code"/>
 		<result property="proTime" column="pro_time"/>
 		<result property="proReason" column="pro_reason"/>
 		<result property="proState" column="pro_state"/>
@@ -102,9 +99,25 @@
 
 <select id="selectAllPg"
 		resultMap="resultPro">
-		SELECT * FROM progress
+		SELECT * FROM draft
+ 		 JOIN progress;
 </select>
 
+<select id="selectAllHv"
+			resultMap="resultPro">
+		SELECT * FROM progress,draft
+ 		 WHERE pro_state='대기'
+ 		 AND progress.dft_code = draft.dft_code
+</select>
+
+<select id="selectAllTem"
+		resultMap="resultDft">
+
+		SELECT * FROM draft
+		WHERE dft_check = 'false'
+		<!-- 사원코드 select 조건 추가 -->
+		
+</select>
 		
 </mapper>
 

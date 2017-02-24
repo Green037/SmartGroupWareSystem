@@ -376,7 +376,7 @@
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/tem_list'/>">임시 문서</a></li>
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/temList'/>">임시 문서</a></li>
 									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/hvList'/>">결재 목록</a></li>
 									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/pgList'/>">진행 목록</a></li>
 									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/re_list'/>">반려 목록</a></li>
