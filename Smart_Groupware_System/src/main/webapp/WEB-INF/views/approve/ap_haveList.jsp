@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,45 +37,25 @@
 										<th>등록일자</th>
 										<th>최근 결재 일자</th>
 										<th>비고</th>
-									
-							
+															
 									</tr>
+									
+									<c:forEach var="h" items="${hvList}">
+									
 									<tr>
-										<td>1</td>
-										<td>프로젝트</td>
+										<td>${h.proCode}</td>
+										<td>${h.dftTitle}</td>
 										<td>1차프로젝트</td>
 										<td>홍길동</td>
 										<td>개발부</td>
-										<td>2017/02/18</td>
+										<td>${dftDate}</td>
 										<td>2017/02/25</td>
-										<td></td>
-								
-
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>출퇴근</td>
-										<td>0218출퇴근</td>
-										<td>설현</td>
-										<td>총리부</td>
-										<td>2017/02/18</td>
-										<td>2017/02/20</td>
-										<td></td>
-																
+										<td></td>								
 
 									</tr>
 									
-									<tr>
-										<td>2</td>
-										<td>임금</td>
-										<td>1월임금결재</td>
-										<td>초아</td>
-										<td>총리부</td>
-										<td>2017/02/15</td>
-										<td>2017/02/18</td>
-										<td></td>
-									</tr>
-									
+									</c:forEach>
+				
 								</table> 
 								<div class="clearfix">&nbsp;</div>				
 					

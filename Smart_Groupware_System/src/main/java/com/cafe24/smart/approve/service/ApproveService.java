@@ -17,5 +17,9 @@ public interface ApproveService {
 
 	//have List
 	List<Progress> hvListServ();
+
+	//tem List
+	List<Draft> temListServ();
+
 	
 }

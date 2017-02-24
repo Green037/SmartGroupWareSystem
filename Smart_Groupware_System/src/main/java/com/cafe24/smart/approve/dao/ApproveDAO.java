@@ -16,5 +16,9 @@ public interface ApproveDAO {
 	
 	//have list
 	List<Progress> selectAllhv();
+	
+	//tem List
+	List<Draft> SelectAllTem();
+
 
 }
