@@ -78,4 +78,16 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.selectList("PrDAO.selectByPrCodePm",prCode);
 	}
 
+	@Override
+	public int selectCountPm(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectCountPm", prCode);
+	}
+
+	@Override
+	public List<Funds> selectByPrCodeFu(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PrDAO.selectByPrCodeFu", prCode);
+	}
+
 }

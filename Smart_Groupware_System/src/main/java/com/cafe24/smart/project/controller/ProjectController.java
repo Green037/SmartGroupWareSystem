@@ -69,13 +69,36 @@ public class ProjectController {
 	public String prDetailCtrl(Model model, @RequestParam("prCode") int prCode) {
 		//System.out.println("h2 detail~!!");
 		//System.out.println("넘어온 프로젝트 코드확인 : "+prCode);
+		
 		// 프로젝트기본내용, 참여인원정보, 자금상세정보 모두 필요함.
 		Project project = new Project();
+		
 		project = projectService.prDetailServ(prCode);
+		int pmCount = projectService.pmCountServ(prCode);
+		//System.out.println("참여인원 카운트값 : "+pmCount);
 		
 		model.addAttribute("project", project);
+		model.addAttribute("pmCount", pmCount);
 		
 		return "project/pr_detail";
 	}
+	
+	// 프로젝트 수정 - 겟요청
+		@RequestMapping(value = "pr/modify", method = RequestMethod.GET)
+		public String prModifyCtrl(Model model, @RequestParam("prCode") int prCode) {
+			/*System.out.println("h2 modify ctrl~!!");
+			System.out.println("넘어온 프로젝트 코드확인 : "+prCode);*/
+			
+			// 수정 폼으로 연결. 기존 값 깔아줘야됨.
+			Project project = new Project();
+			
+			project = projectService.prDetailServ(prCode);
+			int pmCount = projectService.pmCountServ(prCode);
+			
+			model.addAttribute("project", project);
+			model.addAttribute("pmCount", pmCount);
+			
+			return "project/pr_modify";
+		}
 
 }

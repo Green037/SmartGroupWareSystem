@@ -9,6 +9,15 @@ public class Funds {
 	private int fuUsedMoney;
 	private String fuAddReason;
 	private String fuDraftCheck;
+	private int fuAddMoney;
+
+	public int getFuAddMoney() {
+		return fuAddMoney;
+	}
+
+	public void setFuAddMoney(int fuAddMoney) {
+		this.fuAddMoney = fuAddMoney;
+	}
 
 	public int getFuCode() {
 		return fuCode;
@@ -70,6 +79,7 @@ public class Funds {
 	public String toString() {
 		return "Funds [fuCode=" + fuCode + ", prCode=" + prCode + ", fuHistory=" + fuHistory + ", fuExpectedMoney="
 				+ fuExpectedMoney + ", fuUsedMoney=" + fuUsedMoney + ", fuAddReason=" + fuAddReason + ", fuDraftCheck="
-				+ fuDraftCheck + "]";
+				+ fuDraftCheck + ", fuAddMoney=" + fuAddMoney + "]";
 	}
+	
 }

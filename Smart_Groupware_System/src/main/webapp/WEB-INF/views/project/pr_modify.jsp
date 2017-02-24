@@ -6,56 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
-	<script>
-/* 참여인원 상세보기 */
-		$(document).on('click','#pmBtn',function(){
-			$('#pmList').modal();
-			var prCode = ${project.prCode};
-			$.ajax({
-				url: '/smart/pm/detail',
-				data : {'prCode' : prCode},
-				dataType : 'json',
-				type : 'POST',
-				success : function(data){
-					$.each(data,function(i, result){
-						/* console.log(result.prCode);
-						console.log(result.pmLevel); */
-						$('#pmListTbody').append(`
-								<tr>
-									<td>`+result.prCode+`</td>
-									<td>`+result.pmLevel+`</td>
-									<td>`+result.pmNote+`</td>
-								</tr>`);
-					});
-				}
-			});
-		});
-		
-/* 자금상세내역  */
-		$(document).on('click','#fuBtn',function(){
-			$('#fuList').modal();
-			var prCode = ${project.prCode};
-			$.ajax({
-				url: '/smart/fu/detail',
-				data : {'prCode' : prCode},
-				dataType : 'json',
-				type : 'POST',
-				success : function(data){
-					console.log('h2 fu Ajax!');
-					$.each(data,function(i, result){
-						console.log(result.prCode);
-						console.log(result.fuCode);
-						 $('#fuListTbody').append(`
-								<tr>
-									<td>`+result.fuHistory+`</td>
-									<td>`+result.fuExpectedMoney+`</td>
-									<td>`+result.fuUsedMoney+`</td>
-								</tr>`);
-					}); 
-				}
-			});
-		});
-	</script>
+
 </head> 
 
 <body>
@@ -84,9 +35,12 @@
 		<tbody>
 			<tr>
 				<td>프로젝트명</td>
-				<td colspan="7" align="center">${project.prName}</td>
+				<td colspan="7">
+					<input type="text" name="prName" value="${project.prName}" />
+				</td>
 			</tr>
 			<tr>
+<!-- 여기부터 작업해야됨. 2017/2/24 -->
 				<td><strong>팀장</strong></td>
 				<td colspan="3">-</td>
 				<td><strong>직급</strong></td>

@@ -107,6 +107,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectDao.insertPm(projectMember);
 	}
 
+	//프로젝트 상세보기
 	@Override
 	public Project prDetailServ(int prCode) {
 		// 프로젝트 조회
@@ -120,6 +121,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return project;
 	}
 
+	// 참여인원 상세보기
 	@Override
 	public List<ProjectMember> pmListServ(int prCode) {
 		List<ProjectMember> pmList = new ArrayList<ProjectMember>();
@@ -127,6 +129,20 @@ public class ProjectServiceImpl implements ProjectService {
 		pmList = projectDao.selectByPrCodePm(prCode);
 		System.out.println(pmList);
 		return pmList;
+	}
+
+	//참여인원 신청된 인원 카운트
+	@Override
+	public int pmCountServ(int prCode) {
+		// TODO Auto-generated method stub
+		return projectDao.selectCountPm(prCode);
+	}
+
+	// 자금세부내역 보기
+	@Override
+	public List<Funds> fuListServ(int prCode) {
+		// TODO Auto-generated method stub
+		return projectDao.selectByPrCodeFu(prCode);
 	}
 
 	
