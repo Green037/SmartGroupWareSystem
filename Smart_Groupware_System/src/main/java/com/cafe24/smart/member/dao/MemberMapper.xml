@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="MmDAO">
-	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
+	<resultMap id="resultMm" type="Member">
 		<result property="mmCode" column="mm_code"/>
 		<result property="ctCode" column="ct_code"/>
 		<result property="ptCode" column="pt_code"/>
@@ -24,14 +24,5 @@
 		<result property="mmBank" column="mm_bank"/>
 		<result property="mmAccount" column="mm_account"/>
 	</resultMap>
-	
-<!-- 	<insert id="resultMm" parameterType="resultMm" useGeneratedKeys="true" keyProperty="mm_code">
-		INSERT INTO memberManagement(
-		mm_name,
-		mm_email,
-		mm_)
-	</insert> -->
-	
-	
 	
 </mapper>

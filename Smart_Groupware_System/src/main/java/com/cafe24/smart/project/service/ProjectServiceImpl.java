@@ -61,9 +61,9 @@ public class ProjectServiceImpl implements ProjectService {
 				fund.setFuHistory(fuHistory[i]);
 				fund.setFuExpectedMoney(fuExpectedMoney[i]);
 				fund.setPrCode(project.getPrCode());
-				//System.out.println(fuHistory[i]+fuExpectedMoney[i]);
+			//System.out.println(fuHistory[i]+fuExpectedMoney[i]);
 				result = projectDao.insertFu(fund);
-				//System.out.println("펀드입력결과 : "+result);
+			//System.out.println("펀드입력결과 : "+result);
 			}
 		}
 		

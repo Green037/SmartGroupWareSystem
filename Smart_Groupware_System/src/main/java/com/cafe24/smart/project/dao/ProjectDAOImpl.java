@@ -1,6 +1,5 @@
 package com.cafe24.smart.project.dao;
 
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +18,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	
 	private static final Logger log = LoggerFactory.getLogger(ProjectDAOImpl.class);
 	
+
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
@@ -77,4 +77,5 @@ public class ProjectDAOImpl implements ProjectDAO {
 		//System.out.println(prCode);
 		return sqlSession.selectList("PrDAO.selectByPrCodePm",prCode);
 	}
+
 }

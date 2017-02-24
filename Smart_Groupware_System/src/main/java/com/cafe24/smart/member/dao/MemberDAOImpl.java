@@ -9,7 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.smart.member.domain.Achieve;
+import com.cafe24.smart.member.domain.Career;
+import com.cafe24.smart.member.domain.Contract;
+import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.License;
+import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.MemberAchieve;
+import com.cafe24.smart.member.domain.MemberLicense;
+import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
+import com.cafe24.smart.member.domain.Position;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -17,26 +26,6 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
-	
-//	@Override
-//	public int insertMm(Member member) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.insert("insertMm",member);
-//	}
-
-	@Override
-	public List<Achieve> selectAc() {
-		System.out.println("AcDao까지 확인");
-
-		
-		return sqlSession.selectList("acDAO.selectAc");
-	}
 
 
-	@Override
-	public List<License> selectLc() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("acDAO.selectLc");
-	}
 }

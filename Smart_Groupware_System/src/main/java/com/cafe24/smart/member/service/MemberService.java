@@ -9,7 +9,16 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.member.dao.MemberDAO;
 import com.cafe24.smart.member.domain.Achieve;
+import com.cafe24.smart.member.domain.Career;
+import com.cafe24.smart.member.domain.Contract;
+import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.License;
+import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.MemberAchieve;
+import com.cafe24.smart.member.domain.MemberLicense;
+import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
+import com.cafe24.smart.member.domain.Position;
 
 @Service
 public class MemberService {
@@ -18,27 +27,6 @@ public class MemberService {
 	
 	@Autowired
 	private MemberDAO memberDao;
-	private Achieve achieve;
-	private License license;
 	
-	//사원 등록
-//	public int mmAddServ(Member member) {
-//		
-//		return memberDao.insertMm(member);
-//		
-//	}
-	//학력 조회
-	public List<Achieve> acListServ() {
-		 List<Achieve> a = memberDao.selectAc();
-		 	System.out.println("ac리스트 서비스까지"+a.size());
-			
-		 	return memberDao.selectAc();
-	}
-	//자격증 조회
-	public List<License> lcListServ() {
-		List<License> b = memberDao.selectLc();
-			System.out.println("lc리스트 서비스까지"+b.size());
-		return memberDao.selectLc();
-		
-	}
+	
 }
