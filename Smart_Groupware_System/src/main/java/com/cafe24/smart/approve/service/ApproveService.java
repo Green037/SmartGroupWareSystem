@@ -1,9 +1,21 @@
 package com.cafe24.smart.approve.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
 
-public class ApproveService {
+import org.springframework.ui.Model;
+
+import com.cafe24.smart.approve.domain.Draft;
+import com.cafe24.smart.approve.domain.Progress;
+
+public interface ApproveService {
+
+	//draft add
+	int apAddServ(Draft draft, Progress progress);
 	
-	private static final Logger log = LoggerFactory.getLogger(ApproveService.class);
+	//progress List
+	List<Progress> pgListServ();
+
+	//have List
+	List<Progress> hvListServ();
+	
 }

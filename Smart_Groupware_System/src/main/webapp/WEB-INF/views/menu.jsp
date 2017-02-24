@@ -308,7 +308,6 @@
 						</a>
 						<ul id="menu-academico-sub">
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_add'/>">사원등록</a></li>
-							<li id="menu-academico-boletim"><a href="#">사원정보수정</a></li>
 							<li id="menu-academico-avaliacoes"><a href="#">사원조회</a></li>
 							<li id="menu-academico-avaliacoes"><a href="#">개인정보조회</a></li>
 						</ul>
@@ -371,8 +370,24 @@
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="#">결재목록</a></li>
-							<li id="menu-academico-avaliacoes"><a href="#">문서결재신청</a></li>
+						
+							<li id="menu-mensagens">
+								<a href="#"><i class="glyphicon glyphicon-ok"></i> 전자결재 목록
+									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
+								</a>
+								<ul id="menu-mensagens-sub">
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/tem_list'/>">임시 문서</a></li>
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/hvList'/>">결재 목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/pgList'/>">진행 목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/re_list'/>">반려 목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/com_list'/>">완료 목록</a></li>
+								</ul>
+							</li>
+							
+							<li id="menu-academico-avaliacoes">
+								<a href="<c:url value='/ap/add'/>">문서결재신청</a>
+							</li>
+							
 						</ul>
 					</li>
 					<li id="menu-academico">
@@ -382,7 +397,7 @@
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="#">문서함</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/ap/doc_list'/>">문서함</a></li>
 						</ul>
 					</li>
 						
