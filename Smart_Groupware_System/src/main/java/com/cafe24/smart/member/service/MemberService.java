@@ -26,3 +26,4 @@ public interface MemberService {
 	List<MajorTypeOfBusiness> maListServ();
 	List<MinorTypeOfBusiness> miListServ();
 }
+

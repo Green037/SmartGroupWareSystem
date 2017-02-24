@@ -178,7 +178,7 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 	</dependencies>
-    <build>
+ 	<build>
         <plugins>
             <plugin>
                 <artifactId>maven-eclipse-plugin</artifactId>

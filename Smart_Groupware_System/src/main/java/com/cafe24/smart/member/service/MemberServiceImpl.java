@@ -46,6 +46,33 @@ public class MemberServiceImpl implements MemberService {
 		career.setmmCode(mmCode);
 		memberDao.insertCr(career);
 		
+		
+		
+		// 사원등록 insert시 경력사항 테이블에 여러행이 추가될수 있게 String형 배열에 담음
+		String[] crDataSplit = new String(career.getCrData()).split(",");
+		String[] crServiceSplit = new String(career.getCrService()).split(",");
+		String[] crPastJoinDaySplit = new String(career.getCrPastJoinDay()).split(",");
+		String[] crPastResignDaySplit = new String(career.getCrPastResignDay()).split(",");
+		String[] crResponsibilitySplit = new String(career.getCrResponsibility()).split(",");
+		//String[] 
+		for(int i=0; i< crDataSplit.length; i++ ) {
+			/*System.out.println(i+"번째값들");
+			System.out.println(crDataSplit[i]);
+			System.out.println(crServiceSplit[i]);
+			System.out.println(crPastJoinDaySplit[i]);
+			System.out.println(crPastResignDaySplit[i]);
+			System.out.println(crResponsibilitySplit[i]);*/
+		//
+			Career careers = new Career();
+			careers.setCrData(crDataSplit[i]);
+			careers.setCrService(crServiceSplit[i]);
+			careers.setCrPastJoinDay(crPastJoinDaySplit[i]);
+			careers.setCrPastResignDay(crPastResignDaySplit[i]);
+			careers.setCrResponsibility(crResponsibilitySplit[i]);
+			//careers.setMacodes(Integer.parsInt(crResponsibilitySplit[i]));
+			//for문 하나 추가
+		}
+		
 		return 0;	
 	}
 	
