@@ -7,18 +7,21 @@ import com.cafe24.smart.approve.domain.Progress;
 
 public interface ApproveDAO {
 
-	//insert draft( + progress) 
+	//기안 등록( draft + progress) 
 	int insertDft(Draft draft);
 	int insertPg(Progress progress);
 
-	//progress list
+	//진행 목록
 	List<Progress> selectAllPg();
 	
-	//have list
+	//결재 목록
 	List<Progress> selectAllhv();
 	
-	//tem List
+	//결재 상세 [승인/반려] Form
+	Draft selectContHv(int dftCode);
+	
+	//임시 목록
 	List<Draft> SelectAllTem();
-
-
+	
+	
 }

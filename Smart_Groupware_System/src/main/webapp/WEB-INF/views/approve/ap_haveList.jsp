@@ -16,7 +16,7 @@
 			<div class="inner-content">
 				<div class="outter-wp">
 					
-					<div class="sub-heard-part">a
+					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart"><b>Home</b></a></li>
 							<li>결재 가능 목록</li>
@@ -44,12 +44,12 @@
 									
 									<tr>
 										<td>${h.proCode}</td>
-										<td>${h.dftTitle}</td>
-										<td>1차프로젝트</td>
-										<td>홍길동</td>
-										<td>개발부</td>
-										<td>${dftDate}</td>
-										<td>2017/02/25</td>
+										<td></td>
+										<td><a href="<c:url value='/ap/hvContent?dftCode=${h.dftCode}'/>">${h.dftTitle}</a></td>
+										<td></td>
+										<td></td>
+										<td>${h.dftDate}</td>
+										<td>${h.proRealTime}</td>
 										<td></td>								
 
 									</tr>

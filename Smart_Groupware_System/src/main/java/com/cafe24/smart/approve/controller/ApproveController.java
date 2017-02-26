@@ -24,25 +24,27 @@ public class ApproveController {
 	@Autowired
 	private ApproveService approveService;
 	
-	//add_dftForm_GET
-	@RequestMapping(value ="/ap/add", method = RequestMethod.GET)
+	//기안 등록 : GET
+	/*문서결재신청 폼을 가져오기 위한 메소드 return값을 String으로 준 이유는 url을 지정하기 위해서*/
+	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
 	public String Add(){
-		/*문서결재신청 폼을 가져오기 위한 메소드
-		 * return값을 String으로 준 이유는 url을 지정하기 위해서*/
-		return "/approve/ap_dftAdd";
+		
+		return "/approve/ap_dftAdd";   
 	}
 	
-	//add_draft_POST
+	//기안 등록 : POST
+	/*draft와 progress 매개변수를 준 이유는 draft 테이블에 추가되면서 progress 테이블에도 dft_code를 참고해서 progress에서 추가되어야하기 떄문에*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
 	public String apAddCtrl(Draft draft, Progress progress){
+		
 		System.out.println("ctrl dftAdd > test");
 		int result = approveService.apAddServ(draft, progress);
 		
 		return "home";
 	}
 		
-	//list_Progress_GET
-	@RequestMapping(value ="/ap/pgList", method = RequestMethod.GET)
+	//진행 목록 : GET
+	@RequestMapping(value ="ap/pgList", method = RequestMethod.GET)
 	public String apProListCtrl(Model model){	
 		System.out.println("ctrl pgList> test");
 		List<Progress> pgList = new ArrayList<Progress>();
@@ -52,30 +54,31 @@ public class ApproveController {
 		return "/approve/ap_proList";
 	}
 	
-	//list_have_GET
-	@RequestMapping(value="/ap/hvList", method=RequestMethod.GET)
+	//결재 목록 : GET **** 사원번호/ 문서코드가 나오지 않는다
+	@RequestMapping(value="ap/hvList", method=RequestMethod.GET)
 	public String apHaveListCtrl(Model model){	
 		System.out.println("ctrl hvList> test");
 		List<Progress> hvList = new ArrayList<Progress>();
 		hvList = approveService.hvListServ();
 		model.addAttribute("hvList", hvList);
+		System.out.println(hvList);
 		
 		return "/approve/ap_haveList";
 	}
 	
-	//Content_have_Get
-	@RequestMapping(value="/ap/hvContent", method=RequestMethod.GET)
+	//결재 정보 [승인/반려 Content] : GET
+	@RequestMapping(value="ap/hvContent", method=RequestMethod.GET)
 	public String aphvDetailCtrl(Model model, @RequestParam("dftCode") int dftCode){
 		System.out.println("ctrl hvCont> test");
-		List<Draft> hvContent = new ArrayList<Draft>();
-		//-----------여기까지하고 쉬는시간--------------//
+		Draft draft = new Draft();
+		draft = approveService.hvContServ(dftCode);
 		
 		return "/approve/ap_haveContent";
 	
 	}
 	
-	//list_tem_GET
-	@RequestMapping(value="/ap/temList", method=RequestMethod.GET)
+	//임시 문서함 : GET
+	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
 	public String temList(Model model){
 		System.out.println("ctrl temList> test");
 		List<Draft> temList = new ArrayList<Draft>();

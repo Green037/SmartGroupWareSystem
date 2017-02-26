@@ -54,10 +54,16 @@
 										    <label for="firstname" class="control-label">[문서구분]</label>
 										    <input type="text" class="form-control" name="docCode" >
 										</div>
-						            </div>
-						           
+						            </div> 
+						            
+						            <div class="col-md-3">
+										<div class="form-group form-group-sm">
+										    <label for="firstname" class="control-label">[문서선택]</label>
+										    <input type="file" class="form-control" name="dftFile" >
+										</div>
+						            </div>   
 						    	</div>
-						    	
+		
 							
 								<div class="row">
 									<div class="col-sm-8">

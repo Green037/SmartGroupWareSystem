@@ -21,35 +21,43 @@ public class ApproveDAOImpl implements ApproveDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	// Draft insert
+	// 기안 등록 : draft
 	@Override
 	public int insertDft(Draft draft){
 		System.out.println("dao dftInsert>  test");
 		return sqlSession.insert("AprDAO.insertDft" ,draft);
 	}
 	
-	// Progress insert
+	// 기안 등록 : progress
 	@Override
 	public int insertPg(Progress progress){
 		System.out.println("dao proInsert>  test");
 		return sqlSession.insert("AprDAO.insertPg" ,progress);
 	}
 	
-	// Progress List
+	// 결재 진행 목록
 	@Override
 	public List<Progress> selectAllPg(){
 		System.out.println("dao pgList> test" );
 		return sqlSession.selectList("AprDAO.selectAllPg");
 	}
 	
-	//Have List
+	// 결재 목록
 	@Override
 	public List<Progress> selectAllhv(){
 		System.out.println("dao hvList> test" );
 		return sqlSession.selectList("AprDAO.selectAllHv");
 	}
+	
+	// 결재 신청 폼
+ 	@Override
+	public Draft selectContHv(int dftCode){
+		System.out.println("dao hvCont> test");
+		return sqlSession.selectOne("AprDAO.selectContHv");
+	}
+	
 
-	//Tem List
+	// 임시 목록
 	@Override
 	public List<Draft> SelectAllTem() {
 		System.out.println("dao temList> test");
