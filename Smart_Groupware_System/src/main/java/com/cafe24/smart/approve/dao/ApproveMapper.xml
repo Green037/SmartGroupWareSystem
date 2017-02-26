@@ -118,6 +118,7 @@
 
 <!-- 결재 상세보기 : dftCode 가져오기-->
 <select id="selectContHv"
+		parameterType="int"
 		resultMap="resultDft">
 		SELECT 
 			*

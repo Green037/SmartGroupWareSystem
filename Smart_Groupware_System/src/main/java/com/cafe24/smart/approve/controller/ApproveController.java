@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.smart.HomeController;
+import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.service.ApproveService;
@@ -28,7 +29,6 @@ public class ApproveController {
 	/*문서결재신청 폼을 가져오기 위한 메소드 return값을 String으로 준 이유는 url을 지정하기 위해서*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
 	public String Add(){
-		
 		return "/approve/ap_dftAdd";   
 	}
 	
@@ -72,7 +72,11 @@ public class ApproveController {
 		System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
 		draft = approveService.hvContServ(dftCode);
+		//왜 안되냐> draft값이 null? 왜왜왜?
+		System.out.println(draft);
 		
+		model.addAttribute("draft", draft);
+	
 		return "/approve/ap_haveContent";
 	
 	}
@@ -89,4 +93,22 @@ public class ApproveController {
 		
 	}
 	
+	//문서함 : GET
+	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)
+	public String docList(){
+		System.out.println("ctrl docList> test");
+		List<Document> docList = new ArrayList<Document>();
+		
+		return "/approve/ap_docList";   
+	}
+	
+	//문서양식 등록 : get
+	@RequestMapping(value ="ap/docAdd", method = RequestMethod.GET)
+	public String docAdd(){
+		System.out.println("ctrl docList> test");
+		
+		return "/approve/ap_docAdd";   
+	}
+	
+
 }

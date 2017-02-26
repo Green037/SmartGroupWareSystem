@@ -397,7 +397,7 @@
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="<c:url value='/ap/doc_list'/>">문서함</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/ap/docList'/>">문서함</a></li>
 						</ul>
 					</li>
 						
