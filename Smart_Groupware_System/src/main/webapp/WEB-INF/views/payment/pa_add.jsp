@@ -5,6 +5,26 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<script>
+		$(document).ready(function() {
+			
+			$('#mmButton').click(function() {
+				var mmCode = $('#mmCode').val();
+				
+				alert('mmCode : '+ mmCode);
+				
+				$.ajax({
+					type : "post",
+					url : "/smart/pc/mmContent",
+					data : mmCode,
+					success : function(data) {
+						alert('data : ' + data);
+					}
+				});
+			});
+		});
+	</script>
 </head>
 <body>
 	<%@ include file="../menu.jsp"%>
@@ -31,9 +51,8 @@
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
-													<span style="color:red">사원코드넣어라</span>
-													<input type="hidden" id="mmCode" name="mmCode"/>
-													<a class="btn green">검색</a>
+													<input type="text" id="mmCode" name="mmCode" class="form-control1"/>
+													<input type="button" class="btn btn-default" name="mmButton" id="mmButton" value="검색"/>
 												</div>
 											</div>											
 											<div class="form-group">

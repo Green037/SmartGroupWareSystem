@@ -53,6 +53,15 @@
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
+	<select id="selectByMm" parameterType="int" resultMap="resultMm">
+		SELECT
+			*
+		FROM
+			memberManagement
+		WHERE
+			mm_code = #{mmCode};
+	</select>
+	
 	<insert id="resultCr" parameterType="com.cafe24.smart.member.domain.Career">
 		INSERT INTO career (
 			ma_code,
@@ -71,21 +80,18 @@
 			#{crPastJoinDay},
 			#{crPastResignDay},
 			#{crResponsibility},
-			#{mmCode}
-		)
+			#{mmCode});
 	</insert>
-	
 	
  	<insert id="resultMl" parameterType="com.cafe24.smart.member.domain.MemberLicense" >
 		INSERT INTO memberLicense (
 			lc_code,
 			ml_issueDate,
 			mm_code)
-		VALUES(
+		VALUES (
 			#{lcCode},
 			#{mlIssueDate},
-			#{mmCode}
-		)
+			#{mmCode});
 	</insert>
 	
 	<insert id="resultMc" parameterType="com.cafe24.smart.member.domain.MemberAchieve" >
@@ -106,13 +112,11 @@
 			#{mcMajor},
 			#{mcJumsu},
 			#{mcGrade},
-			#{mmCode}
-		)
+			#{mmCode});
 	</insert>
 	
-	
 	<insert id="resultMm" parameterType="com.cafe24.smart.member.domain.Member" useGeneratedKeys="true" keyProperty="mmCode">
-		INSERT INTO  memberManagement (
+		INSERT INTO memberManagement (
 			ct_code,
 			pt_code,
 			dp_code,
@@ -143,8 +147,6 @@
 			#{mmAddress},
 			#{mmTel},
 			#{mmBank},
-			#{mmAccount}
-			)
-	</insert>  
-
+			#{mmAccount});
+	</insert>
 </mapper>

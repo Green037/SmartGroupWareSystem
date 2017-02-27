@@ -24,10 +24,6 @@ public class InsuranceDAOImpl implements InsuranceDAO {
 		
 		System.out.println("InsuranceDAOImpl selectByEi employeementInsurance : " + employeementInsurance);
 		
-		if (employeementInsurance == null) {
-			sqlSession.rollback();
-		}
-		
 		return employeementInsurance;
 	}
 
@@ -40,10 +36,6 @@ public class InsuranceDAOImpl implements InsuranceDAO {
 		NationalHealthInsurance nationalHealthInsurance = sqlSession.selectOne("InDAO.selectByNhi", nhiYear);
 		
 		System.out.println("InsuranceDAOImpl selectByNhi nationalHealthInsurance : " + nationalHealthInsurance);
-		
-		if (nationalHealthInsurance == null) {
-			sqlSession.rollback();
-		}
 		
 		return nationalHealthInsurance;
 	}
@@ -58,10 +50,6 @@ public class InsuranceDAOImpl implements InsuranceDAO {
 		
 		System.out.println("InsuranceDAOImpl selectByOhi occupationalHealthSafetyInsurance : " + occupationalHealthSafetyInsurance);
 		
-		if (occupationalHealthSafetyInsurance == null) {
-			sqlSession.rollback();
-		}
-		
 		return occupationalHealthSafetyInsurance;
 	}
 
@@ -74,10 +62,6 @@ public class InsuranceDAOImpl implements InsuranceDAO {
 		PensionInsurance pensionInsurance = sqlSession.selectOne("InDAO.selectByPp", ppYear);
 		
 		System.out.println("InsuranceDAOImpl selectByPp pensionInsurance : " + pensionInsurance);
-		
-		if (pensionInsurance == null) {
-			sqlSession.rollback();
-		}
 		
 		return pensionInsurance;
 	}

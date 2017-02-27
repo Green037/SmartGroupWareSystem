@@ -24,59 +24,70 @@ import com.cafe24.smart.member.domain.Position;
 public class MemberDAOImpl implements MemberDAO {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
+	
 	@Autowired
 	SqlSessionTemplate sqlSession;
-	
 	
 // 	DB 에서 정보 불러오기 리스트-----------
 	@Override
 	public List<Achieve> selectAc() {
 		System.out.println("AcDao까지 확인");
 
-		
 		return sqlSession.selectList("acDAO.selectAc");
 	}
 
 	@Override
 	public List<License> selectLc() {
-		// TODO Auto-generated method stub
+	
 		return sqlSession.selectList("acDAO.selectLc");
 	}
 
-
 	@Override
 	public List<Contract> selectCt() {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("acDAO.selectCt");
 	}
 	
 	@Override
 	public List<Position> selectPt() {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("acDAO.selectPt");
 	}
 
 	@Override
 	public List<Department> selectDp() {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("acDAO.selectDp");
 	}
 
 
 	@Override
 	public List<MajorTypeOfBusiness> selectMa() {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("acDAO.selectMa");
 	}
 
 
 	@Override
 	public List<MinorTypeOfBusiness> selectMi() {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList("acDAO.selectMi");
 	}
+	
 // DB 에서 정보 불러오기 리스트-----------
+	
+//	select one member by member code
+	@Override
+	public Member selectByMm(int mmCode) {
+		
+		System.out.println("MemberDAOImpl selectByMm mmCode : " + mmCode);
 
+		Member member = sqlSession.selectOne("MmDAO.selectByMm", mmCode);
+		
+		System.out.println("MemberDAOImpl selectByMm member : " + member);
+		
+		return member;
+	}
 	
 //  사원 등록
 	@Override
@@ -132,6 +143,6 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return  crCode;
 	}
-	
 
+	
 }
