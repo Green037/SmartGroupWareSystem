@@ -17,4 +17,6 @@ public interface ProjectService {
 	List<ProjectMember> pmListServ(int prCode);
 	int pmCountServ(int prCode);
 	List<Funds> fuListServ(int prCode);
+	int prModifyServ(Project project);
+	public List<ProjectMember> pmAddListServ(int prCode);
 }

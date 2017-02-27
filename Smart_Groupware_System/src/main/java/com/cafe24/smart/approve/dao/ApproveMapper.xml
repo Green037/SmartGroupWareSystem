@@ -32,6 +32,7 @@
 		<result property="dftApproval3" column="dft_approval3"/>
 		<result property="dftFinalState" column="dft_finalState"/>
 		<result property="dftCheck" column="dft_check"/>
+		<result property="proApproval" column="pro_approval"/>
 	
 	</resultMap>
 	
@@ -46,6 +47,8 @@
 		<result property="proRealTime" column="pro_realTime"/>
 		<result property="dftTitle" column="dft_title"/>
 		<result property="dftDate" column="dft_date"/>
+		<result property="proApproval" column="pro_approval"/>
+		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
 <!-- 기안 등록 -->	
@@ -64,8 +67,7 @@
 		    dft_approval2,
 		    dft_approval3,
 		    dft_finalState,
-		    dft_check,
-		    dft_file
+		    dft_check
 			) 
 	    VALUES( 
 	 	    #{aprCode},
@@ -73,13 +75,12 @@
             #{dftTitle},
             #{dftDegree},
             #{mmCode},
-	 	    now(),
+	 	    #{dftDate},
 		    #{dftApproval1},
 		    #{dftApproval2},
 	 	    #{dftApproval3},
 	 	    #{dftFinalState},
-            #{dftCheck},
-            #{dftFile}
+            #{dftCheck}
 	        )
 </insert>
 
@@ -88,15 +89,19 @@
 		parameterType="com.cafe24.smart.approve.domain.Progress">
 		
 		INSERT INTO progress(
+			pro_time,
 			dft_code,
 			pro_turn,
 			pro_personalState,
-			pro_state)  
+			pro_state,
+			pro_approval)  
  		VALUES(
+ 			#{proTime},
 	 		#{dftCode},
 	 		#{proTurn},
 	 		#{proPersonState},
-	 		#{proState}
+	 		#{proState},
+	 		#{proApproval}
 	 		) 
 </insert>
 
@@ -111,9 +116,9 @@
 <!-- 결재 목록 -->
 <select id="selectAllHv"
 			resultMap="resultPro">
-		SELECT * FROM progress,draft
- 		 WHERE pro_state='대기'
- 		 AND progress.dft_code = draft.dft_code
+		SELECT * FROM progress,draft 
+		WHERE pro_state='대기' 
+		AND progress.dft_code = draft.dft_code
 </select>
 
 <!-- 결재 상세보기 : dftCode 가져오기-->
@@ -127,6 +132,30 @@
 		WHERE 
 			dft_code = #{dftCode}
 </select>
+
+<!-- 결재 상세보기 : proApproval 가져오기-->
+<select id="selectDetailHv"
+		parameterType="int"
+		resultMap="resultPro">
+		SELECT 
+			pro_approval 
+		FROM 
+			progress 
+		WHERE 
+			dft_code = #{dftCode};
+
+</select>
+
+<!-- 결재 요청 : 1단계 : progress Update -->
+<update id="updatePro"
+		parameterType="com.cafe24.smart.approve.domain.Progress">
+		UPDATE progress 
+		SET pro_realTime = now(),
+			pro_state = 1,
+			pro_personalstate = true  
+		WHERE dft_code = #{dftCode}
+
+</update>
 
 <!-- 임시 목록 -->
 <select id="selectAllTem"

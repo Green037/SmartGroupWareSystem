@@ -6,7 +6,21 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
-
+	<script>
+		$(document).on('click','#pmAddBtn',function(){
+			$('#putInForList').modal();
+			var prCode = ${project.prCode};
+			$.ajax({
+				url: '/smart/pm/add',
+				data : {'prCode' : prCode},
+				dataType : 'json',
+				type : 'POST',
+				success : function(data){
+					console.log('h2 modify Ajax!');
+				}
+			});
+		});
+	</script>
 </head> 
 
 <body>
@@ -20,10 +34,10 @@
 <!-- 본문시작 -->
 <div class="container">
 	<center>
-		<h2><span class="glyphicon glyphicon-file"> 프로젝트 상세보기</span></h2>
-		<p>This infomation is detail contents By you selected.</p>
+		<h2><span class="glyphicon glyphicon-file"> 프로젝트 수정</span></h2>
+		<p>This infomation is detail contents By you selected. You can fix contents.</p>
 	</center>
-	<form>            
+	<form action="<c:url value='/pr/modify'/>" method="post" id="modifyForm">            
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -38,7 +52,7 @@
 				<tr>
 					<td>프로젝트명</td>
 					<td colspan="7">
-						<input type="text" name="prName" value="${project.prName}" class="form controls"/>
+						<input type="text" name="prName" value="${project.prName}" class="form-control"/>
 					</td>
 				</tr>
 				<tr>
@@ -56,7 +70,7 @@
 					<td colspan="2">-</td>
 					<td><strong>참여인원</strong></td>
 					<td>
-						${pmCount} / ${project.prMember}
+						<p>${pmCount}</p> / ${project.prMember}
 						<button type="button" id="pmAddBtn">인원추가</button>
 						
 					</td>
@@ -68,9 +82,9 @@
 						<button type="button" id="fuModifyBtn">내역수정</button>
 					</td>
 					<td><strong>시작일</strong></td>
-					<td colspan="2"><input type="date" name="prStartDay" value="${project.prStartDay}"/></td>
+					<td colspan="2"><input type="date" name="prStartDay" value="${project.prStartDay}" class="form-control"/></td>
 					<td><strong>종료일</strong></td>
-					<td colspan="2"><input type="date" name="prEndDay" value="${project.prEndDay}"/></td>
+					<td colspan="2"><input type="date" name="prEndDay" value="${project.prEndDay}" class="form-control"/></td>
 				</tr>
 				<tr>
 					<td><strong>팀원모집상황</strong></td>
@@ -108,8 +122,7 @@
 				<tr>
 					<td colspan="8" align="center">
 						<div class="btn-group">
-							<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >수정</a>
-							<a href="#" class="btn btn-primary" >삭제</a>
+							<input type="submit" value="수정" id="modifyBtn" class="btn btn-primary" />
 						</div>
 					</td>
 				</tr>
@@ -117,9 +130,7 @@
 		</table>
 	</form>
 </div>
-<c:import url="./pm_list.jsp"></c:import> <!--팝업창, 참여인원리스트  -->
-<c:import url="./fu_list.jsp"></c:import> <!--팝업창, 자금상세리스트  -->
-
+<c:import url="./pm_addList.jsp"></c:import> <!-- 팝업창 참여인원 추가 지원자 리스트 -->
 <!-- 본문끝 -->
 </div>				
 </div>

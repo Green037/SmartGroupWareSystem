@@ -46,7 +46,7 @@
 										<td>${h.proCode}</td>
 										<td></td>
 										<td><a href="<c:url value='/ap/hvContent?dftCode=${h.dftCode}'/>">${h.dftTitle}</a></td>
-										<td></td>
+										<td>${h.mmCode}</td>
 										<td></td>
 										<td>${h.dftDate}</td>
 										<td>${h.proRealTime}</td>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +20,7 @@
 						<div class="sub-heard-part">
 							<ol class="breadcrumb m-b-0">
 								<li><a href="index.html">Home</a></li>
-								<li class="active">ModifyForms</li>
+								<li class="active">결재 요청</li>
 							</ol>
 						</div>
 						<!-- Home/메뉴 End -->
@@ -31,33 +32,33 @@
 								<h3 class="inner-tittle two">결재 여부</h3>
 								<div class="grid-1">
 									<div class="form-body">
-										<form class="form-horizontal">
+									
+										<form  class="form-horizontal" action="<c:url value='/ap/proAdd'/>" method="post" >
 											<div class="form-group">
-												<label for="nameinput" class="col-sm-2 control-label">문서 번호 : </label>
-												
+												<label for="nameinput" class="col-sm-2 control-label">문서 번호</label> 	
 											<div class="col-sm-3">
-												<td>${draft.dftCode}</td>
+												<input type="text" class="form-control1" id="dftCode" value="${draft.dftCode}" readonly="readonly">
 											</div>
 									
 											</div>
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">문서 제목</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="dftTitle"> 													
+													<input type="text" class="form-control1" id="dftTitle" value="${draft.dftTitle}" readonly="readonly"> 													
 												</div>
 																							
 											</div>
 											<div class="form-group">
 												<label for="Passwordinput" class="col-sm-2 control-label">작성자</label>
 												<div class="col-sm-3">
-													<input type="password" class="form-control1" id="mmCode">
+													<input type="text" class="form-control1" id="mmCode" value="${draft.mmCode}" readonly="readonly">
 												</div>
 											</div>
 											
 											<div class="form-group">
 												<label for="Passwordinput" class="col-sm-2 control-label">결재자</label>
 												<div class="col-sm-3">
-													<input type="password" class="form-control1" id="dft_Approval">
+													<input type="text" class="form-control1" id="dft_Approval" value="${draft.proApproval}"readonly="readonly">
 												</div>
 											</div>
 												
@@ -65,15 +66,15 @@
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">문서 양식</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="docName"> 														
+													<input type="text" class="form-control1" id="docCode" value="${draft.docCode}" readonly="readonly"> 														
 												</div>
 																							
 											</div>
 											
 											<div class="form-group">
-												<label for="Emailinput" class="col-sm-2 control-label">결재 신청 일자</label>
+												<label for="Emailinput" class="col-sm-2 control-label">결재 등록 일자</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="dftDate"> 														
+													<input type="text" class="form-control1" id="dftDate" value="${draft.dftDate}" readonly="readonly"> 														
 												</div>
 																							
 											</div>
@@ -82,10 +83,10 @@
 												<label class="col-sm-2 control-label" for="marrycheck">결재여부</label>
 												<div class="col-sm-8">
 													<div class="marry-inline1">
-														<label for="marrycheck"><input type="radio" name="proState" value=1 id="marrycheck" checked="checked"> 승인</label>
+														<label for="marrycheck"><input type="radio" name="proState" value=1 id="proState" checked="checked"> 승인</label>
 													</div>
 													<div class="marry-inline1">
-														<label for="marrycheck"><input type="radio" name="proState" value=0 id="marrycheck1" checked="checked"> 반려</label>
+														<label for="marrycheck"><input type="radio" name="proState" value=0 id="proState1"> 반려</label>
 													</div>
 												</div>
 											</div>	
@@ -99,11 +100,13 @@
 												</div>
 										</div>
 										
-										</form>
-									</div>
 										<Center>
 											<button type="submit" class="btn btn-default">Submit</button>
 										</Center>
+										
+										</form>
+									</div>
+										
 								</div>
 							</div>
 						</div>
