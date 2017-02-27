@@ -415,8 +415,8 @@
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">총급여목록</a></li>
-									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">급여내역추가</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/list'/>">총급여목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/add'/>">급여내역추가</a></li>
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->
@@ -436,8 +436,8 @@
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">총고과목록</a></li>
-									<li id="menu-mensagens-enviadas" style="width:200px"><a href="#">고과내역추가</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/re/listAll'/>">총고과목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/re/add'/>">고과내역추가</a></li>
 								</ul>
 							</li>
 							<!-- 일반 사원들만 보이는 메뉴 -->

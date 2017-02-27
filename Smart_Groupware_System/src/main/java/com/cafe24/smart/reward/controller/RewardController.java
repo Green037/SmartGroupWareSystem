@@ -11,10 +11,10 @@ public class RewardController {
 
 	private static final Logger log = LoggerFactory.getLogger(RewardController.class);
 	
-	@RequestMapping(value = "re/content", method = RequestMethod.GET)
-	public String reContentCtrl() {
+	@RequestMapping(value = "re/listAll", method = RequestMethod.GET)
+	public String reListAllCtrl() {
 						
-		return "reward/re_content";
+		return "reward/re_listAll";
 	}
 	
 	@RequestMapping(value = "re/list", method = RequestMethod.GET)
@@ -22,4 +22,17 @@ public class RewardController {
 						
 		return "reward/re_list";
 	}
+	
+	@RequestMapping(value = "re/content", method = RequestMethod.GET)
+	public String reContentCtrl() {
+						
+		return "reward/re_content";
+	}
+	
+	@RequestMapping(value = "re/add", method = RequestMethod.GET)
+	public String reAddCtrl() {
+						
+		return "reward/re_add";
+	}
+	
 }
