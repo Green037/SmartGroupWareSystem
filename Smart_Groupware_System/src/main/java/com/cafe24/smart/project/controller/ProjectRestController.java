@@ -60,7 +60,7 @@ public class ProjectRestController {
 		
 		List<ProjectMember> pmList = new ArrayList<ProjectMember>(); 
 		
-		pmList = projectService.pmListServ(prCode);
+		pmList = projectService.pmAddListServ(prCode);
 		
 		return pmList;
 	}

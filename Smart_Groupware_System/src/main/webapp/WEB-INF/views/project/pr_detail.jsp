@@ -17,10 +17,10 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
+					$('#pmListTbody').empty();
 					$.each(data,function(i, result){
 						/* console.log(result.prCode);
 						console.log(result.pmLevel); */
-						$('#pmListTbody').empty();
 						$('#pmListTbody').append(`
 								<tr>
 									<td>`+result.prCode+`</td>
@@ -42,11 +42,11 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
-					console.log('h2 fu Ajax!');
+					/* console.log('h2 fu Ajax!'); */
+					$('#fuListTbody').empty();
 					$.each(data,function(i, result){
-						console.log(result.prCode);
-						console.log(result.fuCode);
-						$('#fuListTbody').empty();
+						/* console.log(result.prCode);
+						console.log(result.fuCode); */
 						$('#fuListTbody').append(`
 							<tr>
 								<td>`+result.fuHistory+`</td>

@@ -16,9 +16,28 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
-					console.log('h2 modify Ajax!');
+					$('#pmAddListTbody').empty();
+					$.each(data, function(i, result){
+						/* console.log('h2 modify Ajax!'); */
+						$('#pmAddListTbody').append(`
+							<tr>
+								<td>`+result.prCode+`</td>
+								<td>`+result.pmLevel+`</td>
+								<td>`+result.pmNote+`</td>
+								<td>
+									<select name="pmApproval">
+										<option value="대기">대기</option>
+										<option value="승인">승인</option>
+										<option value="반려">반려</option>
+									</select>
+							</tr>`);
+					});
 				}
 			});
+		});
+		$(document).on('click','#pmApprovalBtn',function(){
+			/* 팝업창 버튼 이벤트 부터 작업하면 됨. */
+			$('#pmApprovalForm').attr({action:"#"})
 		});
 	</script>
 </head> 
@@ -70,7 +89,7 @@
 					<td colspan="2">-</td>
 					<td><strong>참여인원</strong></td>
 					<td>
-						<p>${pmCount}</p> / ${project.prMember}
+						<span>${pmCount}</span> / ${project.prMember}
 						<button type="button" id="pmAddBtn">인원추가</button>
 						
 					</td>
