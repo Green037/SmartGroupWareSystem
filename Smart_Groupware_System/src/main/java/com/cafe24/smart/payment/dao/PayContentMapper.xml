@@ -6,9 +6,7 @@
 <mapper namespace="PcDAO">
 	<resultMap id="resultPc" type="PayContent">
 		<result property="pcCode" column="pc_code"/>
-		<result property="cmCode" column="cm_code"/>
 		<result property="mmCode" column="mm_code"/>
-		<result property="reCode" column="re_code"/>
 		<result property="pcDate" column="pc_date"/>
 		<result property="pcSection" column="pc_section"/>
 		<result property="pcClasificar" column="pc_clasificar"/>

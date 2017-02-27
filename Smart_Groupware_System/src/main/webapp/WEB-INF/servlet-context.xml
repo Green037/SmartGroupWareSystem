@@ -33,6 +33,11 @@
 		<property name="username" value="freebsy"/>
 		<property name="password" value="bsy63792"/>  -->
 		
+		<!-- 은비씨
+		<property name="url" value="jdbc:mysql://tsuyu040913.cafe24.com:3306/hsa3737?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
+		<property name="username" value="tsuyu040913"/>
+		<property name="password" value="eunbi3800*"/>  -->
+		
 		<!-- 수아씨
 		<property name="url" value="jdbc:mysql://hsa3737.cafe24.com:3306/hsa3737?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
 		<property name="username" value="hsa3737"/>
@@ -42,20 +47,19 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations"> 
-		<list>
-			<value>classpath:com/cafe24/smart/member/dao/*.xml</value>
-			<value>classpath:com/cafe24/smart/project/dao/ProjectMapper.xml</value>
-			<value>classpath:com/cafe24/smart/approve/dao/ApproveMapper.xml</value>
-		</list>
+			<list>
+				<value>classpath:com/cafe24/smart/member/dao/*.xml</value>
+				<value>classpath:com/cafe24/smart/project/dao/ProjectMapper.xml</value>
+				<value>classpath:com/cafe24/smart/insurance/dao/InsuranceMapper.xml</value>
+				<value>classpath:com/cafe24/smart/approve/dao/ApproveMapper.xml</value>
+			</list>
 		</property>
 	</bean>
 	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="messageConverters">
 			<list>
-				<bean
-				class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-				</bean>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
 			</list>
 		</property>
 	</bean> 

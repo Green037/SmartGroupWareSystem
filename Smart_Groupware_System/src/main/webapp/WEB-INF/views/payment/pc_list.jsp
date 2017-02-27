@@ -6,7 +6,6 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 </head> 
 <body>
-
 	<%@ include file="../menu.jsp" %>
 	
 	<!-- contents -->
@@ -85,7 +84,7 @@
 										<td>1,000,000</td>
 									</tr>
 									<tr>
-										<td colspan="2">지급액 계</td>
+										<th colspan="2">지급액 계</th>
 										<td>100,000</td>
 										<td>100,000</td>
 										<td>100,000</td>
@@ -140,7 +139,7 @@
 										<td>1,000,000</td>
 									</tr>
 									<tr>
-										<td colspan="2">실지급액계</td>
+										<th colspan="2">실지급액계</th>
 										<td>100,000</td>
 										<td>100,000</td>
 										<td>100,000</td>
@@ -168,6 +167,5 @@
 	</div>	
 			
 	<%@ include file="../footer.jsp"%>
-
 </body>
 </html>
