@@ -111,7 +111,5 @@
 				lc_name
 			FROM
 				license
-			
 		</select>
-	
 	</mapper>
