@@ -40,7 +40,6 @@
 				</td>
 			</tr>
 			<tr>
-<!-- 여기부터 작업해야됨. 2017/2/24 -->
 				<td><strong>팀장</strong></td>
 				<td colspan="3">-</td>
 				<td><strong>직급</strong></td>
@@ -56,7 +55,7 @@
 				<td><strong>참여인원</strong></td>
 				<td>
 					${pmCount} / ${project.prMember}
-					<button type="button" id="pmBtn">상세보기</button>
+					<button type="button" id="pmAddBtn">인원추가</button>
 					
 				</td>
 			</tr>
@@ -64,22 +63,39 @@
 				<td><strong>총자금</strong></td>
 				<td>
 					${project.prMoney}
-					<button type="button" id="fuBtn">내역보기</button>
+					<button type="button" id="fuBtn">내역수정</button>
 				</td>
 				<td><strong>시작일</strong></td>
-				<td colspan="2">${project.prStartDay}</td>
+				<td colspan="2"><input type="date" name="prStartDay" value="${project.prStartDay}"/></td>
 				<td><strong>종료일</strong></td>
-				<td colspan="2">${project.prEndDay}</td>
+				<td colspan="2"><input type="date" name="prStartDay" value="${project.prEndDay}"/></td>
 			</tr>
 			<tr>
 				<td><strong>팀원모집상황</strong></td>
-				<td>${project.prProgress}</td>
+				<td>
+					<input type="radio" name="prProgress" value="모집중"/>모집중
+					<input type="radio" name="prProgress" value="모집완료"/>모집완료
+					<script>
+					$('input:radio[name="prProgress"]:radio[value="${project.prProgress}"]').prop("checked",true);
+					</script>
+				</td>
 				<td><strong>분류</strong></td>
-				<td>${project.prCate}</td>
+				<td>
+					<select name="prCate" id="prCate">
+						<option value="개발">개발</option>
+						<option value="연구">연구</option>
+						<option value="유지보수">유지보수</option>
+					</select>
+					<script>
+						$('#prCate').val('${project.prCate}').attr('selected','selected');
+					</script>
+				</td>
 				<td><strong>진행최종승인여부</strong></td>
 				<td>${project.prForProgress}</td>
 				<td><strong>프로젝트진행상황</strong></td>
-				<td>${project.prFinishCheck}</td>
+				<td> <!--여기부터 수정  -->
+					${project.prFinishCheck}
+				</td>
 			</tr>
 			<tr>
 				<td colspan="8" align="center">

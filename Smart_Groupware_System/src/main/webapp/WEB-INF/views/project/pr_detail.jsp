@@ -41,10 +41,10 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
-					console.log('h2 fu Ajax!');
+					/* console.log('h2 fu Ajax!'); */
 					$.each(data,function(i, result){
-						console.log(result.prCode);
-						console.log(result.fuCode);
+						/* console.log(result.prCode);
+						console.log(result.fuCode); */
 						 $('#fuListTbody').append(`
 								<tr>
 									<td>`+result.fuHistory+`</td>
