@@ -6,7 +6,6 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 </head> 
 <body>
-
 	<%@ include file="../menu.jsp" %>
 	
 	<!-- contents -->
@@ -168,6 +167,5 @@
 	</div>	
 			
 	<%@ include file="../footer.jsp"%>
-
 </body>
 </html>

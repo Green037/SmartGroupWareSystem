@@ -45,14 +45,15 @@ public class PaymentController {
 		
 		int year = calendar.get(Calendar.YEAR);
 		int month = calendar.get(Calendar.MONTH) + 1;
+		String paymentDate = year + "-" + month + "-25"; 
 		
 		model.addAttribute("eiContent", insuranceService.eiContentServ(year));
 		model.addAttribute("nhiContent", insuranceService.nhiContentServ(year));
 		model.addAttribute("ppContent", insuranceService.ppContentServ(year));
-		model.addAttribute("month", month);
+		model.addAttribute("paymentDate", paymentDate);
 		
 		System.out.println("PaymentController paAddCtrl model : " + model);
-		System.out.println("PaymentController paAddCtrl month : " + month);
+		System.out.println("PaymentController paAddCtrl paymentDate : " + paymentDate);
 		
 		return "payment/pa_add";
 	}
