@@ -18,12 +18,15 @@ public interface ApproveDAO {
 	//결재 목록
 	List<Progress> selectAllhv();
 	
-	//결재 요청(draft + progress)
+	//결재 신청 폼(draft + progress)
 	Draft selectContHv(int dftCode);
 	Progress selectDetailHv(int dftCode);
 	
 	//임시 목록
-	List<Draft> SelectAllTem();
+	List<Draft> selectAllTem();
+	
+	//결재 요청 (progress)
+	int updatePro(Progress progress);
 
 	
 	

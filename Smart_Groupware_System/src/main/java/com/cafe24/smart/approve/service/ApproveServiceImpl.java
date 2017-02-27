@@ -1,10 +1,15 @@
 package com.cafe24.smart.approve.service;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
+
+import javax.print.attribute.standard.DateTimeAtCompleted;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,8 +33,14 @@ public class ApproveServiceImpl implements ApproveService {
 	public int apAddServ(Draft draft, Progress progress) {
 		System.out.println("serv Dft>  test1");
 		
+		Date today = new Date (); 
+		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
+				
 		// draft.setAprCode(1);
 		// apr_code default값 기본 설정 = 아무값없음 비교
+		
+		//----- date를 로직에서 따로 처리 : progress 테이블에 입려과 동시에 insert 해주기 위해서
+		draft.setDftDate(formatter.format(today));
 		draft.setDftDegree(1);
 		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
 		
@@ -37,6 +48,7 @@ public class ApproveServiceImpl implements ApproveService {
 		System.out.println("serv Dft>  test2");	
 		
 			if(result != 0){
+				progress.setProTime(draft.getDftDate());
 				progress.setDftCode(draft.getDftCode());
 				progress.setProTurn(draft.getDftDegree());
 				progress.setProPersonState(false);
@@ -103,10 +115,21 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	//결재 요청[승인/반려]
 	@Override
-	public int apProAddServ(Draft draft, Progress progress) {
+	public int apProAddServ(Draft draft, Progress progress, int dftCode) {
 		System.out.println("serv proAdd> test1");
-		
+		//-----결재 요청 후 : 미결재 -> 결재 변환
+		//-----승인/반려 
 		progress.setProPersonState(true);
+		switch(progress.getProState()){
+		case 1 : 
+			System.out.println("승인");
+			int result = approveDAO.updatePro(progress);
+			
+			break;
+		case 2 : 
+			System.out.println("반려");
+			break;
+		}
 		
 		
 		return 0;
@@ -118,7 +141,7 @@ public class ApproveServiceImpl implements ApproveService {
 	public List<Draft> temListServ() {
 		System.out.println("serv temList> test1");
 		List<Draft> temList= new ArrayList<Draft>();
-		temList = approveDAO.SelectAllTem();
+		temList = approveDAO.selectAllTem();
 		System.out.println("serv temList> test2");
 		System.out.println(temList);
 		return temList;

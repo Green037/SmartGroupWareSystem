@@ -39,6 +39,7 @@ public class ApproveController {
 	public String apAddCtrl(Draft draft, Progress progress){
 		
 		System.out.println("ctrl dftAdd > test");
+		System.out.println(draft.getDftDate());
 		int result = approveService.apAddServ(draft, progress);
 		
 		return "home";
@@ -83,10 +84,11 @@ public class ApproveController {
 	
 	//결재 정보[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
-	public String proAdd(Draft draft, Progress progress){
+	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
 		System.out.println("ctrl proAdd> test");
 		
-		int result = approveService.apProAddServ(draft, progress);
+		//-------------[2017/02/27]dftCode로 가져와서 update해야함----------
+		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
 		return "home";   
 	}

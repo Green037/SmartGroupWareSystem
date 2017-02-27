@@ -63,14 +63,23 @@ public class ApproveDAOImpl implements ApproveDAO {
 		System.out.println("dao hvDetail> test");
 		return sqlSession.selectOne("AprDAO.selectDetailHv", dftCode);
 	}
+	
+	// 결재 요청 : 1단계 : progress update
+	@Override
+	public int updatePro(Progress progress) {
+		System.out.println("dao proUpdate> test");
+		return 0;
+	}
+
  	
 	// 임시 목록
 	@Override
-	public List<Draft> SelectAllTem() {
+	public List<Draft> selectAllTem() {
 		System.out.println("dao temList> test");
 		return sqlSession.selectList("AprDAO.selectAllTem");
 	}
 
+	
 
 
 
