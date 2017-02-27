@@ -29,41 +29,41 @@
 									<div class="form-body">
 										<form class="form-horizontal" method="post">
 											<div class="form-group">
-												<label for="mmName" class="col-sm-2 control-label">인사코드</label>
+												<label for="mmCode" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
-													<span style="color:red">인사코드넣어라</span>
+													<span style="color:red">사원코드넣어라</span>
 													<input type="hidden" id="mmCode" name="mmCode"/>
 													<a class="btn green">검색</a>
 												</div>
 											</div>											
 											<div class="form-group">
-												<label for="mmEmail" class="col-sm-2 control-label">사원명</label>
+												<label for="mmName" class="col-sm-2 control-label">사원명</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" value="사원명넣어라" disabled/>
+													<input type="text" class="form-control1" name="mmName" id="mmName" value="사원명넣어라" disabled/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="mmPassword" class="col-sm-2 control-label">평가날짜</label>
+												<label for="reDate" class="col-sm-2 control-label">평가날짜</label>
 												<div class="col-sm-3">
-													<input type="date" class="form-control1" name="pcDate"/>
+													<input type="date" class="form-control1" id="reDate" name="reDate"/>
 												</div>
 											</div>					
 											<div class="form-group">
-												<label for="memberInfo" class="col-sm-2 control-label">평가등급</label>
+												<label for="reGrade" class="col-sm-2 control-label">평가등급</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" name="pcDate"/>
+													<input type="text" class="form-control1" id="reGrade" name="reGrade"/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="memberInfo" class="col-sm-2 control-label">고과서류첨부</label>
+												<label for="reDocument" class="col-sm-2 control-label">고과서류첨부</label>
 												<div class="col-sm-3">
-													<input type="file" class="form-control1" name="pcDate" style="border:0px solid black;"/>
+													<input type="file" class="form-control1" id="reDocument" name="reDocument" style="border:0px solid black;"/>
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="mmPassword" class="col-sm-2 control-label">담당사원코드</label>
+												<label for="reMmCode" class="col-sm-2 control-label">담당사원코드</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" value="로그인한 아이디 넣어라" disabled/>
+													<input type="text" class="form-control1" id="reMmCode" name="reMmCode" value="로그인한 아이디 넣어라" disabled/>
 												</div>
 											</div>
 											<div class="form-group" align="center">
