@@ -1,5 +1,6 @@
 package com.cafe24.smart.approve.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.ui.Model;
@@ -21,8 +22,11 @@ public interface ApproveService {
 	//임시 목록
 	List<Draft> temListServ();
 
-	//결재 승인/반려 신청
+	//결재 승인/반려 페이지 요청
 	Draft hvContServ(int dftCode);
+	
+	//결재 승인/반려 요청
+	int apProAddServ(Draft draft, Progress progress);
 
 	
 }

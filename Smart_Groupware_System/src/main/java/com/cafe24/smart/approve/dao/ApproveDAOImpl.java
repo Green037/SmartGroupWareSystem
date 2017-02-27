@@ -1,5 +1,6 @@
 package com.cafe24.smart.approve.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -49,20 +50,28 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectAllHv");
 	}
 	
-	// 결재 신청 폼
+	// 결재 신청 폼 : dftCode 가져오기
  	@Override
 	public Draft selectContHv(int dftCode){
 		System.out.println("dao hvCont> test");
-		return sqlSession.selectOne("AprDAO.selectContHv");
+		return sqlSession.selectOne("AprDAO.selectContHv", dftCode);
 	}
 	
-
+ 	// 결재 신청 폼 : proApproval 가져오기
+	@Override
+	public Progress selectDetailHv(int dftCode) {
+		System.out.println("dao hvDetail> test");
+		return sqlSession.selectOne("AprDAO.selectDetailHv", dftCode);
+	}
+ 	
 	// 임시 목록
 	@Override
 	public List<Draft> SelectAllTem() {
 		System.out.println("dao temList> test");
 		return sqlSession.selectList("AprDAO.selectAllTem");
 	}
+
+
 
 
 	

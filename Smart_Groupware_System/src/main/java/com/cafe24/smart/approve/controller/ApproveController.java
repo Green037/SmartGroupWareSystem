@@ -1,6 +1,7 @@
 package com.cafe24.smart.approve.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -54,7 +55,7 @@ public class ApproveController {
 		return "/approve/ap_proList";
 	}
 	
-	//결재 목록 : GET **** 사원번호/ 문서코드가 나오지 않는다
+	//결재 목록 : GET 
 	@RequestMapping(value="ap/hvList", method=RequestMethod.GET)
 	public String apHaveListCtrl(Model model){	
 		System.out.println("ctrl hvList> test");
@@ -72,13 +73,22 @@ public class ApproveController {
 		System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
 		draft = approveService.hvContServ(dftCode);
-		//왜 안되냐> draft값이 null? 왜왜왜?
-		System.out.println(draft);
+		//System.out.println(draft);
 		
 		model.addAttribute("draft", draft);
 	
 		return "/approve/ap_haveContent";
 	
+	}
+	
+	//결재 정보[승인/반려] : POST
+	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
+	public String proAdd(Draft draft, Progress progress){
+		System.out.println("ctrl proAdd> test");
+		
+		int result = approveService.apProAddServ(draft, progress);
+		
+		return "home";   
 	}
 	
 	//임시 문서함 : GET

@@ -6,14 +6,21 @@ public class Progress {
 	private int dftCode;
 	private String proTime;
 	private String proReason;
-	private String proState;
+	private int proState;
 	private boolean proPersonState;
 	private int proTurn;
 	private String proRealTime;
 	private String dftTitle;
 	private String dftDate;
+	private int proApproval;
+	private int mmCode;
 	
-	
+	public int getMmCode() {
+		return mmCode;
+	}
+	public void setMmCode(int mmCode) {
+		this.mmCode = mmCode;
+	}
 	public int getProCode() {
 		return proCode;
 	}
@@ -38,10 +45,10 @@ public class Progress {
 	public void setProReason(String proReason) {
 		this.proReason = proReason;
 	}
-	public String getProState() {
+	public int getProState() {
 		return proState;
 	}
-	public void setProState(String proState) {
+	public void setProState(int proState) {
 		this.proState = proState;
 	}
 	public boolean isProPersonState() {
@@ -74,14 +81,21 @@ public class Progress {
 	public void setDftDate(String dftDate) {
 		this.dftDate = dftDate;
 	}
+	public int getProApproval() {
+		return proApproval;
+	}
+	public void setProApproval(int proApproval) {
+		this.proApproval = proApproval;
+	}
+	
 	@Override
 	public String toString() {
 		return "Progress [proCode=" + proCode + ", dftCode=" + dftCode + ", proTime=" + proTime + ", proReason="
 				+ proReason + ", proState=" + proState + ", proPersonState=" + proPersonState + ", proTurn=" + proTurn
-				+ ", proRealTime=" + proRealTime + ", dftTitle=" + dftTitle + ", dftDate=" + dftDate + "]";
+				+ ", proRealTime=" + proRealTime + ", dftTitle=" + dftTitle + ", dftDate=" + dftDate + ", proApproval="
+				+ proApproval + ", mmCode=" + mmCode + "]";
 	}
 
-	
 	
 }
 	
