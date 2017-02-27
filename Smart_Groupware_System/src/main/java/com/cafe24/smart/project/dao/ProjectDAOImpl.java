@@ -90,4 +90,10 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.selectList("PrDAO.selectByPrCodeFu", prCode);
 	}
 
+	@Override
+	public int UpdatePr(Project project) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("PrDAO.updatePr", project);
+	}
+
 }

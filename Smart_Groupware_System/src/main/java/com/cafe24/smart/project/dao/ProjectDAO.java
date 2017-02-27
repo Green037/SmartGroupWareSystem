@@ -18,5 +18,6 @@ public interface ProjectDAO {
 	List<ProjectMember> selectByPrCodePm(int prCode);
 	int selectCountPm(int prCode);
 	List<Funds> selectByPrCodeFu(int prCode);
+	int UpdatePr(Project project);
 
 }

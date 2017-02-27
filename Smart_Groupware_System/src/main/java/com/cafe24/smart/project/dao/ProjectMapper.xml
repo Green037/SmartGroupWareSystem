@@ -181,4 +181,17 @@
 		WHERE 
 			pr_code = #{prCode} 
 	</select>
+	
+	<update id="updatePr"
+			parameterType="com.cafe24.smart.project.domain.Project">
+		UPDATE project
+		SET
+			pr_name = #{prName},
+			pr_progress = #{prProgress},
+			pr_cate = #{prCate},
+			pr_forProgress = #{prForProgress},
+			pr_finishCheck = #{prFinishCheck}
+		WHERE
+			pr_code = #{prCode}
+	</update>
 </mapper>

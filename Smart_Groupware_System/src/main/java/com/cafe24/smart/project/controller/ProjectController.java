@@ -35,6 +35,18 @@ public class ProjectController {
 		return "project/pr_addForm";
 	}	
 
+	// 프로젝트 등록 포스트요청 - 프로젝트, 자금, 인원 폼 동시 처리.
+	@RequestMapping(value = "pr/add", method = RequestMethod.POST)
+	public String prAddCtrl(ProjectMember projectMember, Project project, Funds funds) {
+		/*System.out.println("h2");
+		System.out.println(project);
+		System.out.println(funds);
+		System.out.println(projectMember);*/
+		
+		int result = projectService.prAddServ(projectMember, project, funds);
+		
+		return "home";
+	}	
 	
 	//프로젝트 리스트 - 겟요청
 	@RequestMapping(value = "pr/list", method = RequestMethod.GET)
@@ -84,21 +96,35 @@ public class ProjectController {
 	}
 	
 	// 프로젝트 수정 - 겟요청
-		@RequestMapping(value = "pr/modify", method = RequestMethod.GET)
-		public String prModifyCtrl(Model model, @RequestParam("prCode") int prCode) {
-			/*System.out.println("h2 modify ctrl~!!");
-			System.out.println("넘어온 프로젝트 코드확인 : "+prCode);*/
-			
-			// 수정 폼으로 연결. 기존 값 깔아줘야됨.
-			Project project = new Project();
-			
-			project = projectService.prDetailServ(prCode);
-			int pmCount = projectService.pmCountServ(prCode);
-			
-			model.addAttribute("project", project);
-			model.addAttribute("pmCount", pmCount);
-			
-			return "project/pr_modify";
-		}
+	@RequestMapping(value = "pr/modify", method = RequestMethod.GET)
+	public String prModifyCtrl(Model model, @RequestParam("prCode") int prCode) {
+		/*System.out.println("h2 modify ctrl~!!");
+		System.out.println("넘어온 프로젝트 코드확인 : "+prCode);*/
+		
+		// 수정 폼으로 연결. 기존 값 깔아줘야됨.
+		Project project = new Project();
+		
+		project = projectService.prDetailServ(prCode);
+		int pmCount = projectService.pmCountServ(prCode);
+		
+		model.addAttribute("project", project);
+		model.addAttribute("pmCount", pmCount);
+		
+		return "project/pr_modify";
+	}
+	
+	//프로젝트 수정 - 포스트요청
+	@RequestMapping(value = "pr/modify", method = RequestMethod.POST)
+	public String prModifyCtrl(Project project) {
+		/*System.out.println("what!!");
+		System.out.println(project);*/
+		
+		// 수정 처리	
+		int result = projectService.prModifyServ(project);
+		
+		System.out.println("수정처리 성공여부 : "+result);
+		
+		return "redirect:/pr/list";
+	}
 
 }
