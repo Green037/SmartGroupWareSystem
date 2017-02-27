@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	<!--국민건강보험 -->
-	<resultMap id="resutNhi" type="com.cafe24.smart.insurance.domain.NationalHealthInsurance">
+	<resultMap id="resultNhi" type="com.cafe24.smart.insurance.domain.NationalHealthInsurance">
 		<result property="nhiCode" column="nhi_code"/>
 		<result property="nhiYear" column="nhi_year"/>
 		<result property="nhiEmployee" column="nhi_employee"/>
@@ -42,23 +42,38 @@
 	</resultMap>
 	
 	<select id="selectByEi" parameterType="int" resultMap="resultEi">
-		SELECT * FROM employeementInsurance
-		WHERE ei_year = #{eiYear};
+		SELECT
+			*
+		FROM
+			employeementInsurance
+		WHERE
+			ei_year = #{eiYear};
 	</select>
 	
 	<select id="selectByNhi" parameterType="int" resultMap="resultNhi">
-		SELECT * FROM nationalHealthInsurance
-		WHERE nhi_year = #{nhiYear};
+		SELECT
+			*
+		FROM
+			nationalHealthInsurance
+		WHERE
+			nhi_year = #{nhiYear};
 	</select>
 	
 	<select id="selectByOhi" parameterType="int" resultMap="resultOhi">
-		SELECT * FROM occupationalHealthSafetyInsurance
-		WHERE ohi_year = #{ohiYear};
+		SELECT
+			*
+		FROM
+			occupationalHealthSafetyInsurance
+		WHERE
+			ohi_year = #{ohiYear};
 	</select>
 	
 	<select id="selectByPp" parameterType="int" resultMap="resultPp">
-		SELECT * FROM pensionInsurance
-		WHERE pp_year = #{ppYear};
-	</select>
-	
+		SELECT
+			*
+		FROM
+			pensionInsurance
+		WHERE
+			pp_year = #{ppYear};
+	</select>	
 </mapper>

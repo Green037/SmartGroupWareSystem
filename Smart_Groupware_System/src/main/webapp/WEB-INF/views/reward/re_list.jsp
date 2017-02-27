@@ -48,7 +48,7 @@
 								</form>
 								<div class="clearfix">&nbsp;</div>
 						
-								<label class="control-label"><b>지급항목 [건수 : 10건]</b></label>
+								<label class="control-label"><b>고과항목 [건수 : 10건]</b></label>
 								<table class="table table-bordered">
 									<tr>
 										<th>순번</th>
@@ -69,95 +69,57 @@
 									</tr>
 									<tr>
 										<td>1</td>
-										<td>본봉</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>1,000,000</td>
-									</tr>
-									<tr>
-										<td colspan="2">지급액 계</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-									</tr>
-								</table> 
-								<div class="clearfix">&nbsp;</div>
-								
-								<label class="control-label"><b>공제항목 [건수 : 10건]</b></label>
-								<table class="table table-bordered">
-									<tr>
-										<th>순번</th>
-										<th>항목</th>
-										<th>1월</th>
-										<th>2월</th>
-										<th>3월</th>
-										<th>4월</th>
-										<th>5월</th>
-										<th>6월</th>
-										<th>7월</th>
-										<th>8월</th>
-										<th>9월</th>
-										<th>10월</th>
-										<th>11월</th>
-										<th>12월</th>
-										<th>계</th>
-									</tr>
-									<tr>
+										<td>프로젝트</td>
 										<td>1</td>
-										<td>본봉</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>1,000,000</td>
+										<td>1</td>
+										<td>2</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
 									</tr>
 									<tr>
-										<td colspan="2">실지급액계</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<td>2</td>
+										<td>이력</td>
+										<td>1</td>
+										<td>1</td>
+										<td>2</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+										<td>1</td>
+									</tr>
+									<tr>
+										<th colspan="2">고과 계</th>
+										<td>1</td>
+										<td>1</td>
+										<td>2</td>
+										<td>3</td>
+										<td>3</td>
+										<td>2</td>
+										<td>3</td>
+										<td>3</td>
+										<td>2</td>
+										<td>2</td>
+										<td>2</td>
+										<td>2</td>
+										<td>10</td>
 									</tr>
 								</table> 
 								<div class="clearfix">&nbsp;</div>
-					
+													
 							</div>
 						</div>
 					</div>

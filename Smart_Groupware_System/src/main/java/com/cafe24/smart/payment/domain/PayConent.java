@@ -3,10 +3,7 @@ package com.cafe24.smart.payment.domain;
 //급여상세
 public class PayConent {
 	private int pcCode;
-	private int cmCode;
 	private int mmCode;
-	private int inCode;
-	private int reCode;
 	private String pcDate;
 	private String pcSection;
 	private String pcClasificar;
@@ -20,14 +17,6 @@ public class PayConent {
 
 	public void setPcCode(int pcCode) {
 		this.pcCode = pcCode;
-	}
-
-	public int getCmCode() {
-		return cmCode;
-	}
-	
-	public void setCmCode(int cmCode) {
-		this.cmCode = cmCode;
 	}
 	
 	public int getMmCode() {
@@ -77,22 +66,6 @@ public class PayConent {
 	public void setPcAmount(int pcAmount) {
 		this.pcAmount = pcAmount;
 	}
-	
-	public int getInCode() {
-		return inCode;
-	}
-	
-	public void setInCode(int inCode) {
-		this.inCode = inCode;
-	}
-
-	public int getReCode() {
-		return reCode;
-	}
-
-	public void setReCode(int reCode) {
-		this.reCode = reCode;
-	}
 
 	public int getPaMmCode() {
 		return paMmCode;
@@ -104,9 +77,9 @@ public class PayConent {
 
 	@Override
 	public String toString() {
-		return "PayConent [pcCode=" + pcCode + ", cmCode=" + cmCode + ", mmCode=" + mmCode + ", inCode=" + inCode
-				+ ", reCode=" + reCode + ", pcDate=" + pcDate + ", pcSection=" + pcSection + ", pcClasificar="
-				+ pcClasificar + ", middleClasificar=" + middleClasificar + ", pcAmount=" + pcAmount + ", paMmCode="
-				+ paMmCode + "]";
+		return "PayConent [pcCode=" + pcCode + ", mmCode=" + mmCode + 
+				", pcDate=" + pcDate + ", pcSection=" + pcSection + ", pcClasificar="
+				+ pcClasificar + ", middleClasificar=" + middleClasificar +
+				", pcAmount=" + pcAmount + ", paMmCode=" + paMmCode + "]";
 	}
 }
