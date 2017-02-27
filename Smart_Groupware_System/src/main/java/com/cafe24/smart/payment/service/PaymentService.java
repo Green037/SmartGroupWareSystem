@@ -1,8 +1,7 @@
 package com.cafe24.smart.payment.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.cafe24.smart.member.domain.Member;
 
-public class PaymentService {
-	private static final Logger log = LoggerFactory.getLogger(PaymentService.class);
+public interface PaymentService {
+	Member 						pcMmContentCtrl(int mmCode);
 }

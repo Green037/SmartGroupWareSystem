@@ -17,6 +17,7 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
+					$('#pmListTbody').empty();
 					$.each(data,function(i, result){
 						/* console.log(result.prCode);
 						console.log(result.pmLevel); */
@@ -42,15 +43,16 @@
 				type : 'POST',
 				success : function(data){
 					/* console.log('h2 fu Ajax!'); */
+					$('#fuListTbody').empty();
 					$.each(data,function(i, result){
 						/* console.log(result.prCode);
 						console.log(result.fuCode); */
-						 $('#fuListTbody').append(`
-								<tr>
-									<td>`+result.fuHistory+`</td>
-									<td>`+result.fuExpectedMoney+`</td>
-									<td>`+result.fuUsedMoney+`</td>
-								</tr>`);
+						$('#fuListTbody').append(`
+							<tr>
+								<td>`+result.fuHistory+`</td>
+								<td>`+result.fuExpectedMoney+`</td>
+								<td>`+result.fuUsedMoney+`</td>
+							</tr>`);
 					}); 
 				}
 			});

@@ -169,6 +169,7 @@
 			projectMember
 		WHERE
 			pr_code = #{prCode}
+			AND pm_approval = "승인"
 	</select>
 	
 	<select id="selectByPrCodeFu"
@@ -181,4 +182,27 @@
 		WHERE 
 			pr_code = #{prCode} 
 	</select>
+	
+	<update id="updatePr"
+			parameterType="com.cafe24.smart.project.domain.Project">
+		UPDATE project
+		SET
+			pr_name = #{prName},
+			pr_progress = #{prProgress},
+			pr_cate = #{prCate},
+			pr_forProgress = #{prForProgress},
+			pr_finishCheck = #{prFinishCheck}
+		WHERE
+			pr_code = #{prCode}
+	</update>
+	
+	<update id="updateByApprovalPm"
+			parameterType="com.cafe24.smart.project.domain.ProjectMember">
+		UPDATE projectMember
+		SET
+			pm_approval = #{pmApproval},
+			pm_startDate = now()
+		WHERE
+			pm_code = #{pmCode}
+	</update>
 </mapper>

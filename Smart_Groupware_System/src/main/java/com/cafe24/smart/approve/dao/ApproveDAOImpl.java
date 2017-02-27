@@ -1,5 +1,6 @@
 package com.cafe24.smart.approve.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -21,40 +22,65 @@ public class ApproveDAOImpl implements ApproveDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	// Draft insert
+	// 기안 등록 : draft
 	@Override
 	public int insertDft(Draft draft){
 		System.out.println("dao dftInsert>  test");
 		return sqlSession.insert("AprDAO.insertDft" ,draft);
 	}
 	
-	// Progress insert
+	// 기안 등록 : progress
 	@Override
 	public int insertPg(Progress progress){
 		System.out.println("dao proInsert>  test");
 		return sqlSession.insert("AprDAO.insertPg" ,progress);
 	}
 	
-	// Progress List
+	// 결재 진행 목록
 	@Override
 	public List<Progress> selectAllPg(){
 		System.out.println("dao pgList> test" );
 		return sqlSession.selectList("AprDAO.selectAllPg");
 	}
 	
-	//Have List
+	// 결재 목록
 	@Override
 	public List<Progress> selectAllhv(){
 		System.out.println("dao hvList> test" );
 		return sqlSession.selectList("AprDAO.selectAllHv");
 	}
-
-	//Tem List
+	
+	// 결재 신청 폼 : dftCode 가져오기
+ 	@Override
+	public Draft selectContHv(int dftCode){
+		System.out.println("dao hvCont> test");
+		return sqlSession.selectOne("AprDAO.selectContHv", dftCode);
+	}
+	
+ 	// 결재 신청 폼 : proApproval 가져오기
 	@Override
-	public List<Draft> SelectAllTem() {
+	public Progress selectDetailHv(int dftCode) {
+		System.out.println("dao hvDetail> test");
+		return sqlSession.selectOne("AprDAO.selectDetailHv", dftCode);
+	}
+	
+	// 결재 요청 : 1단계 : progress update
+	@Override
+	public int updatePro(Progress progress) {
+		System.out.println("dao proUpdate> test");
+		return 0;
+	}
+
+ 	
+	// 임시 목록
+	@Override
+	public List<Draft> selectAllTem() {
 		System.out.println("dao temList> test");
 		return sqlSession.selectList("AprDAO.selectAllTem");
 	}
+
+	
+
 
 
 	

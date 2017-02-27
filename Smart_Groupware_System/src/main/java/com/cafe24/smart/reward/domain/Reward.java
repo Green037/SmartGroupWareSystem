@@ -3,10 +3,6 @@ package com.cafe24.smart.reward.domain;
 //인사 고과
 public class Reward {
 	private int reCode;
-	private int prCode;
-	private int dpCode;
-	private int ptCode;
-	private int ctCode;
 	private int mmCode;
 	private char reGrade;
 	private String reDate;
@@ -21,30 +17,6 @@ public class Reward {
 		this.reCode = reCode;
 	}
 	
-	public int getDpCode() {
-		return dpCode;
-	}
-	
-	public void setDpCode(int dpCode) {
-		this.dpCode = dpCode;
-	}
-
-	public int getPtCode() {
-		return ptCode;
-	}
-	
-	public void setPtCode(int ptCode) {
-		this.ptCode = ptCode;
-	}
-	
-	public int getCtCode() {
-		return ctCode;
-	}
-	
-	public void setCtCode(int ctCode) {
-		this.ctCode = ctCode;
-	}
-
 	public int getMmCode() {
 		return mmCode;
 	}
@@ -84,19 +56,11 @@ public class Reward {
 	public void setReMmCode(int reMmCode) {
 		this.reMmCode = reMmCode;
 	}
-
-	public int getPrCode() {
-		return prCode;
-	}
-	
-	public void setPrCode(int prCode) {
-		this.prCode = prCode;
-	}
 	
 	@Override
 	public String toString() {
-		return "Reward [reCode=" + reCode + ", dpCode=" + dpCode + ", ptCode=" + ptCode + ", ctCode=" + ctCode
-				+ ", mmCode=" + mmCode + ", reGrade=" + reGrade + ", reDate=" + reDate + ", reDocument=" + reDocument
-				+ ", reMmCode=" + reMmCode + ", prCode=" + prCode + "]";
+		return "Reward [reCode=" + reCode + 
+				", reGrade=" + reGrade + ", reDate=" + reDate + ", reDocument=" + reDocument
+				+ ", reMmCode=" + reMmCode + "]";
 	}
 }

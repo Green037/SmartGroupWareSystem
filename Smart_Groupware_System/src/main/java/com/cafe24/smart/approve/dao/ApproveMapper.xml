@@ -26,12 +26,13 @@
 		<result property="mmCode" column="mm_code"/>
 		<result property="dftTitle" column="dft_title"/>
 		<result property="dftDegree" column="dft_degree"/>
-		<result property="dftDate" column="dtf_date"/>
-		<result property="dftApproval1" column="dtf_approval1"/>
-		<result property="dftApproval2" column="dtf_approval2"/>
-		<result property="dftApproval3" column="dtf_approval3"/>
+		<result property="dftDate" column="dft_date"/>
+		<result property="dftApproval1" column="dft_approval1"/>
+		<result property="dftApproval2" column="dft_approval2"/>
+		<result property="dftApproval3" column="dft_approval3"/>
 		<result property="dftFinalState" column="dft_finalState"/>
-		<result property="dftCheck" column="dtf_check"/>
+		<result property="dftCheck" column="dft_check"/>
+		<result property="proApproval" column="pro_approval"/>
 	
 	</resultMap>
 	
@@ -46,8 +47,11 @@
 		<result property="proRealTime" column="pro_realTime"/>
 		<result property="dftTitle" column="dft_title"/>
 		<result property="dftDate" column="dft_date"/>
+		<result property="proApproval" column="pro_approval"/>
+		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
+<!-- 기안 등록 -->	
 <insert id="insertDft" 
 		parameterType="com.cafe24.smart.approve.domain.Draft"
 		useGeneratedKeys="true" keyProperty="dftCode">
@@ -71,7 +75,7 @@
             #{dftTitle},
             #{dftDegree},
             #{mmCode},
-	 	    now(),
+	 	    #{dftDate},
 		    #{dftApproval1},
 		    #{dftApproval2},
 	 	    #{dftApproval3},
@@ -80,41 +84,85 @@
 	        )
 </insert>
 
+<!-- 진행 등록 -->
 <insert id="insertPg"
 		parameterType="com.cafe24.smart.approve.domain.Progress">
 		
 		INSERT INTO progress(
+			pro_time,
 			dft_code,
 			pro_turn,
 			pro_personalState,
-			pro_state)  
+			pro_state,
+			pro_approval)  
  		VALUES(
+ 			#{proTime},
 	 		#{dftCode},
 	 		#{proTurn},
 	 		#{proPersonState},
-	 		#{proState}
+	 		#{proState},
+	 		#{proApproval}
 	 		) 
 </insert>
 
 
+<!-- 진행 목록  -->
 <select id="selectAllPg"
 		resultMap="resultPro">
 		SELECT * FROM draft
  		 JOIN progress;
 </select>
 
+<!-- 결재 목록 -->
 <select id="selectAllHv"
 			resultMap="resultPro">
-		SELECT * FROM progress,draft
- 		 WHERE pro_state='대기'
- 		 AND progress.dft_code = draft.dft_code
+		SELECT * FROM progress,draft 
+		WHERE pro_state='대기' 
+		AND progress.dft_code = draft.dft_code
 </select>
 
+<!-- 결재 상세보기 : dftCode 가져오기-->
+<select id="selectContHv"
+		parameterType="int"
+		resultMap="resultDft">
+		SELECT 
+			*
+		FROM
+			draft
+		WHERE 
+			dft_code = #{dftCode}
+</select>
+
+<!-- 결재 상세보기 : proApproval 가져오기-->
+<select id="selectDetailHv"
+		parameterType="int"
+		resultMap="resultPro">
+		SELECT 
+			pro_approval 
+		FROM 
+			progress 
+		WHERE 
+			dft_code = #{dftCode};
+
+</select>
+
+<!-- 결재 요청 : 1단계 : progress Update -->
+<update id="updatePro"
+		parameterType="com.cafe24.smart.approve.domain.Progress">
+		UPDATE progress 
+		SET pro_realTime = now(),
+			pro_state = 1,
+			pro_personalstate = true  
+		WHERE dft_code = #{dftCode}
+
+</update>
+
+<!-- 임시 목록 -->
 <select id="selectAllTem"
 		resultMap="resultDft">
 
 		SELECT * FROM draft
-		WHERE dft_check = 'false'
+		WHERE dft_check = 'true'
 		<!-- 사원코드 select 조건 추가 -->
 		
 </select>

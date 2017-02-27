@@ -1,7 +1,9 @@
 package com.cafe24.smart.project.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
+import com.cafe24.smart.project.domain.ProjectMemberCommand;
 import com.cafe24.smart.project.service.ProjectService;
 
 
@@ -35,6 +38,18 @@ public class ProjectController {
 		return "project/pr_addForm";
 	}	
 
+	// 프로젝트 등록 포스트요청 - 프로젝트, 자금, 인원 폼 동시 처리.
+	@RequestMapping(value = "pr/add", method = RequestMethod.POST)
+	public String prAddCtrl(ProjectMember projectMember, Project project, Funds funds) {
+		/*System.out.println("h2");
+		System.out.println(project);
+		System.out.println(funds);
+		System.out.println(projectMember);*/
+		
+		int result = projectService.prAddServ(projectMember, project, funds);
+		
+		return "home";
+	}	
 	
 	//프로젝트 리스트 - 겟요청
 	@RequestMapping(value = "pr/list", method = RequestMethod.GET)
@@ -84,21 +99,55 @@ public class ProjectController {
 	}
 	
 	// 프로젝트 수정 - 겟요청
-		@RequestMapping(value = "pr/modify", method = RequestMethod.GET)
-		public String prModifyCtrl(Model model, @RequestParam("prCode") int prCode) {
-			/*System.out.println("h2 modify ctrl~!!");
-			System.out.println("넘어온 프로젝트 코드확인 : "+prCode);*/
-			
-			// 수정 폼으로 연결. 기존 값 깔아줘야됨.
-			Project project = new Project();
-			
-			project = projectService.prDetailServ(prCode);
-			int pmCount = projectService.pmCountServ(prCode);
-			
-			model.addAttribute("project", project);
-			model.addAttribute("pmCount", pmCount);
-			
-			return "project/pr_modify";
-		}
+	@RequestMapping(value = "pr/modify", method = RequestMethod.GET)
+	public String prModifyCtrl(Model model, @RequestParam("prCode") int prCode) {
+		/*System.out.println("h2 modify ctrl~!!");
+		System.out.println("넘어온 프로젝트 코드확인 : "+prCode);*/
+		
+		// 수정 폼으로 연결. 기존 값 깔아줘야됨.
+		Project project = new Project();
+		
+		project = projectService.prDetailServ(prCode);
+		int pmCount = projectService.pmCountServ(prCode);
+		
+		model.addAttribute("project", project);
+		model.addAttribute("pmCount", pmCount);
+		
+		return "project/pr_modify";
+	}
+	
+	//프로젝트 수정 - 포스트요청
+	@RequestMapping(value = "pr/modify", method = RequestMethod.POST)
+	public String prModifyCtrl(Project project) {
+		/*System.out.println("what!!");
+		System.out.println(project);*/
+		
+		// 수정 처리	
+		int result = projectService.prModifyServ(project);
+		//System.out.println("수정처리 성공여부 : "+result);
+		
+		return "redirect:/pr/list";
+	}
+	
+	//프로젝트 참여인원 참여승인 여부수정 - 포스트요청
+	@RequestMapping(value = "pm/addApproval", method = RequestMethod.POST)
+	public String pmModifyCtrl(Model model, ProjectMemberCommand projectMemberCommand) {
+		/*System.out.println("pm modify~ POST!!");
+		System.out.println(projectMemberCommand);
+		[pmCode_=4,5,6,7, pmApproval_=대기,승인,대기,승인]*/
+		
+		// 수정 처리 후 최종승인된 인원 총 카운트 수와 해당 프로젝트코드 를 Map으로 리턴받아서 
+		// 프로젝트 코드로 다시 해당 프로젝트 조회하여 결과와 카운트를 세팅하고 수정화면으로 포워드한다
+		Map<String, Integer> result = new HashMap<String, Integer>();
+		result = projectService.pmModifyApprovalServ(projectMemberCommand);
+		Project project = new Project();
+		
+		project = projectService.prDetailServ(result.get("prCode"));
+		
+		model.addAttribute("pmCount", result.get("pmCount"));
+		model.addAttribute("project", project);
+		
+		return "project/pr_modify";
+	}
 
 }

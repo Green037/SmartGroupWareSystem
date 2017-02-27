@@ -6,9 +6,6 @@
 <mapper namespace="ReDAO">
 	<resultMap id="resultRe" type="Reward">
 		<result property="reCode" column="re_code"/>
-		<result property="prCode" column="pr_code"/>
-		<result property="dpCode" column="dp_code"/>
-		<result property="ctCode" column="ct_code"/>
 		<result property="mmCode" column="mm_code"/>
 		<result property="reGrade" column="re_grade"/>
 		<result property="reDate" column="re_date"/>

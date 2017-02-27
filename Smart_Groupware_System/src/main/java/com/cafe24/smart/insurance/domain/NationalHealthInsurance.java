@@ -3,7 +3,7 @@ package com.cafe24.smart.insurance.domain;
 //국민건강보험
 public class NationalHealthInsurance {
 	private int nhiCode;
-	private int hiYear;
+	private int nhiYear;
 	private double nhiEmployee;
 	private double nhiOwner;
 	private double nhiLongEmployee;
@@ -17,12 +17,12 @@ public class NationalHealthInsurance {
 		this.nhiCode = nhiCode;
 	}
 	
-	public int getHiYear() {
-		return hiYear;
+	public int getNhiYear() {
+		return nhiYear;
 	}
 	
-	public void setHiYear(int hiYear) {
-		this.hiYear = hiYear;
+	public void setNhiYear(int nhiYear) {
+		this.nhiYear = nhiYear;
 	}
 	
 	public double getNhiEmployee() {
@@ -59,7 +59,7 @@ public class NationalHealthInsurance {
 	
 	@Override
 	public String toString() {
-		return "NationalHealthInsurance [nhiCode=" + nhiCode + ", hiYear=" + hiYear + ", nhiEmployee=" + nhiEmployee
+		return "NationalHealthInsurance [nhiCode=" + nhiCode + ", nhiYear=" + nhiYear + ", nhiEmployee=" + nhiEmployee
 				+ ", nhiOwner=" + nhiOwner + ", nhiLongEmployee=" + nhiLongEmployee + ", nhiLongOwner=" + nhiLongOwner
 				+ "]";
 	}

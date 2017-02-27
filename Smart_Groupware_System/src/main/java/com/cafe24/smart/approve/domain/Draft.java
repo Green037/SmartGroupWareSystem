@@ -1,7 +1,6 @@
 package com.cafe24.smart.approve.domain;
 
 
-
 //기안
 public class Draft {
 	private int dftCode;
@@ -16,6 +15,9 @@ public class Draft {
 	private int dftApproval3;
 	private String dftFinalState;
 	private String dftCheck;
+	private int proApproval;
+
+	
 	public int getDftCode() {
 		return dftCode;
 	}
@@ -88,16 +90,21 @@ public class Draft {
 	public void setDftCheck(String dftCheck) {
 		this.dftCheck = dftCheck;
 	}
+	public int getProApproval() {
+		return proApproval;
+	}
+	public void setProApproval(int proApproval) {
+		this.proApproval = proApproval;
+	}
+	
 	@Override
 	public String toString() {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode
 				+ ", dftTitle=" + dftTitle + ", dftDegree=" + dftDegree + ", dftDate=" + dftDate + ", dftApproval1="
 				+ dftApproval1 + ", dftApproval2=" + dftApproval2 + ", dftApproval3=" + dftApproval3
-				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + "]";
+				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", proApproval=" + proApproval + "]";
 	}
-
-
-	
 	
 
+	
 }

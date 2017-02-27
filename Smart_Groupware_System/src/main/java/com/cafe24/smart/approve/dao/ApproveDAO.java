@@ -1,5 +1,6 @@
 package com.cafe24.smart.approve.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.cafe24.smart.approve.domain.Draft;
@@ -7,18 +8,26 @@ import com.cafe24.smart.approve.domain.Progress;
 
 public interface ApproveDAO {
 
-	//insert draft( + progress) 
+	//기안 등록( draft + progress) 
 	int insertDft(Draft draft);
 	int insertPg(Progress progress);
 
-	//progress list
+	//진행 목록
 	List<Progress> selectAllPg();
 	
-	//have list
+	//결재 목록
 	List<Progress> selectAllhv();
 	
-	//tem List
-	List<Draft> SelectAllTem();
+	//결재 신청 폼(draft + progress)
+	Draft selectContHv(int dftCode);
+	Progress selectDetailHv(int dftCode);
+	
+	//임시 목록
+	List<Draft> selectAllTem();
+	
+	//결재 요청 (progress)
+	int updatePro(Progress progress);
 
-
+	
+	
 }

@@ -45,11 +45,11 @@
 									
 									<tr>
 										<td>${t.dftCode}</td>
+										<td>${t.docCode}</td>
 										<td>${t.dftTitle}</td>
-										<td>1차프로젝트</td>
-										<td>홍길동</td>
+										<td>${t.mmCode}</td>
 										<td>개발부</td>
-										<td>2017/02/18</td>
+										<td>${t.dftDate}</td>
 										<td>2017/02/25</td>
 										<td></td>
 							

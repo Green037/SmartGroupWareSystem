@@ -27,6 +27,7 @@ public class ProjectRestController {
 	@Autowired
 	private ProjectService projectService;
 	
+	//참여인원 상세보기
 	@RequestMapping(value = "pm/detail", method = RequestMethod.POST)
 	public List<ProjectMember> pmListCtrl(@RequestParam("prCode") int prCode) {
 		//System.out.println("h2");
@@ -38,6 +39,7 @@ public class ProjectRestController {
 		return pmList;
 	}
 	
+	//자금상세보기
 	@RequestMapping(value = "fu/detail", method = RequestMethod.POST)
 	public List<Funds> fuListCtrl(@RequestParam("prCode") int prCode) {
 		/*System.out.println("h2 funds ajax!!");
@@ -50,4 +52,16 @@ public class ProjectRestController {
 		return fuList;
 	}
 	
+	// 참여인원 신청자 조회.
+	@RequestMapping(value = "pm/add", method = RequestMethod.POST)
+	public List<ProjectMember> pmAddListCtrl(@RequestParam("prCode") int prCode) {
+		/*System.out.println("h2");
+		System.out.println("넘어온 프로젝트코드값 : "+prCode);*/
+		
+		List<ProjectMember> pmList = new ArrayList<ProjectMember>(); 
+		
+		pmList = projectService.pmAddListServ(prCode);
+		
+		return pmList;
+	}
 }
