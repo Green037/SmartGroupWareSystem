@@ -19,7 +19,6 @@
 	</filter-mapping>
 	
 	
-	
 	<!-- servlet mapping -->
 	<servlet>
 		<servlet-name>appServlet</servlet-name>

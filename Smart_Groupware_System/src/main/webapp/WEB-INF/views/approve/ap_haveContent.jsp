@@ -33,36 +33,31 @@
 									<div class="form-body">
 										<form class="form-horizontal">
 											<div class="form-group">
-												<label for="nameinput" class="col-sm-2 control-label">문서 번호</label>
-												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="nameinput"
-														placeholder="이름을 입력하세요">
-												</div>
-												<div class="col-sm-2">
-													<p class="help-block"></p>
-												</div>
+												<label for="nameinput" class="col-sm-2 control-label">문서 번호 : </label>
+												
+											<div class="col-sm-3">
+												<td>${draft.dftCode}</td>
+											</div>
+									
 											</div>
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">문서 제목</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="Emailinput" 
-															placeholder="이메일을 입력하세요">
+													<input type="text" class="form-control1" id="dftTitle"> 													
 												</div>
 																							
 											</div>
 											<div class="form-group">
 												<label for="Passwordinput" class="col-sm-2 control-label">작성자</label>
 												<div class="col-sm-3">
-													<input type="password" class="form-control1"
-														id="Passwordinput" placeholder="비밀번호를 입력하세요">
+													<input type="password" class="form-control1" id="mmCode">
 												</div>
 											</div>
 											
 											<div class="form-group">
 												<label for="Passwordinput" class="col-sm-2 control-label">결재자</label>
 												<div class="col-sm-3">
-													<input type="password" class="form-control1"
-														id="Passwordinput" placeholder="비밀번호를 입력하세요">
+													<input type="password" class="form-control1" id="dft_Approval">
 												</div>
 											</div>
 												
@@ -70,7 +65,7 @@
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">문서 양식</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="Emailinput"> 														
+													<input type="text" class="form-control1" id="docName"> 														
 												</div>
 																							
 											</div>
@@ -78,7 +73,7 @@
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">결재 신청 일자</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="Emailinput"> 														
+													<input type="text" class="form-control1" id="dftDate"> 														
 												</div>
 																							
 											</div>
@@ -87,10 +82,10 @@
 												<label class="col-sm-2 control-label" for="marrycheck">결재여부</label>
 												<div class="col-sm-8">
 													<div class="marry-inline1">
-														<label for="marrycheck"><input type="radio" name="Armycheck" value="gun_yes" id="marrycheck" checked="checked"> 승인</label>
+														<label for="marrycheck"><input type="radio" name="proState" value=1 id="marrycheck" checked="checked"> 승인</label>
 													</div>
 													<div class="marry-inline1">
-														<label for="marrycheck"><input type="radio" name="Armycheck" value="gun_no" id="marrycheck1" checked="checked"> 반려</label>
+														<label for="marrycheck"><input type="radio" name="proState" value=0 id="marrycheck1" checked="checked"> 반려</label>
 													</div>
 												</div>
 											</div>	
@@ -99,7 +94,7 @@
 										<div class="form-group">
 												<label for="txtarea1" class="col-sm-2 control-label">반려사유</label>
 												<div class="col-sm-8">
-													<textarea name="txtarea1" id="txtarea1" cols="50" rows="4"
+													<textarea name="proReason" id="txtarea1" cols="50" rows="4"
 														class="form-control1"></textarea>
 												</div>
 										</div>

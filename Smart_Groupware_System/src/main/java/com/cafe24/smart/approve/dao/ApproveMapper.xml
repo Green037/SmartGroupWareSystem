@@ -26,12 +26,12 @@
 		<result property="mmCode" column="mm_code"/>
 		<result property="dftTitle" column="dft_title"/>
 		<result property="dftDegree" column="dft_degree"/>
-		<result property="dftDate" column="dtf_date"/>
-		<result property="dftApproval1" column="dtf_approval1"/>
-		<result property="dftApproval2" column="dtf_approval2"/>
-		<result property="dftApproval3" column="dtf_approval3"/>
+		<result property="dftDate" column="dft_date"/>
+		<result property="dftApproval1" column="dft_approval1"/>
+		<result property="dftApproval2" column="dft_approval2"/>
+		<result property="dftApproval3" column="dft_approval3"/>
 		<result property="dftFinalState" column="dft_finalState"/>
-		<result property="dftCheck" column="dtf_check"/>
+		<result property="dftCheck" column="dft_check"/>
 	
 	</resultMap>
 	
@@ -48,6 +48,7 @@
 		<result property="dftDate" column="dft_date"/>
 	</resultMap>
 	
+<!-- 기안 등록 -->	
 <insert id="insertDft" 
 		parameterType="com.cafe24.smart.approve.domain.Draft"
 		useGeneratedKeys="true" keyProperty="dftCode">
@@ -63,7 +64,8 @@
 		    dft_approval2,
 		    dft_approval3,
 		    dft_finalState,
-		    dft_check
+		    dft_check,
+		    dft_file
 			) 
 	    VALUES( 
 	 	    #{aprCode},
@@ -76,10 +78,12 @@
 		    #{dftApproval2},
 	 	    #{dftApproval3},
 	 	    #{dftFinalState},
-            #{dftCheck}
+            #{dftCheck},
+            #{dftFile}
 	        )
 </insert>
 
+<!-- 진행 등록 -->
 <insert id="insertPg"
 		parameterType="com.cafe24.smart.approve.domain.Progress">
 		
@@ -97,12 +101,14 @@
 </insert>
 
 
+<!-- 진행 목록  -->
 <select id="selectAllPg"
 		resultMap="resultPro">
 		SELECT * FROM draft
  		 JOIN progress;
 </select>
 
+<!-- 결재 목록 -->
 <select id="selectAllHv"
 			resultMap="resultPro">
 		SELECT * FROM progress,draft
@@ -110,11 +116,24 @@
  		 AND progress.dft_code = draft.dft_code
 </select>
 
+<!-- 결재 상세보기 : dftCode 가져오기-->
+<select id="selectContHv"
+		parameterType="int"
+		resultMap="resultDft">
+		SELECT 
+			*
+		FROM
+			draft
+		WHERE 
+			dft_code = #{dftCode}
+</select>
+
+<!-- 임시 목록 -->
 <select id="selectAllTem"
 		resultMap="resultDft">
 
 		SELECT * FROM draft
-		WHERE dft_check = 'false'
+		WHERE dft_check = 'true'
 		<!-- 사원코드 select 조건 추가 -->
 		
 </select>
