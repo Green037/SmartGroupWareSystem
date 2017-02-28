@@ -19,7 +19,7 @@
 	<link href="<c:url value='/resources/css/icon-font.min.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/vroom.css'/>" rel="stylesheet"/>
 	
-	<script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/amcharts.js'/>"></script>
 	<script src="<c:url value='/resources/js/serial.js'/>"></script>
 	<script src="<c:url value='/resources/js/light.js'/>"></script>
@@ -355,7 +355,7 @@
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="#">WBS등록</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/wbs/add'/>">WBS등록</a></li>
 							<li id="menu-academico-boletim"><a href="#">프로젝트목록</a></li>
 						</ul>
 					</li>

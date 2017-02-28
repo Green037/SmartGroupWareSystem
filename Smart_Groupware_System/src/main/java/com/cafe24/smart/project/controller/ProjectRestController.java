@@ -64,4 +64,76 @@ public class ProjectRestController {
 		
 		return pmList;
 	}
+	
+	// 프로젝트에 할당된 상세자금 전체조회.
+	@RequestMapping(value = "fu/modifyList", method = RequestMethod.POST)
+	public List<Funds> fuModifyListCtrl(@RequestParam("prCode") int prCode) {
+		/*System.out.println("h2 fu Modify List Ajax!!");
+		System.out.println("넘어온 프로젝트코드값 : "+prCode);*/
+		
+		// 프로젝트코드로 입력된 자금내역 모두 조회하기
+		
+		List<Funds> fuList = new ArrayList<Funds>(); 
+		fuList = projectService.fuListServ(prCode);
+		
+		return fuList;
+	}
+	
+	// 프로젝트에 할당된 상세자금 조회.
+	@RequestMapping(value = "fu/modifyValue", method = RequestMethod.POST)
+	public Funds fuModifyValueCtrl(@RequestParam("fuCode") int fuCode) {
+		System.out.println("h2 fu Modify Value Ajax!!");
+		System.out.println("넘어온 프로젝트코드값 : "+fuCode);
+		
+		// 자금코드로 입력된 자금내역 조회하기
+		Funds funds = new Funds();
+		
+		funds = projectService.fuModifyValueServ(fuCode);
+		
+		return funds;
+	}
+	
+	// 자금내용수정.
+	@RequestMapping(value = "fu/modify", method = RequestMethod.POST)
+	public Map<String,String> fuModifyCtrl(Funds funds) {
+		/*System.out.println("h2 fu ModifyAjax 직렬화된 데이터 확인!!");
+		System.out.println("넘어온 값 확인 : "+funds);*/
+		
+		// 입력받은 내용으로 수정하기
+		int result = projectService.fuModifyServ(funds);
+		/*System.out.println("자금수정결과 : "+result);*/
+		
+		//수정결과에 따라 성공 혹은 실패 리턴~
+		Map<String,String> resultMap = new HashMap<String, String>();
+		if(result != 0){
+			resultMap.put("result", "성공");
+		}else{
+			resultMap.put("result", "실패");
+		}
+		
+		return resultMap;
+	}
+	
+	// 자금내용추가입력.
+	@RequestMapping(value = "fu/add", method = RequestMethod.POST)
+	public Map<String,String> fuAddCtrl(Funds funds) {
+		/*System.out.println("h2 fu add Ajax 데이터 확인!!");
+		System.out.println("넘어온 값 확인 : "+funds);*/
+		
+		Map<String,String> resultMap = new HashMap<String, String>();
+		
+		// 입력받은 내용 insert하기
+		int result = projectService.fuAddServ(funds);
+		System.out.println("자금입력결과 : "+result);
+		
+		//수정결과에 따라 성공 혹은 실패 리턴~
+		if(result != 0){
+			resultMap.put("result", "성공");
+		}else{
+			resultMap.put("result", "실패");
+		}
+		
+		return resultMap;
+	}
+	
 }

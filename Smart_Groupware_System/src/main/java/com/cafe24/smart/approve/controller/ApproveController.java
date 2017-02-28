@@ -21,7 +21,7 @@ import com.cafe24.smart.approve.service.ApproveService;
 
 @Controller
 public class ApproveController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	private static final Logger logger = LoggerFactory.getLogger(ApproveController.class);
 	
 	@Autowired
 	private ApproveService approveService;
@@ -30,6 +30,7 @@ public class ApproveController {
 	/*문서결재신청 폼을 가져오기 위한 메소드 return값을 String으로 준 이유는 url을 지정하기 위해서*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
 	public String Add(){
+	
 		return "/approve/ap_dftAdd";   
 	}
 	
@@ -40,6 +41,7 @@ public class ApproveController {
 		
 		System.out.println("ctrl dftAdd > test");
 		System.out.println(draft.getDftDate());
+		
 		int result = approveService.apAddServ(draft, progress);
 		
 		return "home";
@@ -52,7 +54,7 @@ public class ApproveController {
 		List<Progress> pgList = new ArrayList<Progress>();
 		pgList = approveService.pgListServ();
 		model.addAttribute("pgList", pgList);
-		
+	
 		return "/approve/ap_proList";
 	}
 	
@@ -71,13 +73,13 @@ public class ApproveController {
 	//결재 정보 [승인/반려 Content] : GET
 	@RequestMapping(value="ap/hvContent", method=RequestMethod.GET)
 	public String aphvDetailCtrl(Model model, @RequestParam("dftCode") int dftCode){
+	
 		System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
 		draft = approveService.hvContServ(dftCode);
 		//System.out.println(draft);
-		
 		model.addAttribute("draft", draft);
-	
+		
 		return "/approve/ap_haveContent";
 	
 	}
@@ -85,9 +87,8 @@ public class ApproveController {
 	//결재 정보[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
+
 		System.out.println("ctrl proAdd> test");
-		
-		//-------------[2017/02/27]dftCode로 가져와서 update해야함----------
 		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
 		return "home";   
@@ -96,6 +97,7 @@ public class ApproveController {
 	//임시 문서함 : GET
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
 	public String temList(Model model){
+		
 		System.out.println("ctrl temList> test");
 		List<Draft> temList = new ArrayList<Draft>();
 		temList = approveService.temListServ();
@@ -108,6 +110,7 @@ public class ApproveController {
 	//문서함 : GET
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)
 	public String docList(){
+	
 		System.out.println("ctrl docList> test");
 		List<Document> docList = new ArrayList<Document>();
 		
@@ -121,6 +124,4 @@ public class ApproveController {
 		
 		return "/approve/ap_docAdd";   
 	}
-	
-
 }

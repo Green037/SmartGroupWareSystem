@@ -5,21 +5,31 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
-	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>" type="text/javascript"></script>
 	<script>
 		$(document).ready(function() {
 			
 			$('#mmButton').click(function() {
-				var mmCode = $('#mmCode').val();
+				var mmCode = $('#mCodeCheck').val();
 				
-				alert('mmCode : '+ mmCode);
+				console.log('mmCode : '+ mmCode);
 				
 				$.ajax({
 					type : "post",
 					url : "/smart/pc/mmContent",
-					data : mmCode,
+					data : {"mmCode": mmCode},
 					success : function(data) {
-						alert('data : ' + data);
+// 						alert('data.mmCode : ' + data.mmCode);
+// 						alert('data.mmName : ' + data.mmName);
+// 						alert('data.mmDailyPay : ' + data.mmDailyPay);
+						
+						$('#mmCode').val(data.mmCode);
+						$('#mmName').val(data.mmName);
+						$('#mmDailyPay').val(data.mmDailyPay);
+						
+// 						alert('mmCode : ' + $('#mmCode').val());
+// 						alert('mmName : ' + $('#mmName').val());
+// 						alert('pcDate : ' + $('#mmDailyPay').val());
 					}
 				});
 			});
@@ -51,20 +61,21 @@
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
-													<input type="text" id="mmCode" name="mmCode" class="form-control1"/>
+													<input type="text" id="mCodeCheck" name="mCodeCheck" class="form-control1" placeholder="입력 후 검색 버튼을 누르세요."/>
+													<input type="hidden" id="mmCode" name="mmCode"/>
 													<input type="button" class="btn btn-default" name="mmButton" id="mmButton" value="검색"/>
 												</div>
 											</div>											
 											<div class="form-group">
-												<label for="mmEmail" class="col-sm-2 control-label">사원명</label>
+												<label for="mmName" class="col-sm-2 control-label">사원명</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" value="사원명넣어라" disabled/>
+													<input type="text" class="form-control1" id="mmName" name="mmName" placeholder="사원코드를 검색하세요." disabled/>
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="mmPassword" class="col-sm-2 control-label">급여날짜</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" name="pcDate" value="${paymentDate}" disabled/>
+													<input type="text" class="form-control1" id="pcDate" name="pcDate" value="${paymentDate}" disabled/>
 												</div>
 											</div>					
 											<div class="form-group">
@@ -80,10 +91,10 @@
 														</tr>
 														<tr>
 															<td>1</td>
-															<td><input type="text" class="form-control1" name="pcSection" value="본봉" disabled/></td>
+															<td><input type="text" class="form-control1" id="pcSection" name="pcSection" value="본봉" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="기본급" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="기본급" disabled/></td>
-															<td><input type="text" class="form-control1" value="일급 x 일수" disabled/></td>
+															<td><input type="text" class="form-control1" name="mmDailyPay" id="mmDailyPay" disabled/></td>
 														</tr>
 														<tr>
 															<td>2</td>

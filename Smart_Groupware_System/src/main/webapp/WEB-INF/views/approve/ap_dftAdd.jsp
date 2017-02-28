@@ -109,7 +109,7 @@
 											        </td>
 											        <td>
 											        	<select name="dftApproval1" id="dftApproval1" class="form-control1">
-																<option>이름을 선택하세요</option>
+																<option></option>
 																<option>1</option>
 																<option>2</option>
 																<option>3</option>
@@ -150,7 +150,7 @@
 											        </td>
 											        <td>
 											        	<select name="dftApproval2" id="dftApproval2" class="form-control1">
-																<option>이름 선택하세요</option>
+																<option></option>
 																<option>1</option>
 																<option>2</option>
 																<option>3</option>
@@ -190,7 +190,7 @@
 											        </td>
 											        <td>
 											        	<select name="dftApproval3" id="dftApproval3" class="form-control1">
-																<option>이름 선택하세요</option>
+																<option></option>
 																<option>1</option>
 																<option>2</option>
 																<option>3</option>

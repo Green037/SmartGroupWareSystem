@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
+import com.cafe24.smart.project.domain.ProjectMemberCommand;
 
 @Repository
 public class ProjectDAOImpl implements ProjectDAO {
@@ -78,22 +79,46 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.selectList("PrDAO.selectByPrCodePm",prCode);
 	}
 
+	// 프로젝트 참여 승인된 인원 구하기 
 	@Override
 	public int selectCountPm(int prCode) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("PrDAO.selectCountPm", prCode);
 	}
 
+	//프로젝트코드로 자금상세내역 조회하기
 	@Override
 	public List<Funds> selectByPrCodeFu(int prCode) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("PrDAO.selectByPrCodeFu", prCode);
 	}
 
+	//프로젝트 수정처리하기
 	@Override
-	public int UpdatePr(Project project) {
+	public int updatePr(Project project) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("PrDAO.updatePr", project);
+	}
+
+	//참여신청한 인원중 승인된 인원들은 승인으로 수정처리 하기
+	@Override
+	public int updateApprovalPm(ProjectMember projectMember) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("PrDAO.updateByApprovalPm",projectMember);
+	}
+
+	// 자금 상세내용 조회
+	@Override
+	public Funds selectByFuCode(int fuCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectByFuCode", fuCode);
+	}
+
+	//참여인원수정
+	@Override
+	public int updateFu(Funds funds) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("PrDAO.updateFu", funds);
 	}
 
 }

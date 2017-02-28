@@ -30,8 +30,8 @@
 										<label class="control-label"><b>연도</b></label>&nbsp;
 										<!-- 에러가 있으면 날짜 선택 메세지 말고 에러를 출력 -->
 										<!-- 날짜 default : 오늘 / 받기는 날짜를 받지만 자바 코드로 년+월만 추출 -->
-										<span style="color:red; font-size:10pt">연도를 선택하세요.</span>
-										<input type="date" class="form-control1 ng-invalid ng-invalid-required">
+										<span style="color:red; font-size:10pt">연도를 입력하세요.</span>
+										<input type="date" class="form-control1 ng-invalid ng-invalid-required" placeholder="YYYY">
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>소속</b></label>

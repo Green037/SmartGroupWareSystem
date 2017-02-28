@@ -109,8 +109,8 @@
 <!-- 진행 목록  -->
 <select id="selectAllPg"
 		resultMap="resultPro">
-		SELECT * FROM draft
- 		 JOIN progress;
+		SELECT * FROM draft 
+ 		JOIN progress;
 </select>
 
 <!-- 결재 목록 -->
@@ -150,11 +150,30 @@
 <update id="updatePro"
 		parameterType="com.cafe24.smart.approve.domain.Progress">
 		UPDATE progress 
-		SET pro_realTime = now(),
-			pro_state = 1,
-			pro_personalstate = true  
+		SET pro_realTime = #{proRealTime},
+			pro_state = #{proState},
+			pro_personalstate = #{proPersonState},  
+			pro_reason = #{proReason}
 		WHERE dft_code = #{dftCode}
 
+</update>
+
+<!-- 결재 요청 : 2-1단계 : draft update -->
+<update id="updateDft"
+		parameterType="com.cafe24.smart.approve.domain.Draft">
+		UPDATE draft 
+		SET dft_degree = #{dftDegree}, 
+			dft_finalState = #{dftFinalState}
+		WHERE dft_code = #{dftCode};
+</update>
+
+<!-- 결재 요청 : 2-2단계 : progress에 결재자 추가 -->
+<update id="updateProApv"
+	parameterType="com.cafe24.smart.approve.domain.Progress">
+		UPDATE progress 
+		SET pro_approval = #{proApproval} 
+		WHERE dft_code = #{dftCode}
+	
 </update>
 
 <!-- 임시 목록 -->

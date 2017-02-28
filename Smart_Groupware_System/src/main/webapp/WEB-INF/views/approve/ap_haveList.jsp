@@ -30,13 +30,13 @@
 								<table class="table table-bordered">
 									<tr>
 										<th>차수</th>
-										<th>구분</th>
+										<th>기안번호</th>
 										<th width="300">문서제목</th>
 										<th>기안자</th>
 										<th>기안부서</th>
 										<th>등록일자</th>
 										<th>최근 결재 일자</th>
-										<th>비고</th>
+										<th>결재상태</th>
 															
 									</tr>
 									
@@ -44,7 +44,7 @@
 									
 									<tr>
 										<td>${h.proCode}</td>
-										<td></td>
+										<td>${h.dftCode}</td>
 										<td><a href="<c:url value='/ap/hvContent?dftCode=${h.dftCode}'/>">${h.dftTitle}</a></td>
 										<td>${h.mmCode}</td>
 										<td></td>
