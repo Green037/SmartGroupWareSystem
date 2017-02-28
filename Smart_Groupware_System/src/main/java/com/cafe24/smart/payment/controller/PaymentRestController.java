@@ -25,7 +25,7 @@ public class PaymentRestController {
 			
 		System.out.println("PaymentController paMmContentCtrl mmCode : " + mmCode);
 		
-		Member member = paymentService.pcMmContentCtrl(mmCode);
+		Member member = paymentService.pcMmContentServ(mmCode);
 		
 		System.out.println("PaymentController paMmContentCtrl member : " + member);
 		

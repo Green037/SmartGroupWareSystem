@@ -29,8 +29,8 @@
 										<label class="control-label"><b>급여연월</b></label>&nbsp;
 										<!-- 에러가 있으면 날짜 선택 메세지 말고 에러를 출력 -->
 										<!-- 날짜 default : 오늘 / 받기는 날짜를 받지만 자바 코드로 년+월만 추출 -->
-										<span style="color:red; font-size:10pt">날짜를 선택하세요.</span>
-										<input type="date" class="form-control1 ng-invalid ng-invalid-required">
+										<span style="color:red; font-size:10pt">날짜를 입력하세요.</span>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" placeholder="YYYY-MM-DD">
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>급여종류</b></label>
@@ -38,11 +38,11 @@
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>사원번호</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="13383" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmCode}" disabled>
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>사원명</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="홍길동" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmName}" disabled>
 									</div>
 								</form>
 								<div class="clearfix">&nbsp;</div>
@@ -51,9 +51,9 @@
 								<table class="table table-bordered">
 									<tr>
 										<th>사원번호</th>
-										<td>13383</td>
+										<td>${member.mmCode}</td>
 										<th>성명</th>
-										<td>홍길동</td>
+										<td>${member.mmName}</td>
 										<th>주민번호</th>
 										<td>900101-2******</td>
 									</tr>
@@ -67,11 +67,11 @@
 									</tr>
 									<tr>
 										<th>본사입사일</th>
-										<td>2017-02-17</td>
+										<td>${member.mmJoinDate}</td>
 										<th>급여계좌</th>
-										<td>전북은행</td>
+										<td>${member.mmBank}</td>
 										<th>급여계좌번호</th>
-										<td>1002-945-012121</td>
+										<td>${member.mmAccount}</td>
 									</tr>
 								</table> 
 								<div class="clearfix">&nbsp;</div>
