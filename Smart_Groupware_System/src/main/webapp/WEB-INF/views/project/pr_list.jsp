@@ -33,7 +33,7 @@
 <!-- 본문 -->
 <div class="container">
 <center><h2>프로젝트 리스트</h2>
-<p>If you click projectName, show detail information.!! </p></center>           
+<p style="color:red;">If you click projectName, show detail information.!! </p></center>           
 	<div class="btn-group btn-group-justified">
 		<a href="<c:url value='/pr/list?prProgress=1'/>" class="btn btn-primary">
 			<span class="glyphicon glyphicon-search">팀원모집중목록</span>

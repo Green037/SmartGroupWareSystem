@@ -95,7 +95,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 
 	//프로젝트 수정처리하기
 	@Override
-	public int UpdatePr(Project project) {
+	public int updatePr(Project project) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("PrDAO.updatePr", project);
 	}
@@ -105,6 +105,20 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public int updateApprovalPm(ProjectMember projectMember) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("PrDAO.updateByApprovalPm",projectMember);
+	}
+
+	// 자금 상세내용 조회
+	@Override
+	public Funds selectByFuCode(int fuCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectByFuCode", fuCode);
+	}
+
+	//참여인원수정
+	@Override
+	public int updateFu(Funds funds) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("PrDAO.updateFu", funds);
 	}
 
 }

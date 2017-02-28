@@ -5,6 +5,33 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>" type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			
+			$('#mmButton').click(function() {
+				var mmCode = $('#mCodeCheck').val();
+				
+				console.log('mmCode : '+ mmCode);
+				
+				$.ajax({
+					type : "post",
+					url : "/smart/pc/mmContent",
+					data : {"mmCode": mmCode},
+					success : function(data) {
+// 						alert('data.mmCode : ' + data.mmCode);
+// 						alert('data.mmName : ' + data.mmName);
+// 						
+						$('#mmCode').val(data.mmCode);
+						$('#mmName').val(data.mmName);
+						
+// 						alert('mmCode : ' + $('#mmCode').val());
+// 						alert('mmName : ' + $('#mmName').val());
+					}
+				});
+			});
+		});
+	</script>
 </head>
 <body>
 	<%@ include file="../menu.jsp"%>
@@ -31,9 +58,9 @@
 											<div class="form-group">
 												<label for="mmCode" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
-													<span style="color:red">사원코드넣어라</span>
+													<input type="text" id="mCodeCheck" name="mCodeCheck" class="form-control1"/>
 													<input type="hidden" id="mmCode" name="mmCode"/>
-													<a class="btn green">검색</a>
+													<input type="button" class="btn btn-default" name="mmButton" id="mmButton" value="검색"/>
 												</div>
 											</div>											
 											<div class="form-group">

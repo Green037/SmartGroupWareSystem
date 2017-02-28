@@ -191,6 +191,7 @@
 			pr_progress = #{prProgress},
 			pr_cate = #{prCate},
 			pr_forProgress = #{prForProgress},
+			pr_money = #{prMoney},
 			pr_finishCheck = #{prFinishCheck}
 		WHERE
 			pr_code = #{prCode}
@@ -204,5 +205,27 @@
 			pm_startDate = now()
 		WHERE
 			pm_code = #{pmCode}
+	</update>
+	
+	<select id="selectByFuCode"
+			parameterType="int"
+			resultMap="resultFu">
+		SELECT 
+			*
+		FROM
+			funds
+		WHERE 
+			fu_code = #{fuCode} 
+	</select>
+	
+	<update id="updateFu"
+			parameterType="com.cafe24.smart.project.domain.Funds">
+		UPDATE funds
+		SET
+			fu_history = #{fuHistory},
+			fu_expectedMoney = #{fuExpectedMoney},
+			fu_usedMoney = #{fuUsedMoney}
+		WHERE
+			fu_code = #{fuCode}
 	</update>
 </mapper>

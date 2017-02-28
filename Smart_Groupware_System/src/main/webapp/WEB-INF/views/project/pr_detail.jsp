@@ -72,7 +72,7 @@
 <div class="container">
 	<center>
 		<h2><span class="glyphicon glyphicon-file"> 프로젝트 상세보기</span></h2>
-		<p>This infomation is detail contents By you selected.</p>
+		<p style="color:red;">This infomation is detail contents By you selected.</p>
 	</center>            
 	<table class="table table-bordered">
 		<thead>

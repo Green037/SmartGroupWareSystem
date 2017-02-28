@@ -25,6 +25,7 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	// 프로젝트 시작일,종료일과 현재날짜 비교하여 진행상황 체크해주는 메서드
 	public Project getFinishCheck(Project project){
+		
 	// 현재날짜를 구해서 프로젝트 시작일과 종료일과 비교하여 대기,진행,완료 여부 파악하여 도메인클래스에 세팅한다.
 		Date nowDate = new Date();
         
@@ -173,7 +174,7 @@ public class ProjectServiceImpl implements ProjectService {
 		// 현재날짜와 프로젝트 기간 비교후 진행,대기,완료 파악해서 세팅하는 메서드 getFinishCheck()호출
 		project = getFinishCheck(project);
 		
-		return projectDao.UpdatePr(project);
+		return projectDao.updatePr(project);
 	}
 
 	// 참여인원 신청자 조회 -대기중인 목록만 조회
@@ -233,6 +234,29 @@ public class ProjectServiceImpl implements ProjectService {
 		pmModifyResult.put("prCode", Integer.parseInt(prCodes[0]));
 		
 		return pmModifyResult;
+	}
+
+	//자금상세내역 조회
+	@Override
+	public Funds fuModifyValueServ(int fuCode) {
+		// TODO Auto-generated method stub
+		return projectDao.selectByFuCode(fuCode);
+	}
+
+	//자금내역 수정.
+	@Override
+	public int fuModifyServ(Funds funds) {
+		// 입력값중 예상금액 값으로 "예상금액/총금액"형태로 넘어오므로 뒤에 "/총금액"을 버리도록한다.
+		String[] expectedMoney = new String(funds.getFuExpectedMoney()).split("/");
+		funds.setFuExpectedMoney(expectedMoney[0]);
+		return projectDao.updateFu(funds);
+	}
+
+	//자금내역 입력.
+	@Override
+	public int fuAddServ(Funds funds) {
+		// TODO Auto-generated method stub
+		return projectDao.insertFu(funds);
 	}
 	
 }
