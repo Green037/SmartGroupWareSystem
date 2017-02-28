@@ -355,7 +355,7 @@
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="#">WBS등록</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/wbs/add'/>">WBS등록</a></li>
 							<li id="menu-academico-boletim"><a href="#">프로젝트목록</a></li>
 						</ul>
 					</li>

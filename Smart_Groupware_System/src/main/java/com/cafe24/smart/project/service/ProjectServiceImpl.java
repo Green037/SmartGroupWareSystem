@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.project.dao.ProjectDAO;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
@@ -22,6 +23,7 @@ public class ProjectServiceImpl implements ProjectService {
 	
 	@Autowired
 	private ProjectDAO projectDao;
+	
 	
 	// 프로젝트 시작일,종료일과 현재날짜 비교하여 진행상황 체크해주는 메서드
 	public Project getFinishCheck(Project project){
