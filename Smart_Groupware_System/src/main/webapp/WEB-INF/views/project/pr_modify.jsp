@@ -19,13 +19,14 @@
 					$('#pmAddListTbody').empty();
 					$.each(data, function(i, result){
 						/* console.log('h2 modify Ajax!'); */
+						/* 팝업창 크기 늘려서 프로젝트코드 랑 참여신청자 이름 분리시켜야함. */
 						$('#pmAddListTbody').append(`
 							<tr>
-								<td>`+result.prCode+`</td>
-								<td>`+result.pmLevel+`</td>
+								<td><input type="hidden" name="pmCode_" value="`+result.pmCode+`"/>`+result.pmCode+`</td>
+								<td><input type="hidden" name="prCode_" value="`+result.prCode+`"/>`+result.pmLevel+`</td>
 								<td>`+result.pmNote+`</td>
 								<td>
-									<select name="pmApproval">
+									<select name="pmApproval_" id="pmApproval_">
 										<option value="대기">대기</option>
 										<option value="승인">승인</option>
 										<option value="반려">반려</option>
@@ -35,10 +36,7 @@
 				}
 			});
 		});
-		$(document).on('click','#pmApprovalBtn',function(){
-			/* 팝업창 버튼 이벤트 부터 작업하면 됨. */
-			$('#pmApprovalForm').attr({action:"#"})
-		});
+		
 	</script>
 </head> 
 

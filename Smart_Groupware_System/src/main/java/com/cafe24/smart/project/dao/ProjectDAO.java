@@ -5,6 +5,7 @@ import java.util.List;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
+import com.cafe24.smart.project.domain.ProjectMemberCommand;
 
 public interface ProjectDAO {
 
@@ -19,5 +20,6 @@ public interface ProjectDAO {
 	int selectCountPm(int prCode);
 	List<Funds> selectByPrCodeFu(int prCode);
 	int UpdatePr(Project project);
+	int updateApprovalPm(ProjectMember projectMember);
 
 }

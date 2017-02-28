@@ -14,7 +14,7 @@
 <div class="modal-dialog">
 
 <!-- Modal content-->
-<form id="pmApprovalForm">
+<form action="<c:url value='/pm/addApproval'/>" method="post" id="pmApprovalForm">
 	<div class="modal-content">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -25,10 +25,10 @@
 				<table width="550" height="120">
 					<thead>
 						<tr>
-							<th width="115">이름</th>
+							<th width="115">신청코드</th>
 							<th width="115">등급</th>
 							<th width="200">특이사항</th>
-							<th width="100">#</th>
+							<th width="100">처리상태</th>
 						</tr>
 					</thead>
 					<tbody id="pmAddListTbody">
@@ -38,8 +38,7 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-			<button type="button" id="pmApprovalBtn" class="btn btn-success">
+			<button type="submit" id="pmApprovalBtn" class="btn btn-success">
 				<span class="glyphicon glyphicon-off"></span>결제
 			</button>		
 		</div>

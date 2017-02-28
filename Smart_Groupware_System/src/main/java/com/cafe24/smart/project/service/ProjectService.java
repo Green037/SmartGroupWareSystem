@@ -1,12 +1,14 @@
 package com.cafe24.smart.project.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
+import com.cafe24.smart.project.domain.ProjectMemberCommand;
 
 @Service
 public interface ProjectService {
@@ -19,4 +21,5 @@ public interface ProjectService {
 	List<Funds> fuListServ(int prCode);
 	int prModifyServ(Project project);
 	public List<ProjectMember> pmAddListServ(int prCode);
+	Map<String, Integer> pmModifyApprovalServ(ProjectMemberCommand projectMemberCommand);
 }
