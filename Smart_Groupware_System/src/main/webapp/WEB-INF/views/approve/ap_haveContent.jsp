@@ -37,28 +37,34 @@
 											<div class="form-group">
 												<label for="nameinput" class="col-sm-2 control-label">문서 번호</label> 	
 											<div class="col-sm-3">
-												<input type="text" class="form-control1" id="dftCode" value="${draft.dftCode}" readonly="readonly">
+												<input type="text" class="form-control1" name="dftCode" value="${draft.dftCode}" readonly="readonly">
 											</div>
+											
+											<!-- 결재 순번값을 가져오기 위해서 hidden으로 처리-->
+											<div class="col-sm-3">
+												<input type="hidden" class="form-control1" name="dftDegree" value="${draft.dftDegree}" readonly="readonly" >
+											</div>
+											<!-- 결재 순번값을 가져오기 위해서 hidden으로 처리-->
 									
 											</div>
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">문서 제목</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="dftTitle" value="${draft.dftTitle}" readonly="readonly"> 													
+													<input type="text" class="form-control1" name="dftTitle" value="${draft.dftTitle}" readonly="readonly"> 													
 												</div>
 																							
 											</div>
 											<div class="form-group">
 												<label for="Passwordinput" class="col-sm-2 control-label">작성자</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="mmCode" value="${draft.mmCode}" readonly="readonly">
+													<input type="text" class="form-control1" name="mmCode" value="${draft.mmCode}" readonly="readonly">
 												</div>
 											</div>
 											
 											<div class="form-group">
 												<label for="Passwordinput" class="col-sm-2 control-label">결재자</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="dft_Approval" value="${draft.proApproval}"readonly="readonly">
+													<input type="text" class="form-control1" name="dft_Approval" value="${draft.proApproval}"readonly="readonly">
 												</div>
 											</div>
 												
@@ -66,7 +72,7 @@
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">문서 양식</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="docCode" value="${draft.docCode}" readonly="readonly"> 														
+													<input type="text" class="form-control1" name="docCode" value="${draft.docCode}" readonly="readonly"> 														
 												</div>
 																							
 											</div>
@@ -74,7 +80,7 @@
 											<div class="form-group">
 												<label for="Emailinput" class="col-sm-2 control-label">결재 등록 일자</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="dftDate" value="${draft.dftDate}" readonly="readonly"> 														
+													<input type="text" class="form-control1" name="dftDate" value="${draft.dftDate}" readonly="readonly"> 														
 												</div>
 																							
 											</div>
@@ -108,16 +114,3 @@
 									</div>
 										
 								</div>
-							</div>
-						</div>
-						
-						<!--  body폼 끝 -->
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<%@ include file="../footer.jsp"%>
-</body>
-</html>

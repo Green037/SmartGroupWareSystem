@@ -26,7 +26,10 @@ public interface ApproveService {
 	Draft hvContServ(int dftCode);
 	
 	//결재 승인/반려 요청
+	/*int apProAddServ(Draft draft, Progress progress);*/
 	int apProAddServ(Draft draft, Progress progress, int dftCode);
+
+	
 
 	
 }
