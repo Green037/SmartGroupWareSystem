@@ -22,4 +22,7 @@ public interface ProjectService {
 	int prModifyServ(Project project);
 	public List<ProjectMember> pmAddListServ(int prCode);
 	Map<String, Integer> pmModifyApprovalServ(ProjectMemberCommand projectMemberCommand);
+	Funds fuModifyValueServ(int fuCode);
+	int fuModifyServ(Funds funds);
+	int fuAddServ(Funds funds);
 }
