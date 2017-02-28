@@ -51,28 +51,20 @@ public class ApproveController {
 	@RequestMapping(value ="ap/pgList", method = RequestMethod.GET)
 	public String apProListCtrl(Model model){	
 		System.out.println("ctrl pgList> test");
-		
 		List<Progress> pgList = new ArrayList<Progress>();
-	
 		pgList = approveService.pgListServ();
-	
 		model.addAttribute("pgList", pgList);
-		
+	
 		return "/approve/ap_proList";
 	}
 	
 	//결재 목록 : GET 
 	@RequestMapping(value="ap/hvList", method=RequestMethod.GET)
 	public String apHaveListCtrl(Model model){	
-		
 		System.out.println("ctrl hvList> test");
-		
 		List<Progress> hvList = new ArrayList<Progress>();
-	
 		hvList = approveService.hvListServ();
-	
 		model.addAttribute("hvList", hvList);
-	
 		System.out.println(hvList);
 		
 		return "/approve/ap_haveList";
@@ -83,15 +75,11 @@ public class ApproveController {
 	public String aphvDetailCtrl(Model model, @RequestParam("dftCode") int dftCode){
 	
 		System.out.println("ctrl hvCont> test");
-		
 		Draft draft = new Draft();
-		
 		draft = approveService.hvContServ(dftCode);
-		
 		//System.out.println(draft);
-		
 		model.addAttribute("draft", draft);
-	
+		
 		return "/approve/ap_haveContent";
 	
 	}
@@ -99,10 +87,8 @@ public class ApproveController {
 	//결재 정보[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
-		
+
 		System.out.println("ctrl proAdd> test");
-		
-		//-------------[2017/02/27]dftCode로 가져와서 update해야함----------
 		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
 		return "home";   
@@ -113,11 +99,8 @@ public class ApproveController {
 	public String temList(Model model){
 		
 		System.out.println("ctrl temList> test");
-		
 		List<Draft> temList = new ArrayList<Draft>();
-		
 		temList = approveService.temListServ();
-		
 		model.addAttribute("temList", temList);
 		
 		return "/approve/ap_temList";
@@ -129,7 +112,6 @@ public class ApproveController {
 	public String docList(){
 	
 		System.out.println("ctrl docList> test");
-	
 		List<Document> docList = new ArrayList<Document>();
 		
 		return "/approve/ap_docList";   

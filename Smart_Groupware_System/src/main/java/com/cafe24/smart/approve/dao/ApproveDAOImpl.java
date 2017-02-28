@@ -66,12 +66,25 @@ public class ApproveDAOImpl implements ApproveDAO {
 	
 	// 결재 요청 : 1단계 : progress update
 	@Override
-	public int updatePro(Progress progress) {
-		System.out.println("dao proUpdate> test");
-		return 0;
+	public int modifyPro(Progress progress) {
+		System.out.println("dao proModifyPro> test");
+		return sqlSession.update("AprDAO.updatePro", progress);
+	}
+	
+	// 결재 요청 : 2단계 : draft update
+	@Override
+	public int modifyDft(Draft draft) {
+		System.out.println("dao proModifyDft> test");
+		return sqlSession.update("AprDAO.updateDft", draft);
 	}
 
- 	
+	// 결재 요청 : 2단계 - 2 : progress의 pro_approval update 
+	@Override
+	public int modifyProApv(Progress progress) {
+		System.out.println("dao proModifyProApv> test");
+		return sqlSession.update("AprDAO.updateProApv", progress);
+	}
+	
 	// 임시 목록
 	@Override
 	public List<Draft> selectAllTem() {
@@ -82,6 +95,4 @@ public class ApproveDAOImpl implements ApproveDAO {
 	
 
 
-
-	
 	}
