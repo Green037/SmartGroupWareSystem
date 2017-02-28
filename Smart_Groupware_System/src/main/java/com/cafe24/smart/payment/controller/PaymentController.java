@@ -23,9 +23,6 @@ public class PaymentController {
 	@Autowired
 	InsuranceService insuranceService;
 	
-	@Autowired
-	PaymentService paymentService;
-	
 //	연간 급여내역 조회
 	@RequestMapping(value = "pc/list", method = RequestMethod.GET)
 	public String pcListCtrl() {
@@ -46,20 +43,7 @@ public class PaymentController {
 						
 		return "payment/pc_content";
 	}
-	
-//	총무부 > 급여내역 추가 > 사원코드 검색 > 특정 사원 정보 select
-	@RequestMapping(value = "pc/mmContent", method = RequestMethod.GET)
-	public String paMmContentCtrl(@RequestParam("mmCode") int mmCode) {
-			
-		System.out.println("PaymentController paMmContentCtrl mmCode : " + mmCode);
-		
-		Member member = paymentService.pcMmContentCtrl(mmCode);
-		
-		System.out.println("PaymentController paMmContentCtrl member : " + member);
-		
-		return "payment/pc_content";
-	}
-	
+
 //	총무부 > 급여내역 추가
 	@RequestMapping(value = "pa/add", method = RequestMethod.GET)
 	public String paAddCtrl(Model model) {	
