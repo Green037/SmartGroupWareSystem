@@ -25,8 +25,13 @@ public interface ApproveDAO {
 	//임시 목록
 	List<Draft> selectAllTem();
 	
-	//결재 요청 (progress)
-	int updatePro(Progress progress);
+	//결재 요청 (1차 progress: 승인/반려 여부)
+	int modifyPro(Progress progress);
+	//결재 요청 ------ draft 업데이트
+	int modifyDft(Draft draft);
+	//결재 요청 (2차 : 결재자 update)
+	int modifyProApv(Progress progress);
+
 
 	
 	

@@ -10,7 +10,9 @@ import java.util.List;
 import java.util.Locale;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
+import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -27,15 +29,17 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	@Autowired
 	private ApproveDAO approveDAO;
+	
+	// 현재 시간 출력
+	Date today = new Date (); 
+	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
+	
 
 	//기안 등록 : POST
 	@Override
 	public int apAddServ(Draft draft, Progress progress) {
 		System.out.println("serv Dft>  test1");
 		
-		Date today = new Date (); 
-		SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
-				
 		// draft.setAprCode(1);
 		// apr_code default값 기본 설정 = 아무값없음 비교
 		
@@ -119,20 +123,65 @@ public class ApproveServiceImpl implements ApproveService {
 		System.out.println("serv proAdd> test1");
 		//-----결재 요청 후 : 미결재 -> 결재 변환
 		//-----승인/반려 
+		int result = 0;
+				
+		//-----progress에서 update 컬럼 셋팅
 		progress.setProPersonState(true);
+		
 		switch(progress.getProState()){
 		case 1 : 
 			System.out.println("승인");
-			int result = approveDAO.updatePro(progress);
+			
+			//1차 progress update = 승인일 경우
+			progress.setProRealTime(formatter.format(today));
+			result = approveDAO.modifyPro(progress);
+			
+				//2차 : case 1 ==== draft와 progress.다음결재자사원번호 update
+				//      case 2 ==== draft에서 최종결재 완료
+				if(draft.getDftDegree()==1){
+					
+					System.out.println(draft.getDftApproval2());
+					
+					if(draft.getDftApproval2()==0){
+						//----- 다음결재자가 존재하지 않을 경우 
+						draft.setDftFinalState(draft.getDftDegree()+"차결재최종승인");
+						result = approveDAO.modifyDft(draft);
+						
+						System.out.println("1차결재 최종승인");
+					}else{
+						//----- 다음 결재자가 존재할 경우
+						draft.setDftDegree(draft.getDftDegree()+1);
+						draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
+						progress.setProApproval(draft.getDftApproval2());
+						
+						result = approveDAO.modifyDft(draft);
+						result = approveDAO.modifyProApv(progress);
+						System.out.println("중간결재대기");
+						
+					}
+				}else if(draft.getDftDegree()==2){
+					
+				}
 			
 			break;
-		case 2 : 
+			
+			
+		case 2 :
 			System.out.println("반려");
+			
+			//1차 progress update = 반려일 경우
+			progress.setProRealTime(formatter.format(today));
+			result = approveDAO.modifyPro(progress);
+			
+			//System.out.println("serv proAdd> retrun test1");
+			//2차 draft update 
+			//----- dftDegree를 view page에서 hidden으로 위치
+			draft.setDftFinalState(draft.getDftDegree()+"차결재반려");
+			result = approveDAO.modifyDft(draft);
+			//System.out.println("serv proAdd> retrun test2");
 			break;
 		}
-		
-		
-		return 0;
+		return result;
 	}
 	
 

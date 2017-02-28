@@ -84,10 +84,9 @@ public class ApproveController {
 	
 	//결재 정보[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
-	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
+	public String proAdd(Draft draft, Progress progress,@RequestParam("dftCode") int dftCode){
 		System.out.println("ctrl proAdd> test");
 		
-		//-------------[2017/02/27]dftCode로 가져와서 update해야함----------
 		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
 		return "home";   
