@@ -34,7 +34,6 @@ public class ApproveServiceImpl implements ApproveService {
 	Date today = new Date (); 
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 	
-
 	//기안 등록 : POST
 	@Override
 	public int apAddServ(Draft draft, Progress progress) {
@@ -121,68 +120,36 @@ public class ApproveServiceImpl implements ApproveService {
 	@Override
 	public int apProAddServ(Draft draft, Progress progress, int dftCode) {
 		System.out.println("serv proAdd> test1");
-		//-----결재 요청 후 : 미결재 -> 결재 변환
-		//-----승인/반려 
 		int result = 0;
-				
-		//-----progress에서 update 컬럼 셋팅
-		progress.setProPersonState(true);
-		
-		switch(progress.getProState()){
-		case 1 : 
-			System.out.println("승인");
+		int totalCount = 0;
+
+		/*	draft = dao.조회하는 쿼리;*/
+
+		if(draft.getDftApproval1() !=0 && draft.getDftApproval2() ==0 && draft.getDftApproval3() ==0){
+			totalCount = 1;
+			//totalCount와 degree를 비교 후 최종승인
+			//----- if(degree < totalCount)
+			//----- dftFinalState update
+			draft.setDftFinalState("최종승인");
+			/*draft = dao.조회하는 쿼리;*/
+		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() ==0){
+			totalCount = 2;
+			//totalCount와 degree를 비교
+			//----- if(degree < totalCount)
+			//----- dftFinalState/dftdegree/proApproval update
 			
-			//1차 progress update = 승인일 경우
-			progress.setProRealTime(formatter.format(today));
-			result = approveDAO.modifyPro(progress);
-			
-				//2차 : case 1 ==== draft와 progress.다음결재자사원번호 update
-				//      case 2 ==== draft에서 최종결재 완료
-				if(draft.getDftDegree()==1){
-					
-					System.out.println(draft.getDftApproval2());
-					
-					if(draft.getDftApproval2()==0){
-						//----- 다음결재자가 존재하지 않을 경우 
-						draft.setDftFinalState(draft.getDftDegree()+"차결재최종승인");
-						result = approveDAO.modifyDft(draft);
-						
-						System.out.println("1차결재 최종승인");
-					}else{
-						//----- 다음 결재자가 존재할 경우
-						draft.setDftDegree(draft.getDftDegree()+1);
-						draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
-						progress.setProApproval(draft.getDftApproval2());
-						
-						result = approveDAO.modifyDft(draft);
-						result = approveDAO.modifyProApv(progress);
-						System.out.println("중간결재대기");
-						
-					}
-				}else if(draft.getDftDegree()==2){
-					
-				}
-			
-			break;
-			
-			
-		case 2 :
-			System.out.println("반려");
-			
-			//1차 progress update = 반려일 경우
-			progress.setProRealTime(formatter.format(today));
-			result = approveDAO.modifyPro(progress);
-			
-			//System.out.println("serv proAdd> retrun test1");
-			//2차 draft update 
-			//----- dftDegree를 view page에서 hidden으로 위치
-			draft.setDftFinalState(draft.getDftDegree()+"차결재반려");
-			result = approveDAO.modifyDft(draft);
-			//System.out.println("serv proAdd> retrun test2");
-			break;
+		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() !=0){
+			totalCount = 3;
+			//totalCount와 degree를 비교 후 최종승인
+			//----- if(degree < totalCount)
+			//----- dftFinalState update
+		}else{
+			totalCount = 0;
 		}
 		return result;
 	}
+		
+		
 	
 
 	//임시 목록 :GET

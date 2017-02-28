@@ -109,8 +109,8 @@
 <!-- 진행 목록  -->
 <select id="selectAllPg"
 		resultMap="resultPro">
-		SELECT * FROM draft
- 		 JOIN progress;
+		SELECT * FROM draft 
+ 		JOIN progress;
 </select>
 
 <!-- 결재 목록 -->
