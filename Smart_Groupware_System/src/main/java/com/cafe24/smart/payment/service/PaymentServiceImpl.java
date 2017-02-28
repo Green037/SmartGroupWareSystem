@@ -15,7 +15,7 @@ public class PaymentServiceImpl implements PaymentService {
 	MemberDAO memberDAO;
 	
 	@Override
-	public Member pcMmContentCtrl(int mmCode) {
+	public Member pcMmContentServ(int mmCode) {
 	
 		System.out.println("PaymentServiceImpl pcMmContentCtrl mmCode : " + mmCode);
 		

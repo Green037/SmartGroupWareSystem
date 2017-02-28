@@ -61,7 +61,7 @@
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
-													<input type="text" id="mCodeCheck" name="mCodeCheck" class="form-control1"/>
+													<input type="text" id="mCodeCheck" name="mCodeCheck" class="form-control1" placeholder="입력 후 검색 버튼을 누르세요."/>
 													<input type="hidden" id="mmCode" name="mmCode"/>
 													<input type="button" class="btn btn-default" name="mmButton" id="mmButton" value="검색"/>
 												</div>
@@ -69,7 +69,7 @@
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원명</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="mmName" name="mmName" disabled/>
+													<input type="text" class="form-control1" id="mmName" name="mmName" placeholder="사원코드를 검색하세요." disabled/>
 												</div>
 											</div>
 											<div class="form-group">
