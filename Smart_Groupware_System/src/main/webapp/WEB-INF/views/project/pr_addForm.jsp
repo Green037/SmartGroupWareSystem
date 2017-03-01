@@ -152,268 +152,269 @@
 	
 <!-- contents -->
 <div class="page-container">
-	<div class="left-content">
-		<div class="inner-content">
-			<div class="outter-wp">
+<div class="left-content">
+<div class="inner-content">
+<div class="outter-wp">
+
 				<!-- 본문-->
 <!-- 본문 상단 glyphicon -->
-				<div class="container">
-					<div class="row">
-				   		<section>
-				        <div class="wizard">
-				            <div class="wizard-inner">
-				                <div class="connecting-line"></div>
-				                <ul class="nav nav-tabs" role="tablist">
-				
-				                    <li role="presentation" class="active">
-				                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
-				                            <span class="round-tab">
-				                                <i class="glyphicon glyphicon-folder-open"></i>
-				                            </span>
-				                        </a>
-				                    </li>
-				
-				                    <li role="presentation" class="disabled">
-				                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
-				                            <span class="round-tab">
-				                                <i class="glyphicon glyphicon-usd"></i>
-				                            </span>
-				                        </a>
-				                    </li>
-				                    <li role="presentation" class="disabled">
-				                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
-				                            <span class="round-tab">
-				                                <i class="glyphicon glyphicon-user"></i>
-				                            </span>
-				                        </a>
-				                    </li>
-				
-				                    <li role="presentation" class="disabled">
-				                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-				                            <span class="round-tab">
-				                                <i class="glyphicon glyphicon-ok"></i>
-				                            </span>
-				                        </a>
-				                    </li>
-				                </ul>
-				            </div>
-	<!-- 본문 상단 glyphicon -->
-	<!-- 본문 입력폼 step1-->			
-				            <form role="form" action="<c:url value='/pr/add'/>" method="post">
-				                <div class="tab-content">
-				                    <div class="tab-pane active" role="tabpanel" id="step1">
-				                        <div class="step1">
-				                            <div class="row">
-					                            <div class="col-md-6">
-					                                <label for="prMemberCode">팀장</label>
-					                                <input type="text" class="form-control" name="prMemberCode" id="prMemberCode">
-					                            </div>
-					                            <div class="col-md-6">
-					                                <label for="dftCode">기안코드</label>
-					                                <input type="text" class="form-control" name="dftCode" id="dftCode" >
-					                            </div>
-				                        	</div>
-					                        <div class="row">
-					                            <div class="col-md-6">
-					                                <label for="prName">프로젝트명</label>
-					                                <input type="text" class="form-control" name="prName" id="prName" placeholder="프로젝트명을 입력하세요">
-					                            </div>
-					                            <div class="col-md-6">
-					                                <label for="prMember">참여인원</label>
-					                                <input type="text" class="form-control" name="prMember" id="prMember" placeholder="참여인원을 입력하세요">
-					                            </div>
-					                        </div>
-					                        <div class="row">
-					                            <div class="col-md-6">
-					                                <label for="prMoney">프로젝트자금</label>
-					                                <input type="text" class="form-control" name="prMoney" id="prMoney" placeholder="Email">
-					                           	</div>
-					                            <div class="col-md-6">
-					                                <label for="prProgress">진행상황</label>
-					                                <div>
-						                                <select name="prProgress" id="prProgress" class="dropselectsec1" >
-							                                <option>::선택::</option>
-							                                <option value="모집중">모집중</option>
-							                                <option value="모집완료">모집완료</option>
-						                                	
-						                                </select>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <div class="row">
-					                        	<div class="col-md-6">
-					                                <label for="prStartDay">시작일시</label>
-					                                <input type="date" class="form-control" name="prStartDay" id="prStartDay">
-					                            </div>
-					                            <div class="col-md-6">
-					                                <label for=""prCate"">프로젝트분류</label>
-					                                <div>
-						                                <select name="prCate" id="prCate" class="dropselectsec1" >
-							                                <option>::선택::</option>
-							                                <option value="개발">개발</option>
-							                                <option value="연구">연구</option>
-						                                	<option value="유지보수">유지보수</option>
-						                                </select>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <div class="row">
-					                            <div class="col-md-6">
-					                                <label for="prEndDay">종료일시</label>
-					                                <input type="date" class="form-control" name="prEndDay" id="prEndDay">
-					                            </div>
-					                            <div class="col-md-6">
-					                                <label for="prForProgress">최종진행여부</label>
-					                                <div>
-						                                <select name="prForProgress" id="prForProgress" class="dropselectsec1" >
-							                                <option>::선택::</option>
-							                                <option value="승인">승인</option>
-						                                	<option value="반려">반려</option>
-						                                </select>
-					                                </div>
-					                            </div>
-					                        </div>
-					                        <div class="row">
-					                            <div class="col-md-6">
-					                            	<label for="exampleInputEmail1">프로젝트목적</label>
-					                            	<div>
-					                                	<textarea rows="3" cols="80" name="prGoal" id="prGoal"></textarea>
-					                                </div>
-					                            </div>
-					                        </div>
-					                    </div>        			   
-				                        <ul class="list-inline pull-right">
-				                            <li><button type="button" class="btn btn-primary next-step">다음</button></li>
-				                        </ul>
-				                    </div>
+<div class="container">
+	<div class="row">
+   		<section>
+        <div class="wizard">
+            <div class="wizard-inner">
+                <div class="connecting-line"></div>
+                <ul class="nav nav-tabs" role="tablist">
+
+                    <li role="presentation" class="active">
+                        <a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-folder-open"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-usd"></i>
+                            </span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="disabled">
+                        <a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-user"></i>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li role="presentation" class="disabled">
+                        <a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+                            <span class="round-tab">
+                                <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+<!-- 본문 상단 glyphicon -->
+<!-- 본문 입력폼 step1-->			
+            <form role="form" action="<c:url value='/pr/add'/>" method="post">
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="step1">
+                        <div class="step1">
+                            <div class="row">
+	                            <div class="col-md-6">
+	                                <label for="prMemberCode">팀장</label>
+	                                <input type="text" class="form-control" name="prMemberCode" id="prMemberCode">
+	                            </div>
+	                            <div class="col-md-6">
+	                                <label for="dftCode">기안코드</label>
+	                                <input type="text" class="form-control" name="dftCode" id="dftCode" >
+	                            </div>
+                        	</div>
+	                        <div class="row">
+	                            <div class="col-md-6">
+	                                <label for="prName">프로젝트명</label>
+	                                <input type="text" class="form-control" name="prName" id="prName" placeholder="프로젝트명을 입력하세요">
+	                            </div>
+	                            <div class="col-md-6">
+	                                <label for="prMember">참여인원</label>
+	                                <input type="text" class="form-control" name="prMember" id="prMember" placeholder="참여인원을 입력하세요">
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                            <div class="col-md-6">
+	                                <label for="prMoney">프로젝트자금</label>
+	                                <input type="text" class="form-control" name="prMoney" id="prMoney" placeholder="Email">
+	                           	</div>
+	                            <div class="col-md-6">
+	                                <label for="prProgress">진행상황</label>
+	                                <div>
+		                                <select name="prProgress" id="prProgress" class="dropselectsec1" >
+			                                <option>::선택::</option>
+			                                <option value="모집중">모집중</option>
+			                                <option value="모집완료">모집완료</option>
+		                                	
+		                                </select>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                        	<div class="col-md-6">
+	                                <label for="prStartDay">시작일시</label>
+	                                <input type="date" class="form-control" name="prStartDay" id="prStartDay">
+	                            </div>
+	                            <div class="col-md-6">
+	                                <label for=""prCate"">프로젝트분류</label>
+	                                <div>
+		                                <select name="prCate" id="prCate" class="dropselectsec1" >
+			                                <option>::선택::</option>
+			                                <option value="개발">개발</option>
+			                                <option value="연구">연구</option>
+		                                	<option value="유지보수">유지보수</option>
+		                                </select>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                            <div class="col-md-6">
+	                                <label for="prEndDay">종료일시</label>
+	                                <input type="date" class="form-control" name="prEndDay" id="prEndDay">
+	                            </div>
+	                            <div class="col-md-6">
+	                                <label for="prForProgress">최종진행여부</label>
+	                                <div>
+		                                <select name="prForProgress" id="prForProgress" class="dropselectsec1" >
+			                                <option>::선택::</option>
+			                                <option value="승인">승인</option>
+		                                	<option value="반려">반려</option>
+		                                </select>
+	                                </div>
+	                            </div>
+	                        </div>
+	                        <div class="row">
+	                            <div class="col-md-6">
+	                            	<label for="exampleInputEmail1">프로젝트목적</label>
+	                            	<div>
+	                                	<textarea rows="3" cols="80" name="prGoal" id="prGoal"></textarea>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>        			   
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-primary next-step">다음</button></li>
+                        </ul>
+                    </div>
 <!--본문입력 step1 폼 끝 -->	
-				                    <div class="tab-pane" role="tabpanel" id="step2">
-				                        <div class="step2">
-				                            <div class="step_21">
-											<div class="container">
-											    <div class="row clearfix">
-											    	<div class="col-md-12 table-responsive">
-														<table class="table table-bordered table-hover table-sortable" id="tab_logic">
-															<thead>
-																<tr>
-																	<th class="text-center">
-																		자금세부사용내역
-																	</th>
-																	<th class="text-center">
-																		예상금액
-																	</th>
-																	<th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
-																	</th>
-																</tr>
-															</thead>
-															<tbody>
-											    				<tr id='addr0' data-id="0" class="hidden">
-																	<td data-name="fuHistory">
-																	    <input type="text" name='fuHistory'  placeholder='사용내역' class="form-control"/>
-																	</td>
-																	<td data-name="fuExpectedMoney">
-																	    <input type="text" name='fuExpectedMoney' placeholder='예상금액' class="form-control"/>
-																	</td>
-																	<td data-name="del">
-											                            <button name="delBtn" class='btn btn-danger glyphicon glyphicon-remove row-remove'>삭제</button>
-											                        </td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
-												</div>
-												<a id="add_row" class="btn btn-default pull-right">폼추가</a>
-											</div>
-				                                <!--스텝2 -->
-				                               
-				                            </div>
-				                            <div class="step-22">
-				                            
-				                            </div>
-				                        </div>
-				                        <ul class="list-inline pull-right">
-				                            <li><button type="button" class="btn btn-default prev-step">이전</button></li>
-				                            <li><button type="button" class="btn btn-primary next-step">다음</button></li>
-				                        </ul>
-				                    </div>
-				                    <div class="tab-pane" role="tabpanel" id="step3">
-				                        <div class="step33">
-				                        <h5><strong>프로젝트 팀장</strong></h5>
-				                        <hr>
-				                            <div class="row mar_ned">
-				                                
-				                            </div>
-				                            <div class="row mar_ned">
-				                                <div class="col-md-4 col-xs-3">
-				                                    <p align="right"><stong>팀장코드</stong></p>
-				                                </div>
-				                                <div class="col-md-8 col-xs-9">
-				                                    <div class="row">
-				                                        <div class="col-md-4 col-xs-4 wdth">
-				                                            <input type="text" class="form-control" name="mmCode" id="mmCode"/>
-				                                        </div>
-				                                        <div class="col-md-4 col-xs-4 wdth">
-				                                            <select name="pmLevel" id="pmLevel" class="dropselectsec1">
-				                                                <option value="">::등급::</option>
-				                                                <option value="초급">초급</option>
-				                                                <option value="중급">중급</option>
-				                                                <option value="고급">고급</option>
-				                                                
-				                                            </select>
-				                                        </div>
-				                                    </div>
-				                                </div>
-				                            </div>
-				                            <div class="row mar_ned">
-				                                <div class="col-md-4 col-xs-3">
-				                                    <p align="right"><stong>업무분야</stong></p>
-				                                </div>
-				                                <div class="col-md-8 col-xs-9">
-				                                    <input type="text" class="form-control" name="pmField" id="pmField" placeholder="업무분야를 입력하세요">
-				                                </div>
-				                            </div>
-				                            <div class="row mar_ned">
-				                                <div class="col-md-4 col-xs-3">
-				                                    <p align="right"><stong>프로젝트 참여일</stong></p>
-				                                </div>
-				                                <div class="col-md-8 col-xs-9">
-				                                   <input type="date" class="form-control" name="pmStartDate" id="pmStartDate"/>
-				                                </div>
-				                            </div>
-				                            <div class="row mar_ned">
-				                                <div class="col-md-4 col-xs-3">
-				                                    <p align="right"><stong>특이사항</stong></p>
-				                                </div>
-				                                <div class="col-md-8 col-xs-9">
-				                                    <input type="text" class="form-control" name="pmNote" id="pmNote" placeholder="특이사항"/>
-				                                </div>
-				                            </div>
-				                        </div>
-				                        <ul class="list-inline pull-right">
-				                            <li><button type="button" class="btn btn-default prev-step">이전</button></li>
-				                            <li><button type="button" class="btn btn-default next-step">지나가기</button></li>
-				                            <li><button type="button" class="btn btn-primary btn-info-full next-step">다음</button></li>
-				                        </ul>
-				                    </div>
-				                    <div class="tab-pane" role="tabpanel" id="complete">
-				                        <div class="step44">
-				                           <input type="submit" value="등록" />
-				                            
-				                          
-				                        </div>
-				                    </div>
-				                    <div class="clearfix"></div>
-				                </div>
-				            </form>
-				        </div>
-				    </section>
-				   </div>
-				</div>
+                    <div class="tab-pane" role="tabpanel" id="step2">
+                        <div class="step2">
+                            <div class="step_21">
+							<div class="container">
+							    <div class="row clearfix">
+							    	<div class="col-md-12 table-responsive">
+										<table class="table table-bordered table-hover table-sortable" id="tab_logic">
+											<thead>
+												<tr>
+													<th class="text-center">
+														자금세부사용내역
+													</th>
+													<th class="text-center">
+														예상금액
+													</th>
+													<th class="text-center" style="border-top: 1px solid #ffffff; border-right: 1px solid #ffffff;">
+													</th>
+												</tr>
+											</thead>
+											<tbody>
+							    				<tr id='addr0' data-id="0" class="hidden">
+													<td data-name="fuHistory">
+													    <input type="text" name='fuHistory'  placeholder='사용내역' class="form-control"/>
+													</td>
+													<td data-name="fuExpectedMoney">
+													    <input type="text" name='fuExpectedMoney' placeholder='예상금액' class="form-control"/>
+													</td>
+													<td data-name="del">
+							                            <button name="delBtn" class='btn btn-danger glyphicon glyphicon-remove row-remove'>삭제</button>
+							                        </td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<a id="add_row" class="btn btn-default pull-right">폼추가</a>
+							</div>
+                                <!--스텝2 -->
+                               
+                            </div>
+                            <div class="step-22">
+                            
+                            </div>
+                        </div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">이전</button></li>
+                            <li><button type="button" class="btn btn-primary next-step">다음</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="step3">
+                        <div class="step33">
+                        <h5><strong>프로젝트 팀장</strong></h5>
+                        <hr>
+                            <div class="row mar_ned">
+                                
+                            </div>
+                            <div class="row mar_ned">
+                                <div class="col-md-4 col-xs-3">
+                                    <p align="right"><stong>팀장코드</stong></p>
+                                </div>
+                                <div class="col-md-8 col-xs-9">
+                                    <div class="row">
+                                        <div class="col-md-4 col-xs-4 wdth">
+                                            <input type="text" class="form-control" name="mmCode" id="mmCode"/>
+                                        </div>
+                                        <div class="col-md-4 col-xs-4 wdth">
+                                            <select name="pmLevel" id="pmLevel" class="dropselectsec1">
+                                                <option value="">::등급::</option>
+                                                <option value="초급">초급</option>
+                                                <option value="중급">중급</option>
+                                                <option value="고급">고급</option>
+                                                
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mar_ned">
+                                <div class="col-md-4 col-xs-3">
+                                    <p align="right"><stong>업무분야</stong></p>
+                                </div>
+                                <div class="col-md-8 col-xs-9">
+                                    <input type="text" class="form-control" name="pmField" id="pmField" placeholder="업무분야를 입력하세요">
+                                </div>
+                            </div>
+                            <div class="row mar_ned">
+                                <div class="col-md-4 col-xs-3">
+                                    <p align="right"><stong>프로젝트 참여일</stong></p>
+                                </div>
+                                <div class="col-md-8 col-xs-9">
+                                   <input type="date" class="form-control" name="pmStartDate" id="pmStartDate"/>
+                                </div>
+                            </div>
+                            <div class="row mar_ned">
+                                <div class="col-md-4 col-xs-3">
+                                    <p align="right"><stong>특이사항</stong></p>
+                                </div>
+                                <div class="col-md-8 col-xs-9">
+                                    <input type="text" class="form-control" name="pmNote" id="pmNote" placeholder="특이사항"/>
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="list-inline pull-right">
+                            <li><button type="button" class="btn btn-default prev-step">이전</button></li>
+                            <li><button type="button" class="btn btn-default next-step">지나가기</button></li>
+                            <li><button type="button" class="btn btn-primary btn-info-full next-step">다음</button></li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="complete">
+                        <div class="step44">
+                           <input type="submit" value="등록" />
+                            
+                          
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </form>
+        </div>
+    </section>
+   </div>
+</div>
 				
 				<!-- 본문끝 -->
-			</div>				
-		</div>
-	</div>
+</div>				
+</div>
+</div>
 </div>
 			
 <%@ include file="../footer.jsp"%>

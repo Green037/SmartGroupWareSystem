@@ -192,7 +192,8 @@
 			pr_cate = #{prCate},
 			pr_forProgress = #{prForProgress},
 			pr_money = #{prMoney},
-			pr_finishCheck = #{prFinishCheck}
+			pr_finishCheck = #{prFinishCheck},
+			pr_Goal = #{prGoal}
 		WHERE
 			pr_code = #{prCode}
 	</update>

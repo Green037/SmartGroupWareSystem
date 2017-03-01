@@ -126,7 +126,8 @@ public class ProjectServiceImpl implements ProjectService {
 		// 프로젝트 조회
 		Project project = new Project();
 		project = projectDao.selectByPrCodePr(prCode);
-		System.out.println(project);
+		//System.out.println(project);
+		
 		// 참여인원 조회
 		
 		// 상세자금 조회

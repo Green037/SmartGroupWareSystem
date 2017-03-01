@@ -30,19 +30,25 @@
 <div class="left-content">
 <div class="inner-content">
 <div class="outter-wp">	
+
 <!-- 본문 -->
 <div class="container">
-<center><h2>프로젝트 리스트</h2>
-<p style="color:red;">If you click projectName, show detail information.!! </p></center>           
+	<center>
+		<h2><span class="glyphicon glyphicon-file"></span> 프로젝트 리스트</h2>
+	</center>
+	<marquee behavior="alternate">
+		<p style="color:red;">If you click projectName, show detail information.!! </p>
+	</marquee>
+           
 	<div class="btn-group btn-group-justified">
-		<a href="<c:url value='/pr/list?prProgress=1'/>" class="btn btn-primary">
-			<span class="glyphicon glyphicon-search">팀원모집중목록</span>
+		<a href="<c:url value='/pr/list?prProgress=1'/>" class="btn btn-success">
+			<span class="glyphicon glyphicon-search"></span> 팀원모집중목록보기
 		</a>
-		<a href="<c:url value='/pr/list?prProgress=2'/>" class="btn btn-primary">
-			<span class="glyphicon glyphicon-play">진행중인프로젝트목록</span>
+		<a href="<c:url value='/pr/list?prProgress=2'/>" class="btn btn-success">
+			<span class="glyphicon glyphicon-play"></span> 진행중인프로젝트목록보기
 		</a>
-		<a href="<c:url value='/pr/list?prProgress=3'/>" class="btn btn-primary">
-			<span class="glyphicon glyphicon-check">완료된프로젝트목록</span>
+		<a href="<c:url value='/pr/list?prProgress=3'/>" class="btn btn-success">
+			<span class="glyphicon glyphicon-check"></span> 완료된프로젝트목록보기
 		</a>
 	</div>
 	<table class="table table-hover">
@@ -60,7 +66,6 @@
 		</thead>
 		<tbody>
 			<c:forEach var="projectList" items="${projectList}">
-				
 				<tr>
 					<input type="hidden" id="_prCode" value="${projectList.prCode}"/>
 					<td>${projectList.prCode}</td>
@@ -80,13 +85,11 @@
 						</c:when>
 					</c:choose>
 				</tr>
-				
 			</c:forEach>
-			<c:import url="./pm_addForm.jsp"></c:import> <!--팝업창, 참여신청폼  -->
 		</tbody>
 	</table>
 </div>
-
+<c:import url="./pm_addForm.jsp"></c:import> <!--팝업창, 참여신청폼  -->
 </body>
 </html>
 <!-- 본문끝 -->

@@ -82,8 +82,8 @@ public class ProjectRestController {
 	// 프로젝트에 할당된 상세자금 조회.
 	@RequestMapping(value = "fu/modifyValue", method = RequestMethod.POST)
 	public Funds fuModifyValueCtrl(@RequestParam("fuCode") int fuCode) {
-		System.out.println("h2 fu Modify Value Ajax!!");
-		System.out.println("넘어온 프로젝트코드값 : "+fuCode);
+		/*System.out.println("h2 fu Modify Value Ajax!!");
+		System.out.println("넘어온 프로젝트코드값 : "+fuCode);*/
 		
 		// 자금코드로 입력된 자금내역 조회하기
 		Funds funds = new Funds();
@@ -124,9 +124,9 @@ public class ProjectRestController {
 		
 		// 입력받은 내용 insert하기
 		int result = projectService.fuAddServ(funds);
-		System.out.println("자금입력결과 : "+result);
+		//System.out.println("자금입력결과 : "+result);
 		
-		//수정결과에 따라 성공 혹은 실패 리턴~
+		//입력결과에 따라 성공 혹은 실패 리턴~
 		if(result != 0){
 			resultMap.put("result", "성공");
 		}else{
