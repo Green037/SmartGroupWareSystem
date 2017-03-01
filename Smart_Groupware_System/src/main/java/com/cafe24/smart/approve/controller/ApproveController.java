@@ -30,7 +30,6 @@ public class ApproveController {
 	/*문서결재신청 폼을 가져오기 위한 메소드 return값을 String으로 준 이유는 url을 지정하기 위해서*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
 	public String Add(){
-	
 		return "/approve/ap_dftAdd";   
 	}
 	
@@ -39,9 +38,7 @@ public class ApproveController {
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
 	public String apAddCtrl(Draft draft, Progress progress){
 		
-		System.out.println("ctrl dftAdd > test");
-		System.out.println(draft.getDftDate());
-		
+		System.out.println("ctrl dftAdd > test");	
 		int result = approveService.apAddServ(draft, progress);
 		
 		return "home";
@@ -51,7 +48,7 @@ public class ApproveController {
 	@RequestMapping(value ="ap/pgList", method = RequestMethod.GET)
 	public String apProListCtrl(Model model){	
 		System.out.println("ctrl pgList> test");
-		List<Progress> pgList = new ArrayList<Progress>();
+		List<Draft> pgList = new ArrayList<Draft>();
 		pgList = approveService.pgListServ();
 		model.addAttribute("pgList", pgList);
 	
@@ -91,8 +88,32 @@ public class ApproveController {
 		System.out.println("ctrl proAdd> test");
 		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
-		return "home";   
+		return "redirect:/ap/hvList";  
 	}
+	
+	//반려 목록 : GET
+	@RequestMapping(value ="ap/relist", method = RequestMethod.GET)
+	public String reList(Model model){
+		
+		System.out.println("ctrl reList> test");
+		List<Progress> reList = new ArrayList<Progress>();
+		reList = approveService.reListServ();
+		model.addAttribute("reList",reList);
+		
+		return "/approve/ap_reList";   
+	}
+	
+	//완료 목록 : GET
+	@RequestMapping(value ="ap/comlist", method = RequestMethod.GET)
+	public String comList(Model model){
+		System.out.println("ctrl comList> test");
+		List<Progress> comList = new ArrayList<Progress>();
+		comList = approveService.comListServ();
+		model.addAttribute("comList", comList);
+		
+		return "/approve/ap_comList";   
+	}
+	
 	
 	//임시 문서함 : GET
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)

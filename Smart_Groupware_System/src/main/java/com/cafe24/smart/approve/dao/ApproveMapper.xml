@@ -108,20 +108,27 @@
 
 <!-- 진행 목록  -->
 <select id="selectAllPg"
-		resultMap="resultPro">
-		SELECT * FROM draft 
- 		JOIN progress;
+		resultMap="resultDft">
+		SELECT 
+			* 
+		FROM 
+			draft;
 </select>
 
 <!-- 결재 목록 -->
 <select id="selectAllHv"
 			resultMap="resultPro">
-		SELECT * FROM progress,draft 
-		WHERE pro_state='대기' 
-		AND progress.dft_code = draft.dft_code
+		SELECT 
+			* 
+		FROM 
+			progress,draft 
+		WHERE 
+			pro_state=0   
+		AND 
+			progress.dft_code = draft.dft_code
 </select>
 
-<!-- 결재 상세보기 : dftCode 가져오기-->
+<!-- 결재 상세보기 : dftCode 가져오기// 결재자 가져오기-->
 <select id="selectContHv"
 		parameterType="int"
 		resultMap="resultDft">
@@ -149,41 +156,76 @@
 <!-- 결재 요청 : 1단계 : progress Update -->
 <update id="updatePro"
 		parameterType="com.cafe24.smart.approve.domain.Progress">
-		UPDATE progress 
-		SET pro_realTime = #{proRealTime},
+		UPDATE 
+			progress 
+		SET 
+			pro_realTime = #{proRealTime},
 			pro_state = #{proState},
 			pro_personalstate = #{proPersonState},  
-			pro_reason = #{proReason}
-		WHERE dft_code = #{dftCode}
+			pro_reason = #{proReason} 
+		WHERE 
+			dft_code = #{dftCode}
 
 </update>
 
 <!-- 결재 요청 : 2-1단계 : draft update -->
 <update id="updateDft"
 		parameterType="com.cafe24.smart.approve.domain.Draft">
-		UPDATE draft 
-		SET dft_degree = #{dftDegree}, 
+		UPDATE 
+			draft 
+		SET 
+			dft_degree = #{dftDegree}, 
 			dft_finalState = #{dftFinalState}
-		WHERE dft_code = #{dftCode};
+		WHERE 
+			dft_code = #{dftCode};
 </update>
 
-<!-- 결재 요청 : 2-2단계 : progress에 결재자 추가 -->
+<!-- 결재 요청 : 2-2단계 : progress에 결재자 추가//결재 차수 추가 -->
 <update id="updateProApv"
 	parameterType="com.cafe24.smart.approve.domain.Progress">
-		UPDATE progress 
-		SET pro_approval = #{proApproval} 
-		WHERE dft_code = #{dftCode}
-	
+		UPDATE 
+			progress 
+		SET 
+			pro_approval = #{proApproval},
+			pro_turn = #{proTurn},
+			pro_state = #{proState} 
+		WHERE 
+			dft_code = #{dftCode}
 </update>
 
 <!-- 임시 목록 -->
 <select id="selectAllTem"
 		resultMap="resultDft">
-
-		SELECT * FROM draft
-		WHERE dft_check = 'true'
-		<!-- 사원코드 select 조건 추가 -->
+		SELECT 
+			* 
+		FROM 
+			draft
+		WHERE 
+			dft_check = 'true'
+		<!-- 사원코드 select 조건 추가 -->		
+</select>
 		
+<!-- 반려 목록 -->
+<select id="selectAllRe"
+		resultMap="resultPro">
+		SELECT 
+			* 
+		FROM 
+			progress 
+		WHERE 
+			pro_state = 2
+
+</select>
+
+<!-- 완료 목록 -->
+<select id="selectAllCom"
+		resultMap="resultPro">
+		SELECT 
+			* 
+		FROM 
+			progress 
+		WHERE 
+			pro_state = 1 
 </select>
 		
 </mapper>

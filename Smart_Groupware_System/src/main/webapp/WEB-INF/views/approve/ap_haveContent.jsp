@@ -92,7 +92,7 @@
 														<label for="marrycheck"><input type="radio" name="proState" value=1 id="proState" checked="checked"> 승인</label>
 													</div>
 													<div class="marry-inline1">
-														<label for="marrycheck"><input type="radio" name="proState" value=0 id="proState1"> 반려</label>
+														<label for="marrycheck"><input type="radio" name="proState" value=2 id="proState1"> 반려</label>
 													</div>
 												</div>
 											</div>	

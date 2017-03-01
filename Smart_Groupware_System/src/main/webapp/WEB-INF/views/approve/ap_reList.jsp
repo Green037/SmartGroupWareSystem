@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,63 +29,36 @@
 								<label class="control-label"><b>반려된 목록 [건수 : 10건]</b></label>
 								<table class="table table-bordered">
 									<tr>
-										<th>차수</th>
-										<th>구분</th>
+										<th>진행번호</th>
+										<th>문서번호</th>
 										<th width="300">문서제목</th>
 										<th>기안자</th>
 										<th>기안부서</th>
 										<th>등록일자</th>
 										<th>반려일자</th>
-										<th>결재상태</th>
+										<th>반려차수</th>
 										<th>결재진행여부</th>
-										<th>결재자진행여부</th>
-								
-
-							
+										<th>결재자</th>
+	
 									</tr>
+									
+									<c:forEach var="r" items="${reList}">
+									
 									<tr>
-										<td>1</td>
-										<td>프로젝트</td>
+										<td>${r.proCode}</td>
+										<td>${r.dftCode}</td>
 										<td>1차프로젝트</td>
 										<td>홍길동</td>
 										<td>개발부</td>
-										<td>2017/02/18</td>
-										<td>2017/02/25</td>
-										<td>결재</td>
+										<td>${r.proTime}</td>
+										<td>${r.proRealTime}</td>
+										<td>${r.proTurn}</td>
 										<td>반려</td>
-										<td>원빈</td>
-								
-
-
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>출퇴근</td>
-										<td>0218출퇴근</td>
-										<td>설현</td>
-										<td>총리부</td>
-										<td>2017/02/18</td>
-										<td>2017/02/20</td>
-										<td>결재</td>
-										<td>반려</td>
-										<td>나나</td>
-									
-
+										<td>${r.proApproval}</td>
 									</tr>
 									
-									<tr>
-										<td>2</td>
-										<td>임금</td>
-										<td>1월임금결재</td>
-										<td>초아</td>
-										<td>총리부</td>
-										<td>2017/02/15</td>
-										<td>2017/02/18</td>
-										<td>결재</td>
-										<td>반려</td>
-										<td>이준기</td>
-										
-									</tr>
+									</c:forEach>
+							
 								</table> 
 								<div class="clearfix">&nbsp;</div>				
 					

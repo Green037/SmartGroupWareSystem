@@ -379,8 +379,8 @@
 									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/temList'/>">임시 문서</a></li>
 									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/hvList'/>">결재 목록</a></li>
 									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/pgList'/>">진행 목록</a></li>
-									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/re_list'/>">반려 목록</a></li>
-									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/com_list'/>">완료 목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/relist'/>">반려 목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:120px"><a href="<c:url value='/ap/comlist'/>">완료 목록</a></li>
 								</ul>
 							</li>
 							

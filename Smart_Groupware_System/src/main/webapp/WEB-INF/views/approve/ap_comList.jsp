@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,63 +30,34 @@
 								<table class="table table-bordered">
 									<tr>
 										<th>차수</th>
-										<th>구분</th>
+										<th>기안번호</th>
 										<th width="300">문서제목</th>
 										<th>기안자</th>
 										<th>기안부서</th>
-										<th>등록일자</th>
-										<th>완료일자</th>
+										<th>기안등록일자</th>
+										<th>최종결재일자</th>
 										<th>최종승인담당자</th>
+										<th>최종차수</th>
 										<th>비고</th>
-										<th>8월</th>
-										<th>9월</th>
-			
 							
 									</tr>
+									
+									<c:forEach var="c" items="${comList}">
 									<tr>
-										<td>1</td>
-										<td>프로젝트</td>
+										<td>${c.proCode}</td>
+										<td>${c.dftCode}</td>
 										<td>1차프로젝트</td>
 										<td>홍길동</td>
 										<td>개발부</td>
-										<td>2017/02/18</td>
-										<td>2017/02/18</td>
-										<td>원빈</td>
+										<td>${c.proTime}</td>
+										<td>${c.proRealTime}</td>
+										<td>${c.proApproval}</td>
+										<td>${c.proTurn}</td>
 										<td></td>
-										<td>100,000</td>
-										<td>100,000</td>
-						
-
+				
 									</tr>
-									<tr>
-										<td>2</td>
-										<td>출퇴근</td>
-										<td>0218출퇴근</td>
-										<td>설현</td>
-										<td>총리부</td>
-										<td>2017/02/18</td>
-										<td>2017/02/18</td>
-										<td>송중기</td>
-										<td>ㅋ</td>
-										<td>100,000</td>
-										<td>100,000</td>
-								
-									</tr>
+									</c:forEach>
 									
-									<tr>
-										<td>2</td>
-										<td>임금</td>
-										<td>1월임금결재</td>
-										<td>초아</td>
-										<td>총리부</td>
-										<td>2017/02/10</td>
-										<td>2017/02/15</td>
-										<td>이준기</td>
-										<td>안녕</td>
-										<td>100,000</td>
-										<td>100,000</td>
-			
-									</tr>
 								</table> 
 								<div class="clearfix">&nbsp;</div>
 								

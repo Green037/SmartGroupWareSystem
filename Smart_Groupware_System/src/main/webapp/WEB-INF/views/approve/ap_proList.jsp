@@ -37,7 +37,7 @@
 										<th>기안부서</th>
 										<th>등록일자</th>
 										<th>최근결재일자</th>
-										<th>결재상태</th>
+										<th></th>
 										<th>결재진행여부</th>
 										<th>결재자</th>
 									</tr>
@@ -45,15 +45,15 @@
 									<c:forEach var="p" items="${pgList}">
 									
 									<tr>
-										<td>${p.proCode}</td>
+										<td>${p.dftCode}</td>
 										<td></td>
 										<td>${p.dftTitle}</td>
-										<td></td>
+										<td>${p.mmCode}</td>
 										<td>기안부서</td>
 										<td>${p.dftDate}</td>
-										<td>${p.proTime}</td>
-										<td>${p.proState}</td>
-										<td>${p.proPersonState}</td>
+										<td></td>
+										<td></td>
+										<td>${p.dftFinalState}</td>
 										<td>결재자</td>
 									</tr>
 				

@@ -71,9 +71,9 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	//진행 목록 :GET
 	@Override
-	public List<Progress> pgListServ() {
+	public List<Draft> pgListServ() {
 		//System.out.println("serv pgList> test1" );
-		List<Progress> pgList = new ArrayList<Progress>();
+		List<Draft> pgList = new ArrayList<Draft>();
 		pgList = approveDAO.selectAllPg();
 		//System.out.println("serv pgList> test2");
 		//System.out.println(pgList);
@@ -81,12 +81,30 @@ public class ApproveServiceImpl implements ApproveService {
 		return pgList;
 	}
 	
+	//반려 목록 : GET
+	@Override
+	public List<Progress> reListServ() {
+		System.out.println("serv reList> test");
+		List<Progress> reList = new ArrayList<Progress>();
+		reList = approveDAO.selectAllRe();
+		return reList;
+	}
+
+	//완료 목록 : GET
+	@Override
+	public List<Progress> comListServ() {
+		System.out.println("serv comList> test");
+		List<Progress> comList = new ArrayList<Progress>();
+		comList = approveDAO.selectAllCom();
+		return comList;
+	}
+
 	//결재 목록 :GET
 	@Override
 	public List<Progress> hvListServ() {
 		System.out.println("serv hvList> test1" );
 		List<Progress> hvList = new ArrayList<Progress>();
-		hvList = approveDAO.selectAllhv();
+		hvList = approveDAO.selectAllHv();
 		System.out.println(hvList);
 		System.out.println("serv hvList> test2" );
 		
@@ -116,36 +134,178 @@ public class ApproveServiceImpl implements ApproveService {
 		return draft;
 	}
 	
-	//결재 요청[승인/반려]
+	//결재 요청[승인/반려] *** 중복코드 메소드화 ***
 	@Override
 	public int apProAddServ(Draft draft, Progress progress, int dftCode) {
 		System.out.println("serv proAdd> test1");
 		int result = 0;
 		int totalCount = 0;
-
-		/*	draft = dao.조회하는 쿼리;*/
-
+		
+		//-----결재자 가져오기
+		draft = approveDAO.selectCountHv(dftCode);
+		//-----결재 시간/결재여부 setting
+		progress.setProRealTime(formatter.format(today));
+		progress.setProPersonState(true);
+		
 		if(draft.getDftApproval1() !=0 && draft.getDftApproval2() ==0 && draft.getDftApproval3() ==0){
 			totalCount = 1;
-			//totalCount와 degree를 비교 후 최종승인
-			//----- if(degree < totalCount)
-			//----- dftFinalState update
-			draft.setDftFinalState("최종승인");
-			/*draft = dao.조회하는 쿼리;*/
+			
+			if(progress.getProState()==1){//----- 승인
+				//----- 승인 progress update
+				result = approveDAO.modifyPro(progress);
+				
+				//----- 승인 : draft update
+				//System.out.println("serv proModify 승인> test1");
+				draft.setDftFinalState(draft.getDftDegree()+"차최종결재승인");
+				result = approveDAO.modifyDft(draft);
+				//System.out.println("serv dftModfy 승인> test2");
+			
+			}else if(progress.getProState()==2){//----- 반려
+				//----- 반려 : progress update
+				result = approveDAO.modifyPro(progress);
+				
+				//----- 반려 : daft update
+				draft.setDftFinalState(draft.getDftDegree()+"차결재반려");
+				result = approveDAO.modifyDft(draft);
+				//System.out.println("serv dftModfy 반려> test3");
+			}
+			
 		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() ==0){
 			totalCount = 2;
-			//totalCount와 degree를 비교
+			//----- totalCount와 degree를 비교
 			//----- if(degree < totalCount)
 			//----- dftFinalState/dftdegree/proApproval update
+			System.out.println("2명 결재자 지금 테스트중");
+			
+			//2-1 진행중인 결재일 경우
+			if(draft.getDftDegree() < totalCount){
+				//----- 다음 결재를 위해서 미결재로 setting
+				progress.setProPersonState(false);
+				result = approveDAO.modifyPro(progress);
+				
+				if(progress.getProState()==1){//----- 승인
+					draft.setDftDegree(draft.getDftDegree()+1);
+					draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
+					result = approveDAO.modifyDft(draft);
+					
+					//----- progress에 proTurn에 draft의 dftDegree[+1] UPDATE
+					progress.setProTurn(draft.getDftDegree());
+					progress.setProState(0);
+					//----- progress 다음 결재자 등록
+					switch(progress.getProTurn()){
+					case 2:
+						progress.setProApproval(draft.getDftApproval2());
+						break;
+					
+					case 3:
+						progress.setProApproval(draft.getDftApproval3());
+						break;
+					}
+					
+					result = approveDAO.modifyProApv(progress);
+					
+					System.out.println("serv dftModify 2-1_승인> test");
+					
+				}else if(progress.getProState()==2){//----- 반려
+					draft.setDftFinalState(draft.getDftDegree()+"차결재반려");
+					result = approveDAO.modifyDft(draft);
+					System.out.println("serv dftModfiy 2-2 반려> test");
+				}
+			
+			//2-2 최종 결재일 경우
+			}else if(draft.getDftDegree() == totalCount){
+				if(progress.getProState()==1){//----- 승인
+					//----- 승인 progress update
+					result = approveDAO.modifyPro(progress);
+					
+					//----- 승인 : draft update
+					//System.out.println("serv proModify 승인> test1");
+					draft.setDftFinalState(draft.getDftDegree()+"차최종결재승인");
+					result = approveDAO.modifyDft(draft);
+					//System.out.println("serv dftModfy 승인> test2");
+				
+				}else if(progress.getProState()==2){//----- 반려
+					//----- 반려 : progress update
+					result = approveDAO.modifyPro(progress);
+					
+					//----- 반려 : daft update
+					draft.setDftFinalState(draft.getDftDegree()+"차결재반려");
+					result = approveDAO.modifyDft(draft);
+					//System.out.println("serv dftModfy 반려> test3");
+				}	
+			}
 			
 		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() !=0){
 			totalCount = 3;
 			//totalCount와 degree를 비교 후 최종승인
 			//----- if(degree < totalCount)
 			//----- dftFinalState update
+			System.out.println("3명 결재자 지금 테스트중");
+			
+			//----- 진행중일 경우
+			if(draft.getDftDegree() < totalCount){
+				//----- 다음 결재를 위해서 미결재로 setting
+				progress.setProPersonState(false);
+				result = approveDAO.modifyPro(progress);
+				
+				if(progress.getProState()==1){//----- 승인
+					draft.setDftDegree(draft.getDftDegree()+1);
+					draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
+					result = approveDAO.modifyDft(draft);
+					
+					//----- progress에 proTurn에 draft의 dftDegree[+1] UPDATE
+					progress.setProTurn(draft.getDftDegree());
+					progress.setProState(0);
+					
+					//----- progress 다음 결재자 등록
+					switch(progress.getProTurn()){
+					case 2:
+						progress.setProApproval(draft.getDftApproval2());
+						break;
+					
+					case 3:
+						progress.setProApproval(draft.getDftApproval3());
+						break;
+					}
+					
+					result = approveDAO.modifyProApv(progress);
+					
+					System.out.println("serv dftModify 3-1_승인> test");
+					
+				}else if(progress.getProState()==2){//----- 반려
+					draft.setDftFinalState(draft.getDftDegree()+"차결재반려");
+					result = approveDAO.modifyDft(draft);
+					System.out.println("serv dftModfiy 3-2 반려> test");
+				}
+			
+			//2-2 최종 결재일 경우
+			}else if(draft.getDftDegree() == totalCount){
+				if(progress.getProState()==1){//----- 승인
+					//----- 승인 progress update
+					result = approveDAO.modifyPro(progress);
+					
+					//----- 승인 : draft update
+					//System.out.println("serv proModify 승인> test1");
+					draft.setDftFinalState(draft.getDftDegree()+"차최종결재승인");
+					result = approveDAO.modifyDft(draft);
+					//System.out.println("serv dftModfy 승인> test2");
+				
+				}else if(progress.getProState()==2){//----- 반려
+					//----- 반려 : progress update
+					result = approveDAO.modifyPro(progress);
+					
+					//----- 반려 : daft update
+					draft.setDftFinalState(draft.getDftDegree()+"차결재반려");
+					result = approveDAO.modifyDft(draft);
+					//System.out.println("serv dftModfy 반려> test3");
+				}	
+			}
+		
 		}else{
 			totalCount = 0;
+			System.out.println("serv apProAddServ error> test ");
 		}
+		
 		return result;
 	}
 		
@@ -163,6 +323,5 @@ public class ApproveServiceImpl implements ApproveService {
 		return temList;
 	}
 
-
-
+	
 }
