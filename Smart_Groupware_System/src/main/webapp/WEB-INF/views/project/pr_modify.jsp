@@ -148,13 +148,16 @@
 <div class="container">
 	<center>
 		<h2><span class="glyphicon glyphicon-file"> 프로젝트 수정</span></h2>
-		<p style="color:red;">This infomation is detail contents By you selected. You can fix contents.</p>
 	</center>
+	<marquee behavior="alternate">
+		<p style="color:red;">This infomation is detail contents By you selected. You can fix contents.</p>
+	</marquee>
+	
 	<form action="<c:url value='/pr/modify'/>" method="post" id="modifyForm">            
 		<table class="table table-bordered">
 			<thead>
 				<tr>
-					<th>프로젝트코드</th>
+					<th><span class="glyphicon glyphicon-bookmark"></span> 프로젝트코드</th>
 					<th colspan="7">
 						<center>${project.prCode}</center>
 						<input type="hidden" name="prCode" value="${project.prCode}"/>
@@ -163,25 +166,31 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>프로젝트명</td>
+					<td><span class="glyphicon glyphicon-list-alt"></span> 프로젝트명</td>
 					<td colspan="7">
 						<input type="text" name="prName" value="${project.prName}" class="form-control"/>
 					</td>
 				</tr>
 				<tr>
-					<td><strong>팀장</strong></td>
+					<td><span class="glyphicon glyphicon-comment"></span> 프로젝트목적</td>
+					<td colspan="7">
+						<input type="text" name="prGoal" value="${project.prGoal}" class="form-control"/>
+					</td>
+				</tr>
+				<tr>
+					<td><strong><span class="glyphicon glyphicon-king"></span> 팀장</strong></td>
 					<td colspan="3">-</td>
-					<td><strong>직급</strong></td>
+					<td><strong><span class="glyphicon glyphicon-king"></span> 직급</strong></td>
 					<td>-</td>
-					<td><strong>부서</strong></td>
+					<td><strong><span class="glyphicon glyphicon-flag"></span> 부서</strong></td>
 					<td>-</td>
 				</tr>
 				<tr>
-					<td><strong>이메일</strong></td>
+					<td><strong><span class="glyphicon glyphicon-envelope"></span> 이메일</strong></td>
 					<td colspan="2">-</td>
-					<td><strong>전화번호</strong></td>
+					<td><strong><span class="glyphicon glyphicon-earphone"></span> 전화번호</strong></td>
 					<td colspan="2">-</td>
-					<td><strong>참여인원</strong></td>
+					<td><strong><span class="glyphicon glyphicon-log-in"></span> 참여인원</strong></td>
 					<td>
 						<span>${pmCount}</span> / ${project.prMember}
 						<button type="button" id="pmAddBtn">인원추가</button>
@@ -189,18 +198,18 @@
 					</td>
 				</tr>
 				<tr>
-					<td><strong>총자금</strong></td>
+					<td><strong><span class="glyphicon glyphicon-usd"></span> 총자금</strong></td>
 					<td>
 						<input type="text" name="prMoney" value="${project.prMoney}" class="form-control"/>
 						<button type="button" id="fuModifyListBtn">내역수정</button>
 					</td>
-					<td><strong>시작일</strong></td>
+					<td><strong><span class="glyphicon glyphicon-calendar"></span> 시작일</strong></td>
 					<td colspan="2"><input type="date" name="prStartDay" value="${project.prStartDay}" class="form-control"/></td>
-					<td><strong>종료일</strong></td>
+					<td><strong><span class="glyphicon glyphicon-calendar"></span> 종료일</strong></td>
 					<td colspan="2"><input type="date" name="prEndDay" value="${project.prEndDay}" class="form-control"/></td>
 				</tr>
 				<tr>
-					<td><strong>팀원모집상황</strong></td>
+					<td><strong><span class="glyphicon glyphicon-tasks"></span> 팀원모집상황</strong></td>
 					<td>
 						<input type="radio" name="prProgress" value="모집중"/>모집중
 						<input type="radio" name="prProgress" value="모집완료"/>모집완료
@@ -208,7 +217,7 @@
 							$('input:radio[name="prProgress"]:radio[value="${project.prProgress}"]').prop("checked",true);
 						</script>
 					</td>
-					<td><strong>분류</strong></td>
+					<td><strong><span class="glyphicon glyphicon-folder-open"></span> 분류</strong></td>
 					<td>
 						<select name="prCate" id="prCate">
 							<option value="개발">개발</option>
@@ -219,7 +228,7 @@
 							$('#prCate').val('${project.prCate}').attr('selected','selected');
 						</script>
 					</td>
-					<td><strong>진행최종승인여부</strong></td>
+					<td><strong><span class="glyphicon glyphicon-check"></span> 진행최종승인여부</strong></td>
 					<td>
 						<select name="prForProgress" id="prForProgress">
 							<option value="승인">승인</option>
@@ -229,7 +238,7 @@
 							$('#"prForProgress"').val('${project.prForProgress}').attr('selected','selected');
 						</script>
 					</td>
-					<td><strong>프로젝트진행상황</strong></td>
+					<td><span class="glyphicon glyphicon-hourglass"></span> <strong>프로젝트진행상황</strong></td>
 					<td>${project.prFinishCheck}</td>
 				</tr>
 				<tr>

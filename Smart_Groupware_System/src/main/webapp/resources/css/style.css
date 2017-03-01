@@ -436,7 +436,7 @@ cursor: pointer;
 .main-search input[type="text"],.main-search input[type="submit"]{
 	display:inline-block;
 	border:none;
-	color:#5d5d5d;
+	color:#ffffff;
 	outline:none;
 	width:inherit;
 	padding:inherit;
@@ -451,7 +451,7 @@ cursor: pointer;
 	width:89%;
 }
 .main-search input[type="text"]:focus{
-	color:#5d5d5d;
+	color:#0000ff;
 }
 .main-search input[type="submit"]{
 	position: absolute;

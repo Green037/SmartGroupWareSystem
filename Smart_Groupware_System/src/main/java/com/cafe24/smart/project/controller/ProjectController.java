@@ -129,12 +129,12 @@ public class ProjectController {
 		return "redirect:/pr/list";
 	}
 	
-	//프로젝트 참여인원 참여승인 여부수정 - 포스트요청
+	//프로젝트 참여인원 참여승인 여부수정 - 포스트요청(참여거절된 인원들도 관리 하게 되면 로직추가해야함.)
 	@RequestMapping(value = "pm/addApproval", method = RequestMethod.POST)
 	public String pmModifyCtrl(Model model, ProjectMemberCommand projectMemberCommand) {
 		/*System.out.println("pm modify~ POST!!");
 		System.out.println(projectMemberCommand);
-		[pmCode_=4,5,6,7, pmApproval_=대기,승인,대기,승인]*/
+		[pmCode_=4,5,6,7 , pmApproval_=대기,승인,대기,승인]*/
 		
 		// 수정 처리 후 최종승인된 인원 총 카운트 수와 해당 프로젝트코드 를 Map으로 리턴받아서 
 		// 프로젝트 코드로 다시 해당 프로젝트 조회하여 결과와 카운트를 세팅하고 수정화면으로 포워드한다
