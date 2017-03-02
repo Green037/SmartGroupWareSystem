@@ -11,4 +11,5 @@ import com.cafe24.smart.project.domain.Project;
 public interface WbsService {
 	int checkMemberServ(Member member);
 	List<Project> prListServ(int mmCode);
+	
 }

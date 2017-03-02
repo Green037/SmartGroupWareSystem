@@ -23,10 +23,10 @@ public class WbsServiceImpl implements WbsService {
 	public int checkMemberServ(Member member) {
 		// 1.입력된 사원코드로 사원정보 조회하는 메서드 호출
 		String mmPassword = member.getMmPassword();
-		System.out.println(mmPassword);
+		//System.out.println(mmPassword);
 		
 		member = wbsDao.selectByMmCodeMm(member);
-		System.out.println("사원조회결과"+member);
+		//System.out.println("사원조회결과"+member);
 		
 		// 2.조회된 정보중 비밀번호 일치하는 사원정보 확인 로직. 3.일치하는 사원정보의 사원코드리턴.
 		int check = 0;
@@ -35,11 +35,11 @@ public class WbsServiceImpl implements WbsService {
 				return member.getMmCode();
 			}else if(member.getMmPassword() != mmPassword){
 				check = 10000; //10000은 비번불일치
-				System.out.println("비번불일치");
+				//System.out.println("비번불일치");
 			}
 		}else if(member == null){
 			check = 0;//0은 아이디불일치
-			System.out.println("아이디불일치");
+			//System.out.println("아이디불일치");
 		}
 		System.out.println("check값 확인 : "+check);
 		return check; 
