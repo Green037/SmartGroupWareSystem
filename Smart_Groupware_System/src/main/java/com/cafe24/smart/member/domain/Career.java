@@ -19,10 +19,10 @@ public class Career {
 	public void setCrCode(int crCode) {
 		this.crCode = crCode;
 	}
-	public int getmmCode() {
+	public int getMmCode() {
 		return mmCode;
 	}
-	public void setmmCode(int mmCode) {
+	public void setMmCode(int mmCode) {
 		this.mmCode = mmCode;
 	}
 	public int getMaCode() {

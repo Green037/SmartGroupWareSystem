@@ -76,11 +76,11 @@ public class MemberAchieve {
 		this.mcGrade = mcGrade;
 	}
 	
-	public int getmmCode() {
+	public int getMmCode() {
 		return mmCode;
 	}
 	
-	public void setmmCode(int mmCode) {
+	public void setMmCode(int mmCode) {
 		this.mmCode = mmCode;
 	}
 

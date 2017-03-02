@@ -17,6 +17,7 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
+					console.log(data);
 					$('#pmListTbody').empty();
 					$.each(data,function(i, result){
 						/* console.log(result.prCode);

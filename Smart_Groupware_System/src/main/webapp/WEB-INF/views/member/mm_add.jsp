@@ -263,7 +263,7 @@ $(document).on('click','.dellc',function(){
 										<div id="addcr">
 											<div class="form-group">
 												<label for="crinput" class="col-sm-2 control-label"> 경력사항 </label>
-												<div class="col-sm-2">
+												<div class="col-sm-1">
 													<input type="text" class="form-control1" id="crData" name="crData"
 														placeholder="경력사항">	
 												</div>
@@ -271,12 +271,12 @@ $(document).on('click','.dellc',function(){
 													<input type="text" class="form-control1" id="crService" name="crService"
 														placeholder="기간">	
 												</div>
-												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crPastJoinDay" name="crPastJoinDay"
+												<div class="col-sm-2">
+													<input type="date" class="form-control1" id="crPastJoinDay" name="crPastJoinDay"
 														placeholder="입사날짜">	
 												</div>
-												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crPastResignDay" name="crPastResignDay"
+												<div class="col-sm-2">
+													<input type="date" class="form-control1" id="crPastResignDay" name="crPastResignDay"
 														placeholder="퇴사날짜">	
 												</div>
 												<div class="col-sm-1">
@@ -284,7 +284,7 @@ $(document).on('click','.dellc',function(){
 														placeholder="직책">	
 												</div>
 												<div class="col-sm-1">
-													<select name="maCode" id="maCode"
+													<select name="maCodes" id="maCodes"
 														class="form-control1">
 														<option> 상위업종</option>
 															<c:forEach var="majorTypeOfBusiness" items="${majorTypeOfBusiness}">
@@ -294,7 +294,7 @@ $(document).on('click','.dellc',function(){
 												</div>
 												
 												<div class="col-sm-1">
-													<select name="miCode" id="miCode"
+													<select name="miCodes" id="miCodes"
 														class="form-control1">
 														<option> 하위업종</option>
 															<c:forEach var="minorTypeOfBusiness" items="${minorTypeOfBusiness}">
@@ -312,7 +312,7 @@ $(document).on('click','.dellc',function(){
 										<div id="addcrCopy" style="display:none;">
 											<div class="form-group">
 												<label for="crinput" class="col-sm-2 control-label"> 경력사항 </label>
-												<div class="col-sm-2">
+												<div class="col-sm-1">
 													<input type="text" class="form-control1" id="crData" name="crData"
 														placeholder="경력사항">	
 												</div>
@@ -320,12 +320,12 @@ $(document).on('click','.dellc',function(){
 													<input type="text" class="form-control1" id="crService" name="crService"
 														placeholder="기간">	
 												</div>
-												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crPastJoinDay" name="crPastJoinDay"
+												<div class="col-sm-2">
+													<input type="date" class="form-control1" id="crPastJoinDay" name="crPastJoinDay"
 														placeholder="입사날짜">	
 												</div>
-												<div class="col-sm-1">
-													<input type="text" class="form-control1" id="crPastResignDay" name="crPastResignDay"
+												<div class="col-sm-2">
+													<input type="date" class="form-control1" id="crPastResignDay" name="crPastResignDay"
 														placeholder="퇴사날짜">	
 												</div>
 												<div class="col-sm-1">
@@ -334,7 +334,7 @@ $(document).on('click','.dellc',function(){
 												</div>
 												
 												<div class="col-sm-1">
-													<select name="maCode" id="maCode"
+													<select name="maCodes" id="maCodes"
 														class="form-control1">
 														<option> 상위업종</option>
 															<c:forEach var="majorTypeOfBusiness" items="${majorTypeOfBusiness}">
@@ -344,7 +344,7 @@ $(document).on('click','.dellc',function(){
 												</div>
 												
 												<div class="col-sm-1">
-													<select name="miCode" id="miCode"
+													<select name="miCodes" id="miCodes"
 														class="form-control1">
 														<option> 하위업종</option>
 															<c:forEach var="minorTypeOfBusiness" items="${minorTypeOfBusiness}">
@@ -362,7 +362,7 @@ $(document).on('click','.dellc',function(){
 											<div class="form-group">
 												<label for="licenseselector" class="col-sm-2 control-label"> 보유 자격증 </label>
 												<div class="col-sm-2">
-													<select name="lcCode" id="lcCode"
+													<select name="lcCodes" id="lcCodes"
 														class="form-control1">
 															<c:forEach var="license" items="${license}">
 			      										<option value="${license.lcCode}">${license.lcName}</option>
@@ -383,7 +383,7 @@ $(document).on('click','.dellc',function(){
 											<div class="form-group">
 												<label for="licenseselector" class="col-sm-2 control-label"> 보유 자격증 </label>
 												<div class="col-sm-2">
-													<select name="lcCode" id="lcCode"
+													<select name="lcCodes" id="lcCodes"
 														class="form-control1">
 															<c:forEach var="license" items="${license}">
 			      										<option value="${license.lcCode}">${license.lcName}</option>
