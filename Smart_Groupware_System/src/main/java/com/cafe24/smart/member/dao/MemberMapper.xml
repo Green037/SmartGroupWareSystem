@@ -62,7 +62,7 @@
 			mm_code = #{mmCode};
 	</select>
 	
-	<insert id="resultCr" parameterType="com.cafe24.smart.member.domain.Career">
+	<insert id="insertCr" parameterType="com.cafe24.smart.member.domain.Career">
 		INSERT INTO career (
 			ma_code,
 			mi_code,
@@ -83,7 +83,7 @@
 			#{mmCode});
 	</insert>
 	
- 	<insert id="resultMl" parameterType="com.cafe24.smart.member.domain.MemberLicense" >
+ 	<insert id="insertMl" parameterType="com.cafe24.smart.member.domain.MemberLicense" >
 		INSERT INTO memberLicense (
 			lc_code,
 			ml_issueDate,
@@ -94,7 +94,7 @@
 			#{mmCode});
 	</insert>
 	
-	<insert id="resultMc" parameterType="com.cafe24.smart.member.domain.MemberAchieve" >
+	<insert id="insertMc" parameterType="com.cafe24.smart.member.domain.MemberAchieve" >
 		INSERT INTO memberAchieve (
 			ac_code,
 			mc_schoolName,
@@ -115,7 +115,7 @@
 			#{mmCode});
 	</insert>
 	
-	<insert id="resultMm" parameterType="com.cafe24.smart.member.domain.Member" useGeneratedKeys="true" keyProperty="mmCode">
+	<insert id="insertMm" parameterType="com.cafe24.smart.member.domain.Member" useGeneratedKeys="true" keyProperty="mmCode">
 		INSERT INTO memberManagement (
 			ct_code,
 			pt_code,

@@ -21,9 +21,9 @@ public class HomeController {
 		
 		log.info("home is called ...");
 		
-		session.setAttribute("id", 8);
-		session.setAttribute("password", 123456);
+		/*session.setAttribute("id", 8);
+		session.setAttribute("password", 123456);*/
 		
-		return "home";
+		return "member/mm_login";
 	}	
 }																																																																																				
