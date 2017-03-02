@@ -53,6 +53,7 @@
 				<value>classpath:com/cafe24/smart/reward/dao/RewardMapper.xml</value>
 				<value>classpath:com/cafe24/smart/insurance/dao/InsuranceMapper.xml</value>
 				<value>classpath:com/cafe24/smart/approve/dao/ApproveMapper.xml</value>
+				<value>classpath:com/cafe24/smart/wbs/dao/WbsMapper.xml</value>
 			</list>
 		</property>
 	</bean>

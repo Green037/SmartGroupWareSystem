@@ -69,47 +69,34 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	}
 	
-	//진행 목록 :GET
+	//[총 결재 목록]진행 목록 :GET
 	@Override
-	public List<Draft> pgListServ() {
-		//System.out.println("serv pgList> test1" );
+	public List<Draft> pgListServ(int apProgress) {
+		System.out.println("serv pgList> test1" );
+		
 		List<Draft> pgList = new ArrayList<Draft>();
-		pgList = approveDAO.selectAllPg();
-		//System.out.println("serv pgList> test2");
+		int progress;
+		System.out.println(apProgress);
+		
+		if(apProgress == 1){//결재 대기 목록
+			System.out.println("결재 대기");
+			progress = 0;
+			pgList = approveDAO.selectByHv(progress);
+		}else if(apProgress==2){//결재 반려 목록
+			progress = 2;
+			pgList = approveDAO.selectByHv(progress);
+		}else if(apProgress==3){//결재 완료 목록
+			progress = 1;
+			pgList = approveDAO.selectByHv(progress);
+		}else{
+			pgList = approveDAO.selectAllPg();
+		}
+		System.out.println("serv pgList> test2");
 		//System.out.println(pgList);
 	
 		return pgList;
 	}
 	
-	//반려 목록 : GET
-	@Override
-	public List<Progress> reListServ() {
-		System.out.println("serv reList> test");
-		List<Progress> reList = new ArrayList<Progress>();
-		reList = approveDAO.selectAllRe();
-		return reList;
-	}
-
-	//완료 목록 : GET
-	@Override
-	public List<Progress> comListServ() {
-		System.out.println("serv comList> test");
-		List<Progress> comList = new ArrayList<Progress>();
-		comList = approveDAO.selectAllCom();
-		return comList;
-	}
-
-	//결재 목록 :GET
-	@Override
-	public List<Progress> hvListServ() {
-		System.out.println("serv hvList> test1" );
-		List<Progress> hvList = new ArrayList<Progress>();
-		hvList = approveDAO.selectAllHv();
-		System.out.println(hvList);
-		System.out.println("serv hvList> test2" );
-		
-		return hvList;
-	}
 	
 	//결재 신청[승인/반려] Form
 	@Override
@@ -134,6 +121,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return draft;
 	}
 	
+	
 	//결재 요청[승인/반려] *** 중복코드 메소드화 ***
 	@Override
 	public int apProAddServ(Draft draft, Progress progress, int dftCode) {
@@ -143,11 +131,12 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		//-----결재자 가져오기
 		draft = approveDAO.selectCountHv(dftCode);
+		
 		//-----결재 시간/결재여부 setting
 		progress.setProRealTime(formatter.format(today));
 		progress.setProPersonState(true);
 		
-		if(draft.getDftApproval1() !=0 && draft.getDftApproval2() ==0 && draft.getDftApproval3() ==0){
+		if(draft.getDftApproval1() !=0 && draft.getDftApproval2() ==0 && draft.getDftApproval3() ==0){//결재자가 1명일 경우
 			totalCount = 1;
 			
 			if(progress.getProState()==1){//----- 승인
@@ -156,7 +145,7 @@ public class ApproveServiceImpl implements ApproveService {
 				
 				//----- 승인 : draft update
 				//System.out.println("serv proModify 승인> test1");
-				draft.setDftFinalState(draft.getDftDegree()+"차최종결재승인");
+				draft.setDftFinalState(draft.getDftDegree()+"차결재최종승인");
 				result = approveDAO.modifyDft(draft);
 				//System.out.println("serv dftModfy 승인> test2");
 			
@@ -170,7 +159,7 @@ public class ApproveServiceImpl implements ApproveService {
 				//System.out.println("serv dftModfy 반려> test3");
 			}
 			
-		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() ==0){
+		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() ==0){//결재자가 2명일 경우
 			totalCount = 2;
 			//----- totalCount와 degree를 비교
 			//----- if(degree < totalCount)
@@ -220,7 +209,7 @@ public class ApproveServiceImpl implements ApproveService {
 					
 					//----- 승인 : draft update
 					//System.out.println("serv proModify 승인> test1");
-					draft.setDftFinalState(draft.getDftDegree()+"차최종결재승인");
+					draft.setDftFinalState(draft.getDftDegree()+"차결재최종승인");
 					result = approveDAO.modifyDft(draft);
 					//System.out.println("serv dftModfy 승인> test2");
 				
@@ -235,7 +224,7 @@ public class ApproveServiceImpl implements ApproveService {
 				}	
 			}
 			
-		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() !=0){
+		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() !=0){// 결재자가 3명일 경우
 			totalCount = 3;
 			//totalCount와 degree를 비교 후 최종승인
 			//----- if(degree < totalCount)
@@ -278,7 +267,7 @@ public class ApproveServiceImpl implements ApproveService {
 					System.out.println("serv dftModfiy 3-2 반려> test");
 				}
 			
-			//2-2 최종 결재일 경우
+			//----- 최종 결재일 경우
 			}else if(draft.getDftDegree() == totalCount){
 				if(progress.getProState()==1){//----- 승인
 					//----- 승인 progress update
@@ -286,7 +275,7 @@ public class ApproveServiceImpl implements ApproveService {
 					
 					//----- 승인 : draft update
 					//System.out.println("serv proModify 승인> test1");
-					draft.setDftFinalState(draft.getDftDegree()+"차최종결재승인");
+					draft.setDftFinalState(draft.getDftDegree()+"차결재최종승인");
 					result = approveDAO.modifyDft(draft);
 					//System.out.println("serv dftModfy 승인> test2");
 				
@@ -309,9 +298,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return result;
 	}
 		
-		
 	
-
 	//임시 목록 :GET
 	@Override
 	public List<Draft> temListServ() {

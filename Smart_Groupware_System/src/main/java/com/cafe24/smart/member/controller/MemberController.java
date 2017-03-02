@@ -33,12 +33,19 @@ public class MemberController {
 	
 	
 	
+	//세션 로그인
+	
+	
+	//세션 로그아웃
+	
+	
 	//get 요청 개인정보조회 
 	@RequestMapping(value="member/mm_list",method=RequestMethod.GET)
 	public String mmListCtrl(){
 		return "member/mm_list";
 		
 	}
+	
 	
 	// post 요청 사원 등록
 		@RequestMapping(value="member/mm_add",method=RequestMethod.POST)
@@ -52,7 +59,7 @@ public class MemberController {
 			memberService.mmAddServ(member,memberAchieve,memberLicense,career);
 			//memberService.mmAddServ(Member member, MemberAchieve memberAchieve, , Career career);
 			
-			return null;
+			return "member/mm_add";
 		}
 	//get 요청 사원 등록화면
 	@RequestMapping(value="member/mm_add",method=RequestMethod.GET)

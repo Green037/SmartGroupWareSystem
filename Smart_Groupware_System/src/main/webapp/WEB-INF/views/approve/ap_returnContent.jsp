@@ -17,7 +17,6 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
-					console.log(data);
 					$('#pmListTbody').empty();
 					$.each(data,function(i, result){
 						/* console.log(result.prCode);
@@ -72,7 +71,7 @@
 <!-- 본문시작 -->
 <div class="container">
 	<center>
-		<h2><span class="glyphicon glyphicon-file"> 프로젝트 상세보기</span></h2>
+		<h2><span class="glyphicon glyphicon-file"> 기안반려 상세보기</span></h2>
 	</center> 
 	<marquee behavior="alternate">
 		<p style="color:red;">This infomation is detail contents By you selected.</p>
@@ -80,67 +79,62 @@
 	<table class="table table-bordered">
 		<thead>
 			<tr>
-				<th><span class="glyphicon glyphicon-bookmark"></span> 프로젝트코드</th>
-				<th colspan="7">
-					<center>${project.prCode}</center>
+				<th><span class="glyphicon glyphicon-bookmark"></span> 기안코드</th>
+				<th colspan="8">
+					<center>${draft.dftCode}</center>
 				</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td><span class="glyphicon glyphicon-list-alt"></span> 프로젝트명</td>
-				<td colspan="7" align="center">${project.prName}</td>
+				<td >기안제목</td>
+				<td colspan="8" align="center">${draft.dftTitle}</td>
 			</tr>
 			<tr>
-				<td><span class="glyphicon glyphicon-comment"></span> 프로젝트목적</td>
-				<td colspan="7">${project.prGoal}</td>
+				<td>반려사유</td>
+				<td colspan="8"></td>
 			</tr>
+			
 			<tr>
-				<td><strong><span class="glyphicon glyphicon-king"></span> 팀장</strong></td>
-				<td colspan="3">-</td>
-				<td><strong><span class="glyphicon glyphicon-king"></span> 직급</strong></td>
+				<td><strong>분류</strong></td>
+				<td>프로젝트/고과/임금</td>
+				<td></span> 기안등록날자</td>
+				<td>${draft.dftDate}</td>
+				<td></span> 반려결재날자</td>
+				<td>${draft.dftDate}</td>
+			</tr>
+			
+			
+			<tr>
+				<td><strong>기안자</strong></td>
+				<td>${draft.mmCode}</td>
+				<td><strong>직급</strong></td>
 				<td>-</td>
-				<td><strong><span class="glyphicon glyphicon-flag"></span> 부서</strong></td>
+				<td><strong>부서</strong></td>
 				<td>-</td>
 			</tr>
+			
 			<tr>
-				<td><strong><span class="glyphicon glyphicon-envelope"></span> 이메일</strong></td>
-				<td colspan="2">-</td>
-				<td><strong><span class="glyphicon glyphicon-earphone"></span> 전화번호</strong></td>
-				<td colspan="2">-</td>
-				<td><strong><span class="glyphicon glyphicon-log-in"></span> 참여인원</strong></td>
-				<td>
-					${pmCount} / ${project.prMember}
-					<button type="button" id="pmBtn">상세보기</button>
-					
-				</td>
+				<td>결재자</td>
+				<td>${draft.proApproval}</td>
+				<td>직급</td>
+				<td>-</td>
+				<td>부서</td>
+				<td>-</td>
 			</tr>
+			
 			<tr>
-				<td><strong><span class="glyphicon glyphicon-usd"></span> 총자금</strong></td>
-				<td>
-					${project.prMoney}
-					<button type="button" id="fuBtn">내역보기</button>
-				</td>
-				<td><strong><span class="glyphicon glyphicon-calendar"></span> 시작일</strong></td>
-				<td colspan="2">${project.prStartDay}</td>
-				<td><strong><span class="glyphicon glyphicon-calendar"></span> 종료일</strong></td>
-				<td colspan="2">${project.prEndDay}</td>
+				<td>결재진행현황</td>
+				<td>${draft.dftFinalState}</td>
+				<td>파일</td>
+				<td colspan="6">업로드된 파일</td>
 			</tr>
-			<tr>
-				<td><strong><span class="glyphicon glyphicon-tasks"></span> 팀원모집상황</strong></td>
-				<td>${project.prProgress}</td>
-				<td><strong><span class="glyphicon glyphicon-folder-open"></span> 분류</strong></td>
-				<td>${project.prCate}</td>
-				<td><strong><span class="glyphicon glyphicon-check"></span> 진행최종승인여부</strong></td>
-				<td>${project.prForProgress}</td>
-				<td><strong><span class="glyphicon glyphicon-hourglass"></span> 프로젝트진행상황</strong></td>
-				<td>${project.prFinishCheck}</td>
-			</tr>
+		
 			<tr>
 				<td colspan="8" align="center">
 					<div class="btn-group">
 						<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >
-							<span class="glyphicon glyphicon-edit"></span> 수정
+							<span class="glyphicon glyphicon-edit"></span> 목록
 						</a>
 						<a href="#" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span> 삭제</a>
 					</div>
@@ -150,8 +144,11 @@
 	</table>
 	
 </div>
+
+<%-- 
 <c:import url="./pm_list.jsp"></c:import> <!--팝업창, 참여인원리스트  -->
 <c:import url="./fu_list.jsp"></c:import> <!--팝업창, 자금상세리스트  -->
+ --%>
 
 <!-- 본문끝 -->
 </div>				

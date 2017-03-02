@@ -11,9 +11,9 @@ public class Member {
 	private String mmJoinDate;
 	private String mmResignDate;
 	private int mmAnnualLeave;
-	private boolean mmArmy;
+	private int mmArmy;
 	private String mmEmail;
-	private boolean mmMarriage;
+	private int mmMarriage;
 	private String mmPassword;
 	private String mmSign;
 	private String mmAddress;
@@ -93,11 +93,11 @@ public class Member {
 		this.mmAnnualLeave = mmAnnualLeave;
 	}
 
-	public boolean isMmArmy() {
+	public int isMmArmy() {
 		return mmArmy;
 	}
 
-	public void setMmArmy(boolean mmArmy) {
+	public void setMmArmy(int mmArmy) {
 		this.mmArmy = mmArmy;
 	}
 
@@ -109,11 +109,11 @@ public class Member {
 		this.mmEmail = mmEmail;
 	}
 
-	public boolean isMmMarriage() {
+	public int isMmMarriage() {
 		return mmMarriage;
 	}
 
-	public void setMmMarriage(boolean mmMarriage) {
+	public void setMmMarriage(int mmMarriage) {
 		this.mmMarriage = mmMarriage;
 	}
 
