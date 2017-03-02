@@ -1,9 +1,10 @@
 package com.cafe24.smart.wbs.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-public class WbsService {
+import com.cafe24.smart.member.domain.Member;
 
-	private static final Logger log = LoggerFactory.getLogger(WbsService.class);
+@Service
+public interface WbsService {
+	int checkMemberServ(Member member);
 }

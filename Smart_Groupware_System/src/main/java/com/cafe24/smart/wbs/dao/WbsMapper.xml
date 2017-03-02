@@ -16,5 +16,35 @@
 		<result property="wbsUncompletedReason" column="wbs_uncompletedReason"/>
 		<result property="wbsFinalEndDate" column="wbs_finalEndDate"/>
 	</resultMap>
+	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" column="mm_code"/>
+		<result property="ctCode" column="ct_code"/>
+		<result property="ptCode" column="pt_code"/>
+		<result property="dpCode" column="dp_code"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="mmJoinDate" column="mm_joinDate"/>
+		<result property="mmResignDate" column="mm_resignDate"/>
+		<result property="mmAnnualLeave" column="mm_annualLeave"/>
+		<result property="mmArmy" column="mm_army"/>
+		<result property="mmEmail" column="mm_email"/>
+		<result property="mmMarriage" column="mm_marriage"/>
+		<result property="mmPassword" column="mm_password"/>
+		<result property="mmSign" column="mm_sign"/>
+		<result property="mmAddress" column="mm_address"/>
+		<result property="mmTel" column="mm_tel"/>
+		<result property="mmBank" column="mm_bank"/>
+		<result property="mmAccount" column="mm_account"/>
+	</resultMap>
 	
+	<select id="selectByMmCodeMm"
+			parameterType="com.cafe24.smart.member.domain.Member"
+			resultMap="resultMm">
+		SELECT 
+			*
+		FROM 
+			memberManagement
+		WHERE
+			mm_code = #{mmCode} 
+	</select>
 </mapper>
