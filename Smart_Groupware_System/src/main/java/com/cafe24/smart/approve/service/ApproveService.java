@@ -17,28 +17,14 @@ public interface ApproveService {
 	//-----총 목록 (진행 목록)
 	List<Draft> pgListServ(int apProgress);
 
-	//결재 목록
-	List<Draft> hvListServ();
-
 	//임시 목록
 	List<Draft> temListServ();
-	
-	//반려 목록
-	List<Progress> reListServ();
 
 	//결재 승인/반려 페이지 요청
 	Draft hvContServ(int dftCode);
 	
 	//결재 승인/반려 요청
-	/*int apProAddServ(Draft draft, Progress progress);*/
 	int apProAddServ(Draft draft, Progress progress, int dftCode);
-
-	//완료 목록
-	List<Progress> comListServ();
-
-	
-
-
 	
 
 	

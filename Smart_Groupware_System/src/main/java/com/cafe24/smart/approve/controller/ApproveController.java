@@ -45,7 +45,7 @@ public class ApproveController {
 	}
 		
 	//-----[총 목록 보여주는 목록]진행 목록 : GET 
-	@RequestMapping(value ="ap/pgList", method = RequestMethod.GET)
+	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
 		//System.out.println("ctrl pgList> test");
 		//System.out.println(apProgress);
@@ -57,13 +57,13 @@ public class ApproveController {
 		
 		model.addAttribute("pgList", pgList);
 	
-		return "/approve/ap_proList";
+		return "/approve/ap_list";
 	}
-	
 
-	//결재 정보 [승인/반려 Content] : GET
-	@RequestMapping(value="ap/hvContent", method=RequestMethod.GET)
-	public String aphvDetailCtrl(Model model, @RequestParam("dftCode") int dftCode){
+
+	//결재 상세보기 : GET
+	@RequestMapping(value="ap/Content", method=RequestMethod.GET)
+	public String apHvDetailCtrl(Model model,@RequestParam(value="apProgress", defaultValue="0") int apProgress, @RequestParam("dftCode") int dftCode){
 	
 		System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
@@ -71,10 +71,15 @@ public class ApproveController {
 		//System.out.println(draft);
 		model.addAttribute("draft", draft);
 		
-		return "/approve/ap_haveContent";
+		// 대기/반려/완료에 따라 다른 Content 조건을 url에 넣어준다
+		String url;
+		url = "/approve/ap_returnContent";
+		
+		return url;
 	
-	}
+	}	
 	
+
 	//결재 정보[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
@@ -82,44 +87,9 @@ public class ApproveController {
 		System.out.println("ctrl proAdd> test");
 		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
-		return "redirect:/ap/pgList";  
+		return "redirect:/ap/list";  
 	}
 	
-			//반려 목록 : GET
-			@RequestMapping(value ="ap/relist", method = RequestMethod.GET)
-			public String reList(Model model){
-				
-				System.out.println("ctrl reList> test");
-				List<Progress> reList = new ArrayList<Progress>();
-				reList = approveService.reListServ();
-				model.addAttribute("reList",reList);
-				
-				return "/approve/ap_reList";   
-			}
-		
-			//완료 목록 : GET
-			@RequestMapping(value ="ap/comlist", method = RequestMethod.GET)
-			public String comList(Model model){
-				System.out.println("ctrl comList> test");
-				List<Progress> comList = new ArrayList<Progress>();
-				comList = approveService.comListServ();
-				model.addAttribute("comList", comList);
-				
-				return "/approve/ap_comList";   
-			}
-			
-			//결재 목록 : GET 
-			@RequestMapping(value="ap/hvList", method=RequestMethod.GET)
-			public String apHaveListCtrl(Model model){	
-				System.out.println("ctrl hvList> test");
-				List<Draft> hvList = new ArrayList<Draft>();
-				hvList = approveService.hvListServ();
-				model.addAttribute("hvList", hvList);
-				System.out.println(hvList);
-				
-				return "/approve/ap_haveList";
-			}
-		
 	
 	//임시 문서함 : GET
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)

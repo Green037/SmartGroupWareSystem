@@ -97,35 +97,6 @@ public class ApproveServiceImpl implements ApproveService {
 		return pgList;
 	}
 	
-	//반려 목록 : GET
-	@Override
-	public List<Progress> reListServ() {
-		System.out.println("serv reList> test");
-		List<Progress> reList = new ArrayList<Progress>();
-		reList = approveDAO.selectAllRe();
-		return reList;
-	}
-
-	//완료 목록 : GET
-	@Override
-	public List<Progress> comListServ() {
-		System.out.println("serv comList> test");
-		List<Progress> comList = new ArrayList<Progress>();
-		comList = approveDAO.selectAllCom();
-		return comList;
-	}
-
-	//결재 목록 :GET
-	@Override
-	public List<Draft> hvListServ() {
-		System.out.println("serv hvList> test1" );
-		List<Draft> hvList = new ArrayList<Draft>();
-		hvList = approveDAO.selectAllHv();
-		System.out.println(hvList);
-		System.out.println("serv hvList> test2" );
-		
-		return hvList;
-	}
 	
 	//결재 신청[승인/반려] Form
 	@Override
@@ -296,7 +267,7 @@ public class ApproveServiceImpl implements ApproveService {
 					System.out.println("serv dftModfiy 3-2 반려> test");
 				}
 			
-			//2-2 최종 결재일 경우
+			//----- 최종 결재일 경우
 			}else if(draft.getDftDegree() == totalCount){
 				if(progress.getProState()==1){//----- 승인
 					//----- 승인 progress update
@@ -327,9 +298,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return result;
 	}
 		
-		
 	
-
 	//임시 목록 :GET
 	@Override
 	public List<Draft> temListServ() {

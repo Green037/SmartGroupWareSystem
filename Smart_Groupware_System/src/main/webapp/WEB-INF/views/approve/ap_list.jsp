@@ -9,9 +9,9 @@
 	<script>
 		$(document).on('click','#putInBtn',function(){
 			$('#putInFor').modal();
-			var prCode = $(this).parent().parent().children('#_prCode').val();
+			var dftCode = $(this).parent().parent().children('#_dftCode').val();
 			console.log(prCode);
-			$('#prCode').val(prCode);
+			$('#dftCode').val(dftCode);
 		});
 		
 		
@@ -41,13 +41,13 @@
 	</marquee>
            
 	<div class="btn-group btn-group-justified">
-		<a href="<c:url value='/ap/pgList?apProgress=1'/>" class="btn btn-success">
+		<a href="<c:url value='/ap/list?apProgress=1'/>" class="btn btn-success">
 			<span class="glyphicon glyphicon-search"></span> 결재 대기 목록
 		</a>
-		<a href="<c:url value='/ap/pgList?apProgress=2'/>" class="btn btn-success">
+		<a href="<c:url value='/ap/list?apProgress=2'/>" class="btn btn-success">
 			<span class="glyphicon glyphicon-play"></span> 결재 반려 목록
 		</a>
-		<a href="<c:url value='/ap/pgList?apProgress=3'/>" class="btn btn-success">
+		<a href="<c:url value='/ap/list?apProgress=3'/>" class="btn btn-success">
 			<span class="glyphicon glyphicon-check"></span> 결재 완료 목록
 		</a>
 	</div>
@@ -61,40 +61,54 @@
 				<th>기안등록일자</th>
 				<th>최근결재일자</th>
 				<th>결재진행현황</th>
+				<th>인쇄</th>
+			
 			
 				
 			</tr>
 		</thead>
 		<tbody>
+		<!-- apProgress=?조건 추가 '&'로 붙여줘야함 -->
 			<c:forEach var="pgList" items="${pgList}">
 				<tr>
 					<input type="hidden" id="_dftCode" value="${pgList.dftCode}"/>
 					<td>${pgList.dftCode}</td>
-					<td><a href="<c:url value='/ap/hvContent?dftCode=${pgList.dftCode}' />">${pgList.dftTitle}</a></td>
+					<td><a href="<c:url value='/ap/Content?dftCode=${pgList.dftCode}'/>">${pgList.dftTitle}</a></td>
 					<td>${pgList.mmCode}</td>
 					<td>${pgList.proApproval}</td>
 					<td>${pgList.dftDate}</td>
 					<td>${pgList.proRealTime}</td>
 					<td>${pgList.dftFinalState}</td>
 				
+				
 					
-			<%-- 		<c:choose>
-						<c:when test="${projectList.prProgress eq '모집중'}">
-							<td>
-								<button type="button" id="putInBtn">참여신청</button>
-							</td>
-						</c:when>
-						<c:when test="${projectList.prProgress eq '모집완료'}">
-							<td>-</td>
-						</c:when>
-					</c:choose> --%>
+					<c:choose>
+							<c:when test="${pgList.dftFinalState eq '3차결재최종승인'}">
+								<td>
+									<button type="button" id="putInBtn">인쇄</button>
+								</td>
+							</c:when>
+							<c:when test="${pgList.dftFinalState eq '2차결재최종승인'}">
+								<td>
+									<button type="button" id="putInBtn">인쇄</button>
+								</td>
+							</c:when>
+							<c:when test="${pgList.dftFinalState eq '1차결재최종승인'}">
+								<td>
+									<button type="button" id="putInBtn">인쇄</button>
+								</td>
+							</c:when>
+					
+					</c:choose>
 					
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
-<%-- <c:import url="./pm_addForm.jsp"></c:import> <!--팝업창, 참여신청폼  --> --%>
+
+<c:import url="./ap_comContent.jsp"></c:import> <!--팝업창, 인쇄창  -->
+
 </body>
 </html>
 <!-- 본문끝 -->

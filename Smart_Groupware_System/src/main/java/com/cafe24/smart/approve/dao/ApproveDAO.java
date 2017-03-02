@@ -29,19 +29,10 @@ public interface ApproveDAO {
 	//임시 목록
 	List<Draft> selectAllTem();
 	
-	//결재 목록
+	//-----총 목록 : intro 목록
 	List<Draft> selectAllPg();
 	//-----총 목록 : 대기/반려/완료
 	List<Draft> selectByHv(int progress);
 	
-		//반려 목록
-		List<Progress> selectAllRe();
-		
-		//완료 목록
-		List<Progress> selectAllCom();
-		
-		//대기 목록
-		List<Draft> selectAllHv();
-		
 	
 }
