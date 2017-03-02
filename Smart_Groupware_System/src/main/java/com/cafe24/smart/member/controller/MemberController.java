@@ -31,9 +31,26 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//get 요청 개인정보조회 
+	//get 요청 사원정보조회 
 	@RequestMapping(value="member/mm_list",method=RequestMethod.GET)
-	public String mmListCtrl(){
+	public String mmListCtrl(Model model){
+		List<Achieve> achieve = memberService.acListServ();
+		List<License> license = memberService.lcListServ();
+		List<Contract> contract = memberService.CtListServ();
+		List<Position> position = memberService.PtListServ();
+		List<Department> department = memberService.DpListServ();
+		List<MajorTypeOfBusiness> majorTypeOfBusiness = memberService.maListServ();
+		List<MinorTypeOfBusiness> minorTypeOfBusiness = memberService.miListServ();
+		
+		
+		model.addAttribute("achieve", achieve);
+		model.addAttribute("license", license);
+		model.addAttribute("contract",contract);
+		model.addAttribute("position",position);
+		model.addAttribute("department", department);
+		model.addAttribute("majorTypeOfBusiness", majorTypeOfBusiness);
+		model.addAttribute("minorTypeOfBusiness", minorTypeOfBusiness);
+		
 		return "member/mm_list";
 		
 	}
