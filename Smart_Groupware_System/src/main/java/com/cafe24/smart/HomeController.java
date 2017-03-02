@@ -24,6 +24,6 @@ public class HomeController {
 		/*session.setAttribute("id", 8);
 		session.setAttribute("password", 123456);*/
 		
-		return "member/mm_login";
+		return "home";
 	}	
 }																																																																																				

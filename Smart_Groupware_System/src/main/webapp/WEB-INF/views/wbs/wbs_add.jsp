@@ -19,9 +19,35 @@
 				dataType : 'json',
 				type : 'POST',
 				success : function(data){
-					console.log('h2 ajax WBS AddForm!');
+					/* console.log('h2 ajax WBS AddForm!');
+					console.log(data);  */
+					if(data.result){
+						$.each(data.prList, function(i, result){
+						/* console.log(result.prCode); */
+							$('#projectList').css('display','');
+							$('#prListTbody').append(`
+								<tr>
+									<td id="prCode_">`+result.prCode+`</td>
+									<td>`+result.prName+`</td>
+									<td>`+result.prMemberCode+`</td>
+									<td>`+result.prProgress+`</td>
+									<td>`+result.prCate+`</td>
+									<td>`+result.prStartDay+`</td>
+									<td>`+result.prEndDay+`</td>
+									<td><button type="button" id="choiceBtn">선택</button></td>
+								</tr>`);
+						});
+						$('#checkMember').modal('hide');
+					}else{
+						alert(data.check+"이(가) 불일치 합니다 다시 입력해주세요.");
+					}
 				}
-			}); 
+			});
+		});
+		$(document).on('click','#choiceBtn',function(){
+			var prCode = $('#prCode_').text();
+			console.log(prCode);
+			
 		});
 	</script>
 </head> 
@@ -47,6 +73,23 @@
 	</marquee>
 	<button type="button" id="searchProjectBtn" class="btn btn-primary">내 프로젝트 검색</button>
 	
+	<table id="projectList" class="table table-hover" style="display:none;">
+		<thead>
+			<tr>
+				<th>코드</th>
+				<th>프로젝트명</th>
+				<th>팀장</th>
+				<th>인원모집상황</th>
+				<th>분류</th>
+				<th>시작일</th>
+				<th>종료일</th>
+				<th>#</th>
+			</tr>
+		</thead>
+		<tbody id="prListTbody">
+		
+		</tbody>
+	</table>
 	<table class="table table-bordered" id="projectTable" style="display:none;">
 		<thead>
 			<tr>

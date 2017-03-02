@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.project.domain.Project;
 
 @Repository
 public interface WbsDAO {
-	List<Member> selectByMmCodeMm(Member member);
+	Member selectByMmCodeMm(Member member);
+	List<Project> selectByMmCodePr(int mmCode);
 
 }

@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="WbsDAO">
-	<resultMap id="resulWbs" type="Wbs">
+	<resultMap id="resulWbs" type="com.cafe24.smart.wbs.domain.Wbs">
 		<result property="wbsCode" column="wbs_code"/>
 		<result property="prCode" column="pr_code"/>
 		<result property="wbsCate" column="wbs_cate"/>
@@ -36,6 +36,22 @@
 		<result property="mmBank" column="mm_bank"/>
 		<result property="mmAccount" column="mm_account"/>
 	</resultMap>
+	<resultMap id="resultPr" type="com.cafe24.smart.project.domain.Project">
+		<result property="prCode" column="pr_code"/>
+		<result property="prMemberCode" column="pr_memberCode"/>
+		<result property="dftCode" column="dft_code"/>
+		<result property="prName" column="pr_name"/>
+		<result property="prMember" column="pr_member"/>
+		<result property="prMoney" column="pr_money"/>
+		<result property="prGoal" column="pr_goal"/>
+		<result property="prProgress" column="pr_progress"/>
+		<result property="prCate" column="pr_cate"/>
+		<result property="prRestration" column="pr_resitration"/>
+		<result property="prStartDay" column="pr_startDay"/>
+		<result property="prEndDay" column="pr_endDay"/>
+		<result property="prForProgress" column="pr_forProgress"/>
+		<result property="prFinishCheck" column="pr_finishCheck"/>
+	</resultMap>
 	
 	<select id="selectByMmCodeMm"
 			parameterType="com.cafe24.smart.member.domain.Member"
@@ -46,5 +62,16 @@
 			memberManagement
 		WHERE
 			mm_code = #{mmCode} 
+	</select>
+	
+	<select id="selectByMmCodePr"
+			parameterType="int"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM 
+			project
+		WHERE 
+			pr_memberCode = #{mmCode}
 	</select>
 </mapper>
