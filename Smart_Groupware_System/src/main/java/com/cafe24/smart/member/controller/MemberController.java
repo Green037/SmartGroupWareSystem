@@ -31,14 +31,6 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	
-	
-	//세션 로그인
-	
-	
-	//세션 로그아웃
-	
-	
 	//get 요청 개인정보조회 
 	@RequestMapping(value="member/mm_list",method=RequestMethod.GET)
 	public String mmListCtrl(){
