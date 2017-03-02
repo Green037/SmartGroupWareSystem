@@ -21,8 +21,13 @@ public class HomeController {
 		
 		log.info("home is called ...");
 		
+<<<<<<< HEAD
+		session.setAttribute("id", 2);
+		session.setAttribute("password", 123456);
+=======
 		/*session.setAttribute("id", 8);
 		session.setAttribute("password", 123456);*/
+>>>>>>> 6b57acdb43c5e6a34de055f1d3b8f510b84f76a6
 		
 		return "home";
 	}	

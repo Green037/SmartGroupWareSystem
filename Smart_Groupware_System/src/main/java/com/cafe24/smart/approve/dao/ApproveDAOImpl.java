@@ -36,27 +36,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.insert("AprDAO.insertPg" ,progress);
 	}
 	
-	// 결재 진행중 목록
-	@Override
-	public List<Draft> selectAllPg(){
-		System.out.println("dao pgList> test" );
-		return sqlSession.selectList("AprDAO.selectAllPg");
-	}
-	
-	// 결재 완료 목록
-	@Override
-	public List<Progress> selectAllCom() {
-		System.out.println("dao comList> test" );
-		return sqlSession.selectList("AprDAO.selectAllCom");
-	}
-	
-	// 결재 가능 목록
-	@Override
-	public List<Progress> selectAllHv(){
-		System.out.println("dao hvList> test" );
-		return sqlSession.selectList("AprDAO.selectAllHv");
-	}
-	
+
 	// 결재 신청 폼 : dftCode 가져오기
  	@Override
 	public Draft selectContHv(int dftCode){
@@ -106,11 +86,19 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectAllTem");
 	}
 	
-	// 반려 목록
+	//------총 결재 목록 : intro 목록 
 	@Override
-	public List<Progress> selectAllRe() {
-		System.out.println("dao reList> test");
-		return sqlSession.selectList("AprDAO.selectAllRe");
+	public List<Draft> selectAllPg(){
+		System.out.println("dao pgList> test" );
+		return sqlSession.selectList("AprDAO.selectAllPg");
 	}
+	
+	//----- 총 목록 : 대기/반려/완료
+	@Override
+	public List<Draft> selectByHv(int progress) {
+		System.out.println("dao byHvList> test");
+		return sqlSession.selectList("AprDAO.selectByHv", progress);
+	}
+
 
 	}

@@ -33,6 +33,7 @@
 		<result property="dftFinalState" column="dft_finalState"/>
 		<result property="dftCheck" column="dft_check"/>
 		<result property="proApproval" column="pro_approval"/>
+		<result property="proRealTime" column="pro_realTime"/>
 	
 	</resultMap>
 	
@@ -51,7 +52,7 @@
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
-<!-- 기안 등록 -->	
+<!-- 기안 등록 1-1 -->	
 <insert id="insertDft" 
 		parameterType="com.cafe24.smart.approve.domain.Draft"
 		useGeneratedKeys="true" keyProperty="dftCode">
@@ -84,7 +85,7 @@
 	        )
 </insert>
 
-<!-- 진행 등록 -->
+<!-- 진행 등록 1-2 -->
 <insert id="insertPg"
 		parameterType="com.cafe24.smart.approve.domain.Progress">
 		
@@ -106,27 +107,32 @@
 </insert>
 
 
-<!-- 진행 목록  -->
+<!-- 결재 목록 :intro 목록(전체 결재 목록)-->
 <select id="selectAllPg"
 		resultMap="resultDft">
 		SELECT 
 			* 
 		FROM 
-			draft;
-</select>
-
-<!-- 결재 목록 -->
-<select id="selectAllHv"
-			resultMap="resultPro">
-		SELECT 
-			* 
-		FROM 
 			progress,draft 
 		WHERE 
-			pro_state=0   
+			progress.dft_code = draft.dft_code
+</select>
+
+
+<!-- 결재 목록 :결재 대기/반려/완료 -->
+<select id="selectByHv"
+		parameterType="int"
+		resultMap="resultDft">
+		SELECT   
+			*  
+		FROM 
+			progress,draft 
+		WHERE  
+			pro_state = #{proState}
 		AND 
 			progress.dft_code = draft.dft_code
 </select>
+
 
 <!-- 결재 상세보기 : dftCode 가져오기// 결재자 가져오기-->
 <select id="selectContHv"
@@ -205,28 +211,9 @@
 		<!-- 사원코드 select 조건 추가 -->		
 </select>
 		
-<!-- 반려 목록 -->
-<select id="selectAllRe"
-		resultMap="resultPro">
-		SELECT 
-			* 
-		FROM 
-			progress 
-		WHERE 
-			pro_state = 2
 
-</select>
 
-<!-- 완료 목록 -->
-<select id="selectAllCom"
-		resultMap="resultPro">
-		SELECT 
-			* 
-		FROM 
-			progress 
-		WHERE 
-			pro_state = 1 
-</select>
+
 		
 </mapper>
 

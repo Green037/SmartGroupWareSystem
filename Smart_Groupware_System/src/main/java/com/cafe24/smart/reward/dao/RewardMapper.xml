@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="ReDAO">
-	<resultMap id="resultRe" type="Reward">
+	<resultMap id="resultRe" type="com.cafe24.smart.reward.domain.Reward">
 		<result property="reCode" column="re_code"/>
 		<result property="mmCode" column="mm_code"/>
 		<result property="reGrade" column="re_grade"/>
@@ -13,4 +13,18 @@
 		<result property="reMmCode" column="re_mmCode"/>
 	</resultMap>
 	
+	<select id="selectAllRe" parameterType="hashmap" resultMap="resultRe">
+		SELECT
+			*
+		FROM
+			reward
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			re_date = #{reDate};
+	</select>
+	
+	<select id="selectAllCountRe" resultType="int">
+		SELECT FOUND_ROWS();
+	</select>
 </mapper>
