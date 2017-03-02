@@ -21,9 +21,42 @@ public class HomeController {
 		
 		log.info("home is called ...");
 		
+<<<<<<< HEAD
+		session.setAttribute("id", 2);
+		session.setAttribute("password", 123456);
+=======
 		/*session.setAttribute("id", 8);
 		session.setAttribute("password", 123456);*/
+>>>>>>> 6b57acdb43c5e6a34de055f1d3b8f510b84f76a6
 		
 		return "home";
 	}	
+	
+	// 로그인 화면
+	@RequestMapping(value="/member/mm_login", method=RequestMethod.GET)
+	public String login(){
+		return "/member/mm_login";
+	}
+	
+	//로그인 처리
+	@RequestMapping(value="/member/mm_login", method=RequestMethod.POST)
+	public String login(int mmCode, String mmPassword, HttpSession session) {
+		
+		
+		return  "redirect:home";
+		
+		
+	}
+	
+	
+	// 로그아웃 화면
+	 @RequestMapping(value="/member/mm_logout", method=RequestMethod.GET)
+	    public String logout(HttpSession session) {
+		 	session.invalidate();
+	        return "redirect:home";
+	 }
+	 
+	
+	 
+	 
 }																																																																																				

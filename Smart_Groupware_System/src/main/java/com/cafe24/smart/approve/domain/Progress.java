@@ -10,6 +10,7 @@ public class Progress {
 	private boolean proPersonState;
 	private int proTurn;
 	private String proRealTime;
+	
 	private String dftTitle;
 	private String dftDate;
 	private int proApproval;

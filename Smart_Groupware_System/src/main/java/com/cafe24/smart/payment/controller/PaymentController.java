@@ -1,8 +1,6 @@
 package com.cafe24.smart.payment.controller;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.cafe24.smart.insurance.service.InsuranceService;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.payment.service.PaymentService;
-import com.cafe24.smart.payment.domain.PaymentView;
 
 @Controller
 public class PaymentController {

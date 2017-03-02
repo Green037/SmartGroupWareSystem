@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -8,53 +11,53 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
  <!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel='stylesheet' type='text/css' />
 <!-- Custom CSS -->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="<c:url value='/resources/css/style.css'/>" rel='stylesheet' type='text/css' />
 <!-- Graph CSS -->
-<link href="css/font-awesome.css" rel="stylesheet"> 
+<link href="<c:url value='/resources/css/font-awesome.css'/>" rel="stylesheet"> 
 <!-- jQuery -->
 <link href='//fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'>
 <!-- lined-icons -->
-<link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
+<link rel="stylesheet" href="resources/css/icon-font.min.css" type='text/css' />
 <!-- //lined-icons -->
-<script src="js/jquery-1.10.2.min.js"></script>
+<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 <!--clock init-->
 </head> 
 <body>
 								<!--/login-->
 								
-									   <div class="error_page">
-												<!--/login-top-->
-												
-													<div class="error-top">
-													<h2 class="inner-tittle page">Augment</h2>
-													    <div class="login">
-														<h3 class="inner-tittle t-inner">Login</h3>
-																<div class="buttons login">
-																			<ul>
-																				<li><a href="#" class="hvr-sweep-to-right">Facebook</a></li>
-																				<li class="lost"><a href="#" class="hvr-sweep-to-left">Twitter</a> </li>
-																				<div class="clearfix"></div>
-																			</ul>
-																		</div>
-																<form>
-																		<input type="text" class="text" value="E-mail address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}" >
-																		<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
-																		<div class="submit"><input type="submit" onclick="myFunction()" value="Login" ></div>
-																		<div class="clearfix"></div>
-																		
-																		<div class="new">
-																			<p><label class="checkbox11"><input type="checkbox" name="checkbox"><i> </i>Forgot Password ?</label></p>
-																			<p class="sign">Do not have an account ? <a href="sign.html">Sign Up</a></p>
-																			<div class="clearfix"></div>
-																		</div>
-																	</form>
-														</div>
+   <div class="error_page">
+			<!--/login-top-->
+			
+				<div class="error-top">
+				<h2 class="inner-tittle page">SmartGroup</h2>
+				    <div class="login">
+					<h3 class="inner-tittle t-inner">Login</h3>
+							<div class="buttons login">
+										<ul>
+											<li><a href="#" class="hvr-sweep-to-right">일요일도</a></li>
+											<li class="lost"><a href="#" class="hvr-sweep-to-left">월요일같이</a> </li>
+											<div class="clearfix"></div>
+										</ul>
+									</div>
+							<form>
+									<input type="text" class="text" value="사원 번호" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}" >
+									<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+									<div class="submit"><input type="submit" onclick="myFunction()" value="Login" ></div>
+									<div class="clearfix"></div>
+									
+									<div class="new">
+										<p><label class="checkbox11"><input type="checkbox" name="checkbox"><i> </i>Forgot Password ?</label></p>
+										<p class="sign">Do not have an account ? <a href="sign.html">Sign Up</a></p>
+										<div class="clearfix"></div>
+									</div>
+								</form>
+					</div>
 
-														
-													</div>
-													
+					
+				</div>
+				
 													
 												<!--//login-top-->
 										   </div>
@@ -65,7 +68,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 												<div class="error-btn">
 															<a class="read fourth" href="index.html">Return to Home</a>
 															</div>
-										   <p>&copy 2016 Augment . All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">W3layouts.</a></p>
+										   <p>&copy 2016 SmartGroup . All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">빵상</a></p>
 										</div>
 									<!--footer section end-->
 									<!--/404-->

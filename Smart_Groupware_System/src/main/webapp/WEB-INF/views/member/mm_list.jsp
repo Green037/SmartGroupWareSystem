@@ -1,9 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	
+
 </head> 
 <body>
 
@@ -18,7 +24,7 @@
 					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart"><b>Home</b></a></li>
-							<li>개인정보조회</li>
+							<li>사원조회 리스트</li>
 						</ol>
 					</div>
 			
@@ -26,64 +32,34 @@
 						<div class="graph-form">
 							<div class="validation-form">
 								<form>
-									<div class="col-md-2 form-group1">
-										<label class="control-label"><b>사원번호</b></label>&nbsp;
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
+									<div class="col-sm-2">
+									<select  name="dpCode" id="dpCode" class="form-control1">
+										<option> 부서</option>
+										<c:forEach var="department" items="${department}">
+     										<option value="${department.dpCode}">${department.dpName}</option>
+     									</c:forEach> 
+     									</select>
 									</div>
-									<div class="col-md-2 form-group1 form-last">
-										<label class="control-label"><b>사원이름</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
+									<div class="col-sm-2">
+									<select name="ptCode" id="ptCode" class="form-control1">
+										<option> 직급</option>
+										<c:forEach var="position" items="${position}">
+     										<option value="${position.ptCode}">${position.ptName}</option>
+     									</c:forEach> 
+     									</select>
 									</div>
-									<div class="col-md-2 form-group1 form-last">
-										<label class="control-label"><b>소속부서</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
-									</div>
-									<div class="col-md-2 form-group1 form-last">
-										<label class="control-label"><b>직급</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
-									</div>
-									<div class="col-md-2 form-group1 form-last">
-										<label class="control-label"><b>계약형태</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
+									<div class="col-sm-2">
+									<select multiple="multiple" name="lcCodes" id="lcCodes" class="form-control1">
+										<option> 보유자격증</option>
+										<c:forEach var="license" items="${license}">
+      										<option value="${license.lcCode}">${license.lcName}</option>
+      									</c:forEach> 
+										</select>
 									</div>
 								</form>
 								<div class="clearfix">&nbsp;</div>
 						
-								<label class="control-label"><b>인사정보</b></label>
-								<table class="table table-bordered">
-									<tr>
-										<th>입사일</th>
-										<th>계약종료일</th>
-										<th>일급</th>
-										<th>군대여부</th>
-										<th>결혼여부</th>
-										<th>남은연차</th>
-									</tr>
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-									<tr>
-										<th>이메일주소</th>
-										<th>집주소</th>
-										<th>연락처</th>
-										<th>지급계좌</th>
-										<th>계좌번호</th>
-										<th>사인</th>
-									</tr>
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								</table> 
+								
 								<div class="clearfix">&nbsp;</div>
 								
 								
@@ -116,56 +92,10 @@
 								</div>
 								<div class="clearfix">&nbsp;</div>
 									
-								<label class="control-label"><b>경력 정보</b></label>
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>경력사항</th>
-											<th>경력기간</th>
-											<th>입사일</th>
-											<th>퇴사일</th>
-											<th>직급</th>
-											<th>상위업종</th>
-											<th>하위업종</th>
-											</tr>
-										</thead>
-									<tbody>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-									</tbody>
-								</table> 
+							
 								<div class="clearfix">&nbsp;</div>
 								
-									<label class="control-label"><b>보유 자격증</b></label>
-								<table class="table table-bordered">
-									<thead>
-										<tr>
-											<th>자격증</th>
-											<th>발급일자</th>
-											<th>발급기관</th>
-											<th>자격</th>
-											<th>분류</th>
-										</thead>
-									<tbody>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-
-										</tr>
-									</tbody>
-								</table> 
+								
 								
 							</div>
 								
