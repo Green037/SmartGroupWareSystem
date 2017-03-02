@@ -16,7 +16,9 @@ import com.cafe24.smart.member.domain.Position;
 
 public interface MemberService {
 	
-	int mmAddServ(Member member, MemberAchieve memberAchieve, MemberLicense memberLicense, Career career);
+	int mmAddServ(Member member,MemberAchieve memberAchieve,MemberLicense memberLicense,Career career); 
+	// 사원정보, 사원학력,경력사항,자격증 등록
+	
 	
 	List<Achieve> acListServ();
 	List<License> lcListServ();

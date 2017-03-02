@@ -31,7 +31,7 @@ public class MemberDAOImpl implements MemberDAO {
 // 	DB 에서 정보 불러오기 리스트-----------
 	@Override
 	public List<Achieve> selectAc() {
-		System.out.println("AcDao까지 확인");
+		//System.out.println("AcDao까지 확인");
 
 		return sqlSession.selectList("acDAO.selectAc");
 	}
@@ -93,55 +93,27 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int insertMm(Member member) {
 		
-		int mmCode = 0;
 		
-		mmCode = sqlSession.insert("MmDAO.resultMm", member);
-
-		if (mmCode < 0) {
-			sqlSession.rollback();
-		}
-		return mmCode;
+		return sqlSession.insert("MmDAO.insertMm",member);
 	}
 
 	@Override
 	public int insertMc(MemberAchieve memberAchieve) {
 		
-		int mcCode = 0;
-		
-		mcCode = sqlSession.insert("MmDAO.resultMc",memberAchieve);
-		
-		if (mcCode < 0) {
-			sqlSession.rollback();
-		}
-		
-		return mcCode;
+	
+		return sqlSession.insert("MmDAO.insertMc",memberAchieve);
 	}
 
 	@Override
 	public int insertMl(MemberLicense memberLicense) {
-		
-		int mlCode = 0;
-		
-		mlCode = sqlSession.insert("MmDAO.resultMl",memberLicense);
-		
-		if (mlCode < 0) {
-			sqlSession.rollback();	
-		}
-		
-		return mlCode;
+			
+		return sqlSession.insert("MmDAO.insertMl",memberLicense);
 	}
 
 	@Override
 	public int insertCr(Career career) {
-		int crCode = 0;
-		
-		crCode = sqlSession.insert("MmDAO.resultCr",career);
-		
-		if (crCode < 0) {
-			sqlSession.rollback();
-		}
-		
-		return  crCode;
+				
+		return  sqlSession.insert("MmDAO.insertCr", career);
 	}
 
 	

@@ -42,22 +42,22 @@ public class MemberController {
 	
 	// post 요청 사원 등록
 		@RequestMapping(value="member/mm_add",method=RequestMethod.POST)
-		public String mmAddCtrl(Member member, MemberAchieve memberAchieve, MemberLicense memberLicense, Career career) {
+		public String mmAddCtrl(Member member,MemberAchieve memberAchieve,MemberLicense memberLicense,Career career) {
 			
-			/*System.out.println("hihihihihihihihihih");
-			System.out.println(member);
-			System.out.println(memberAchieve);
-			System.out.println(memberLicense);
-			System.out.println(career);*/
+			System.out.println("member입력확인"+member);
+			System.out.println("memberAchieve입력확인"+memberAchieve);
+			System.out.println("career입력확인"+career);
+			System.out.println("memberLicense입력확인"+memberLicense);
+			//경력 입력 메서드호출
+			memberService.mmAddServ(member,memberAchieve,memberLicense,career);
+			//memberService.mmAddServ(Member member, MemberAchieve memberAchieve, , Career career);
 			
-			memberService.mmAddServ(member, memberAchieve, memberLicense, career);
-			
-			return "redirect:/member/mm_add";
+			return null;
 		}
 	//get 요청 사원 등록화면
 	@RequestMapping(value="member/mm_add",method=RequestMethod.GET)
 	public String mmAddCtrl(Model model){
-			System.out.println("사원등록컨트롤러확인");
+			//System.out.println("사원등록컨트롤러확인");
 		List<Achieve> achieve = memberService.acListServ();
 		List<License> license = memberService.lcListServ();
 		List<Contract> contract = memberService.CtListServ();
