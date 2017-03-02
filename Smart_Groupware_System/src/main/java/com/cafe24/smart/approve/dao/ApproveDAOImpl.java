@@ -50,9 +50,9 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectAllCom");
 	}
 	
-	// 결재 가능 목록
+	// 결재 대기 목록
 	@Override
-	public List<Progress> selectAllHv(){
+	public List<Draft> selectAllHv(){
 		System.out.println("dao hvList> test" );
 		return sqlSession.selectList("AprDAO.selectAllHv");
 	}
@@ -112,5 +112,13 @@ public class ApproveDAOImpl implements ApproveDAO {
 		System.out.println("dao reList> test");
 		return sqlSession.selectList("AprDAO.selectAllRe");
 	}
+
+	//----- 총 목록 : 대기/반려/완
+	@Override
+	public List<Draft> selectByHv(int progress) {
+		System.out.println("dao byHvList> test");
+		return sqlSession.selectList("AprDAO.selectByHv", progress);
+	}
+
 
 	}

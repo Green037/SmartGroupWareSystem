@@ -15,7 +15,9 @@ public class Draft {
 	private int dftApproval3;
 	private String dftFinalState;
 	private String dftCheck;
+	
 	private int proApproval;
+	private String proRealTime;
 
 	
 	public int getDftCode() {
@@ -96,15 +98,22 @@ public class Draft {
 	public void setProApproval(int proApproval) {
 		this.proApproval = proApproval;
 	}
+	public String getProRealTime() {
+		return proRealTime;
+	}
+	public void setProRealTime(String proRealTime) {
+		this.proRealTime = proRealTime;
+	}
 	
 	@Override
 	public String toString() {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode
 				+ ", dftTitle=" + dftTitle + ", dftDegree=" + dftDegree + ", dftDate=" + dftDate + ", dftApproval1="
 				+ dftApproval1 + ", dftApproval2=" + dftApproval2 + ", dftApproval3=" + dftApproval3
-				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", proApproval=" + proApproval + "]";
+				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", proApproval=" + proApproval
+				+ ", proRealTime=" + proRealTime + "]";
 	}
 	
-
+	
 	
 }

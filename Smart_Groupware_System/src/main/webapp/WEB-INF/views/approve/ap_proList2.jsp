@@ -19,46 +19,49 @@
 					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart"><b>Home</b></a></li>
-							<li>결재 가능 목록</li>
+							<li>진행중인 결재 목록</li>
 						</ol>
 					</div>
 			
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">						
-								<label class="control-label"><b>결재 가능 목록 [건수 : 10건]</b></label>
+								<label class="control-label"><b>진행중인 목록 [건수 : 10건]</b></label>
 								<table class="table table-bordered">
+								
 									<tr>
 										<th>차수</th>
-										<th>기안번호</th>
+										<th>구분</th>
 										<th width="300">문서제목</th>
 										<th>기안자</th>
 										<th>기안부서</th>
 										<th>등록일자</th>
-										<th>최근 결재 일자</th>
-										<th>결재상태</th>
-															
+										<th>최근결재일자</th>
+										<th></th>
+										<th>결재진행여부</th>
+										<th>결재자</th>
 									</tr>
 									
-									<c:forEach var="h" items="${hvList}">
+									<c:forEach var="p" items="${pgList}">
 									
 									<tr>
+										<td>${p.dftCode}</td>
 										<td></td>
-										<td>${h.dftCode}</td>
-										<td><a href="<c:url value='/ap/hvContent?dftCode=${h.dftCode}'/>">${h.dftTitle}</a></td>
-										<td>${h.mmCode}</td>
+										<td>${p.dftTitle}</td>
+										<td>${p.mmCode}</td>
+										<td>기안부서</td>
+										<td>${p.dftDate}</td>
 										<td></td>
-										<td>${h.dftDate}</td>
-										<td>${h.proRealTime}</td>
-										<td></td>								
-
+										<td></td>
+										<td>${p.dftFinalState}</td>
+										<td>결재자</td>
 									</tr>
-									
-									</c:forEach>
 				
+									</c:forEach>
+									
 								</table> 
-								<div class="clearfix">&nbsp;</div>				
-					
+								<div class="clearfix">&nbsp;</div>
+													
 							</div>
 						</div>
 					</div>

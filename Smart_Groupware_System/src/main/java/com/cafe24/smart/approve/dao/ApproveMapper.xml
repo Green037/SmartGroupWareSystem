@@ -33,6 +33,7 @@
 		<result property="dftFinalState" column="dft_finalState"/>
 		<result property="dftCheck" column="dft_check"/>
 		<result property="proApproval" column="pro_approval"/>
+		<result property="proRealTime" column="pro_realTime"/>
 	
 	</resultMap>
 	
@@ -117,16 +118,29 @@
 
 <!-- 결재 목록 -->
 <select id="selectAllHv"
-			resultMap="resultPro">
+			resultMap="resultDft">
 		SELECT 
 			* 
 		FROM 
 			progress,draft 
 		WHERE 
-			pro_state=0   
+			progress.dft_code = draft.dft_code
+</select>
+
+<!-- [총 결재자에 들어갈]결재 대기/반려/완료 목록 -->
+<select id="selectByHv"
+		parameterType="int"
+		resultMap="resultDft">
+		SELECT   
+			*  
+		FROM 
+			progress,draft 
+		WHERE  
+			pro_state = #{proState}
 		AND 
 			progress.dft_code = draft.dft_code
 </select>
+
 
 <!-- 결재 상세보기 : dftCode 가져오기// 결재자 가져오기-->
 <select id="selectContHv"
