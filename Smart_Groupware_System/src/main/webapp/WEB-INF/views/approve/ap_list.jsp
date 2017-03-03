@@ -10,15 +10,10 @@
 		$(document).on('click','#putInBtn',function(){
 			$('#putInFor').modal();
 			var dftCode = $(this).parent().parent().children('#_dftCode').val();
-			console.log(prCode);
+			console.log(dftCode);
 			$('#dftCode').val(dftCode);
 		});
-		
-		
-		$(document).on('click','#approvalBtn',function(){
-			$('#approvalForm').attr({action:"<c:url value='/pr/addPm'/>", method:"post"}).submit();
-		});
-	
+			
 	</script>
 </head> 
 
@@ -51,6 +46,8 @@
 			<span class="glyphicon glyphicon-check"></span> 결재 완료 목록
 		</a>
 	</div>
+	
+
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -71,6 +68,7 @@
 		<!-- apProgress=?조건 추가 '&'로 붙여줘야함 -->
 			<c:forEach var="pgList" items="${pgList}">
 				<tr>
+					
 					<input type="hidden" id="_dftCode" value="${pgList.dftCode}"/>
 					<td>${pgList.dftCode}</td>
 					<td><a href="<c:url value='/ap/Content?dftCode=${pgList.dftCode}'/>">${pgList.dftTitle}</a></td>
@@ -79,7 +77,6 @@
 					<td>${pgList.dftDate}</td>
 					<td>${pgList.proRealTime}</td>
 					<td>${pgList.dftFinalState}</td>
-				
 				
 					
 					<c:choose>
@@ -106,8 +103,6 @@
 		</tbody>
 	</table>
 </div>
-
-<c:import url="./ap_comContent.jsp"></c:import> <!--팝업창, 인쇄창  -->
 
 </body>
 </html>

@@ -16,8 +16,10 @@ public class Draft {
 	private String dftFinalState;
 	private String dftCheck;
 	
+	//----- view
 	private int proApproval;
 	private String proRealTime;
+	private String url;
 
 	
 	public int getDftCode() {
@@ -92,6 +94,8 @@ public class Draft {
 	public void setDftCheck(String dftCheck) {
 		this.dftCheck = dftCheck;
 	}
+	
+	// ----- view
 	public int getProApproval() {
 		return proApproval;
 	}
@@ -105,6 +109,14 @@ public class Draft {
 		this.proRealTime = proRealTime;
 	}
 	
+	// ----- 주소를 담아서 return하기 위해 생성
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 	@Override
 	public String toString() {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode
@@ -113,7 +125,5 @@ public class Draft {
 				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", proApproval=" + proApproval
 				+ ", proRealTime=" + proRealTime + "]";
 	}
-	
-	
-	
+		
 }

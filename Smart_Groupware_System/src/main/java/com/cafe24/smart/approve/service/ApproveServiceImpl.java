@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -76,10 +77,10 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		List<Draft> pgList = new ArrayList<Draft>();
 		int progress;
+		
 		System.out.println(apProgress);
 		
 		if(apProgress == 1){//결재 대기 목록
-			System.out.println("결재 대기");
 			progress = 0;
 			pgList = approveDAO.selectByHv(progress);
 		}else if(apProgress==2){//결재 반려 목록
@@ -102,17 +103,33 @@ public class ApproveServiceImpl implements ApproveService {
 	@Override
 	public Draft hvContServ(int dftCode) {
 		System.out.println("serv hvCont> test1");
+		
 		Draft draft = new Draft();
 		Progress progress= new Progress();
+		
 		//-----결재 신청 정보 가져오기 
 		draft = approveDAO.selectContHv(dftCode);
-		
 			if(draft != null){
 				System.out.println("serv hvDetail> test");
 				//-----결재자 정보 가져오기 : progress의 pro_approval 컬럼에서 가져온다
 				progress = approveDAO.selectDetailHv(dftCode);
 				draft.setProApproval(progress.getProApproval());
-				//System.out.println(draft);
+				
+				//각 조건마다 다른 View 
+				switch(progress.getProState()){
+					case 0 :
+					// 대기
+						draft.setUrl("/approve/ap_haveContent");
+						break;
+					case 1 :
+					// 승인
+						draft.setUrl("/approve/ap_comContent");
+						break;
+					case 2 :
+					//반려
+						draft.setUrl("/approve/ap_returnContent");
+						break;
+					}
 			}else{
 				System.out.println("fail");
 			}

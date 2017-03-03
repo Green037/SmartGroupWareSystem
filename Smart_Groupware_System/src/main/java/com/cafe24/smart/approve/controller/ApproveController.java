@@ -49,12 +49,11 @@ public class ApproveController {
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
 		//System.out.println("ctrl pgList> test");
 		//System.out.println(apProgress);
-		
+	
 		List<Draft> pgList = new ArrayList<Draft>();
 		pgList = approveService.pgListServ(apProgress);
 		
 		System.out.println(pgList);
-		
 		model.addAttribute("pgList", pgList);
 	
 		return "/approve/ap_list";
@@ -63,24 +62,22 @@ public class ApproveController {
 
 	//결재 상세보기 : GET
 	@RequestMapping(value="ap/Content", method=RequestMethod.GET)
-	public String apHvDetailCtrl(Model model,@RequestParam(value="apProgress", defaultValue="0") int apProgress, @RequestParam("dftCode") int dftCode){
+	public String apHvDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
 	
-		System.out.println("ctrl hvCont> test");
+		//System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
-		draft = approveService.hvContServ(dftCode);
-		//System.out.println(draft);
-		model.addAttribute("draft", draft);
-		
-		// 대기/반려/완료에 따라 다른 Content 조건을 url에 넣어준다
 		String url;
-		url = "/approve/ap_returnContent";
 		
+		draft = approveService.hvContServ(dftCode);
+		model.addAttribute("draft", draft);
+		url = draft.getUrl();
+	
 		return url;
 	
 	}	
 	
 
-	//결재 정보[승인/반려] : POST
+	//-----결재 정보[승인/반려] : POST : ajax에서 처리 <<<이동>>>
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
 

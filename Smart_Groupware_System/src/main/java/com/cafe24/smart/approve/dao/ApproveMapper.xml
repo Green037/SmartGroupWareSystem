@@ -151,7 +151,8 @@
 		parameterType="int"
 		resultMap="resultPro">
 		SELECT 
-			pro_approval 
+			pro_approval,
+			pro_state  
 		FROM 
 			progress 
 		WHERE 
