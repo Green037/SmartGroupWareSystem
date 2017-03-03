@@ -1,5 +1,6 @@
 package com.cafe24.smart.approve.domain;
 
+import org.springframework.web.multipart.MultipartFile;
 
 //기안
 public class Draft {
@@ -15,7 +16,7 @@ public class Draft {
 	private int dftApproval3;
 	private String dftFinalState;
 	private String dftCheck;
-	
+
 	//----- view
 	private int proApproval;
 	private String proRealTime;
@@ -94,7 +95,7 @@ public class Draft {
 	public void setDftCheck(String dftCheck) {
 		this.dftCheck = dftCheck;
 	}
-	
+
 	// ----- view
 	public int getProApproval() {
 		return proApproval;

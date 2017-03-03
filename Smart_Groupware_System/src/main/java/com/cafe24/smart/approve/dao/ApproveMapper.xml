@@ -32,6 +32,7 @@
 		<result property="dftApproval3" column="dft_approval3"/>
 		<result property="dftFinalState" column="dft_finalState"/>
 		<result property="dftCheck" column="dft_check"/>
+		<result property="dftFile" column="dft_file"/>
 		<result property="proApproval" column="pro_approval"/>
 		<result property="proRealTime" column="pro_realTime"/>
 	

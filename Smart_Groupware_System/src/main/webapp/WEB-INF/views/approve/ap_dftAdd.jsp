@@ -28,7 +28,7 @@
 				<div class="row">
 					<h2>전자 결재 신청</h2>
 				</div>
-			    <form action="<c:url value='/ap/add'/>" method="post" >
+			    <form action="<c:url value='/ap/add'/>" method="post" enctype="multipart/form-data">
 			    
 			    	<div class="row">
 			    		<div class="col-md-3">
