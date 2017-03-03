@@ -134,7 +134,7 @@
 </select>
 
 
-<!-- 결재 상세보기 : dftCode 가져오기// 결재자 가져오기-->
+<!-- 결재,임시저장 상세보기 : dftCode 가져오기// 결재자 가져오기-->
 <select id="selectContHv"
 		parameterType="int"
 		resultMap="resultDft">
@@ -212,9 +212,7 @@
 		<!-- 사원코드 select 조건 추가 -->		
 </select>
 		
-
-
-
+	
 		
 </mapper>
 

@@ -44,11 +44,11 @@ public class ApproveController {
 		return "home";
 	}
 		
-	//-----[총 목록 보여주는 목록]진행 목록 : GET 
+	//결재 목록 [대기/반려/완료] : GET 
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
-		//System.out.println("ctrl pgList> test");
-		//System.out.println(apProgress);
+		System.out.println("ctrl pgList> test");
+		System.out.println(apProgress);
 	
 		List<Draft> pgList = new ArrayList<Draft>();
 		pgList = approveService.pgListServ(apProgress);
@@ -59,8 +59,7 @@ public class ApproveController {
 		return "/approve/ap_list";
 	}
 
-
-	//결재 상세보기 : GET
+	//결재 상세보기[대기/반려/완료] : GET
 	@RequestMapping(value="ap/Content", method=RequestMethod.GET)
 	public String apHvDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
 	
@@ -75,9 +74,8 @@ public class ApproveController {
 		return url;
 	
 	}	
-	
 
-	//-----결재 정보[승인/반려] : POST : ajax에서 처리 <<<이동>>>
+	//-----결재 요청[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
 
@@ -86,7 +84,6 @@ public class ApproveController {
 		
 		return "redirect:/ap/list";  
 	}
-	
 	
 	//임시 문서함 : GET
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
@@ -100,6 +97,21 @@ public class ApproveController {
 		return "/approve/ap_temList";
 		
 	}
+	
+	//임시 문서함 상세보기 : GET
+	@RequestMapping(value ="ap/temContent", method = RequestMethod.GET)
+	public String aptemDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
+	
+		System.out.println("ctrl temContent> test");
+		List<Draft> draft = new ArrayList<Draft>();
+		draft = approveService.temContServ(dftCode);
+		
+		System.out.println(draft);
+		model.addAttribute("draft", draft);
+		
+		return "/approve/ap_temModify";   
+	}
+	
 	
 	//문서함 : GET
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)

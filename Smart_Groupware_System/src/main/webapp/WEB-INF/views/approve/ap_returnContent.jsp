@@ -6,58 +6,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
-	<script>
-/* 참여인원 상세보기 */
-		$(document).on('click','#pmBtn',function(){
-			$('#pmList').modal();
-			var prCode = ${project.prCode};
-			$.ajax({
-				url: '/smart/pm/detail',
-				data : {'prCode' : prCode},
-				dataType : 'json',
-				type : 'POST',
-				success : function(data){
-					$('#pmListTbody').empty();
-					$.each(data,function(i, result){
-						/* console.log(result.prCode);
-						console.log(result.pmLevel); */
-						$('#pmListTbody').append(`
-								<tr>
-									<td>`+result.prCode+`</td>
-									<td>`+result.pmLevel+`</td>
-									<td>`+result.pmNote+`</td>
-								</tr>`);
-					});
-				}
-			});
-		});
-		
-/* 자금상세내역  */
-		$(document).on('click','#fuBtn',function(){
-			$('#fuList').modal();
-			var prCode = ${project.prCode};
-			$.ajax({
-				url: '/smart/fu/detail',
-				data : {'prCode' : prCode},
-				dataType : 'json',
-				type : 'POST',
-				success : function(data){
-					/* console.log('h2 fu Ajax!'); */
-					$('#fuListTbody').empty();
-					$.each(data,function(i, result){
-						/* console.log(result.prCode);
-						console.log(result.fuCode); */
-						$('#fuListTbody').append(`
-							<tr>
-								<td>`+result.fuHistory+`</td>
-								<td>`+result.fuExpectedMoney+`</td>
-								<td>`+result.fuUsedMoney+`</td>
-							</tr>`);
-					}); 
-				}
-			});
-		});
-	</script>
 </head> 
 
 <body>
@@ -133,7 +81,7 @@
 			<tr>
 				<td colspan="8" align="center">
 					<div class="btn-group">
-						<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >
+						<a href="<c:url value='/ap/list?dftCode=${pgList.dftCode}'/>" class="btn btn-primary" >
 							<span class="glyphicon glyphicon-edit"></span> 목록
 						</a>
 						<a href="#" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span> 삭제</a>
@@ -144,11 +92,6 @@
 	</table>
 	
 </div>
-
-<%-- 
-<c:import url="./pm_list.jsp"></c:import> <!--팝업창, 참여인원리스트  -->
-<c:import url="./fu_list.jsp"></c:import> <!--팝업창, 자금상세리스트  -->
- --%>
 
 <!-- 본문끝 -->
 </div>				

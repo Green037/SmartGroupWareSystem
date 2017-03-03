@@ -82,8 +82,15 @@ public class ApproveDAOImpl implements ApproveDAO {
 	// 임시 목록
 	@Override
 	public List<Draft> selectAllTem() {
-		System.out.println("dao temList> test");
+		//System.out.println("dao temList> test");
 		return sqlSession.selectList("AprDAO.selectAllTem");
+	}
+	
+	// 임시 상세보기
+	@Override
+	public List<Draft> selectContTem(int dftCode) {
+		System.out.println("dao temCont> test");
+		return sqlSession.selectList("AprDAO.selectContHv", dftCode);
 	}
 	
 	//------총 결재 목록 : intro 목록 
@@ -99,6 +106,8 @@ public class ApproveDAOImpl implements ApproveDAO {
 		System.out.println("dao byHvList> test");
 		return sqlSession.selectList("AprDAO.selectByHv", progress);
 	}
+
+	
 
 
 	}

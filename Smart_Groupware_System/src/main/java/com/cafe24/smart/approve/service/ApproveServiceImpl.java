@@ -31,7 +31,7 @@ public class ApproveServiceImpl implements ApproveService {
 	@Autowired
 	private ApproveDAO approveDAO;
 	
-	// 현재 시간 출력
+	// ----- 메소드 : 현재 시간 출력
 	Date today = new Date (); 
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 	
@@ -97,8 +97,7 @@ public class ApproveServiceImpl implements ApproveService {
 	
 		return pgList;
 	}
-	
-	
+		
 	//결재 신청[승인/반려] Form
 	@Override
 	public Draft hvContServ(int dftCode) {
@@ -137,7 +136,6 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return draft;
 	}
-	
 	
 	//결재 요청[승인/반려] *** 중복코드 메소드화 ***
 	@Override
@@ -315,16 +313,27 @@ public class ApproveServiceImpl implements ApproveService {
 		return result;
 	}
 		
-	
 	//임시 목록 :GET
 	@Override
 	public List<Draft> temListServ() {
-		System.out.println("serv temList> test1");
+		//System.out.println("serv temList> test1");
 		List<Draft> temList= new ArrayList<Draft>();
 		temList = approveDAO.selectAllTem();
-		System.out.println("serv temList> test2");
-		System.out.println(temList);
+		//System.out.println("serv temList> test2");
+		//System.out.println(temList);
 		return temList;
+	}
+
+	//임시 상세보기 : GET
+	@Override
+	public List<Draft> temContServ(int dftCode) {
+		System.out.println("serv temContent> test1");
+		List<Draft> temContent= new ArrayList<Draft>();
+		temContent = approveDAO.selectContTem(dftCode);
+		System.out.println(temContent);
+		
+
+		return temContent;
 	}
 
 	

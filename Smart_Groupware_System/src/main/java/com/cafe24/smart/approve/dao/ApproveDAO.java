@@ -28,11 +28,15 @@ public interface ApproveDAO {
 	
 	//임시 목록
 	List<Draft> selectAllTem();
+	//임시 상세보기
+		List<Draft> selectContTem(int dftCode);
 	
 	//-----총 목록 : intro 목록
 	List<Draft> selectAllPg();
 	//-----총 목록 : 대기/반려/완료
 	List<Draft> selectByHv(int progress);
+	
+	
 	
 	
 }

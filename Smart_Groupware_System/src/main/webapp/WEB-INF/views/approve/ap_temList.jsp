@@ -46,7 +46,7 @@
 									<tr>
 										<td>${t.dftCode}</td>
 										<td>${t.docCode}</td>
-										<td>${t.dftTitle}</td>
+										<td><a href="<c:url value='/ap/temContent?dftCode=${t.dftCode}' />">${t.dftTitle}</a></td>
 										<td>${t.mmCode}</td>
 										<td>개발부</td>
 										<td>${t.dftDate}</td>
