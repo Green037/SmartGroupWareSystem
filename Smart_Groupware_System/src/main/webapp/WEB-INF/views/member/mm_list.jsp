@@ -24,79 +24,52 @@
 					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart"><b>Home</b></a></li>
-							<li>사원조회 리스트</li>
+							<li>사원 조회 리스트</li>
 						</ol>
 					</div>
 			
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">
-								<form>
-									<div class="col-sm-2">
-									<select  name="dpCode" id="dpCode" class="form-control1">
-										<option> 부서</option>
-										<c:forEach var="department" items="${department}">
-     										<option value="${department.dpCode}">${department.dpName}</option>
-     									</c:forEach> 
-     									</select>
-									</div>
-									<div class="col-sm-2">
-									<select name="ptCode" id="ptCode" class="form-control1">
-										<option> 직급</option>
-										<c:forEach var="position" items="${position}">
-     										<option value="${position.ptCode}">${position.ptName}</option>
-     									</c:forEach> 
-     									</select>
-									</div>
-									<div class="col-sm-2">
-									<select multiple="multiple" name="lcCodes" id="lcCodes" class="form-control1">
-										<option> 보유자격증</option>
-										<c:forEach var="license" items="${license}">
-      										<option value="${license.lcCode}">${license.lcName}</option>
-      									</c:forEach> 
-										</select>
-									</div>
-								</form>
-								<div class="clearfix">&nbsp;</div>
-						
-								
-								<div class="clearfix">&nbsp;</div>
+							
 								
 								
-									<label class="control-label"><b>학력정보</b></label>
+									<label class="control-label"><b>조회 리스트</b></label>
 									<table class="table table-bordered">
 										<thead>
 											<tr>
-												<th>최종학력</th>
-												<th>학교명</th>
-												<th>입학날짜</th>
-												<th>졸업날짜</th>
-												<th>전공</th>
-												<th>학점</th>
-												<th>최종성적</th>
+												<th>사원번호</th>
+												<th>사원 이름</th>
+												<th>소속부서</th>
+												<th>직급</th>
 											</tr>
 										</thead>
 										<tbody>
-										
-											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
+											<c:forEach var="mmList" items="${mmList}">
+												<tr>
+													<td>${mmList.mmCode}</td>
+													<td>${mmList.mmName}</td>
+													<td>${mmList.dpName}</td>
+													<td>${mmList.ptName}</td>
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table> 
 								</div>
+								
+								 <div>
+						        <c:if test="${currentPage>1}">
+						            <a href="<c:url value='/member/mm_list?currentPage=${currentPage-1}'/>">이전</a>
+						        </c:if>
+						        <c:if test="${currentPage < lastPage}"> 
+						            <a href="<c:url value='/member/mm_list?currentPage=${currentPage+1}'/>">다음</a>
+						        </c:if>
+   							 </div>
+								
 								<div class="clearfix">&nbsp;</div>
 									
 							
-								<div class="clearfix">&nbsp;</div>
-								
-								
-								
+								<div class="clearfix">&nbsp;</div>							
 							</div>
 								
 								<div class="clearfix">&nbsp;</div>

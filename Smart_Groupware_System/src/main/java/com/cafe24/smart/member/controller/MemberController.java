@@ -1,6 +1,7 @@
 package com.cafe24.smart.member.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.smart.member.domain.Achieve;
 import com.cafe24.smart.member.domain.Career;
@@ -19,6 +21,7 @@ import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
 import com.cafe24.smart.member.domain.MemberLicense;
+import com.cafe24.smart.member.domain.MemberList;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Position;
 import com.cafe24.smart.member.service.MemberService;
@@ -31,30 +34,52 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
-	//get 요청 사원정보조회 
+	//get 요청 사원정보조회리스트 
 	@RequestMapping(value="member/mm_list",method=RequestMethod.GET)
-	public String mmListCtrl(Model model){
+	public String mmListCtrl(Model model,
+			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
+		 
+			Map<String, Object> returnMap 
+				= memberService.mmListServ(currentPage);
+			model.addAttribute("currentPage", currentPage);
+			model.addAttribute("totalRowCount", returnMap.get("totalRowCount"));
+			model.addAttribute("lastPage", returnMap.get("lastPage"));
+			model.addAttribute("mmList", returnMap.get("mmList"));
+			
+		
+			List<License> license = memberService.lcListServ();
+			
+			List<Position> position = memberService.PtListServ();
+			List<Department> department = memberService.DpListServ();
+			
+			model.addAttribute("license", license);
+			model.addAttribute("position",position);
+			model.addAttribute("department", department);
+					
+		return "member/mm_list";
+	}
+
+	//get 사원 조회 
+	@RequestMapping(value="member/mm_search", method=RequestMethod.GET)
+	public String mmSearchCtrl(Model model){
+		
 		List<Achieve> achieve = memberService.acListServ();
 		List<License> license = memberService.lcListServ();
-		List<Contract> contract = memberService.CtListServ();
 		List<Position> position = memberService.PtListServ();
 		List<Department> department = memberService.DpListServ();
 		List<MajorTypeOfBusiness> majorTypeOfBusiness = memberService.maListServ();
 		List<MinorTypeOfBusiness> minorTypeOfBusiness = memberService.miListServ();
 		
-		
 		model.addAttribute("achieve", achieve);
 		model.addAttribute("license", license);
-		model.addAttribute("contract",contract);
 		model.addAttribute("position",position);
 		model.addAttribute("department", department);
 		model.addAttribute("majorTypeOfBusiness", majorTypeOfBusiness);
 		model.addAttribute("minorTypeOfBusiness", minorTypeOfBusiness);
 		
-		return "member/mm_list";
 		
+		return "member/mm_search";
 	}
-	
 	
 	// post 요청 사원 등록
 		@RequestMapping(value="member/mm_add",method=RequestMethod.POST)
@@ -67,6 +92,8 @@ public class MemberController {
 			//경력 입력 메서드호출
 			memberService.mmAddServ(member,memberAchieve,memberLicense,career);
 			//memberService.mmAddServ(Member member, MemberAchieve memberAchieve, , Career career);
+			
+		
 			
 			return "member/mm_add";
 		}

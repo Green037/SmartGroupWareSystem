@@ -1,6 +1,8 @@
 package com.cafe24.smart.member.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
 import com.cafe24.smart.member.domain.MemberLicense;
+import com.cafe24.smart.member.domain.MemberList;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Position;
 
@@ -27,6 +30,34 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDAO memberDao;
+	
+	
+	//사원 조회 리스트
+	@Override
+	public Map<String, Object> mmListServ(int currentPage) {
+		// TODO Auto-generated method stub
+		int pagePerRow = 10;
+		int beginRow = (currentPage-1)*pagePerRow;
+		
+		int totalRowCount = memberDao.selectTotalMemberCount();
+		
+		// lastPage
+		int lastPage = totalRowCount/pagePerRow;
+		if(totalRowCount%pagePerRow !=0) {
+			lastPage++;
+		}
+		
+		
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("beginRow", beginRow);
+		map.put("pagePerRow", pagePerRow);
+		List<MemberList> mmList = memberDao.selectAllMm(map);
+		Map<String, Object> returnMap = new HashMap<String, Object>();
+		returnMap.put("totalRowCount", totalRowCount);
+		returnMap.put("lastPage", lastPage);
+		returnMap.put("mmList", mmList);
+		return returnMap;
+	}
 	
 	
 	//사원 등록(사원정보,학력등록)
@@ -113,7 +144,7 @@ public class MemberServiceImpl implements MemberService {
 	//자격증 조회
 	public List<License> lcListServ() {
 		List<License> b = memberDao.selectLc();
-			System.out.println("lc리스트 서비스까지"+b.size());
+			//System.out.println("lc리스트 서비스까지"+b.size());
 		return memberDao.selectLc();
 	}
 	// 계약형태 조회
@@ -151,4 +182,7 @@ public class MemberServiceImpl implements MemberService {
 						
 					 	return memberDao.selectMi();
 				}
+
+
+	
 }

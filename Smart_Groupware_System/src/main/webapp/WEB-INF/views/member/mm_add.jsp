@@ -90,7 +90,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-1">
 													<select name="ctCode" id="ctCode"
 														class="form-control1">
-														<option> 계약형태</option>
+														<option>:::계약형태:::</option>
 															<c:forEach var="contract" items="${contract}">
 			      											<option value="${contract.ctCode}">${contract.ctType}</option>
 			      											</c:forEach> 
@@ -100,7 +100,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-1">
 													<select name="ptCode" id="ptCode"
 														class="form-control1">
-														<option> 직급</option>
+														<option>:::직급:::</option>
 															<c:forEach var="position" items="${position}">
 			      										<option value="${position.ptCode}">${position.ptName}</option>
 			      											</c:forEach> 
@@ -110,7 +110,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-1">
 													<select name="dpCode" id="dpCode"
 														class="form-control1">
-														<option> 부서</option>
+														<option>:::부서:::</option>
 															<c:forEach var="department" items="${department}">
 			      										<option value="${department.dpCode}">${department.dpName}</option>
 			      											</c:forEach> 
@@ -202,7 +202,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-2">
 													<select name="acCode" id="acCode"
 														class="form-control1">
-														<option> 학력을 선택하세요</option>
+														<option>:::학력을 선택하세요:::</option>
 															<c:forEach var="achieve" items="${achieve}">
 			      										<option value="${achieve.acCode}">${achieve.acName}</option>
 			      											</c:forEach> 
@@ -286,7 +286,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-1">
 													<select name="maCodes" id="maCodes"
 														class="form-control1">
-														<option> 상위업종</option>
+														<option>:::상위업종:::</option>
 															<c:forEach var="majorTypeOfBusiness" items="${majorTypeOfBusiness}">
 			      										<option value="${majorTypeOfBusiness.maCode}">${majorTypeOfBusiness.maType}</option>
 			      											</c:forEach> 
@@ -296,7 +296,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-1">
 													<select name="miCodes" id="miCodes"
 														class="form-control1">
-														<option> 하위업종</option>
+														<option>:::하위업종:::</option>
 															<c:forEach var="minorTypeOfBusiness" items="${minorTypeOfBusiness}">
 			      										<option value="${minorTypeOfBusiness.miCode}">${minorTypeOfBusiness.miType}</option>
 			      											</c:forEach> 
@@ -336,7 +336,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-1">
 													<select name="maCodes" id="maCodes"
 														class="form-control1">
-														<option> 상위업종</option>
+														<option>:::상위업종:::</option>
 															<c:forEach var="majorTypeOfBusiness" items="${majorTypeOfBusiness}">
 			      										<option value="${majorTypeOfBusiness.maCode}">${majorTypeOfBusiness.maType}</option>
 			      											</c:forEach> 
@@ -346,7 +346,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-1">
 													<select name="miCodes" id="miCodes"
 														class="form-control1">
-														<option> 하위업종</option>
+														<option>:::하위업종:::</option>
 															<c:forEach var="minorTypeOfBusiness" items="${minorTypeOfBusiness}">
 			      										<option value="${minorTypeOfBusiness.miCode}">${minorTypeOfBusiness.miType}</option>
 			      											</c:forEach> 
@@ -364,6 +364,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-2">
 													<select name="lcCodes" id="lcCodes"
 														class="form-control1">
+															<option>:::보유자격증:::</option>
 															<c:forEach var="license" items="${license}">
 			      										<option value="${license.lcCode}">${license.lcName}</option>
 			      											</c:forEach> 
@@ -385,6 +386,7 @@ $(document).on('click','.dellc',function(){
 												<div class="col-sm-2">
 													<select name="lcCodes" id="lcCodes"
 														class="form-control1">
+															<option>:::보유자격증:::</option>
 															<c:forEach var="license" items="${license}">
 			      										<option value="${license.lcCode}">${license.lcName}</option>
 			      											</c:forEach> 

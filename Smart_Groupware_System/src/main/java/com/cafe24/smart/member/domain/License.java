@@ -8,6 +8,7 @@ public class License {
 	private String lcType;
 	private String lcNote;
 	
+	
 	public int getLcCode() {
 		return lcCode;
 	}

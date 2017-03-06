@@ -1,6 +1,7 @@
 package com.cafe24.smart.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cafe24.smart.member.domain.Achieve;
 import com.cafe24.smart.member.domain.Career;
@@ -11,6 +12,7 @@ import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
 import com.cafe24.smart.member.domain.MemberLicense;
+import com.cafe24.smart.member.domain.MemberList;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Position;
 
@@ -23,9 +25,12 @@ public interface MemberDAO {
 	List<Department> 					selectDp();
 	List<MajorTypeOfBusiness> 			selectMa();
 	List<MinorTypeOfBusiness> 			selectMi();
-		
-	Member 								selectByMm(int mmCode);
+	//DB에서 정보 불러오기 리스트 끝
 	
+	
+	Member 								selectByMm(int mmCode);
+	int 								selectTotalMemberCount();
+	List<MemberList>					selectAllMm(Map<String, Integer> map);
 	int 								insertMm(Member member);
 	int 								insertMc(MemberAchieve memberAchieve);
 	int 								insertMl(MemberLicense memberLicense);

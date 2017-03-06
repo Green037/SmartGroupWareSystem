@@ -39,17 +39,62 @@
 			<result property="miType" column="mi_type"/>
 		</resultMap>
 		
+ 		<resultMap id="selectMmList" type="com.cafe24.smart.member.domain.MemberList">
+			<result property="mmCode" column="mm_code"/>
+			<result property="dpCode" column="dp_code"/>
+			<result property="ptCode" column="pt_code"/>
+			<result property="dpName" column="dp_name"/>
+			<result property="ptName" column="pt_name"/>
+			<result property="mmName" column="mm_name"/>
+		</resultMap> 
 		
 		
-		<!-- 개인정보 조회하기 -->
+		
+		
+		
+		
+		
+		
+		<!--사원리스트 카운트 구하기 -->
+		<select id="selectTotalMemberCount" resultType="int">
+			SELECT
+				COUNT(*)
+			FROM memberManagement
+		
+		</select>
+		
+		
+		<!-- 사원 조회 리스트  -->
+		<select id="selectAllMm" parameterType="Map" resultMap="selectMmList">
+			SELECT 
+					memberManagement.mm_code,
+					department.dp_name,
+					rankposition.pt_name,
+					memberManagement.mm_name
+			FROM 
+				memberManagement
+			join 
+				department
+			on 
+				department.dp_code = memberManagement.dp_code
+			join 
+				rankposition
+			on 
+				rankposition.pt_code = memberManagement.pt_code
+			ORDER BY mm_code DESC
+			LIMIT #{beginRow}, #{pagePerRow}
+		</select>
+		
+		
+		<!-- 사원 조회 하기 -->
 		<select id="">
 			
-		
 		
 		
 		</select>
 		
 		
+
 		<!-- 하위직종 불러오기 -->
 		<select id="selectMi" resultMap="resultMi">
 			SELECT 
@@ -83,7 +128,7 @@
 				pt_code,
 				pt_name
 			FROM 
-				position
+				rankposition
 		</select>
 		
 		

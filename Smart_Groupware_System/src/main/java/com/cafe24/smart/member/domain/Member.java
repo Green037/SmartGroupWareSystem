@@ -20,7 +20,11 @@ public class Member {
 	private String mmTel;
 	private String mmBank;
 	private String mmAccount;
+	//mapper에 보낼 객체
 	
+	
+	
+
 	public int getMmCode() {
 		return mmCode;
 	}
@@ -171,6 +175,6 @@ public class Member {
 				+ ", mmName=" + mmName + ", mmDailyPay=" + mmDailyPay + ", mmJoinDate=" + mmJoinDate + ", mmResignDate="
 				+ mmResignDate + ", mmAnnualLeave=" + mmAnnualLeave + ", mmArmy=" + mmArmy + ", mmEmail=" + mmEmail
 				+ ", mmMarriage=" + mmMarriage + ", mmPassword=" + mmPassword + ", mmSign=" + mmSign + ", mmAddress="
-				+ mmAddress + ", mmTel=" + mmTel + ", mmBank=" + mmBank + ", mmAccount=" + mmAccount + "]";
+				+ mmAddress + ", mmTel=" + mmTel + ", mmBank=" + mmBank + ", mmAccount=" + mmAccount +"]";
 	}
 }

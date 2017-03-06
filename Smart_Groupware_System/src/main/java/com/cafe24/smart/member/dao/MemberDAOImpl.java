@@ -1,6 +1,7 @@
 package com.cafe24.smart.member.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
 import com.cafe24.smart.member.domain.MemberLicense;
+import com.cafe24.smart.member.domain.MemberList;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Position;
 
@@ -76,15 +78,31 @@ public class MemberDAOImpl implements MemberDAO {
 	
 // DB 에서 정보 불러오기 리스트-----------
 	
+//  사원 카운트 리스트
+	@Override
+	public int selectTotalMemberCount() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("acDAO.selectTotalMemberCount");
+	}	
+	
+	
+// 사원 조회 리스트
+	@Override
+	public List<MemberList> selectAllMm(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("acDAO.selectAllMm", map);
+	}
+	
+	
 //	select one member by member code
 	@Override
 	public Member selectByMm(int mmCode) {
 		
-		System.out.println("MemberDAOImpl selectByMm mmCode : " + mmCode);
+			System.out.println("MemberDAOImpl selectByMm mmCode : " + mmCode);
 
 		Member member = sqlSession.selectOne("MmDAO.selectByMm", mmCode);
 		
-		System.out.println("MemberDAOImpl selectByMm member : " + member);
+			System.out.println("MemberDAOImpl selectByMm member : " + member);
 		
 		return member;
 	}
@@ -96,25 +114,29 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlSession.insert("MmDAO.insertMm",member);
 	}
-
+//  사원 학력 등록
 	@Override
 	public int insertMc(MemberAchieve memberAchieve) {
 		
 	
 		return sqlSession.insert("MmDAO.insertMc",memberAchieve);
 	}
-
+// 사원 자격증 등록
 	@Override
 	public int insertMl(MemberLicense memberLicense) {
 			
 		return sqlSession.insert("MmDAO.insertMl",memberLicense);
 	}
-
+// 사원 경력사항 등록
 	@Override
 	public int insertCr(Career career) {
 				
 		return  sqlSession.insert("MmDAO.insertCr", career);
 	}
+
+
+
+	
 
 	
 }
