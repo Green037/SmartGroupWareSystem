@@ -74,4 +74,28 @@
 		WHERE 
 			pr_memberCode = #{mmCode}
 	</select>
+	
+	<insert id="insertWbs"
+			parameterType="com.cafe24.smart.wbs.domain.Wbs">
+		INSERT INTO wbs(
+			pr_code,
+			wbs_cate,
+			wbs_name,
+			wbs_contents,
+			wbs_startDate,
+			wbs_endDate,
+			wbs_workingDays,
+			wbs_progress,
+			wbs_status)
+		VALUES(
+			#{prCode},
+			#{wbsCate},
+			#{wbsName},
+			#{wbsContents},
+			#{wbsStartDate},
+			#{wbsEndDate},
+			#{wbsWorkingDays},
+			#{wbsProgress},
+			#{wbsStatus})
+	</insert>
 </mapper>

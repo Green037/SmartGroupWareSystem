@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.wbs.domain.Wbs;
 
 @Service
 public interface WbsService {
 	int checkMemberServ(Member member);
 	List<Project> prListServ(int mmCode);
-	
+	String wbsAddServ(Wbs wbs);
 }

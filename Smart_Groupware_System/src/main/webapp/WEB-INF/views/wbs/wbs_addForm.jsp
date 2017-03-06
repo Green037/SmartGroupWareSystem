@@ -10,11 +10,12 @@
 	/* WBS입력폼 등장 ! */
 		$(document).on('click','#wbsAddBtn',function(){
 			$('#wbsTable').css('display','');
+			$('#addForm1').css('display','none');
 		});
 		
 	/* 입력폼추가 이벤트 */
 		$(document).on('click','#addFormBtn',function(){
-			var addForm = $('#addForm').html();
+			var addForm = $('#addForm1').html();
 			$('#addForm').append(addForm);
 		});
 	</script>
@@ -95,43 +96,71 @@
 	<button type="button" id="wbsAddBtn" class="btn btn-primary btn-block" >
 		<span class="glyphicon glyphicon-pencil"></span> WBS등록하기
 	</button>
-	
-	<div id="wbsTable" style="display:none;">
-		<button type="button" id="addFormBtn" class="btn btn-warning btn-block" >
-			<span class="glyphicon glyphicon-pencil"></span> 입력폼추가하기
-		</button>
-		
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>대분류</th>
-					<th>직무명</th>
-					<th>세부사항</th>
-					<th>작업시작일</th>
-					<th>작업종료일</th>
-				</tr>
-			</thead>
-			<tbody id="addForm">
-				<tr>
-					<td><input type="text" name="wbsCate" class="form-control" /></td>
-					<td><input type="text" name="wbsName" class="form-control" /></td>
-					<td><input type="text" name="wbsContents" class="form-control" /></td>
-					<td><input type="date" name="wbsStartDate" class="form-control" /></td>
-					<td><input type="date" name="wbsEndDate" class="form-control" /></td>
-				</tr>
-			</tbody>
-			<tbody id="addForm1" >
-				<tr>
-					<td><input type="text" name="wbsCate" class="form-control" /></td>
-					<td><input type="text" name="wbsName" class="form-control" /></td>
-					<td><input type="text" name="wbsContents" class="form-control" /></td>
-					<td><input type="date" name="wbsStartDate" class="form-control" /></td>
-					<td><input type="date" name="wbsEndDate" class="form-control" /></td>
-				</tr>
-				<!-- 폼추가 부터 작업해야함. -->
-			</tbody>
-		</table>
-	</div> 
+</div>
+<div class="forms-main">
+<div class="graph-form">
+<div class="validation-form">
+	<form action="<c:url value='/wbs/addWbs'/>" method="post">
+		<div id="wbsTable" style="display:none;">
+			<button type="button" id="addFormBtn" class="btn btn-warning btn-block" >
+				<span class="glyphicon glyphicon-pencil"></span> 입력폼추가하기
+			</button>
+			<input type="hidden" name="prCode" value="${project.prCode}"/>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th style="width:100px;">대분류</th>
+						<th style="width:240px;">직무명</th>
+						<th>세부사항</th>
+						<th style="width:170px;">작업시작일</th>
+						<th style="width:170px;">작업종료일</th>
+						<th style="width:100px;">완료여부</th>
+						<th style="width:100px;">진행률</th>
+					</tr>
+				</thead>
+				<tbody id="addForm">
+					<tr>
+						<td><input type="text" name="wbsCate" class="form-control1" /></td>
+						<td><input type="text" name="wbsName" class="form-control1" /></td>
+						<td><input type="text" name="wbsContents" class="form-control1" /></td>
+						<td><input type="date" name="wbsStartDate" class="form-control1" /></td>
+						<td><input type="date" name="wbsEndDate" class="form-control1" /></td>
+						<td>
+							<select name="wbsStatus" class="form-control1">
+								<option>::선택::</option>
+								<option value="진행중">진행중</option>
+								<option value="완료">완료</option>
+							</select>
+						</td>
+						<td><input type="text" name="wbsProgresses" class="form-control1" /></td>
+					</tr>
+				</tbody>
+				<tbody id="addForm1" >
+					<tr>
+						<td><input type="text" name="wbsCate" class="form-control1" /></td>
+						<td><input type="text" name="wbsName" class="form-control1" /></td>
+						<td><input type="text" name="wbsContents" class="form-control1" /></td>
+						<td><input type="date" name="wbsStartDate" class="form-control1" /></td>
+						<td><input type="date" name="wbsEndDate" class="form-control1" /></td>
+						<td>
+							<select name="wbsStatus" class="form-control1">
+								<option>::선택::</option>
+								<option value="진행중">진행중</option>
+								<option value="완료">완료</option>
+							</select>
+						</td>
+						<td><input type="text" name="wbsProgresses" class="form-control1" /></td>
+					</tr>
+					<!-- 폼추가 부터 작업해야함. -->
+				</tbody>
+			</table>
+			<button type="submit" class="btn btn-primary btn-block">
+				<span class="glyphicon glyphicon-pencil"></span> 등록하기
+			</button>
+		</div>
+	</form>
+</div>
+</div>
 </div>
 <!-- 본문끝 -->
 </div>				
