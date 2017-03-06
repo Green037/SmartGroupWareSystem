@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.approve.dao.ApproveDAO;
+import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 
@@ -36,6 +37,18 @@ public class ApproveServiceImpl implements ApproveService {
 	Date today = new Date (); 
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 	
+	//기안 요청 : GET
+	@Override
+	public List<Document> apAddSelServ() {
+		System.out.println("serv temContent> test1");
+		List<Document> doc = new ArrayList<Document>();
+		doc = approveDAO.selectAllDoc();
+		
+		System.out.println("serv temContent> test2");
+	
+		return doc;
+	}
+
 	//기안 등록 : POST
 	@Override
 	public int apAddServ(Draft draft, Progress progress) {
@@ -337,5 +350,5 @@ public class ApproveServiceImpl implements ApproveService {
 		return temContent;
 	}
 
-	
+
 }

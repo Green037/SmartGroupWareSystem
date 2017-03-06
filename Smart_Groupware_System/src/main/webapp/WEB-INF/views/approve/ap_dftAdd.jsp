@@ -51,7 +51,12 @@
 			    		<div class="col-md-3">
 							<div class="form-group form-group-sm">
 							    <label for="firstname" class="control-label">[문서구분]</label>
-							    <input type="text" class="form-control" name="docCode" >
+							    <select name="docCode" id="docCode" class="form-control1">
+									<c:forEach var="doc" items="${doc}">
+										<option value="${doc.docCode}">${doc.docName}</option>
+									   
+									</c:forEach>							
+								</select>
 							</div>
 			            </div> 
 			            

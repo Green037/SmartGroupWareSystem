@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.member.domain.Department;
@@ -21,6 +22,14 @@ public class ApproveDAOImpl implements ApproveDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+
+	// 기안 페이지 요청 : draft
+	@Override
+	public List<Document> selectAllDoc() {
+		System.out.println("dao selectAllDoc>  test");
+		return sqlSession.selectList("AprDAO.selectAllDoc");
+	}
 	
 	// 기안 등록 : draft
 	@Override
@@ -107,7 +116,6 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectByHv", progress);
 	}
 
-	
 
 
 	}

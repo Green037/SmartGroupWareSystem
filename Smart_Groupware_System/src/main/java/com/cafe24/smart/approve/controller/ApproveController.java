@@ -29,7 +29,15 @@ public class ApproveController {
 	//기안 등록 : GET
 	/*문서결재신청 폼을 가져오기 위한 메소드 return값을 String으로 준 이유는 url을 지정하기 위해서*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
-	public String Add(){
+	public String Add(Model model){
+		
+		System.out.println("ctrl dftAdd GET> test");
+		List<Document> doc = new ArrayList<Document>();
+		doc = approveService.apAddSelServ();
+		
+		System.out.println(doc);
+		model.addAttribute("doc", doc);
+		
 		return "/approve/ap_dftAdd";   
 	}
 	

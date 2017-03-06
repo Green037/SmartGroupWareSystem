@@ -53,6 +53,16 @@
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
+<!-- 기안 페이지 요청 -->
+<select id="selectAllDoc"
+		resultMap="resultDoc">
+		SELECT 
+			doc_code,doc_name  
+		FROM 
+			document
+</select>	
+	
+	
 <!-- 기안 등록 1-1 -->	
 <insert id="insertDft" 
 		parameterType="com.cafe24.smart.approve.domain.Draft"

@@ -8,10 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.ui.Model;
 
+import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 
 public interface ApproveService {
+	
+	//기안 페이지 요청
+	List<Document> apAddSelServ();
 
 	//기안 등록
 	int apAddServ(Draft draft, Progress progress);
@@ -31,7 +35,5 @@ public interface ApproveService {
 	//결재 승인/반려 요청
 	int apProAddServ(Draft draft, Progress progress, int dftCode);
 
-
-
-	
+		
 }

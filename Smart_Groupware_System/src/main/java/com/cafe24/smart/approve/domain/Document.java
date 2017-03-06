@@ -3,7 +3,7 @@ package com.cafe24.smart.approve.domain;
 //문서
 public class Document {
 	private int docCode;
-	private int docName;
+	private String docName;
 	private String docFile;
 	
 	public int getDocCode() {
@@ -14,14 +14,14 @@ public class Document {
 		this.docCode = docCode;
 	}
 	
-	public int getDocName() {
+	public String getDocName() {
 		return docName;
 	}
-	
-	public void setDocName(int docName) {
+
+	public void setDocName(String docName) {
 		this.docName = docName;
 	}
-	
+
 	public String getDocFile() {
 		return docFile;
 	}

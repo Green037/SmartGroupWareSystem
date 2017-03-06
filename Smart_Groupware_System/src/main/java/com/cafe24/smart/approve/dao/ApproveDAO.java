@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 
 public interface ApproveDAO {
+	
+	//기안 페이지 요청
+	List<Document> selectAllDoc();
 
 	//기안 등록( draft + progress) 
 	int insertDft(Draft draft);
@@ -35,7 +39,7 @@ public interface ApproveDAO {
 	List<Draft> selectAllPg();
 	//-----총 목록 : 대기/반려/완료
 	List<Draft> selectByHv(int progress);
-	
+
 	
 	
 	
