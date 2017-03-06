@@ -16,6 +16,10 @@ public class Draft {
 	private int dftApproval3;
 	private String dftFinalState;
 	private String dftCheck;
+	private String dftFileOri;
+	private String dftFileName;
+	private String dftFilePath;
+	private String dftFileExtention;
 
 	//----- view
 	private int proApproval;
@@ -95,7 +99,32 @@ public class Draft {
 	public void setDftCheck(String dftCheck) {
 		this.dftCheck = dftCheck;
 	}
-
+	
+	public String getDftFileOri() {
+		return dftFileOri;
+	}
+	public void setDftFileOri(String dftFileOri) {
+		this.dftFileOri = dftFileOri;
+	}
+	public String getDftFileName() {
+		return dftFileName;
+	}
+	public void setDftFileName(String dftFileName) {
+		this.dftFileName = dftFileName;
+	}
+	public String getDftFilePath() {
+		return dftFilePath;
+	}
+	public void setDftFilePath(String dftFilePath) {
+		this.dftFilePath = dftFilePath;
+	}
+	
+	public String getDftFileExtention() {
+		return dftFileExtention;
+	}
+	public void setDftFileExtention(String dftFileExtention) {
+		this.dftFileExtention = dftFileExtention;
+	}
 	// ----- view
 	public int getProApproval() {
 		return proApproval;

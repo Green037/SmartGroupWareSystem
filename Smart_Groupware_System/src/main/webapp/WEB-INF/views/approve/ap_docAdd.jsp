@@ -8,28 +8,24 @@
 
 <body>
 
-	<%@ include file="../menu.jsp" %>
+<%@ include file="../menu.jsp" %>
+
+<!-- contents -->
+<div class="page-container">
+<div class="left-content">
+<div class="inner-content">
+<div class="outter-wp">	
+<!-- 들어갈 내용 -->
+
+	문서추가 : ajax로 
+
+<!-- 들어갈 내용 -->
+</div>				
+</div>
+</div>
+</div>
 	
-	<!-- contents -->
-	<div class="page-container">
-		<div class="left-content">
-			<div class="inner-content">
-				<div class="outter-wp">	
-					<!-- 들어갈 내용 -->
-					
-					
-					
-					body 들어갈 내용
-					
-					
-					
-					<!-- 들어갈 내용 -->
-				</div>				
-			</div>
-		</div>
-	</div>
-			
-	<%@ include file="../footer.jsp"%>
+<%@ include file="../footer.jsp"%>
 
 </body>
 </html>
