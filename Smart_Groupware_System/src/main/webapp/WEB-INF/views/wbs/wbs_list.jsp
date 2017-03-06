@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
+<!-- menu.jsp에서 부터 작업시작할것. 날짜연산안됨. 서비스에 로직수정할 것. -->
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
@@ -64,13 +65,13 @@
 <!-- 본문시작 -->
 <div class="container">
 	<center>
-		<h2><span class="glyphicon glyphicon-pencil"> WBS 등록</span></h2>
+		<h2><span class="glyphicon glyphicon-pencil"> WBS 조회</span></h2>
 	</center>
 	<marquee behavior="alternate">
 		<span style="color:red;">First.</span>
 		<span style="color:blue;"> You must search your project.</span>
 		<span style="color:red;">Second.</span>
-		<span style="color:blue;">Check your password and Write your plan in the form.</span>
+		<span style="color:blue;">Check your password and I will show your project</span>
 	</marquee>
 	<button type="button" id="searchProjectBtn" class="btn btn-primary">내 프로젝트 검색</button>
 	

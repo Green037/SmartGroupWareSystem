@@ -9,10 +9,28 @@ public class Wbs {
 	private String wbsContents;
 	private String wbsStartDate;
 	private String wbsEndDate;
-	private int wbsWorkingDays;
+	private long wbsWorkingDays;
 	private int wbsProgress;
 	private String wbsUncompleatedReason;
 	private String wbsFinalEndDate;
+	private String wbsStatus;
+	private String wbsProgresses;
+
+	public String getWbsProgresses() {
+		return wbsProgresses;
+	}
+
+	public void setWbsProgresses(String wbsProgresses) {
+		this.wbsProgresses = wbsProgresses;
+	}
+
+	public String getWbsStatus() {
+		return wbsStatus;
+	}
+
+	public void setWbsStatus(String wbsStatus) {
+		this.wbsStatus = wbsStatus;
+	}
 
 	public int getWbsCode() {
 		return wbsCode;
@@ -70,11 +88,11 @@ public class Wbs {
 		this.wbsEndDate = wbsEndDate;
 	}
 
-	public int getWbsWorkingDays() {
+	public long getWbsWorkingDays() {
 		return wbsWorkingDays;
 	}
 
-	public void setWbsWorkingDays(int wbsWorkingDays) {
+	public void setWbsWorkingDays(long wbsWorkingDays) {
 		this.wbsWorkingDays = wbsWorkingDays;
 	}
 
@@ -107,6 +125,9 @@ public class Wbs {
 		return "Wbs [wbsCode=" + wbsCode + ", prCode=" + prCode + ", wbsCate=" + wbsCate + ", wbsName=" + wbsName
 				+ ", wbsContents=" + wbsContents + ", wbsStartDate=" + wbsStartDate + ", wbsEndDate=" + wbsEndDate
 				+ ", wbsWorkingDays=" + wbsWorkingDays + ", wbsProgress=" + wbsProgress + ", wbsUncompleatedReason="
-				+ wbsUncompleatedReason + ", wbsFinalEndDate=" + wbsFinalEndDate + "]";
+				+ wbsUncompleatedReason + ", wbsFinalEndDate=" + wbsFinalEndDate + ", wbsStatus=" + wbsStatus
+				+ ", wbsProgresses=" + wbsProgresses + "]";
 	}
+
+
 }
