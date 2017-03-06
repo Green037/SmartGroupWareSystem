@@ -48,7 +48,7 @@
 								<table class="table table-bordered">
 								
 									<tr>
-										<th>차수</th>
+										<th>문서번호</th>
 										<th width="600">문서이름</th>
 										<th>Dowload</th>
 									</tr>

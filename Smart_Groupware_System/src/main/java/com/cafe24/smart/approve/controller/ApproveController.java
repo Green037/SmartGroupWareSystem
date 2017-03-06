@@ -1,7 +1,7 @@
 package com.cafe24.smart.approve.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,6 +17,7 @@ import com.cafe24.smart.HomeController;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
+import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.service.ApproveService;
 
 @Controller
@@ -44,10 +45,10 @@ public class ApproveController {
 	//기안 등록 : POST
 	/*draft와 progress 매개변수를 준 이유는 draft 테이블에 추가되면서 progress 테이블에도 dft_code를 참고해서 progress에서 추가되어야하기 떄문에*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
-	public String apAddCtrl(Draft draft, Progress progress){
+	public String apAddCtrl(Draft draft, Progress progress, TotalFile totalfile) throws IllegalStateException, IOException{
 		
 		System.out.println("ctrl dftAdd > test");	
-		int result = approveService.apAddServ(draft, progress);
+		int result = approveService.apAddServ(draft, progress, totalfile);
 		
 		return "home";
 	}

@@ -1,6 +1,9 @@
 package com.cafe24.smart.approve.service;
 
 
+
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.print.attribute.standard.DateTimeAtCompleted;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -25,6 +29,8 @@ import com.cafe24.smart.approve.dao.ApproveDAO;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
+import com.cafe24.smart.approve.domain.TotalFile;
+import com.cafe24.smart.approve.domain.TotalInfo;
 
 
 @Service
@@ -36,6 +42,41 @@ public class ApproveServiceImpl implements ApproveService {
 	// ----- 메소드 : 현재 시간 출력
 	Date today = new Date (); 
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
+	
+	// ----- 메소드 : 파일 업로드
+/*	private TotalInfo getFileInfo(TotalFile totalFile, Draft draft, Document document) throws IllegalStateException, IOException{
+		System.out.println("serv file>  test1");
+		
+		File destFile = null;
+		TotalInfo totalInfo = null;
+		
+		MultipartFile multipartFile = totalFile.getDftFile();
+		String filePath = "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid.toString().replaceAll("-", "");
+		int index = multipartFile.getOriginalFilename().lastIndexOf(".");
+		String fileExtention = multipartFile.getOriginalFilename().substring(index+1);
+		fileName += "."+fileExtention;
+		destFile = new File(filePath+fileName);
+		multipartFile.transferTo(destFile);
+		
+		if(draft){
+			draft.setDftDate(formatter.format(today));
+			draft.setDftDegree(1);
+			draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
+			draft.setDftFileName(fileName);
+			draft.setDftFilePath(filePath);
+			draft.setDftFileExtention(fileExtention);
+			draft.setDftFileOri(multipartFile.getOriginalFilename());
+			
+			
+			
+		}else if(document){
+			
+		}
+		
+		return totalInfo;
+	}*/
 	
 	//기안 요청 : GET
 	@Override
@@ -51,9 +92,21 @@ public class ApproveServiceImpl implements ApproveService {
 
 	//기안 등록 : POST
 	@Override
-	public int apAddServ(Draft draft, Progress progress) {
+	public int apAddServ(Draft draft, Progress progress, TotalFile totalFile) throws IllegalStateException, IOException{
 		System.out.println("serv Dft>  test1");
 		
+		File destFile = null;
+		
+		MultipartFile multipartFile = totalFile.getDftFile();
+		String filePath = "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid.toString().replaceAll("-", "");
+		int index = multipartFile.getOriginalFilename().lastIndexOf(".");
+		String fileExtention = multipartFile.getOriginalFilename().substring(index+1);
+		fileName += "."+fileExtention;
+		destFile = new File(filePath+fileName);
+		multipartFile.transferTo(destFile);
+				
 		// draft.setAprCode(1);
 		// apr_code default값 기본 설정 = 아무값없음 비교
 		
@@ -61,7 +114,11 @@ public class ApproveServiceImpl implements ApproveService {
 		draft.setDftDate(formatter.format(today));
 		draft.setDftDegree(1);
 		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
-		
+		draft.setDftFileName(fileName);
+		draft.setDftFilePath(filePath);
+		draft.setDftFileExtention(fileExtention);
+		draft.setDftFileOri(multipartFile.getOriginalFilename());
+				
 		int result = approveDAO.insertDft(draft);
 		System.out.println("serv Dft>  test2");	
 		
