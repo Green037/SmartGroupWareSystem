@@ -1,7 +1,7 @@
 package com.cafe24.smart.approve.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -17,6 +17,7 @@ import com.cafe24.smart.HomeController;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
+import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.service.ApproveService;
 
 @Controller
@@ -29,58 +30,61 @@ public class ApproveController {
 	//기안 등록 : GET
 	/*문서결재신청 폼을 가져오기 위한 메소드 return값을 String으로 준 이유는 url을 지정하기 위해서*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
-	public String Add(){
+	public String Add(Model model){
+		
+		System.out.println("ctrl dftAdd GET> test");
+		List<Document> doc = new ArrayList<Document>();
+		doc = approveService.apAddSelServ();
+		
+		System.out.println(doc);
+		model.addAttribute("doc", doc);
+		
 		return "/approve/ap_dftAdd";   
 	}
 	
 	//기안 등록 : POST
 	/*draft와 progress 매개변수를 준 이유는 draft 테이블에 추가되면서 progress 테이블에도 dft_code를 참고해서 progress에서 추가되어야하기 떄문에*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
-	public String apAddCtrl(Draft draft, Progress progress){
+	public String apAddCtrl(Draft draft, Progress progress, TotalFile totalfile) throws IllegalStateException, IOException{
 		
 		System.out.println("ctrl dftAdd > test");	
-		int result = approveService.apAddServ(draft, progress);
+		int result = approveService.apAddServ(draft, progress, totalfile);
 		
 		return "home";
 	}
 		
-	//-----[총 목록 보여주는 목록]진행 목록 : GET 
+	//결재 목록 [대기/반려/완료] : GET 
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
-		//System.out.println("ctrl pgList> test");
-		//System.out.println(apProgress);
-		
+		System.out.println("ctrl pgList> test");
+		System.out.println(apProgress);
+	
 		List<Draft> pgList = new ArrayList<Draft>();
 		pgList = approveService.pgListServ(apProgress);
 		
 		System.out.println(pgList);
-		
 		model.addAttribute("pgList", pgList);
 	
 		return "/approve/ap_list";
 	}
 
-
-	//결재 상세보기 : GET
+	//결재 상세보기[대기/반려/완료] : GET
 	@RequestMapping(value="ap/Content", method=RequestMethod.GET)
-	public String apHvDetailCtrl(Model model,@RequestParam(value="apProgress", defaultValue="0") int apProgress, @RequestParam("dftCode") int dftCode){
+	public String apHvDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
 	
-		System.out.println("ctrl hvCont> test");
+		//System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
-		draft = approveService.hvContServ(dftCode);
-		//System.out.println(draft);
-		model.addAttribute("draft", draft);
-		
-		// 대기/반려/완료에 따라 다른 Content 조건을 url에 넣어준다
 		String url;
-		url = "/approve/ap_returnContent";
 		
+		draft = approveService.hvContServ(dftCode);
+		model.addAttribute("draft", draft);
+		url = draft.getUrl();
+	
 		return url;
 	
 	}	
-	
 
-	//결재 정보[승인/반려] : POST
+	//-----결재 요청[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
 
@@ -89,7 +93,6 @@ public class ApproveController {
 		
 		return "redirect:/ap/list";  
 	}
-	
 	
 	//임시 문서함 : GET
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
@@ -103,6 +106,21 @@ public class ApproveController {
 		return "/approve/ap_temList";
 		
 	}
+	
+	//임시 문서함 상세보기 : GET
+	@RequestMapping(value ="ap/temContent", method = RequestMethod.GET)
+	public String aptemDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
+	
+		System.out.println("ctrl temContent> test");
+		List<Draft> draft = new ArrayList<Draft>();
+		draft = approveService.temContServ(dftCode);
+		
+		System.out.println(draft);
+		model.addAttribute("draft", draft);
+		
+		return "/approve/ap_temModify";   
+	}
+	
 	
 	//문서함 : GET
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)

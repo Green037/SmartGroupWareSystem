@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.member.domain.Department;
@@ -21,6 +22,14 @@ public class ApproveDAOImpl implements ApproveDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+
+	// 기안 페이지 요청 : draft
+	@Override
+	public List<Document> selectAllDoc() {
+		System.out.println("dao selectAllDoc>  test");
+		return sqlSession.selectList("AprDAO.selectAllDoc");
+	}
 	
 	// 기안 등록 : draft
 	@Override
@@ -82,8 +91,15 @@ public class ApproveDAOImpl implements ApproveDAO {
 	// 임시 목록
 	@Override
 	public List<Draft> selectAllTem() {
-		System.out.println("dao temList> test");
+		//System.out.println("dao temList> test");
 		return sqlSession.selectList("AprDAO.selectAllTem");
+	}
+	
+	// 임시 상세보기
+	@Override
+	public List<Draft> selectContTem(int dftCode) {
+		System.out.println("dao temCont> test");
+		return sqlSession.selectList("AprDAO.selectContHv", dftCode);
 	}
 	
 	//------총 결재 목록 : intro 목록 
@@ -99,6 +115,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 		System.out.println("dao byHvList> test");
 		return sqlSession.selectList("AprDAO.selectByHv", progress);
 	}
+
 
 
 	}

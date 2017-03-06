@@ -14,11 +14,13 @@
 	
 	<resultMap id="resultDoc" type="com.cafe24.smart.approve.domain.Document">
 		<result property="docCode" column="doc_code"/>
-		<result property="docName" column="doc_name"/>
-		<result property="docFile" column="doc_file"/>
+		<result property="docFileGroup" column="doc_fileGroup"/>
+		<result property="docFileName" column="doc_fileName"/>
+		<result property="docFileOri" column="doc_fileOri"/>
+		<result property="docFilePath" column="doc_filePath"/>
+		<result property="docFileExtention" column="doc_fileName"/>
 	</resultMap>
-	
-	
+		
 	<resultMap id="resultDft" type="com.cafe24.smart.approve.domain.Draft">
 		<result property="dftCode" column="dft_code"/>
 		<result property="aprCode" column="apr_code"/>
@@ -34,7 +36,11 @@
 		<result property="dftCheck" column="dft_check"/>
 		<result property="proApproval" column="pro_approval"/>
 		<result property="proRealTime" column="pro_realTime"/>
-	
+		<result property="dftFileName" column="dft_fileName"/>
+		<result property="dftFilePath" column="dft_filePath"/>
+		<result property="dftFileOri" column="dft_fileOri"/>
+		<result property="dftFileExtention" column="dft_fileExtention"/>
+
 	</resultMap>
 	
 	<resultMap id="resultPro" type="com.cafe24.smart.approve.domain.Progress">
@@ -52,6 +58,16 @@
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
+<!-- 기안 페이지 요청 -->
+<select id="selectAllDoc"
+		resultMap="resultDoc">
+		SELECT 
+			doc_code,doc_fileGroup  
+		FROM 
+			document
+</select>	
+	
+	
 <!-- 기안 등록 1-1 -->	
 <insert id="insertDft" 
 		parameterType="com.cafe24.smart.approve.domain.Draft"
@@ -68,7 +84,11 @@
 		    dft_approval2,
 		    dft_approval3,
 		    dft_finalState,
-		    dft_check
+		    dft_check,
+		   	dft_fileName,
+		   	dft_filePath,
+		   	dft_fileExtention,
+		   	dft_fileOri  
 			) 
 	    VALUES( 
 	 	    #{aprCode},
@@ -81,7 +101,11 @@
 		    #{dftApproval2},
 	 	    #{dftApproval3},
 	 	    #{dftFinalState},
-            #{dftCheck}
+            #{dftCheck},
+            #{dftFileName},
+            #{dftFilePath},
+            #{dftFileExtention},
+            #{dftFileOri}
 	        )
 </insert>
 
@@ -134,7 +158,7 @@
 </select>
 
 
-<!-- 결재 상세보기 : dftCode 가져오기// 결재자 가져오기-->
+<!-- 결재,임시저장 상세보기 : dftCode 가져오기// 결재자 가져오기-->
 <select id="selectContHv"
 		parameterType="int"
 		resultMap="resultDft">
@@ -151,7 +175,8 @@
 		parameterType="int"
 		resultMap="resultPro">
 		SELECT 
-			pro_approval 
+			pro_approval,
+			pro_state  
 		FROM 
 			progress 
 		WHERE 
@@ -211,9 +236,6 @@
 		<!-- 사원코드 select 조건 추가 -->		
 </select>
 		
-
-
-
 		
 </mapper>
 

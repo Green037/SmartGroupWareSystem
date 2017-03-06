@@ -41,16 +41,14 @@
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">						
-								<label class="control-label"><b>문서 양식 [건수 : 10건]</b></label>		
-								<div class="control-label" style="text-align:right" id="docAdd">[ 문서추가 ]
-									<button type="button" id="docBtn">등록</button>
-								</div>
+								<label class="control-label"><b>문서 양식 [건수 : 10건]</b></label>	
+								
 								</div> &nbsp;
 								
 								<table class="table table-bordered">
 								
 									<tr>
-										<th>차수</th>
+										<th>문서번호</th>
 										<th width="600">문서이름</th>
 										<th>Dowload</th>
 									</tr>
@@ -93,6 +91,14 @@
 										
 								</table> 
 								<div class="clearfix">&nbsp;</div>
+							
+							<!-- 관리자만 보이는 메뉴 -->
+											
+							<div class="btn-group btn-group-justified">
+								<a href="<c:url value='/ap/docAdd'/>" class="btn btn-success">
+									문서 추가
+								</a>
+							</div>
 								
 					
 							</div>

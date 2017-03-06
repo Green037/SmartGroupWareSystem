@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.wbs.domain.Wbs;
 
 @Repository
 public class WbsDAOImpl implements WbsDAO {
@@ -31,5 +32,12 @@ public class WbsDAOImpl implements WbsDAO {
 	public List<Project> selectByMmCodePr(int mmCode) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("WbsDAO.selectByMmCodePr", mmCode);
+	}
+
+	//WBS 등록
+	@Override
+	public int insertWbs(Wbs wbs) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("WbsDAO.insertWbs", wbs);
 	}
 }
