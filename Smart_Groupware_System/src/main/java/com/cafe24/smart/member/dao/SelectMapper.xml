@@ -41,13 +41,13 @@
 		
 		
 		
-		<!-- 개인정보 조회하기 -->
-		<select id="">
+ 		<!-- 개인정보 조회하기 --> 
+<!-- 		<select id=""> -->
 			
 		
 		
 		
-		</select>
+<!-- 		</select> -->
 		
 		
 		<!-- 하위직종 불러오기 -->
@@ -83,7 +83,7 @@
 				pt_code,
 				pt_name
 			FROM 
-				position
+				rankposition
 		</select>
 		
 		

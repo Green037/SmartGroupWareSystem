@@ -64,9 +64,9 @@ public class PaymentController {
 		return "payment/pc_content";
 	}
 
-//	총무부 > 급여내역 추가
+//	총무부 > 급여내역 추가 (get)
 	@RequestMapping(value = "pa/add", method = RequestMethod.GET)
-	public String paAddCtrl(Model model) {	
+	public String paAddFormCtrl(Model model) {	
 		
 		calendar = Calendar.getInstance();
 		
@@ -74,13 +74,28 @@ public class PaymentController {
 		int month = calendar.get(Calendar.MONTH) + 1;
 		String paymentDate = year + "-" + month + "-25"; 
 		
+		if (month < 10) {
+			paymentDate = year + "-0" + month + "-25";
+		}
+		
+		int paMmCode = (int) session.getAttribute("id");
+		
 		model.addAttribute("eiContent", insuranceService.eiContentServ(year));
 		model.addAttribute("nhiContent", insuranceService.nhiContentServ(year));
 		model.addAttribute("ppContent", insuranceService.ppContentServ(year));
+		model.addAttribute("paMmCode", paMmCode);
 		model.addAttribute("paymentDate", paymentDate);
 		
 		System.out.println("PaymentController paAddCtrl attribute model : " + model);
-		System.out.println("PaymentController paAddCtrl attribute paymentDate : " + paymentDate);
+		
+		return "payment/pa_add";
+	}
+	
+//	총무부 > 급여내역 추가 (post)
+	@RequestMapping(value = "pa/add", method = RequestMethod.POST)
+	public String paAddProCtrl(Model model) {	
+		
+		System.out.println("PaymentController paAddProCtrl model : " + model);
 		
 		return "payment/pa_add";
 	}

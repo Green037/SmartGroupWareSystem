@@ -7,32 +7,81 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>" type="text/javascript"></script>
 	<script>
-		$(document).ready(function() {
+		$(document).ready(function() {	
+// 			사원코드 파라미터를 받아 해당 사원 급여 내용을 조회
 			
+			var sumAmount = 0;
+
 			$('#mmButton').click(function() {
 				var mmCode = $('#mCodeCheck').val();
 				
-				console.log('mmCode : '+ mmCode);
+				var eiEmployee = ${eiContent.eiEmployee};
+				var nhiEmployee = ${nhiContent.nhiEmployee};
+				var ppEmployee = ${ppContent.ppEmployee}; 
+				
+// 				console.log('mmCode : '+ mmCode);
+// 				console.log('eiEmployee : '+ eiEmployee);
+// 				console.log('nhiEmployee : '+ nhiEmployee);
 				
 				$.ajax({
-					type : "post",
-					url : "/smart/pc/mmContent",
-					data : {"mmCode": mmCode},
-					success : function(data) {
-// 						alert('data.mmCode : ' + data.mmCode);
-// 						alert('data.mmName : ' + data.mmName);
-// 						alert('data.mmDailyPay : ' + data.mmDailyPay);
+					type: "post",
+					url: "/smart/pc/mmContent",
+					data: {"mmCode": mmCode},
+// 					전역변수에 담기
+					async: false,
+					success: function(data) {
+// 						console.log('data.mmCode : ' + data.mmCode);
+// 						console.log('data.mmName : ' + data.mmName);
+// 						console.log('data.mmDailyPay : ' + data.mmDailyPay);
 						
 						$('#mmCode').val(data.mmCode);
 						$('#mmName').val(data.mmName);
 						$('#mmDailyPay').val(data.mmDailyPay);
 						
-// 						alert('mmCode : ' + $('#mmCode').val());
-// 						alert('mmName : ' + $('#mmName').val());
-// 						alert('pcDate : ' + $('#mmDailyPay').val());
+// 						console.log('mmCode : ' + $('#mmCode').val());
+// 						console.log('mmName : ' + $('#mmName').val());
+// 						console.log('pcDate : ' + $('#mmDailyPay').val());
+						
+//		 				고용보험
+						$("#eiAmount").val(data.mmDailyPay * eiEmployee);						
+//		 				국민건강보험
+						$("#nhiAmount").val(data.mmDailyPay * nhiEmployee);
+// 						연금보험
+						$("#ppAmount").val(data.mmDailyPay * ppEmployee);
+						
+						sumAmount = data.mmDailyPay - 
+									((data.mmDailyPay * eiEmployee) + (data.mmDailyPay * nhiEmployee) + (data.mmDailyPay * ppEmployee));
+					
+						$("#pcAmount").val(sumAmount);
 					}
 				});
+				
+				alert('sumAmount : ' + sumAmount);
 			});
+			
+			alert('final sumAmount : ' + sumAmount);
+			
+// 			alert('sumAmount : ' + sumAmount);
+			
+			var result = $("#pcAmount").val();
+			
+			alert('result : ' + result);
+			
+			$('#sumBtn').click(function() {
+				
+				alert('finalsss sumAmount : ' + sumAmount);
+// //	 				console.log("inAmount keyup!!!");
+
+// 					alert('sumAmount : ' + sumAmount);
+					
+// 					var result = parseInt($('#inAmount').val()) + parseInt(sumAmount);
+					
+// 					alert('result : ' + result);
+					
+// 					$("#pcAmount").val(result);
+			});
+			
+// 			alert('final sumAmount : ' + sumAmount);
 		});
 	</script>
 </head>
@@ -57,7 +106,7 @@
 							<div class="graph-2 general">
 								<div class="grid-1">
 									<div class="form-body">
-										<form class="form-horizontal" method="post">
+										<form class="form-horizontal" method="post" action="<c:url value='/pa/add'/>">
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
@@ -94,39 +143,42 @@
 															<td><input type="text" class="form-control1" id="pcSection" name="pcSection" value="본봉" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="기본급" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="기본급" disabled/></td>
-															<td><input type="text" class="form-control1" name="mmDailyPay" id="mmDailyPay" disabled/></td>
+															<td><input type="text" class="form-control1" name="mmDailyPay" id="mmDailyPay" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>2</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="수당" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="성과급" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="성과급" disabled/></td>
-															<td><input type="text" class="form-control1" value="0"/></td>
+															<td><input type="text" class="form-control1" name="inAmount" id="inAmount" value="0"/></td>
 														</tr>
 														<tr>
 															<td>3</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="고용보험" disabled/></td>
-															<td><input type="text" class="form-control1" value="본봉 * ${eiContent.eiEmployee}" disabled/></td>
+															<td><input type="text" class="form-control1" id="eiAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>4</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="국민건강보험" disabled/></td>
-															<td><input type="text" class="form-control1" value="본봉 * ${nhiContent.nhiEmployee}" disabled/></td>
+															<td><input type="text" class="form-control1" id="nhiAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>5</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="연금보험" disabled/></td>
-															<td><input type="text" class="form-control1" value="본봉 * ${ppContent.ppEmployee}" disabled/></td>
+															<td><input type="text" class="form-control1" id="ppAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
-															<th colspan=4>총급여</th>
-															<td><input type="text" class="form-control1" value="1 + 2 - 3 - 4 - 5 - 6" disabled/></td>
+															<th colspan=4>
+																총급여
+																<input type="button" id="sumBtn" name="sumBtn" class="btn btn-default" value="계산">
+															</th>
+															<td><b><input type="text" class="form-control1" id="pcAmount" name="pcAmount" value="0" disabled/></b></td>
 														</tr>
 													</table> 
 												</div>	
@@ -134,7 +186,7 @@
 											<div class="form-group">
 												<label for="mmPassword" class="col-sm-2 control-label">담당사원코드</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" value="로그인한 아이디 넣어라" disabled/>
+													<input type="text" class="form-control1" name="paMmCode" value="${paMmCode}" disabled/>
 												</div>
 											</div>
 											<div class="form-group" align="center">

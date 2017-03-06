@@ -17,7 +17,7 @@
 	
 	<!--국민건강보험 -->
 	<resultMap id="resultNhi" type="com.cafe24.smart.insurance.domain.NationalHealthInsurance">
-		<result property="nhiCode" column="nhi_code"/>
+		<result property="nhiCode" column="nhi_code"/>                                                                                                         
 		<result property="nhiYear" column="nhi_year"/>
 		<result property="nhiEmployee" column="nhi_employee"/>
 		<result property="nhiOwner" column="nhi_owner"/>
