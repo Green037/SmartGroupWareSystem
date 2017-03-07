@@ -10,8 +10,10 @@
 		$(document).ready(function() {	
 // 			사원코드 파라미터를 받아 해당 사원 급여 내용을 조회
 			
+// 			총액
 			var sumAmount = 0;
 
+// 			사원 급여 정보 조회
 			$('#mmButton').click(function() {
 				var mmCode = $('#mCodeCheck').val();
 				
@@ -24,9 +26,9 @@
 // 				console.log('nhiEmployee : '+ nhiEmployee);
 				
 				$.ajax({
-					type: "post",
-					url: "/smart/pc/mmContent",
-					data: {"mmCode": mmCode},
+					type: 'post',
+					url: '/smart/pc/mmContent',
+					data: {'mmCode': mmCode},
 // 					전역변수에 담기
 					async: false,
 					success: function(data) {
@@ -43,42 +45,35 @@
 // 						console.log('pcDate : ' + $('#mmDailyPay').val());
 						
 //		 				고용보험
-						$("#eiAmount").val(data.mmDailyPay * eiEmployee);						
+						$('#eiAmount').val(data.mmDailyPay * eiEmployee);						
 //		 				국민건강보험
-						$("#nhiAmount").val(data.mmDailyPay * nhiEmployee);
+						$('#nhiAmount').val(data.mmDailyPay * nhiEmployee);
 // 						연금보험
-						$("#ppAmount").val(data.mmDailyPay * ppEmployee);
+						$('#ppAmount').val(data.mmDailyPay * ppEmployee);
 						
 						sumAmount = data.mmDailyPay - 
 									((data.mmDailyPay * eiEmployee) + (data.mmDailyPay * nhiEmployee) + (data.mmDailyPay * ppEmployee));
 					
-						$("#pcAmount").val(sumAmount);
+						$('#pcAmount').val(sumAmount);
 					}
 				});
-				
-				alert('sumAmount : ' + sumAmount);
 			});
 			
-			alert('final sumAmount : ' + sumAmount);
-			
-// 			alert('sumAmount : ' + sumAmount);
-			
-			var result = $("#pcAmount").val();
-			
-			alert('result : ' + result);
+// 			console.log('sumAmount : ' + sumAmount);
 			
 			$('#sumBtn').click(function() {
+// 			$('#inAmount').keydown(function() {
 				
-				alert('finalsss sumAmount : ' + sumAmount);
-// //	 				console.log("inAmount keyup!!!");
-
-// 					alert('sumAmount : ' + sumAmount);
+				sumAmount = $('#pcAmount').val();
+				
+				console.log('sumBtn sumAmount : ' + sumAmount);
+				console.log('inAmount val : ' + $('#inAmount').val());
+	 				
+				var result = parseInt($('#inAmount').val()) + parseInt(sumAmount);
 					
-// 					var result = parseInt($('#inAmount').val()) + parseInt(sumAmount);
+				console.log('sumBtn result : ' + result);
 					
-// 					alert('result : ' + result);
-					
-// 					$("#pcAmount").val(result);
+				$("#pcAmount").val(result);
 			});
 			
 // 			alert('final sumAmount : ' + sumAmount);
@@ -112,7 +107,7 @@
 												<div class="col-sm-3">
 													<input type="text" id="mCodeCheck" name="mCodeCheck" class="form-control1" placeholder="입력 후 검색 버튼을 누르세요."/>
 													<input type="hidden" id="mmCode" name="mmCode"/>
-													<input type="button" class="btn btn-default" name="mmButton" id="mmButton" value="검색"/>
+													<a class="btn blue" id="mmButton">검색</a>
 												</div>
 											</div>											
 											<div class="form-group">
@@ -176,7 +171,7 @@
 														<tr>
 															<th colspan=4>
 																총급여
-																<input type="button" id="sumBtn" name="sumBtn" class="btn btn-default" value="계산">
+																<a class="btn blue" id="sumBtn">계산</a>
 															</th>
 															<td><b><input type="text" class="form-control1" id="pcAmount" name="pcAmount" value="0" disabled/></b></td>
 														</tr>

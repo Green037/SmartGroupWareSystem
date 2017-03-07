@@ -82,6 +82,4 @@
 	</bean>
 	
 	<bean id="download" class="com.cafe24.smart.approve.service.ApproveServiceDown" />
-		
-	
 </beans>
