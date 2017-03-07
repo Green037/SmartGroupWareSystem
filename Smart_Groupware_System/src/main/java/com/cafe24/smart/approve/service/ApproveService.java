@@ -7,6 +7,7 @@ import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.domain.TotalFile;
+import com.cafe24.smart.approve.domain.TotalInfo;
 
 public interface ApproveService {
 	
@@ -14,7 +15,7 @@ public interface ApproveService {
 	List<Document> apAddSelServ();
 
 	//기안 등록
-	int apAddServ(Draft draft, Progress progress, TotalFile totalfile) throws IllegalStateException, IOException;
+	int apAddServ(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile) throws IllegalStateException, IOException;
 	
 	//총 목록 (대기/반려/완료)
 	List<Draft> pgListServ(int apProgress);
