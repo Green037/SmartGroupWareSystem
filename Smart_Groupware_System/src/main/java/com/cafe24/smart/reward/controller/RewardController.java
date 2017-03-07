@@ -2,7 +2,10 @@ package com.cafe24.smart.reward.controller;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
+import javax.activation.CommandMap;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.reward.domain.Reward;
@@ -77,8 +81,12 @@ public class RewardController {
 	
 //	인사부 > 고과목록 추가 (get)
 	@RequestMapping(value = "re/add", method = RequestMethod.GET)
-	public String reAddFormCtrl(Model model) {
+	public String reAddFormCtrl(Model model, HttpServletRequest request) {
 						
+		String classPath = request.getContextPath();
+		
+		System.out.println("reAddFormCtrl classPath : " + classPath);
+		
 		int mmCode = (int) session.getAttribute("id");
 		
 		model.addAttribute("reMmCode", mmCode);
@@ -87,14 +95,12 @@ public class RewardController {
 	}
 
 //	인사부 > 고과목록 추가 (post)
-	@RequestMapping(value = "re/add", method = RequestMethod.POST)
-	public String reAddProCtrl(Reward reward, @RequestParam("reMmCode") int reMmCode, @RequestParam("mmCode") int mmCode) {
-						
-		System.out.println("RewardController reAddProCtrl mmCode : " + mmCode);
-		System.out.println("RewardController reAddProCtrl reward : " + reward);
-		System.out.println("RewardController reAddProCtrl reMmCode : " + reMmCode);
-		
-		return "home";
-	}
+//	@RequestMapping(value = "re/add", method = RequestMethod.POST)
+//	public ModelAndView reAddProCtrl(CommandMap commandMap, HttpServletRequest request) {
+//						
+//		int n = rewardService.reAddServ(reward, request);
+//		
+//		return new ModelAndView();
+//	}
 	
 }

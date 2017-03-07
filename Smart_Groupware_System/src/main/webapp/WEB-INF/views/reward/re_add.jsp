@@ -54,13 +54,13 @@
 							<div class="graph-2 general">
 								<div class="grid-1">
 									<div class="form-body">
-										<form class="form-horizontal" method="post" action="<c:url value='/re/add'/>">
+										<form class="form-horizontal" method="post" action="<c:url value='/re/add'/>" enctype="multipart/form-data">
 											<div class="form-group">
 												<label for="mmCode" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
 													<input type="text" id="mCodeCheck" name="mCodeCheck" class="form-control1" placeholder="입력 후 검색 버튼을 누르세요."/>
 													<input type="hidden" id="mmCode" name="mmCode"/>
-													<input type="button" class="btn btn-default" name="mmButton" id="mmButton" value="검색"/>
+													<a class="btn blue" id="mmButton">검색</a>
 												</div>
 											</div>											
 											<div class="form-group">

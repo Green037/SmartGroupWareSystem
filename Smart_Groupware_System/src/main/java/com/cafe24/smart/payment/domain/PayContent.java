@@ -1,14 +1,13 @@
 package com.cafe24.smart.payment.domain;
 
+import java.util.List;
+
 //급여상세
-public class PayConent {
+public class PayContent {
 	private int pcCode;
 	private int mmCode;
 	private String pcDate;
-	private String pcSection;
-	private String pcClasificar;
-	private String middleClasificar;
-	private int pcAmount;
+	private List<Pay> payList;
 	private int paMmCode;
 	
 	public int getPcCode() {
@@ -30,41 +29,17 @@ public class PayConent {
 	public String getPcDate() {
 		return pcDate;
 	}
-	
+
 	public void setPcDate(String pcDate) {
 		this.pcDate = pcDate;
 	}
-	
-	public String getPcSection() {
-		return pcSection;
+
+	public List<Pay> getPayList() {
+		return payList;
 	}
 
-	public void setPcSection(String pcSection) {
-		this.pcSection = pcSection;
-	}
-	
-	public String getPcClasificar() {
-		return pcClasificar;
-	}
-	
-	public void setPcClasificar(String pcClasificar) {
-		this.pcClasificar = pcClasificar;
-	}
-	
-	public String getMiddleClasificar() {
-		return middleClasificar;
-	}
-	
-	public void setMiddleClasificar(String middleClasificar) {
-		this.middleClasificar = middleClasificar;
-	}
-	
-	public int getPcAmount() {
-		return pcAmount;
-	}
-	
-	public void setPcAmount(int pcAmount) {
-		this.pcAmount = pcAmount;
+	public void setPayList(List<Pay> payList) {
+		this.payList = payList;
 	}
 
 	public int getPaMmCode() {
@@ -77,9 +52,7 @@ public class PayConent {
 
 	@Override
 	public String toString() {
-		return "PayConent [pcCode=" + pcCode + ", mmCode=" + mmCode + 
-				", pcDate=" + pcDate + ", pcSection=" + pcSection + ", pcClasificar="
-				+ pcClasificar + ", middleClasificar=" + middleClasificar +
-				", pcAmount=" + pcAmount + ", paMmCode=" + paMmCode + "]";
+		return "PayContent [pcCode=" + pcCode + ", mmCode=" + mmCode + ", pcDate=" + pcDate + ", payList=" + payList
+				+ ", paMmCode=" + paMmCode + "]";
 	}
 }
