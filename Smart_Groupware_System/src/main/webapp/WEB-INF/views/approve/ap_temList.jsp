@@ -11,10 +11,10 @@
 	<%@ include file="../menu.jsp" %>
 	
 	<!-- contents -->
-	<div class="page-container">
-		<div class="left-content">
-			<div class="inner-content">
-				<div class="outter-wp">
+<div class="page-container">
+<div class="left-content">
+<div class="inner-content">
+<div class="outter-wp">
 					
 					<div class="sub-heard-part">a
 						<ol class="breadcrumb m-b-0">
@@ -63,11 +63,15 @@
 							</div>
 						</div>
 					</div>
+					
+						<div class="btn-group btn-group-justified">
+								<a href="<c:url value='/ap/test'/>" class="btn btn-success">test</a>
+						</div>
 				
-				</div>
-			</div>
-		</div>
-	</div>	
+</div>
+</div>
+</div>
+</div>	
 			
 	<%@ include file="../footer.jsp"%>
 

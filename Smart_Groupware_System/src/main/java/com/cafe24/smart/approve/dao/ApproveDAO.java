@@ -39,8 +39,13 @@ public interface ApproveDAO {
 	List<Draft> selectAllPg();
 	//-----총 목록 : 대기/반려/완료
 	List<Draft> selectByHv(int progress);
+	
+	// 문서 양식 등록
+	int insertDoc(Document document);
 
 	
+	
+	Draft selectNew(int dftCode);
 	
 	
 }

@@ -49,4 +49,12 @@ public class RewardDAOImpl implements RewardDAO {
 		
 		return rewardList;
 	}
+
+	@Override
+	public int insertRe(Reward reward) {
+		
+		System.out.println("RewardDAOImpl insertRe reward : " + reward);
+		
+		return 0;
+	}
 }

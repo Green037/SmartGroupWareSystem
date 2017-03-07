@@ -73,8 +73,10 @@
 	
 	<context:component-scan base-package="com.cafe24.smart" />
 	
-	<!-- MultipartResolver 설정 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+	<!-- MultipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    	<property name="maxUploadSize" value="100000000"/>
+    	<property name="maxInMemorySize" value="100000000"/>
 	</bean>
 	
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
@@ -82,6 +84,4 @@
 	</bean>
 	
 	<bean id="download" class="com.cafe24.smart.approve.service.ApproveServiceDown" />
-		
-	
 </beans>

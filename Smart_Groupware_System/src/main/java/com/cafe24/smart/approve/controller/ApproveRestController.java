@@ -14,4 +14,5 @@ public class ApproveRestController {
 	@Autowired
 	private ApproveService approveService;
 	
+	//ajax 요청
 }

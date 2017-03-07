@@ -1,11 +1,17 @@
 package com.cafe24.smart.reward.service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.member.dao.MemberDAO;
 import com.cafe24.smart.member.domain.Member;
@@ -38,13 +44,30 @@ public class RewardServiceImpl implements RewardService {
 		return memberDAO.selectByMm(mmCode);
 	}
 
-//	@Override
-//	public int reAddServ(Reward reward) {
-//		
-//		System.out.println("RewardServiceImpl reAddServ reward : " + reward);
-//		
-//		return 0;
-//	}
+	@Override
+	public int reAddServ(Reward reward, HttpServletRequest request) {
+		
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		
+		System.out.println("RewardServiceImpl reAddServ iterator : " + iterator);
+		
+		MultipartFile multipartFile = null;
+		
+		while (iterator.hasNext()) {
+			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
+			
+			if (multipartFile.isEmpty() == false) {
+				System.out.println("-------file start------");
+				System.out.println("file name : " + multipartFile.getName());
+				System.out.println("file fileName : " + multipartFile.getOriginalFilename());
+				System.out.println("file size : " + multipartFile.getSize());
+				System.out.println("-------file end------");
+			}
+		}
+		
+		return rewardDAO.insertRe(reward);
+	}
 
 	
 }

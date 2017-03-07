@@ -31,34 +31,36 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectAllDoc");
 	}
 	
-	// 기안 등록 : draft
+	// 기안 등록 1-1 : draft
 	@Override
 	public int insertDft(Draft draft){
 		System.out.println("dao dftInsert>  test");
 		return sqlSession.insert("AprDAO.insertDft" ,draft);
 	}
 	
-	// 기안 등록 : progress
+	// 기안 등록 1-2 : progress
 	@Override
 	public int insertPg(Progress progress){
 		System.out.println("dao proInsert>  test");
 		return sqlSession.insert("AprDAO.insertPg" ,progress);
 	}
 	
-
-	// 결재 신청 폼 : dftCode 가져오기
+	
+	// 결재 신청 폼 : dftCode로 결재 신청 정보 가져오기
  	@Override
 	public Draft selectContHv(int dftCode){
 		System.out.println("dao hvCont> test");
 		return sqlSession.selectOne("AprDAO.selectContHv", dftCode);
 	}
 	
- 	// 결재 신청 폼 : proApproval 가져오기
+ 	// 결재 신청 폼 : proReason/proApproval 가져오기
 	@Override
 	public Progress selectDetailHv(int dftCode) {
 		System.out.println("dao hvDetail> test");
 		return sqlSession.selectOne("AprDAO.selectDetailHv", dftCode);
 	}
+	
+
 	
 	// 결재 요청 : 1단계 : progress update
 	@Override
@@ -81,12 +83,13 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.update("AprDAO.updateProApv", progress);
 	}
 	
-	// 결재 요청 : 결재자 가져오기
+	// 결재 요청 결재자 가져오기 && [상세보기] : 
 	@Override
 	public Draft selectCountHv(int dftCode) {
 		System.out.println("dao proModifyProApv> test");
 		return sqlSession.selectOne("AprDAO.selectContHv", dftCode);
 	}
+	
 
 	// 임시 목록
 	@Override
@@ -95,13 +98,14 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectAllTem");
 	}
 	
-	// 임시 상세보기
+	// 임시 [상세보기]
 	@Override
 	public List<Draft> selectContTem(int dftCode) {
 		System.out.println("dao temCont> test");
 		return sqlSession.selectList("AprDAO.selectContHv", dftCode);
 	}
 	
+
 	//------총 결재 목록 : intro 목록 
 	@Override
 	public List<Draft> selectAllPg(){
@@ -115,6 +119,24 @@ public class ApproveDAOImpl implements ApproveDAO {
 		System.out.println("dao byHvList> test");
 		return sqlSession.selectList("AprDAO.selectByHv", progress);
 	}
+
+	
+	//문서 양식 등록
+	@Override
+	public int insertDoc(Document document) {
+		System.out.println("dao insertDoc> test");
+		return sqlSession.insert("AprDAO.insertDoc", document);
+	}
+
+	
+	
+	//----상세보기 ------
+	@Override
+	public Draft selectNew(int dftCode) {
+		System.out.println("dao selectNew> test");
+		return sqlSession.selectOne("AprDAO.selectNew", dftCode);
+	}
+	
 
 
 
