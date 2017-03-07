@@ -11,7 +11,7 @@ public class Wbs {
 	private String wbsEndDate;
 	private long wbsWorkingDays;
 	private int wbsProgress;
-	private String wbsUncompleatedReason;
+	private String wbsUncompletedReason;
 	private String wbsFinalEndDate;
 	private String wbsStatus;
 	private String wbsProgresses;
@@ -104,14 +104,14 @@ public class Wbs {
 		this.wbsProgress = wbsProgress;
 	}
 
-	public String getWbsUncompleatedReason() {
-		return wbsUncompleatedReason;
+	public String getWbsUncompletedReason() {
+		return wbsUncompletedReason;
 	}
 
-	public void setWbsUncompleatedReason(String wbsUncompleatedReason) {
-		this.wbsUncompleatedReason = wbsUncompleatedReason;
+	public void setWbsUncompletedReason(String wbsUncompletedReason) {
+		this.wbsUncompletedReason = wbsUncompletedReason;
 	}
-	
+
 	public String getWbsFinalEndDate() {
 		return wbsFinalEndDate;
 	}
@@ -124,10 +124,9 @@ public class Wbs {
 	public String toString() {
 		return "Wbs [wbsCode=" + wbsCode + ", prCode=" + prCode + ", wbsCate=" + wbsCate + ", wbsName=" + wbsName
 				+ ", wbsContents=" + wbsContents + ", wbsStartDate=" + wbsStartDate + ", wbsEndDate=" + wbsEndDate
-				+ ", wbsWorkingDays=" + wbsWorkingDays + ", wbsProgress=" + wbsProgress + ", wbsUncompleatedReason="
-				+ wbsUncompleatedReason + ", wbsFinalEndDate=" + wbsFinalEndDate + ", wbsStatus=" + wbsStatus
+				+ ", wbsWorkingDays=" + wbsWorkingDays + ", wbsProgress=" + wbsProgress + ", wbsUncompletedReason="
+				+ wbsUncompletedReason + ", wbsFinalEndDate=" + wbsFinalEndDate + ", wbsStatus=" + wbsStatus
 				+ ", wbsProgresses=" + wbsProgresses + "]";
 	}
-
-
+	
 }

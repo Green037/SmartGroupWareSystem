@@ -55,12 +55,12 @@ public class WbsController {
 	//WBS 등록처리 -> 포스트요청.
 	@RequestMapping(value = "wbs/addWbs", method = RequestMethod.POST)
 	public String wbsAddCtrl(Model model, Wbs wbs) {
-		System.out.println("h2 Wbs Add POST!!");
-		System.out.println(wbs);
+		/*System.out.println("h2 Wbs Add POST!!");
+		System.out.println(wbs);*/
 		
 		//wbs 등록처리 메서드 호출. 성공여부 리턴값 뷰로 포워딩~!
 		String result = wbsService.wbsAddServ(wbs);
-		System.out.println("wbs입력결과 : "+result);
+		//System.out.println("wbs입력결과 : "+result);
 		
 		return "home";
 	}	

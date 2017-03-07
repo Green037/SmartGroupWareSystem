@@ -121,4 +121,22 @@
 		WHERE
 			wbs_code = #{wbsCode}
 	</select>
+	
+	<update id="updateWbs"
+			parameterType="com.cafe24.smart.wbs.domain.Wbs">
+		UPDATE wbs
+			<set>
+				<if test="wbsName != null">wbs_name=#{wbsName},</if>
+				<if test="wbsContents != null">wbs_contents=#{wbsContents},</if>
+				<if test="wbsStartDate != null">wbs_startDate=#{wbsStartDate},</if>
+				<if test="wbsEndDate != null">wbs_endDate=#{wbsEndDate},</if>
+				<if test="wbsProgress != null">wbs_progress=#{wbsProgress},</if>
+				<if test="wbsUncompletedReason != null">wbs_uncompletedReason=#{wbsUncompletedReason},</if>
+				<if test="wbsFinalEndDate != ''">wbs_finalEndDate=#{wbsFinalEndDate},</if>
+				<if test="wbsStatus != null">wbs_status=#{wbsStatus},</if>
+				<if test="wbsWorkingDays != null">wbs_workingDays=#{wbsWorkingDays}</if>
+			</set>
+		WHERE 
+			wbs_code = #{wbsCode}
+	</update>
 </mapper>

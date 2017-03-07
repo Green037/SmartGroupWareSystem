@@ -54,4 +54,11 @@ public class WbsDAOImpl implements WbsDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("WbsDAO.selectByWbsCodeWbs", wbsCode);
 	}
+
+	//wbs 수정
+	@Override
+	public int updateWbs(Wbs wbs) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("WbsDAO.updateWbs", wbs);
+	}
 }

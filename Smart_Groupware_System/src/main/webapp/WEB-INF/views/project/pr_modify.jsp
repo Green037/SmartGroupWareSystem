@@ -133,23 +133,24 @@
 			});
 			$('#fuAddHistory').modal('hide');
 		});
+		
+		// wbs수정팝업창 띄우기 이벤트
 		$(document).on('click','#WbsModifyBtn',function(){
 			var wbsCode = $(this).parent().parent().children('#wbsCode').val();
-			console.log(wbsCode);
+			/* console.log(wbsCode); */
 			//팝업창 열기
 			$('#wbsModifyForm').modal();
 			//ajax로 wbs내용 가져와 팝업창에 세팅하기
 			$.ajax({
 				url: '/smart/wbs/detail',
-				data : {"wbsCode":wbsCode},
+				data : {'wbsCode':wbsCode},
 				dataType : 'json',
 				type : 'post',
 				success : function(data){
-					console.log(data.check);
-					console.log(data.wbs.wbsCode);
-					/*여기부터 작업해야함. 작업분해도 클릭시 열리는 형식으로 바꿀것. */
+					/* console.log(data.check);
+					console.log(data.wbs.wbsCode); */
 					if(data.check == '성공'){
-						$('#wbsCode').val(wbsCode);
+						$('#_wbsCode').val(data.wbs.wbsCode);
 						$('#wbsName').val(data.wbs.wbsName);
 						$('#wbsContents').val(data.wbs.wbsContents);
 						$('#wbsStartDate').val(data.wbs.wbsStartDate);
@@ -157,10 +158,40 @@
 						$('#wbsProgress').val(data.wbs.wbsProgress);
 						$('#wbsUncompleatedReason').val(data.wbs.wbsUncompleatedReason);
 						$('#wbsFinalEndDate').val(data.wbs.wbsFinalEndDate);
+					}else{
+						alert('자료 불러오기에 '+data.check+'하였습니다')
 					}
 				}
 			});
 		});
+		
+		//Wbs 화면 등장이벤트
+		$(document).on('click','#showWbsBtn',function(){
+			$('#wbsTable').css('display','');
+		});
+		
+		//wbs 수정처리 
+		$(document).on('click','#modifyActionBtn',function(){
+			var wbsData = $('#actionForm').serialize();
+			console.log(wbsData);
+			$.ajax({
+				url: '/smart/wbs/modifyWbs',
+				data : wbsData,
+				dataType : 'json',
+				type : 'post',
+				success : function(data){
+					console.log(data.check);
+					if(data.check == '성공'){
+						/* 수정 후 조회해온 자료 어떻게 뿌려줄지 좀 생각해봐야함 ㅠ 
+						if(data.wbs.wbsCode == $('.wbsTr').children('.wbsCode').val()){
+							console.log(data.wbs.wbsCode);
+							console.log($('.wbsTr').children('.wbsCode').val());
+							console.log($(this).val());
+						} */
+					}
+				}
+			});
+		});  
 	</script>
 </head> 
 
@@ -263,17 +294,22 @@
 							<option value="반려">반려</option>
 						</select>
 						<script>
-							$('#"prForProgress"').val('${project.prForProgress}').attr('selected','selected');
+							$('#prForProgress').val('${project.prForProgress}').attr('selected','selected');
 						</script>
 					</td>
 					<td><span class="glyphicon glyphicon-hourglass"></span> <strong>프로젝트진행상황</strong></td>
 					<td>${project.prFinishCheck}</td>
 				<tr>
-					<td colspan="8" style="color:blue;" align="center">WBS(작업분해도)</td>
+					<td colspan="8" style="color:blue;" align="center">
+						<button type="button" class="btn btn-primary btn-success btn-block" id="showWbsBtn">
+							<span class="glyphicon glyphicon-search"></span>
+							 WBS(작업분해도)보기
+						</button>
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<table class="table table-bordered">
+		<table class="table table-bordered" style="display:none;" id="wbsTable">
 				<!-- WBS 넣기 -->
 			<thead>
 				<tr>
@@ -288,15 +324,15 @@
 			</thead>
 			<tbody>
 				<c:forEach var="wbsList" items="${wbsList}">
-					<tr>
-						<input type="hidden" id="wbsCode" value="${wbsList.wbsCode}"/>
-						<td>${wbsList.wbsCate}</td>
-						<td>${wbsList.wbsName}</td>
-						<td>${wbsList.wbsContents}</td>
-						<td>${wbsList.wbsStartDate}</td>
-						<td>${wbsList.wbsEndDate}</td>
-						<td style="width:80px;">${wbsList.wbsProgress}%</td>
-						<td>
+					<tr class="wbsTr">
+						<input type="hidden" id="wbsCode" class="wbsCode" value="${wbsList.wbsCode}"/>
+						<td id="1">${wbsList.wbsCate}</td>
+						<td id="2">${wbsList.wbsName}</td>
+						<td id="3">${wbsList.wbsContents}</td>
+						<td id="4">${wbsList.wbsStartDate}</td>
+						<td id="5">${wbsList.wbsEndDate}</td>
+						<td style="width:80px;" id="6">${wbsList.wbsProgress}%</td>
+						<td id="7">
 							<div class="progress progress-bar-xs">
 								<div class="progress-bar progress-bar-info" role="progressbar" 
 									aria-valuenow="${wbsList.wbsProgress}" aria-valuemin="0" aria-valuemax="100" 

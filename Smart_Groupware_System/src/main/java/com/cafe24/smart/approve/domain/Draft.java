@@ -1,9 +1,5 @@
 package com.cafe24.smart.approve.domain;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
 //기안
 public class Draft {
 	private int dftCode;
@@ -157,11 +153,7 @@ public class Draft {
 	public void setDftFileExtention(String dftFileExtention) {
 		this.dftFileExtention = dftFileExtention;
 	}
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
 	// ----- view
 	public int getProApproval() {
 		return proApproval;
@@ -170,16 +162,14 @@ public class Draft {
 	public void setProApproval(int proApproval) {
 		this.proApproval = proApproval;
 	}
-<<<<<<< HEAD
 
-=======
 	public String getProReason() {
 		return proReason;
 	}
 	public void setProReason(String proReason) {
 		this.proReason = proReason;
 	}
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
+
 	public String getProRealTime() {
 		return proRealTime;
 	}
@@ -187,11 +177,9 @@ public class Draft {
 	public void setProRealTime(String proRealTime) {
 		this.proRealTime = proRealTime;
 	}
-<<<<<<< HEAD
 
 	// ----- 주소를 담아서 return하기 위해 생성
-=======
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
+
 	public String getUrl() {
 		return url;
 	}
@@ -199,9 +187,7 @@ public class Draft {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-<<<<<<< HEAD
 
-=======
 	public String getDocFileGroup() {
 		return docFileGroup;
 	}
@@ -209,7 +195,7 @@ public class Draft {
 		this.docFileGroup = docFileGroup;
 	}
 	
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
+
 	@Override
 	public String toString() {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode
@@ -220,9 +206,5 @@ public class Draft {
 				+ dftFileExtention + ", proApproval=" + proApproval + ", proReason=" + proReason + ", proRealTime="
 				+ proRealTime + ", url=" + url + ", docFileGroup=" + docFileGroup + "]";
 	}
-<<<<<<< HEAD
-=======
-	
-		
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
+
 }

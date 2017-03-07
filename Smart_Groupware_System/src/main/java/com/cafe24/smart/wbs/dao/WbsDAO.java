@@ -15,5 +15,5 @@ public interface WbsDAO {
 	int insertWbs(Wbs wbs);
 	List<Wbs> selectByPrCodeWbs(int prCode);
 	Wbs selectByWbsCodeWbs(int wbsCode);
-
+	int updateWbs(Wbs wbs);
 }

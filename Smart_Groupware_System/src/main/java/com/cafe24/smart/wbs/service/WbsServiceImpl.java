@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.dao.ProjectDAO;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.util.UtilDate;
 import com.cafe24.smart.wbs.dao.WbsDAO;
 import com.cafe24.smart.wbs.domain.Wbs;
 import com.cafe24.smart.wbs.service.WbsService;
@@ -90,6 +91,8 @@ public class WbsServiceImpl implements WbsService {
 		String[] wbsStatus = new String(wbs.getWbsStatus()).split(",");
 		
 		ArrayList<Integer> resultList =new ArrayList<Integer>();
+		UtilDate date = new UtilDate(); //날짜관련 연산하는 유틸클래스
+		
 		for(int i=0; i<wbsCates.length; i++){
 			wbs = new Wbs();
 		// 3.세트별 값세팅.
@@ -101,11 +104,8 @@ public class WbsServiceImpl implements WbsService {
 			wbs.setWbsEndDate(wbsEndDate[i]);
 			wbs.setWbsProgress(Integer.parseInt(wbsProgress[i]));
 			wbs.setWbsStatus(wbsStatus[i]);
-			try { // 종료일, 시작일 연산하여 날짜 차이를 구하는 메서드 diffOfDate 
-				wbs.setWbsWorkingDays(diffOfDate(wbsStartDate[i],wbsEndDate[i]));
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			wbs.setWbsWorkingDays(date.getMinusDate(wbsStartDate[i],wbsEndDate[i]));
+			
 		// 4.입력하는 메서드 호출
 			resultList.add(wbsDao.insertWbs(wbs)); 
 			System.out.println(i+"번째 입력확인 : "+ resultList.get(i));
@@ -134,5 +134,28 @@ public class WbsServiceImpl implements WbsService {
 		// TODO Auto-generated method stub
 		return wbsDao.selectByWbsCodeWbs(wbsCode);
 	}
-
+	
+	// 수정처리후 성공하면 수정된 wbs정보를 조회해온다.
+	@Override
+	public Wbs wbsModifyServ(Wbs wbs) {
+		// 시작 종료일 날짜차이를 구하고 세팅하고 진행률 100프로면 완료로 세팅해준다.
+		UtilDate utilDate = new UtilDate();
+		Long wbsWorkingDays = utilDate.getMinusDate(wbs.getWbsStartDate(), wbs.getWbsEndDate());
+		System.out.println("작업일수는 : "+wbsWorkingDays);
+		wbs.setWbsWorkingDays(wbsWorkingDays);
+		
+		if(wbs.getWbsProgress() == 100){
+			wbs.setWbsStatus("완료");
+		}else{
+			wbs.setWbsStatus("진행중");
+		}
+		
+		//수정 성공시 수정된 내용을 리턴하기
+		int result = wbsDao.updateWbs(wbs);
+		if(result == 1){
+			return wbs;
+		}else{
+			return null;
+		}
+	}
 }

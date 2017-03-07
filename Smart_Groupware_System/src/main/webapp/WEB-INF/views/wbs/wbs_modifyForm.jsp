@@ -20,13 +20,13 @@
 			<h4 style="color:red;"><span class="glyphicon glyphicon-edit"></span> WBS수정</h4>
 		</div>
 		<div class="modal-body">
-			<form role="form" id="wbsMoForm">
+			<form role="form" id="actionForm">
 				<div class="form-group">
 					<label for="wbsCode">
 						<span class="glyphicon glyphicon-list-alt"></span> 
 						WBS코드
 					</label>
-					<input type="text" class="form-control" name="wbsCode" id="wbsCode" readonly="readonly"/>
+					<input type="text" class="form-control" name="wbsCode" id="_wbsCode" readonly="readonly"/>
 				</div>
 				<div class="form-group">
 					<label for="wbsName">
@@ -64,11 +64,11 @@
 					<input type="text" class="form-control" name="wbsProgress" id="wbsProgress"/>
 				</div>
 				<div class="form-group">
-					<label for="wbsUncompleatedReason">
+					<label for="wbsUncompletedReason">
 						<span class="glyphicon glyphicon-usd"></span> 
 						미완사유<span style="color:red;">(*미완료시만입력)</span>
 					</label>
-					<input type="text" class="form-control" name="wbsUncompleatedReason" id="wbsUncompleatedReason"/>
+					<input type="text" class="form-control" name="wbsUncompletedReason" id="wbsUncompletedReason"/>
 				</div>
 				<div class="form-group">
 					<label for="wbsFinalEndDate">
@@ -78,7 +78,7 @@
 					<input type="date" class="form-control" name="wbsFinalEndDate" id="wbsFinalEndDate"/>
 				</div>
 				
-				<button type="button" class="btn btn-default btn-success btn-block" id="_fuModifyBtn">
+				<button type="button" class="btn btn-default btn-success btn-block" id="modifyActionBtn">
 					<span class="glyphicon glyphicon-off"></span>
 					 내용수정
 				</button>

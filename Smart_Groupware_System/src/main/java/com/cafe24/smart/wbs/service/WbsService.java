@@ -15,4 +15,5 @@ public interface WbsService {
 	String wbsAddServ(Wbs wbs);
 	List<Wbs> wbsListServ(int prCode);
 	Wbs wbsDetailServ(int wbsCode);
+	Wbs wbsModifyServ(Wbs wbs);
 }

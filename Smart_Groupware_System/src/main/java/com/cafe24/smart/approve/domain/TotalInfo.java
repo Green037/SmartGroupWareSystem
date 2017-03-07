@@ -7,25 +7,16 @@ public class TotalInfo {
 	private String dftFileName;
 	private String dftFilePath;
 	private String dftFileExtention;
-<<<<<<< HEAD
-
-=======
-	
 	private String dftDate;
 	private int dftDegree;
 	private String dftFinalState;
 	
 	//document의 정보
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
 	private String docFileName;
 	private String docFilePath;
 	private String docFileExtention;
 	private String docFileOri;
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
 	public String getDftFileOri() {
 		return dftFileOri;
 	}
@@ -57,9 +48,7 @@ public class TotalInfo {
 	public void setDftFileExtention(String dftFileExtention) {
 		this.dftFileExtention = dftFileExtention;
 	}
-<<<<<<< HEAD
 
-=======
 	public String getDftDate() {
 		return dftDate;
 	}
@@ -80,7 +69,7 @@ public class TotalInfo {
 	}
 	
 	//--document
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
+
 	public String getDocFileName() {
 		return docFileName;
 	}
@@ -120,9 +109,4 @@ public class TotalInfo {
 				+ ", dftFinalState=" + dftFinalState + ", docFileName=" + docFileName + ", docFilePath=" + docFilePath
 				+ ", docFileExtention=" + docFileExtention + ", docFileOri=" + docFileOri + "]";
 	}
-<<<<<<< HEAD
 }
-=======
-	
-}
->>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656

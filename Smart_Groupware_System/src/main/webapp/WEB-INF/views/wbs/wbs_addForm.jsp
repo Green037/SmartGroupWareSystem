@@ -151,7 +151,6 @@
 						</td>
 						<td><input type="text" name="wbsProgresses" class="form-control1" /></td>
 					</tr>
-					<!-- 폼추가 부터 작업해야함. -->
 				</tbody>
 			</table>
 			<button type="submit" class="btn btn-primary btn-block">

@@ -124,7 +124,7 @@ public class ProjectController {
 		
 		// WBS내용 조회하기.
 		wbsList = wbsService.wbsListServ(prCode);
-		System.out.println(wbsList);
+		//System.out.println(wbsList);
 		
 		model.addAttribute("project", project);
 		model.addAttribute("pmCount", pmCount);

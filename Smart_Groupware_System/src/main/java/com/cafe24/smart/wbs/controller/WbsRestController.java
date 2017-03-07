@@ -66,7 +66,7 @@ public class WbsRestController {
 		// wbs상세정보 조회
 		Wbs wbs = new Wbs();
 		wbs = wbsService.wbsDetailServ(wbsCode);
-		
+		System.out.println(wbs);
 		//조회 성공,실패시 분기문
 		if(wbs != null){
 			wbsMap.put("wbs", wbs);
@@ -75,6 +75,26 @@ public class WbsRestController {
 			wbsMap.put("check", "실패");
 		}
 		
+		return wbsMap;
+	}
+	
+	//WBS 수정하기
+	@RequestMapping(value = "wbs/modifyWbs", method = RequestMethod.POST)
+	public Map<String, Object> wbsModifyCtrl(Wbs wbs) {
+		/*System.out.println("h2 modify Ajax WBS");
+		System.out.println(wbs);*/
+		Map<String, Object> wbsMap = new HashMap<String, Object>();
+		
+		//수정되야할 항목 - wbsName,wbsContents,wbsStartDate,
+		//wbsEndDate,wbsProgress,wbsUncompleatedReason,wbsFinalEndDate,wbsStatus(진행률100프로면 완료로 수정.)
+		wbs = wbsService.wbsModifyServ(wbs);
+		
+		if(wbs != null){
+			wbsMap.put("check", "성공");
+			wbsMap.put("wbs", wbs);
+		}else{
+			wbsMap.put("check", "실패");
+		}
 		return wbsMap;
 	}
 }
