@@ -1,33 +1,19 @@
 package com.cafe24.smart.approve.service;
 
 
-
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.ServletRequest;
-import javax.servlet.http.HttpServletRequest;
-import javax.websocket.Session;
-
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.approve.dao.ApproveDAO;
 import com.cafe24.smart.approve.domain.Document;
@@ -57,13 +43,19 @@ public class ApproveServiceImpl implements ApproveService {
 		//multifile 조건에 따른 분기 : 1.draft의 경로  2. document의 경로 
 		if(totalFile.getDftFile()!=null){
 			 multipartFile = totalFile.getDftFile();
+			 System.out.println("draft 파일 등록");
 
 		}else if(totalFile.getDocFile()!=null){
 			 multipartFile = totalFile.getDocFile();
+			 System.out.println("document 파일 등록");
 		}
 		//uuid 적용
 		//----- 상대경로 적용???????????????????????????????
-		String filePath = "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
+		
+		
+	/*	절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";*/
+		
+		String filePath = "/resources/fileStore/";
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid.toString().replaceAll("-", "");
 		int index = multipartFile.getOriginalFilename().lastIndexOf(".");
@@ -85,6 +77,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return totalInfo;
 	}
+	
 	
 	//기안 요청 : GET
 	@Override
@@ -146,6 +139,7 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	}
 	
+
 	//[총 결재 목록]진행 목록 :GET
 	@Override
 	public List<Draft> pgListServ(int apProgress) {
@@ -154,7 +148,7 @@ public class ApproveServiceImpl implements ApproveService {
 		List<Draft> pgList = new ArrayList<Draft>();
 		int progress;
 		
-		System.out.println(apProgress);
+		//System.out.println(apProgress);
 		
 		if(apProgress == 1){//결재 대기 목록
 			progress = 0;
@@ -183,13 +177,19 @@ public class ApproveServiceImpl implements ApproveService {
 		Progress progress= new Progress();
 		
 		//-----결재 신청 정보 가져오기 
-		draft = approveDAO.selectContHv(dftCode);
+/*		draft = approveDAO.selectContHv(dftCode);*/
+		
+		draft = approveDAO.selectNew(dftCode);
+		
+		System.out.println(draft);
+		
 			if(draft != null){
 				System.out.println("serv hvDetail> test");
 				//-----결재자 정보 가져오기 : progress의 pro_approval 컬럼에서 가져온다
 				progress = approveDAO.selectDetailHv(dftCode);
 				draft.setProApproval(progress.getProApproval());
-				
+				draft.setProReason(progress.getProReason());
+								
 				//각 조건마다 다른 View 
 				switch(progress.getProState()){
 					case 0 :
@@ -212,6 +212,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return draft;
 	}
+	
 	
 	//결재 요청[승인/반려] *** 중복코드 메소드화 ***
 	@Override
@@ -389,6 +390,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return result;
 	}
 		
+	
 	//임시 목록 :GET
 	@Override
 	public List<Draft> temListServ() {
@@ -412,5 +414,48 @@ public class ApproveServiceImpl implements ApproveService {
 		return temContent;
 	}
 
+	
+	//문서 양식 등록 : POST
+	@Override
+	public int apDocAddServ(Document document,TotalInfo totalInfo, TotalFile totalFile) {
+		System.out.println("serv apDocAddServ> test1");
 
+		try {
+			totalInfo = getFileInfo(totalFile,totalInfo);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// document에 들어있는 filegroup를 다시 셋팅해야하는가???????????????
+		document.setDocFileGroup(document.getDocFileGroup());
+		document.setDocFileName(totalInfo.getDocFileName());
+		document.setDocFilePath(totalInfo.getDocFilePath());
+		document.setDocFileExtention(totalInfo.getDocFileExtention());
+		document.setDocFileOri(totalInfo.getDftFileOri());
+		
+		int result = approveDAO.insertDoc(document);
+		System.out.println("serv apDocAddServ> test2");
+		
+		return result;
+	}
+
+	//문서 양식 목록 : GET
+	@Override
+	public List<Document> docListServ() {
+		
+		System.out.println("srv docListServ > test1");
+		List<Document> docList = new ArrayList<Document>();
+		docList = approveDAO.selectAllDoc(); // 문서코드/문서구분 불러오기
+		
+		System.out.println(docList);
+		
+		return docList;
+	}
+
+
+	
 }

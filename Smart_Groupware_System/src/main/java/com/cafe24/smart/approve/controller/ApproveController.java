@@ -1,12 +1,16 @@
 package com.cafe24.smart.approve.controller;
 
 import java.io.IOException;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +33,6 @@ public class ApproveController {
 	private ApproveService approveService;
 	
 	//기안 등록 : GET
-	/*문서결재신청 폼을 가져오기 위한 메소드 return값을 String으로 준 이유는 url을 지정하기 위해서*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
 	public String Add(Model model){
 		
@@ -44,10 +47,9 @@ public class ApproveController {
 	}
 	
 	//기안 등록 : POST
-	/*draft와 progress 매개변수를 준 이유는 draft 테이블에 추가되면서 progress 테이블에도 dft_code를 참고해서 progress에서 추가되어야하기 떄문에*/
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
-	public String apAddCtrl(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile) throws IllegalStateException, IOException{
-		
+	public String apAddCtrl(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile){
+			
 		System.out.println("ctrl dftAdd > test");	
 		int result = approveService.apAddServ(draft, progress, totalInfo, totalFile);
 		
@@ -58,12 +60,12 @@ public class ApproveController {
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
 		System.out.println("ctrl pgList> test");
-		System.out.println(apProgress);
+		//System.out.println(apProgress);
 	
 		List<Draft> pgList = new ArrayList<Draft>();
 		pgList = approveService.pgListServ(apProgress);
 		
-		System.out.println(pgList);
+		//System.out.println(pgList);
 		model.addAttribute("pgList", pgList);
 	
 		return "/approve/ap_list";
@@ -73,7 +75,7 @@ public class ApproveController {
 	@RequestMapping(value="ap/Content", method=RequestMethod.GET)
 	public String apHvDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
 	
-		//System.out.println("ctrl hvCont> test");
+		System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
 		String url;
 		
@@ -85,7 +87,7 @@ public class ApproveController {
 	
 	}	
 
-	//-----결재 요청[승인/반려] : POST
+	//결재 요청[승인/반려] : POST
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
 
@@ -122,22 +124,48 @@ public class ApproveController {
 		return "/approve/ap_temModify";   
 	}
 	
-	
 	//문서함 : GET
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)
-	public String docList(){
+	public String apdocListCtrl(Model model){
 	
-		System.out.println("ctrl docList> test");
+		System.out.println("ctrl apdocListCtrl> test");
 		List<Document> docList = new ArrayList<Document>();
+		
+		docList = approveService.docListServ();
+		model.addAttribute("docList", docList);
 		
 		return "/approve/ap_docList";   
 	}
 	
-	//문서양식 등록 : get
+	//문서양식 페이지 요청 : GET 
 	@RequestMapping(value ="ap/docAdd", method = RequestMethod.GET)
-	public String docAdd(){
+	public String docAddCtrl(){
 		System.out.println("ctrl docList> test");
 		
 		return "/approve/ap_docAdd";   
 	}
+	
+	//문서양식 등록 : POST
+	@RequestMapping(value ="ap/addDoc", method = RequestMethod.POST)
+	public String docAddCtrl(Document document, TotalInfo totalInfo, TotalFile totalFile){
+		
+		System.out.println("ctrl docAddCtrl> test");
+		int result = approveService.apDocAddServ(document,totalInfo,totalFile);
+		
+		return "redirect:/ap/docList"; 
+	}
+	
+	
+	
+	// test
+	@RequestMapping(value ="ap/test", method = RequestMethod.GET)
+	public String test(HttpServletRequest request){
+		
+		String path = request.getContextPath();
+		System.out.println(path);
+		
+		return"/approve/test";   
+		
+	}
+	
 }

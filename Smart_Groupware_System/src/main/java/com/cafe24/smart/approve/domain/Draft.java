@@ -1,6 +1,5 @@
 package com.cafe24.smart.approve.domain;
 
-import org.springframework.web.multipart.MultipartFile;
 
 //기안
 public class Draft {
@@ -23,8 +22,10 @@ public class Draft {
 
 	//----- view
 	private int proApproval;
+	private String proReason;
 	private String proRealTime;
 	private String url;
+	private String docFileGroup;
 
 	
 	public int getDftCode() {
@@ -125,6 +126,7 @@ public class Draft {
 	public void setDftFileExtention(String dftFileExtention) {
 		this.dftFileExtention = dftFileExtention;
 	}
+	
 	// ----- view
 	public int getProApproval() {
 		return proApproval;
@@ -132,19 +134,29 @@ public class Draft {
 	public void setProApproval(int proApproval) {
 		this.proApproval = proApproval;
 	}
+	public String getProReason() {
+		return proReason;
+	}
+	public void setProReason(String proReason) {
+		this.proReason = proReason;
+	}
 	public String getProRealTime() {
 		return proRealTime;
 	}
 	public void setProRealTime(String proRealTime) {
 		this.proRealTime = proRealTime;
 	}
-	
-	// ----- 주소를 담아서 return하기 위해 생성
 	public String getUrl() {
 		return url;
 	}
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	public String getDocFileGroup() {
+		return docFileGroup;
+	}
+	public void setDocFileGroup(String docFileGroup) {
+		this.docFileGroup = docFileGroup;
 	}
 	
 	@Override
@@ -152,8 +164,11 @@ public class Draft {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode
 				+ ", dftTitle=" + dftTitle + ", dftDegree=" + dftDegree + ", dftDate=" + dftDate + ", dftApproval1="
 				+ dftApproval1 + ", dftApproval2=" + dftApproval2 + ", dftApproval3=" + dftApproval3
-				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", proApproval=" + proApproval
-				+ ", proRealTime=" + proRealTime + "]";
+				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", dftFileOri=" + dftFileOri
+				+ ", dftFileName=" + dftFileName + ", dftFilePath=" + dftFilePath + ", dftFileExtention="
+				+ dftFileExtention + ", proApproval=" + proApproval + ", proReason=" + proReason + ", proRealTime="
+				+ proRealTime + ", url=" + url + ", docFileGroup=" + docFileGroup + "]";
 	}
+	
 		
 }

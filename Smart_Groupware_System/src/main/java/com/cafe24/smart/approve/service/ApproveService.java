@@ -15,7 +15,7 @@ public interface ApproveService {
 	List<Document> apAddSelServ();
 
 	//기안 등록
-	int apAddServ(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile) throws IllegalStateException, IOException;
+	int apAddServ(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile);
 	
 	//총 목록 (대기/반려/완료)
 	List<Draft> pgListServ(int apProgress);
@@ -26,10 +26,16 @@ public interface ApproveService {
 	//임시 목록 상세보기
 	List<Draft> temContServ(int dftCode);
 
-	//결재 페이지 요청
+	//결재/반려/완료 페이지 요청
 	Draft hvContServ(int dftCode);
 	
 	//결재 승인/반려 요청
 	int apProAddServ(Draft draft, Progress progress, int dftCode);
-		
+	
+	//문서 양식 등록
+	int apDocAddServ(Document document, TotalInfo totalInfo, TotalFile totalFile);
+	//문서 양식 목록
+	List<Document> docListServ();
+
+
 }
