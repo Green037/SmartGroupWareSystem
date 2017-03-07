@@ -1,29 +1,19 @@
 package com.cafe24.smart.approve.service;
 
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.UUID;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.approve.dao.ApproveDAO;
 import com.cafe24.smart.approve.domain.Document;
@@ -44,14 +34,28 @@ public class ApproveServiceImpl implements ApproveService {
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 	
 	// ----- 메소드 : 파일 업로드
-/*	private TotalInfo getFileInfo(TotalFile totalFile, Draft draft, Document document) throws IllegalStateException, IOException{
+	private TotalInfo getFileInfo(TotalFile totalFile,TotalInfo totalInfo) throws IllegalStateException, IOException{
 		System.out.println("serv file>  test1");
 		
 		File destFile = null;
-		TotalInfo totalInfo = null;
+		MultipartFile multipartFile = null;
 		
-		MultipartFile multipartFile = totalFile.getDftFile();
-		String filePath = "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
+		//multifile 조건에 따른 분기 : 1.draft의 경로  2. document의 경로 
+		if(totalFile.getDftFile()!=null){
+			 multipartFile = totalFile.getDftFile();
+			 System.out.println("draft 파일 등록");
+
+		}else if(totalFile.getDocFile()!=null){
+			 multipartFile = totalFile.getDocFile();
+			 System.out.println("document 파일 등록");
+		}
+		//uuid 적용
+		//----- 상대경로 적용???????????????????????????????
+		
+		
+	/*	절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";*/
+		
+		String filePath = "/resources/fileStore/";
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid.toString().replaceAll("-", "");
 		int index = multipartFile.getOriginalFilename().lastIndexOf(".");
@@ -60,23 +64,20 @@ public class ApproveServiceImpl implements ApproveService {
 		destFile = new File(filePath+fileName);
 		multipartFile.transferTo(destFile);
 		
-		if(draft){
-			draft.setDftDate(formatter.format(today));
-			draft.setDftDegree(1);
-			draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
-			draft.setDftFileName(fileName);
-			draft.setDftFilePath(filePath);
-			draft.setDftFileExtention(fileExtention);
-			draft.setDftFileOri(multipartFile.getOriginalFilename());
-			
-			
-			
-		}else if(document){
-			
-		}
+		//totalInfo에 값 셋팅
+		totalInfo.setDftFileName(fileName);
+		totalInfo.setDftFilePath(filePath);
+		totalInfo.setDftFileExtention(fileExtention);
+		totalInfo.setDftFileOri(multipartFile.getOriginalFilename());
+		
+		totalInfo.setDocFileName(fileName);
+		totalInfo.setDocFilePath(filePath);
+		totalInfo.setDocFileExtention(fileExtention);
+		totalInfo.setDocFileOri(multipartFile.getOriginalFilename());
 		
 		return totalInfo;
-	}*/
+	}
+	
 	
 	//기안 요청 : GET
 	@Override
@@ -92,32 +93,29 @@ public class ApproveServiceImpl implements ApproveService {
 
 	//기안 등록 : POST
 	@Override
-	public int apAddServ(Draft draft, Progress progress, TotalFile totalFile) throws IllegalStateException, IOException{
+	public int apAddServ(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile){
 		System.out.println("serv Dft>  test1");
-		
-		File destFile = null;
-		
-		MultipartFile multipartFile = totalFile.getDftFile();
-		String filePath = "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
-		UUID uuid = UUID.randomUUID();
-		String fileName = uuid.toString().replaceAll("-", "");
-		int index = multipartFile.getOriginalFilename().lastIndexOf(".");
-		String fileExtention = multipartFile.getOriginalFilename().substring(index+1);
-		fileName += "."+fileExtention;
-		destFile = new File(filePath+fileName);
-		multipartFile.transferTo(destFile);
-				
 		// draft.setAprCode(1);
 		// apr_code default값 기본 설정 = 아무값없음 비교
-		
+	
+		try {
+			totalInfo = getFileInfo(totalFile,totalInfo);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 		//----- date를 로직에서 따로 처리 : progress 테이블에 입려과 동시에 insert 해주기 위해서
 		draft.setDftDate(formatter.format(today));
 		draft.setDftDegree(1);
 		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
-		draft.setDftFileName(fileName);
-		draft.setDftFilePath(filePath);
-		draft.setDftFileExtention(fileExtention);
-		draft.setDftFileOri(multipartFile.getOriginalFilename());
+		draft.setDftFileName(totalInfo.getDftFileName());
+		draft.setDftFilePath(totalInfo.getDftFilePath());
+		draft.setDftFileExtention(totalInfo.getDftFileExtention());
+		draft.setDftFileOri(totalInfo.getDftFileOri());
 				
 		int result = approveDAO.insertDft(draft);
 		System.out.println("serv Dft>  test2");	
@@ -141,6 +139,7 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	}
 	
+
 	//[총 결재 목록]진행 목록 :GET
 	@Override
 	public List<Draft> pgListServ(int apProgress) {
@@ -149,7 +148,7 @@ public class ApproveServiceImpl implements ApproveService {
 		List<Draft> pgList = new ArrayList<Draft>();
 		int progress;
 		
-		System.out.println(apProgress);
+		//System.out.println(apProgress);
 		
 		if(apProgress == 1){//결재 대기 목록
 			progress = 0;
@@ -178,13 +177,19 @@ public class ApproveServiceImpl implements ApproveService {
 		Progress progress= new Progress();
 		
 		//-----결재 신청 정보 가져오기 
-		draft = approveDAO.selectContHv(dftCode);
+/*		draft = approveDAO.selectContHv(dftCode);*/
+		
+		draft = approveDAO.selectNew(dftCode);
+		
+		System.out.println(draft);
+		
 			if(draft != null){
 				System.out.println("serv hvDetail> test");
 				//-----결재자 정보 가져오기 : progress의 pro_approval 컬럼에서 가져온다
 				progress = approveDAO.selectDetailHv(dftCode);
 				draft.setProApproval(progress.getProApproval());
-				
+				draft.setProReason(progress.getProReason());
+								
 				//각 조건마다 다른 View 
 				switch(progress.getProState()){
 					case 0 :
@@ -207,6 +212,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return draft;
 	}
+	
 	
 	//결재 요청[승인/반려] *** 중복코드 메소드화 ***
 	@Override
@@ -384,6 +390,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return result;
 	}
 		
+	
 	//임시 목록 :GET
 	@Override
 	public List<Draft> temListServ() {
@@ -407,5 +414,48 @@ public class ApproveServiceImpl implements ApproveService {
 		return temContent;
 	}
 
+	
+	//문서 양식 등록 : POST
+	@Override
+	public int apDocAddServ(Document document,TotalInfo totalInfo, TotalFile totalFile) {
+		System.out.println("serv apDocAddServ> test1");
 
+		try {
+			totalInfo = getFileInfo(totalFile,totalInfo);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// document에 들어있는 filegroup를 다시 셋팅해야하는가???????????????
+		document.setDocFileGroup(document.getDocFileGroup());
+		document.setDocFileName(totalInfo.getDocFileName());
+		document.setDocFilePath(totalInfo.getDocFilePath());
+		document.setDocFileExtention(totalInfo.getDocFileExtention());
+		document.setDocFileOri(totalInfo.getDftFileOri());
+		
+		int result = approveDAO.insertDoc(document);
+		System.out.println("serv apDocAddServ> test2");
+		
+		return result;
+	}
+
+	//문서 양식 목록 : GET
+	@Override
+	public List<Document> docListServ() {
+		
+		System.out.println("srv docListServ > test1");
+		List<Document> docList = new ArrayList<Document>();
+		docList = approveDAO.selectAllDoc(); // 문서코드/문서구분 불러오기
+		
+		System.out.println(docList);
+		
+		return docList;
+	}
+
+
+	
 }

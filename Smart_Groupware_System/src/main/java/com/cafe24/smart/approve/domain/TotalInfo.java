@@ -2,16 +2,30 @@ package com.cafe24.smart.approve.domain;
 
 public class TotalInfo {
 
+	//draft의 정보
 	private String dftFileOri;
 	private String dftFileName;
 	private String dftFilePath;
 	private String dftFileExtention;
+<<<<<<< HEAD
 
+=======
+	
+	private String dftDate;
+	private int dftDegree;
+	private String dftFinalState;
+	
+	//document의 정보
+>>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
 	private String docFileName;
 	private String docFilePath;
 	private String docFileExtention;
 	private String docFileOri;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
 	public String getDftFileOri() {
 		return dftFileOri;
 	}
@@ -43,7 +57,30 @@ public class TotalInfo {
 	public void setDftFileExtention(String dftFileExtention) {
 		this.dftFileExtention = dftFileExtention;
 	}
+<<<<<<< HEAD
 
+=======
+	public String getDftDate() {
+		return dftDate;
+	}
+	public void setDftDate(String dftDate) {
+		this.dftDate = dftDate;
+	}
+	public int getDftDegree() {
+		return dftDegree;
+	}
+	public void setDftDegree(int dftDegree) {
+		this.dftDegree = dftDegree;
+	}
+	public String getDftFinalState() {
+		return dftFinalState;
+	}
+	public void setDftFinalState(String dftFinalState) {
+		this.dftFinalState = dftFinalState;
+	}
+	
+	//--document
+>>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656
 	public String getDocFileName() {
 		return docFileName;
 	}
@@ -79,7 +116,13 @@ public class TotalInfo {
 	@Override
 	public String toString() {
 		return "TotalInfo [dftFileOri=" + dftFileOri + ", dftFileName=" + dftFileName + ", dftFilePath=" + dftFilePath
-				+ ", dftFileExtention=" + dftFileExtention + ", docFileName=" + docFileName + ", docFilePath="
-				+ docFilePath + ", docFileExtention=" + docFileExtention + ", docFileOri=" + docFileOri + "]";
+				+ ", dftFileExtention=" + dftFileExtention + ", dftDate=" + dftDate + ", dftDegree=" + dftDegree
+				+ ", dftFinalState=" + dftFinalState + ", docFileName=" + docFileName + ", docFilePath=" + docFilePath
+				+ ", docFileExtention=" + docFileExtention + ", docFileOri=" + docFileOri + "]";
 	}
+<<<<<<< HEAD
 }
+=======
+	
+}
+>>>>>>> fe8bbd2ced45e89b7776dba299439f35007be656

@@ -21,9 +21,7 @@
 	<center>
 		<h2><span class="glyphicon glyphicon-file"> 기안반려 상세보기</span></h2>
 	</center> 
-	<marquee behavior="alternate">
-		<p style="color:red;">This infomation is detail contents By you selected.</p>
-	</marquee>           
+   	&nbsp;     
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -40,12 +38,12 @@
 			</tr>
 			<tr>
 				<td>반려사유</td>
-				<td colspan="8"></td>
+				<td style="color:red;" colspan="8" align="center">${draft.proReason}</td>
 			</tr>
 			
 			<tr>
-				<td><strong>분류</strong></td>
-				<td>프로젝트/고과/임금</td>
+				<td>분류</td>
+				<td>${draft.docFileGroup}</td>
 				<td></span> 기안등록날자</td>
 				<td>${draft.dftDate}</td>
 				<td></span> 반려결재날자</td>
@@ -54,11 +52,11 @@
 			
 			
 			<tr>
-				<td><strong>기안자</strong></td>
+				<td>기안자</td>
 				<td>${draft.mmCode}</td>
-				<td><strong>직급</strong></td>
+				<td>직급</td>
 				<td>-</td>
-				<td><strong>부서</strong></td>
+				<td>부서</td>
 				<td>-</td>
 			</tr>
 			

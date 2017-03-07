@@ -21,9 +21,7 @@
 	<center>
 		<h2><span class="glyphicon glyphicon-file">최종기안</span></h2>
 	</center> 
-	<marquee behavior="alternate">
-		<p style="color:red;">This infomation is detail contents By you selected.</p>
-	</marquee>           
+   	&nbsp;           
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -39,8 +37,8 @@
 				<td colspan="8" align="center">${draft.dftTitle}</td>
 			</tr>
 			<tr>
-				<td><strong>분류</strong></td>
-				<td>프로젝트/고과/임금</td>
+				<td>분류</td>
+				<td>${draft.docFileGroup}</td>
 				<td></span> 기안등록날자</td>
 				<td>${draft.dftDate}</td>
 				<td></span> 최종결재날자</td>
