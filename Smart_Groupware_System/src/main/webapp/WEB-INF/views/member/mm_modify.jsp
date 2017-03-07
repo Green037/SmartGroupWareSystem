@@ -5,8 +5,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<%-- <script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script> --%>
-<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+<script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
 <script>
 $(document).on('click','.addcr',function(){
     var addcr = $('#addcrCopy').html();
@@ -44,7 +43,7 @@ $(document).on('click','.dellc',function(){
 						<div class="sub-heard-part">
 							<ol class="breadcrumb m-b-0">
 								<li><a href="index.html">Home</a></li>
-								<li class="active">사원 등록</li>
+								<li class="active">Forms</li>
 							</ol>
 						</div>
 						<!-- Home/메뉴 End -->
@@ -53,17 +52,17 @@ $(document).on('click','.dellc',function(){
 
 						<div class="set-1">
 							<div class="graph-2 general">
-								
+								<h3 class="inner-tittle two"> 사원 정보 수정 </h3>
 								<div class="grid-1">
 									<div class="form-body">
-										<form class="form-horizontal" action="<c:url value='/member/mm_add'/>" method="post">
+										<form class="form-horizontal" action="<c:url value='/member/mm_modify'/>" method="post">
 											
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label"> 사원이름 </label>
 												<span style="color:red; font-size:10pt">이름</span>
 												<div class="col-sm-3">
 													<input type="text" class="form-control1" id="mmName" name="mmName"
-														placeholder="사원 이름" >
+														placeholder="사원 이름" readonly>
 												</div>
 											</div>
 											
@@ -138,6 +137,15 @@ $(document).on('click','.dellc',function(){
 													placeholder="사원 입사날짜">
 												</div>
 											</div>	
+											
+											<div class="form-group">
+												<label for="mmResignDate" class="col-sm-2 control-label"> 퇴사 예정날짜(계약종료일) </label>
+												<span style="color:red; font-size:10pt">날짜를 선택하세요.</span>
+												<div class="col-sm-2">
+													<input type="date" class="form-control1" id="mmResignDate" name="mmResignDate"
+													placeholder="퇴사 예정날짜">
+												</div>
+											</div>
 											
 											
 											<div class="form-group">

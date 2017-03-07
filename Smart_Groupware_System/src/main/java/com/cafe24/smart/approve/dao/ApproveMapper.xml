@@ -40,6 +40,7 @@
 		<result property="dftFilePath" column="dft_filePath"/>
 		<result property="dftFileOri" column="dft_fileOri"/>
 		<result property="dftFileExtention" column="dft_fileExtention"/>
+		<result property="docFileGroup" column="doc_fileGroup"/>
 
 	</resultMap>
 	
@@ -57,17 +58,7 @@
 		<result property="proApproval" column="pro_approval"/>
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
-	
-<!-- 기안 페이지 요청 -->
-<select id="selectAllDoc"
-		resultMap="resultDoc">
-		SELECT 
-			doc_code,doc_fileGroup  
-		FROM 
-			document
-</select>	
-	
-	
+		
 <!-- 기안 등록 1-1 -->	
 <insert id="insertDft" 
 		parameterType="com.cafe24.smart.approve.domain.Draft"
@@ -130,6 +121,34 @@
 	 		) 
 </insert>
 
+<!-- 문서 양식 등록 -->
+<insert id="insertDoc"
+		parameterType="com.cafe24.smart.approve.domain.Document">
+		INSERT INTO document(
+			doc_fileGroup,
+			doc_fileOri,
+			doc_fileExtention,
+			doc_fileName,
+			doc_filePath
+			) 
+	    VALUES( 
+		    #{docFileGroup},
+		    #{docFileOri},
+		    #{docFileExtention},
+		    #{docFileName},
+		    #{docFilePath}
+			 )
+</insert>
+
+<!-- 기안 페이지 요청 -->
+<select id="selectAllDoc"
+		resultMap="resultDoc">
+		SELECT 
+			doc_code,
+			doc_fileGroup  
+		FROM 
+			document
+</select>
 
 <!-- 결재 목록 :intro 목록(전체 결재 목록)-->
 <select id="selectAllPg"
@@ -176,13 +195,32 @@
 		resultMap="resultPro">
 		SELECT 
 			pro_approval,
-			pro_state  
+			pro_state,
+			pro_reason 
 		FROM 
 			progress 
 		WHERE 
-			dft_code = #{dftCode};
+			dft_code = #{dftCode}
 
 </select>
+
+<!-- test중중중 -->
+<select id="selectNew"
+		parameterType="int" 
+		resultMap="resultDft">
+		select 
+			* 
+		from 
+			draft
+		inner join 
+		 	document 
+		on
+			draft.doc_code=document.doc_code
+		WHERE 
+			dft_code=#{dftCode}
+</select>
+
+
 
 <!-- 결재 요청 : 1단계 : progress Update -->
 <update id="updatePro"

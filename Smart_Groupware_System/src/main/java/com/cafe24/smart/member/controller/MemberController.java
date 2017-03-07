@@ -45,16 +45,6 @@ public class MemberController {
 			model.addAttribute("totalRowCount", returnMap.get("totalRowCount"));
 			model.addAttribute("lastPage", returnMap.get("lastPage"));
 			model.addAttribute("mmList", returnMap.get("mmList"));
-			
-		
-			List<License> license = memberService.lcListServ();
-			
-			List<Position> position = memberService.PtListServ();
-			List<Department> department = memberService.DpListServ();
-			
-			model.addAttribute("license", license);
-			model.addAttribute("position",position);
-			model.addAttribute("department", department);
 					
 		return "member/mm_list";
 	}

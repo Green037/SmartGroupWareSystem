@@ -5,8 +5,7 @@
 <html>
 <head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<%-- <script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script> --%>
-<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+<script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
 <script>
 $(document).on('click','.addcr',function(){
     var addcr = $('#addcrCopy').html();
@@ -44,7 +43,7 @@ $(document).on('click','.dellc',function(){
 						<div class="sub-heard-part">
 							<ol class="breadcrumb m-b-0">
 								<li><a href="index.html">Home</a></li>
-								<li class="active">사원 등록</li>
+								<li class="active">Forms</li>
 							</ol>
 						</div>
 						<!-- Home/메뉴 End -->
@@ -53,17 +52,17 @@ $(document).on('click','.dellc',function(){
 
 						<div class="set-1">
 							<div class="graph-2 general">
-								
+								<h3 class="inner-tittle two"> 사원 정보 수정 </h3>
 								<div class="grid-1">
 									<div class="form-body">
-										<form class="form-horizontal" action="<c:url value='/member/mm_add'/>" method="post">
+										<form class="form-horizontal" action="<c:url value='/member/mm_profileModify'/>" method="post">
 											
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label"> 사원이름 </label>
 												<span style="color:red; font-size:10pt">이름</span>
 												<div class="col-sm-3">
 													<input type="text" class="form-control1" id="mmName" name="mmName"
-														placeholder="사원 이름" >
+														placeholder="사원 이름" readonly>
 												</div>
 											</div>
 											
@@ -85,69 +84,7 @@ $(document).on('click','.dellc',function(){
 												</div>
 											</div>
 											
-											
-											<div class="form-group">
-												<label for="memberInfo" class="col-sm-2 control-label"> 사원계약정보 </label>
-												<div class="col-sm-1">
-													<select name="ctCode" id="ctCode"
-														class="form-control1">
-														<option>:::계약형태:::</option>
-															<c:forEach var="contract" items="${contract}">
-			      											<option value="${contract.ctCode}">${contract.ctType}</option>
-			      											</c:forEach> 
-			      									</select>
-												</div>
-												
-												<div class="col-sm-1">
-													<select name="ptCode" id="ptCode"
-														class="form-control1">
-														<option>:::직급:::</option>
-															<c:forEach var="position" items="${position}">
-			      										<option value="${position.ptCode}">${position.ptName}</option>
-			      											</c:forEach> 
-			      									</select>
-												</div>
-												
-												<div class="col-sm-1">
-													<select name="dpCode" id="dpCode"
-														class="form-control1">
-														<option>:::부서:::</option>
-															<c:forEach var="department" items="${department}">
-			      										<option value="${department.dpCode}">${department.dpName}</option>
-			      											</c:forEach> 
-			      									</select>
-												</div>
-															
-											</div>
-											
-
-											<div class="form-group">
-												<label for
-												="mmDailyPay" class="col-sm-2 control-label"> 일급 </label>
-												<div class="col-sm-2">
-													<input type="text" class="form-control1" id="mmDailyPay" name="mmDailyPay"
-													placeholder="사원 일급">
-												</div>
-											</div>	
-			
-											<div class="form-group">
-												<label for="mmJoinDate" class="col-sm-2 control-label"> 입사 날짜 </label>
-												<span style="color:red; font-size:10pt">날짜를 선택하세요.</span>
-												<div class="col-sm-2">
-													<input type="date" class="form-control1" id="mmJoinDate" name="mmJoinDate"
-													placeholder="사원 입사날짜">
-												</div>
-											</div>	
-											
-											
-											<div class="form-group">
-												<label for="mmAnnualLeave" class="col-sm-2 control-label"> 남은 연차 </label>
-												<div class="col-sm-2">
-													<input type="text" class="form-control1" id="mmAnnualLeave" name="mmAnnualLeave"
-													placeholder="남은 연차">
-												</div>
-											</div>
-											
+										
 											<div class="form-group">
 												<label for="mmAddress" class="col-sm-2 control-label"> 주소 </label>
 												<span style="color:red; font-size:10pt">거주 주소</span>

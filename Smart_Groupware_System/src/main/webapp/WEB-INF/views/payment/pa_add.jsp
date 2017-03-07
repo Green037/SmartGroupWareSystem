@@ -42,7 +42,6 @@
 						
 // 						console.log('mmCode : ' + $('#mmCode').val());
 // 						console.log('mmName : ' + $('#mmName').val());
-// 						console.log('pcDate : ' + $('#mmDailyPay').val());
 						
 //		 				고용보험
 						$('#eiAmount').val(data.mmDailyPay * eiEmployee);						
@@ -117,7 +116,7 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label for="mmPassword" class="col-sm-2 control-label">급여날짜</label>
+												<label for="pcDate" class="col-sm-2 control-label">급여날짜</label>
 												<div class="col-sm-3">
 													<input type="text" class="form-control1" id="pcDate" name="pcDate" value="${paymentDate}" disabled/>
 												</div>
@@ -138,42 +137,42 @@
 															<td><input type="text" class="form-control1" id="pcSection" name="pcSection" value="본봉" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="기본급" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="기본급" disabled/></td>
-															<td><input type="text" class="form-control1" name="mmDailyPay" id="mmDailyPay" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcAmount" id="mmDailyPay" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>2</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="수당" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="성과급" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="성과급" disabled/></td>
-															<td><input type="text" class="form-control1" name="inAmount" id="inAmount" value="0"/></td>
+															<td><input type="text" class="form-control1" name="pcAmount" id="inAmount" value="0"/></td>
 														</tr>
 														<tr>
 															<td>3</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="고용보험" disabled/></td>
-															<td><input type="text" class="form-control1" id="eiAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcAmount" id="eiAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>4</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="국민건강보험" disabled/></td>
-															<td><input type="text" class="form-control1" id="nhiAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcAmount" id="nhiAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>5</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="연금보험" disabled/></td>
-															<td><input type="text" class="form-control1" id="ppAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcAmount" id="ppAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<th colspan=4>
 																총급여
 																<a class="btn blue" id="sumBtn">계산</a>
 															</th>
-															<td><b><input type="text" class="form-control1" id="pcAmount" name="pcAmount" value="0" disabled/></b></td>
+															<td><b><input type="text" class="form-control1" id="pcAmount" value="0" disabled/></b></td>
 														</tr>
 													</table> 
 												</div>	

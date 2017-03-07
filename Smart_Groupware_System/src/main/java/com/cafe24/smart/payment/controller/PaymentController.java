@@ -11,10 +11,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.smart.insurance.service.InsuranceService;
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.payment.domain.Pay;
+import com.cafe24.smart.payment.domain.PayContent;
 import com.cafe24.smart.payment.service.PaymentService;
+import com.cafe24.smart.util.UtilDate;
 
 @Controller
 public class PaymentController {
@@ -29,7 +33,6 @@ public class PaymentController {
 	@Autowired
 	HttpSession session;
 	
-	Calendar calendar;
 	
 //	연간 급여내역 조회
 	@RequestMapping(value = "pc/list", method = RequestMethod.GET)
@@ -67,24 +70,17 @@ public class PaymentController {
 //	총무부 > 급여내역 추가 (get)
 	@RequestMapping(value = "pa/add", method = RequestMethod.GET)
 	public String paAddFormCtrl(Model model) {	
+	
+		UtilDate utilDate = new UtilDate();
 		
-		calendar = Calendar.getInstance();
-		
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH) + 1;
-		String paymentDate = year + "-" + month + "-25"; 
-		
-		if (month < 10) {
-			paymentDate = year + "-0" + month + "-25";
-		}
-		
+		int year = Integer.parseInt(utilDate.getCurrentYear());
 		int paMmCode = (int) session.getAttribute("id");
 		
 		model.addAttribute("eiContent", insuranceService.eiContentServ(year));
 		model.addAttribute("nhiContent", insuranceService.nhiContentServ(year));
 		model.addAttribute("ppContent", insuranceService.ppContentServ(year));
 		model.addAttribute("paMmCode", paMmCode);
-		model.addAttribute("paymentDate", paymentDate);
+		model.addAttribute("paymentDate", utilDate.getPaymentDate());
 		
 		System.out.println("PaymentController paAddCtrl attribute model : " + model);
 		
@@ -93,9 +89,13 @@ public class PaymentController {
 	
 //	총무부 > 급여내역 추가 (post)
 	@RequestMapping(value = "pa/add", method = RequestMethod.POST)
-	public String paAddProCtrl(Model model) {	
+//	required : false면 해당 파라미터를 반드시 받지 않아도 됨
+	public String paAddProCtrl(PayContent payContent) {	
 		
-		System.out.println("PaymentController paAddProCtrl model : " + model);
+		System.out.println("PaymentController paAddProCtrl payContent : " + payContent);
+		
+//		System.out.println("PaymentController paAddProCtrl payContent : " + payContent);
+//		System.out.println("PaymentController paAddProCtrl pay : " + pay);
 		
 		return "payment/pa_add";
 	}
