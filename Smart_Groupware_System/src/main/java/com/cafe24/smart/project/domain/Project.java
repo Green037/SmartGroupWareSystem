@@ -1,5 +1,9 @@
 package com.cafe24.smart.project.domain;
 
+import java.util.List;
+
+import com.cafe24.smart.wbs.domain.Wbs;
+
 //프로젝트
 public class Project {
 	private int prCode;
@@ -16,6 +20,15 @@ public class Project {
 	private String prEndDay;
 	private String prForProgress;
 	private String prFinishCheck;
+	private List<Wbs> wbs;
+
+	public List<Wbs> getWbs() {
+		return wbs;
+	}
+
+	public void setWbs(List<Wbs> wbs) {
+		this.wbs = wbs;
+	}
 
 	public int getPrCode() {
 		return prCode;
@@ -135,6 +148,7 @@ public class Project {
 				+ prName + ", prMember=" + prMember + ", prMoney=" + prMoney + ", prGoal=" + prGoal + ", prProgress="
 				+ prProgress + ", prCate=" + prCate + ", prRestration=" + prRestration + ", prStartDay=" + prStartDay
 				+ ", prEndDay=" + prEndDay + ", prForProgress=" + prForProgress + ", prFinishCheck=" + prFinishCheck
-				+ "]";
+				+ ", wbs=" + wbs + "]";
 	}
+
 }

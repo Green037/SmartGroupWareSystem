@@ -18,6 +18,7 @@ import com.cafe24.smart.project.controller.ProjectController;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
 import com.cafe24.smart.project.service.ProjectService;
+import com.cafe24.smart.wbs.domain.Wbs;
 import com.cafe24.smart.wbs.service.WbsService;
 
 @RestController
@@ -53,5 +54,27 @@ public class WbsRestController {
 			resultMap.put("check", "아이디");
 		}
 		return resultMap;
+	}
+	
+	//WBS 상세보기
+	@RequestMapping(value = "wbs/detail", method = RequestMethod.POST)
+	public Map<String, Object> wbsDetailCtrl(@RequestParam("wbsCode") int wbsCode) {
+		/*System.out.println("h2 wbs Ajax Detail!!");
+		System.out.println("넘어온 wbs코드 : "+wbsCode);*/
+		Map<String, Object> wbsMap = new HashMap<String, Object>();
+		
+		// wbs상세정보 조회
+		Wbs wbs = new Wbs();
+		wbs = wbsService.wbsDetailServ(wbsCode);
+		
+		//조회 성공,실패시 분기문
+		if(wbs != null){
+			wbsMap.put("wbs", wbs);
+			wbsMap.put("check", "성공");
+		}else{
+			wbsMap.put("check", "실패");
+		}
+		
+		return wbsMap;
 	}
 }

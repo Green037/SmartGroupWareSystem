@@ -25,4 +25,5 @@ public interface ProjectService {
 	Funds fuModifyValueServ(int fuCode);
 	int fuModifyServ(Funds funds);
 	int fuAddServ(Funds funds);
+	
 }

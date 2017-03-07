@@ -20,6 +20,8 @@ import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
 import com.cafe24.smart.project.domain.ProjectMemberCommand;
 import com.cafe24.smart.project.service.ProjectService;
+import com.cafe24.smart.wbs.domain.Wbs;
+import com.cafe24.smart.wbs.service.WbsService;
 
 
 
@@ -30,6 +32,9 @@ public class ProjectController {
 	
 	@Autowired
 	private ProjectService projectService;
+	
+	@Autowired
+	private WbsService wbsService;
 	
 	//프로젝트 등록 - 폼요청 겟방식
 	@RequestMapping(value = "pr/add", method = RequestMethod.GET)
@@ -55,11 +60,11 @@ public class ProjectController {
 	@RequestMapping(value = "pr/list", method = RequestMethod.GET)
 	public String prListCtrl(Model model, @RequestParam(value="prProgress", defaultValue="0")int prProgress) {
 		//System.out.println("h2");
+		List<Project> projectList = new ArrayList<Project>();
 		
 		//모든 프로젝트 내용 조회
-		List<Project> projectList = new ArrayList<Project>();
 		projectList = projectService.prListServ(prProgress);
-		//System.out.println(projectList);
+		System.out.println(projectList);
 		
 		model.addAttribute("projectList", projectList);
 		
@@ -84,6 +89,7 @@ public class ProjectController {
 	public String prDetailCtrl(Model model, @RequestParam("prCode") int prCode) {
 		//System.out.println("h2 detail~!!");
 		//System.out.println("넘어온 프로젝트 코드확인 : "+prCode);
+		List<Wbs> wbsList = new ArrayList<Wbs>();
 		
 		// 프로젝트기본내용, 참여인원정보, 자금상세정보 모두 필요함.
 		Project project = new Project();
@@ -92,8 +98,13 @@ public class ProjectController {
 		int pmCount = projectService.pmCountServ(prCode);
 		//System.out.println("참여인원 카운트값 : "+pmCount);
 		
+		// WBS내용 조회하기.
+		wbsList = wbsService.wbsListServ(prCode);
+		//System.out.println(wbsList);
+		
 		model.addAttribute("project", project);
 		model.addAttribute("pmCount", pmCount);
+		model.addAttribute("wbsList", wbsList);
 		
 		return "project/pr_detail";
 	}
@@ -103,6 +114,7 @@ public class ProjectController {
 	public String prModifyCtrl(Model model, @RequestParam("prCode") int prCode) {
 		/*System.out.println("h2 modify ctrl~!!");
 		System.out.println("넘어온 프로젝트 코드확인 : "+prCode);*/
+		List<Wbs> wbsList = new ArrayList<Wbs>();
 		
 		// 수정 폼으로 연결. 기존 값 깔아줘야됨.
 		Project project = new Project();
@@ -110,8 +122,13 @@ public class ProjectController {
 		project = projectService.prDetailServ(prCode);
 		int pmCount = projectService.pmCountServ(prCode);
 		
+		// WBS내용 조회하기.
+		wbsList = wbsService.wbsListServ(prCode);
+		System.out.println(wbsList);
+		
 		model.addAttribute("project", project);
 		model.addAttribute("pmCount", pmCount);
+		model.addAttribute("wbsList", wbsList);
 		
 		return "project/pr_modify";
 	}

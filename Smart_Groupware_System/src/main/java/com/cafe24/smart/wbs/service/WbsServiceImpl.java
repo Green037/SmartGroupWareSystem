@@ -120,5 +120,19 @@ public class WbsServiceImpl implements WbsService {
 		}
 		return check;
 	}
+	
+	//prCode 사용하여 wbs전체 목록 조회
+	@Override
+	public List<Wbs> wbsListServ(int prCode) {
+		// TODO Auto-generated method stub
+		return wbsDao.selectByPrCodeWbs(prCode);
+	}
+	
+	//wbsCode사용하여 해당 데이터 조회
+	@Override
+	public Wbs wbsDetailServ(int wbsCode) {
+		// TODO Auto-generated method stub
+		return wbsDao.selectByWbsCodeWbs(wbsCode);
+	}
 
 }

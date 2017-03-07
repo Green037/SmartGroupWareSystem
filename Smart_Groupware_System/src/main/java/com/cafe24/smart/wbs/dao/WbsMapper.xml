@@ -4,7 +4,7 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="WbsDAO">
-	<resultMap id="resulWbs" type="com.cafe24.smart.wbs.domain.Wbs">
+	<resultMap id="resultWbs" type="com.cafe24.smart.wbs.domain.Wbs">
 		<result property="wbsCode" column="wbs_code"/>
 		<result property="prCode" column="pr_code"/>
 		<result property="wbsCate" column="wbs_cate"/>
@@ -15,6 +15,7 @@
 		<result property="wbsWorkingDays" column="wbs_workingDays"/>
 		<result property="wbsUncompletedReason" column="wbs_uncompletedReason"/>
 		<result property="wbsFinalEndDate" column="wbs_finalEndDate"/>
+		<result property="wbsProgress" column="wbs_progress"/>
 	</resultMap>
 	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
 		<result property="mmCode" column="mm_code"/>
@@ -98,4 +99,26 @@
 			#{wbsProgress},
 			#{wbsStatus})
 	</insert>
+	
+	<select id="selectByPrCodeWbs"
+			parameterType="int"
+			resultMap="resultWbs">
+		SELECT 
+			*
+		FROM 
+			wbs
+		WHERE 
+			pr_code = #{prCode}
+	</select>
+	
+	<select id="selectByWbsCodeWbs"
+			parameterType="int"
+			resultMap="resultWbs">
+		SELECT
+			*
+		FROM
+			wbs
+		WHERE
+			wbs_code = #{wbsCode}
+	</select>
 </mapper>

@@ -40,4 +40,18 @@ public class WbsDAOImpl implements WbsDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("WbsDAO.insertWbs", wbs);
 	}
+
+	//프로젝트 코드로 해당하는 WBS 모두조회하기 
+	@Override
+	public List<Wbs> selectByPrCodeWbs(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("WbsDAO.selectByPrCodeWbs", prCode);
+	}
+
+	//wbs상세조회
+	@Override
+	public Wbs selectByWbsCodeWbs(int wbsCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("WbsDAO.selectByWbsCodeWbs", wbsCode);
+	}
 }

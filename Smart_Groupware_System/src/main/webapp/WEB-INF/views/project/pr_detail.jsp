@@ -76,7 +76,8 @@
 	</center> 
 	<marquee behavior="alternate">
 		<p style="color:red;">This infomation is detail contents By you selected.</p>
-	</marquee>           
+	</marquee> 
+	          
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -137,6 +138,43 @@
 				<td>${project.prFinishCheck}</td>
 			</tr>
 			<tr>
+				<td colspan="8" style="color:blue;" align="center">WBS(작업분해도)</td>
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-bordered">
+			<!-- WBS 넣기 -->
+		<thead>
+			<tr>
+				<th style="width:80px;" align="center">대분류</td>
+				<th style="width:130px;" align="center">직무명</td>
+				<th style="width:200px;" align="center">세부사항</td>
+				<th style="width:170px;" align="center">시작일</th>
+				<th style="width:170px;" align="center">종료일</th>
+				<th colspan="2" align="center">진행률</td>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="wbsList" items="${wbsList}">
+				<tr>
+					<td>${wbsList.wbsCate}</td>
+					<td>${wbsList.wbsName}</td>
+					<td>${wbsList.wbsContents}</td>
+					<td>${wbsList.wbsStartDate}</td>
+					<td>${wbsList.wbsEndDate}</td>
+					<td style="width:80px;">${wbsList.wbsProgress}%</td>
+					<td>
+						<div class="progress progress-bar-xs">
+							<div class="progress-bar progress-bar-info" role="progressbar" 
+								aria-valuenow="${wbsList.wbsProgress}" aria-valuemin="0" aria-valuemax="100" 
+								style="width: ${wbsList.wbsProgress}%;">
+							</div>
+						</div>                                        
+                    </td>
+				</tr>
+			</c:forEach>
+			<tr>
 				<td colspan="8" align="center">
 					<div class="btn-group">
 						<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >
@@ -148,7 +186,6 @@
 			</tr>
 		</tbody>
 	</table>
-	
 </div>
 <c:import url="./pm_list.jsp"></c:import> <!--팝업창, 참여인원리스트  -->
 <c:import url="./fu_list.jsp"></c:import> <!--팝업창, 자금상세리스트  -->

@@ -133,6 +133,34 @@
 			});
 			$('#fuAddHistory').modal('hide');
 		});
+		$(document).on('click','#WbsModifyBtn',function(){
+			var wbsCode = $(this).parent().parent().children('#wbsCode').val();
+			console.log(wbsCode);
+			//팝업창 열기
+			$('#wbsModifyForm').modal();
+			//ajax로 wbs내용 가져와 팝업창에 세팅하기
+			$.ajax({
+				url: '/smart/wbs/detail',
+				data : {"wbsCode":wbsCode},
+				dataType : 'json',
+				type : 'post',
+				success : function(data){
+					console.log(data.check);
+					console.log(data.wbs.wbsCode);
+					/*여기부터 작업해야함. 작업분해도 클릭시 열리는 형식으로 바꿀것. */
+					if(data.check == '성공'){
+						$('#wbsCode').val(wbsCode);
+						$('#wbsName').val(data.wbs.wbsName);
+						$('#wbsContents').val(data.wbs.wbsContents);
+						$('#wbsStartDate').val(data.wbs.wbsStartDate);
+						$('#wbsEndDate').val(data.wbs.wbsEndDate);
+						$('#wbsProgress').val(data.wbs.wbsProgress);
+						$('#wbsUncompleatedReason').val(data.wbs.wbsUncompleatedReason);
+						$('#wbsFinalEndDate').val(data.wbs.wbsFinalEndDate);
+					}
+				}
+			});
+		});
 	</script>
 </head> 
 
@@ -240,11 +268,55 @@
 					</td>
 					<td><span class="glyphicon glyphicon-hourglass"></span> <strong>프로젝트진행상황</strong></td>
 					<td>${project.prFinishCheck}</td>
+				<tr>
+					<td colspan="8" style="color:blue;" align="center">WBS(작업분해도)</td>
 				</tr>
+			</tbody>
+		</table>
+		<table class="table table-bordered">
+				<!-- WBS 넣기 -->
+			<thead>
+				<tr>
+					<th style="width:80px;" align="center">대분류</td>
+					<th style="width:130px;" align="center">직무명</td>
+					<th style="width:200px;" align="center">세부사항</td>
+					<th style="width:170px;" align="center">시작일</th>
+					<th style="width:170px;" align="center">종료일</th>
+					<th colspan="2" align="center">진행률</td>
+					<th style="width:90px;"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach var="wbsList" items="${wbsList}">
+					<tr>
+						<input type="hidden" id="wbsCode" value="${wbsList.wbsCode}"/>
+						<td>${wbsList.wbsCate}</td>
+						<td>${wbsList.wbsName}</td>
+						<td>${wbsList.wbsContents}</td>
+						<td>${wbsList.wbsStartDate}</td>
+						<td>${wbsList.wbsEndDate}</td>
+						<td style="width:80px;">${wbsList.wbsProgress}%</td>
+						<td>
+							<div class="progress progress-bar-xs">
+								<div class="progress-bar progress-bar-info" role="progressbar" 
+									aria-valuenow="${wbsList.wbsProgress}" aria-valuemin="0" aria-valuemax="100" 
+									style="width: ${wbsList.wbsProgress}%;">
+								</div>
+							</div>                                        
+	                    </td>
+	                    <td>
+	                    	<button type="button" id="WbsModifyBtn">
+								<span class="glyphicon glyphicon-edit">수정</span> 
+							</button>
+	                    </td>
+					</tr>
+				</c:forEach>
 				<tr>
 					<td colspan="8" align="center">
 						<div class="btn-group">
-							<input type="submit" value="수정" id="modifyBtn" class="btn btn-primary" />
+							<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >
+								<span class="glyphicon glyphicon-edit"></span> 수정
+							</a>
 						</div>
 					</td>
 				</tr>
@@ -256,6 +328,7 @@
 <c:import url="./fu_modifyList.jsp"></c:import> <!-- 팝업창 자금상세내역 리스트 -->
 <c:import url="./fu_modifyForm.jsp"></c:import> <!-- 팝업창 자금수정폼 -->
 <c:import url="./fu_addForm.jsp"></c:import> <!--팝업창 자금내역추가 입력폼  -->
+<c:import url="../wbs/wbs_modifyForm.jsp"></c:import> <!--팝업창 WBS수정폼  -->
 <!-- 본문끝 -->
 </div>				
 </div>

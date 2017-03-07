@@ -13,4 +13,6 @@ public interface WbsService {
 	int checkMemberServ(Member member);
 	List<Project> prListServ(int mmCode);
 	String wbsAddServ(Wbs wbs);
+	List<Wbs> wbsListServ(int prCode);
+	Wbs wbsDetailServ(int wbsCode);
 }

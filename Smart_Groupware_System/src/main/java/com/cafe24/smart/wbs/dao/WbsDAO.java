@@ -13,5 +13,7 @@ public interface WbsDAO {
 	Member selectByMmCodeMm(Member member);
 	List<Project> selectByMmCodePr(int mmCode);
 	int insertWbs(Wbs wbs);
+	List<Wbs> selectByPrCodeWbs(int prCode);
+	Wbs selectByWbsCodeWbs(int wbsCode);
 
 }
