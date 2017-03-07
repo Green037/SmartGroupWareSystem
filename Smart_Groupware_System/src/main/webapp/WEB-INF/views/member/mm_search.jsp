@@ -24,6 +24,19 @@
 <body>
 
 	<%@ include file="../menu.jsp" %>
+		<div class="page-container">
+		<div class="left-content">
+			<div class="inner-content">
+				<div class="outter-wp">
+		
+		<div class="sub-heard-part">
+							<ol class="breadcrumb m-b-0">
+								<li><a href="index.html">Home</a></li>
+								<li class="active">Forms</li>
+							</ol>
+						</div>
+		
+		
 		  <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -105,6 +118,11 @@
                 </div>
             </div>
         </div>
+	</div>
+	</div>
+	</div>
+	</div>
+	</div>
 	
 		
 		
