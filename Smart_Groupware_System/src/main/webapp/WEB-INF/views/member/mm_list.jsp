@@ -56,7 +56,6 @@
 										</tbody>
 									</table> 
 								</div>
-								
 								 <div>
 						        <c:if test="${currentPage>1}">
 						            <a href="<c:url value='/member/mm_list?currentPage=${currentPage-1}'/>">이전</a>
