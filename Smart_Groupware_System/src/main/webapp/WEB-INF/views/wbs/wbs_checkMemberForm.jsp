@@ -27,6 +27,7 @@
 						팀장코드
 					</label>
 					<input type="text" class="form-control" name="mmCode" id="mmCode" placeholder="사원코드를 입력하세요">
+					<input type="hidden" name="prCode" id="prCode"/>
 				</div>
 				<div class="form-group">
 					<label for="mmPassword">

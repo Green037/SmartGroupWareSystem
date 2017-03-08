@@ -27,5 +27,11 @@ public interface ProjectDAO {
 	int updateFu(Funds funds);
 	Map<String, Object> selectByMmCodeMm(int mmCode);
 	int deletePr(int prCode);
+	int selectAllCountPm(int prCode);
+	int selectCountWbs(int prCode);
+	int selectCountFu(int prCode);
+	int deletePm(int prCode);
+	int deleteWbs(int prCode);
+	int deleteFu(int prCode);
 
 }

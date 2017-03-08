@@ -2,9 +2,7 @@ package com.cafe24.smart.reward.controller;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.Map;
 
-import javax.activation.CommandMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,11 +14,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.reward.domain.Reward;
 import com.cafe24.smart.reward.service.RewardService;
+import com.cafe24.smart.util.UtilFile;
 
 @Controller
 public class RewardController {
@@ -82,10 +82,6 @@ public class RewardController {
 //	인사부 > 고과목록 추가 (get)
 	@RequestMapping(value = "re/add", method = RequestMethod.GET)
 	public String reAddFormCtrl(Model model, HttpServletRequest request) {
-						
-		String classPath = request.getContextPath();
-		
-		System.out.println("reAddFormCtrl classPath : " + classPath);
 		
 		int mmCode = (int) session.getAttribute("id");
 		
@@ -94,13 +90,19 @@ public class RewardController {
 		return "reward/re_add";
 	}
 
-//	인사부 > 고과목록 추가 (post)
-//	@RequestMapping(value = "re/add", method = RequestMethod.POST)
-//	public ModelAndView reAddProCtrl(CommandMap commandMap, HttpServletRequest request) {
-//						
-//		int n = rewardService.reAddServ(reward, request);
-//		
-//		return new ModelAndView();
-//	}
-	
+//	인사부 > 고과목록 추가 (파일 업로드) (post)
+	@RequestMapping(value = "re/add", method = RequestMethod.POST)
+	public String reAddProCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
+									MultipartHttpServletRequest request, Reward reward) {
+		
+		System.out.println("RewardController reAddProCtrl uploadFile : " + uploadFile);
+		
+		UtilFile utilFile = new UtilFile();
+		
+		String uploadPath = utilFile.fileUpload(request, uploadFile, reward);
+		
+		System.out.println("RewardController reAddProCtrl uploadPath : " + uploadPath);
+		
+		return "reward/re_add";
+	}
 }

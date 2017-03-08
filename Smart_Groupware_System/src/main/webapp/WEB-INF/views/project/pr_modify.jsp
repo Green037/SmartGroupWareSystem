@@ -371,9 +371,9 @@
 				<tr>
 					<td colspan="8" align="center">
 						<div class="btn-group">
-							<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >
+							<button type="submit" class="btn btn-primary" >
 								<span class="glyphicon glyphicon-edit"></span> 수정
-							</a>
+							</button>
 						</div>
 					</td>
 				</tr>

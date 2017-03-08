@@ -11,13 +11,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- rang1536 의 데이터베이스 구조 덤핑
-DROP DATABASE IF EXISTS `rang1536`;
-CREATE DATABASE IF NOT EXISTS `rang1536` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `rang1536`;
+CREATE DATABASE IF NOT EXISTS `tsuyu040913` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `tsuyu040913`;
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. achieve
-DROP TABLE IF EXISTS `achieve`;
 CREATE TABLE IF NOT EXISTS `achieve` (
   `ac_code` int(11) NOT NULL AUTO_INCREMENT,
   `ac_name` varchar(50) NOT NULL,
@@ -42,7 +40,6 @@ INSERT INTO `achieve` (`ac_code`, `ac_name`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. approval
-DROP TABLE IF EXISTS `approval`;
 CREATE TABLE IF NOT EXISTS `approval` (
   `apr_code` int(11) NOT NULL AUTO_INCREMENT,
   `mm_code` int(11) NOT NULL,
@@ -59,7 +56,6 @@ DELETE FROM `approval`;
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. career
-DROP TABLE IF EXISTS `career`;
 CREATE TABLE IF NOT EXISTS `career` (
   `cr_code` int(11) NOT NULL AUTO_INCREMENT,
   `ma_code` int(11) DEFAULT NULL,
@@ -107,7 +103,6 @@ INSERT INTO `career` (`cr_code`, `ma_code`, `mi_code`, `cr_data`, `cr_service`, 
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. commute
-DROP TABLE IF EXISTS `commute`;
 CREATE TABLE IF NOT EXISTS `commute` (
   `cm_code` int(11) NOT NULL AUTO_INCREMENT,
   `mm_code` int(11) NOT NULL,
@@ -132,7 +127,6 @@ INSERT INTO `commute` (`cm_code`, `mm_code`, `cm_onTime`, `cm_offTime`, `cm_date
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. contract
-DROP TABLE IF EXISTS `contract`;
 CREATE TABLE IF NOT EXISTS `contract` (
   `ct_code` int(11) NOT NULL AUTO_INCREMENT,
   `ct_type` varchar(10) NOT NULL,
@@ -155,7 +149,6 @@ INSERT INTO `contract` (`ct_code`, `ct_type`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. department
-DROP TABLE IF EXISTS `department`;
 CREATE TABLE IF NOT EXISTS `department` (
   `dp_code` int(11) NOT NULL AUTO_INCREMENT,
   `dp_name` varchar(50) NOT NULL,
@@ -177,7 +170,6 @@ INSERT INTO `department` (`dp_code`, `dp_name`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. document
-DROP TABLE IF EXISTS `document`;
 CREATE TABLE IF NOT EXISTS `document` (
   `doc_code` int(11) NOT NULL AUTO_INCREMENT,
   `doc_fileGroup` varchar(50) DEFAULT NULL,
@@ -203,7 +195,6 @@ INSERT INTO `document` (`doc_code`, `doc_fileGroup`, `doc_fileOri`, `doc_fileExt
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. draft
-DROP TABLE IF EXISTS `draft`;
 CREATE TABLE IF NOT EXISTS `draft` (
   `dft_code` int(11) NOT NULL AUTO_INCREMENT,
   `apr_code` int(11) NOT NULL,
@@ -267,7 +258,6 @@ INSERT INTO `draft` (`dft_code`, `apr_code`, `doc_code`, `mm_code`, `dft_title`,
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. employeementInsurance
-DROP TABLE IF EXISTS `employeementInsurance`;
 CREATE TABLE IF NOT EXISTS `employeementInsurance` (
   `ei_code` int(11) NOT NULL AUTO_INCREMENT,
   `ei_year` int(11) NOT NULL,
@@ -288,7 +278,6 @@ INSERT INTO `employeementInsurance` (`ei_code`, `ei_year`, `ei_employee`, `ei_ow
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. evaluation
-DROP TABLE IF EXISTS `evaluation`;
 CREATE TABLE IF NOT EXISTS `evaluation` (
   `ev_code` int(11) NOT NULL AUTO_INCREMENT,
   `ev_standard1` int(11) NOT NULL,
@@ -305,7 +294,6 @@ DELETE FROM `evaluation`;
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. extraSchedule
-DROP TABLE IF EXISTS `extraSchedule`;
 CREATE TABLE IF NOT EXISTS `extraSchedule` (
   `es_code` int(11) NOT NULL AUTO_INCREMENT,
   `mm_code` int(11) NOT NULL,
@@ -325,7 +313,6 @@ INSERT INTO `extraSchedule` (`es_code`, `mm_code`, `es_startDate`, `es_endDate`,
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. funds
-DROP TABLE IF EXISTS `funds`;
 CREATE TABLE IF NOT EXISTS `funds` (
   `fu_code` int(11) NOT NULL AUTO_INCREMENT,
   `pr_code` int(11) DEFAULT NULL,
@@ -372,7 +359,6 @@ INSERT INTO `funds` (`fu_code`, `pr_code`, `fu_history`, `fu_expectedMoney`, `fu
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. incentive
-DROP TABLE IF EXISTS `incentive`;
 CREATE TABLE IF NOT EXISTS `incentive` (
   `in_code` int(11) NOT NULL AUTO_INCREMENT,
   `re_code` int(11) NOT NULL,
@@ -393,7 +379,6 @@ DELETE FROM `incentive`;
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. license
-DROP TABLE IF EXISTS `license`;
 CREATE TABLE IF NOT EXISTS `license` (
   `lc_code` int(11) NOT NULL AUTO_INCREMENT,
   `lc_name` varchar(50) NOT NULL,
@@ -425,7 +410,6 @@ INSERT INTO `license` (`lc_code`, `lc_name`, `lc_organization`, `lc_type`, `lc_n
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. majorTypeOfBusiness
-DROP TABLE IF EXISTS `majorTypeOfBusiness`;
 CREATE TABLE IF NOT EXISTS `majorTypeOfBusiness` (
   `ma_code` int(11) NOT NULL AUTO_INCREMENT,
   `ma_type` varchar(60) NOT NULL,
@@ -449,7 +433,6 @@ INSERT INTO `majorTypeOfBusiness` (`ma_code`, `ma_type`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. memberAchieve
-DROP TABLE IF EXISTS `memberAchieve`;
 CREATE TABLE IF NOT EXISTS `memberAchieve` (
   `mc_code` int(11) NOT NULL AUTO_INCREMENT,
   `ac_code` int(11) NOT NULL,
@@ -510,7 +493,6 @@ INSERT INTO `memberAchieve` (`mc_code`, `ac_code`, `mc_schoolName`, `mc_admissio
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. memberLicense
-DROP TABLE IF EXISTS `memberLicense`;
 CREATE TABLE IF NOT EXISTS `memberLicense` (
   `ml_code` int(11) NOT NULL AUTO_INCREMENT,
   `lc_code` int(11) NOT NULL,
@@ -571,7 +553,6 @@ INSERT INTO `memberLicense` (`ml_code`, `lc_code`, `ml_issueDate`, `mm_code`) VA
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. memberManagement
-DROP TABLE IF EXISTS `memberManagement`;
 CREATE TABLE IF NOT EXISTS `memberManagement` (
   `mm_code` int(11) NOT NULL AUTO_INCREMENT,
   `ct_code` int(11) NOT NULL,
@@ -648,7 +629,6 @@ INSERT INTO `memberManagement` (`mm_code`, `ct_code`, `pt_code`, `dp_code`, `mm_
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. minorTypeOfBusiness
-DROP TABLE IF EXISTS `minorTypeOfBusiness`;
 CREATE TABLE IF NOT EXISTS `minorTypeOfBusiness` (
   `mi_code` int(11) NOT NULL AUTO_INCREMENT,
   `mi_type` varchar(60) NOT NULL,
@@ -684,7 +664,6 @@ INSERT INTO `minorTypeOfBusiness` (`mi_code`, `mi_type`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. nationalHealthInsurance
-DROP TABLE IF EXISTS `nationalHealthInsurance`;
 CREATE TABLE IF NOT EXISTS `nationalHealthInsurance` (
   `nhi_code` int(11) NOT NULL AUTO_INCREMENT,
   `nhi_year` int(11) NOT NULL,
@@ -704,7 +683,6 @@ INSERT INTO `nationalHealthInsurance` (`nhi_code`, `nhi_year`, `nhi_employee`, `
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. occupationalHealthSafetyInsurance
-DROP TABLE IF EXISTS `occupationalHealthSafetyInsurance`;
 CREATE TABLE IF NOT EXISTS `occupationalHealthSafetyInsurance` (
   `ohi_code` int(11) NOT NULL AUTO_INCREMENT,
   `ohi_year` int(11) NOT NULL,
@@ -720,7 +698,6 @@ DELETE FROM `occupationalHealthSafetyInsurance`;
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. payContent
-DROP TABLE IF EXISTS `payContent`;
 CREATE TABLE IF NOT EXISTS `payContent` (
   `pc_code` int(11) NOT NULL AUTO_INCREMENT,
   `mm_code` int(11) NOT NULL,
@@ -739,7 +716,6 @@ DELETE FROM `payContent`;
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. pensionInsurance
-DROP TABLE IF EXISTS `pensionInsurance`;
 CREATE TABLE IF NOT EXISTS `pensionInsurance` (
   `pp_code` int(11) NOT NULL AUTO_INCREMENT,
   `pp_year` int(11) NOT NULL,
@@ -757,7 +733,6 @@ INSERT INTO `pensionInsurance` (`pp_code`, `pp_year`, `pp_employee`, `pp_owner`)
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. progress
-DROP TABLE IF EXISTS `progress`;
 CREATE TABLE IF NOT EXISTS `progress` (
   `pro_code` int(11) NOT NULL AUTO_INCREMENT,
   `dft_code` int(11) NOT NULL,
@@ -814,7 +789,6 @@ INSERT INTO `progress` (`pro_code`, `dft_code`, `pro_time`, `pro_reason`, `pro_s
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. project
-DROP TABLE IF EXISTS `project`;
 CREATE TABLE IF NOT EXISTS `project` (
   `pr_code` int(11) NOT NULL AUTO_INCREMENT,
   `pr_memberCode` int(11) NOT NULL,
@@ -855,7 +829,6 @@ INSERT INTO `project` (`pr_code`, `pr_memberCode`, `dft_code`, `pr_name`, `pr_me
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. projectMember
-DROP TABLE IF EXISTS `projectMember`;
 CREATE TABLE IF NOT EXISTS `projectMember` (
   `pm_code` int(11) NOT NULL AUTO_INCREMENT,
   `pr_code` int(11) DEFAULT NULL,
@@ -884,7 +857,6 @@ INSERT INTO `projectMember` (`pm_code`, `pr_code`, `mm_code`, `pm_level`, `pm_fi
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. rankposition
-DROP TABLE IF EXISTS `rankposition`;
 CREATE TABLE IF NOT EXISTS `rankposition` (
   `pt_code` int(11) NOT NULL AUTO_INCREMENT,
   `pt_name` varchar(10) NOT NULL,
@@ -904,7 +876,6 @@ INSERT INTO `rankposition` (`pt_code`, `pt_name`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. religion
-DROP TABLE IF EXISTS `religion`;
 CREATE TABLE IF NOT EXISTS `religion` (
   `no` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -924,7 +895,6 @@ INSERT INTO `religion` (`no`, `name`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. reward
-DROP TABLE IF EXISTS `reward`;
 CREATE TABLE IF NOT EXISTS `reward` (
   `re_code` int(11) NOT NULL AUTO_INCREMENT,
   `mm_code` int(11) NOT NULL,
@@ -947,7 +917,6 @@ INSERT INTO `reward` (`re_code`, `mm_code`, `re_grade`, `re_date`, `re_document`
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. school
-DROP TABLE IF EXISTS `school`;
 CREATE TABLE IF NOT EXISTS `school` (
   `no` int(10) NOT NULL AUTO_INCREMENT,
   `graduate` varchar(50) NOT NULL,
@@ -966,7 +935,6 @@ INSERT INTO `school` (`no`, `graduate`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. skill
-DROP TABLE IF EXISTS `skill`;
 CREATE TABLE IF NOT EXISTS `skill` (
   `no` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -986,7 +954,6 @@ INSERT INTO `skill` (`no`, `name`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. staff
-DROP TABLE IF EXISTS `staff`;
 CREATE TABLE IF NOT EXISTS `staff` (
   `no` int(10) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -1016,7 +983,6 @@ INSERT INTO `staff` (`no`, `name`, `sn`, `graduateday`, `schoolno`, `religionno`
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. staffskill
-DROP TABLE IF EXISTS `staffskill`;
 CREATE TABLE IF NOT EXISTS `staffskill` (
   `no` int(10) NOT NULL AUTO_INCREMENT,
   `staffno` int(10) NOT NULL,
@@ -1047,7 +1013,6 @@ INSERT INTO `staffskill` (`no`, `staffno`, `skillno`) VALUES
 
 
 -- 테이블 rang1536의 구조를 덤프합니다. wbs
-DROP TABLE IF EXISTS `wbs`;
 CREATE TABLE IF NOT EXISTS `wbs` (
   `wbs_code` int(11) NOT NULL AUTO_INCREMENT,
   `pr_code` int(11) NOT NULL,

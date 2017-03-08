@@ -129,10 +129,50 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.selectOne("PrDAO.selectByMmCodeMm", mmCode);
 	}
 
+	//프로젝트삭제
 	@Override
 	public int deletePr(int prCode) {
 		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.delete("PrDAO.deletePr", prCode);
+	}
+
+	//등록된 프로젝트 인원 카운트
+	@Override
+	public int selectAllCountPm(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectAllCountPm", prCode);
+	}
+
+	//등록된 프로젝트wbs 카운트
+	@Override
+	public int selectCountWbs(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectCountWbs", prCode);
+	}
+
+	//등록된 자금내역 카운트
+	@Override
+	public int selectCountFu(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectCountFu", prCode);
+	}
+
+	@Override
+	public int deletePm(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("PrDAO.deletePm", prCode);
+	}
+
+	@Override
+	public int deleteWbs(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("PrDAO.deleteWbs", prCode);
+	}
+
+	@Override
+	public int deleteFu(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("PrDAO.deleteFu", prCode);
 	}
 
 

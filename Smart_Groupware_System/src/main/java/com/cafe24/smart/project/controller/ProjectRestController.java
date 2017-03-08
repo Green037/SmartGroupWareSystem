@@ -141,7 +141,7 @@ public class ProjectRestController {
 		return resultMap;
 	}
 	
-	// 프로젝트삭제요청.
+	// 프로젝트삭제요청전 팀장체크.
 	@RequestMapping(value = "pr/removeCheck", method = RequestMethod.POST)
 	public Map<String,Object> prRemoveCheckCtrl(Member member) {
 		/*System.out.println("H2 Ajax Delete MemberCheck~!!");
@@ -153,7 +153,7 @@ public class ProjectRestController {
 		
 		if(mmCode > 1 && mmCode < 10000){ //비번일치시 .
 			resultMap.put("checkresult", true);
-			
+			resultMap.put("check", "삭제");
 		}else if(mmCode == 10000){
 			resultMap.put("checkresult", false);
 			resultMap.put("check", "비번");

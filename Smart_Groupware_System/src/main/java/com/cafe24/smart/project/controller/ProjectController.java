@@ -133,6 +133,7 @@ public class ProjectController {
 		wbsList = wbsService.wbsListServ(prCode);
 		//System.out.println(wbsList);
 		
+		//팀장정보셋팅
 		mmMap = projectService.mmDetailServ(project.getPrMemberCode());
 		
 		model.addAttribute("mmMap", mmMap);
@@ -146,12 +147,12 @@ public class ProjectController {
 	//프로젝트 수정 - 포스트요청
 	@RequestMapping(value = "pr/modify", method = RequestMethod.POST)
 	public String prModifyCtrl(Project project) {
-		/*System.out.println("what!!");
-		System.out.println(project);*/
+		System.out.println("what!!");
+		System.out.println(project);
 		
 		// 수정 처리	
 		int result = projectService.prModifyServ(project);
-		//System.out.println("수정처리 성공여부 : "+result);
+		System.out.println("수정처리 성공여부 : "+result);
 		
 		return "redirect:/pr/list";
 	}
@@ -175,6 +176,19 @@ public class ProjectController {
 		model.addAttribute("project", project);
 		
 		return "project/pr_modify";
+	}
+	
+	//프로젝트삭제처리
+	@RequestMapping(value = "pr/removePrAll", method = RequestMethod.POST)
+	public String prRemoveCtrl(@RequestParam("prCode") int prCode) {
+		/*System.out.println("H2 DELETE Ctrl!");
+		System.out.println("넘어온 프로젝트 코드 : "+prCode);*/
+		
+		// 삭제 처리	
+		int result = projectService.prRemoveServ(prCode);
+		/*System.out.println("삭제처리 결과 : "+result);*/
+		
+		return "redirect:/pr/list";
 	}
 
 }

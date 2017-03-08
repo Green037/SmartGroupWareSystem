@@ -74,8 +74,6 @@
 					
 				$("#pcAmount").val(result);
 			});
-			
-// 			alert('final sumAmount : ' + sumAmount);
 		});
 	</script>
 </head>

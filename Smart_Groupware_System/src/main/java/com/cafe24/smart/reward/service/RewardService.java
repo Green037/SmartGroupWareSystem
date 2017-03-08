@@ -16,5 +16,5 @@ public interface RewardService {
 	
 	Member					mmContentServ(int mmCode);
 	
-	int						reAddServ(Reward reward, HttpServletRequest request);
+	int 					reAddServ(String uploadPath, Reward reward);
 }
