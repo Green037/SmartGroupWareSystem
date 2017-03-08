@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
@@ -93,6 +94,7 @@ public class ProjectController {
 		
 		// 프로젝트기본내용, 참여인원정보, 자금상세정보 모두 필요함.
 		Project project = new Project();
+		Member member = new Member();
 		
 		project = projectService.prDetailServ(prCode);
 		int pmCount = projectService.pmCountServ(prCode);
