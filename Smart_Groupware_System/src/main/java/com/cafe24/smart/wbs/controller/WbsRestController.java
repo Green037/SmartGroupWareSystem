@@ -42,7 +42,7 @@ public class WbsRestController {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<Project> prList = new ArrayList<Project>();
 		
-		if(mmCode > 1 && mmCode < 10000){ //비번일치시 사원코드리턴됨.
+		if(mmCode > 1 && mmCode < 10000){ //비번일치시 사원코드리턴됨.삭제처리!
 			prList = wbsService.prListServ(mmCode);
 			resultMap.put("result", true);
 			resultMap.put("prList", prList);
