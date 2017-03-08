@@ -26,35 +26,33 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head> 
 <body>
 								<!--/login-->
-								
-   <div class="error_page">
-			<!--/login-top-->
-			
-				<div class="error-top">
-				<h2 class="inner-tittle page">SmartGroup</h2>
-				    <div class="login">
-					<h3 class="inner-tittle t-inner">Login</h3>
-							<div class="buttons login">
-										<ul>
-											<li><a href="#" class="hvr-sweep-to-right">야근의</a></li>
-											<li class="lost"><a href="#" class="hvr-sweep-to-left">생활화</a> </li>
-											<div class="clearfix"></div>
-										</ul>
-									</div>
-							<form id="mmlogin" action="member/mm_login" method="post">
-									<input type="text" name="mmCode" id="mmCode" value="2">
-									<input type="text">
-									<input type="password" name="mmPassword" id="mmCode" value="123456" >
-									<div class="submit"><input type="submit" onclick="myFunction()" value="Login" ></div>
-									<div class="clearfix"></div>
-									
-								</form>
-					</div>					
-				</div>
-				
-													
-												<!--//login-top-->
-										   </div>
+															
+							  <div class="error_page">
+										<!--/login-top-->
+										
+								<div class="error-top">
+										<h2 class="inner-tittle page">SmartGroup</h2>
+											<div class="login">
+												<h3 class="inner-tittle t-inner">Login</h3>
+													<div class="buttons login">
+														<ul>
+															<li><a href="#" class="hvr-sweep-to-right">야근의</a></li>
+															<li class="lost"><a href="#" class="hvr-sweep-to-left">생활화</a> </li>
+															<div class="clearfix"></div>
+														</ul>
+													</div>
+														<form id="mmlogin" action="member/mm_login" method="post">
+															<input type="text" name="mmCode" id="mmCode" value="2">
+															<input type="password" name="mmPassword" id="mmCode" value="123456" >
+															
+															<div class="submit"><input type="submit" onclick="myFunction()" value="Login" ></div>
+															<div class="clearfix"></div>
+														</form>
+											</div>					
+									</div>				
+																				
+											<!--//login-top-->
+								</div>
 						
 										  	<!--//login-->
 										    <!--footer section start-->
