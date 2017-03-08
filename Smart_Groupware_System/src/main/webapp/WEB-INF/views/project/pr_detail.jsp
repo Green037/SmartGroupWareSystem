@@ -64,20 +64,29 @@
 			$('#checkMember').modal();
 		});
 		
-		//삭제처리전 맴버정보확인 AJAX
+		//삭제처리 AJAX - 작성자체크 및 프로젝트외 관련 테이블 내용 전부 삭제.
 		$(document).on('click','#checkMemberBtn',function(){
+			var prCode = ${project.prCode};
+			/* console.log(prCode); */
+			$('#prCode').val(prCode);
 			var memberData = $('#checkMemberForm').serialize();
-			console.log(memberData);
-				$.ajax({
-					url: '/smart/pr/removeCheck',
-					data : memberData,
-					dataType : 'json',
-					type : 'POST',
-					success : function(data){
-						console.log('H2 Ajax Remove JSP');
-						
-					}
-				}); 
+			/* console.log(memberData); */
+			$.ajax({
+				url: '/smart/pr/removeCheck',
+				data : memberData,
+				dataType : 'json',
+				type : 'POST',
+				success : function(data){
+					console.log('H2 Ajax Remove JSP');
+					if(data.checkresult == true){
+						$('#checkMember').modal('hide');
+						alert('정말 '+data.check+' 할까요?');
+						$('#checkMemberForm').attr({action:'<c:url value="/pr/removePrAll"/>',method:'post'}).submit();
+					}else{
+						alert(data.check+'가(이) 일치하지 않습니다.');
+					}						
+				}
+			}); 
 		});
 	</script>
 </head> 
