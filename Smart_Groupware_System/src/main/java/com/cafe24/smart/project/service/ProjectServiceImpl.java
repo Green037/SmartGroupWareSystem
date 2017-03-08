@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.approve.domain.Draft;
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.dao.ProjectDAO;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
@@ -150,6 +151,7 @@ public class ProjectServiceImpl implements ProjectService {
 				projectMember.setMmCode(pmListAll.get(i).getMmCode());
 				projectMember.setPmNote(pmListAll.get(i).getPmNote());
 				projectMember.setPmCode(pmListAll.get(i).getPmCode());
+				projectMember.setMmName(pmListAll.get(i).getMmName());
 				pmListApproval.add(projectMember);
 				// System.out.println("승인자확인 : "+pmListApproval);
 			}
@@ -260,6 +262,13 @@ public class ProjectServiceImpl implements ProjectService {
 	public int fuAddServ(Funds funds) {
 		// TODO Auto-generated method stub
 		return projectDao.insertFu(funds);
+	}
+
+	//팀장정보조회
+	@Override
+	public Map<String, Object> mmDetailServ(int mmCode) {
+		// TODO Auto-generated method stub
+		return projectDao.selectByMmCodeMm(mmCode);
 	}
 	
 }

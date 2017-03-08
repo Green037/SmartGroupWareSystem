@@ -1,7 +1,7 @@
 package com.cafe24.smart.project.dao;
 
 import java.util.List;
-
+import java.util.Map;import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
@@ -120,5 +121,13 @@ public class ProjectDAOImpl implements ProjectDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.update("PrDAO.updateFu", funds);
 	}
+
+	//팀장정보조회
+	@Override
+	public Map<String, Object> selectByMmCodeMm(int mmCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectByMmCodeMm", mmCode);
+	}
+
 
 }

@@ -11,7 +11,16 @@ public class ProjectMember {
 	private String pmEndDate;
 	private String pmNote;
 	private String pmApproval;
+	private String mmName;
 	
+
+	public String getMmName() {
+		return mmName;
+	}
+
+	public void setMmName(String mmName) {
+		this.mmName = mmName;
+	}
 
 	public String getPmApproval() {
 		return pmApproval;
@@ -89,8 +98,7 @@ public class ProjectMember {
 	public String toString() {
 		return "ProjectMember [pmCode=" + pmCode + ", prCode=" + prCode + ", mmCode=" + mmCode + ", pmLevel=" + pmLevel
 				+ ", pmField=" + pmField + ", pmStartDate=" + pmStartDate + ", pmEndDate=" + pmEndDate + ", pmNote="
-				+ pmNote + ", pmApproval=" + pmApproval + "]";
+				+ pmNote + ", pmApproval=" + pmApproval + ", mmName=" + mmName + "]";
 	}
 
-	
 }

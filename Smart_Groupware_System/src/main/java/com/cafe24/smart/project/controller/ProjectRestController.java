@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
@@ -35,7 +36,7 @@ public class ProjectRestController {
 		List<ProjectMember> pmList = new ArrayList<ProjectMember>(); 
 		
 		pmList = projectService.pmListServ(prCode);
-		
+		System.out.println(pmList);
 		return pmList;
 	}
 	
@@ -136,4 +137,15 @@ public class ProjectRestController {
 		return resultMap;
 	}
 	
+	// 프로젝트삭제요청.
+	@RequestMapping(value = "pr/removeCheck", method = RequestMethod.POST)
+	public Map<String,String> fuAddCtrl(Member member) {
+		System.out.println("H2 Ajax Delete MemberCheck~!!");
+		System.out.println(member);
+		
+		//사원정보비교 후 일치 불일치리턴~!!
+		
+		return null;
+	}
+
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
@@ -25,5 +26,6 @@ public interface ProjectService {
 	Funds fuModifyValueServ(int fuCode);
 	int fuModifyServ(Funds funds);
 	int fuAddServ(Funds funds);
+	Map<String, Object> mmDetailServ(int mmCode);
 	
 }
