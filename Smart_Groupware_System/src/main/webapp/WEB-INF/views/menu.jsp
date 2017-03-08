@@ -271,14 +271,13 @@
 			<!--/down-->
 			<div class="down">
 				<a href="index.html"><img src="<c:url value='/resources/images/admin.jpg'/>"></a>
-				<a href="index.html"><span class=" name-caret"><b>홍길동</b></span></a>
+				<a href="index.html"><span class=" name-caret"><b>${mmName}</b></span></a>
 				<p>님이 로그인 중입니다.</p>
 				<ul>
 					<li><a class="tooltips" href="index.html"><span>Profile</span><i
 							class="lnr lnr-user"></i></a></li>
 					
-					<li><a class="tooltips" href="index.html"><span>Log
-								out</span><i class="lnr lnr-power-switch"></i></a></li>
+					<li><a class="tooltips" href="<c:url value='/logout'/>"><span>Logout</span><i class="lnr lnr-power-switch"></i></a></li>
 				</ul>
 			</div>
 			

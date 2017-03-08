@@ -36,26 +36,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<h3 class="inner-tittle t-inner">Login</h3>
 							<div class="buttons login">
 										<ul>
-											<li><a href="#" class="hvr-sweep-to-right">일요일도</a></li>
-											<li class="lost"><a href="#" class="hvr-sweep-to-left">월요일같이</a> </li>
+											<li><a href="#" class="hvr-sweep-to-right">야근의</a></li>
+											<li class="lost"><a href="#" class="hvr-sweep-to-left">생활화</a> </li>
 											<div class="clearfix"></div>
 										</ul>
 									</div>
-							<form>
-									<input type="text" class="text" value="사원 번호" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-mail address';}" >
-									<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+							<form id="mmlogin" action="member/mm_login" method="post">
+									<input type="text" name="mmCode" id="mmCode" value="2">
+									<input type="text">
+									<input type="password" name="mmPassword" id="mmCode" value="123456" >
 									<div class="submit"><input type="submit" onclick="myFunction()" value="Login" ></div>
 									<div class="clearfix"></div>
 									
-									<div class="new">
-										<p><label class="checkbox11"><input type="checkbox" name="checkbox"><i> </i>Forgot Password ?</label></p>
-										<p class="sign">Do not have an account ? <a href="sign.html">Sign Up</a></p>
-										<div class="clearfix"></div>
-									</div>
 								</form>
-					</div>
-
-					
+					</div>					
 				</div>
 				
 													
@@ -65,9 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 										  	<!--//login-->
 										    <!--footer section start-->
 										<div class="footer">
-												<div class="error-btn">
-															<a class="read fourth" href="index.html">Return to Home</a>
-															</div>
+
 										   <p>&copy 2016 SmartGroup . All Rights Reserved | Design by <a href="https://w3layouts.com/" target="_blank">빵상</a></p>
 										</div>
 									<!--footer section end-->
