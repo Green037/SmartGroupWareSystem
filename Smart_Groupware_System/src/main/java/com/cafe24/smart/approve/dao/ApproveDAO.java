@@ -28,6 +28,7 @@ public interface ApproveDAO {
 	//결재 요청 (2-2차 : 결재자 update)
 	int modifyProApv(Progress progress);
 	//결재 요청 (approval COUNT)
+	/*Draft selectCountHv(int dftCode);*/
 	Draft selectCountHv(int dftCode);
 	
 	//임시 목록
@@ -45,7 +46,7 @@ public interface ApproveDAO {
 
 	
 	
-	Draft selectNew(int dftCode);
+
 	
 	
 }

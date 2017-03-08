@@ -6,6 +6,17 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<script>
+	$(document).on('click','#putInBtn',function(){
+		$('#putInFor').modal();
+		var dftCode = $(this).parent().parent().children('#_dftCode').val();
+		console.log(dftCode);
+		$('#dftCode').val(dftCode);
+	});
+	
+	
+	</script>
+	
 </head> 
 
 <body>
@@ -18,13 +29,14 @@
 <div class="outter-wp">	
 
 <!-- 본문 -->
+
 <div class="container">
+	
 	<center>
 		<h2><span class="glyphicon glyphicon-file"></span> 결재 목록</h2>
 	</center>
-	<marquee behavior="alternate">
-		<p style="color:red;">If you click projectName, show detail information.!! </p>
-	</marquee>
+	
+	&nbsp;   
            
 	<div class="btn-group btn-group-justified">
 		<a href="<c:url value='/ap/list?apProgress=1'/>" class="btn btn-success">
@@ -80,19 +92,17 @@
 								</td>
 							</c:when>
 					
-					</c:choose>	
+					</c:choose>
+						
 				</tr>
 			</c:forEach>
 		</tbody>
 	</table>
 </div>
 
-<%-- 
-<c:import url="./pm_addForm.jsp"></c:import> <!--팝업창, 참여신청폼  --> 
---%>
+ 
+<c:import url="./ap_comPrint.jsp"></c:import> <!--팝업창 --> 
 
-</body>
-</html>
 <!-- 본문끝 -->
 </div>				
 </div>

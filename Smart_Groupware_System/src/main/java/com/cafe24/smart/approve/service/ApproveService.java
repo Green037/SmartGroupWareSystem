@@ -33,7 +33,7 @@ public interface ApproveService {
 	int apProAddServ(Draft draft, Progress progress, int dftCode);
 	
 	//문서 양식 등록
-	int apDocAddServ(Document document, TotalInfo totalInfo, TotalFile totalFile);
+	int apDocAddServ(Document document, TotalFile totalFile);
 	//문서 양식 목록
 	List<Document> docListServ();
 
