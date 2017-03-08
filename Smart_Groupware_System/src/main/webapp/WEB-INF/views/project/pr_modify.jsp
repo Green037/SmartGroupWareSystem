@@ -173,7 +173,12 @@
 		//wbs 수정처리 
 		$(document).on('click','#modifyActionBtn',function(){
 			var wbsData = $('#actionForm').serialize();
-			console.log(wbsData);
+			/* console.log(wbsData); */
+			var wbsCode = $('#_wbsCode').val();
+			/* console.log(wbsCode); */
+			var trTag = '#wbsTr'+wbsCode;
+			/* console.log(trTag);
+			console.log($(trTag).children('#1').text()); */
 			$.ajax({
 				url: '/smart/wbs/modifyWbs',
 				data : wbsData,
@@ -182,16 +187,26 @@
 				success : function(data){
 					console.log(data.check);
 					if(data.check == '성공'){
-						/* 수정 후 조회해온 자료 어떻게 뿌려줄지 좀 생각해봐야함 ㅠ 
-						if(data.wbs.wbsCode == $('.wbsTr').children('.wbsCode').val()){
-							console.log(data.wbs.wbsCode);
-							console.log($('.wbsTr').children('.wbsCode').val());
-							console.log($(this).val());
-						} */
+						// 수정 후 조회해온 자료 화면에 뿌려주기!
+						$(trTag).children('#2').empty();
+						$(trTag).children('#2').text(data.wbs.wbsName);
+						$(trTag).children('#3').empty();
+						$(trTag).children('#3').text(data.wbs.wbsContents);
+						$(trTag).children('#4').empty();
+						$(trTag).children('#4').text(data.wbs.wbsStartDate);
+						$(trTag).children('#5').empty();
+						$(trTag).children('#5').text(data.wbs.wbsEndDate);
+						$(trTag).children('#6').empty();
+						$(trTag).children('#6').text(data.wbs.wbsProgress+'%');
+						$(trTag).find('#progressBar').attr('aria-valuenow',data.wbs.wbsProgress);
+						$(trTag).find('#progressBar').css('width',data.wbs.wbsProgress+'%');
+						$('#wbsModifyForm').modal('hide');
 					}
+					alert('수정이 '+data.check+'하였습니다.');
 				}
 			});
-		});  
+			
+		}); 
 	</script>
 </head> 
 
@@ -238,17 +253,23 @@
 				</tr>
 				<tr>
 					<td><strong><span class="glyphicon glyphicon-king"></span> 팀장</strong></td>
-					<td colspan="3">-</td>
+					<td colspan="3">
+						<input type="text" name="mmName" value="${mmMap.mmName}" class="form-control" readonly="readonly"/>
+					</td>
 					<td><strong><span class="glyphicon glyphicon-king"></span> 직급</strong></td>
-					<td>-</td>
+					<td>
+						<input type="text" name="ptName" value="${mmMap.ptName}" class="form-control" readonly="readonly"/>
+					</td>
 					<td><strong><span class="glyphicon glyphicon-flag"></span> 부서</strong></td>
-					<td>-</td>
+					<td>
+						<input type="text" name="ctType" value="${mmMap.ctType}" class="form-control" readonly="readonly"/>
+					</td>
 				</tr>
 				<tr>
 					<td><strong><span class="glyphicon glyphicon-envelope"></span> 이메일</strong></td>
-					<td colspan="2">-</td>
+					<td colspan="2"><input type="text" name="mmEmail" value="${mmMap.mmEmail}" class="form-control" readonly="readonly"/></td>
 					<td><strong><span class="glyphicon glyphicon-earphone"></span> 전화번호</strong></td>
-					<td colspan="2">-</td>
+					<td colspan="2"><input type="text" name="mmTel" value="${mmMap.mmTel}" class="form-control" readonly="readonly"/></td>
 					<td><strong><span class="glyphicon glyphicon-log-in"></span> 참여인원</strong></td>
 					<td>
 						<span>${pmCount}</span> / ${project.prMember}
@@ -324,7 +345,7 @@
 			</thead>
 			<tbody>
 				<c:forEach var="wbsList" items="${wbsList}">
-					<tr class="wbsTr">
+					<tr id="wbsTr${wbsList.wbsCode}">
 						<input type="hidden" id="wbsCode" class="wbsCode" value="${wbsList.wbsCode}"/>
 						<td id="1">${wbsList.wbsCate}</td>
 						<td id="2">${wbsList.wbsName}</td>
@@ -334,7 +355,7 @@
 						<td style="width:80px;" id="6">${wbsList.wbsProgress}%</td>
 						<td id="7">
 							<div class="progress progress-bar-xs">
-								<div class="progress-bar progress-bar-info" role="progressbar" 
+								<div class="progress-bar progress-bar-info" id="progressBar" role="progressbar" 
 									aria-valuenow="${wbsList.wbsProgress}" aria-valuemin="0" aria-valuemax="100" 
 									style="width: ${wbsList.wbsProgress}%;">
 								</div>

@@ -37,7 +37,7 @@
 				</div>
 				<button type="button" class="btn btn-default btn-success btn-block" id="checkMemberBtn">
 					<span class="glyphicon glyphicon-off"></span>
-					 프로젝트조회
+					 사원정보확인
 				</button>
 			</form>
 		</div>

@@ -1,7 +1,9 @@
 package com.cafe24.smart.project.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
@@ -23,5 +25,7 @@ public interface ProjectDAO {
 	int updateApprovalPm(ProjectMember projectMember);
 	Funds selectByFuCode(int fuCode);
 	int updateFu(Funds funds);
+	Map<String, Object> selectByMmCodeMm(int mmCode);
+	int deletePr(int prCode);
 
 }

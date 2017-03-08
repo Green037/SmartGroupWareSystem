@@ -28,11 +28,12 @@ public interface MemberDAO {
 	//DB에서 정보 불러오기 리스트 끝
 	
 	
-	Member 								selectByMm(int mmCode);
-	int 								selectTotalMemberCount();
-	List<MemberList>					selectAllMm(Map<String, Integer> map);
-	int 								insertMm(Member member);
-	int 								insertMc(MemberAchieve memberAchieve);
-	int 								insertMl(MemberLicense memberLicense);
-	int 								insertCr(Career career);
+	Member								mmLogin(Member member); //로그인
+	Member 								selectByMm(int mmCode); //
+	int 								selectTotalMemberCount(); // 사원조회리스트 전체 행 수
+	List<MemberList>					selectAllMm(Map<String, Integer> map); // 사원 조회
+	int 								insertMm(Member member); // 사원 등록
+	int 								insertMc(MemberAchieve memberAchieve); // 사원 학력 등록
+	int 								insertMl(MemberLicense memberLicense); // 사원 자격증 등록
+	int 								insertCr(Career career); // 사원 경력사항 등록
 }

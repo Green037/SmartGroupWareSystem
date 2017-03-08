@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
@@ -93,15 +94,20 @@ public class ProjectController {
 		
 		// 프로젝트기본내용, 참여인원정보, 자금상세정보 모두 필요함.
 		Project project = new Project();
+		Map<String, Object> mmMap = new HashMap<String, Object>();
 		
 		project = projectService.prDetailServ(prCode);
 		int pmCount = projectService.pmCountServ(prCode);
+		mmMap = projectService.mmDetailServ(project.getPrMemberCode());
+		//System.out.println(mmMap);
+		
 		//System.out.println("참여인원 카운트값 : "+pmCount);
 		
 		// WBS내용 조회하기.
 		wbsList = wbsService.wbsListServ(prCode);
 		//System.out.println(wbsList);
 		
+		model.addAttribute("mmMap", mmMap);
 		model.addAttribute("project", project);
 		model.addAttribute("pmCount", pmCount);
 		model.addAttribute("wbsList", wbsList);
@@ -117,6 +123,7 @@ public class ProjectController {
 		List<Wbs> wbsList = new ArrayList<Wbs>();
 		
 		// 수정 폼으로 연결. 기존 값 깔아줘야됨.
+		Map<String, Object> mmMap = new HashMap<String, Object>();
 		Project project = new Project();
 		
 		project = projectService.prDetailServ(prCode);
@@ -126,6 +133,9 @@ public class ProjectController {
 		wbsList = wbsService.wbsListServ(prCode);
 		//System.out.println(wbsList);
 		
+		mmMap = projectService.mmDetailServ(project.getPrMemberCode());
+		
+		model.addAttribute("mmMap", mmMap);
 		model.addAttribute("project", project);
 		model.addAttribute("pmCount", pmCount);
 		model.addAttribute("wbsList", wbsList);

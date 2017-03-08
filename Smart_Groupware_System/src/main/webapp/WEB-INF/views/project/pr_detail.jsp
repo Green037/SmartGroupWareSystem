@@ -24,7 +24,7 @@
 						console.log(result.pmLevel); */
 						$('#pmListTbody').append(`
 								<tr>
-									<td>`+result.prCode+`</td>
+									<td>`+result.mmName+`</td>
 									<td>`+result.pmLevel+`</td>
 									<td>`+result.pmNote+`</td>
 								</tr>`);
@@ -57,6 +57,27 @@
 					}); 
 				}
 			});
+		});
+		
+		//삭제처리 맴버정보확인- 팝업창 요청
+		$(document).on('click','#deleteBtn',function(){
+			$('#checkMember').modal();
+		});
+		
+		//삭제처리전 맴버정보확인 AJAX
+		$(document).on('click','#checkMemberBtn',function(){
+			var memberData = $('#checkMemberForm').serialize();
+			console.log(memberData);
+				$.ajax({
+					url: '/smart/pr/removeCheck',
+					data : memberData,
+					dataType : 'json',
+					type : 'POST',
+					success : function(data){
+						console.log('H2 Ajax Remove JSP');
+						
+					}
+				}); 
 		});
 	</script>
 </head> 
@@ -98,17 +119,17 @@
 			</tr>
 			<tr>
 				<td><strong><span class="glyphicon glyphicon-king"></span> 팀장</strong></td>
-				<td colspan="3">-</td>
+				<td colspan="3">${mmMap.mmName}</td>
 				<td><strong><span class="glyphicon glyphicon-king"></span> 직급</strong></td>
-				<td>-</td>
+				<td>${mmMap.ptName}</td>
 				<td><strong><span class="glyphicon glyphicon-flag"></span> 부서</strong></td>
-				<td>-</td>
+				<td>${mmMap.ctType}</td>
 			</tr>
 			<tr>
 				<td><strong><span class="glyphicon glyphicon-envelope"></span> 이메일</strong></td>
-				<td colspan="2">-</td>
+				<td colspan="2">${mmMap.mmEmail}</td>
 				<td><strong><span class="glyphicon glyphicon-earphone"></span> 전화번호</strong></td>
-				<td colspan="2">-</td>
+				<td colspan="2">${mmMap.mmTel}</td>
 				<td><strong><span class="glyphicon glyphicon-log-in"></span> 참여인원</strong></td>
 				<td>
 					${pmCount} / ${project.prMember}
@@ -180,7 +201,7 @@
 						<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >
 							<span class="glyphicon glyphicon-edit"></span> 수정
 						</a>
-						<a href="#" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span> 삭제</a>
+						<a href="#" class="btn btn-primary" id="deleteBtn"><span class="glyphicon glyphicon-trash"></span> 삭제</a>
 					</div>
 				</td>
 			</tr>
@@ -189,7 +210,7 @@
 </div>
 <c:import url="./pm_list.jsp"></c:import> <!--팝업창, 참여인원리스트  -->
 <c:import url="./fu_list.jsp"></c:import> <!--팝업창, 자금상세리스트  -->
-
+<c:import url="../wbs/wbs_checkMemberForm.jsp"></c:import> <!--팝업창, 수정삭제시 사원정보체크 -->
 <!-- 본문끝 -->
 </div>				
 </div>

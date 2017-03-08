@@ -30,7 +30,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-// 	DB 에서 정보 불러오기 리스트-----------
+// 	------------------------------------ DB 에서 정보 불러오기 리스트-----------
 	@Override
 	public List<Achieve> selectAc() {
 		//System.out.println("AcDao까지 확인");
@@ -76,7 +76,7 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectList("acDAO.selectMi");
 	}
 	
-// DB 에서 정보 불러오기 리스트-----------
+//------------------------------------------------------ DB 에서 정보 불러오기 리스트---------------------------------------
 	
 //  사원 카운트 리스트
 	@Override
@@ -132,6 +132,15 @@ public class MemberDAOImpl implements MemberDAO {
 	public int insertCr(Career career) {
 				
 		return  sqlSession.insert("MmDAO.insertCr", career);
+	}
+
+	
+// 사원 로그인 
+	@Override
+	public Member mmLogin(Member member) {
+			System.out.println("로그인요청시 Dao에서 member 잘 넘겨 받았는지 확인 :"+member.getMmCode());
+			System.out.println("로그인요청시 Dao에서 member 잘 넘겨 받았는지 확인 :"+member.getMmPassword());
+		return sqlSession.selectOne("MmDAO.mmLogin",member);
 	}
 
 

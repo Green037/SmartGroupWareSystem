@@ -53,6 +53,13 @@
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
+	
+	
+	
+	
+	
+	
+	
 	<select id="selectByMm" parameterType="int" resultMap="resultMm">
 		SELECT
 			*
@@ -61,6 +68,25 @@
 		WHERE
 			mm_code = #{mmCode};
 	</select>
+	
+	
+	
+	<!-- 사원 로그인 체크 -->
+	<select id="mmLogin" resultMap="resultMm">
+		SELECT
+			mm_code,
+			mm_password,
+			mm_name
+		FROM
+			memberManagement
+		WHERE
+			mm_code=#{mmCode}
+
+	
+	
+	</select>
+	
+	
 	
 	<!-- 사원 경력사항 등록 -->
 	<insert id="insertCr" parameterType="com.cafe24.smart.member.domain.Career">
