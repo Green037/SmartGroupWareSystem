@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.project.domain.ProjectMember;
 import com.cafe24.smart.project.service.ProjectService;
+import com.cafe24.smart.wbs.service.WbsService;
 
 @RestController
 public class ProjectRestController {
@@ -27,6 +29,9 @@ public class ProjectRestController {
 	@Autowired
 	private ProjectService projectService;
 	
+	@Autowired
+	private WbsService wbsService;
+	
 	//참여인원 상세보기
 	@RequestMapping(value = "pm/detail", method = RequestMethod.POST)
 	public List<ProjectMember> pmListCtrl(@RequestParam("prCode") int prCode) {
@@ -35,7 +40,7 @@ public class ProjectRestController {
 		List<ProjectMember> pmList = new ArrayList<ProjectMember>(); 
 		
 		pmList = projectService.pmListServ(prCode);
-		
+		System.out.println(pmList);
 		return pmList;
 	}
 	
@@ -136,4 +141,28 @@ public class ProjectRestController {
 		return resultMap;
 	}
 	
+	// 프로젝트삭제요청전 팀장체크.
+	@RequestMapping(value = "pr/removeCheck", method = RequestMethod.POST)
+	public Map<String,Object> prRemoveCheckCtrl(Member member) {
+		/*System.out.println("H2 Ajax Delete MemberCheck~!!");
+		System.out.println(member);*/
+		Map<String,Object> resultMap = new HashMap<String,Object>();
+		
+		//사원정보비교 후 일치 불일치리턴~!!
+		int mmCode = wbsService.checkMemberServ(member);
+		
+		if(mmCode > 1 && mmCode < 10000){ //비번일치시 .
+			resultMap.put("checkresult", true);
+			resultMap.put("check", "삭제");
+		}else if(mmCode == 10000){
+			resultMap.put("checkresult", false);
+			resultMap.put("check", "비번");
+		}else if(mmCode == 0){
+			resultMap.put("checkresult", false);
+			resultMap.put("check", "아이디");
+		}
+		
+		return resultMap;
+	}
+
 }

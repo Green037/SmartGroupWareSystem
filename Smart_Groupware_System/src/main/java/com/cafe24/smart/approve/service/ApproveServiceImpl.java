@@ -35,12 +35,15 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	// ----- 메소드 : 파일 업로드
 	private TotalInfo getFileInfo(TotalFile totalFile,TotalInfo totalInfo) throws IllegalStateException, IOException{
-		System.out.println("serv file>  test1");
+		System.out.println("serv fileUpload> test1");
 		
 		File destFile = null;
 		MultipartFile multipartFile = null;
 		
 		//multifile 조건에 따른 분기 : 1.draft의 경로  2. document의 경로 
+		
+		System.out.println("----"+totalFile);
+		
 		if(totalFile.getDftFile()!=null){
 			 multipartFile = totalFile.getDftFile();
 			 System.out.println("draft 파일 등록");
@@ -51,11 +54,10 @@ public class ApproveServiceImpl implements ApproveService {
 		}
 		//uuid 적용
 		//----- 상대경로 적용???????????????????????????????
-		
-		
+			
 	/*	절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";*/
 		
-		String filePath = "/resources/fileStore/";
+		String filePath =  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid.toString().replaceAll("-", "");
 		int index = multipartFile.getOriginalFilename().lastIndexOf(".");
@@ -179,7 +181,7 @@ public class ApproveServiceImpl implements ApproveService {
 		//-----결재 신청 정보 가져오기 
 /*		draft = approveDAO.selectContHv(dftCode);*/
 		
-		draft = approveDAO.selectNew(dftCode);
+		draft = approveDAO.selectContHv(dftCode);
 		
 		System.out.println(draft);
 		
@@ -212,7 +214,6 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return draft;
 	}
-	
 	
 	//결재 요청[승인/반려] *** 중복코드 메소드화 ***
 	@Override
@@ -389,7 +390,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return result;
 	}
-		
+	
 	
 	//임시 목록 :GET
 	@Override
@@ -405,10 +406,10 @@ public class ApproveServiceImpl implements ApproveService {
 	//임시 상세보기 : GET
 	@Override
 	public List<Draft> temContServ(int dftCode) {
-		System.out.println("serv temContent> test1");
+		//System.out.println("serv temContent> test1");
 		List<Draft> temContent= new ArrayList<Draft>();
 		temContent = approveDAO.selectContTem(dftCode);
-		System.out.println(temContent);
+		//System.out.println(temContent);
 		
 
 		return temContent;
@@ -417,20 +418,20 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	//문서 양식 등록 : POST
 	@Override
-	public int apDocAddServ(Document document,TotalInfo totalInfo, TotalFile totalFile) {
-		System.out.println("serv apDocAddServ> test1");
-
+	public int apDocAddServ(Document document, TotalFile totalFile) {
+		System.out.println("serv apDocAddReServ> test1");
+		TotalInfo totalInfo = new TotalInfo();
+		
 		try {
 			totalInfo = getFileInfo(totalFile,totalInfo);
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		
 			e.printStackTrace();
 		}
 
-		// document에 들어있는 filegroup를 다시 셋팅해야하는가???????????????
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileName(totalInfo.getDocFileName());
 		document.setDocFilePath(totalInfo.getDocFilePath());
@@ -438,6 +439,7 @@ public class ApproveServiceImpl implements ApproveService {
 		document.setDocFileOri(totalInfo.getDftFileOri());
 		
 		int result = approveDAO.insertDoc(document);
+		
 		System.out.println("serv apDocAddServ> test2");
 		
 		return result;
@@ -447,11 +449,11 @@ public class ApproveServiceImpl implements ApproveService {
 	@Override
 	public List<Document> docListServ() {
 		
-		System.out.println("srv docListServ > test1");
+		//System.out.println("srv docListServ > test1");
 		List<Document> docList = new ArrayList<Document>();
 		docList = approveDAO.selectAllDoc(); // 문서코드/문서구분 불러오기
 		
-		System.out.println(docList);
+		//System.out.println(docList);
 		
 		return docList;
 	}

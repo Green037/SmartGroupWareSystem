@@ -10,8 +10,11 @@
 		$(document).on('click','#putInBtn',function(){
 			$('#putInFor').modal();
 			var prCode = $(this).parent().parent().children('#_prCode').val();
-			console.log(prCode);
+			var mmCode = ${mmCode}; //로그인된 세션의 사원코드를 변수에 담는다
+			/* console.log(mmCode);
+			console.log(prCode); */
 			$('#prCode').val(prCode);
+			$('#mmCode').val(mmCode);
 		});
 		
 		

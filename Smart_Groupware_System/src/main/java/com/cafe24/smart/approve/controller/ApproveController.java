@@ -36,11 +36,11 @@ public class ApproveController {
 	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
 	public String Add(Model model){
 		
-		System.out.println("ctrl dftAdd GET> test");
+		//System.out.println("ctrl dftAdd GET> test");
 		List<Document> doc = new ArrayList<Document>();
 		doc = approveService.apAddSelServ();
 		
-		System.out.println(doc);
+		//System.out.println(doc);
 		model.addAttribute("doc", doc);
 		
 		return "/approve/ap_dftAdd";   
@@ -50,7 +50,7 @@ public class ApproveController {
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
 	public String apAddCtrl(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile){
 			
-		System.out.println("ctrl dftAdd > test");	
+		//System.out.println("ctrl dftAdd > test");	
 		int result = approveService.apAddServ(draft, progress, totalInfo, totalFile);
 		
 		return "home";
@@ -59,7 +59,7 @@ public class ApproveController {
 	//결재 목록 [대기/반려/완료] : GET 
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
-		System.out.println("ctrl pgList> test");
+		//System.out.println("ctrl pgList> test");
 		//System.out.println(apProgress);
 	
 		List<Draft> pgList = new ArrayList<Draft>();
@@ -75,7 +75,7 @@ public class ApproveController {
 	@RequestMapping(value="ap/Content", method=RequestMethod.GET)
 	public String apHvDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
 	
-		System.out.println("ctrl hvCont> test");
+		//System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
 		String url;
 		
@@ -91,7 +91,7 @@ public class ApproveController {
 	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
 	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
 
-		System.out.println("ctrl proAdd> test");
+		//System.out.println("ctrl proAdd> test");
 		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
 		return "redirect:/ap/list";  
@@ -101,7 +101,7 @@ public class ApproveController {
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
 	public String temList(Model model){
 		
-		System.out.println("ctrl temList> test");
+		//System.out.println("ctrl temList> test");
 		List<Draft> temList = new ArrayList<Draft>();
 		temList = approveService.temListServ();
 		model.addAttribute("temList", temList);
@@ -114,11 +114,11 @@ public class ApproveController {
 	@RequestMapping(value ="ap/temContent", method = RequestMethod.GET)
 	public String aptemDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
 	
-		System.out.println("ctrl temContent> test");
+		//System.out.println("ctrl temContent> test");
 		List<Draft> draft = new ArrayList<Draft>();
 		draft = approveService.temContServ(dftCode);
 		
-		System.out.println(draft);
+		//System.out.println(draft);
 		model.addAttribute("draft", draft);
 		
 		return "/approve/ap_temModify";   
@@ -128,7 +128,7 @@ public class ApproveController {
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)
 	public String apdocListCtrl(Model model){
 	
-		System.out.println("ctrl apdocListCtrl> test");
+		//System.out.println("ctrl apdocListCtrl> test");
 		List<Document> docList = new ArrayList<Document>();
 		
 		docList = approveService.docListServ();
@@ -137,35 +137,5 @@ public class ApproveController {
 		return "/approve/ap_docList";   
 	}
 	
-	//문서양식 페이지 요청 : GET 
-	@RequestMapping(value ="ap/docAdd", method = RequestMethod.GET)
-	public String docAddCtrl(){
-		System.out.println("ctrl docList> test");
 		
-		return "/approve/ap_docAdd";   
-	}
-	
-	//문서양식 등록 : POST
-	@RequestMapping(value ="ap/addDoc", method = RequestMethod.POST)
-	public String docAddCtrl(Document document, TotalInfo totalInfo, TotalFile totalFile){
-		
-		System.out.println("ctrl docAddCtrl> test");
-		int result = approveService.apDocAddServ(document,totalInfo,totalFile);
-		
-		return "redirect:/ap/docList"; 
-	}
-	
-	
-	
-	// test
-	@RequestMapping(value ="ap/test", method = RequestMethod.GET)
-	public String test(HttpServletRequest request){
-		
-		String path = request.getContextPath();
-		System.out.println(path);
-		
-		return"/approve/test";   
-		
-	}
-	
 }

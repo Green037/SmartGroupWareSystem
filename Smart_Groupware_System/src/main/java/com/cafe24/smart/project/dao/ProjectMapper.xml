@@ -31,6 +31,7 @@
 		<result property="pmEndDate" column="pm_endDate"/>
 		<result property="pmNote" column="pm_note"/>
 		<result property="pmApproval" column="pm_approval"/>
+		<result property="mmName" column="mm_name"/>
 	</resultMap>
 	
 	<resultMap type="com.cafe24.smart.project.domain.Funds" id="resultFu">
@@ -54,6 +55,26 @@
 		<result property="wbsWorkingDays" column="wbs_workingDays"/>
 		<result property="wbsUncompletedReason" column="wbs_uncompletedReason"/>
 		<result property="wbsFinalEndDate" column="wbs_finalEndDate"/>
+	</resultMap>
+	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" column="mm_code"/>
+		<result property="ctCode" column="ct_code"/>
+		<result property="ptCode" column="pt_code"/>
+		<result property="dpCode" column="dp_code"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="mmJoinDate" column="mm_joinDate"/>
+		<result property="mmResignDate" column="mm_resignDate"/>
+		<result property="mmAnnualLeave" column="mm_annualLeave"/>
+		<result property="mmArmy" column="mm_army"/>
+		<result property="mmEmail" column="mm_email"/>
+		<result property="mmMarriage" column="mm_marriage"/>
+		<result property="mmPassword" column="mm_password"/>
+		<result property="mmSign" column="mm_sign"/>
+		<result property="mmAddress" column="mm_address"/>
+		<result property="mmTel" column="mm_tel"/>
+		<result property="mmBank" column="mm_bank"/>
+		<result property="mmAccount" column="mm_account"/>
 	</resultMap>
 	
 	<insert id="insertPr" 
@@ -107,16 +128,28 @@
 			pr_code,
 			mm_code,
 			pm_level,
-			pm_field,
-			pm_startDate,
-			pm_note)
+			pm_note,
+			pm_approval
+			<if test="pmStartDate != null and pmStartDate != ''">
+				,pm_startDate
+			</if>
+			<if test="pmField != null">
+				,pm_field
+			</if>
+			)
 		VALUES(
 			#{prCode},
 			#{mmCode},
 			#{pmLevel},
-			#{pmField},
-			#{pmStartDate},
-			#{pmNote})
+			#{pmNote},
+			#{pmApproval}
+			<if test="pmStartDate != null and pmStartDate != ''">
+				,#{pmStartDate}
+			</if>
+			<if test="pmField != null">
+				,#{pmField}
+			</if>
+			)
 	</insert>
 	
 	<select id="selectAll"
@@ -164,9 +197,14 @@
 			parameterType="int"
 			resultMap="resultPm">
 		SELECT 
-			*
+			projectMember.*, 
+			memberManagement.mm_name
 		FROM
 			projectMember
+		LEFT JOIN
+			memberManagement
+		ON 
+			projectMember.mm_code = memberManagement.mm_code
 		WHERE 
 			pr_code = #{prCode} 
 	</select>
@@ -180,7 +218,7 @@
 			projectMember
 		WHERE
 			pr_code = #{prCode}
-			AND pm_approval = "승인"
+		AND pm_approval = "승인"
 	</select>
 	
 	<select id="selectByPrCodeFu"
@@ -197,14 +235,15 @@
 	<update id="updatePr"
 			parameterType="com.cafe24.smart.project.domain.Project">
 		UPDATE project
-		SET
-			pr_name = #{prName},
-			pr_progress = #{prProgress},
-			pr_cate = #{prCate},
-			pr_forProgress = #{prForProgress},
-			pr_money = #{prMoney},
-			pr_finishCheck = #{prFinishCheck},
-			pr_Goal = #{prGoal}
+			<set>
+				<if test="prName != null">pr_name = #{prName},</if>
+				<if test="prProgress != null">pr_progress = #{prProgress},</if>
+				<if test="prCate != null">pr_cate = #{prCate},</if>
+				<if test="prForProgress != null">pr_forProgress = #{prForProgress},</if>
+				<if test="prMoney != null">pr_money = #{prMoney},</if>
+				<if test="prFinishCheck != null">pr_finishCheck = #{prFinishCheck},</if>
+				<if test="prGoal != null">pr_Goal = #{prGoal}</if>
+			</set>
 		WHERE
 			pr_code = #{prCode}
 	</update>
@@ -240,4 +279,97 @@
 		WHERE
 			fu_code = #{fuCode}
 	</update>
+	
+	<select id="selectByMmCodeMm"
+			parameterType="int"
+			resultType="HashMap">
+		SELECT 
+			memberManagement.mm_name as mmName,
+			memberManagement.mm_email as mmEmail,
+			memberManagement.mm_tel as mmTel,
+			rankposition.pt_name as ptName,
+			contract.ct_type as ctType
+		FROM 
+			memberManagement
+		LEFT JOIN 
+			rankposition
+		ON 
+			memberManagement.pt_code = rankposition.pt_code
+		LEFT JOIN 
+			contract
+		ON 
+			memberManagement.ct_code = contract.ct_code
+		WHERE 
+			mm_code = #{mmCode};
+	</select>
+	
+	<delete id="deletePr"
+			parameterType="int">
+		DELETE 
+		FROM 
+			project
+		WHERE
+			pr_code = #{prCode} 
+	</delete>
+	
+	<delete id="deletePm"
+			parameterType="int">
+		DELETE
+		FROM 
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+	
+	<delete id="deleteWbs"
+			parameterType="int">
+		DELETE
+		FROM 
+			wbs
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+	
+	<delete id="deleteFu"
+			parameterType="int">
+		DELETE
+		FROM 
+			funds
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+	
+	<select id="selectCountWbs"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			wbs
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	<select id="selectCountFu"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			funds
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	<select id="selectAllCountPm"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	
+	
+	
 </mapper>

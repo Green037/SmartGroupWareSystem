@@ -173,12 +173,12 @@
 		//wbs 수정처리 
 		$(document).on('click','#modifyActionBtn',function(){
 			var wbsData = $('#actionForm').serialize();
-			console.log(wbsData);
+			/* console.log(wbsData); */
 			var wbsCode = $('#_wbsCode').val();
-			console.log(wbsCode);
+			/* console.log(wbsCode); */
 			var trTag = '#wbsTr'+wbsCode;
-			console.log(trTag);
-			console.log($(trTag).children('#1').text());
+			/* console.log(trTag);
+			console.log($(trTag).children('#1').text()); */
 			$.ajax({
 				url: '/smart/wbs/modifyWbs',
 				data : wbsData,
@@ -253,17 +253,23 @@
 				</tr>
 				<tr>
 					<td><strong><span class="glyphicon glyphicon-king"></span> 팀장</strong></td>
-					<td colspan="3">-</td>
+					<td colspan="3">
+						<input type="text" name="mmName" value="${mmMap.mmName}" class="form-control" readonly="readonly"/>
+					</td>
 					<td><strong><span class="glyphicon glyphicon-king"></span> 직급</strong></td>
-					<td>-</td>
+					<td>
+						<input type="text" name="ptName" value="${mmMap.ptName}" class="form-control" readonly="readonly"/>
+					</td>
 					<td><strong><span class="glyphicon glyphicon-flag"></span> 부서</strong></td>
-					<td>-</td>
+					<td>
+						<input type="text" name="ctType" value="${mmMap.ctType}" class="form-control" readonly="readonly"/>
+					</td>
 				</tr>
 				<tr>
 					<td><strong><span class="glyphicon glyphicon-envelope"></span> 이메일</strong></td>
-					<td colspan="2">-</td>
+					<td colspan="2"><input type="text" name="mmEmail" value="${mmMap.mmEmail}" class="form-control" readonly="readonly"/></td>
 					<td><strong><span class="glyphicon glyphicon-earphone"></span> 전화번호</strong></td>
-					<td colspan="2">-</td>
+					<td colspan="2"><input type="text" name="mmTel" value="${mmMap.mmTel}" class="form-control" readonly="readonly"/></td>
 					<td><strong><span class="glyphicon glyphicon-log-in"></span> 참여인원</strong></td>
 					<td>
 						<span>${pmCount}</span> / ${project.prMember}
@@ -365,9 +371,9 @@
 				<tr>
 					<td colspan="8" align="center">
 						<div class="btn-group">
-							<a href="<c:url value='/pr/modify?prCode=${project.prCode}'/>" class="btn btn-primary" >
+							<button type="submit" class="btn btn-primary" >
 								<span class="glyphicon glyphicon-edit"></span> 수정
-							</a>
+							</button>
 						</div>
 					</td>
 				</tr>

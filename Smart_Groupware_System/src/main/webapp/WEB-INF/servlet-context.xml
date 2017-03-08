@@ -19,31 +19,30 @@
 		<property name="suffix" value=".jsp"/>
 		<property name="order" value="1"/>
 	</bean>
-	<!-- MySql connect -->
 
-		
+	<!-- MySql connect -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://rang1536.cafe24.com:3306/rang1536?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
 		<property name="username" value="rang1536"/>
 		<property name="password" value="sora1358"/>  
-	</bean>
+	
 	
 		<!-- 상엽이 
 		<property name="url" value="jdbc:mysql://freebsy.cafe24.com:3306/freebsy?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
 		<property name="username" value="freebsy"/>
 		<property name="password" value="bsy63792"/>  -->
 		
-		<!-- 은비씨
-		<property name="url" value="jdbc:mysql://tsuyu040913.cafe24.com:3306/hsa3737?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
-		<property name="username" value="tsuyu040913"/>
-		<property name="password" value="eunbi3800*"/>  -->
+<!-- 		은비씨 -->
+<!-- 		<property name="url" value="jdbc:mysql://tsuyu040913.cafe24.com:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
+<!-- 		<property name="username" value="tsuyu040913"/> -->
+<!--  		<property name="password" value="eunbi3800*"/> -->
 		
 		<!-- 수아씨
 		<property name="url" value="jdbc:mysql://hsa3737.cafe24.com:3306/hsa3737?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
 		<property name="username" value="hsa3737"/>
 		<property name="password" value="hong995421"/>  -->
-		
+	</bean>	
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>

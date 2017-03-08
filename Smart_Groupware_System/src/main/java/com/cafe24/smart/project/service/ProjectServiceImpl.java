@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.approve.domain.Draft;
+import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.dao.ProjectDAO;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
@@ -114,9 +115,24 @@ public class ProjectServiceImpl implements ProjectService {
 	//프로젝트 참여신청
 	@Override
 	public int pmAddServ(ProjectMember projectMember) {
+		//최초입력이므로 승인상태 무조건 대기로 입력.
 		projectMember.setPmApproval("대기");
-		// 추후 사원테이블 연계시 사원정보 가져와서 직급확인하여 사원-초급, 대리-중급, 과장이상급 - 고급 으로 분류 하는 로직추가 해야함.
-		// 최초 입력이므로 참여수락여부 대기로 해놓고 승인으로 바뀌면 프로젝트 시작일로 참여일 수정처리로직도 필요함.
+		/*System.out.println("입력받은 맴버정보 : "+projectMember);*/
+		
+		// 사원정보 가져와서 직급확인하여 사원-초급, 대리-중급, 과장이상급 - 고급 으로 분류 하는 로직추가 
+		Map<String, Object> mmMap = new HashMap<String, Object>();
+		mmMap = projectDao.selectByMmCodeMm(projectMember.getMmCode());
+		/*System.out.println(mmMap);*/
+		
+		if(mmMap.get("ptName").equals("사원")){
+			projectMember.setPmLevel("초급");
+		}else if(mmMap.get("ptName").equals("대리")){
+			projectMember.setPmLevel("중급");
+		}else{
+			projectMember.setPmLevel("고급");
+		}
+		/*System.out.println("최종 플젝 참여인원 수정정보 : "+projectMember);*/
+		
 		return projectDao.insertPm(projectMember);
 	}
 
@@ -150,6 +166,7 @@ public class ProjectServiceImpl implements ProjectService {
 				projectMember.setMmCode(pmListAll.get(i).getMmCode());
 				projectMember.setPmNote(pmListAll.get(i).getPmNote());
 				projectMember.setPmCode(pmListAll.get(i).getPmCode());
+				projectMember.setMmName(pmListAll.get(i).getMmName());
 				pmListApproval.add(projectMember);
 				// System.out.println("승인자확인 : "+pmListApproval);
 			}
@@ -189,16 +206,19 @@ public class ProjectServiceImpl implements ProjectService {
 		pmListAll = projectDao.selectByPrCodePm(prCode);
 		// System.out.println(pmListAll);
 		for(int i=0; i< pmListAll.size() ; i++){
-			if(!pmListAll.get(i).getPmApproval().equals("승인")){
-				ProjectMember projectMember = new ProjectMember();
-				projectMember.setPmLevel(pmListAll.get(i).getPmLevel());
-				projectMember.setMmCode(pmListAll.get(i).getMmCode());
-				projectMember.setPmNote(pmListAll.get(i).getPmNote());
-				projectMember.setPmCode(pmListAll.get(i).getPmCode());
-				projectMember.setPrCode(pmListAll.get(i).getPrCode());
-				pmListDisApproval.add(projectMember);
-				// System.out.println("대기자확인 : "+pmListApproval);
+			if(pmListAll.get(i).getPmApproval() != null){
+				if(!pmListAll.get(i).getPmApproval().equals("승인")){
+					ProjectMember projectMember = new ProjectMember();
+					projectMember.setPmLevel(pmListAll.get(i).getPmLevel());
+					projectMember.setMmCode(pmListAll.get(i).getMmCode());
+					projectMember.setPmNote(pmListAll.get(i).getPmNote());
+					projectMember.setPmCode(pmListAll.get(i).getPmCode());
+					projectMember.setPrCode(pmListAll.get(i).getPrCode());
+					pmListDisApproval.add(projectMember);
+					// System.out.println("대기자확인 : "+pmListApproval);
+				}
 			}
+			
 		}
 		return pmListDisApproval;
 	}
@@ -260,6 +280,44 @@ public class ProjectServiceImpl implements ProjectService {
 	public int fuAddServ(Funds funds) {
 		// TODO Auto-generated method stub
 		return projectDao.insertFu(funds);
+	}
+
+	//팀장정보조회
+	@Override
+	public Map<String, Object> mmDetailServ(int mmCode) {
+		// TODO Auto-generated method stub
+		return projectDao.selectByMmCodeMm(mmCode);
+	}
+
+	//프로젝트삭제 - 프로젝트,참여인원,WBS다 삭제해야함.
+	@Override
+	public int prRemoveServ(int prCode) {
+		// 프로젝트를 삭제한다.
+		int result = projectDao.deletePr(prCode);
+		System.out.println("삭제결과 : "+result);
+		
+		if(result == 1){ //성공시 참여인원, WBS코드, 자금상세내역이 있다면 다 삭제한다.
+			int pmCount = projectDao.selectAllCountPm(prCode);
+			int fundsCount = projectDao.selectCountFu(prCode);
+			int wbsCount = projectDao.selectCountWbs(prCode);
+			/*System.out.println("(카운트확인)프로젝트 참여인원 카운트 : "+pmCount);
+			System.out.println("(카운트확인)프로젝트 자금상세내역 카운트 : "+fundsCount);
+			System.out.println("(카운트확인)프로젝트 WBS 카운트 : "+wbsCount);*/
+			
+			if(pmCount != 0){  // 1.참여인원 입력값이 있다면 삭제처리
+				int pmResult = projectDao.deletePm(prCode);
+				System.out.println("참여인원 삭제결과 : "+pmResult);
+			}
+			if(fundsCount != 0){  // 2.자금상세내역 입력값이 있다면 삭제처리
+				int fuResult = projectDao.deleteFu(prCode);
+				System.out.println("자금상세내역 삭제결과 : "+fuResult);
+			}
+			if(wbsCount != 0){  // 3.WBS 입력값이 있다면 삭제처리
+				int wbsResult = projectDao.deleteWbs(prCode);
+				System.out.println("WBS 삭제결과 : "+wbsResult);
+			}
+		}
+		return result;
 	}
 	
 }

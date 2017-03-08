@@ -27,6 +27,7 @@
 						팀장코드
 					</label>
 					<input type="text" class="form-control" name="mmCode" id="mmCode" placeholder="사원코드를 입력하세요">
+					<input type="hidden" name="prCode" id="prCode"/>
 				</div>
 				<div class="form-group">
 					<label for="mmPassword">
@@ -37,7 +38,7 @@
 				</div>
 				<button type="button" class="btn btn-default btn-success btn-block" id="checkMemberBtn">
 					<span class="glyphicon glyphicon-off"></span>
-					 프로젝트조회
+					 사원정보확인
 				</button>
 			</form>
 		</div>

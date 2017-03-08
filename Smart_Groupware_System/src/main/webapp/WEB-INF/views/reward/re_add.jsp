@@ -84,7 +84,7 @@
 											<div class="form-group">
 												<label for="reDocument" class="col-sm-2 control-label">고과서류첨부</label>
 												<div class="col-sm-3">
-													<input type="file" class="form-control1" id="reDocument" name="reDocument" style="border:0px solid black;"/>
+													<input type="file" class="form-control1" id="uploadFile" name="uploadFile" style="border:0px solid black;"/>
 												</div>
 											</div>
 											<div class="form-group">

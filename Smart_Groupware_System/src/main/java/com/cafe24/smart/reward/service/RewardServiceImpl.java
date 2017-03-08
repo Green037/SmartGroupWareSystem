@@ -2,7 +2,6 @@ package com.cafe24.smart.reward.service;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -45,26 +44,10 @@ public class RewardServiceImpl implements RewardService {
 	}
 
 	@Override
-	public int reAddServ(Reward reward, HttpServletRequest request) {
+	public int reAddServ(String uploadPath, Reward reward) {
 		
-		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
-		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
-		
-		System.out.println("RewardServiceImpl reAddServ iterator : " + iterator);
-		
-		MultipartFile multipartFile = null;
-		
-		while (iterator.hasNext()) {
-			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			
-			if (multipartFile.isEmpty() == false) {
-				System.out.println("-------file start------");
-				System.out.println("file name : " + multipartFile.getName());
-				System.out.println("file fileName : " + multipartFile.getOriginalFilename());
-				System.out.println("file size : " + multipartFile.getSize());
-				System.out.println("-------file end------");
-			}
-		}
+		System.out.println("RewardServiceImpl reAddServ uploadPath : " + uploadPath);
+		System.out.println("RewardServiceImpl reAddServ reward : " + reward);
 		
 		return rewardDAO.insertRe(reward);
 	}
