@@ -3,6 +3,8 @@ package com.cafe24.smart.member.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,18 @@ public class MemberController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	
+	
+	
+	
+//	//GET 요청 사원 로그인
+//		@RequestMapping(value="member/mm_login", method=RequestMethod.GET)
+//		public String login(){
+//			return "member/mm_login";
+//		}
+//	
+	
 	
 	//get 요청 사원정보조회리스트 
 	@RequestMapping(value="member/mm_list",method=RequestMethod.GET)

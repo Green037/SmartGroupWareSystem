@@ -32,7 +32,7 @@
 		<div class="sub-heard-part">
 							<ol class="breadcrumb m-b-0">
 								<li><a href="index.html">Home</a></li>
-								<li class="active">Forms</li>
+								<li class="active">사원 조회</li>
 							</ol>
 						</div>
 		
@@ -41,7 +41,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 align="center">사원 조회</h1>
+                        
 					<div class="container">
 						<form action = "<c:url value='/searchStaff'/>" method="post" id="mmSearchForm">
 							<table class="table table-bordered">

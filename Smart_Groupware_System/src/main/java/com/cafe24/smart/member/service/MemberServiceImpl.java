@@ -31,7 +31,61 @@ public class MemberServiceImpl implements MemberService {
 	@Autowired
 	private MemberDAO memberDao;
 	
+//  ---------------------------------DB 에서 정보 조회 불러오기 리스트 -----------------------------------------------------
 	
+	//학력 조회
+		public List<Achieve> acListServ() {
+			 List<Achieve> a = memberDao.selectAc();
+			 	//System.out.println("ac리스트 서비스까지"+a.size());
+				
+			 	return memberDao.selectAc();
+		}
+		//자격증 조회
+		public List<License> lcListServ() {
+			List<License> b = memberDao.selectLc();
+				//System.out.println("lc리스트 서비스까지"+b.size());
+			return memberDao.selectLc();
+		}
+		// 계약형태 조회
+		public List<Contract> CtListServ() {
+			List<Contract> c = memberDao.selectCt();
+				//System.out.println("Ct리스트 서비스까지"+c.size());
+			return memberDao.selectCt();	
+		}
+		// 직급 조회
+		public List<Position> PtListServ() {
+			List<Position> d = memberDao.selectPt();
+				//System.out.println("Pt리스트 서비스까지"+d.size());
+			return memberDao.selectPt();
+			
+		}
+		// 부서 조회
+		public List<Department>  DpListServ() {
+			List<Department> e = memberDao.selectDp();
+				//System.out.println("Dp리스트 서비스까지"+e.size());
+			return memberDao.selectDp();
+			
+		}
+		
+		//상위업종 조회
+		public List<MajorTypeOfBusiness> maListServ() {
+					 List<MajorTypeOfBusiness> f = memberDao.selectMa();
+					 	//System.out.println("Ma리스트 서비스까지"+f.size());
+						
+					 	return memberDao.selectMa();
+				}
+		//하위업종 조회
+		public List<MinorTypeOfBusiness> miListServ() {
+						 List<MinorTypeOfBusiness> g = memberDao.selectMi();
+						 	//System.out.println("Mi리스트 서비스까지"+g.size());
+							
+						 	return memberDao.selectMi();
+					}
+//  ---------------------------------DB 에서 정보 불러오기 리스트 -----------------------------------------------------	
+
+		
+		
+		
 	//사원 조회 리스트
 	@Override
 	public Map<String, Object> mmListServ(int currentPage) {
@@ -129,59 +183,31 @@ public class MemberServiceImpl implements MemberService {
 	}
 		
 		
-		/*memberLicense.setMmCode(mmCode);
-		memberDao.insertMl(memberLicense);*/
-
-	
-	
-	//학력 조회
-	public List<Achieve> acListServ() {
-		 List<Achieve> a = memberDao.selectAc();
-		 	//System.out.println("ac리스트 서비스까지"+a.size());
-			
-		 	return memberDao.selectAc();
-	}
-	//자격증 조회
-	public List<License> lcListServ() {
-		List<License> b = memberDao.selectLc();
-			//System.out.println("lc리스트 서비스까지"+b.size());
-		return memberDao.selectLc();
-	}
-	// 계약형태 조회
-	public List<Contract> CtListServ() {
-		List<Contract> c = memberDao.selectCt();
-			//System.out.println("Ct리스트 서비스까지"+c.size());
-		return memberDao.selectCt();	
-	}
-	// 직급 조회
-	public List<Position> PtListServ() {
-		List<Position> d = memberDao.selectPt();
-			//System.out.println("Pt리스트 서비스까지"+d.size());
-		return memberDao.selectPt();
+	//사원 로그인
+	@Override
+	public Map<String, Object> mmLoginServ(Member member) {
 		
-	}
-	// 부서 조회
-	public List<Department>  DpListServ() {
-		List<Department> e = memberDao.selectDp();
-			//System.out.println("Dp리스트 서비스까지"+e.size());
-		return memberDao.selectDp();
-		
-	}
-	
-	//상위업종 조회
-	public List<MajorTypeOfBusiness> maListServ() {
-				 List<MajorTypeOfBusiness> f = memberDao.selectMa();
-				 	//System.out.println("Ma리스트 서비스까지"+f.size());
-					
-				 	return memberDao.selectMa();
+		//로그인을 위한 사원코드 / 성공, 실패 분기 를 담아 쓰기위해 map 생성해준다. 
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Member mmLoginServ = memberDao.mmLogin(member);
+		// 로그인할시 사원코드가 널값이 아니고 비번이 불일치 했을때의 분기
+		if(mmLoginServ != null){
+			if(mmLoginServ.getMmPassword().equals(member.getMmPassword())){
+				resultMap.put("check", "성공");
+				resultMap.put("mmCode", mmLoginServ.getMmCode());
+				resultMap.put("mmName", mmLoginServ.getMmName());
+			}else{
+				resultMap.put("check", "비번불일치");
+				
 			}
-	//하위업종 조회
-	public List<MinorTypeOfBusiness> miListServ() {
-					 List<MinorTypeOfBusiness> g = memberDao.selectMi();
-					 	//System.out.println("Mi리스트 서비스까지"+g.size());
-						
-					 	return memberDao.selectMi();
-				}
+		}else{
+			// 아이디가 불일치 했을때의 분기
+			resultMap.put("check", "아이디불일치");
+		}
+		System.out.println("로그인할때 입력받은 값이 있는지 확인 :"+mmLoginServ.getMmCode());
+			System.out.println("로그인할때 입력받은 값이 있는지 확인 :"+mmLoginServ.getMmPassword());
+		return resultMap;
+	}
 
 
 	
