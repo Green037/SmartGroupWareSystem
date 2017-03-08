@@ -270,5 +270,12 @@ public class ProjectServiceImpl implements ProjectService {
 		// TODO Auto-generated method stub
 		return projectDao.selectByMmCodeMm(mmCode);
 	}
+
+	//프로젝트삭제 - 프로젝트,참여인원,WBS다 삭제해야함.
+	@Override
+	public int prRemoveServ(int prCode) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }

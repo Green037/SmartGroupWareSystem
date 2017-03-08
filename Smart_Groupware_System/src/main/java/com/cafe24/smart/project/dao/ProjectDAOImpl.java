@@ -129,5 +129,11 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.selectOne("PrDAO.selectByMmCodeMm", mmCode);
 	}
 
+	@Override
+	public int deletePr(int prCode) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

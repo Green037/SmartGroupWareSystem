@@ -27,5 +27,6 @@ public interface ProjectService {
 	int fuModifyServ(Funds funds);
 	int fuAddServ(Funds funds);
 	Map<String, Object> mmDetailServ(int mmCode);
+	int prRemoveServ(int prCode);
 	
 }

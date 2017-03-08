@@ -59,20 +59,25 @@
 			});
 		});
 		
-		//삭제처리 맴버정보확인
+		//삭제처리 맴버정보확인- 팝업창 요청
 		$(document).on('click','#deleteBtn',function(){
 			$('#checkMember').modal();
+		});
+		
+		//삭제처리전 맴버정보확인 AJAX
+		$(document).on('click','#checkMemberBtn',function(){
 			var memberData = $('#checkMemberForm').serialize();
 			console.log(memberData);
-			$.ajax({
-				url: '/smart/pr/removeCheck',
-				data : memberData,
-				dataType : 'json',
-				type : 'POST',
-				success : function(data){
-					console.log('H2 Ajax Remove JSP');
-				}
-			});
+				$.ajax({
+					url: '/smart/pr/removeCheck',
+					data : memberData,
+					dataType : 'json',
+					type : 'POST',
+					success : function(data){
+						console.log('H2 Ajax Remove JSP');
+						
+					}
+				}); 
 		});
 	</script>
 </head> 
