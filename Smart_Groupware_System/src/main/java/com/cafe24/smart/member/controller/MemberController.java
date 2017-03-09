@@ -100,7 +100,7 @@ public class MemberController {
 			
 		
 			
-			return "member/mm_add";
+			return "home";
 		}
 	//get 요청 사원 등록화면
 	@RequestMapping(value="member/mm_add",method=RequestMethod.GET)

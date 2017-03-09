@@ -25,7 +25,9 @@ $(document).on('click','.dellc',function(){
     console.log($('this').parent());
     $(this).parent().remove();
 });
-
+/* $(document).ready(function(){
+	$('.page-container').empty();	
+}); */
 </script>
 <title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 
