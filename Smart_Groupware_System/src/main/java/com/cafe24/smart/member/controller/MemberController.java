@@ -40,12 +40,13 @@ public class MemberController {
 	
 	
 	
-//	//GET 요청 사원 로그인
-//		@RequestMapping(value="member/mm_login", method=RequestMethod.GET)
-//		public String login(){
-//			return "member/mm_login";
-//		}
-//	
+	//GET 요청 사원 개인정보조회
+		@RequestMapping(value="member/mm_content", method=RequestMethod.GET)
+		public String mmContentCtrl(){
+			
+			return "member/mm_content";
+		}
+	
 	
 	
 	//get 요청 사원정보조회리스트 
