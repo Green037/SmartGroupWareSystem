@@ -1,5 +1,10 @@
 package com.cafe24.smart.payment.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.smart.insurance.service.InsuranceService;
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.payment.domain.Pay;
 import com.cafe24.smart.payment.domain.PayContent;
 import com.cafe24.smart.payment.service.PaymentService;
 import com.cafe24.smart.util.UtilDate;
@@ -40,11 +46,13 @@ public class PaymentController {
 	}
 	
 //	총무부 > 총급여 목록
-	@RequestMapping(value = "pa/list", method = RequestMethod.GET)
-	public String paListCtrl() {
-						
-		return "payment/pa_list";
-	}
+//	@RequestMapping(value = "pa/list", method = RequestMethod.GET)
+//	public String paListCtrl() {
+//		
+//		
+//						
+//		return "payment/pa_list";
+//	}
 	
 //	월급여 조회
 	@RequestMapping(value = "pc/content", method = RequestMethod.GET)
@@ -84,22 +92,12 @@ public class PaymentController {
 	
 //	총무부 > 급여내역 추가 (post)
 	@RequestMapping(value = "pa/add", method = RequestMethod.POST)
-	public String paAddProCtrl(PayContent payContent, Model model, HttpServletRequest request) {	
-		
-		System.out.println("inAmount : " + request.getParameter("inAmount"));
-		System.out.println("eiAmount : " + request.getParameter("eiAmount"));
-		System.out.println("nhiAmount : " + request.getParameter("nhiAmount"));
-		System.out.println("ppAmount : " + request.getParameter("ppAmount"));
+	public String paAddProCtrl(PayContent payContent) {	
 		
 		System.out.println("PaymentController paAddProCtrl payContent : " + payContent);
 		
-		payContent.setPcDate(utilDate.getPaymentDate());
+		paymentService.pcAddServ(payContent);
 		
-		System.out.println("PaymentController paAddProCtrl model : " + model);
-		
-//		System.out.println("PaymentController paAddProCtrl payContent : " + payContent);
-//		System.out.println("PaymentController paAddProCtrl pay : " + pay);
-		
-		return "payment/pa_add";
+		return "payment/pa_list";
 	}
 }

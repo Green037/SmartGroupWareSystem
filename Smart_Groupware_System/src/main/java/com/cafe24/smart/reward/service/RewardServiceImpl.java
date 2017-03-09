@@ -45,8 +45,10 @@ public class RewardServiceImpl implements RewardService {
 		System.out.println("RewardServiceImpl reAddServ uploadPath : " + uploadPath);
 		System.out.println("RewardServiceImpl reAddServ reward : " + reward);
 		
+		reward.setReDocument(uploadPath);
+		
+		System.out.println("RewardServiceImpl reAddServ getRedocument : " + reward.getReDocument());
+		
 		return rewardDAO.insertRe(reward);
 	}
-
-	
 }

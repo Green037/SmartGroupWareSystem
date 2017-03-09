@@ -19,7 +19,7 @@
 	        var formData = new FormData(form);
 	        console.log(formData); 
 	             $.ajax({
-	                url: '/smart/ap/addDocument',
+	                url: '/SMART/ap/addDoc',
 	                type : "POST",
 	        		data : formData,
 	        		dataType : "json",
@@ -27,8 +27,9 @@
 	                processData: false,
 	                cache: false,
 	        		success : function(data) {
-						if(data !=0){
-							alert('입력되었습니다')
+						if(data.check ='성공'){
+							/* alert('입력되었습니다') */
+							
 						}else{
 							alert('다시 입력해주세요')
 						}

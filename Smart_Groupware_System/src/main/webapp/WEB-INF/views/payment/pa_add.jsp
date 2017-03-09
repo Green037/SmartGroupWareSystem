@@ -134,7 +134,7 @@
 															<td><input type="text" class="form-control1" id="pcSection" name="pcSection" value="본봉" readOnly/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="기본급" readOnly/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="기본급" readOnly/></td>
-															<td><input type="text" class="form-control1" name="pcAmount" id="mmDailyPay" value="0" readOnly/></td>
+															<td><input type="text" class="form-control1" name="mmDailyPay" id="mmDailyPay" value="0" readOnly/></td>
 														</tr>
 														<tr>
 															<td>2</td>

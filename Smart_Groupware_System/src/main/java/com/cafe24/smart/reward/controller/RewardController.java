@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.reward.domain.Reward;
+import com.cafe24.smart.reward.service.IncentiveService;
 import com.cafe24.smart.reward.service.RewardService;
 import com.cafe24.smart.util.UtilFile;
 
@@ -28,6 +29,9 @@ public class RewardController {
 	
 	@Autowired
 	RewardService rewardService;
+	
+	@Autowired
+	IncentiveService incentiveService;
 	
 	@Autowired
 	HttpSession session;
@@ -95,14 +99,25 @@ public class RewardController {
 	public String reAddProCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
 									MultipartHttpServletRequest request, Reward reward) {
 		
+		int n = 0;
+		
 		System.out.println("RewardController reAddProCtrl uploadFile : " + uploadFile);
 		
 		UtilFile utilFile = new UtilFile();
 		
+//		파일 업로드 결과값을 path로 받아 
 		String uploadPath = utilFile.fileUpload(request, uploadFile, reward);
 		
+//		해당 경로를 db에 저장
+		n = rewardService.reAddServ(uploadPath, reward);
+		
+		if (n > 0) {
+			n = incentiveService.inAddServ(reward);
+		}
+		
+		System.out.println("RewardController reAddProCtrl n : " + n);
 		System.out.println("RewardController reAddProCtrl uploadPath : " + uploadPath);
 		
-		return "reward/re_add";
+		return "reward/re_list";
 	}
 }

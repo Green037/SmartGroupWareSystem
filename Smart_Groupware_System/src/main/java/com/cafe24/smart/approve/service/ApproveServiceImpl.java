@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.domain.TotalInfo;
+import com.cafe24.smart.util.UtilFile;
 
 
 @Service
@@ -81,7 +83,7 @@ public class ApproveServiceImpl implements ApproveService {
 	}
 	
 	
-	//기안 요청 : GET
+	//기안 요청 : GET ---- DOCUMENT
 	@Override
 	public List<Document> apAddSelServ() {
 		System.out.println("serv temContent> test1");
@@ -93,36 +95,37 @@ public class ApproveServiceImpl implements ApproveService {
 		return doc;
 	}
 
+	//기안 요청 : GET ---- Member
+	@Override
+	public Map apAddMmSelServ() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 	//기안 등록 : POST
 	@Override
-	public int apAddServ(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile){
+	public int apAddServ(Draft draft, Progress progress, String uploadPath){
 		System.out.println("serv Dft>  test1");
-		// draft.setAprCode(1);
-		// apr_code default값 기본 설정 = 아무값없음 비교
-	
-		try {
-			totalInfo = getFileInfo(totalFile,totalInfo);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	
-		//----- date를 로직에서 따로 처리 : progress 테이블에 입려과 동시에 insert 해주기 위해서
-		draft.setDftDate(formatter.format(today));
-		draft.setDftDegree(1);
-		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
-		draft.setDftFileName(totalInfo.getDftFileName());
-		draft.setDftFilePath(totalInfo.getDftFilePath());
-		draft.setDftFileExtention(totalInfo.getDftFileExtention());
-		draft.setDftFileOri(totalInfo.getDftFileOri());
-				
-		int result = approveDAO.insertDft(draft);
-		System.out.println("serv Dft>  test2");	
 		
-			if(result != 0){
+		UtilFile utilFile = new UtilFile();
+		
+//		System.out.println(uploadPath.lastIndexOf("/"));
+//		System.out.println(uploadPath.substring(127));
+//		System.out.println(draft.getDftFileOri());
+		
+		draft.setDftFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")));
+		draft.setDftFilePath(uploadPath);
+		draft.setAprCode(1);
+		draft.setDftDegree(1);
+		draft.setDftDate(formatter.format(today));
+		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
+		
+		int result = approveDAO.insertDft(draft);
+		System.out.println("serv Dft> test2");	
+		
+		// apr_code default값 기본 설정 = 아무값없음 비교
+
+			if(result != 0){				
 				progress.setProTime(draft.getDftDate());
 				progress.setDftCode(draft.getDftCode());
 				progress.setProTurn(draft.getDftDegree());
@@ -134,10 +137,11 @@ public class ApproveServiceImpl implements ApproveService {
 				// System.out.println("----- serv total Insert> success");
 				result = resultPg;
 			}else{
-				System.out.println("fail");
+			System.out.println("fail");
 				// alert 경고 창 뜨기[실패했습니다]
 				}
-		return result;
+		
+		return 0;
 	
 	}
 	
@@ -418,30 +422,20 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	//문서 양식 등록 : POST
 	@Override
-	public int apDocAddServ(Document document, TotalFile totalFile) {
+	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
-		TotalInfo totalInfo = new TotalInfo();
 		
-		try {
-			totalInfo = getFileInfo(totalFile,totalInfo);
-		} catch (IllegalStateException e) {
-			
-			e.printStackTrace();
-		} catch (IOException e) {
+		UtilFile utilFile = new UtilFile();
 		
-			e.printStackTrace();
-		}
-
 		document.setDocFileGroup(document.getDocFileGroup());
-		document.setDocFileName(totalInfo.getDocFileName());
-		document.setDocFilePath(totalInfo.getDocFilePath());
-		document.setDocFileExtention(totalInfo.getDocFileExtention());
-		document.setDocFileOri(totalInfo.getDftFileOri());
+		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")+1, uploadPath.lastIndexOf(".")));
+		document.setDocFilePath(uploadPath);
+	
+		System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
 		
 		int result = approveDAO.insertDoc(document);
-		
-		System.out.println("serv apDocAddServ> test2");
-		
+
+//		
 		return result;
 	}
 
@@ -457,7 +451,6 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return docList;
 	}
-
 
 	
 }

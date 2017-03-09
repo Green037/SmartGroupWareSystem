@@ -5,14 +5,15 @@
 	
 <mapper namespace="PaDAO">
 	<resultMap id="resultPa" type="com.cafe24.smart.payment.domain.PayContent">
-		<result property="paCode" column="pa_code"/>
 		<result property="pcCode" column="pc_code"/>
-		<result property="cmCode" column="cm_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="pcDate" column="pc_date"/>
 		<result property="mmDailyPay" column="mm_dailyPay"/>
-		<result property="paDay" column="pa_day"/>
-		<result property="inGroup" column="in_group"/>
-		<result property="paInsurance" column="pa_insurance"/>
-		<result property="paIncentive" column="pa_incentive"/>
+		<result property="inAmount" column="in_amount"/>
+		<result property="eiAmount" column="ei_amount"/>
+		<result property="nhiAmount" column="nhi_amount"/>
+		<result property="ppAmount" column="pp_amount"/>
+		<result property="paMmCode" column="pa_mmCode"/>
 	</resultMap>
 	
 </mapper>

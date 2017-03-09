@@ -25,8 +25,6 @@
 			<button type="submit" class="btn btn-default btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
 		</div>
 </div>
-
-
 <!-- 본문 끝 -->
 </div>
 </div>	

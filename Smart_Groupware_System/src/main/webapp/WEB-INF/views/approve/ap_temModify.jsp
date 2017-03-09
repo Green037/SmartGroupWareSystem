@@ -26,8 +26,9 @@
 
 			<div class="container">
 				<div class="row">
-					<h2>전자 결재 신청</h2>
+					<h2>저장 문서</h2>
 				</div>
+				&nbsp;
 			    <form action="<c:url value='/ap/add'/>" method="post" >
 			    
 			    	<div class="row">
@@ -58,7 +59,7 @@
 			            <div class="col-md-3">
 							<div class="form-group form-group-sm">
 							    <label for="firstname" class="control-label">[문서선택]</label>
-							    <input type="file" class="form-control" name="dftFile" >
+							    <input type="file" class="form-control" name="dftFile"  value="${draft[0].dftFileOri}">
 							</div>
 			            </div>   
 			    	</div>
@@ -97,7 +98,7 @@
 											</select>
 								        </td>
 								        <td>
-								        	 <input type="text" class="form-control" name="dftApproval1" value="${draft[0].dftApproval1}" >
+								        	 <input type="text" class="form-control1" name="dftApproval1" value="${draft[0].dftApproval1}" >
 								        </td>
 								 
 								      </tr>
@@ -121,7 +122,7 @@
 											</select>
 								        </td>
 								        <td>
-								        	<input type="text" class="form-control" name="dftApproval2" value="${draft[0].dftApproval2}" >
+								        	<input type="text" class="form-control1" name="dftApproval2" value="${draft[0].dftApproval2}" >
 								        </td>
 								 
 								      </tr>
@@ -143,7 +144,7 @@
 											</select>
 								        </td>
 								        <td>
-								        <input type="text" class="form-control" name="dftApproval3" value="${draft[0].dftApproval3}" >
+								        <input type="text" class="form-control1" name="dftApproval3" value="${draft[0].dftApproval3}" >
 								        </td>
 								      </tr>  
 								  </table>
@@ -169,14 +170,16 @@
 								<input type="radio" name="dftCheck" value="false">no save
 							</div>
 						</div>
-					
-			        <div class="row">
-			             <div class="col-xs-3">
-			                    <button type="submit" class="btn btn-default"> Submit </button>
-			                    <button type="reset" class="btn btn-default"> reset </button>
-			             </div>
-			        </div>
 			    </form>
+		
+			</div>
+			
+			&nbsp;
+			&nbsp;
+		    <div class="row">
+				<a href="<c:url value='/ap/list?dftCode=${pgList.dftCode}'/>" class="btn btn-primary" >
+						<span class="glyphicon glyphicon-edit"></span> 목록
+				</a>
 			</div>
 
 			<!--  body폼 끝 -->
