@@ -18,6 +18,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.HomeController;
 import com.cafe24.smart.approve.domain.Document;
@@ -26,6 +28,7 @@ import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.domain.TotalInfo;
 import com.cafe24.smart.approve.service.ApproveService;
+import com.cafe24.smart.util.UtilFile;
 
 @Controller
 public class ApproveController {
@@ -43,7 +46,7 @@ public class ApproveController {
 		Map memberMap = new HashMap(); 
 		
 		doc = approveService.apAddSelServ();
-/*		memberMap = approveService.apAddMmSeleServ();*/
+		memberMap = approveService.apAddMmSelServ();
 		
 		
 		//System.out.println(doc);
@@ -54,10 +57,16 @@ public class ApproveController {
 	
 	//기안 등록 : POST
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
-	public String apAddCtrl(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile){
+	public String apAddCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
+							MultipartHttpServletRequest request,Draft draft, Progress progress){
 			
-		//System.out.println("ctrl dftAdd > test");	
-		int result = approveService.apAddServ(draft, progress, totalInfo, totalFile);
+		//System.out.println("ctrl dftAdd > test");
+		UtilFile utilFile = new UtilFile();
+		
+		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);
+		System.out.println("ctrl apAddCtrl> test2 :"+uploadPath);
+
+		int result = approveService.apAddServ(draft, progress, uploadPath);
 		
 		return "redirect:/ap/list";
 	}
@@ -143,5 +152,13 @@ public class ApproveController {
 		return "/approve/ap_docList";   
 	}
 	
+	//기안 문서 : 첨부파일 다운로드
+	@RequestMapping(value ="ap/downdftFile", method = RequestMethod.POST)
+	public String apDownDftFile(@RequestParam("dftCode") int dftCode){
+		//----- 다운로드 메서드 추가
+		System.out.println("다운로드 test1");
+		return null;
+		
+	};
 		
 }

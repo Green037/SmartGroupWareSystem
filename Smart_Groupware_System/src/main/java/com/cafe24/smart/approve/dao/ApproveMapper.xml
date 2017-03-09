@@ -36,10 +36,8 @@
 		<result property="dftCheck" column="dft_check"/>
 		<result property="proApproval" column="pro_approval"/>
 		<result property="proRealTime" column="pro_realTime"/>
-		<result property="dftFileName" column="dft_fileName"/>
 		<result property="dftFilePath" column="dft_filePath"/>
 		<result property="dftFileOri" column="dft_fileOri"/>
-		<result property="dftFileExtention" column="dft_fileExtention"/>
 		<result property="docFileGroup" column="doc_fileGroup"/>
 
 	</resultMap>
@@ -76,9 +74,7 @@
 		    dft_approval3,
 		    dft_finalState,
 		    dft_check,
-		   	dft_fileName,
 		   	dft_filePath,
-		   	dft_fileExtention,
 		   	dft_fileOri  
 			) 
 	    VALUES( 
@@ -93,9 +89,7 @@
 	 	    #{dftApproval3},
 	 	    #{dftFinalState},
             #{dftCheck},
-            #{dftFileName},
             #{dftFilePath},
-            #{dftFileExtention},
             #{dftFileOri}
 	        )
 </insert>
@@ -127,15 +121,11 @@
 		INSERT INTO document(
 			doc_fileGroup,
 			doc_fileOri,
-			doc_fileExtention,
-			doc_fileName,
 			doc_filePath
 			) 
 	    VALUES( 
 		    #{docFileGroup},
 		    #{docFileOri},
-		    #{docFileExtention},
-		    #{docFileName},
 		    #{docFilePath}
 			 )
 </insert>

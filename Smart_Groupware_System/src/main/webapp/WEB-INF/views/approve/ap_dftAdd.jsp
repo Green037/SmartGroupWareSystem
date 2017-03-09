@@ -59,7 +59,7 @@
 			<div class="col-md-3">
 				<div class="form-group form-group-sm">
 				    <label for="firstname" class="control-label">[문서선택]</label>
-				    <input type="file" class="form-control" name="dftFile">
+				    <input type="file" class="form-control" name="uploadFile">
 				</div>
             </div>
     	</div>

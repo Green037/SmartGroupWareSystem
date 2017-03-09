@@ -37,7 +37,7 @@
 						<span class="glyphicon glyphicon-user"></span> 
 						문서분류입력
 					</label>
-					<input type="file" class="form-control" name="docFile" id="docFile" >
+					<input type="file" class="form-control" name="uploadFile" id="uploadFile" >
 				</div>
 
 				&nbsp;
