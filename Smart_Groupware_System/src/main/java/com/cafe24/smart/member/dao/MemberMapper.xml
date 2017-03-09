@@ -54,12 +54,6 @@
 	</resultMap>
 	
 	
-	
-	
-	
-	
-	
-	
 	<select id="selectByMm" parameterType="int" resultMap="resultMm">
 		SELECT
 			*
@@ -68,9 +62,7 @@
 		WHERE
 			mm_code = #{mmCode};
 	</select>
-	
-	
-	
+		
 	<!-- 사원 로그인 체크 -->
 	<select id="mmLogin" resultMap="resultMm">
 		SELECT
@@ -82,8 +74,6 @@
 		WHERE
 			mm_code=#{mmCode}
 
-	
-	
 	</select>
 	
 	

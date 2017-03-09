@@ -48,7 +48,45 @@
 			<result property="mmName" column="mm_name"/>
 		</resultMap> 
 		
-		
+		<resultMap id="selectMmContent" type="com.cafe24.smart.member.domain.MemberContent">
+			<result property="mmCode" column="mm_code"/>
+			<result property="ctCode" column="ct_code"/>
+			<result property="ptCode" column="pt_code"/>
+			<result property="dpCode" column="dp_code"/>
+			<result property="mmName" column="mm_Name"/>
+			<result property="mmDailyPay" column="mm_dailyPay"/>
+			<result property="mmJoinDate" column="mm_joinDate"/>
+			<result property="mmResignDate" column="mm_resignDate"/>
+			<result property="mmAnnualLeave" column="mm_annualLeave"/>
+			<result property="mmArmy" column="mm_army"/>
+			<result property="mmEmail" column="mm_email"/>
+			<result property="mmMarriage" column="mm_marriage"/>
+			<result property="mmSign" column="mm_sign"/>
+			<result property="mmAddress" column="mm_address"/>
+			<result property="mmTel" column="mm_tel"/>
+			<result property="mmBank" column="mm_bank"/>
+			<result property="mmAccount" column="mm_account"/>
+			<result property="mcCode" column="ma_code"/>
+			<result property="acCode" column="ac_code"/>
+			<result property="mcSchoolName" column="mc_schoolName"/>
+			<result property="mcAdmissionDate" column="mc_admissionDate"/>
+			<result property="mcGraduationDate" column="mc_graduationDate"/>
+			<result property="mcMajor" column="mc_major"/>
+			<result property="mcJumsu" column="mc_jumsu"/>
+			<result property="mcGrade" column="mc_grade"/>
+			<result property="crCode" column="cr_code"/>
+			<result property="maCode" column="ma_code"/>
+			<result property="miCode" column="mi_code"/>
+			<result property="crData" column="cr_data"/>
+			<result property="crService" column="cr_service"/>
+			<result property="crPastJoinDay" column="cr_pastJoinDay"/>
+			<result property="crPastResignDay" column="cr_pastResignDay"/>
+			<result property="crResponsibility" column="cr_responsibility"/>
+			<result property="mlCode" column="ml_code"/>
+			<result property="lcCode" column="lc_code"/>
+			<result property="mlIssueDate" column="ml_issueDate"/>
+			
+		</resultMap>
 
 		
 		
@@ -88,10 +126,29 @@
 		
 		
 		
+		<!-- 사원 개인정보조회 -->
+			
+		<!-- <select id="selectMmContent" resultMap="selectMmContent">
+			SELECT
+					memberManagement.ct_code,
+					memberManagement.pt_code,
+					memberManagement.dp_code,
+					memberManagement.mm_name,
+					memberManagement.mm_dailyPay,
+					memberManagement.mm_joinDate,
+					memberManagement.mm_joinDate,
+					memberManagement.mm_resignDate,
+					memberManagement.mm_annualLeave,
+					memberManagement.mm_army,
+					memberManagement.mm_email,
+					memberManagement.mm_marriage,
+					memberManagement.mm_sign,
+					memberManagement.mm_address,
+					memberManagement.mm_tel,
+					memberManagement.mm_bank,
+					memberManagement.mm_account,
 		
-		
-		
-		
+		</select> -->
 		
 		
 
