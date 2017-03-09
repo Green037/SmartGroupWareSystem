@@ -5,22 +5,17 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
-	
-	
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	
 </head>
 <body>
 
-	<%@ include file="../menu.jsp"%>
-
+<%@ include file="../menu.jsp"%>
+<!-- Home/메뉴  -->
 <div class="page-container">
 <div class="left-content">
 <div class="inner-content">
 <div class="outter-wp">
-
-<!-- Home/메뉴  -->
-<div class="outter-wp">
-	
 				
 <!--  body폼 시작 -->
 
@@ -34,7 +29,7 @@
     		<div class="col-md-3">
 				<div class="form-group form-group-sm">
 				    <label for="firstname" class="control-label">[작성자]</label>
-				    <input type="text" class="form-control" name="mmCode" placeholder="name">
+				    <input type="text" class="form-control" name="mmCode" value="${sessionScope.mmCode}">
 				</div>
             </div>
     	</div>

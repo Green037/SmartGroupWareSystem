@@ -49,7 +49,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 	// 결재 신청 폼 : dftCode로 결재 신청 정보 가져오기
  	@Override
 	public Draft selectContHv(int dftCode){
-		//System.out.println("dao hvCont> test");
+		System.out.println("dao hvCont> test");
 		return sqlSession.selectOne("AprDAO.selectContHv", dftCode);
 	}
 	
@@ -95,7 +95,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 	@Override
 	public Draft selectCountHv(int dftCode) {
 		System.out.println("dao selectCountHv> test");
-		return sqlSession.selectOne("AprDAO.selectNew", dftCode);
+		return sqlSession.selectOne("AprDAO.selectContHv", dftCode);
 	}
 
 	// 임시 목록

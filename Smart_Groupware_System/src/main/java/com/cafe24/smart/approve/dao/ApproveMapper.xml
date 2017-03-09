@@ -178,17 +178,17 @@
 
 
 	<!-- 결재,임시저장 상세보기 : dftCode 가져오기// 결재자 가져오기-->
-	<!-- <select id="selectContHv"
-			parameterType="int"
-			resultMap="resultDft">
-			SELECT 
-				*
-			FROM
-				draft
-			WHERE 
-				dft_code = #{dftCode}
-	</select> -->
-
+	<!-- 		<select id="selectContHv"
+					parameterType="int"
+					resultMap="resultDft">
+					SELECT 
+						*
+					FROM
+						draft
+					WHERE 
+						dft_code = #{dftCode}
+			</select>-->
+	 
 <!-- 결재 상세보기 : proApproval 가져오기-->
 <select id="selectDetailHv"
 		parameterType="int"
@@ -204,21 +204,21 @@
 
 </select>
 	
-	<!-- 결재,임시저장 상세보기 -->
-	<select id="selectContHv"
-			parameterType="int" 
-			resultMap="resultDft">
-			select 
-				* 
-			from 
-				draft
-			inner join 
-			 	document 
-			on
-				draft.doc_code=document.doc_code
-			WHERE 
-				dft_code=#{dftCode}
-	</select>
+<!-- 결재,임시저장 상세보기 -->
+<select id="selectContHv"
+		parameterType="int" 
+		resultMap="resultDft">
+		select 
+			* 
+		from 
+			draft
+		inner join 
+		 	document 
+		on
+			draft.doc_code=document.doc_code
+		WHERE 
+			dft_code=#{dftCode}
+</select>
 
 
 

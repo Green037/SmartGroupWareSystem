@@ -3,7 +3,9 @@ package com.cafe24.smart.approve.controller;
 import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,7 +40,11 @@ public class ApproveController {
 		
 		//System.out.println("ctrl dftAdd GET> test");
 		List<Document> doc = new ArrayList<Document>();
+		Map memberMap = new HashMap(); 
+		
 		doc = approveService.apAddSelServ();
+/*		memberMap = approveService.apAddMmSeleServ();*/
+		
 		
 		//System.out.println(doc);
 		model.addAttribute("doc", doc);
@@ -53,7 +59,7 @@ public class ApproveController {
 		//System.out.println("ctrl dftAdd > test");	
 		int result = approveService.apAddServ(draft, progress, totalInfo, totalFile);
 		
-		return "home";
+		return "redirect:/ap/list";
 	}
 		
 	//결재 목록 [대기/반려/완료] : GET 
