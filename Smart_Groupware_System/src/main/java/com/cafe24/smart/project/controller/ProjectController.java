@@ -194,7 +194,8 @@ public class ProjectController {
 	// 프로젝트 검색 - 겟요청(폼연결)
 	@RequestMapping(value = "pr/search", method = RequestMethod.GET)
 	public String prSearchCtrl(){
-		return null;
+		
+		return "project/pr_search";
 	}
 		
 	// 평가보고서 등록 - 겟요청(폼연결)

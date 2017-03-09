@@ -164,5 +164,19 @@ public class ProjectRestController {
 		
 		return resultMap;
 	}
-
+	
+	//프로젝트 검색
+	@RequestMapping(value = "pr/search", method = RequestMethod.POST)
+	public Map<String,Object> prSearchCtrl(Project project, @RequestParam("prSize") String prSize) {
+		System.out.println("h2 search Project Ajax!!");
+		System.out.println("넘어온 값 확인 : "+project);
+		System.out.println("넘어온 파라미터 확인 : "+prSize);
+		
+		//입력받은 값으로 검색처리
+		List<Project> projectList = new ArrayList<Project>();
+		projectList = projectService.prSearchServ(project, prSize);
+		System.out.println(projectList);
+		
+		return null;
+	}
 }

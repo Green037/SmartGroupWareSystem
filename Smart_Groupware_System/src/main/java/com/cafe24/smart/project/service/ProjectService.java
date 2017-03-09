@@ -28,5 +28,5 @@ public interface ProjectService {
 	int fuAddServ(Funds funds);
 	Map<String, Object> mmDetailServ(int mmCode);
 	int prRemoveServ(int prCode);
-	
+	List<Project> prSearchServ(Project project, String prSize);
 }

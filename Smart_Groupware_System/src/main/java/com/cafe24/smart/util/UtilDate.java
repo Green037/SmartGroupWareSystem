@@ -23,6 +23,12 @@ public class UtilDate {
 		return (new SimpleDateFormat("yyyy-MM-dd")).format(new Date());
 	}
 	
+	//오늘 날짜 + 시간 리턴
+		public String getCurrentDateTime() {
+			
+			return (new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")).format(new Date());
+		}
+	
 	//Date 차 리턴
 	public long getMinusDate(String beginDate, String endDate) {
 		

@@ -16,7 +16,7 @@
 <div class="inner-content">
 <div class="outter-wp">
 					
-					<div class="sub-heard-part">a
+					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart"><b>Home</b></a></li>
 							<li>임시 문서함</li>
@@ -35,7 +35,7 @@
 										<th>기안자</th>
 										<th>기안부서</th>
 										<th>신청일자</th>
-										<th></th>
+										<th>파일명</th>
 										<th>비고</th>
 									
 							
@@ -50,7 +50,7 @@
 										<td>${t.mmCode}</td>
 										<td>개발부</td>
 										<td>${t.dftDate}</td>
-										<td>2017/02/25</td>
+										<td>${t.dftFileOri}</td>
 										<td></td>
 							
 									</tr>
@@ -64,10 +64,7 @@
 						</div>
 					</div>
 					
-						<div class="btn-group btn-group-justified">
-								<a href="<c:url value='/ap/test'/>" class="btn btn-success">test</a>
-						</div>
-				
+						
 </div>
 </div>
 </div>

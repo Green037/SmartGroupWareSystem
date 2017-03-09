@@ -17,7 +17,7 @@ public interface ApproveDAO {
 	int insertDft(Draft draft);
 	int insertPg(Progress progress);
 		
-	//결재 신청 폼(draft + progress)
+	//결재[대기/완료/반려] 신청 폼(draft + progress)
 	Draft selectContHv(int dftCode);
 	Progress selectDetailHv(int dftCode);
 	
