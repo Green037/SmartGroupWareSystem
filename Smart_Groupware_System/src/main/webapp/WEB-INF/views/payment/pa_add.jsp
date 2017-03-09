@@ -27,7 +27,6 @@
 			$.ajax({
 				type: 'post',
 				url: '/smart/pc/mmContent',
-// 				url: '/SmartGroup/pc/mmContent',
 				data: {'mmCode': mmCode},
 // 				전역변수에 담기
 				async: false,
@@ -60,6 +59,7 @@
 // 		
 // 		console.log('sumAmount : ' + sumAmount);
 			
+// 		급여 합산
 		$(document).on('click', '#sumBtn', function() {	
 // 		$('#inAmount').keydown(function() {
 				
