@@ -52,7 +52,7 @@ public class RewardController {
 	@RequestMapping(value = "re/content", method = RequestMethod.GET)
 	public String reContentCtrl(Model model) {
 		
-		int mmCode = (int) session.getAttribute("id");
+		int mmCode = (int) session.getAttribute("mmCode");
 		
 //		오늘 날짜 구하기
 		calendar = Calendar.getInstance();
@@ -83,7 +83,7 @@ public class RewardController {
 	@RequestMapping(value = "re/add", method = RequestMethod.GET)
 	public String reAddFormCtrl(Model model, HttpServletRequest request) {
 		
-		int mmCode = (int) session.getAttribute("id");
+		int mmCode = (int) session.getAttribute("mmCode");
 		
 		model.addAttribute("reMmCode", mmCode);
 		
