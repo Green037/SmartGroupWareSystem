@@ -15,20 +15,19 @@
 <link rel="stylesheet" href="css/icon-font.min.css" type='text/css' />
 	<!-- /js -->
 <script src="js/jquery-1.10.2.min.js"></script>
-<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 </head> 
 <body>
 
 	<%@ include file="../menu.jsp" %>
-<div class="page-container">
-<div class="left-content">
-<div class="inner-content">
-<div class="outter-wp">
-		
-		
+		<div class="page-container">
+		<div class="left-content">
+			<div class="inner-content">
+				<div class="outter-wp">
 		
 		<div class="sub-heard-part">
 							<ol class="breadcrumb m-b-0">
@@ -41,7 +40,8 @@
 		  <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6">  
+                    <div class="col-lg-6">
+                        
 					<div class="container">
 						<form action = "<c:url value='/searchStaff'/>" method="post" id="mmSearchForm">
 							<table class="table table-bordered">
@@ -114,37 +114,7 @@
 								</tr>
 							</table>
 						</form>
-                    </div>                  
-                    <div class="validation-form" align="center" style="display:none;">		
-					<h3 align="left"><span class="glyphicon glyphicon-user">사원조회 리스트</span> </h3>	
-					<div class="container">
-						<table class="table table-hover" >
-							<thead>
-								<tr>
-									<th>사원번호</th>
-									<th>사원 이름</th>
-									<th>소속부서</th>
-									<th>직급</th>
-									<th>계약형태</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="mmList" items="${mmList}">
-									<tr>
-										<td>${mmList.mmCode}</td>
-										<td>${mmList.mmName}</td>
-										<td>${mmList.dpName}</td>
-										<td>${mmList.ptName}</td>
-										<td>${mmList.ptName}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					</div>
-				</div>
-				 <div>
-                    
-                    
+                    </div>
                 </div>
             </div>
         </div>
