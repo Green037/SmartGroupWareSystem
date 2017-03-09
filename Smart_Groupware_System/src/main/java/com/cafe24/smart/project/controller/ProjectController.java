@@ -190,5 +190,23 @@ public class ProjectController {
 		
 		return "redirect:/pr/list";
 	}
+	
+	// 프로젝트 검색 - 겟요청(폼연결)
+	@RequestMapping(value = "pr/search", method = RequestMethod.GET)
+	public String prSearchCtrl(){
+		return null;
+	}
+		
+	// 평가보고서 등록 - 겟요청(폼연결)
+	@RequestMapping(value = "ev/add", method = RequestMethod.GET)
+	public String evAddCtrl(){
+		return null;
+	}
+	
+	// 평가보고서 목록 - 겟요청(폼연결)
+	@RequestMapping(value = "ev/list", method = RequestMethod.GET)
+	public String evListCtrl(){
+		return null;
+	}
 
 }

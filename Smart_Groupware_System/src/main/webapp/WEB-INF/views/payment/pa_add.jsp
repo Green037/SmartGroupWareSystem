@@ -19,7 +19,7 @@
 			var eiEmployee = ${eiContent.eiEmployee};
 			var nhiEmployee = ${nhiContent.nhiEmployee};
 			var ppEmployee = ${ppContent.ppEmployee}; 
-				
+			
 // 			console.log('mmCode : '+ mmCode);
 // 			console.log('eiEmployee : '+ eiEmployee);
 // 			console.log('nhiEmployee : '+ nhiEmployee);
@@ -38,42 +38,41 @@
 					$('#mmCode').val(data.mmCode);
 					$('#mmName').val(data.mmName);
 					$('#mmDailyPay').val(data.mmDailyPay);
-					
+						
 // 					console.log('mmCode : ' + $('#mmCode').val());
 // 					console.log('mmName : ' + $('#mmName').val());
-					
+						
 //		 			고용보험
 					$('#eiAmount').val(data.mmDailyPay * eiEmployee);						
 //		 			국민건강보험
 					$('#nhiAmount').val(data.mmDailyPay * nhiEmployee);
 // 					연금보험
 					$('#ppAmount').val(data.mmDailyPay * ppEmployee);
-					
+						
 					sumAmount = data.mmDailyPay - 
 								((data.mmDailyPay * eiEmployee) + (data.mmDailyPay * nhiEmployee) + (data.mmDailyPay * ppEmployee));
-					
+				
 					$('#pcAmount').val(sumAmount);
 				}
 			});
 		});
-
+// 		
 // 		console.log('sumAmount : ' + sumAmount);
 			
-		$(document).on('click', '#sumBtn', function() {					
-			var sumAmount = $('#pcAmount').val();
+// 		급여 합산
+		$(document).on('click', '#sumBtn', function() {	
+// 		$('#inAmount').keydown(function() {
+				
+			sumAmount = $('#pcAmount').val();
 			
 			console.log('sumBtn sumAmount : ' + sumAmount);
 			console.log('inAmount val : ' + $('#inAmount').val());
-	 				
+	 			
 			var result = parseInt($('#inAmount').val()) + parseInt(sumAmount);
 					
 			console.log('sumBtn result : ' + result);
 					
 			$("#pcAmount").val(result);
-		});
-		
-		$(document).on('click', '#subButton', function() {
-			$("#paAddForm").submit();
 		});
 	</script>
 </head>
@@ -110,13 +109,13 @@
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원명</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="mmName" name="mmName" placeholder="사원코드를 검색하세요." disabled/>
+													<input type="text" class="form-control1" id="mmName" name="mmName" placeholder="사원코드를 검색하세요." readOnly/>
 												</div>
 											</div>
 											<div class="form-group">
 												<label for="pcDate" class="col-sm-2 control-label">급여날짜</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="pcDate" name="pcDate" value="${paymentDate}" disabled/>
+													<input type="text" class="form-control1" id="pcDate" name="pcDate" value="${paymentDate}" readOnly/>
 												</div>
 											</div>					
 											<div class="form-group">
@@ -132,45 +131,45 @@
 														</tr>
 														<tr>
 															<td>1</td>
-															<td><input type="text" class="form-control1" id="pcSection" name="pcSection" value="본봉" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcClasificar" value="기본급" disabled/></td>
-															<td><input type="text" class="form-control1" name="middleClasificar" value="기본급" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcAmount" id="mmDailyPay" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" id="pcSection" name="pcSection" value="본봉" readOnly/></td>
+															<td><input type="text" class="form-control1" name="pcClasificar" value="기본급" readOnly/></td>
+															<td><input type="text" class="form-control1" name="middleClasificar" value="기본급" readOnly/></td>
+															<td><input type="text" class="form-control1" name="pcAmount" id="mmDailyPay" value="0" readOnly/></td>
 														</tr>
 														<tr>
 															<td>2</td>
-															<td><input type="text" class="form-control1" name="pcSection" value="수당" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcClasificar" value="성과급" disabled/></td>
-															<td><input type="text" class="form-control1" name="middleClasificar" value="성과급" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcSection" value="수당" readOnly/></td>
+															<td><input type="text" class="form-control1" name="pcClasificar" value="성과급" readOnly/></td>
+															<td><input type="text" class="form-control1" name="middleClasificar" value="성과급" readOnly/></td>
 															<td><input type="text" class="form-control1" name="inAmount" id="inAmount" value="0"/></td>
 														</tr>
 														<tr>
 															<td>3</td>
-															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="middleClasificar" value="고용보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="eiAmount" id="eiAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcSection" value="공제" readOnly/></td>
+															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="middleClasificar" value="고용보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="eiAmount" id="eiAmount" value="0" readOnly/></td>
 														</tr>
 														<tr>
 															<td>4</td>
-															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="middleClasificar" value="국민건강보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="nhiAmount" id="nhiAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcSection" value="공제" readOnly/></td>
+															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="middleClasificar" value="국민건강보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="nhiAmount" id="nhiAmount" value="0" readOnly/></td>
 														</tr>
 														<tr>
 															<td>5</td>
-															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="middleClasificar" value="연금보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="ppAmount" id="ppAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="pcSection" value="공제" readOnly/></td>
+															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="middleClasificar" value="연금보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="ppAmount" id="ppAmount" value="0" readOnly/></td>
 														</tr>
 														<tr>
 															<th colspan=4>
 																총급여
 																<a class="btn blue" id="sumBtn">계산</a>
 															</th>
-															<td><b><input type="text" class="form-control1" id="pcAmount" value="0" disabled/></b></td>
+															<td><b><input type="text" class="form-control1" id="pcAmount" value="0" readOnly/></b></td>
 														</tr>
 													</table> 
 												</div>	
@@ -178,11 +177,11 @@
 											<div class="form-group">
 												<label for="mmPassword" class="col-sm-2 control-label">담당사원코드</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" name="paMmCode" value="${paMmCode}" disabled/>
+													<input type="text" class="form-control1" name="paMmCode" value="${paMmCode}" readOnly/>
 												</div>
 											</div>
 											<div class="form-group" align="center">
-												<button type="button" id="subButton" class="btn btn-default">등록</button>
+												<button type="submit" class="btn btn-default">등록</button>
 												<button type="reset" class="btn btn-default">취소</button>
 											</div>
 										</form>

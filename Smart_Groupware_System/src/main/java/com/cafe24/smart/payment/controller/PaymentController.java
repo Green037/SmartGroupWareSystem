@@ -84,7 +84,6 @@ public class PaymentController {
 	
 //	총무부 > 급여내역 추가 (post)
 	@RequestMapping(value = "pa/add", method = RequestMethod.POST)
-//	required : false면 해당 파라미터를 반드시 받지 않아도 됨
 	public String paAddProCtrl(PayContent payContent, Model model, HttpServletRequest request) {	
 		
 		System.out.println("inAmount : " + request.getParameter("inAmount"));

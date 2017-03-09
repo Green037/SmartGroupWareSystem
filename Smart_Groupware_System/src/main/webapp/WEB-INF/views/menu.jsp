@@ -335,15 +335,7 @@
 								<a href="<c:url value='/pr/list?prProgress=0'/>">목록</a>
 							</li>
 							<li id="menu-arquivos"><a href="<c:url value='/pr/add'/>">등록</a></li>
-							<li id="menu-mensagens" style="width:120px">
-								<a href="#"></i> 완료보고서
-									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
-								</a>
-								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:130px"><a href="#">등록</a></li>
-									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">목록</a></li>
-								</ul>
-							</li>
+							<li id="menu-academico-boletim"><a href="<c:url value='/pr/search'/>">검색</a></li>
 						</ul>
 					</li>
 					<li id="menu-academico">
@@ -354,7 +346,15 @@
 						</a>
 						<ul id="menu-academico-sub">
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/wbs/add'/>">WBS등록</a></li>
-							<li id="menu-academico-boletim"><a href="#">프로젝트목록</a></li>
+							<li id="menu-mensagens" style="width:120px">
+								<a href="#"></i> 완료보고서
+									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
+								</a>
+								<ul id="menu-mensagens-sub">
+									<li id="menu-mensagens-enviadas" style="width:130px"><a href="<c:url value='/ev/add'/>">등록</a></li>
+									<li id="menu-mensagens-recebidas" style="width:130px"><a href="<c:url value='/ev/list'/>">목록</a></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 <!-- rang1536 menu end thank you~^^ -->
