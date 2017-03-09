@@ -55,6 +55,10 @@ public class RewardDAOImpl implements RewardDAO {
 		
 		System.out.println("RewardDAOImpl insertRe reward : " + reward);
 		
-		return 0;
+		int result = sqlSession.insert("ReDAO.insertRe", reward);
+		
+		System.out.println("RewardDAOImpl insertRe result : " + result);
+		
+		return result;
 	}
 }

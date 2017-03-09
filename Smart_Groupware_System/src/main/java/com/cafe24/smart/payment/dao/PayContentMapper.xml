@@ -4,15 +4,49 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="PcDAO">
-	<resultMap id="resultPc" type="PayContent">
+	<resultMap id="resultPa" type="com.cafe24.smart.payment.domain.PayContent">
 		<result property="pcCode" column="pc_code"/>
 		<result property="mmCode" column="mm_code"/>
 		<result property="pcDate" column="pc_date"/>
-		<result property="pcSection" column="pc_section"/>
-		<result property="pcClasificar" column="pc_clasificar"/>
-		<result property="middleClasificar" column="middle_clasificar"/>
-		<result property="pcAmount" column="pc_amount"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="inAmount" column="in_amount"/>
+		<result property="eiAmount" column="ei_amount"/>
+		<result property="nhiAmount" column="nhi_amount"/>
+		<result property="ppAmount" column="pp_amount"/>
 		<result property="paMmCode" column="pa_mmCode"/>
 	</resultMap>
+	
+	<select id="selectByPc" parameterType="hashmap" resultType="resultPa">
+		SELECT
+			in_amount
+		FROM
+			payContent
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			pc_date = #{pcDate}
+	</select>
+	
+	<insert id="insertPc" parameterType="com.cafe24.smart.payment.domain.PayContent">
+		INSERT INTO
+			payContent (
+				mm_code,
+				pc_date,
+				mm_dailyPay,
+				in_amount,
+				ei_amount,
+				nhi_amount,
+				pp_amount,
+				pa_mmCode)
+		VALUES (
+			#{mmCode},
+			#{pcDate},
+			#{mmDailyPay},
+			#{inAmount},
+			#{eiAmount},
+			#{nhiAmount},
+			#{ppAmount},
+			#{paMmCode})
+	</insert>
 	
 </mapper>

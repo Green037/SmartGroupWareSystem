@@ -18,12 +18,13 @@ public class UtilFile {
 	public String fileUpload(MultipartHttpServletRequest request,
 										MultipartFile uploadFile, Object obj) {
 		String path = "";
+		String fileName = "";
 		
 		OutputStream out = null;
 		PrintWriter printWriter = null;
 		
 		try {
-			String fileName = uploadFile.getOriginalFilename();
+			fileName = uploadFile.getOriginalFilename();
 			byte[] bytes = uploadFile.getBytes();
 			path = getSaveLocation(request, obj);
 			
@@ -66,7 +67,7 @@ public class UtilFile {
 			}
 		}
 		
-		return path;
+		return path + fileName;
 	}
 	
 //	업로드 파일 저장 경로 얻는 메소드
