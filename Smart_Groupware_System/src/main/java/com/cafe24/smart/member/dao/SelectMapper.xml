@@ -84,22 +84,13 @@
 			<result property="crResponsibility" column="cr_responsibility"/>
 			<result property="mlCode" column="ml_code"/>
 			<result property="lcCode" column="lc_code"/>
-			<result property="mlIssueDate" column="ml_issueDate"/>
-			
+			<result property="mlIssueDate" column="ml_issueDate"/>		
 		</resultMap>
-
-		
-		
-		
-		
-		
-		
+	
 		<!--사원리스트 카운트 구하기 -->
 		<select id="selectTotalMemberCount" resultType="int">
-			SELECT
-				COUNT(*)
+			SELECT COUNT(*)
 			FROM memberManagement
-		
 		</select>
 		
 		
