@@ -19,6 +19,7 @@
 		
 		
 		$(document).on('click','#approvalBtn',function(){
+			
 			$('#approvalForm').attr({action:"<c:url value='/pr/addPm'/>", method:"post"}).submit();
 		});
 	
