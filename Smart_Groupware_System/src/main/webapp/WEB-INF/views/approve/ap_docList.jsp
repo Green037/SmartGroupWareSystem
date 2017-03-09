@@ -19,7 +19,7 @@
 	        var formData = new FormData(form);
 	        console.log(formData); 
 	             $.ajax({
-	                url: '/smart/ap/addDocument',
+	                url: '/smart/ap/addDoc',
 	                type : "POST",
 	        		data : formData,
 	        		dataType : "json",

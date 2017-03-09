@@ -14,38 +14,36 @@
 <!-- 본문 시작 -->
 <div class="modal-content">
 		<div class="modal-header">
-			<div class="row">
-				<h2>전자 결재 신청</h2>
-			</div>
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<h4 style="color:red;"><span class="glyphicon glyphicon-check"></span> 문서양식등록</h4>
+		</div>
 		</div>
 		
 		<div class="modal-body">
 		
-			<form action="<c:url value='/ap/addDocument'/>" method="post" enctype="multipart/form-data" id="DocumentForm">
+			<form action="<c:url value='/ap/addDoc'/>" method="post" enctype="multipart/form-data" id="DocumentForm">
 	        	
-		    	<div class="row">
-		    		<div class="col-md-3">
-						<div class="form-group form-group-sm">
-						    <label for="firstname" class="control-label">[문서분류]</label>
-						    <input type="text" class="form-control" name="docFileGroup" id="docFileGroup">
-						</div>
-		            </div>
-		    	</div>
-		
-		    	<div class ="row">
-					<div class="col-md-3">
-						<div class="form-group form-group-sm">
-						    <label for="firstname" class="control-label">[문서선택]</label>
-						    <input type="file" class="form-control" name="docFile" id="docFile">
-						</div>
-		            </div>
-		    	</div>
-		    		
+				<div class="form-group">
+					<label for="mmCode">
+						<span class="glyphicon glyphicon-user"></span> 
+						문서분류입력
+					</label>
+					<input type="text" class="form-control" name="docFileGroup" id="docFileGroup" >
+				</div>
+
+				<div class="form-group form-group-sm">
+					<label for="mmCode">
+						<span class="glyphicon glyphicon-user"></span> 
+						문서분류입력
+					</label>
+					<input type="file" class="form-control" name="docFile" id="docFile" >
+				</div>
+
 				&nbsp;
 		
-				<div class="col-xs-3">
-				       <button type="button" id="DocumentBtn">등록</button> 
-				 <!-- <input type="submit" id="DocumentBtn">등록 -->
+				<div class="form-group">
+				       <button type="button"  class="btn btn-default btn-success btn-block" id="DocumentBtn">등록</button> 
 				</div>
 
 	   		</form>	

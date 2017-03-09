@@ -24,7 +24,7 @@ public class ApproveRestController {
 	private ApproveService approveService;
 
 	//문서양식 등록 : POST
-	@RequestMapping(value ="ap/addDocument", method = RequestMethod.POST)
+	@RequestMapping(value ="ap/addDoc", method = RequestMethod.POST)
 	public Document apDocAddReCtrl(Document document, TotalFile totalFile){
 		
 		System.out.println("ctrl apDocAddReCtrl> test");
