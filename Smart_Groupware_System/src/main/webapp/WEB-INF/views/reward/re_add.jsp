@@ -17,6 +17,7 @@
 				$.ajax({
 					type : "post",
 					url : "/smart/pc/mmContent",
+// 					url: '/SmartGroup/pc/mmContent',
 					data : {"mmCode": mmCode},
 					success : function(data) {
 // 						alert('data.mmCode : ' + data.mmCode);
