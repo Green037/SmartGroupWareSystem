@@ -22,6 +22,7 @@ import com.cafe24.smart.member.domain.License;
 import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
+import com.cafe24.smart.member.domain.MemberContent;
 import com.cafe24.smart.member.domain.MemberLicense;
 import com.cafe24.smart.member.domain.MemberList;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
@@ -42,7 +43,10 @@ public class MemberController {
 	
 	//GET 요청 사원 개인정보조회
 		@RequestMapping(value="member/mm_content", method=RequestMethod.GET)
-		public String mmContentCtrl(){
+		public String mmContentCtrl(Model model, MemberContent memberContent, HttpSession session){
+			session.getAttribute("mmCode");
+			MemberContent viewMemberCntent = memberService.mmContentServ(memberContent);
+			model.addAttribute("memberContent", viewMemberCntent);
 			
 			return "member/mm_content";
 		}

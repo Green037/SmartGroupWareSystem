@@ -11,6 +11,7 @@ import com.cafe24.smart.member.domain.License;
 import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
+import com.cafe24.smart.member.domain.MemberContent;
 import com.cafe24.smart.member.domain.MemberLicense;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Position;
@@ -26,7 +27,8 @@ public interface MemberService {
 	// 사원 로그인/ 사원로그인에 필요한 정보와 로그인 성공과 실패분기를 위해 map 타입으로 선언해준다
 	Map<String, Object> mmLoginServ(Member member);
 	
-	
+	// 개인사원정보조회
+	MemberContent mmContentServ(MemberContent memberContent);
 	
 	
 	

@@ -30,23 +30,23 @@
 								<form>
 									<div class="col-md-2 form-group1">
 										<label class="control-label"><b>사원번호</b></label>&nbsp;
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
-									</div>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" id="mmCode" name="mmCode"  readonly>
+									asd</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>사원이름</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" id="mmName" name="mmName" readonly>
 									</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>소속부서</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value=""  id="dpName" name="dpName" readonly>
 									</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>직급</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value=""  id="cpName" name="cpName" readonly>
 									</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>계약형태</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value=""  id="ctType" name="ctType" readonly>
 									</div>
 								</form>
 								<div class="clearfix">&nbsp;</div>

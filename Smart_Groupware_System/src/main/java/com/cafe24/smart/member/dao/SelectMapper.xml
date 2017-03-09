@@ -48,98 +48,72 @@
 			<result property="mmName" column="mm_name"/>
 		</resultMap> 
 		
-		<resultMap id="selectMmContent" type="com.cafe24.smart.member.domain.MemberContent">
-			<result property="mmCode" column="mm_code"/>
-			<result property="ctCode" column="ct_code"/>
-			<result property="ptCode" column="pt_code"/>
-			<result property="dpCode" column="dp_code"/>
-			<result property="mmName" column="mm_Name"/>
-			<result property="mmDailyPay" column="mm_dailyPay"/>
-			<result property="mmJoinDate" column="mm_joinDate"/>
-			<result property="mmResignDate" column="mm_resignDate"/>
-			<result property="mmAnnualLeave" column="mm_annualLeave"/>
-			<result property="mmArmy" column="mm_army"/>
-			<result property="mmEmail" column="mm_email"/>
-			<result property="mmMarriage" column="mm_marriage"/>
-			<result property="mmSign" column="mm_sign"/>
-			<result property="mmAddress" column="mm_address"/>
-			<result property="mmTel" column="mm_tel"/>
-			<result property="mmBank" column="mm_bank"/>
-			<result property="mmAccount" column="mm_account"/>
-			<result property="mcCode" column="ma_code"/>
-			<result property="acCode" column="ac_code"/>
-			<result property="mcSchoolName" column="mc_schoolName"/>
-			<result property="mcAdmissionDate" column="mc_admissionDate"/>
-			<result property="mcGraduationDate" column="mc_graduationDate"/>
-			<result property="mcMajor" column="mc_major"/>
-			<result property="mcJumsu" column="mc_jumsu"/>
-			<result property="mcGrade" column="mc_grade"/>
-			<result property="crCode" column="cr_code"/>
-			<result property="maCode" column="ma_code"/>
-			<result property="miCode" column="mi_code"/>
-			<result property="crData" column="cr_data"/>
-			<result property="crService" column="cr_service"/>
-			<result property="crPastJoinDay" column="cr_pastJoinDay"/>
-			<result property="crPastResignDay" column="cr_pastResignDay"/>
-			<result property="crResponsibility" column="cr_responsibility"/>
-			<result property="mlCode" column="ml_code"/>
-			<result property="lcCode" column="lc_code"/>
-			<result property="mlIssueDate" column="ml_issueDate"/>		
-		</resultMap>
+		<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" column="mm_code"/>
+		<result property="ctCode" column="ct_code"/>
+		<result property="ptCode" column="pt_code"/>
+		<result property="dpCode" column="dp_code"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="mmJoinDate" column="mm_joinDate"/>
+		<result property="mmResignDate" column="mm_resignDate"/>
+		<result property="mmAnnualLeave" column="mm_annualLeave"/>
+		<result property="mmArmy" column="mm_army"/>
+		<result property="mmEmail" column="mm_email"/>
+		<result property="mmMarriage" column="mm_marriage"/>
+		<result property="mmPassword" column="mm_password"/>
+		<result property="mmSign" column="mm_sign"/>
+		<result property="mmAddress" column="mm_address"/>
+		<result property="mmTel" column="mm_tel"/>
+		<result property="mmBank" column="mm_bank"/>
+		<result property="mmAccount" column="mm_account"/>
+	</resultMap>
 	
-		<!--사원리스트 카운트 구하기 -->
-		<select id="selectTotalMemberCount" resultType="int">
-			SELECT COUNT(*)
-			FROM memberManagement
-		</select>
-		
-		
-		<!-- 사원 조회 리스트  -->
-		<select id="selectAllMm" parameterType="Map" resultMap="selectMmList">
-			SELECT 
-					memberManagement.mm_code,
-					department.dp_name,
-					rankposition.pt_name,
-					memberManagement.mm_name
-			FROM 
-				memberManagement
-			join 
-				department
-			on 
-				department.dp_code = memberManagement.dp_code
-			join 
-				rankposition
-			on 
-				rankposition.pt_code = memberManagement.pt_code
-			ORDER BY mm_code DESC
-			LIMIT #{beginRow}, #{pagePerRow}
-		</select>
+	<resultMap id="resultMc" type="com.cafe24.smart.member.domain.MemberAchieve" >
+		<result property="acCode" column="ac_code"/>
+		<result property="mcSchoolName" column="mc_schoolName"/>
+		<result property="mcAdmissionDate" column="mc_admissionDate"/>
+		<result property="mcGraduationDate" column="mc_graduationDate"/>
+		<result property="mcMajor" column="mc_major"/>
+		<result property="mcJumsu" column="mc_jumsu"/>
+		<result property="mcGrade" column="mc_grade"/>
+		<result property="mmCode" column="mm_code"/>
+	</resultMap>
+	
+	<resultMap id="resultMl" type="com.cafe24.smart.member.domain.MemberLicense" >
+		<result property="lcCode" column="lc_code"/>
+		<result property="mlIssueDate" column="ml_issueDate"/>
+		<result property="mmCode" column="mm_code"/>
+	</resultMap>
+	
+	<resultMap id="resultCr" type="com.cafe24.smart.member.domain.Career" >
+		<result property="maCode" column="ma_code"/>
+		<result property="miCode" column="mi_code"/>
+		<result property="crData" column="cr_data"/>
+		<result property="crService" column="cr_service"/>
+		<result property="crPastJoinDay" column="cr_pastJoinDay"/>
+		<result property="crPastResignDay" column="cr_pastResignDay"/>
+		<result property="crResponsibility" column="cr_responsibility"/>
+		<result property="mmCode" column="mm_code"/>
+	</resultMap>
+	
+	
 		
 		
 		
 		<!-- 사원 개인정보조회 -->
 			
-		<!-- <select id="selectMmContent" resultMap="selectMmContent">
-			SELECT
-					memberManagement.ct_code,
-					memberManagement.pt_code,
-					memberManagement.dp_code,
-					memberManagement.mm_name,
-					memberManagement.mm_dailyPay,
-					memberManagement.mm_joinDate,
-					memberManagement.mm_joinDate,
-					memberManagement.mm_resignDate,
-					memberManagement.mm_annualLeave,
-					memberManagement.mm_army,
-					memberManagement.mm_email,
-					memberManagement.mm_marriage,
-					memberManagement.mm_sign,
-					memberManagement.mm_address,
-					memberManagement.mm_tel,
-					memberManagement.mm_bank,
-					memberManagement.mm_account,
+		 <select id="selectMmContent" resultMap="resultMmContent">
+			
+		</select>  
 		
-		</select> -->
+		
+		
+		<!--사원 개인정보조회 사원자격증불러오기 -->
+		<select id="" >
+			
+		
+		</select>
 		
 		
 

@@ -17,6 +17,7 @@ import com.cafe24.smart.member.domain.License;
 import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
+import com.cafe24.smart.member.domain.MemberContent;
 import com.cafe24.smart.member.domain.MemberLicense;
 import com.cafe24.smart.member.domain.MemberList;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
@@ -141,6 +142,13 @@ public class MemberDAOImpl implements MemberDAO {
 			System.out.println("로그인요청시 Dao에서 member 잘 넘겨 받았는지 확인 :"+member.getMmCode());
 			System.out.println("로그인요청시 Dao에서 member 잘 넘겨 받았는지 확인 :"+member.getMmPassword());
 		return sqlSession.selectOne("MmDAO.mmLogin",member);
+	}
+// 개인사원정보조회
+	@Override
+	public MemberContent selectMmContent(MemberContent memberContent) {
+		
+		
+		return sqlSession.selectOne("acDAO.selectMmContent", memberContent);
 	}
 
 

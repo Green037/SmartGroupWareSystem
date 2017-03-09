@@ -18,6 +18,7 @@ import com.cafe24.smart.member.domain.License;
 import com.cafe24.smart.member.domain.MajorTypeOfBusiness;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberAchieve;
+import com.cafe24.smart.member.domain.MemberContent;
 import com.cafe24.smart.member.domain.MemberLicense;
 import com.cafe24.smart.member.domain.MemberList;
 import com.cafe24.smart.member.domain.MinorTypeOfBusiness;
@@ -207,6 +208,13 @@ public class MemberServiceImpl implements MemberService {
 		System.out.println("로그인할때 입력받은 값이 있는지 확인 :"+mmLoginServ.getMmCode());
 			System.out.println("로그인할때 입력받은 값이 있는지 확인 :"+mmLoginServ.getMmPassword());
 		return resultMap;
+	}
+	
+	// 개인사원정보조회
+	@Override
+	public MemberContent mmContentServ(MemberContent memberContent) {
+		// TODO Auto-generated method stub
+		return memberDao.selectMmContent(memberContent);
 	}
 
 
