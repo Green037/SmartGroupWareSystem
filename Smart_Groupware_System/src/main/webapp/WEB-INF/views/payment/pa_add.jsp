@@ -7,73 +7,73 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>" type="text/javascript"></script>
 	<script>
-		$(document).ready(function() {	
+		$(document).on('click', '#mmButton', function() {	
 // 			사원코드 파라미터를 받아 해당 사원 급여 내용을 조회
 			
 // 			총액
 			var sumAmount = 0;
 
 // 			사원 급여 정보 조회
-			$('#mmButton').click(function() {
-				var mmCode = $('#mCodeCheck').val();
+			var mmCode = $('#mCodeCheck').val();
 				
-				var eiEmployee = ${eiContent.eiEmployee};
-				var nhiEmployee = ${nhiContent.nhiEmployee};
-				var ppEmployee = ${ppContent.ppEmployee}; 
+			var eiEmployee = ${eiContent.eiEmployee};
+			var nhiEmployee = ${nhiContent.nhiEmployee};
+			var ppEmployee = ${ppContent.ppEmployee}; 
 				
-// 				console.log('mmCode : '+ mmCode);
-// 				console.log('eiEmployee : '+ eiEmployee);
-// 				console.log('nhiEmployee : '+ nhiEmployee);
+// 			console.log('mmCode : '+ mmCode);
+// 			console.log('eiEmployee : '+ eiEmployee);
+// 			console.log('nhiEmployee : '+ nhiEmployee);
 				
-				$.ajax({
-					type: 'post',
-					url: '/smart/pc/mmContent',
-					data: {'mmCode': mmCode},
-// 					전역변수에 담기
-					async: false,
-					success: function(data) {
-// 						console.log('data.mmCode : ' + data.mmCode);
-// 						console.log('data.mmName : ' + data.mmName);
-// 						console.log('data.mmDailyPay : ' + data.mmDailyPay);
+			$.ajax({
+				type: 'post',
+				url: '/smart/pc/mmContent',
+				data: {'mmCode': mmCode},
+// 				전역변수에 담기
+				async: false,
+				success: function(data) {
+// 					console.log('data.mmCode : ' + data.mmCode);
+// 					console.log('data.mmName : ' + data.mmName);
+// 					console.log('data.mmDailyPay : ' + data.mmDailyPay);
 						
-						$('#mmCode').val(data.mmCode);
-						$('#mmName').val(data.mmName);
-						$('#mmDailyPay').val(data.mmDailyPay);
-						
-// 						console.log('mmCode : ' + $('#mmCode').val());
-// 						console.log('mmName : ' + $('#mmName').val());
-						
-//		 				고용보험
-						$('#eiAmount').val(data.mmDailyPay * eiEmployee);						
-//		 				국민건강보험
-						$('#nhiAmount').val(data.mmDailyPay * nhiEmployee);
-// 						연금보험
-						$('#ppAmount').val(data.mmDailyPay * ppEmployee);
-						
-						sumAmount = data.mmDailyPay - 
-									((data.mmDailyPay * eiEmployee) + (data.mmDailyPay * nhiEmployee) + (data.mmDailyPay * ppEmployee));
+					$('#mmCode').val(data.mmCode);
+					$('#mmName').val(data.mmName);
+					$('#mmDailyPay').val(data.mmDailyPay);
 					
-						$('#pcAmount').val(sumAmount);
-					}
-				});
+// 					console.log('mmCode : ' + $('#mmCode').val());
+// 					console.log('mmName : ' + $('#mmName').val());
+					
+//		 			고용보험
+					$('#eiAmount').val(data.mmDailyPay * eiEmployee);						
+//		 			국민건강보험
+					$('#nhiAmount').val(data.mmDailyPay * nhiEmployee);
+// 					연금보험
+					$('#ppAmount').val(data.mmDailyPay * ppEmployee);
+					
+					sumAmount = data.mmDailyPay - 
+								((data.mmDailyPay * eiEmployee) + (data.mmDailyPay * nhiEmployee) + (data.mmDailyPay * ppEmployee));
+					
+					$('#pcAmount').val(sumAmount);
+				}
 			});
+		});
+
+// 		console.log('sumAmount : ' + sumAmount);
 			
-// 			console.log('sumAmount : ' + sumAmount);
+		$(document).on('click', '#sumBtn', function() {					
+			var sumAmount = $('#pcAmount').val();
 			
-			$('#sumBtn').click(function() {
-// 			$('#inAmount').keydown(function() {
-				
-				sumAmount = $('#pcAmount').val();
-				
-				console.log('sumBtn sumAmount : ' + sumAmount);
-				console.log('inAmount val : ' + $('#inAmount').val());
+			console.log('sumBtn sumAmount : ' + sumAmount);
+			console.log('inAmount val : ' + $('#inAmount').val());
 	 				
-				var result = parseInt($('#inAmount').val()) + parseInt(sumAmount);
+			var result = parseInt($('#inAmount').val()) + parseInt(sumAmount);
 					
-				console.log('sumBtn result : ' + result);
+			console.log('sumBtn result : ' + result);
 					
-				$("#pcAmount").val(result);
-			});
+			$("#pcAmount").val(result);
+		});
+		
+		$(document).on('click', '#subButton', function() {
+			$("#paAddForm").submit();
 		});
 	</script>
 </head>
@@ -98,7 +98,7 @@
 							<div class="graph-2 general">
 								<div class="grid-1">
 									<div class="form-body">
-										<form class="form-horizontal" method="post" action="<c:url value='/pa/add'/>">
+										<form class="form-horizontal" id="paAddForm" method="post" action="<c:url value='/pa/add'/>">
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원코드</label>
 												<div class="col-sm-3">
@@ -142,28 +142,28 @@
 															<td><input type="text" class="form-control1" name="pcSection" value="수당" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="성과급" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="성과급" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcAmount" id="inAmount" value="0"/></td>
+															<td><input type="text" class="form-control1" name="inAmount" id="inAmount" value="0"/></td>
 														</tr>
 														<tr>
 															<td>3</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="고용보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcAmount" id="eiAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="eiAmount" id="eiAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>4</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="국민건강보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcAmount" id="nhiAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="nhiAmount" id="nhiAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<td>5</td>
 															<td><input type="text" class="form-control1" name="pcSection" value="공제" disabled/></td>
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" disabled/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="연금보험" disabled/></td>
-															<td><input type="text" class="form-control1" name="pcAmount" id="ppAmount" value="0" disabled/></td>
+															<td><input type="text" class="form-control1" name="ppAmount" id="ppAmount" value="0" disabled/></td>
 														</tr>
 														<tr>
 															<th colspan=4>
@@ -182,7 +182,7 @@
 												</div>
 											</div>
 											<div class="form-group" align="center">
-												<button type="submit" class="btn btn-default">등록</button>
+												<button type="button" id="subButton" class="btn btn-default">등록</button>
 												<button type="reset" class="btn btn-default">취소</button>
 											</div>
 										</form>
