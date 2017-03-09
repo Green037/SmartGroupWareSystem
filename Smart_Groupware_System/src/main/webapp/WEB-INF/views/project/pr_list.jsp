@@ -94,8 +94,6 @@
 	</table>
 </div>
 <c:import url="./pm_addForm.jsp"></c:import> <!--팝업창, 참여신청폼  -->
-</body>
-</html>
 <!-- 본문끝 -->
 </div>				
 </div>
