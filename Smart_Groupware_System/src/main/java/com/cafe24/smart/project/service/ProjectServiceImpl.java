@@ -319,5 +319,22 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return result;
 	}
+
+	@Override
+	public List<Project> prSearchServ(Project project, String prSize) {
+		// prSize 소중대 별로 규모 확인 소-인원4명이하 중- 5~10 대- 11이상 구분하여 다시 셋팅.
+		if(prSize.equals("소")){
+			project.setPrMember(3);
+		}else if(prSize.equals("중")){
+			project.setPrMember(10);
+		}else if(prSize.equals("대")){
+			project.setPrMember(12);
+		}else if(prSize.equals("::선택::")){
+			project.setPrMember(0);
+		}
+		// 입력값 null여부는 쿼리로 해결하고 처리한다. 입력값이 하나도 없다면 전체조회.
+		
+		return projectDao.selectByRequirementPr(project);
+	}
 	
 }
