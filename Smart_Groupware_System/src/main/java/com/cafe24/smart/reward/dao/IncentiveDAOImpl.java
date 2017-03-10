@@ -19,7 +19,7 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 		
 		System.out.println("IncentiveDAOImpl insertIn incentive : " + incentive);
 		
-		n = sqlSession.insert("ReDAO.insertIn", incentive);
+		n = sqlSession.insert("PaDAO.insertIn", incentive);
 		
 		System.out.println("IncentiveDAOImpl insertIn n : " + n);
 		

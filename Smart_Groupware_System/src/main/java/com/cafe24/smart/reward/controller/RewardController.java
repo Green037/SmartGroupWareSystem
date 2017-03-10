@@ -38,17 +38,27 @@ public class RewardController {
 	
 	Calendar calendar;
 	
-//	인사부 > 고과목록관리 
+//	인사부 > 총고과목록 
 	@RequestMapping(value = "re/listAll", method = RequestMethod.GET)
-	public String reListAllCtrl() {
+	public String reListAllCtrl(Model model) {
+		
+		List<Reward> reList = rewardService.reListServ();
+		
+		System.out.println("RewardController reListAllCtrl reList : " + reList);
+		
+		model.addAttribute("reList", reList);
+		
+		System.out.println("RewardController reListAllCtrl model : " + model);
 						
 		return "reward/re_listAll";
 	}
 	
 //	연간고과목록 보기
 	@RequestMapping(value = "re/list", method = RequestMethod.GET)
-	public String reListCtrl() {
-						
+	public String reListYearCtrl() {
+			
+		
+		
 		return "reward/re_list";
 	}
 	
@@ -99,8 +109,6 @@ public class RewardController {
 	public String reAddProCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
 									MultipartHttpServletRequest request, Reward reward) {
 		
-		int n = 0;
-		
 		System.out.println("RewardController reAddProCtrl uploadFile : " + uploadFile);
 		
 		UtilFile utilFile = new UtilFile();
@@ -109,10 +117,10 @@ public class RewardController {
 		String uploadPath = utilFile.fileUpload(request, uploadFile, reward);
 		
 //		해당 경로를 db에 저장
-		n = rewardService.reAddServ(uploadPath, reward);
+		int n = rewardService.reAddServ(uploadPath, reward);
 		
 		if (n > 0) {
-			n = incentiveService.inAddServ(reward);
+			incentiveService.inAddServ(reward);
 		}
 		
 		System.out.println("RewardController reAddProCtrl n : " + n);

@@ -26,14 +26,14 @@
 	</resultMap>
 	
 	<select id="selectAllRe" parameterType="hashmap" resultMap="resultRe">
-		SELECT
+		SELECT SQL_CALC_FOUND_ROWS
 			*
 		FROM
-			reward
-		WHERE
-			mm_code = #{mmCode}
-		AND
-			re_date = #{reDate};
+			reward;
+	</select>
+	
+	<select id="selectAllYearRe" parameterType="String">
+	
 	</select>
 	
 	<select id="selectAllCountRe" resultType="int">

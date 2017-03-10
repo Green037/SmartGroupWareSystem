@@ -51,8 +51,8 @@
 				<value>classpath:com/cafe24/smart/member/dao/*.xml</value>
 				<value>classpath:com/cafe24/smart/project/dao/ProjectMapper.xml</value>
 				<value>classpath:com/cafe24/smart/reward/dao/RewardMapper.xml</value>
-				<value>classpath:com/cafe24/smart/payment/dao/PaymentMapper.xml</value>
 				<value>classpath:com/cafe24/smart/insurance/dao/InsuranceMapper.xml</value>
+				<value>classpath:com/cafe24/smart/payment/dao/PaymentMapper.xml</value>
 				<value>classpath:com/cafe24/smart/approve/dao/ApproveMapper.xml</value>
 				<value>classpath:com/cafe24/smart/wbs/dao/WbsMapper.xml</value>
 			</list>
