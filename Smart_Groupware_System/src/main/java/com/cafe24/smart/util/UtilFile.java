@@ -72,8 +72,8 @@ public class UtilFile {
 		}
 		
 		return path + fileName;
-<<<<<<< HEAD
-=======
+
+
 	}
 	
 //  파일이름 가져오는 메소드
@@ -83,7 +83,7 @@ public class UtilFile {
 		
 		return fileName;
 		
->>>>>>> c9273a53fc0e56a16c840395033e1da77ec003c7
+
 	}
 	
 	
