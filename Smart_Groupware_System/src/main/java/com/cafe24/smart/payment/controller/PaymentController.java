@@ -38,22 +38,22 @@ public class PaymentController {
 	
 	UtilDate utilDate = new UtilDate();
 	
+//	총무부 > 총급여목록
+	@RequestMapping(value = "pa/listAll", method = RequestMethod.GET)
+	public String paListCtrl() {
+		
+		
+						
+		return "payment/pa_listAll";
+	}
+	
 //	연간 급여내역 조회
 	@RequestMapping(value = "pc/list", method = RequestMethod.GET)
 	public String pcListCtrl(Model model) {
 					
 		return "payment/pc_list";
 	}
-	
-//	총무부 > 총급여 목록
-//	@RequestMapping(value = "pa/list", method = RequestMethod.GET)
-//	public String paListCtrl() {
-//		
-//		
-//						
-//		return "payment/pa_list";
-//	}
-	
+
 //	월급여 조회
 	@RequestMapping(value = "pc/content", method = RequestMethod.GET)
 	public String pcContentCtrl(Model model) {

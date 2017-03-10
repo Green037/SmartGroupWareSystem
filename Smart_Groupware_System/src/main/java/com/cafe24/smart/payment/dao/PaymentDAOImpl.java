@@ -39,7 +39,9 @@ public class PaymentDAOImpl implements PaymentDAO {
 		params.put("mmCode", mmCode);
 		params.put("reDate", reDate);
 		
-		return sqlSession.selectOne("PcDAO.selectByPc", params);
+		System.out.println("PaymentDAOImpl selectByPc params : " + params);
+		
+		return sqlSession.selectOne("PaDAO.selectByPc", params);
 	}
 	
 	@Override
@@ -47,7 +49,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 		
 		System.out.println("PaymentDAOImpl insertPc payContent : " + payContent);
 		
-		return sqlSession.insert("PcDAO.insertPc", payContent);
+		return sqlSession.insert("PaDAO.insertPc", payContent);
 	}
 
 }
