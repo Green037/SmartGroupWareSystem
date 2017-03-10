@@ -63,7 +63,7 @@ public class MemberController {
 			//System.out.println("컨트롤러에서 개인정보조회 확인:"+viewMemberContentCr);확인완료
 			return "member/mm_content";
 		}
-	
+		
 	
 	
 	
