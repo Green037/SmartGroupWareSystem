@@ -293,6 +293,7 @@
 			memberManagement.mm_name as mmName,
 			memberManagement.mm_email as mmEmail,
 			memberManagement.mm_tel as mmTel,
+			department.dp_name as dpName,
 			rankposition.pt_name as ptName,
 			contract.ct_type as ctType
 		FROM 
@@ -305,6 +306,10 @@
 			contract
 		ON 
 			memberManagement.ct_code = contract.ct_code
+		LEFT JOIN
+			department
+		ON
+			memberManagement.dp_code = department.dp_code
 		WHERE 
 			mm_code = #{mmCode};
 	</select>
@@ -411,7 +416,6 @@
 					AND pr_startDay >= #{prStartDay} AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
 				</if>
 			</trim>
-		
 	</select>
 	
 </mapper>

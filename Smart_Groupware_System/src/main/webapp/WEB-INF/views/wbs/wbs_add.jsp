@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<link href="<c:url value='/resources/css/evAdd.css'/>" rel="stylesheet" type="text/css"/>
 	<script>
 		$(document).on('click','#searchProjectBtn',function(){
 			console.log('h2');
@@ -73,7 +74,14 @@
 		<span style="color:red;">Second.</span>
 		<span style="color:blue;">Check your password and Write your plan in the form.</span>
 	</marquee>
-	<button type="button" id="searchProjectBtn" class="btn btn-primary">내 프로젝트 검색</button>
+	<!-- <button type="button" id="searchProjectBtn" class="btn btn-primary">내 프로젝트 검색</button> -->
+	<div class="row">
+		<div class="col-md-12">
+			<button class="btn btn-warning orange-circle-button" id="searchProjectBtn">
+				내프로젝트<br />검색<br /><span class="orange-circle-greater-than">></span>
+			</button>
+		</div>   
+	</div>
 	
 	<table id="projectList" class="table table-hover" style="display:none;">
 		<thead>

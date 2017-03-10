@@ -49,7 +49,7 @@
 		$(document).on('click','#choiceBtn',function(){
 			var prCode = $('#prCode_').text();
 			console.log(prCode);
-			$('#choiceBtn').attr({href:"<c:url value='/wbs/addForm?prCode="+prCode+"'/>"}).submit();
+			$('#choiceBtn').attr({href:"<c:url value='/ev/addForm?prCode="+prCode+"'/>"}).submit();
 		});
 	</script>
 </head> 
@@ -74,11 +74,11 @@
 		<span style="color:blue;">Check your password and Write your plan in the form.</span>
 	</marquee>
 	<!-- <button type="button" id="searchProjectBtn" class="btn btn-primary">내 프로젝트 검색</button> -->
-	
-	
 	<div class="row">
-        <div class="col-md-12">
-		    <button class="btn btn-default orange-circle-button" href="">Read<br />more<br /><span class="orange-circle-greater-than">></span></button>
+		<div class="col-md-12">
+			<button class="btn btn-warning orange-circle-button" id="searchProjectBtn">
+				내프로젝트<br />검색<br /><span class="orange-circle-greater-than">></span>
+			</button>
 		</div>   
 	</div>
 
