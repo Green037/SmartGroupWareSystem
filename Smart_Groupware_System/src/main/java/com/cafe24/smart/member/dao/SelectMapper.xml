@@ -148,14 +148,45 @@
 		
 		 <!-- 사원 개인정보조회 -->
 			
-		<!--  <select id="selectMmContent" resultMap="resultMmContent">
-			
-		</select>    -->
+		<select id="selectMmContent" resultMap="selectMmContent">
+			SELECT
+					memberManagement.mm_code,
+					memberManagement.mm_name,
+					department.dp_name,
+					rankposition.pt_name,
+					contract.ct_type,
+					memberManagement.mm_joinDate,
+					memberManagement.mm_resignDate,
+					memberManagement.mm_army,
+					memberManagement.mm_marriage,
+					memberManagement.mm_annualLeave,
+					memberManagement.mm_email,
+					memberManagement.mm_address,
+					memberManagement.mm_tel,
+					memberManagement.mm_bank,
+					memberManagement.mm_account,
+					memberManagement.mm_sign
+				FROM 
+					memberManagement
+				JOIN
+					department
+				ON 
+					memberManagement.dp_code = department.dp_code
+				JOIN
+					rankposition
+				ON
+					memberManagement.pt_code = rankposition.pt_code
+				JOIN
+					contract
+				ON
+					memberManagement.ct_code = contract.ct_code
+				WHERE memberManagement.mm_code = #{mmCode}	
+		</select>    
 		
 		
 		
 		<!--사원 개인정보조회 사원자격증불러오기 -->
-		<!-- <select id="selectMmcontentlc" >
+		<!--  <select id="selectMmcontentlc" resultMap="selectMmContent">
 			SELECT
 					license.lc_name,
 					license.lc_organization,
@@ -176,7 +207,7 @@
 			WHERE 
 					memberLicense.mm_code = #{mmCode}
 		
-		</select> -->
+		</select>  -->
 		
 		
 

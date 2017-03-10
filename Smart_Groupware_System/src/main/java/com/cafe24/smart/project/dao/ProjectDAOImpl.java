@@ -178,7 +178,7 @@ public class ProjectDAOImpl implements ProjectDAO {
 	// 프로젝트 검색.
 	@Override
 	public List<Project> selectByRequirementPr(Project project) {
-		// TODO Auto-generated method stub
+		//System.out.println("플젝 조건 검색전 project값 확인 : "+project);
 		return sqlSession.selectList("PrDAO.selectByRequirementPr", project);
 	}
 
