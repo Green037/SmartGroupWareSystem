@@ -21,7 +21,7 @@ public interface MemberService {
 	int mmAddServ(Member member,MemberAchieve memberAchieve,MemberLicense memberLicense,Career career); 
 	
 	// 사원조회 리스트
-	Map<String, Object> mmListServ(int currnetPage);
+	
 	
 	
 	// 사원 로그인/ 사원로그인에 필요한 정보와 로그인 성공과 실패분기를 위해 map 타입으로 선언해준다

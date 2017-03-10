@@ -300,7 +300,7 @@
 						</a>
 						<ul id="menu-academico-sub">
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_add'/>">사원등록</a></li>
-							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_search'/>">사원조회</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_listSearch'/>">사원조회</a></li>
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_content'/>">개인정보조회</a></li>
 						</ul>
 					</li>

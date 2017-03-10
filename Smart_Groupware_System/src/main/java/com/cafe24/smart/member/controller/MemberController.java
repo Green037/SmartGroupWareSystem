@@ -66,23 +66,9 @@ public class MemberController {
 	
 	
 	
-	//get 요청 사원정보조회리스트 
-	@RequestMapping(value="member/mm_list",method=RequestMethod.GET)
-	public String mmListCtrl(Model model,
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
-		 
-			Map<String, Object> returnMap 
-				= memberService.mmListServ(currentPage);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("totalRowCount", returnMap.get("totalRowCount"));
-			model.addAttribute("lastPage", returnMap.get("lastPage"));
-			model.addAttribute("mmList", returnMap.get("mmList"));
-					
-		return "member/mm_list";
-	}
-
+	
 	//get 사원 조회 
-	@RequestMapping(value="member/mm_search", method=RequestMethod.GET)
+	@RequestMapping(value="member/mm_listSearch", method=RequestMethod.GET)
 	public String mmSearchCtrl(Model model){
 		
 		List<Achieve> achieve = memberService.acListServ();
@@ -100,7 +86,7 @@ public class MemberController {
 		model.addAttribute("minorTypeOfBusiness", minorTypeOfBusiness);
 		
 		
-		return "member/mm_search";
+		return "member/mm_listSearch";
 	}
 	
 	// post 요청 사원 등록

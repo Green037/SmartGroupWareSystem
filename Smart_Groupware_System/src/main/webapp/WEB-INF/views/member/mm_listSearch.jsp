@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="col-lg-6">  
 					<div class="container">
-						<form action = "<c:url value='/searchStaff'/>" method="post" id="mmSearchForm">
+						<form action = "<c:url value='/mm_listsearch'/>" method="post" id="mmSearchForm">
 							<table class="table table-bordered">
 								<tr>
 									<th>이름</th>
@@ -129,15 +129,15 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach var="mmList" items="${mmList}">
+								
 									<tr>
-										<td>${mmList.mmCode}</td>
-										<td>${mmList.mmName}</td>
-										<td>${mmList.dpName}</td>
-										<td>${mmList.ptName}</td>
-										<td>${mmList.ptName}</td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
+										<td></td>
 									</tr>
-								</c:forEach>
+								
 							</tbody>
 						</table>
 					</div>
