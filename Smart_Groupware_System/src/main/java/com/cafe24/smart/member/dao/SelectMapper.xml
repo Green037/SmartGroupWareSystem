@@ -147,10 +147,12 @@
 	</resultMap>
 		
 		
-		
+
 		 <!-- 사원 개인정보조회 -->
 			
 
+
+		 <!-- 사원 개인정보조회 -->
 		<select id="selectMmContent" 
 				parameterType="int"
 				resultMap="selectMmContent">
@@ -189,7 +191,7 @@
 				WHERE memberManagement.mm_code = #{mmCode}	
 		</select>    
 		
-		
+		<!-- 사원개인학력정보조회 -->
 		<select	id="selectMmContentMc"
 				parameterType="int"
 				resultMap="selectMmContent">
@@ -245,7 +247,7 @@
 
 		</select>  
 		
-		
+		<!-- 사원개인경력사항정보조회 -->
 		<select id="selectMmcontentCr" 
 		 		parameterType="int"
 		 		resultMap="selectMmContent">

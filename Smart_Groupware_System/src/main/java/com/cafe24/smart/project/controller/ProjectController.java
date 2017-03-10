@@ -198,10 +198,31 @@ public class ProjectController {
 		return "project/pr_search";
 	}
 		
-	// 평가보고서 등록 - 겟요청(폼연결)
+	// 평가보고서 등록 - 겟요청(본인프로젝트 조회 및 평가보고서 작성할 폼 선택하는 폼연결.)
 	@RequestMapping(value = "ev/add", method = RequestMethod.GET)
 	public String evAddCtrl(){
 		return "project/ev_add";
+	}
+	
+	// 평가보고서 등록 - 겟요청(평가보고서 입력폼연결)
+	@RequestMapping(value = "ev/addForm", method = RequestMethod.GET)
+	public String evAddFormCtrl(Model model, @RequestParam("prCode") int prCode){
+		System.out.println("h2 evalution addForm GET!!");
+		System.out.println("prCode값 확인 : "+prCode);
+		
+		Map<String, Object> mmMap = new HashMap<String, Object>();
+		
+		Project project = new Project();
+		project = projectService.prDetailServ(prCode); // 프로젝트 상세조회.
+		//System.out.println(project);
+		
+		mmMap = projectService.mmDetailServ(project.getPrMemberCode()); //팀장정보
+		
+		//view에 뿌려줄 값 세팅.
+		model.addAttribute("project", project);
+		model.addAttribute("mmMap", mmMap);
+		
+		return "project/ev_addForm";
 	}
 	
 	// 평가보고서 목록 - 겟요청(폼연결)
