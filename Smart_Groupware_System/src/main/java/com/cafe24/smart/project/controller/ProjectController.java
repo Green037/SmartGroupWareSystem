@@ -201,7 +201,7 @@ public class ProjectController {
 	// 평가보고서 등록 - 겟요청(폼연결)
 	@RequestMapping(value = "ev/add", method = RequestMethod.GET)
 	public String evAddCtrl(){
-		return null;
+		return "project/ev_add";
 	}
 	
 	// 평가보고서 목록 - 겟요청(폼연결)

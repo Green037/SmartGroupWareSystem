@@ -150,9 +150,11 @@
 		
 		 <!-- 사원 개인정보조회 -->
 			
+
 		<select id="selectMmContent" 
 				parameterType="int"
 				resultMap="selectMmContent">
+		
 			SELECT
 					memberManagement.mm_code,
 					memberManagement.mm_name,
@@ -161,7 +163,6 @@
 					contract.ct_type,
 					memberManagement.mm_joinDate,
 					memberManagement.mm_resignDate,
-					memberManagement.mm_dailyPay,
 					memberManagement.mm_army,
 					memberManagement.mm_marriage,
 					memberManagement.mm_annualLeave,
@@ -214,9 +215,13 @@
 		
 		
 		<!--사원 개인정보조회 사원자격증불러오기 -->
+
 		 <select id="selectMmcontentlc" 
 		 		 parameterType="int"
 		 		 resultMap="selectMmContent">
+
+		  
+
 			SELECT
 					license.lc_name,
 					license.lc_organization,
@@ -237,6 +242,7 @@
 			WHERE 
 					memberLicense.mm_code = #{mmCode}
 		
+
 		</select>  
 		
 		
@@ -266,6 +272,8 @@
 					career.mm_code = #{mmCode}
 		
 		</select>
+ 
+
 		
 		
 

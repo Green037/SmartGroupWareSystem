@@ -59,17 +59,17 @@
 			</tr>
 			<tr>
 				<td><strong><span class="glyphicon glyphicon-king"></span> 팀장</strong></td>
-				<td colspan="3">-</td>
+				<td colspan="3">${mmMap.mmName}</td>
 				<td><strong><span class="glyphicon glyphicon-king"></span> 직급</strong></td>
-				<td>-</td>
+				<td>${mmMap.ptName}</td>
 				<td><strong><span class="glyphicon glyphicon-flag"></span> 부서</strong></td>
-				<td>-</td>
+				<td>${mmMap.ctType}</td>
 			</tr>
 			<tr>
 				<td><strong><span class="glyphicon glyphicon-envelope"></span> 이메일</strong></td>
-				<td colspan="2">-</td>
+				<td colspan="2">${mmMap.mmEmail}</td>
 				<td><strong><span class="glyphicon glyphicon-earphone"></span> 전화번호</strong></td>
-				<td colspan="2">-</td>
+				<td colspan="2">${mmMap.mmTel}</td>
 				<td><strong><span class="glyphicon glyphicon-log-in"></span> 참여인원</strong></td>
 				<td>${pmCount} / ${project.prMember}</td>
 			</tr>
