@@ -32,8 +32,19 @@
 			reward;
 	</select>
 	
-	<select id="selectAllYearRe" parameterType="String">
-	
+	<select id="selectAllYearRe" parameterType="hashmap" resultMap="resultRe">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			reward
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			re_date
+		BETWEEN
+			#{startDate}
+		AND
+			#{endDate};
 	</select>
 	
 	<select id="selectAllCountRe" resultType="int">

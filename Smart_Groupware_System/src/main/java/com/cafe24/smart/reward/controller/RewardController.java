@@ -18,10 +18,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.service.MemberService;
 import com.cafe24.smart.reward.domain.Reward;
 import com.cafe24.smart.reward.service.IncentiveService;
 import com.cafe24.smart.reward.service.RewardService;
+import com.cafe24.smart.util.UtilDate;
 import com.cafe24.smart.util.UtilFile;
+import com.cafe24.smart.util.UtilMember;
 
 @Controller
 public class RewardController {
@@ -34,19 +37,42 @@ public class RewardController {
 	IncentiveService incentiveService;
 	
 	@Autowired
+	MemberService memberService;
+	
+	@Autowired
 	HttpSession session;
 	
 	Calendar calendar;
+	
+	UtilDate utilDate = new UtilDate();
+	UtilMember utilMember = new UtilMember();
+	
+	int mmCode = 0;
 	
 //	인사부 > 총고과목록 
 	@RequestMapping(value = "re/listAll", method = RequestMethod.GET)
 	public String reListAllCtrl(Model model) {
 		
+		mmCode = (int) session.getAttribute("mmCode");
+		
+		Reward reward = new Reward();
+		
 		List<Reward> reList = rewardService.reListServ();
+		int rewardCount = rewardService.reCountAllServ();
 		
 		System.out.println("RewardController reListAllCtrl reList : " + reList);
 		
+		for (int i = 0; i < reList.size(); i++) {
+			reward.setReDocument(reList.get(i).getReDocument()
+					.substring(reList.get(i).getReDocument().lastIndexOf("/") + 1, 
+								reList.get(i).getReDocument().lastIndexOf(".")));
+		}
+		
+		System.out.println("RewardController reListAllCtrl getReDocument : " + reward.getReDocument());
+		
+	
 		model.addAttribute("reList", reList);
+		model.addAttribute("rewardCount", rewardCount);
 		
 		System.out.println("RewardController reListAllCtrl model : " + model);
 						
@@ -55,9 +81,28 @@ public class RewardController {
 	
 //	연간고과목록 보기
 	@RequestMapping(value = "re/list", method = RequestMethod.GET)
-	public String reListYearCtrl() {
-			
+	public String reListYearCtrl(Model model) {
 		
+		String startDate = utilDate.getCurrentYear() + "-01-01";
+		String endDate = utilDate.getCurrentDate();
+		
+		mmCode = (int) session.getAttribute("mmCode");
+		
+//		연간 고과내역 조회 리스트를 받아옴 + count
+		List<Reward> reYearList = rewardService.reListYearServ(mmCode, startDate, endDate);
+		int rewardCount = rewardService.reCountAllServ();
+		
+		System.out.println("RewardController reListYearCtrl reYearList : " + reYearList);
+		System.out.println("RewardController reListYearCtrl rewardCount : " + rewardCount);
+		
+		Member member = memberService.mmContentServ(mmCode);
+		
+		String dpName = utilMember.getDpName(member.getDpCode());
+		
+		model.addAttribute("member", member);		
+		model.addAttribute("dpName", dpName);
+		model.addAttribute("mmCode", mmCode);
+		model.addAttribute("rewardCount", rewardCount);
 		
 		return "reward/re_list";
 	}
@@ -66,27 +111,20 @@ public class RewardController {
 	@RequestMapping(value = "re/content", method = RequestMethod.GET)
 	public String reContentCtrl(Model model) {
 		
-		int mmCode = (int) session.getAttribute("mmCode");
-		
-//		오늘 날짜 구하기
-		calendar = Calendar.getInstance();
-		
-		String reDate = String.valueOf(calendar.get(Calendar.YEAR)) + "-";
-		reDate += String.valueOf(calendar.get(Calendar.MONTH) + 1) + "-";
-		reDate += String.valueOf(calendar.get(Calendar.DATE));
-		
-		System.out.println("RewardController RewardController mmCode : " + mmCode);
-		System.out.println("RewardController RewardController reDate : " + reDate);
+		mmCode = (int) session.getAttribute("mmCode");
 		
 		Member member = rewardService.mmContentServ(mmCode);
 		
-		List<Reward> reward = rewardService.reContentServ(mmCode, "2016-11-13");
+		List<Reward> reward = rewardService.reContentServ(mmCode, utilDate.getCurrentDate());
+		int rewardCount = rewardService.reCountAllServ();
 		
 		System.out.println("RewardController RewardController reward : " + reward);
 		System.out.println("RewardController RewardController member : " + member);
-		
-//		model.addAttribute("reward", reward);
+		System.out.println("RewardController reListYearCtrl rewardCount : " + rewardCount);
+	
 		model.addAttribute("member", member);
+//		model.addAttribute("reward", reward);
+		model.addAttribute("rewardCount", rewardCount);
 		
 		System.out.println("RewardController RewardController model : " + model.toString());
 		
@@ -96,8 +134,6 @@ public class RewardController {
 //	인사부 > 고과목록 추가 (get)
 	@RequestMapping(value = "re/add", method = RequestMethod.GET)
 	public String reAddFormCtrl(Model model, HttpServletRequest request) {
-		
-		int mmCode = (int) session.getAttribute("mmCode");
 		
 		model.addAttribute("reMmCode", mmCode);
 		
@@ -116,7 +152,7 @@ public class RewardController {
 //		파일 업로드 결과값을 path로 받아 
 		String uploadPath = utilFile.fileUpload(request, uploadFile, reward);
 		
-//		해당 경로를 db에 저장
+//		해당 경로만 받아 db에 저장
 		int n = rewardService.reAddServ(uploadPath, reward);
 		
 		if (n > 0) {

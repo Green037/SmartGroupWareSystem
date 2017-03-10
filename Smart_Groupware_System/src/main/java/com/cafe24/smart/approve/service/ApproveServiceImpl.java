@@ -416,15 +416,12 @@ public class ApproveServiceImpl implements ApproveService {
 		return temContent;
 	}
 
-	
 	//문서 양식 등록 : POST
 	@Override
 	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
 		
 		int result = 0;
-		
-		UtilFile utilFile = new UtilFile();
 		
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")+1, uploadPath.lastIndexOf(".")));

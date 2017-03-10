@@ -23,12 +23,26 @@ public class RewardServiceImpl implements RewardService {
 	@Autowired
 	MemberDAO memberDAO;
 	
+//	인사부 > 총고과목록
 	@Override
 	public List<Reward> reListServ() {
 		
 		return rewardDAO.selectAllRe();
 	}
 	
+//	연간 고과내역 조회
+	@Override
+	public List<Reward> reListYearServ(int mmCode, String startDate, String endDate) {
+		
+		System.out.println("RewardServiceImpl reListYearServ mmCode : " + mmCode
+					+ ", startDate : " + startDate + ", endDate : " + endDate);
+		
+		List<Reward> reYearList = rewardDAO.selectAllYearRe(mmCode, startDate, endDate);
+		
+		return reYearList;
+	}
+
+//	고과내역 조회
 	@Override
 	public List<Reward> reContentServ(int mmCode, String reDate) {
 		
@@ -47,7 +61,15 @@ public class RewardServiceImpl implements RewardService {
 		
 		return memberDAO.selectByMm(mmCode);
 	}
+	
+//	고과내역 count
+	@Override
+	public int reCountAllServ() {
+		
+		return rewardDAO.selectAllCountRe();
+	}
 
+//	인사부 > 고과내력 추가
 	@Override
 	public int reAddServ(String uploadPath, Reward reward) {
 		

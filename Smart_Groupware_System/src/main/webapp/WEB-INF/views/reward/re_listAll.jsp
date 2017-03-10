@@ -25,13 +25,12 @@
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">
-								<label class="control-label"><b>고과목록 (총 10건)</b></label>
+								<label class="control-label"><b>고과목록 (총 ${rewardCount} 건)</b></label>
 								<table class="table table-bordered">
 									<tr>
 										<th>순번</th>
 										<th>고과코드</th>
-										<th>사원코드</th>
-										<th>프로젝트코드</th>
+										<th>사원명</th>
 										<th>평가등급</th>
 										<th>평가날짜</th>
 										<th>고과서류첨부</th>
@@ -41,7 +40,7 @@
 									<c:forEach var="reward" items="${reList}" varStatus="status">
 										<tr>
 											<td>${status.count}</td>
-											<td>${reward.reCode}</td>
+											<td><a href="<c:url value='/re/content'/>">${reward.reCode}</a></td>
 											<td>${reward.mmCode}</td>
 											<td>${reward.reGrade}</td>
 											<td>${reward.reDate}</td>
