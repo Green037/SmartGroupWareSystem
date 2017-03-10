@@ -29,19 +29,9 @@ public class RewardDAOImpl implements RewardDAO {
 	}
 	
 	@Override
-	public List<Reward> selectAllRe(int mmCode, String reDate) {
+	public List<Reward> selectAllRe() {
 		
-//		List<Reward> rewardList = new ArrayList<Reward>();
-		
-		HashMap<String, Object> params = new HashMap<String, Object>();
-		
-		params.put("mmCode", mmCode);
-		params.put("reDate", reDate);
-		
-		System.out.println("RewardDAOImpl selectAllRe mmCode : " + mmCode);
-		System.out.println("RewardDAOImpl selectAllRe params : " + params);
-		
-		List<Reward> rewardList = sqlSession.selectList("ReDAO.selectAllRe", params);		
+		List<Reward> rewardList = sqlSession.selectList("ReDAO.selectAllRe");		
 		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
 		
 		System.out.println("RewardDAOImpl selectAllRe rewardList : " + rewardList);
@@ -49,6 +39,28 @@ public class RewardDAOImpl implements RewardDAO {
 		
 		return rewardList;
 	}
+	
+//	@Override
+//	public List<Reward> selectAllRe(int mmCode, String reDate) {
+//		
+////		List<Reward> rewardList = new ArrayList<Reward>();
+//		
+//		HashMap<String, Object> params = new HashMap<String, Object>();
+//		
+//		params.put("mmCode", mmCode);
+//		params.put("reDate", reDate);
+//		
+//		System.out.println("RewardDAOImpl selectAllRe mmCode : " + mmCode);
+//		System.out.println("RewardDAOImpl selectAllRe params : " + params);
+//		
+//		List<Reward> rewardList = sqlSession.selectList("ReDAO.selectAllRe", params);		
+//		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
+//		
+//		System.out.println("RewardDAOImpl selectAllRe rewardList : " + rewardList);
+//		System.out.println("RewardDAOImpl selectAllRe selectAllCountRe : " + this.selectAllCountRe);
+//		
+//		return rewardList;
+//	}
 
 	@Override
 	public int insertRe(Reward reward) {

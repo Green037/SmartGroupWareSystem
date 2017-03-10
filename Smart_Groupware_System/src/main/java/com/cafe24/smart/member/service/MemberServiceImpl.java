@@ -212,9 +212,27 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 개인사원정보조회
 	@Override
-	public MemberContent mmContentServ(MemberContent memberContent) {
-		// TODO Auto-generated method stub
-		return memberDao.selectMmContent(memberContent);
+	public MemberContent mmContentServ(int mmCode) {
+		//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmContent(mmCode);
+	}
+	// 개인사원학력정보조회
+	@Override
+	public MemberContent mmContentMcServ(int mmCode) {
+			//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmContentMc(mmCode);
+	}
+	//개인사원자격증정보조회
+	@Override
+	public List<MemberContent> mmContentLcServ(int mmCode) {
+		//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmcontentlc(mmCode);
+	}
+	//개인사원경력사항정보조회
+	@Override
+	public List<MemberContent> mmContentCrServ(int mmCode) {
+		//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmcontentCr(mmCode);
 	}
 
 

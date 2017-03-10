@@ -38,5 +38,4 @@ public interface ProjectDAO {
 
 	List<Project> selectByRequirementPr(Project project);
 
-
 }

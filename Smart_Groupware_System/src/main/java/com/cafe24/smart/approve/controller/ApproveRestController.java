@@ -16,8 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.approve.domain.Document;
-import com.cafe24.smart.approve.domain.TotalFile;
-import com.cafe24.smart.approve.domain.TotalInfo;
 import com.cafe24.smart.approve.service.ApproveService;
 import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.Member;

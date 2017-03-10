@@ -13,12 +13,8 @@
 	<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/font-awesome.css'/>" rel="stylesheet"/>
-	<link href="<c:url value='/resources/font/font.ttf'/>" rel="stylesheet"/>
-	<link href="<c:url value='/resources/css/barChart.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/fabochart.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/icon-font.min.css'/>" rel="stylesheet" type="text/css"/>
-	<link href="<c:url value='/resources/css/vroom.css'/>" rel="stylesheet"/>
-	
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/amcharts.js'/>"></script>
 	<script src="<c:url value='/resources/js/serial.js'/>"></script>
@@ -26,13 +22,11 @@
 	<script src="<c:url value='/resources/js/radar.js'/>"></script>
 	<script src="<c:url value='/resources/js/css3clock.js'/>"></script>
 	<script src="<c:url value='/resources/js/skycons.js'/>"></script>
-	<script src="<c:url value='/resources/js/jquery.easydropdown.js'/>"></script>
-	<script src="<c:url value='/resources/js/vroom.js'/>" type="text/javascript" ></script>
 	<script src="<c:url value='/resources/js/TweenLite.min.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/resources/js/CSSPlugin.min.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/resources/js/jquery.nicescroll.js'/>"></script>
 	<script src="<c:url value='/resources/js/scripts.js'/>"></script>
-	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+	
 
 	<script type="application/x-javascript">
 		addEventListener("load", function() {
@@ -410,7 +404,7 @@
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/list'/>">총급여목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/listAll'/>">총급여목록</a></li>
 									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/add'/>">급여내역추가</a></li>
 								</ul>
 							</li>

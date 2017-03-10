@@ -1,6 +1,5 @@
 package com.cafe24.smart.approve.service;
 
-
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -13,7 +12,6 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +25,6 @@ import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.Position;
 import com.cafe24.smart.util.UtilFile;
-
 
 @Service
 public class ApproveServiceImpl implements ApproveService {
@@ -448,7 +445,13 @@ public class ApproveServiceImpl implements ApproveService {
 	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
 		
+
 	/*	UtilFile utilFile = new UtilFile();*/
+
+		int result = 0;
+		
+		UtilFile utilFile = new UtilFile();
+
 		
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")+1, uploadPath.lastIndexOf(".")));
@@ -456,9 +459,8 @@ public class ApproveServiceImpl implements ApproveService {
 	
 		//System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
 		
-		int result = approveDAO.insertDoc(document);
+		result = approveDAO.insertDoc(document);
 
-//		
 		return result;
 	}
 
@@ -473,9 +475,14 @@ public class ApproveServiceImpl implements ApproveService {
 		//System.out.println(docList);
 		
 		return docList;
+
 	}
 
 	
 
 	
-}
+
+
+	}	
+
+
