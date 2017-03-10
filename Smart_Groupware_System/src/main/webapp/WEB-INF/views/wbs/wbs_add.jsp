@@ -8,6 +8,7 @@
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script>
 		$(document).on('click','#searchProjectBtn',function(){
+			console.log('h2');
 			$('#checkMember').modal();
 		});
 		$(document).on('click','#checkMemberBtn',function(){
