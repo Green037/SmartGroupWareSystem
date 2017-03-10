@@ -3,6 +3,7 @@ package com.cafe24.smart.approve.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
@@ -17,7 +18,11 @@ public interface ApproveDAO {
 	List<Department> selectAllApDep();
 	List<Position> selectAllApPos();
 		List<Member> selectByApMm( Map<String, Integer> map );
-	
+		
+		//개인별 결재라인 등록
+		int insertApr(Approval approval);
+		//개이별 결재라인 가져오기
+		List<Approval> selectAllApr(Approval approval);
 
 	//기안 등록( draft + progress) 
 	int insertDft(Draft draft);
@@ -43,12 +48,13 @@ public interface ApproveDAO {
 		List<Draft> selectContTem(int dftCode);
 	
 	//-----총 목록 : intro 목록
-	List<Draft> selectAllPg();
+	List<Draft> selectAllPg(int mmCode);
 	//-----총 목록 : 대기/반려/완료
-	List<Draft> selectByHv(int progress);
+	List<Draft> selectByHv(Map<String, Integer> map);
 	
 	// 문서 양식 등록
 	int insertDoc(Document document);
-
+	
+	
 
 }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.smart.approve.dao.ApproveDAO;
+import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
@@ -122,6 +123,26 @@ public class ApproveServiceImpl implements ApproveService {
 		return approveDAO.selectByApMm(map);
 	}
 	
+	// --- AJAX 결재라인 등록 : POST
+	@Override
+	public int apAprAddServ(Approval approval) {
+		System.out.println("ajax 넘어오니1");
+		return approveDAO.insertApr(approval);
+	}
+	
+	// --- ajax 결재라인 가져오기 : POST
+	@Override
+	public List<Approval> apAprListServ(Approval approval) {
+		
+		List<Approval> apr = new ArrayList<Approval>();
+		apr = approveDAO.selectAllApr(approval);
+		System.out.println(apr);
+		
+		return apr;
+	}
+
+ 	
+	
 	//기안 등록 : POST
 	@Override
 	public int apAddServ(Draft draft, Progress progress, String uploadPath){
@@ -135,7 +156,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		draft.setDftFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")));
 		draft.setDftFilePath(uploadPath);
-		draft.setAprCode(1);
+		draft.setAprCode(0);
 		draft.setDftDegree(1);
 		draft.setDftDate(formatter.format(today));
 		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
@@ -151,7 +172,7 @@ public class ApproveServiceImpl implements ApproveService {
 				progress.setProTurn(draft.getDftDegree());
 				progress.setProPersonState(false);
 				progress.setProState(0);
-				progress.setProApproval(draft.getDftApproval1());
+				progress.setProApproval(draft.getAprApproval1());
 				
 				int resultPg = approveDAO.insertPg(progress);
 				// System.out.println("----- serv total Insert> success");
@@ -161,32 +182,43 @@ public class ApproveServiceImpl implements ApproveService {
 				// alert 경고 창 뜨기[실패했습니다]
 				}
 		
-		return 0;
+		return result;
 	
 	}
 	
 
 	//[총 결재 목록]진행 목록 :GET
 	@Override
-	public List<Draft> pgListServ(int apProgress) {
+	public List<Draft> pgListServ(int apProgress, int mmCode) {
 		System.out.println("serv pgList> test1" );
 		
 		List<Draft> pgList = new ArrayList<Draft>();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+				
 		int progress;
 		
 		//System.out.println(apProgress);
 		
 		if(apProgress == 1){//결재 대기 목록
 			progress = 0;
-			pgList = approveDAO.selectByHv(progress);
+			map.put("progress", progress);
+			map.put("mmCode",mmCode);
+			pgList = approveDAO.selectByHv(map);
+			
 		}else if(apProgress==2){//결재 반려 목록
 			progress = 2;
-			pgList = approveDAO.selectByHv(progress);
+			map.put("progress", progress);
+			map.put("mmCode",mmCode);
+			pgList = approveDAO.selectByHv(map);
+			
 		}else if(apProgress==3){//결재 완료 목록
 			progress = 1;
-			pgList = approveDAO.selectByHv(progress);
+			map.put("progress", progress);
+			map.put("mmCode",mmCode);
+			pgList = approveDAO.selectByHv(map);
+			
 		}else{
-			pgList = approveDAO.selectAllPg();
+			pgList = approveDAO.selectAllPg(mmCode);
 		}
 		System.out.println("serv pgList> test2");
 		//System.out.println(pgList);
@@ -253,7 +285,7 @@ public class ApproveServiceImpl implements ApproveService {
 		progress.setProRealTime(formatter.format(today));
 		progress.setProPersonState(true);
 		
-		if(draft.getDftApproval1() !=0 && draft.getDftApproval2() ==0 && draft.getDftApproval3() ==0){//결재자가 1명일 경우
+		if(draft.getAprApproval1() !=0 && draft.getAprApproval2() ==0 && draft.getAprApproval3() ==0){//결재자가 1명일 경우
 			totalCount = 1;
 			
 			if(progress.getProState()==1){//----- 승인
@@ -276,7 +308,7 @@ public class ApproveServiceImpl implements ApproveService {
 				//System.out.println("serv dftModfy 반려> test3");
 			}
 			
-		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() ==0){//결재자가 2명일 경우
+		}else if(draft.getAprApproval1() !=0 && draft.getAprApproval2() !=0 && draft.getAprApproval3() ==0){//결재자가 2명일 경우
 			totalCount = 2;
 			//----- totalCount와 degree를 비교
 			//----- if(degree < totalCount)
@@ -300,11 +332,11 @@ public class ApproveServiceImpl implements ApproveService {
 					//----- progress 다음 결재자 등록
 					switch(progress.getProTurn()){
 					case 2:
-						progress.setProApproval(draft.getDftApproval2());
+						progress.setProApproval(draft.getAprApproval2());
 						break;
 					
 					case 3:
-						progress.setProApproval(draft.getDftApproval3());
+						progress.setProApproval(draft.getAprApproval3());
 						break;
 					}
 					
@@ -341,7 +373,7 @@ public class ApproveServiceImpl implements ApproveService {
 				}	
 			}
 			
-		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() !=0){// 결재자가 3명일 경우
+		}else if(draft.getAprApproval1() !=0 && draft.getAprApproval2() !=0 && draft.getAprApproval3() !=0){// 결재자가 3명일 경우
 			totalCount = 3;
 			//totalCount와 degree를 비교 후 최종승인
 			//----- if(degree < totalCount)
@@ -366,11 +398,11 @@ public class ApproveServiceImpl implements ApproveService {
 					//----- progress 다음 결재자 등록
 					switch(progress.getProTurn()){
 					case 2:
-						progress.setProApproval(draft.getDftApproval2());
+						progress.setProApproval(draft.getAprApproval2());
 						break;
 					
 					case 3:
-						progress.setProApproval(draft.getDftApproval3());
+						progress.setProApproval(draft.getAprApproval3());
 						break;
 					}
 					
@@ -477,6 +509,9 @@ public class ApproveServiceImpl implements ApproveService {
 		return docList;
 
 	}
+
+
+
 
 	
 

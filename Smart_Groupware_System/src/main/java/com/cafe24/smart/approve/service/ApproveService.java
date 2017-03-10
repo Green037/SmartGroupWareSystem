@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
@@ -25,13 +26,16 @@ public interface ApproveService {
 	
 		// [ajax] 기안 페이지 요청 : 결재선 사원 가져오기
 		List<Member> apMmAddServ(Position position, Department department);
-	
-	
+		// [ajax] 기안 페이지 결재선 등록 
+		int apAprAddServ(Approval approval);
+		// [ajax] 기안 페이지 결재선 가져오기
+		List<Approval> apAprListServ(Approval approval);
+		
 	//기안 등록
 	int apAddServ(Draft draft, Progress progress, String uploadPath);
 	
 	//총 목록 (대기/반려/완료)
-	List<Draft> pgListServ(int apProgress);
+	List<Draft> pgListServ(int apProgress, int mmCode);
 
 	//임시 목록
 	List<Draft> temListServ();
@@ -49,6 +53,7 @@ public interface ApproveService {
 	int apDocAddServ(Document document,String uploadPath);
 	//문서 양식 목록
 	List<Document> docListServ();
+
 	
 
 	

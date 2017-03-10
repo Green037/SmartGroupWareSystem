@@ -7,8 +7,9 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script>
+	
 	/* 1차 결재선  */
-	$(document).on('focus','#dftApproval1',function(){
+	$(document).on('focus','#aprApproval1',function(){
 		var department = $('#depSearch1').val();
 		var position = $('#posSearch1').val();
 			console.log(department);
@@ -25,13 +26,14 @@
 					$('#1').after(`
 							<option value="`+member.mmCode+`">`+member.mmName+`</option>
 					`)
-				});
-			}
+					});
+				}
+			
 		})
 	})
 	
 	/* 2차 결재선 */
-	$(document).on('focus','#dftApproval2',function(){
+	$(document).on('focus','#aprApproval2',function(){
 		var department = $('#depSearch2').val();
 		var position = $('#posSearch2').val();
 			console.log(department);
@@ -48,13 +50,14 @@
 					$('#2').after(`
 							<option value="`+member.mmCode+`">`+member.mmName+`</option>
 					`)
-				});
+					});
+			
 			}
 		})
 	})
 	
 	/* 3차 결재선 */
-	$(document).on('focus','#dftApproval3',function(){
+	$(document).on('focus','#aprApproval3',function(){
 		var department = $('#depSearch3').val();
 		var position = $('#posSearch3').val();
 			console.log(department);
@@ -73,26 +76,53 @@
 					`)
 				});
 			}
+		
 		})
 	})
 	
+	/* 결재라인 저장하기  */
 	$(document).on('click','#aprSaveBtn',function(){
 		console.log('결재선')
-		var apr_approval1 =$('#dftApproval1').val();
-		var apr_approval2 =$('#dftApproval2').val();
-		var apr_approval3 =$('#dftApproval3').val();
-		console.log(apr_approval1);
+		var data = $('#approvalForm').serialize();
+		console.log(data);
 		$.ajax ({
 			url:'/smart/ap/addApr',
 			type : 'POST',
-			data : formData,
+			data : data,
 			dataTpye : 'json',
 			success : function(data){
-				console.log('결재선 원')
-			}
+				console.log('결재선 원');
+				console.log(data);
+				
+				if(data !=null){
+					alert('입력되었습니다') 
+				}else{
+					alert('다시 시도하세요')
+					}
+				}
+			
 		})
 	})
+	 	
+	/* 결재라인 불러오기 */
+	$(document).on('click','#aprGetBtn',function(){
+		$('#putInAprFom').modal();
+		var data = $('#approvalForm').serialize();
+		console.log('h1'+data);
 		
+		$.ajax({
+			url:'/smart/ap/listApr',
+			type : 'POST',
+			data : data,
+			dataTpye : 'json',
+			success : function(data){
+				console.log('성공')
+			}
+		})
+	
+	})
+	
+	
 	
 	</script>
 </head>
@@ -111,7 +141,8 @@
 	<div class="row">
 		<h2>전자 결재 신청</h2>
 	</div>
-    <form action="<c:url value='/ap/add'/>" method="post" enctype="multipart/form-data">
+	
+    <form action="<c:url value='/ap/add'/>" method="post" enctype="multipart/form-data" id="approvalForm">
     
     	<div class="row">
     		<div class="col-md-8">
@@ -153,7 +184,7 @@
             </div>
     	</div>
     		
-		<div class="row" id="approvalForm">
+		<div class="row">
 			<div class="col-sm-8">
 			<label for="firstname" class="control-label">[결재선 추가]</label>
 		    	 <main>
@@ -192,7 +223,7 @@
 							
 					        </td>
 				        	<td>					        	
-					        	<select name="dftApproval1" id="dftApproval1" class="form-control1">
+					        	<select name="aprApproval1" id="aprApproval1" class="form-control1">
 										<option id=1 value=0>[이름을 선택하세요]</option>
 										
 								</select>						
@@ -220,7 +251,7 @@
 								
 					        </td>
 					        <td>
-					        	<select name="dftApproval2" id="dftApproval2" class="form-control1">
+					        	<select name="aprApproval2" id="aprApproval2" class="form-control1">
 										<option id=2 value=0>[이름을 선택하세요]</option>
 							
 								</select>
@@ -248,7 +279,7 @@
 							
 					        </td>
 					        <td>
-					        	<select name="dftApproval3" id="dftApproval3" class="form-control1">
+					        	<select name="aprApproval3" id="aprApproval3" class="form-control1">
 										<option id=3 value=0>[이름을 선택하세요]</option>
 								</select>
 						
@@ -264,7 +295,14 @@
 					</div>	  
 				</main>   
 			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-12">
+				 <input type="text" name="aprCode" hidden="hidden" value="0">
+			</div>	 
 		</div> 
+		
 		&nbsp;
 		<div class="row">
 			<div class="col-sm-8">
@@ -286,6 +324,8 @@
 
     </form>
 </div>
+
+<c:import url="./ap_aprAdd.jsp"></c:import> <!--팝업창 --> 
 
 <!--  body폼 끝 -->
 </div>

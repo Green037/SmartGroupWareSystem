@@ -32,14 +32,11 @@
 							<tr>
 								<th>차수</th>
 								<th>구분</th>
-								<th width="300">문서제목</th>
+								<th width="200">문서제목</th>
 								<th>기안자</th>
 								<th>기안부서</th>
 								<th>신청일자</th>
 								<th>파일명</th>
-								<th>비고</th>
-							
-					
 							</tr>
 							
 							<c:forEach var="t" items="${temList}">
@@ -52,8 +49,6 @@
 								<td>개발부</td>
 								<td>${t.dftDate}</td>
 								<td>${t.dftFileOri}</td>
-								<td></td>
-					
 							</tr>
 							
 							</c:forEach>
