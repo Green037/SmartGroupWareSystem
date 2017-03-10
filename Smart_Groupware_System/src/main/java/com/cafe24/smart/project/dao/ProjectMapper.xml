@@ -79,17 +79,6 @@
 		<result property="mmAccount" column="mm_account"/>
 	</resultMap>
 	
-	<select id="selectAllCountPm"
-			parameterType="int"
-			resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM
-			projectMember
-		WHERE
-			pr_code = #{prCode}
-	</select>
-	
 	<select id="selectCountPm"
 			parameterType="int"
 			resultType="int">
@@ -113,28 +102,6 @@
 			pr_code = #{prCode} 
 	</select>
 	
-	<select id="selectCountFu"
-			parameterType="int"
-			resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM
-			funds
-		WHERE
-			pr_code = #{prCode}
-	</select>
-
-	<select id="selectCountWbs"
-			parameterType="int"
-			resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM
-			wbs
-		WHERE
-			pr_code = #{prCode}
-	</select>
-
 	<select id="selectByFuCode"
 			parameterType="int"
 			resultMap="resultFu">
@@ -377,7 +344,11 @@
 		WHERE
 			pr_code = #{prCode}
 	</delete>
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 1a1cb3e3c5a35db2fc0e70fb6590e7137a52f6d5
 	<select id="selectCountWbs"
 			parameterType="int"
 			resultType="int">
@@ -442,4 +413,8 @@
 			</where>
 		]]>
 	</select>
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 1a1cb3e3c5a35db2fc0e70fb6590e7137a52f6d5
 </mapper>

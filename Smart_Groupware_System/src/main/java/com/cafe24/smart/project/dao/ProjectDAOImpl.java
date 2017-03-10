@@ -174,11 +174,19 @@ public class ProjectDAOImpl implements ProjectDAO {
 		
 		return sqlSession.delete("PrDAO.deleteFu", prCode);
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 1a1cb3e3c5a35db2fc0e70fb6590e7137a52f6d5
 	// 프로젝트 검색.
 	@Override
 	public List<Project> selectByRequirementPr(Project project) {
 		
 		return sqlSession.selectList("PrDAO.selectByRequirementPr", project);
 	}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a1cb3e3c5a35db2fc0e70fb6590e7137a52f6d5
 }

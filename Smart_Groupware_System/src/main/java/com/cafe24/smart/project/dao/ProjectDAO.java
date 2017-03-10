@@ -36,4 +36,8 @@ public interface ProjectDAO {
 	int deleteWbs(int prCode);
 	int deleteFu(int prCode);
 	List<Project> selectByRequirementPr(Project project);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a1cb3e3c5a35db2fc0e70fb6590e7137a52f6d5
 }
