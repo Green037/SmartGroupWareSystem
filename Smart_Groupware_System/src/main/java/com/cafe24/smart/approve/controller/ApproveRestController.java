@@ -1,7 +1,6 @@
 package com.cafe24.smart.approve.controller;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -15,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.approve.domain.Document;
-import com.cafe24.smart.approve.domain.TotalFile;
-import com.cafe24.smart.approve.domain.TotalInfo;
 import com.cafe24.smart.approve.service.ApproveService;
 import com.cafe24.smart.project.controller.ProjectController;
 import com.cafe24.smart.util.UtilFile;

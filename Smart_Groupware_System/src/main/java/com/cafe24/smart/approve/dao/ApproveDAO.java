@@ -1,8 +1,6 @@
 package com.cafe24.smart.approve.dao;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
@@ -43,10 +41,4 @@ public interface ApproveDAO {
 	
 	// 문서 양식 등록
 	int insertDoc(Document document);
-
-	
-	
-
-	
-	
 }
