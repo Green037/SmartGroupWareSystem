@@ -93,6 +93,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		System.out.println("MemberServiceImpl mmContentServ mmCode : " + mmCode);
 		
+<<<<<<< HEAD
 		return memberDao.selectByMm(mmCode);
 	}
 	
@@ -121,6 +122,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	// 사원 등록(사원정보,학력등록)
+=======
+	//사원 조회 리스트
+	
+	
+	//사원 등록(사원정보,학력등록)
+>>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
 	@Override
 	public int mmAddServ(Member member, MemberAchieve memberAchieve, MemberLicense memberLicense, Career career) {
 		
@@ -215,8 +222,32 @@ public class MemberServiceImpl implements MemberService {
 
 	// 개인사원정보조회
 	@Override
+<<<<<<< HEAD
 	public MemberContent mmContentServ(MemberContent memberContent) {
 		
 		return memberDao.selectMmContent(memberContent);
+=======
+	public MemberContent mmContentServ(int mmCode) {
+		//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmContent(mmCode);
+	}
+	// 개인사원학력정보조회
+	@Override
+	public MemberContent mmContentMcServ(int mmCode) {
+			//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmContentMc(mmCode);
+	}
+	//개인사원자격증정보조회
+	@Override
+	public List<MemberContent> mmContentLcServ(int mmCode) {
+		//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmcontentlc(mmCode);
+	}
+	//개인사원경력사항정보조회
+	@Override
+	public List<MemberContent> mmContentCrServ(int mmCode) {
+		//System.out.println(mmCode); 확인완료
+		return memberDao.selectMmcontentCr(mmCode);
+>>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
 	}
 }

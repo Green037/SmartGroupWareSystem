@@ -43,33 +43,32 @@ public class MemberController {
 	
 	//GET 요청 사원 개인정보조회
 		@RequestMapping(value="member/mm_content", method=RequestMethod.GET)
-		public String mmContentCtrl(Model model, MemberContent memberContent, HttpSession session){
-			session.getAttribute("mmCode");
-			MemberContent viewMemberCntent = memberService.mmContentServ(memberContent);
-			model.addAttribute("memberContent", viewMemberCntent);
+		public String mmContentCtrl(Model model, HttpSession session){
+			int mmCode = (int) session.getAttribute("mmCode");// 세션에 담겨져있는 값을 가져와 mmCode 변수에 담아준다.
+			System.out.println("세션 코드값 확인 : "+mmCode);
 			
+			// 사원조회 매서드 호출
+			MemberContent viewMemberContent = memberService.mmContentServ(mmCode); 
+			MemberContent viewMemberContentMc = memberService.mmContentMcServ(mmCode);
+			List<MemberContent> viewMemberContentLc = memberService.mmContentLcServ(mmCode);
+			List<MemberContent> viewMemberContentCr = memberService.mmContentCrServ(mmCode);
+			
+			model.addAttribute("memberContent", viewMemberContent);
+			model.addAttribute("memberContentMc", viewMemberContentMc);
+			model.addAttribute("memberContentLc", viewMemberContentLc);
+			model.addAttribute("memberContentCr", viewMemberContentCr);
+			//System.out.println("컨트롤러에서 개인정보조회 확인:"+viewMemberContent); 확인완료
+			//System.out.println("컨트롤러에서 개인정보조회 확인:"+viewMemberContentMc);확인완료
+			//System.out.println("컨트롤러에서 개인정보조회 확인:"+viewMemberContentLc);확인완료
+			//System.out.println("컨트롤러에서 개인정보조회 확인:"+viewMemberContentCr);확인완료
 			return "member/mm_content";
 		}
+		
 	
 	
 	
-	//get 요청 사원정보조회리스트 
-	@RequestMapping(value="member/mm_list",method=RequestMethod.GET)
-	public String mmListCtrl(Model model,
-			@RequestParam(value="currentPage", defaultValue="1") int currentPage){
-		 
-			Map<String, Object> returnMap 
-				= memberService.mmListServ(currentPage);
-			model.addAttribute("currentPage", currentPage);
-			model.addAttribute("totalRowCount", returnMap.get("totalRowCount"));
-			model.addAttribute("lastPage", returnMap.get("lastPage"));
-			model.addAttribute("mmList", returnMap.get("mmList"));
-					
-		return "member/mm_list";
-	}
-
 	//get 사원 조회 
-	@RequestMapping(value="member/mm_search", method=RequestMethod.GET)
+	@RequestMapping(value="member/mm_listSearch", method=RequestMethod.GET)
 	public String mmSearchCtrl(Model model){
 		
 		List<Achieve> achieve = memberService.acListServ();
@@ -87,7 +86,7 @@ public class MemberController {
 		model.addAttribute("minorTypeOfBusiness", minorTypeOfBusiness);
 		
 		
-		return "member/mm_search";
+		return "member/mm_listSearch";
 	}
 	
 	// post 요청 사원 등록

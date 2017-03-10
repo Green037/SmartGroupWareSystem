@@ -1,5 +1,8 @@
 package com.cafe24.smart.wbs.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,16 +41,22 @@ public class WbsController {
 		/*System.out.println("H2 Wbs AddForm CTRL!!");
 		System.out.println("넘어온 프로젝트 코드값 확인 :"+prCode);*/
 		// prCode로 프로젝트 내용 조회하여 view로 포워드한다.
+		
+		Map<String, Object> mmMap = new HashMap<String, Object>();
+		
 		Project project = new Project();
 		project = projectService.prDetailServ(prCode); // 프로젝트 상세조회.
 		//System.out.println(project);
 		
-		int pmCount = projectService.pmCountServ(prCode); // 프로젝트 참여인원.
+		int pmCount = projectService.pmCountServ(prCode); // 프로젝트 참여인원카운트.
 		//System.out.println(pmCount);
+		mmMap = projectService.mmDetailServ(project.getPrMemberCode()); //팀장정보
+		
 		
 		//view에 뿌려줄 값 세팅.
 		model.addAttribute("project", project);
 		model.addAttribute("pmCount", pmCount);
+		model.addAttribute("mmMap", mmMap);
 		
 		return "wbs/wbs_addForm";
 	}

@@ -293,6 +293,7 @@
 			memberManagement.mm_name as mmName,
 			memberManagement.mm_email as mmEmail,
 			memberManagement.mm_tel as mmTel,
+			department.dp_name as dpName,
 			rankposition.pt_name as ptName,
 			contract.ct_type as ctType
 		FROM 
@@ -305,6 +306,10 @@
 			contract
 		ON 
 			memberManagement.ct_code = contract.ct_code
+		LEFT JOIN
+			department
+		ON
+			memberManagement.dp_code = department.dp_code
 		WHERE 
 			mm_code = #{mmCode};
 	</select>
@@ -376,38 +381,41 @@
 			pr_code = #{prCode}
 	</select>
 	
+	
 	<select id="selectByRequirementPr"
 			parameterType="com.cafe24.smart.project.domain.Project"
 			resultMap="resultPr">
-		<![CDATA[
+		
 			SELECT 
 				*
 			FROM
 				project
-			<where>
-				<if test="prMember != 0 and prMember<5">
-					pr_member < 5
+			<trim prefix="WHERE" prefixOverrides="AND">
+				<if test="prMember eq 0">
+					AND pr_member > 0
 				</if>
-				<if test="prMember>4 and prMember<11">
-					AND pr_member > 4 AND pr_member < 11
+				<if test="prMember gt 0 and prMember lt 5">
+					AND pr_member <![CDATA[ < ]]> 5
 				</if>
-				<if test="prMember>10">
+				<if test="prMember gt 4 and prMember lt 11">
+					AND pr_member > 4 AND pr_member <![CDATA[ < ]]> 11
+				</if>
+				<if test="prMember gt 10">
 					AND pr_member > 10
 				</if>
-				<if test="prProgress != '::선택::'">
+				<if test="!prProgress.equals('::선택::')">
 					AND pr_progress = #{prProgress}
 				</if>
-				<if test="prStartDay != null and prEndDay = null">
+				<if test="!prStartDay.equals('') and prEndDay.equals('')">
 					AND pr_startDay >= #{prStartDay}
 				</if>
-				<if test="prStartDay = null and prEndDay != null">
-					AND pr_endDay <= #{prEndDay}
+				<if test="prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
 				</if>
-				<if test="prStartDay != null and prEndDay != null">
-					AND pr_startDay >= #{prStartDay} AND pr_endDay <= #{prEndDay}
+				<if test="!prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_startDay >= #{prStartDay} AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
 				</if>
-			</where>
-		]]>
+			</trim>
 	</select>
 	
 </mapper>

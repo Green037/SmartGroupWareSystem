@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -15,11 +16,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.smart.approve.dao.ApproveDAO;
+import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.domain.TotalInfo;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.Position;
 import com.cafe24.smart.util.UtilFile;
 
 @Service
@@ -33,7 +38,7 @@ public class ApproveServiceImpl implements ApproveService {
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 	
 	// ----- 메소드 : 파일 업로드
-	private TotalInfo getFileInfo(TotalFile totalFile,TotalInfo totalInfo) throws IllegalStateException, IOException{
+/*	private TotalInfo getFileInfo(TotalFile totalFile,TotalInfo totalInfo) throws IllegalStateException, IOException{
 		System.out.println("serv fileUpload> test1");
 		
 		File destFile = null;
@@ -54,7 +59,7 @@ public class ApproveServiceImpl implements ApproveService {
 		//uuid 적용
 		//----- 상대경로 적용???????????????????????????????
 			
-	/*	절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";*/
+		절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
 		
 		String filePath =  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
 		UUID uuid = UUID.randomUUID();
@@ -78,26 +83,65 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return totalInfo;
 	}
-	
+	*/
 	
 	//기안 요청 : GET ---- DOCUMENT
 	@Override
 	public List<Document> apAddSelServ() {
-		System.out.println("serv temContent> test1");
+		//System.out.println("serv temContent> test1");
 		List<Document> doc = new ArrayList<Document>();
 		doc = approveDAO.selectAllDoc();
 		
-		System.out.println("serv temContent> test2");
+		//System.out.println("serv temContent> test2");
 	
 		return doc;
 	}
 
-	//기안 요청 : GET ---- Member
+	//기안 요청 : GET ---- Department
 	@Override
-	public Map apAddMmSelServ() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Department> apAddMmSelServ() {
+		//System.out.println("serv apAddMmSelServ> test1");
+		return approveDAO.selectAllApDep();
 	}
+	
+	//기안 요청 : GET ---- POSITION
+	@Override
+	public List<Position> apADDPosSelServ() {
+		//System.out.println("serv apADDPosSelServ> test1");
+		return approveDAO.selectAllApPos();
+	}
+	
+	// --- AJAX 기안 요청 : GET 
+	@Override
+	public List<Member> apMmAddServ(Position position, Department department) {
+
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		
+		map.put("dpCode", department.getDpCode());
+		map.put("ptCode", position.getPtCode());
+		
+		return approveDAO.selectByApMm(map);
+	}
+	
+	// --- AJAX 결재라인 등록 : POST
+	@Override
+	public int apAprAddServ(Approval approval) {
+		System.out.println("ajax 넘어오니1");
+		return approveDAO.insertApr(approval);
+	}
+	
+	// --- ajax 결재라인 가져오기 : POST
+	@Override
+	public List<Approval> apAprListServ(Approval approval) {
+		
+		List<Approval> apr = new ArrayList<Approval>();
+		apr = approveDAO.selectAllApr(approval);
+		System.out.println(apr);
+		
+		return apr;
+	}
+
+ 	
 	
 	//기안 등록 : POST
 	@Override
@@ -112,7 +156,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		draft.setDftFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")));
 		draft.setDftFilePath(uploadPath);
-		draft.setAprCode(1);
+		draft.setAprCode(0);
 		draft.setDftDegree(1);
 		draft.setDftDate(formatter.format(today));
 		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
@@ -128,7 +172,7 @@ public class ApproveServiceImpl implements ApproveService {
 				progress.setProTurn(draft.getDftDegree());
 				progress.setProPersonState(false);
 				progress.setProState(0);
-				progress.setProApproval(draft.getDftApproval1());
+				progress.setProApproval(draft.getAprApproval1());
 				
 				int resultPg = approveDAO.insertPg(progress);
 				// System.out.println("----- serv total Insert> success");
@@ -138,32 +182,43 @@ public class ApproveServiceImpl implements ApproveService {
 				// alert 경고 창 뜨기[실패했습니다]
 				}
 		
-		return 0;
+		return result;
 	
 	}
 	
 
 	//[총 결재 목록]진행 목록 :GET
 	@Override
-	public List<Draft> pgListServ(int apProgress) {
+	public List<Draft> pgListServ(int apProgress, int mmCode) {
 		System.out.println("serv pgList> test1" );
 		
 		List<Draft> pgList = new ArrayList<Draft>();
+		Map<String, Integer> map = new HashMap<String, Integer>();
+				
 		int progress;
 		
 		//System.out.println(apProgress);
 		
 		if(apProgress == 1){//결재 대기 목록
 			progress = 0;
-			pgList = approveDAO.selectByHv(progress);
+			map.put("progress", progress);
+			map.put("mmCode",mmCode);
+			pgList = approveDAO.selectByHv(map);
+			
 		}else if(apProgress==2){//결재 반려 목록
 			progress = 2;
-			pgList = approveDAO.selectByHv(progress);
+			map.put("progress", progress);
+			map.put("mmCode",mmCode);
+			pgList = approveDAO.selectByHv(map);
+			
 		}else if(apProgress==3){//결재 완료 목록
 			progress = 1;
-			pgList = approveDAO.selectByHv(progress);
+			map.put("progress", progress);
+			map.put("mmCode",mmCode);
+			pgList = approveDAO.selectByHv(map);
+			
 		}else{
-			pgList = approveDAO.selectAllPg();
+			pgList = approveDAO.selectAllPg(mmCode);
 		}
 		System.out.println("serv pgList> test2");
 		//System.out.println(pgList);
@@ -230,7 +285,7 @@ public class ApproveServiceImpl implements ApproveService {
 		progress.setProRealTime(formatter.format(today));
 		progress.setProPersonState(true);
 		
-		if(draft.getDftApproval1() !=0 && draft.getDftApproval2() ==0 && draft.getDftApproval3() ==0){//결재자가 1명일 경우
+		if(draft.getAprApproval1() !=0 && draft.getAprApproval2() ==0 && draft.getAprApproval3() ==0){//결재자가 1명일 경우
 			totalCount = 1;
 			
 			if(progress.getProState()==1){//----- 승인
@@ -253,7 +308,7 @@ public class ApproveServiceImpl implements ApproveService {
 				//System.out.println("serv dftModfy 반려> test3");
 			}
 			
-		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() ==0){//결재자가 2명일 경우
+		}else if(draft.getAprApproval1() !=0 && draft.getAprApproval2() !=0 && draft.getAprApproval3() ==0){//결재자가 2명일 경우
 			totalCount = 2;
 			//----- totalCount와 degree를 비교
 			//----- if(degree < totalCount)
@@ -277,11 +332,11 @@ public class ApproveServiceImpl implements ApproveService {
 					//----- progress 다음 결재자 등록
 					switch(progress.getProTurn()){
 					case 2:
-						progress.setProApproval(draft.getDftApproval2());
+						progress.setProApproval(draft.getAprApproval2());
 						break;
 					
 					case 3:
-						progress.setProApproval(draft.getDftApproval3());
+						progress.setProApproval(draft.getAprApproval3());
 						break;
 					}
 					
@@ -318,7 +373,7 @@ public class ApproveServiceImpl implements ApproveService {
 				}	
 			}
 			
-		}else if(draft.getDftApproval1() !=0 && draft.getDftApproval2() !=0 && draft.getDftApproval3() !=0){// 결재자가 3명일 경우
+		}else if(draft.getAprApproval1() !=0 && draft.getAprApproval2() !=0 && draft.getAprApproval3() !=0){// 결재자가 3명일 경우
 			totalCount = 3;
 			//totalCount와 degree를 비교 후 최종승인
 			//----- if(degree < totalCount)
@@ -343,11 +398,11 @@ public class ApproveServiceImpl implements ApproveService {
 					//----- progress 다음 결재자 등록
 					switch(progress.getProTurn()){
 					case 2:
-						progress.setProApproval(draft.getDftApproval2());
+						progress.setProApproval(draft.getAprApproval2());
 						break;
 					
 					case 3:
-						progress.setProApproval(draft.getDftApproval3());
+						progress.setProApproval(draft.getAprApproval3());
 						break;
 					}
 					
@@ -421,13 +476,22 @@ public class ApproveServiceImpl implements ApproveService {
 	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
 		
+
+	/*	UtilFile utilFile = new UtilFile();*/
+
 		int result = 0;
 		
+<<<<<<< HEAD
+=======
+		UtilFile utilFile = new UtilFile();
+
+		
+>>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")+1, uploadPath.lastIndexOf(".")));
 		document.setDocFilePath(uploadPath);
 	
-		System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
+		//System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
 		
 		result = approveDAO.insertDoc(document);
 
@@ -445,5 +509,17 @@ public class ApproveServiceImpl implements ApproveService {
 		//System.out.println(docList);
 		
 		return docList;
+
+	}
+
+
+
+
+	
+
+	
+
+
 	}	
-}
+
+

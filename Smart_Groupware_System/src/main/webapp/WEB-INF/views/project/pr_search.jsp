@@ -10,6 +10,7 @@
 	// 검색버튼 클릭 이벤트 - ajax로 검색결과 들고 와서 뿌려주기
 	$(document).on('click','#searchBtn',function(){
 		var formData = $('#prRequirement').serialize();
+		$('#prContent').empty();
 		$.ajax({
 			url : '/smart/pr/search',
 			data : formData,
@@ -17,6 +18,18 @@
 			type : 'post',
 			success : function(data){
 				console.log('h2');
+				$.each(data, function(i, prList){
+					$('#prContent').append(`
+						<tr>
+							<td>`+prList.prCode+`</td>
+							<td>`+prList.prName+`</td>
+							<td>`+prList.prMemberCode+`</td>
+							<td>`+prList.prProgress+`</td>
+							<td>`+prList.prCate+`</td>
+							<td>`+prList.prStartDay+`</td>
+							<td>`+prList.prEndDay+`</td>
+						</tr>`);
+				});
 			}
 		});
 		$('#prTable').css('display','');

@@ -9,7 +9,6 @@
 	<link href="<c:url value='/resources/css/evAdd.css'/>" rel="stylesheet" type="text/css"/>
 	<script>
 		$(document).on('click','#searchProjectBtn',function(){
-			console.log('h2');
 			$('#checkMember').modal();
 		});
 		$(document).on('click','#checkMemberBtn',function(){
@@ -50,7 +49,7 @@
 		$(document).on('click','#choiceBtn',function(){
 			var prCode = $('#prCode_').text();
 			console.log(prCode);
-			$('#choiceBtn').attr({href:"<c:url value='/wbs/addForm?prCode="+prCode+"'/>"}).submit();
+			$('#choiceBtn').attr({href:"<c:url value='/ev/addForm?prCode="+prCode+"'/>"}).submit();
 		});
 	</script>
 </head> 
@@ -66,7 +65,7 @@
 <!-- 본문시작 -->
 <div class="container">
 	<center>
-		<h2><span class="glyphicon glyphicon-pencil"> WBS 등록</span></h2>
+		<h2><span class="glyphicon glyphicon-pencil"> 평가보고서 등록</span></h2>
 	</center>
 	<marquee behavior="alternate">
 		<span style="color:red;">First.</span>
@@ -82,10 +81,11 @@
 			</button>
 		</div>   
 	</div>
-	
+
 	<table id="projectList" class="table table-hover" style="display:none;">
 		<thead>
 			<tr>
+			
 				<th>코드</th>
 				<th>프로젝트명</th>
 				<th>팀장</th>
@@ -110,7 +110,7 @@
 </div>
 </div>
 </div>
-<c:import url="./wbs_checkMemberForm.jsp"></c:import>			
+<c:import url="../wbs/wbs_checkMemberForm.jsp"></c:import>			
 <%@ include file="../footer.jsp"%>
 </body>
 </html>
