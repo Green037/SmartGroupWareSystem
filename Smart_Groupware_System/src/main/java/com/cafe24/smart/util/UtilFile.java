@@ -72,7 +72,6 @@ public class UtilFile {
 		}
 		
 		return path + fileName;
-
 	}
 	
 //  파일이름 가져오는 메소드
@@ -81,11 +80,8 @@ public class UtilFile {
 		System.out.println(fileName);
 		
 		return fileName;
-		
-
 	}
-	
-	
+		
 //	업로드 파일 저장 경로 얻는 메소드
 	private String getSaveLocation(MultipartHttpServletRequest request, Object obj) {
 		
