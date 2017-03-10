@@ -140,6 +140,21 @@
 			document
 </select>
 
+	<!-- 사원번호/이름 가져오기 -->
+	<select id="selectContMm"
+			resultType="com.cafe24.smart.member.domain.Member"
+			parameterType="Map">
+			SELECT 
+				mm_name as mmName,
+				mm_code as mmCode  
+			From 
+				memberManagement 
+			WHERE 
+				dp_code = #{dpCode}  
+			AND 
+				pt_code = #{ptCode}
+	</select>
+
 <!-- 결재 목록 :intro 목록(전체 결재 목록)-->
 <select id="selectAllPg"
 		resultMap="resultDft">

@@ -7,11 +7,18 @@ import java.util.Map;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.Position;
 
 public interface ApproveDAO {
 	
-	//기안 페이지 요청
+	//기안 페이지 요청[문서/부서/직급/'AJAX':결재선사원불러오기]
 	List<Document> selectAllDoc();
+	List<Department> selectAllApDep();
+	List<Position> selectAllApPos();
+		List<Member> selectByApMm( Map<String, Integer> map );
+	
 
 	//기안 등록( draft + progress) 
 	int insertDft(Draft draft);
@@ -43,6 +50,8 @@ public interface ApproveDAO {
 	
 	// 문서 양식 등록
 	int insertDoc(Document document);
+	
+
 
 	
 	

@@ -79,17 +79,6 @@
 		<result property="mmAccount" column="mm_account"/>
 	</resultMap>
 	
-	<select id="selectAllCountPm"
-			parameterType="int"
-			resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM
-			projectMember
-		WHERE
-			pr_code = #{prCode}
-	</select>
-	
 	<select id="selectCountPm"
 			parameterType="int"
 			resultType="int">
@@ -113,28 +102,6 @@
 			pr_code = #{prCode} 
 	</select>
 	
-	<select id="selectCountFu"
-			parameterType="int"
-			resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM
-			funds
-		WHERE
-			pr_code = #{prCode}
-	</select>
-
-	<select id="selectCountWbs"
-			parameterType="int"
-			resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM
-			wbs
-		WHERE
-			pr_code = #{prCode}
-	</select>
-
 	<select id="selectByFuCode"
 			parameterType="int"
 			resultMap="resultFu">
@@ -377,9 +344,7 @@
 		WHERE
 			pr_code = #{prCode}
 	</delete>
-	
-<<<<<<< HEAD
-=======
+
 	<select id="selectCountWbs"
 			parameterType="int"
 			resultType="int">
@@ -411,40 +376,42 @@
 			pr_code = #{prCode}
 	</select>
 	
+	
 	<select id="selectByRequirementPr"
 			parameterType="com.cafe24.smart.project.domain.Project"
 			resultMap="resultPr">
-		<![CDATA[
+		
 			SELECT 
 				*
 			FROM
 				project
-			<where>
-				<if test="prMember != 0 and prMember<5">
-					pr_member < 5
+			<trim prefix="WHERE" prefixOverrides="AND">
+				<if test="prMember eq 0">
+					AND pr_member > 0
 				</if>
-				<if test="prMember>4 and prMember<11">
-					AND pr_member > 4 AND pr_member < 11
+				<if test="prMember gt 0 and prMember lt 5">
+					AND pr_member <![CDATA[ < ]]> 5
 				</if>
-				<if test="prMember>10">
+				<if test="prMember gt 4 and prMember lt 11">
+					AND pr_member > 4 AND pr_member <![CDATA[ < ]]> 11
+				</if>
+				<if test="prMember gt 10">
 					AND pr_member > 10
 				</if>
-				<if test="prProgress != '::선택::'">
+				<if test="!prProgress.equals('::선택::')">
 					AND pr_progress = #{prProgress}
 				</if>
-				<if test="prStartDay != null and prEndDay = null">
+				<if test="!prStartDay.equals('') and prEndDay.equals('')">
 					AND pr_startDay >= #{prStartDay}
 				</if>
-				<if test="prStartDay = null and prEndDay != null">
-					AND pr_endDay <= #{prEndDay}
+				<if test="prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
 				</if>
-				<if test="prStartDay != null and prEndDay != null">
-					AND pr_startDay >= #{prStartDay} AND pr_endDay <= #{prEndDay}
+				<if test="!prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_startDay >= #{prStartDay} AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
 				</if>
-			</where>
-		]]>
+			</trim>
+		
 	</select>
->>>>>>> c9273a53fc0e56a16c840395033e1da77ec003c7
-	
 	
 </mapper>

@@ -2,6 +2,7 @@ package com.cafe24.smart.approve.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -14,6 +15,8 @@ import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.Position;
 
 @Repository
 public class ApproveDAOImpl implements ApproveDAO {
@@ -24,12 +27,34 @@ public class ApproveDAOImpl implements ApproveDAO {
 	private SqlSessionTemplate sqlSession;
 	
 
-	// 기안 페이지 요청 : draft
+	// 기안 페이지 요청 : 1-1.draft
 	@Override
 	public List<Document> selectAllDoc() {
 		//System.out.println("dao selectAllDoc>  test");
 		return sqlSession.selectList("AprDAO.selectAllDoc");
 	}
+	
+	// 기안 페이지 요청 : 1-2.department
+	@Override
+	public List<Department> selectAllApDep() {
+		//System.out.println("dao selectAllApDep> test");
+		return sqlSession.selectList("acDAO.selectDp");
+	}
+	
+	// 기안 페이지 요청 : 1-3. position
+	@Override
+	public List<Position> selectAllApPos() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("acDAO.selectPt");
+	}
+
+		// [ajax] 기안 페이지 요청 : 1-4. 사원번호[이름] 가져오기 
+		@Override
+		public List<Member> selectByApMm( Map<String, Integer> map ) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList("AprDAO.selectContMm", map);
+		}
+
 	
 	// 기안 등록 1-1 : draft
 	@Override
@@ -135,6 +160,5 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.insert("AprDAO.insertDoc", document);
 	}
 
-	
 
 	}

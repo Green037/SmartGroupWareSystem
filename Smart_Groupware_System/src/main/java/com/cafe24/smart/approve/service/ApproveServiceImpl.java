@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -22,6 +23,9 @@ import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.domain.TotalInfo;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.Position;
 import com.cafe24.smart.util.UtilFile;
 
 
@@ -36,7 +40,7 @@ public class ApproveServiceImpl implements ApproveService {
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 	
 	// ----- 메소드 : 파일 업로드
-	private TotalInfo getFileInfo(TotalFile totalFile,TotalInfo totalInfo) throws IllegalStateException, IOException{
+/*	private TotalInfo getFileInfo(TotalFile totalFile,TotalInfo totalInfo) throws IllegalStateException, IOException{
 		System.out.println("serv fileUpload> test1");
 		
 		File destFile = null;
@@ -57,7 +61,7 @@ public class ApproveServiceImpl implements ApproveService {
 		//uuid 적용
 		//----- 상대경로 적용???????????????????????????????
 			
-	/*	절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";*/
+		절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
 		
 		String filePath =  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
 		UUID uuid = UUID.randomUUID();
@@ -81,25 +85,44 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return totalInfo;
 	}
-	
+	*/
 	
 	//기안 요청 : GET ---- DOCUMENT
 	@Override
 	public List<Document> apAddSelServ() {
-		System.out.println("serv temContent> test1");
+		//System.out.println("serv temContent> test1");
 		List<Document> doc = new ArrayList<Document>();
 		doc = approveDAO.selectAllDoc();
 		
-		System.out.println("serv temContent> test2");
+		//System.out.println("serv temContent> test2");
 	
 		return doc;
 	}
 
-	//기안 요청 : GET ---- Member
+	//기안 요청 : GET ---- Department
 	@Override
-	public Map apAddMmSelServ() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Department> apAddMmSelServ() {
+		//System.out.println("serv apAddMmSelServ> test1");
+		return approveDAO.selectAllApDep();
+	}
+	
+	//기안 요청 : GET ---- POSITION
+	@Override
+	public List<Position> apADDPosSelServ() {
+		//System.out.println("serv apADDPosSelServ> test1");
+		return approveDAO.selectAllApPos();
+	}
+	
+	// --- AJAX 기안 요청 : GET 
+	@Override
+	public List<Member> apMmAddServ(Position position, Department department) {
+
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		
+		map.put("dpCode", department.getDpCode());
+		map.put("ptCode", position.getPtCode());
+		
+		return approveDAO.selectByApMm(map);
 	}
 	
 	//기안 등록 : POST
@@ -425,13 +448,13 @@ public class ApproveServiceImpl implements ApproveService {
 	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
 		
-		UtilFile utilFile = new UtilFile();
+	/*	UtilFile utilFile = new UtilFile();*/
 		
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")+1, uploadPath.lastIndexOf(".")));
 		document.setDocFilePath(uploadPath);
 	
-		System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
+		//System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
 		
 		int result = approveDAO.insertDoc(document);
 
@@ -451,6 +474,8 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		return docList;
 	}
+
+	
 
 	
 }

@@ -1,6 +1,7 @@
 package com.cafe24.smart.approve.service;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,13 +12,21 @@ import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.domain.TotalInfo;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.Position;
 
 public interface ApproveService {
 	
-	//기안 페이지 요청[1.Document 2.Member : 진행중]
+	//기안 페이지 요청[1.Document 2.department 3.position]
 	List<Document> apAddSelServ();
-	Map apAddMmSelServ();
-
+	List<Department> apAddMmSelServ();
+	List<Position> apADDPosSelServ();
+	
+		// [ajax] 기안 페이지 요청 : 결재선 사원 가져오기
+		List<Member> apMmAddServ(Position position, Department department);
+	
+	
 	//기안 등록
 	int apAddServ(Draft draft, Progress progress, String uploadPath);
 	
@@ -40,5 +49,8 @@ public interface ApproveService {
 	int apDocAddServ(Document document,String uploadPath);
 	//문서 양식 목록
 	List<Document> docListServ();
+	
+
+	
 
 }

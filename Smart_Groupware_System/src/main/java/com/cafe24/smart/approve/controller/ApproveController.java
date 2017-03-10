@@ -28,6 +28,8 @@ import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.domain.TotalFile;
 import com.cafe24.smart.approve.domain.TotalInfo;
 import com.cafe24.smart.approve.service.ApproveService;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Position;
 import com.cafe24.smart.util.UtilFile;
 
 @Controller
@@ -43,14 +45,17 @@ public class ApproveController {
 		
 		//System.out.println("ctrl dftAdd GET> test");
 		List<Document> doc = new ArrayList<Document>();
-		Map memberMap = new HashMap(); 
+		List<Department> dep = new ArrayList<Department>();
+		List<Position> pos = new ArrayList<Position>();
 		
 		doc = approveService.apAddSelServ();
-		memberMap = approveService.apAddMmSelServ();
-		
+		dep = approveService.apAddMmSelServ();
+		pos = approveService.apADDPosSelServ();
 		
 		//System.out.println(doc);
 		model.addAttribute("doc", doc);
+		model.addAttribute("dep", dep);
+		model.addAttribute("pos", pos);
 		
 		return "/approve/ap_dftAdd";   
 	}
