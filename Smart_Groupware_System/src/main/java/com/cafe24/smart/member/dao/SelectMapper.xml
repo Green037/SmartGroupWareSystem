@@ -126,7 +126,9 @@
 		<result property="mcGrade" column="mc_grade"/>
 		<result property="crCode" column="cr_code"/>
 		<result property="maCode" column="ma_code"/>
+		<result property="maType" column="ma_type"/>
 		<result property="miCode" column="mi_code"/>
+		<result property="miType" column="mi_type"/>
 		<result property="crData" column="cr_data"/>
 		<result property="crService" column="cr_service"/>
 		<result property="crPastJoinDay" column="cr_pastJoinDay"/>
@@ -148,7 +150,11 @@
 		
 		 <!-- 사원 개인정보조회 -->
 			
-		<select id="selectMmContent" resultMap="selectMmContent">
+
+		<select id="selectMmContent" 
+				parameterType="int"
+				resultMap="selectMmContent">
+		
 			SELECT
 					memberManagement.mm_code,
 					memberManagement.mm_name,
@@ -184,9 +190,38 @@
 		</select>    
 		
 		
+		<select	id="selectMmContentMc"
+				parameterType="int"
+				resultMap="selectMmContent">
+		
+		SELECT
+				achieve.ac_name,
+				memberAchieve.mc_schoolName,
+				memberAchieve.mc_admissionDate,
+				memberAchieve.mc_graduationDate,
+				memberAchieve.mc_major,
+				memberAchieve.mc_jumsu,
+				memberAchieve.mc_grade
+		FROM 	
+				memberAchieve
+		JOIN	
+				achieve
+		ON 		
+				achieve.ac_code = memberAchieve.ac_code
+		WHERE 
+				memberAchieve.mm_code = #{mmCode}
+	
+		</select>
+		
 		
 		<!--사원 개인정보조회 사원자격증불러오기 -->
-		<!--  <select id="selectMmcontentlc" resultMap="selectMmContent">
+
+		 <select id="selectMmcontentlc" 
+		 		 parameterType="int"
+		 		 resultMap="selectMmContent">
+
+		  
+
 			SELECT
 					license.lc_name,
 					license.lc_organization,
@@ -207,7 +242,38 @@
 			WHERE 
 					memberLicense.mm_code = #{mmCode}
 		
-		</select>  -->
+
+		</select>  
+		
+		
+		<select id="selectMmcontentCr" 
+		 		parameterType="int"
+		 		resultMap="selectMmContent">
+			
+			SELECT
+					career.cr_data,
+					career.cr_service,
+					career.cr_pastJoinDay,
+					career.cr_pastResignDay,
+					career.cr_responsibility,
+					majorTypeOfBusiness.ma_type,
+					minorTypeOfBusiness.mi_type
+			FROM	
+					career
+			JOIN	
+					majorTypeOfBusiness
+			ON		
+					career.ma_code =	majorTypeOfBusiness.ma_code
+			JOIN	
+					minorTypeOfBusiness
+			ON		
+					career.mi_code =	minorTypeOfBusiness.mi_code
+			WHERE 
+					career.mm_code = #{mmCode}
+		
+		</select>
+ 
+
 		
 		
 
