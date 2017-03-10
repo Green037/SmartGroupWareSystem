@@ -28,7 +28,10 @@ public interface MemberDAO {
 	List<MinorTypeOfBusiness> 			selectMi();
 	//DB에서 정보 불러오기 리스트 끝
 	
-	MemberContent						selectMmContent(MemberContent memberContent); // 개인사원정보조회
+	List<MemberContent>					selectMmcontentCr(int mmCode);// 개인사원경력사항정보조회
+	List<MemberContent>					selectMmcontentlc(int mmCode);// 개인사원자격증정보조회
+	MemberContent						selectMmContentMc(int mmCode);// 개인사원정보학력조회
+	MemberContent						selectMmContent(int mmCode); // 개인사원기본정보조회
 	Member								mmLogin(Member member); //로그인
 	Member 								selectByMm(int mmCode); // 사원코드 불러오기
 	int 								selectTotalMemberCount(); // 사원조회리스트 전체 행 수
