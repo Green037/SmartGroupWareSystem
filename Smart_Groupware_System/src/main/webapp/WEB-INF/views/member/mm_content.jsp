@@ -30,23 +30,23 @@
 								<form>
 									<div class="col-md-2 form-group1">
 										<label class="control-label"><b>사원번호</b></label>&nbsp;
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" id="mmCode" name="mmCode"  readonly>
-									asd</div>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${memberContent.mmCode}" id="mmCode" name="mmCode"  readonly>
+									</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>사원이름</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="" id="mmName" name="mmName" readonly>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${memberContent.mmName}" id="mmName" name="mmName" readonly>
 									</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>소속부서</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value=""  id="dpName" name="dpName" readonly>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${memberContent.dpName}"  id="dpName" name="dpName" readonly>
 									</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>직급</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value=""  id="cpName" name="cpName" readonly>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${memberContent.ptName}"  id="ptName" name="ptName" readonly>
 									</div>
 									<div class="col-md-2 form-group1 form-last">
 										<label class="control-label"><b>계약형태</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value=""  id="ctType" name="ctType" readonly>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${memberContent.ctType}"  id="ctType" name="ctType" readonly>
 									</div>
 								</form>
 								<div class="clearfix">&nbsp;</div>
@@ -62,12 +62,26 @@
 										<th>남은연차</th>
 									</tr>
 									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
+										<td>${memberContent.mmJoinDate}</td>
+										<td>${memberContent.mmResignDate}</td>
+										<td>${memberContent.mmDailyPay}</td>
+										<c:choose>
+											<c:when test="${memberContent.mmArmy eq 0}">
+												<td>미필</td>
+											</c:when>
+											<c:when test="${memberContent.mmArmy ne 0}">
+												<td>군필</td>
+											</c:when>
+										</c:choose>
+										<c:choose>
+											<c:when test="${memberContent.mmMarriage eq 0}">
+												<td>미혼</td>
+											</c:when>
+											<c:when test="${memberContent.mmArmy ne 0}">
+												<td>기혼</td>
+											</c:when>
+										</c:choose>
+										<td>${memberContent.mmAnnualLeave}</td>
 									</tr>
 									<tr>
 										<th>이메일주소</th>
@@ -78,12 +92,12 @@
 										<th>사인</th>
 									</tr>
 									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
+										<td>${memberContent.mmEmail}</td>
+										<td>${memberContent.mmAddress}</td>
+										<td>${memberContent.mmTel}</td>
+										<td>${memberContent.mmBank}</td>
+										<td>${memberContent.mmAccount}</td>
+										<td>${memberContent.mmSign}</td>
 									</tr>
 								</table> 
 								<div class="clearfix">&nbsp;</div>
@@ -105,13 +119,13 @@
 										<tbody>
 										
 											<tr>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<td>${memberContentMc.acName}</td>
+												<td>${memberContentMc.mcSchoolName}</td>
+												<td>${memberContentMc.mcAdmissionDate}</td>
+												<td>${memberContentMc.mcGraduationDate}</td>
+												<td>${memberContentMc.mcMajor}</td>
+												<td>${memberContentMc.mcJumsu}</td>
+												<td>${memberContentMc.mcGrade}</td>
 											</tr>
 										</tbody>
 									</table> 
@@ -132,15 +146,17 @@
 											</tr>
 										</thead>
 									<tbody>
+										<c:forEach var="memberContentCr" items="${memberContentCr}">
 										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<td>${memberContentCr.crData}</td>
+											<td>${memberContentCr.crService}</td>
+											<td>${memberContentCr.crPastJoinDay}</td>
+											<td>${memberContentCr.crPastResignDay}</td>
+											<td>${memberContentCr.crResponsibility}</td>
+											<td>${memberContentCr.maType}</td>
+											<td>${memberContentCr.miType}</td>
 										</tr>
+										</c:forEach>
 									</tbody>
 								</table> 
 								<div class="clearfix">&nbsp;</div>
@@ -156,13 +172,15 @@
 											<th>분류</th>
 										</thead>
 									<tbody>
+									<c:forEach var="memberContentLc" items="${memberContentLc}">
 										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
+											<td>${memberContentLc.lcName}</td>
+											<td>${memberContentLc.mlIssueDate}</td>
+											<td>${memberContentLc.lcOrganization}</td>
+											<td>${memberContentLc.lcType}</td>
+											<td>${memberContentLc.lcNote}</td>
 										</tr>
+										</c:forEach>
 										<tr>
 
 										</tr>

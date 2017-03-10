@@ -27,13 +27,14 @@ public interface MemberService {
 	// 사원 로그인/ 사원로그인에 필요한 정보와 로그인 성공과 실패분기를 위해 map 타입으로 선언해준다
 	Map<String, Object> mmLoginServ(Member member);
 	
-	// 개인사원정보조회
-	MemberContent mmContentServ(MemberContent memberContent);
-	
-	
-	
-	
-	
+	// 개인사원기본정보조회
+	MemberContent mmContentServ(int mmCode);
+	// 개인사원학력정보조회
+	MemberContent mmContentMcServ(int mmCode);
+	// 개인사원자격증정보조회
+	List<MemberContent> mmContentLcServ(int mmCode);
+	// 개인사원경력사항정보조회
+	List<MemberContent> mmContentCrServ(int mmCode);
 	
 	
 	
