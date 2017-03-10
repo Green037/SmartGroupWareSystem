@@ -79,20 +79,9 @@ public class MemberDAOImpl implements MemberDAO {
 	
 //------------------------------------------------------ DB 에서 정보 불러오기 리스트---------------------------------------
 	
-//  사원 카운트 리스트
-	@Override
-	public int selectTotalMemberCount() {
-		// TODO Auto-generated method stub
-		return sqlSession.selectOne("acDAO.selectTotalMemberCount");
-	}	
+
 	
-	
-// 사원 조회 리스트
-	@Override
-	public List<MemberList> selectAllMm(Map<String, Integer> map) {
-		// TODO Auto-generated method stub
-		return sqlSession.selectList("acDAO.selectAllMm", map);
-	}
+// 사원 조건검색 리스트
 	
 	
 //	select one member by member code
