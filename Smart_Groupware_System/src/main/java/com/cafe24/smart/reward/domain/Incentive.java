@@ -3,7 +3,7 @@ package com.cafe24.smart.reward.domain;
 //성과급
 public class Incentive {
 	private int inCode;
-	private String reDate;
+	private int reCode;
 	private int mmCode;
 	private String inKind;
 	private int inBonus;
@@ -21,16 +21,16 @@ public class Incentive {
 		return this;
 	}
 	
-	public String getReDate() {
-		return reDate;
+	public int getReCode() {
+		return reCode;
 	}
-	
-	public Incentive setReDate(String reDate) {
-		this.reDate = reDate;
+
+	public Incentive setReCode(int reCode) {
+		this.reCode = reCode;
 		
 		return this;
 	}
-	
+
 	public int getMmCode() {
 		return mmCode;
 	}
@@ -90,11 +90,11 @@ public class Incentive {
 		
 		return this;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Incentive [inCode=" + inCode + ", reDate=" + reDate + ", mmCode=" + mmCode + ", inKind=" + inKind
-				+ ", inBonus=" + inBonus + ", inPossible=" + inPossible + ", inDate=" + inDate
-				+ ", inMmCode=" + inMmCode + "]";
+		return "Incentive [inCode=" + inCode + ", reCode=" + reCode + ", mmCode=" + mmCode + ", inKind=" + inKind
+				+ ", inBonus=" + inBonus + ", inPossible=" + inPossible + ", inDate=" + inDate + ", inMmCode="
+				+ inMmCode + "]";
 	}
 }

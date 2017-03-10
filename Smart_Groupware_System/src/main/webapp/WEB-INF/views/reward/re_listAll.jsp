@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,18 +30,26 @@
 									<tr>
 										<th>순번</th>
 										<th>고과코드</th>
-										<th>성과코드</th>
 										<th>사원코드</th>
+										<th>프로젝트코드</th>
 										<th>평가등급</th>
 										<th>평가날짜</th>
 										<th>고과서류첨부</th>
 										<th>담당사원코드</th>
 									</tr>
-										<!-- 목록 수만큼 출력
-											<tr>
-												<td></td>
-											</tr>
-										 -->
+									
+									<c:forEach var="reward" items="${reList}" varStatus="status">
+										<tr>
+											<td>${status.count}</td>
+											<td>${reward.reCode}</td>
+											<td>${reward.mmCode}</td>
+											<td>${reward.reGrade}</td>
+											<td>${reward.reDate}</td>
+											<td>${reward.reDocument}</td>
+											<td>${reward.reMmCode}</td>
+										</tr>
+									</c:forEach>
+									
 								</table> 
 								<div class="clearfix">&nbsp;</div>		
 								

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.payment.dao.PaymentDAO;
 import com.cafe24.smart.project.dao.ProjectDAO;
-import com.cafe24.smart.project.domain.Project;
 import com.cafe24.smart.reward.dao.IncentiveDAO;
 import com.cafe24.smart.reward.domain.Incentive;
 import com.cafe24.smart.reward.domain.Reward;
@@ -26,20 +25,19 @@ public class IncentiveServiceImpl implements IncentiveService {
 	@Autowired
 	ProjectDAO projectDAO;
 	
+//	인센티브 추가
 	@Override
 	public int inAddServ(Reward reward) {
 		
 		System.out.println("IncentiveServiceImpl inAddServ reward : " + reward);
 		
-		String inKind = "";
-		
 		Incentive incentive = new Incentive();
 		
 		UtilDate utilDate = new UtilDate();
 		
-		incentive.setReDate(reward.getReDate())
+		incentive.setReCode(reward.getReCode())
 				.setMmCode(reward.getMmCode())
-				.setInKind(inKind)
+				.setInKind("프로젝트 완료")
 				.setInBonus(paymentDAO.selectByPc(reward.getMmCode(), utilDate.getPaymentDate()))
 				.setInPossible(false)
 				.setInDate(null)

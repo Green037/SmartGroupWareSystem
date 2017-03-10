@@ -24,11 +24,20 @@ public class RewardServiceImpl implements RewardService {
 	MemberDAO memberDAO;
 	
 	@Override
+	public List<Reward> reListServ() {
+		
+		return rewardDAO.selectAllRe();
+	}
+	
+	@Override
 	public List<Reward> reContentServ(int mmCode, String reDate) {
 		
 		System.out.println("RewardServiceImpl pcReContentServ mmCode : " + mmCode);
 		
-		return rewardDAO.selectAllRe(mmCode, reDate);
+		List<Reward> reward = null;
+		
+//		return rewardDAO.selectAllRe(mmCode, reDate);
+		return reward;
 	}
 
 	@Override
@@ -51,4 +60,6 @@ public class RewardServiceImpl implements RewardService {
 		
 		return rewardDAO.insertRe(reward);
 	}
+
+	
 }

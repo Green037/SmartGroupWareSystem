@@ -8,7 +8,8 @@ import com.cafe24.smart.reward.domain.Reward;
 
 @Repository
 public interface RewardDAO {
-	List<Reward>			selectAllRe(int mmCode, String reDate);
+	List<Reward>			selectAllRe();
+//	List<Reward>			selectAllRe(int mmCode, String reDate);
 	
 	int						insertRe(Reward reward);
 }
