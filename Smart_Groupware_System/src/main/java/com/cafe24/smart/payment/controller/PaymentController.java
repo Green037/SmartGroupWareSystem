@@ -1,7 +1,11 @@
 package com.cafe24.smart.payment.controller;
 
-import java.util.Calendar;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -11,7 +15,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.smart.insurance.service.InsuranceService;
 import com.cafe24.smart.member.domain.Member;
@@ -33,27 +36,29 @@ public class PaymentController {
 	@Autowired
 	HttpSession session;
 	
+	UtilDate utilDate = new UtilDate();
+	
+//	총무부 > 총급여목록
+	@RequestMapping(value = "pa/listAll", method = RequestMethod.GET)
+	public String paListCtrl() {
+		
+		
+						
+		return "payment/pa_listAll";
+	}
 	
 //	연간 급여내역 조회
 	@RequestMapping(value = "pc/list", method = RequestMethod.GET)
 	public String pcListCtrl(Model model) {
 					
-//		List<PaymentView> paymentViewList = ;
 		return "payment/pc_list";
 	}
-	
-//	총무부 > 총급여 목록
-	@RequestMapping(value = "pa/list", method = RequestMethod.GET)
-	public String paListCtrl() {
-						
-		return "payment/pa_list";
-	}
-	
+
 //	월급여 조회
 	@RequestMapping(value = "pc/content", method = RequestMethod.GET)
 	public String pcContentCtrl(Model model) {
 		
-		int mmCode = (int) session.getAttribute("id");
+		int mmCode = (int) session.getAttribute("mmCode");
 		
 		Member member = paymentService.pcMmContentServ(mmCode);
 		
@@ -71,10 +76,8 @@ public class PaymentController {
 	@RequestMapping(value = "pa/add", method = RequestMethod.GET)
 	public String paAddFormCtrl(Model model) {	
 	
-		UtilDate utilDate = new UtilDate();
-		
 		int year = Integer.parseInt(utilDate.getCurrentYear());
-		int paMmCode = (int) session.getAttribute("id");
+		int paMmCode = (int) session.getAttribute("mmCode");
 		
 		model.addAttribute("eiContent", insuranceService.eiContentServ(year));
 		model.addAttribute("nhiContent", insuranceService.nhiContentServ(year));
@@ -89,14 +92,12 @@ public class PaymentController {
 	
 //	총무부 > 급여내역 추가 (post)
 	@RequestMapping(value = "pa/add", method = RequestMethod.POST)
-//	required : false면 해당 파라미터를 반드시 받지 않아도 됨
 	public String paAddProCtrl(PayContent payContent) {	
 		
 		System.out.println("PaymentController paAddProCtrl payContent : " + payContent);
 		
-//		System.out.println("PaymentController paAddProCtrl payContent : " + payContent);
-//		System.out.println("PaymentController paAddProCtrl pay : " + pay);
+		paymentService.pcAddServ(payContent);
 		
-		return "payment/pa_add";
+		return "payment/pa_list";
 	}
 }

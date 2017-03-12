@@ -8,66 +8,59 @@
 </head> 
 <body>
 
-	<%@ include file="../menu.jsp" %>
+<%@ include file="../menu.jsp" %>
 	
-	<!-- contents -->
+<!-- contents -->
 <div class="page-container">
 <div class="left-content">
 <div class="inner-content">
 <div class="outter-wp">
-					
-					<div class="sub-heard-part">a
-						<ol class="breadcrumb m-b-0">
-							<li><a href="/smart"><b>Home</b></a></li>
-							<li>임시 문서함</li>
-						</ol>
-					</div>
 			
-					<div class="forms-main">
-						<div class="graph-form">
-							<div class="validation-form">						
-								<label class="control-label"><b>저장 목록 [건수 : 10건]</b></label>
-								<table class="table table-bordered">
-									<tr>
-										<th>차수</th>
-										<th>구분</th>
-										<th width="300">문서제목</th>
-										<th>기안자</th>
-										<th>기안부서</th>
-										<th>신청일자</th>
-										<th></th>
-										<th>비고</th>
-									
-							
-									</tr>
-									
-									<c:forEach var="t" items="${temList}">
-									
-									<tr>
-										<td>${t.dftCode}</td>
-										<td>${t.docCode}</td>
-										<td><a href="<c:url value='/ap/temContent?dftCode=${t.dftCode}' />">${t.dftTitle}</a></td>
-										<td>${t.mmCode}</td>
-										<td>개발부</td>
-										<td>${t.dftDate}</td>
-										<td>2017/02/25</td>
-										<td></td>
-							
-									</tr>
-									
-									</c:forEach>
-									
-								</table> 
-								<div class="clearfix">&nbsp;</div>				
-					
-							</div>
-						</div>
-					</div>
-					
-						<div class="btn-group btn-group-justified">
-								<a href="<c:url value='/ap/test'/>" class="btn btn-success">test</a>
-						</div>
 				
+			<div class="sub-heard-part">
+				<ol class="breadcrumb m-b-0">
+					<li><a href="/smart"><b>Home</b></a></li>
+					<li>임시 문서함</li>
+				</ol>
+			</div>
+	
+			<div class="forms-main">
+				<div class="graph-form">
+					<div class="validation-form">						
+						<label class="control-label"><b>저장 목록 [건수 : 10건]</b></label>
+						<table class="table table-bordered">
+							<tr>
+								<th>차수</th>
+								<th>구분</th>
+								<th width="200">문서제목</th>
+								<th>기안자</th>
+								<th>기안부서</th>
+								<th>신청일자</th>
+								<th>파일명</th>
+							</tr>
+							
+							<c:forEach var="t" items="${temList}">
+							
+							<tr>
+								<td>${t.dftCode}</td>
+								<td>${t.docCode}</td>
+								<td><a href="<c:url value='/ap/temContent?dftCode=${t.dftCode}' />">${t.dftTitle}</a></td>
+								<td>${t.mmCode}</td>
+								<td>개발부</td>
+								<td>${t.dftDate}</td>
+								<td>${t.dftFileOri}</td>
+							</tr>
+							
+							</c:forEach>
+							
+						</table> 
+						<div class="clearfix">&nbsp;</div>				
+			
+					</div>
+				</div>
+			</div>
+				
+						
 </div>
 </div>
 </div>

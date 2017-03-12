@@ -5,6 +5,7 @@ import java.util.Date;
 
 //날짜 관련 반환하는 클래스
 public class UtilDate {
+	
 	//월급 날짜 리턴
 	public String getPaymentDate() {
 		
@@ -16,11 +17,17 @@ public class UtilDate {
 		
 		return (new SimpleDateFormat("yyyy")).format(new Date());
 	}
-
+	
 	//오늘 날짜 리턴
 	public String getCurrentDate() {
 		
 		return (new SimpleDateFormat("yyyy-MM-dd")).format(new Date());
+	}
+	
+	//오늘 날짜 + 시간 리턴
+	public String getCurrentDateTime() {
+			
+		return (new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")).format(new Date());
 	}
 	
 	//Date 차 리턴

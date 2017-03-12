@@ -10,27 +10,32 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.reward.domain.Reward;
 
 @Component
 public class UtilFile {
+	String fileName = "";
+	
 //	프로젝트 내 지정된 경로에 파일을 저장하는 메소드
 	public String fileUpload(MultipartHttpServletRequest request,
 										MultipartFile uploadFile, Object obj) {
-		String uploadPath = "";
+		String path = "";
+		String fileName = "";
+		
 		
 		OutputStream out = null;
 		PrintWriter printWriter = null;
 		
 		try {
-			String fileName = uploadFile.getOriginalFilename();
+			fileName = uploadFile.getOriginalFilename();
 			byte[] bytes = uploadFile.getBytes();
-			uploadPath = getSaveLocation(request, obj) + fileName;
+			path = getSaveLocation(request, obj);
 			
 			System.out.println("UtilFile fileUpload fileName : " + fileName);
-			System.out.println("UtilFile fileUpload uploadPath : " + uploadPath);
+			System.out.println("UtilFile fileUpload uploadPath : " + path);
 			
-			File file = new File(uploadPath);
+			File file = new File(path);
 			
 //			파일명이 중복으로 존재할 경우
 			if (fileName != null && !fileName.equals("")) {
@@ -38,7 +43,7 @@ public class UtilFile {
 //					파일명 뒤에 업로드 시간 초단위로 붙여서 중복 방지
 					fileName = fileName + "_" + System.currentTimeMillis();
 					
-					file = new File(uploadPath);
+					file = new File(path + fileName);
 				}
 			}
 			
@@ -66,26 +71,41 @@ public class UtilFile {
 			}
 		}
 		
-		return uploadPath;
+		return path + fileName;
+
 	}
+	
+//  파일이름 가져오는 메소드
+	public String getFileName(){
+		
+		System.out.println(fileName);
+		
+		return fileName;
+		
+
+	}
+	
 	
 //	업로드 파일 저장 경로 얻는 메소드
 	private String getSaveLocation(MultipartHttpServletRequest request, Object obj) {
 		
-		String uploadPath = "";
+		String uploadPath = request.getSession().getServletContext().getRealPath("/");
+		String attachPath = "resources/files/";
 		
 //		Reward인 경우
 		if (obj instanceof Reward) {
-			uploadPath += request.getSession().getServletContext().
-							getRealPath("/src/maiin/webapp/resources/files/reward/");
+			attachPath += "reward/";
 //		Approval인 경우
+		} else if(obj instanceof Draft) {
+			attachPath += "approval/";
+//		Document인 경우			
 		} else {
-			uploadPath += request.getSession().getServletContext().
-							getRealPath("/src/maiin/webapp/resources/files/approve/");
+			attachPath += "document/";
 		}
 		
-		System.out.println("UtilFile getSaveLocation uploadPath : " + uploadPath);
+		System.out.println("UtilFile getSaveLocation path : " + uploadPath + attachPath);
 		
-		return uploadPath;
+		return uploadPath + attachPath;
 	}
 }
+

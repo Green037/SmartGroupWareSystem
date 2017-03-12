@@ -40,7 +40,7 @@
 		  <div id="page-content-wrapper">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-6">
                         
 					<div class="container">
 						<form action = "<c:url value='/searchStaff'/>" method="post" id="mmSearchForm">

@@ -13,12 +13,8 @@
 	<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/style.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/font-awesome.css'/>" rel="stylesheet"/>
-	<link href="<c:url value='/resources/font/font.ttf'/>" rel="stylesheet"/>
-	<link href="<c:url value='/resources/css/barChart.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/fabochart.css'/>" rel="stylesheet" type="text/css"/>
 	<link href="<c:url value='/resources/css/icon-font.min.css'/>" rel="stylesheet" type="text/css"/>
-	<link href="<c:url value='/resources/css/vroom.css'/>" rel="stylesheet"/>
-	
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script src="<c:url value='/resources/js/amcharts.js'/>"></script>
 	<script src="<c:url value='/resources/js/serial.js'/>"></script>
@@ -26,13 +22,11 @@
 	<script src="<c:url value='/resources/js/radar.js'/>"></script>
 	<script src="<c:url value='/resources/js/css3clock.js'/>"></script>
 	<script src="<c:url value='/resources/js/skycons.js'/>"></script>
-	<script src="<c:url value='/resources/js/jquery.easydropdown.js'/>"></script>
-	<script src="<c:url value='/resources/js/vroom.js'/>" type="text/javascript" ></script>
 	<script src="<c:url value='/resources/js/TweenLite.min.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/resources/js/CSSPlugin.min.js'/>" type="text/javascript"></script>
 	<script src="<c:url value='/resources/js/jquery.nicescroll.js'/>"></script>
 	<script src="<c:url value='/resources/js/scripts.js'/>"></script>
-	<script src="<c:url value='/resources/js/bootstrap.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.js'/>" type="text/javascript"></script>
 
 	<script type="application/x-javascript">
 		addEventListener("load", function() {
@@ -306,7 +300,7 @@
 						</a>
 						<ul id="menu-academico-sub">
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_add'/>">사원등록</a></li>
-							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_search'/>">사원조회</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_listSearch'/>">사원조회</a></li>
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/member/mm_content'/>">개인정보조회</a></li>
 						</ul>
 					</li>
@@ -335,15 +329,7 @@
 								<a href="<c:url value='/pr/list?prProgress=0'/>">목록</a>
 							</li>
 							<li id="menu-arquivos"><a href="<c:url value='/pr/add'/>">등록</a></li>
-							<li id="menu-mensagens" style="width:120px">
-								<a href="#"></i> 완료보고서
-									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
-								</a>
-								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:130px"><a href="#">등록</a></li>
-									<li id="menu-mensagens-recebidas" style="width:130px"><a href="#">목록</a></li>
-								</ul>
-							</li>
+							<li id="menu-academico-boletim"><a href="<c:url value='/pr/search'/>">검색</a></li>
 						</ul>
 					</li>
 					<li id="menu-academico">
@@ -354,7 +340,15 @@
 						</a>
 						<ul id="menu-academico-sub">
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/wbs/add'/>">WBS등록</a></li>
-							<li id="menu-academico-boletim"><a href="#">프로젝트목록</a></li>
+							<li id="menu-mensagens" style="width:120px">
+								<a href="#"></i> 완료보고서
+									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
+								</a>
+								<ul id="menu-mensagens-sub">
+									<li id="menu-mensagens-enviadas" style="width:130px"><a href="<c:url value='/ev/add'/>">등록</a></li>
+									<li id="menu-mensagens-recebidas" style="width:130px"><a href="<c:url value='/ev/list'/>">목록</a></li>
+								</ul>
+							</li>
 						</ul>
 					</li>
 <!-- rang1536 menu end thank you~^^ -->
@@ -410,7 +404,7 @@
 									<i class="fa fa-angle-right" style="float:right; margin-right:-8px; margin-top:2px;"></i>
 								</a>
 								<ul id="menu-mensagens-sub">
-									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/list'/>">총급여목록</a></li>
+									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/listAll'/>">총급여목록</a></li>
 									<li id="menu-mensagens-enviadas" style="width:200px"><a href="<c:url value='/pa/add'/>">급여내역추가</a></li>
 								</ul>
 							</li>

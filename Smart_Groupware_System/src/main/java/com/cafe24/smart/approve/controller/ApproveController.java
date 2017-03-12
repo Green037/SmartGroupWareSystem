@@ -1,29 +1,30 @@
 package com.cafe24.smart.approve.controller;
 
-import java.io.IOException;
-import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.cafe24.smart.HomeController;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
-import com.cafe24.smart.approve.domain.TotalFile;
-import com.cafe24.smart.approve.domain.TotalInfo;
 import com.cafe24.smart.approve.service.ApproveService;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Position;
+import com.cafe24.smart.util.UtilFile;
 
 @Controller
 public class ApproveController {
@@ -38,32 +39,48 @@ public class ApproveController {
 		
 		//System.out.println("ctrl dftAdd GET> test");
 		List<Document> doc = new ArrayList<Document>();
+		List<Department> dep = new ArrayList<Department>();
+		List<Position> pos = new ArrayList<Position>();
+		
 		doc = approveService.apAddSelServ();
+		dep = approveService.apAddMmSelServ();
+		pos = approveService.apADDPosSelServ();
 		
 		//System.out.println(doc);
 		model.addAttribute("doc", doc);
+		model.addAttribute("dep", dep);
+		model.addAttribute("pos", pos);
 		
 		return "/approve/ap_dftAdd";   
 	}
 	
 	//기안 등록 : POST
 	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
-	public String apAddCtrl(Draft draft, Progress progress, TotalInfo totalInfo, TotalFile totalFile){
+	public String apAddCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
+							MultipartHttpServletRequest request,Draft draft, Progress progress){
 			
-		//System.out.println("ctrl dftAdd > test");	
-		int result = approveService.apAddServ(draft, progress, totalInfo, totalFile);
+		System.out.println("ctrl dftAdd > test");
+		UtilFile utilFile = new UtilFile();
 		
-		return "home";
+		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);
+		System.out.println("ctrl apAddCtrl> test2 :"+uploadPath);
+
+		int result = approveService.apAddServ(draft, progress, uploadPath);
+		
+		return "redirect:/ap/list";
 	}
 		
 	//결재 목록 [대기/반려/완료] : GET 
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
-	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
+	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress, HttpSession session){	
 		//System.out.println("ctrl pgList> test");
 		//System.out.println(apProgress);
 	
+		int mmCode = (int) session.getAttribute("mmCode");
+		System.out.println(mmCode);
+		
 		List<Draft> pgList = new ArrayList<Draft>();
-		pgList = approveService.pgListServ(apProgress);
+		pgList = approveService.pgListServ(apProgress, mmCode);
 		
 		//System.out.println(pgList);
 		model.addAttribute("pgList", pgList);
@@ -137,5 +154,13 @@ public class ApproveController {
 		return "/approve/ap_docList";   
 	}
 	
+	//기안 문서 : 첨부파일 다운로드
+	@RequestMapping(value ="ap/downdftFile", method = RequestMethod.POST)
+	public String apDownDftFile(@RequestParam("dftCode") int dftCode){
+		//----- 다운로드 메서드 추가
+		System.out.println("다운로드 test1");
+		return null;
+		
+	};
 		
 }

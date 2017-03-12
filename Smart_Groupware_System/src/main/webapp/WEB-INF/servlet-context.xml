@@ -34,12 +34,18 @@
 		<property name="password" value="bsy63792"/>  -->
 		
 <!-- 		은비씨 -->
+<<<<<<< HEAD
 		<property name="url" value="jdbc:mysql://tsuyu040913.cafe24.com:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
 		<property name="username" value="tsuyu040913"/>
  		<property name="password" value="eunbi3800*"/>
+=======
+<!-- 		<property name="url" value="jdbc:mysql://localhost:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
+<!-- 		<property name="username" value="tsuyu040913"/> -->
+<!--  		<property name="password" value="eunbi3800*"/> -->
+>>>>>>> 6eaaa1a9d9604e83394d02aeb846a07cba82127c
 		
-		<!-- 수아씨
-		<property name="url" value="jdbc:mysql://hsa3737.cafe24.com:3306/hsa3737?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
+<!-- 
+		<property name="url" value="jdbc:mysql://localhost:3306/hsa3737?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
 		<property name="username" value="hsa3737"/>
 		<property name="password" value="hong995421"/>  -->
 	</bean>	
@@ -52,6 +58,7 @@
 				<value>classpath:com/cafe24/smart/project/dao/ProjectMapper.xml</value>
 				<value>classpath:com/cafe24/smart/reward/dao/RewardMapper.xml</value>
 				<value>classpath:com/cafe24/smart/insurance/dao/InsuranceMapper.xml</value>
+				<value>classpath:com/cafe24/smart/payment/dao/PaymentMapper.xml</value>
 				<value>classpath:com/cafe24/smart/approve/dao/ApproveMapper.xml</value>
 				<value>classpath:com/cafe24/smart/wbs/dao/WbsMapper.xml</value>
 			</list>

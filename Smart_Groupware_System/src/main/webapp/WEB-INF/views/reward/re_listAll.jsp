@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,23 +25,30 @@
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">
-								<label class="control-label"><b>고과목록 (총 10건)</b></label>
+								<label class="control-label"><b>고과목록 (총 ${rewardCount} 건)</b></label>
 								<table class="table table-bordered">
 									<tr>
 										<th>순번</th>
 										<th>고과코드</th>
-										<th>성과코드</th>
-										<th>사원코드</th>
+										<th>사원명</th>
 										<th>평가등급</th>
 										<th>평가날짜</th>
 										<th>고과서류첨부</th>
 										<th>담당사원코드</th>
 									</tr>
-										<!-- 목록 수만큼 출력
-											<tr>
-												<td></td>
-											</tr>
-										 -->
+									
+									<c:forEach var="reward" items="${reList}" varStatus="status">
+										<tr>
+											<td>${status.count}</td>
+											<td><a href="<c:url value='/re/content'/>">${reward.reCode}</a></td>
+											<td>${reward.mmCode}</td>
+											<td>${reward.reGrade}</td>
+											<td>${reward.reDate}</td>
+											<td>${reward.reDocument}</td>
+											<td>${reward.reMmCode}</td>
+										</tr>
+									</c:forEach>
+									
 								</table> 
 								<div class="clearfix">&nbsp;</div>		
 								

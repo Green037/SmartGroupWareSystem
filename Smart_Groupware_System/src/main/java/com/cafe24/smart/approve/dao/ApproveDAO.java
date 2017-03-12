@@ -1,23 +1,34 @@
 package com.cafe24.smart.approve.dao;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.Position;
 
 public interface ApproveDAO {
 	
-	//기안 페이지 요청
+	//기안 페이지 요청[문서/부서/직급/'AJAX':결재선사원불러오기]
 	List<Document> selectAllDoc();
+	List<Department> selectAllApDep();
+	List<Position> selectAllApPos();
+		List<Member> selectByApMm( Map<String, Integer> map );
+		
+		//개인별 결재라인 등록
+		int insertApr(Approval approval);
+		//개이별 결재라인 가져오기
+		List<Approval> selectAllApr(Approval approval);
 
 	//기안 등록( draft + progress) 
 	int insertDft(Draft draft);
 	int insertPg(Progress progress);
 		
-	//결재 신청 폼(draft + progress)
+	//결재[대기/완료/반려] 신청 폼(draft + progress)
 	Draft selectContHv(int dftCode);
 	Progress selectDetailHv(int dftCode);
 	
@@ -37,16 +48,13 @@ public interface ApproveDAO {
 		List<Draft> selectContTem(int dftCode);
 	
 	//-----총 목록 : intro 목록
-	List<Draft> selectAllPg();
+	List<Draft> selectAllPg(int mmCode);
 	//-----총 목록 : 대기/반려/완료
-	List<Draft> selectByHv(int progress);
+	List<Draft> selectByHv(Map<String, Integer> map);
 	
 	// 문서 양식 등록
 	int insertDoc(Document document);
-
 	
 	
 
-	
-	
 }

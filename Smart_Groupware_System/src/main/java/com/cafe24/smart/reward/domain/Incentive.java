@@ -3,12 +3,11 @@ package com.cafe24.smart.reward.domain;
 //성과급
 public class Incentive {
 	private int inCode;
-	private int reDate;
+	private int reCode;
 	private int mmCode;
 	private String inKind;
 	private int inBonus;
 	private boolean inPossible;
-	private String inGroup;
 	private String inDate;
 	private int inMmCode;
 	
@@ -16,78 +15,86 @@ public class Incentive {
 		return inCode;
 	}
 	
-	public void setInCode(int inCode) {
+	public Incentive setInCode(int inCode) {
 		this.inCode = inCode;
+		
+		return this;
 	}
 	
-	public int getReDate() {
-		return reDate;
+	public int getReCode() {
+		return reCode;
 	}
-	
-	public void setReDate(int reDate) {
-		this.reDate = reDate;
+
+	public Incentive setReCode(int reCode) {
+		this.reCode = reCode;
+		
+		return this;
 	}
-	
+
 	public int getMmCode() {
 		return mmCode;
 	}
 	
-	public void setMmCode(int mmCode) {
+	public Incentive setMmCode(int mmCode) {
 		this.mmCode = mmCode;
+		
+		return this;
 	}
 	
 	public String getInKind() {
 		return inKind;
 	}
 
-	public void setInKind(String inKind) {
+	public Incentive setInKind(String inKind) {
 		this.inKind = inKind;
+		
+		return this;
 	}
 
 	public int getInBonus() {
 		return inBonus;
 	}
 
-	public void setInBonus(int inBonus) {
+	public Incentive setInBonus(int inBonus) {
 		this.inBonus = inBonus;
+		
+		return this;
 	}
 
 	public boolean isInPossible() {
 		return inPossible;
 	}
 	
-	public void setInPossible(boolean inPossible) {
+	public Incentive setInPossible(boolean inPossible) {
 		this.inPossible = inPossible;
-	}
-
-	public String getInGroup() {
-		return inGroup;
-	}
-	
-	public void setInGroup(String inGroup) {
-		this.inGroup = inGroup;
+		
+		return this;
 	}
 	
 	public String getInDate() {
 		return inDate;
 	}
 	
-	public void setInDate(String inDate) {
+	public Incentive setInDate(String inDate) {
 		this.inDate = inDate;
+		
+		return this;
 	}
 	
 	public int getInMmCode() {
 		return inMmCode;
 	}
 	
-	public void setInMmCode(int inMmCode) {
+	public Incentive setInMmCode(int inMmCode) {
 		this.inMmCode = inMmCode;
+		
+		return this;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Incentive [inCode=" + inCode + ", reDate=" + reDate + ", mmCode=" + mmCode + ", inKind=" + inKind
-				+ ", inBonus=" + inBonus + ", inPossible=" + inPossible + ", inGroup=" + inGroup + ", inDate=" + inDate
-				+ ", inMmCode=" + inMmCode + "]";
+		return "Incentive [inCode=" + inCode + ", reCode=" + reCode + ", mmCode=" + mmCode + ", inKind=" + inKind
+				+ ", inBonus=" + inBonus + ", inPossible=" + inPossible + ", inDate=" + inDate + ", inMmCode="
+				+ inMmCode + "]";
 	}
 }

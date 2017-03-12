@@ -66,7 +66,7 @@
 											<div class="form-group">
 												<label for="mmName" class="col-sm-2 control-label">사원명</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="mmName" placeholder="사원코드를 검색하세요." disabled/>
+													<input type="text" class="form-control1" id="mmName" placeholder="사원코드를 검색하세요." readonly/>
 												</div>
 											</div>
 											<div class="form-group">
@@ -90,7 +90,7 @@
 											<div class="form-group">
 												<label for="reMmCode" class="col-sm-2 control-label">담당사원코드</label>
 												<div class="col-sm-3">
-													<input type="text" class="form-control1" id="reMmCode" name="reMmCode" value="${reMmCode}" disabled/>
+													<input type="text" class="form-control1" id="reMmCode" name="reMmCode" value="${reMmCode}" readonly/>
 												</div>
 											</div>
 											<div class="form-group" align="center">

@@ -53,13 +53,7 @@
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
-	
-	
-	
-	
-	
-	
-	
+	<!-- 특정 사원 정보 조회 -->
 	<select id="selectByMm" parameterType="int" resultMap="resultMm">
 		SELECT
 			*
@@ -68,9 +62,7 @@
 		WHERE
 			mm_code = #{mmCode};
 	</select>
-	
-	
-	
+		
 	<!-- 사원 로그인 체크 -->
 	<select id="mmLogin" resultMap="resultMm">
 		SELECT
@@ -82,11 +74,7 @@
 		WHERE
 			mm_code=#{mmCode}
 
-	
-	
 	</select>
-	
-	
 	
 	<!-- 사원 경력사항 등록 -->
 	<insert id="insertCr" parameterType="com.cafe24.smart.member.domain.Career">
@@ -111,18 +99,20 @@
 	</insert>
 	
 	<!--사원 자격증 등록 -->
- 	<insert id="insertMl" parameterType="com.cafe24.smart.member.domain.MemberLicense" >
-		INSERT INTO memberLicense (
-			lc_code,
-			ml_issueDate,
-			mm_code)
+ 	<insert id="insertMl" parameterType="com.cafe24.smart.member.domain.MemberLicense">
+		INSERT INTO
+			memberLicense (
+				lc_code,
+				ml_issueDate,
+				mm_code)
 		VALUES (
 			#{lcCode},
 			#{mlIssueDate},
 			#{mmCode});
 	</insert>
+	
 	<!--  사원 학력정보 등록 -->
-	<insert id="insertMc" parameterType="com.cafe24.smart.member.domain.MemberAchieve" >
+	<insert id="insertMc" parameterType="com.cafe24.smart.member.domain.MemberAchieve">
 		INSERT INTO memberAchieve (
 			ac_code,
 			mc_schoolName,
@@ -142,6 +132,7 @@
 			#{mcGrade},
 			#{mmCode});
 	</insert>
+	
 	<!--  사원정보 등록 -->
 	<insert id="insertMm" parameterType="com.cafe24.smart.member.domain.Member" useGeneratedKeys="true" keyProperty="mmCode">
 		INSERT INTO memberManagement (

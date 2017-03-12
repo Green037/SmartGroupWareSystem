@@ -29,17 +29,15 @@
 		<result property="dftTitle" column="dft_title"/>
 		<result property="dftDegree" column="dft_degree"/>
 		<result property="dftDate" column="dft_date"/>
-		<result property="dftApproval1" column="dft_approval1"/>
-		<result property="dftApproval2" column="dft_approval2"/>
-		<result property="dftApproval3" column="dft_approval3"/>
+		<result property="aprApproval1" column="apr_approval1"/>
+		<result property="aprApproval2" column="apr_approval2"/>
+		<result property="aprApproval3" column="apr_approval3"/>
 		<result property="dftFinalState" column="dft_finalState"/>
 		<result property="dftCheck" column="dft_check"/>
 		<result property="proApproval" column="pro_approval"/>
 		<result property="proRealTime" column="pro_realTime"/>
-		<result property="dftFileName" column="dft_fileName"/>
 		<result property="dftFilePath" column="dft_filePath"/>
 		<result property="dftFileOri" column="dft_fileOri"/>
-		<result property="dftFileExtention" column="dft_fileExtention"/>
 		<result property="docFileGroup" column="doc_fileGroup"/>
 
 	</resultMap>
@@ -71,14 +69,12 @@
 			dft_degree, 
 			mm_code, 
 			dft_date,
-		    dft_approval1,
-		    dft_approval2,
-		    dft_approval3,
+		    apr_approval1,
+		    apr_approval2,
+		    apr_approval3,
 		    dft_finalState,
 		    dft_check,
-		   	dft_fileName,
 		   	dft_filePath,
-		   	dft_fileExtention,
 		   	dft_fileOri  
 			) 
 	    VALUES( 
@@ -88,14 +84,12 @@
             #{dftDegree},
             #{mmCode},
 	 	    #{dftDate},
-		    #{dftApproval1},
-		    #{dftApproval2},
-	 	    #{dftApproval3},
+		    #{aprApproval1},
+		    #{aprApproval2},
+	 	    #{aprApproval3},
 	 	    #{dftFinalState},
             #{dftCheck},
-            #{dftFileName},
             #{dftFilePath},
-            #{dftFileExtention},
             #{dftFileOri}
 	        )
 </insert>
@@ -127,18 +121,43 @@
 		INSERT INTO document(
 			doc_fileGroup,
 			doc_fileOri,
-			doc_fileExtention,
-			doc_fileName,
 			doc_filePath
 			) 
 	    VALUES( 
 		    #{docFileGroup},
 		    #{docFileOri},
-		    #{docFileExtention},
-		    #{docFileName},
 		    #{docFilePath}
 			 )
 </insert>
+
+<!-- 개인별 결재선 등록 -->
+<insert id="insertApr" 
+		parameterType="com.cafe24.smart.approve.domain.Approval">
+		INSERT INTO approval(
+			mm_code,
+			apr_approval1,
+			apr_approval2,
+			apr_approval3
+			) 
+	    VALUES( 
+			#{mmCode},
+		    #{aprApproval1},
+		    #{aprApproval2},
+		    #{aprApproval3}
+			 )
+</insert>
+
+<!-- 개인별 결재선 가져오기 -->
+<select id="selectByApr"
+		resultMap="resultDoc">
+		SELECT  
+			*
+		FROM 
+			approval
+		WHERE
+			mm_code=#{mmCode}
+</select>
+
 
 <!-- 문서 양식 목록 -->
 <select id="selectAllDoc"
@@ -149,6 +168,21 @@
 		FROM 
 			document
 </select>
+
+	<!-- 사원번호/이름 가져오기 -->
+	<select id="selectContMm"
+			resultType="com.cafe24.smart.member.domain.Member"
+			parameterType="Map">
+			SELECT 
+				mm_name as mmName,
+				mm_code as mmCode  
+			From 
+				memberManagement 
+			WHERE 
+				dp_code = #{dpCode}  
+			AND 
+				pt_code = #{ptCode}
+	</select>
 
 <!-- 결재 목록 :intro 목록(전체 결재 목록)-->
 <select id="selectAllPg"
@@ -164,7 +198,7 @@
 
 <!-- 결재 목록 :결재 대기/반려/완료 -->
 <select id="selectByHv"
-		parameterType="int"
+		parameterType="Map"
 		resultMap="resultDft">
 		SELECT   
 			*  
@@ -174,21 +208,24 @@
 			pro_state = #{proState}
 		AND 
 			progress.dft_code = draft.dft_code
+		AND 
+			pro_approval = #{progress}	
+			
 </select>
 
 
 	<!-- 결재,임시저장 상세보기 : dftCode 가져오기// 결재자 가져오기-->
-	<!-- <select id="selectContHv"
-			parameterType="int"
-			resultMap="resultDft">
-			SELECT 
-				*
-			FROM
-				draft
-			WHERE 
-				dft_code = #{dftCode}
-	</select> -->
-
+	<!-- 		<select id="selectContHv"
+					parameterType="int"
+					resultMap="resultDft">
+					SELECT 
+						*
+					FROM
+						draft
+					WHERE 
+						dft_code = #{dftCode}
+			</select>-->
+	 
 <!-- 결재 상세보기 : proApproval 가져오기-->
 <select id="selectDetailHv"
 		parameterType="int"
@@ -204,21 +241,21 @@
 
 </select>
 	
-	<!-- 결재,임시저장 상세보기 -->
-	<select id="selectContHv"
-			parameterType="int" 
-			resultMap="resultDft">
-			select 
-				* 
-			from 
-				draft
-			inner join 
-			 	document 
-			on
-				draft.doc_code=document.doc_code
-			WHERE 
-				dft_code=#{dftCode}
-	</select>
+<!-- 결재,임시저장 상세보기 -->
+<select id="selectContHv"
+		parameterType="int" 
+		resultMap="resultDft">
+		select 
+			* 
+		from 
+			draft
+		inner join 
+		 	document 
+		on
+			draft.doc_code=document.doc_code
+		WHERE 
+			dft_code=#{dftCode}
+</select>
 
 
 

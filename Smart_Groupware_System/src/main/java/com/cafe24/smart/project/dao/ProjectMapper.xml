@@ -21,7 +21,7 @@
 		<result property="prFinishCheck" column="pr_finishCheck"/>
 	</resultMap>
 	
-	<resultMap type="com.cafe24.smart.project.domain.ProjectMember" id="resultPm">
+	<resultMap id="resultPm" type="com.cafe24.smart.project.domain.ProjectMember">
 		<result property="pmCode" column="pm_code"/>
 		<result property="prCode" column="pr_code"/>
 		<result property="mmCode" column="mm_code"/>
@@ -34,7 +34,7 @@
 		<result property="mmName" column="mm_name"/>
 	</resultMap>
 	
-	<resultMap type="com.cafe24.smart.project.domain.Funds" id="resultFu">
+	<resultMap id="resultFu" type="com.cafe24.smart.project.domain.Funds">
 		<result property="fuCode" column="fu_code"/>
 		<result property="prCode" column="pr_code"/>
 		<result property="fuHistory" column="fu_history"/>
@@ -44,6 +44,7 @@
 		<result property="fuDraftCheck" column="fu_draftCheck"/>
 		<result property="fuAddMoney" column="fu_addMoney"/>
 	</resultMap>
+	
 	<resultMap id="resulWbs" type="com.cafe24.smart.wbs.domain.Wbs">
 		<result property="wbsCode" column="wbs_code"/>
 		<result property="prCode" column="pr_code"/>
@@ -56,6 +57,7 @@
 		<result property="wbsUncompletedReason" column="wbs_uncompletedReason"/>
 		<result property="wbsFinalEndDate" column="wbs_finalEndDate"/>
 	</resultMap>
+	
 	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
 		<result property="mmCode" column="mm_code"/>
 		<result property="ctCode" column="ct_code"/>
@@ -76,6 +78,40 @@
 		<result property="mmBank" column="mm_bank"/>
 		<result property="mmAccount" column="mm_account"/>
 	</resultMap>
+	
+	<select id="selectCountPm"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+		AND pm_approval = "승인"
+	</select>
+	
+	<select id="selectByPrCodeFu"
+			parameterType="int"
+			resultMap="resultFu">
+		SELECT 
+			*
+		FROM
+			funds
+		WHERE 
+			pr_code = #{prCode} 
+	</select>
+	
+	<select id="selectByFuCode"
+			parameterType="int"
+			resultMap="resultFu">
+		SELECT 
+			*
+		FROM
+			funds
+		WHERE 
+			fu_code = #{fuCode} 
+	</select>
 	
 	<insert id="insertPr" 
 			parameterType="com.cafe24.smart.project.domain.Project" 
@@ -128,16 +164,28 @@
 			pr_code,
 			mm_code,
 			pm_level,
-			pm_field,
-			pm_startDate,
-			pm_note)
+			pm_note,
+			pm_approval
+			<if test="pmStartDate != null and pmStartDate != ''">
+				,pm_startDate
+			</if>
+			<if test="pmField != null">
+				,pm_field
+			</if>
+			)
 		VALUES(
 			#{prCode},
 			#{mmCode},
 			#{pmLevel},
-			#{pmField},
-			#{pmStartDate},
-			#{pmNote})
+			#{pmNote},
+			#{pmApproval}
+			<if test="pmStartDate != null and pmStartDate != ''">
+				,#{pmStartDate}
+			</if>
+			<if test="pmField != null">
+				,#{pmField}
+			</if>
+			)
 	</insert>
 	
 	<select id="selectAll"
@@ -197,40 +245,20 @@
 			pr_code = #{prCode} 
 	</select>
 	
-	<select id="selectCountPm"
-			parameterType="int"
-			resultType="int">
-		SELECT 
-			COUNT(*)
-		FROM
-			projectMember
-		WHERE
-			pr_code = #{prCode}
-			AND pm_approval = "승인"
-	</select>
 	
-	<select id="selectByPrCodeFu"
-			parameterType="int"
-			resultMap="resultFu">
-		SELECT 
-			*
-		FROM
-			funds
-		WHERE 
-			pr_code = #{prCode} 
-	</select>
 	
 	<update id="updatePr"
 			parameterType="com.cafe24.smart.project.domain.Project">
 		UPDATE project
-		SET
-			pr_name = #{prName},
-			pr_progress = #{prProgress},
-			pr_cate = #{prCate},
-			pr_forProgress = #{prForProgress},
-			pr_money = #{prMoney},
-			pr_finishCheck = #{prFinishCheck},
-			pr_Goal = #{prGoal}
+			<set>
+				<if test="prName != null">pr_name = #{prName},</if>
+				<if test="prProgress != null">pr_progress = #{prProgress},</if>
+				<if test="prCate != null">pr_cate = #{prCate},</if>
+				<if test="prForProgress != null">pr_forProgress = #{prForProgress},</if>
+				<if test="prMoney != null">pr_money = #{prMoney},</if>
+				<if test="prFinishCheck != null">pr_finishCheck = #{prFinishCheck},</if>
+				<if test="prGoal != null">pr_Goal = #{prGoal}</if>
+			</set>
 		WHERE
 			pr_code = #{prCode}
 	</update>
@@ -245,16 +273,7 @@
 			pm_code = #{pmCode}
 	</update>
 	
-	<select id="selectByFuCode"
-			parameterType="int"
-			resultMap="resultFu">
-		SELECT 
-			*
-		FROM
-			funds
-		WHERE 
-			fu_code = #{fuCode} 
-	</select>
+	
 	
 	<update id="updateFu"
 			parameterType="com.cafe24.smart.project.domain.Funds">
@@ -274,6 +293,7 @@
 			memberManagement.mm_name as mmName,
 			memberManagement.mm_email as mmEmail,
 			memberManagement.mm_tel as mmTel,
+			department.dp_name as dpName,
 			rankposition.pt_name as ptName,
 			contract.ct_type as ctType
 		FROM 
@@ -286,7 +306,116 @@
 			contract
 		ON 
 			memberManagement.ct_code = contract.ct_code
+		LEFT JOIN
+			department
+		ON
+			memberManagement.dp_code = department.dp_code
 		WHERE 
 			mm_code = #{mmCode};
 	</select>
+	
+	<delete id="deletePr"
+			parameterType="int">
+		DELETE 
+		FROM 
+			project
+		WHERE
+			pr_code = #{prCode} 
+	</delete>
+	
+	<delete id="deletePm"
+			parameterType="int">
+		DELETE
+		FROM 
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+	
+	<delete id="deleteWbs"
+			parameterType="int">
+		DELETE
+		FROM 
+			wbs
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+	
+	<delete id="deleteFu"
+			parameterType="int">
+		DELETE
+		FROM 
+			funds
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+
+	<select id="selectCountWbs"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			wbs
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	<select id="selectCountFu"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			funds
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	<select id="selectAllCountPm"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	
+	
+	<select id="selectByRequirementPr"
+			parameterType="com.cafe24.smart.project.domain.Project"
+			resultMap="resultPr">
+		
+			SELECT 
+				*
+			FROM
+				project
+			<trim prefix="WHERE" prefixOverrides="AND">
+				<if test="prMember eq 0">
+					AND pr_member > 0
+				</if>
+				<if test="prMember gt 0 and prMember lt 5">
+					AND pr_member <![CDATA[ < ]]> 5
+				</if>
+				<if test="prMember gt 4 and prMember lt 11">
+					AND pr_member > 4 AND pr_member <![CDATA[ < ]]> 11
+				</if>
+				<if test="prMember gt 10">
+					AND pr_member > 10
+				</if>
+				<if test="!prProgress.equals('::선택::')">
+					AND pr_progress = #{prProgress}
+				</if>
+				<if test="!prStartDay.equals('') and prEndDay.equals('')">
+					AND pr_startDay >= #{prStartDay}
+				</if>
+				<if test="prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
+				</if>
+				<if test="!prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_startDay >= #{prStartDay} AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
+				</if>
+			</trim>
+	</select>
+	
 </mapper>
