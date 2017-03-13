@@ -13,8 +13,11 @@ import org.springframework.stereotype.Service;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.project.dao.ProjectDAO;
+import com.cafe24.smart.project.domain.Evaluation;
+import com.cafe24.smart.project.domain.EvaluationCommand;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.project.domain.ProjectEvaluation;
 import com.cafe24.smart.project.domain.ProjectMember;
 import com.cafe24.smart.project.domain.ProjectMemberCommand;
 
@@ -335,6 +338,41 @@ public class ProjectServiceImpl implements ProjectService {
 		// 입력값 null여부는 쿼리로 해결하고 처리한다. 입력값이 하나도 없다면 전체조회.
 		
 		return projectDao.selectByRequirementPr(project);
+	}
+
+	@Override
+	public int evAddServ(EvaluationCommand evauationCommand, ProjectEvaluation projectEvaluation) {
+		// 1.프로젝트 보고서의 프로젝트 코드를 변수에 세팅한다.
+		int prCode = projectEvaluation.getPrCode();
+		System.out.println("서비스레이어 prCode 값 확인 : "+prCode);
+		
+		// 2.프로젝트 보고서 입력처리하는 매서드 호출.
+		projectEvaluation.setPrApprovalCheck("미신청"); //최초입력이므로 일단 전자결제 승인체크는 미신청으로 세팅함.
+		int prEvResult = projectDao.insertEvPr(projectEvaluation);
+		System.out.println("플젝 보고서 입력확인 : "+prEvResult);
+		
+		// 3.인원 평가보고서 데이터 분해하여 배열로 세팅하고 for문 안에서 한세트씩 입력처리.
+		String[] evIntegritys = new String(evauationCommand.getEvIntegritys()).split(",");
+		String[] evProfessionals = new String(evauationCommand.getEvProfessionals()).split(",");
+		String[] evSociabilitys = new String(evauationCommand.getEvSociabilitys()).split(",");
+		String[] evEvals = new String(evauationCommand.getEvEvals()).split(",");
+		String[] mmCodes = new String(evauationCommand.getMmCodes()).split(",");
+		String[] evTotalScores = new String(evauationCommand.getEvTotalScores()).split(",");
+		
+		for(int i=0; i<mmCodes.length; i++){
+			Evaluation evaluation = new Evaluation();
+			evaluation.setMmCode(Integer.parseInt(mmCodes[i]));
+			evaluation.setEvIntegrity(Integer.parseInt(evIntegritys[i]));
+			evaluation.setEvProfessional(Integer.parseInt(evProfessionals[i]));
+			evaluation.setEvSociability(Integer.parseInt(evSociabilitys[i]));
+			evaluation.setEvEval(evEvals[i]);
+			evaluation.setEvTotalScore(Integer.parseInt(evTotalScores[i]));
+			evaluation.setPrCode(prCode);
+			
+			int result = projectDao.insertEv(evaluation);
+			System.out.println("인원평가 입력확인"+i+" : "+result);
+		}
+		return prEvResult;
 	}
 	
 }

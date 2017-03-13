@@ -6,8 +6,10 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.project.domain.EvaluationCommand;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.project.domain.ProjectEvaluation;
 import com.cafe24.smart.project.domain.ProjectMember;
 import com.cafe24.smart.project.domain.ProjectMemberCommand;
 
@@ -29,4 +31,5 @@ public interface ProjectService {
 	Map<String, Object> mmDetailServ(int mmCode);
 	int prRemoveServ(int prCode);
 	List<Project> prSearchServ(Project project, String prSize);
+	int evAddServ(EvaluationCommand evauationCommand, ProjectEvaluation projectEvaluation);
 }

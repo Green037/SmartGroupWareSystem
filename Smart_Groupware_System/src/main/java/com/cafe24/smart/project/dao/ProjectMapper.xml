@@ -418,4 +418,42 @@
 			</trim>
 	</select>
 	
+	<insert id="insertEv"
+			parameterType="com.cafe24.smart.project.domain.Evaluation">
+			
+		INSERT INTO evaluation(
+			ev_integrity,
+			ev_professional,
+			ev_sociability,
+			ev_eval,
+			pr_code,
+			mm_code,
+			ev_totalScore)
+		VALUES(
+			#{evIntegrity},
+			#{evProfessional},
+			#{evSociability},
+			#{evEval},
+			#{prCode},
+			#{mmCode},
+			#{evTotalScore})
+	
+	</insert>
+	
+	<insert id="insertEvPr"
+			parameterType="com.cafe24.smart.project.domain.ProjectEvaluation">
+		
+		INSERT INTO projectEvaluation(
+			pr_approvalCheck,
+			pr_code,
+			mm_code,
+			ev_prResult)
+		VALUES(
+			#{prApprovalCheck},
+			#{prCode},
+			#{mmCode},
+			#{evPrResult})
+	
+	</insert>
+	
 </mapper>

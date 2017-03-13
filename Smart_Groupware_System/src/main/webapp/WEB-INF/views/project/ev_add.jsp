@@ -79,6 +79,10 @@
 			<button class="btn btn-warning orange-circle-button" id="searchProjectBtn">
 				내프로젝트<br />검색<br /><span class="orange-circle-greater-than">></span>
 			</button>
+			<!--전자결제 팝업창 만들어 주면 팀장코드 확인하고 바로 플젝세팅하면됨.  -->
+			<button class="btn btn-warning orange-circle-button" id="evApprovalBtn">
+				전자결제<br />바로가기<br /><span class="orange-circle-greater-than">Go!!</span>
+			</button>
 		</div>   
 	</div>
 

@@ -9,8 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.smart.project.domain.Evaluation;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.project.domain.ProjectEvaluation;
 import com.cafe24.smart.project.domain.ProjectMember;
 
 @Repository
@@ -180,6 +182,20 @@ public class ProjectDAOImpl implements ProjectDAO {
 	public List<Project> selectByRequirementPr(Project project) {
 		//System.out.println("플젝 조건 검색전 project값 확인 : "+project);
 		return sqlSession.selectList("PrDAO.selectByRequirementPr", project);
+	}
+
+	// 평가보고서 등록(참여인원평가)
+	@Override
+	public int insertEv(Evaluation evaluation) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("PrDAO.insertEv", evaluation);
+	}
+
+	// 평가보고서 등록(프로젝트보고서)
+	@Override
+	public int insertEvPr(ProjectEvaluation projectEvaluation) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("PrDAO.insertEvPr", projectEvaluation);
 	}
 
 }

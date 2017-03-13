@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.project.domain.Evaluation;
+import com.cafe24.smart.project.domain.EvaluationCommand;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.project.domain.ProjectEvaluation;
 import com.cafe24.smart.project.domain.ProjectMember;
 import com.cafe24.smart.project.domain.ProjectMemberCommand;
 import com.cafe24.smart.project.service.ProjectService;
@@ -207,8 +210,8 @@ public class ProjectController {
 	// 평가보고서 등록 - 겟요청(평가보고서 입력폼연결)
 	@RequestMapping(value = "ev/addForm", method = RequestMethod.GET)
 	public String evAddFormCtrl(Model model, @RequestParam("prCode") int prCode){
-		System.out.println("h2 evalution addForm GET!!");
-		System.out.println("prCode값 확인 : "+prCode);
+		/*System.out.println("h2 evalution addForm GET!!");
+		System.out.println("prCode값 확인 : "+prCode);*/
 		
 		Map<String, Object> mmMap = new HashMap<String, Object>();
 		
@@ -218,13 +221,29 @@ public class ProjectController {
 		
 		mmMap = projectService.mmDetailServ(project.getPrMemberCode()); //팀장정보
 		
+		List<ProjectMember> pmList = new ArrayList<ProjectMember>();
+		pmList = projectService.pmListServ(prCode); //참여인원정보
+		
 		//view에 뿌려줄 값 세팅.
 		model.addAttribute("project", project);
 		model.addAttribute("mmMap", mmMap);
+		model.addAttribute("pmList", pmList);
 		
 		return "project/ev_addForm";
 	}
 	
+	// 평가보고서 등록 - 포스트요청(프로젝트보고서, 인원평가보고서 등록)
+	@RequestMapping(value = "ev/add", method = RequestMethod.POST)
+	public String evAddCtrl(EvaluationCommand evauationCommand, ProjectEvaluation projectEvaluation){
+		System.out.println("H2 Evaluation Add Ctrl POST");
+		System.out.println("입력값 확인 : "+evauationCommand);
+		System.out.println("입력값 확인 : "+projectEvaluation);
+		
+		// 두 매개변수 다 받는 서비스 레이어에 매서드를 호출하고 서비스레이어에서 배열분해하고 각자 입력처리. 프로젝트 별도 입력처리.
+		int result = projectService.evAddServ(evauationCommand, projectEvaluation);
+		
+		return "redirect:/ev/add";
+	}
 	// 평가보고서 목록 - 겟요청(폼연결)
 	@RequestMapping(value = "ev/list", method = RequestMethod.GET)
 	public String evListCtrl(){

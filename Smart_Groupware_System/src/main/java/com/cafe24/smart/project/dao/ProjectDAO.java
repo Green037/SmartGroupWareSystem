@@ -3,8 +3,10 @@ package com.cafe24.smart.project.dao;
 import java.util.List;
 import java.util.Map;
 
+import com.cafe24.smart.project.domain.Evaluation;
 import com.cafe24.smart.project.domain.Funds;
 import com.cafe24.smart.project.domain.Project;
+import com.cafe24.smart.project.domain.ProjectEvaluation;
 import com.cafe24.smart.project.domain.ProjectMember;
 
 public interface ProjectDAO {
@@ -26,6 +28,8 @@ public interface ProjectDAO {
 	int insertPr(Project project);
 	int insertFu(Funds funds);
 	int insertPm(ProjectMember projectMember);
+	int insertEv(Evaluation evaluation);
+	int insertEvPr(ProjectEvaluation projectEvaluation);
 	
 	int updatePr(Project project);
 	int updateApprovalPm(ProjectMember projectMember);
@@ -35,6 +39,7 @@ public interface ProjectDAO {
 	int deletePm(int prCode);
 	int deleteWbs(int prCode);
 	int deleteFu(int prCode);
+
 	List<Project> selectByRequirementPr(Project project);
 
 }
