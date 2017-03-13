@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.metadata.GenericTableMetaDataProvider;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -85,14 +86,16 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	// --- ajax 결재라인 가져오기 : POST
 	@Override
-	public List<Approval> apAprListServ(Approval approval) {
+	public List<Approval> apAprListServ(int mmCode) {
 		
 		List<Approval> apr = new ArrayList<Approval>();
-		apr = approveDAO.selectAllApr(approval);
+		apr = approveDAO.selectAllApr(mmCode);
 		System.out.println(apr);
 		
 		return apr;
 	}
+
+
 
  	
 	
@@ -140,12 +143,14 @@ public class ApproveServiceImpl implements ApproveService {
 	}
 	
 
-	//[총 결재 목록]진행 목록 :GET
+	//[총 결재 목록]진행 목록 :GET ---- ######수정######
 	@Override
 	public List<Draft> pgListServ(int apProgress, int mmCode) {
 		System.out.println("serv pgList> test1" );
 		
+		//전체 리스트
 		List<Draft> pgList = new ArrayList<Draft>();
+		//조건별 리스트 목록
 		Map<String, Integer> map = new HashMap<String, Integer>();
 				
 		int progress;
@@ -172,6 +177,14 @@ public class ApproveServiceImpl implements ApproveService {
 			
 		}else{
 			pgList = approveDAO.selectAllPg(mmCode);
+			
+			for(int i=0; i<pgList.size(); i++){
+				String mmName = approveDAO.selectDetailMm(pgList.get(i).getMmCode());
+				String pMmName = approveDAO.selectDetailPMn(pgList.get(i).getProApproval());
+				
+				pgList.get(i).setMmName(mmName);
+				pgList.get(i).setpMmName(pMmName);
+			}
 		}
 		System.out.println("serv pgList> test2");
 		//System.out.println(pgList);
@@ -186,11 +199,12 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		Draft draft = new Draft();
 		Progress progress= new Progress();
-		
+	
 		//-----결재 신청 정보 가져오기 
 /*		draft = approveDAO.selectContHv(dftCode);*/
 		
 		draft = approveDAO.selectContHv(dftCode);
+
 		
 		System.out.println(draft);
 		
@@ -198,9 +212,28 @@ public class ApproveServiceImpl implements ApproveService {
 				System.out.println("serv hvDetail> test");
 				//-----결재자 정보 가져오기 : progress의 pro_approval 컬럼에서 가져온다
 				progress = approveDAO.selectDetailHv(dftCode);
+				
 				draft.setProApproval(progress.getProApproval());
 				draft.setProReason(progress.getProReason());
-								
+				
+				String mmName = approveDAO.selectDetailMm(draft.getMmCode());
+				String dpName = approveDAO.selectDetailDp(draft.getMmCode());
+				String ptName = approveDAO.selectDetailPt(draft.getMmCode());
+				String pMmName = approveDAO.selectDetailPMn(progress.getProApproval());
+				String pDpName = approveDAO.selectDetailPDp(progress.getProApproval());
+				String pPtName = approveDAO.selectDetailPPt(progress.getProApproval());
+				
+				draft.setMmName(mmName);
+				draft.setDpName(dpName);
+				draft.setPtName(ptName);
+				draft.setProApprovalName(pMmName);
+				draft.setpDpName(pDpName);
+				draft.setpPtName(pPtName);
+					
+//				System.out.println("이름가져오기:"+pMmName);
+//				System.out.println("부서가져오기:"+pDpName);
+//				System.out.println("직급가져오기:"+pPtName);
+//				
 				//각 조건마다 다른 View 
 				switch(progress.getProState()){
 					case 0 :
@@ -405,10 +438,27 @@ public class ApproveServiceImpl implements ApproveService {
 	@Override
 	public List<Draft> temListServ() {
 		//System.out.println("serv temList> test1");
+		
+//		Draft draft = new Draft();
 		List<Draft> temList= new ArrayList<Draft>();
+	
 		temList = approveDAO.selectAllTem();
-		//System.out.println("serv temList> test2");
-		//System.out.println(temList);
+//		System.out.println(temList);
+//		System.out.println(temList.get(0).getMmCode());
+		
+		for( int i=0; i<temList.size(); i++){
+			String mmName = approveDAO.selectDetailMm(temList.get(i).getMmCode());
+			String dpName = approveDAO.selectDetailDp(temList.get(i).getMmCode());
+			String docFileGroup = approveDAO.selectDetailDoc(temList.get(i).getDftCode());
+//			System.out.println(mmName);
+//			System.out.println(dpName);
+//			System.out.println(docFileGroup);
+			temList.get(i).setMmName(mmName);
+			temList.get(i).setDpName(dpName);
+			temList.get(i).setDocFileGroup(docFileGroup);
+		}
+
+		
 		return temList;
 	}
 
@@ -418,10 +468,23 @@ public class ApproveServiceImpl implements ApproveService {
 		//System.out.println("serv temContent> test1");
 		List<Draft> temContent= new ArrayList<Draft>();
 		temContent = approveDAO.selectContTem(dftCode);
+		
+//		System.out.println(temContent.get(0).getMmCode());
+		String mmName = approveDAO.selectDetailMm(temContent.get(0).getMmCode());
+		
+		temContent.get(0).setMmName(mmName);
+		
 		//System.out.println(temContent);
 		
 
 		return temContent;
+	}
+	
+	//임시 상세보기 : GET = SELECT Document 값 가져오기 
+	@Override
+	public String temDocSeleServ(int dftCode) {
+		
+		return approveDAO.selectDetailDoc(dftCode);
 	}
 
 	//문서 양식 등록 : POST
@@ -466,10 +529,6 @@ public class ApproveServiceImpl implements ApproveService {
 
 
 
-
-	
-
-	
 
 
 	}	

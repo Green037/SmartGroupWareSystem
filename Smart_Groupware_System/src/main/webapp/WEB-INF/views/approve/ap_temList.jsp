@@ -43,10 +43,10 @@
 							
 							<tr>
 								<td>${t.dftCode}</td>
-								<td>${t.docCode}</td>
+								<td>${t.docFileGroup}</td>
 								<td><a href="<c:url value='/ap/temContent?dftCode=${t.dftCode}' />">${t.dftTitle}</a></td>
-								<td>${t.mmCode}</td>
-								<td>개발부</td>
+								<td>${t.mmName}</td>
+								<td>${t.dpName}</td>
 								<td>${t.dftDate}</td>
 								<td>${t.dftFileOri}</td>
 							</tr>

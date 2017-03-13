@@ -39,7 +39,11 @@
 		<result property="dftFilePath" column="dft_filePath"/>
 		<result property="dftFileOri" column="dft_fileOri"/>
 		<result property="docFileGroup" column="doc_fileGroup"/>
-
+		<result property="docFileGroup" column="doc_fileGroup"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="dpName" column="dp_name"/>
+		<result property="ptName" column="pt_name"/>
+		
 	</resultMap>
 	
 	<resultMap id="resultPro" type="com.cafe24.smart.approve.domain.Progress">
@@ -149,7 +153,7 @@
 
 <!-- 개인별 결재선 가져오기 -->
 <select id="selectByApr"
-		resultMap="resultDoc">
+		resultMap="resultApr">
 		SELECT  
 			*
 		FROM 
@@ -183,6 +187,7 @@
 			AND 
 				pt_code = #{ptCode}
 	</select>
+		
 
 <!-- 결재 목록 :intro 목록(전체 결재 목록)-->
 <select id="selectAllPg"
@@ -240,6 +245,104 @@
 			dft_code = #{dftCode}
 
 </select>
+
+	<!-- 기안자 이름 가져오기 -->
+	<select id="selectByMm"
+			parameterType="int"
+			resultType ="String">
+			SELECT 
+				mm_name
+			FROM
+				memberManagement 
+			WHERE
+				mm_code = #{mmCode}
+	</select>
+	
+			<!-- 결재자 이름 가져오기 -->
+			<select id="selectByPMm"
+					parameterType="int"
+					resultType ="String">
+					SELECT 
+						mm_name
+					FROM
+						memberManagement 
+					WHERE
+						mm_code = #{proApproval}
+			</select>
+			
+	
+	<!-- 기안자 부서가져오기 -->
+	<select id="selectByDp"
+			parameterType="int"
+			resultType ="String">
+			SELECT 
+				department.dp_name  
+			FROM
+				memberManagement 
+			JOIN
+				department  
+			ON  
+				memberManagement.dp_code = department.dp_code 
+			WHERE
+				mm_code = #{mmCode}
+	
+	</select>
+	
+		
+			<!-- 결재자 부서가져오기 -->
+			<select id="selectByPDp"
+					parameterType="int"
+					resultType ="String">
+					SELECT 
+						department.dp_name  
+					FROM
+						memberManagement 
+					JOIN
+						department  
+					ON  
+						memberManagement.dp_code = department.dp_code 
+					WHERE
+						mm_code = #{proApproval}
+			
+			</select>
+			
+		
+	
+	<!-- 기안자 직급 가져오기 -->
+	<select id="selectByPt"
+			parameterType="int"
+			resultType ="String">
+			SELECT 
+				rankposition.pt_name  
+			FROM
+				memberManagement 
+			JOIN
+				rankposition   
+			ON  
+				memberManagement.pt_code = rankposition.pt_code 
+			WHERE
+				mm_code = #{mmCode}
+	
+	</select>
+		
+			<!-- 결재자자 직급 가져오기 -->
+			<select id="selectByPPt"
+					parameterType="int"
+					resultType ="String">
+					SELECT 
+						rankposition.pt_name  
+					FROM
+						memberManagement 
+					JOIN
+						rankposition   
+					ON  
+						memberManagement.pt_code = rankposition.pt_code 
+					WHERE
+						mm_code = #{proApproval}
+			
+			</select>
+			
+	
 	
 <!-- 결재,임시저장 상세보기 -->
 <select id="selectContHv"
@@ -310,7 +413,24 @@
 			dft_check = 'true'
 		<!-- 사원코드 select 조건 추가 -->		
 </select>
+
+<!-- 파일 분류 가져오기 -->
+<select id ="selectByDoc"
+		parameterType="int"
+		resultType ="String">
 		
+		SELECT 
+			document.doc_fileGroup  
+		FROM
+			document 
+		JOIN
+			draft   
+		ON  
+			draft.doc_code = document.doc_code 
+		WHERE
+			dft_code = #{dftCode}
+
+</select>		
 		
 </mapper>
 

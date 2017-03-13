@@ -132,14 +132,31 @@ public class ApproveController {
 	public String aptemDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
 	
 		//System.out.println("ctrl temContent> test");
-		List<Draft> draft = new ArrayList<Draft>();
-		draft = approveService.temContServ(dftCode);
+		List<Draft> draft = new ArrayList<Draft>();	
+		List<Document> doc = new ArrayList<Document>();
 		
-		//System.out.println(draft);
+		List<Department> dep = new ArrayList<Department>();
+		List<Position> pos = new ArrayList<Position>();
+		String selectDoc = "";
+		
+		doc = approveService.apAddSelServ();
+		dep = approveService.apAddMmSelServ();
+		pos = approveService.apADDPosSelServ();
+		draft = approveService.temContServ(dftCode);
+		selectDoc = approveService.temDocSeleServ(dftCode);
+	
+	
 		model.addAttribute("draft", draft);
+		model.addAttribute("dep", dep);
+		model.addAttribute("pos", pos);
+		model.addAttribute("doc", doc);
+		model.addAttribute("selectDoc", selectDoc);
+		
+//		System.out.println(draft);
 		
 		return "/approve/ap_temModify";   
 	}
+
 	
 	//문서함 : GET
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)

@@ -22,7 +22,7 @@ public interface ApproveDAO {
 		//개인별 결재라인 등록
 		int insertApr(Approval approval);
 		//개이별 결재라인 가져오기
-		List<Approval> selectAllApr(Approval approval);
+		List<Approval> selectAllApr(int mmCode);
 
 	//기안 등록( draft + progress) 
 	int insertDft(Draft draft);
@@ -31,6 +31,14 @@ public interface ApproveDAO {
 	//결재[대기/완료/반려] 신청 폼(draft + progress)
 	Draft selectContHv(int dftCode);
 	Progress selectDetailHv(int dftCode);
+	
+	String selectDetailMm(int mmCode);
+	String selectDetailDp(int mmCode);
+	String selectDetailPt(int mmCode);
+		String selectDetailPMn(int proApproval);
+		String selectDetailPDp(int proApproval);
+		String selectDetailPPt(int proApproval);
+
 	
 	//결재 요청 (1차 progress: 승인/반려 여부)
 	int modifyPro(Progress progress);
@@ -44,6 +52,8 @@ public interface ApproveDAO {
 	
 	//임시 목록
 	List<Draft> selectAllTem();
+	String selectDetailDoc(int dftCode);
+
 	//임시 상세보기
 		List<Draft> selectContTem(int dftCode);
 	
@@ -54,6 +64,16 @@ public interface ApproveDAO {
 	
 	// 문서 양식 등록
 	int insertDoc(Document document);
+	
+
+
+	
+	
+
+
+	
+
+	
 	
 	
 
