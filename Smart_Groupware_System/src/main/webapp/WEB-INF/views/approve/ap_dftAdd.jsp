@@ -107,16 +107,29 @@
 	/* 결재라인 불러오기 */
 	$(document).on('click','#aprGetBtn',function(){
 		$('#putInAprFom').modal();
-		var data = $('#approvalForm').serialize();
-		console.log('h1'+data);
+		var mmCode = $('#mmCode').val();
+		console.log('h1'+mmCode);
 		
 		$.ajax({
 			url:'/smart/ap/listApr',
 			type : 'POST',
-			data : data,
+			data : { 'mmCode' : mmCode },
 			dataTpye : 'json',
 			success : function(data){
-				console.log('성공')
+				console.log('성공');
+				$('#aprListForm').empty();
+				console.log(data[0].aprCode);
+				$.each(data,function(i, apr){
+					$('#aprListForm').append(`
+							<tr>
+								<td>`+apr.aprCode+`</td>
+								<td>`+apr.aprApproval1+`</td>
+								<td>`+apr.aprApproval2+`</td>
+								<td>`+apr.aprApproval3+`</td>
+								<td><button = "button">선택</td>
+							</tr>`);
+				})
+			
 			}
 		})
 	
@@ -144,14 +157,17 @@
 	
     <form action="<c:url value='/ap/add'/>" method="post" enctype="multipart/form-data" id="approvalForm">
     
+    	
+  
     	<div class="row">
     		<div class="col-md-8">
 				<div class="form-group form-group-sm">
-				    <label for="firstname" class="control-label">[작성자]</label>
-				    <input type="text" class="form-control" name="mmCode" value="${sessionScope.mmCode}">
+				    <label for="firstname" class="control-label">[사원번호]</label>
+				    <input type="text" class="form-control" id="mmCode" name="mmCode" value="${sessionScope.mmCode}">
 				</div>
             </div>
     	</div>
+    	
     	<div class="row">
     		<div class="col-md-8">
 				<div class="form-group form-group-sm">
@@ -167,10 +183,11 @@
 				    <label for="firstname" class="control-label">[문서구분]</label>
 				    <select name="docCode" id="docCode" class="form-control1">
 				    	<option value=0>[문서분류를 선택하세요]</option>
+						
 						<c:forEach var="doc" items="${doc}">
-							<option value="${doc.docCode}">${doc.docFileGroup}</option>
-						   
-						</c:forEach>							
+							<option value="${doc.docCode}">${doc.docFileGroup}</option>  
+						</c:forEach>
+													
 					</select>
 				</div>
             </div>   
@@ -315,12 +332,13 @@
 					&nbsp;
 			</div>	
 		</div>
-        <div class="row">
-             <div class="col-xs-8">
+    	
+    	<div class="row">
+           <div class="form-group" align="center">
                     <button type="submit" class="btn btn-default"> Submit </button>
-                    <button type="reset" class="btn btn-default"> reset </button>    
-             </div>
-        </div>
+                    <button type="reset" class="btn btn-default" > reset </button>    
+           </div>
+  		</div>
 
     </form>
 </div>

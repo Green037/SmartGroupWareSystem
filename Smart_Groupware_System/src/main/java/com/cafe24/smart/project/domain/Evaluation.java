@@ -10,7 +10,14 @@ public class Evaluation {
 	private int prCode;
 	private int mmCode;
 	private int evTotalScore;
+	private String mmName;
 	
+	public String getMmName() {
+		return mmName;
+	}
+	public void setMmName(String mmName) {
+		this.mmName = mmName;
+	}
 	public int getEvCode() {
 		return evCode;
 	}
@@ -63,7 +70,7 @@ public class Evaluation {
 	public String toString() {
 		return "Evaluation [evCode=" + evCode + ", evIntegrity=" + evIntegrity + ", evProfessional=" + evProfessional
 				+ ", evSociability=" + evSociability + ", evEval=" + evEval + ", prCode=" + prCode + ", mmCode="
-				+ mmCode + ", evTotalScore=" + evTotalScore + "]";
+				+ mmCode + ", evTotalScore=" + evTotalScore + ", mmName=" + mmName + "]";
 	}
-
+	
 }

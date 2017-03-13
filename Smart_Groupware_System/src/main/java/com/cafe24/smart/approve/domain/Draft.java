@@ -9,11 +9,9 @@ public class Draft {
 	private String dftTitle;
 	private int dftDegree;
 	private String dftDate;
-	
 	private int aprApproval1;
 	private int aprApproval2;
 	private int aprApproval3;
-	
 	private String dftFinalState;
 	private String dftCheck;
 	private String dftFileOri;
@@ -23,10 +21,19 @@ public class Draft {
 
 	// ----- view
 	private int proApproval;
+	private String proApprovalName;
 	private String proReason;
 	private String proRealTime;
 	private String url;
 	private String docFileGroup;
+	private String dpName;
+	private String ptName;
+	private String mmName;
+	private String pDpName;
+	private String pPtName;
+	private String pMmName;
+	
+	
 	public int getDftCode() {
 		return dftCode;
 	}
@@ -128,6 +135,12 @@ public class Draft {
 	}
 	public void setProApproval(int proApproval) {
 		this.proApproval = proApproval;
+	}	
+	public String getProApprovalName() {
+		return proApprovalName;
+	}
+	public void setProApprovalName(String proApprovalName) {
+		this.proApprovalName = proApprovalName;
 	}
 	public String getProReason() {
 		return proReason;
@@ -153,7 +166,43 @@ public class Draft {
 	public void setDocFileGroup(String docFileGroup) {
 		this.docFileGroup = docFileGroup;
 	}
+	public String getDpName() {
+		return dpName;
+	}
+	public void setDpName(String dpName) {
+		this.dpName = dpName;
+	}
+	public String getPtName() {
+		return ptName;
+	}
+	public void setPtName(String ptName) {
+		this.ptName = ptName;
+	}
+	public String getMmName() {
+		return mmName;
+	}
+	public void setMmName(String mmName) {
+		this.mmName = mmName;
+	}
 	
+	public String getpDpName() {
+		return pDpName;
+	}
+	public void setpDpName(String pDpName) {
+		this.pDpName = pDpName;
+	}
+	public String getpPtName() {
+		return pPtName;
+	}
+	public void setpPtName(String pPtName) {
+		this.pPtName = pPtName;
+	}
+	public String getpMmName() {
+		return pMmName;
+	}
+	public void setpMmName(String pMmName) {
+		this.pMmName = pMmName;
+	}
 	@Override
 	public String toString() {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode

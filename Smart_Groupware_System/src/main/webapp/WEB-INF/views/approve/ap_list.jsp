@@ -69,8 +69,8 @@
 					<input type="hidden" id="dftCode" value="${pgList.dftCode}"/>
 					<td>${pgList.dftCode}</td>
 					<td><a href="<c:url value='/ap/Content?dftCode=${pgList.dftCode}' />">${pgList.dftTitle}</a></td>
-					<td>${pgList.mmCode}</td>
-					<td>${pgList.proApproval}</td>
+					<td>${pgList.mmName}</td>
+					<td>${pgList.pMmName}</td>
 					<td>${pgList.dftDate}</td>
 					<td>${pgList.proRealTime}</td>
 					<td>${pgList.dftFinalState}</td>

@@ -47,21 +47,21 @@
 			
 			
 			<tr>
-				<td><strong>기안자</strong></td>
-				<td>${draft.mmCode}</td>
+				<td><strong>기안자(사원번호)</strong></td>
+				<td>${draft.mmName}(${draft.mmCode})</td>
 				<td><strong>직급</strong></td>
-				<td>-</td>
+				<td>${draft.ptName}</td>
 				<td><strong>부서</strong></td>
-				<td>-</td>
+				<td>${draft.dpName}</td>
 			</tr>
 			
 			<tr>
 				<td>결재자</td>
-				<td>${draft.proApproval}</td>
+				<td>${draft.proApprovalName}(${draft.proApproval})</td>
 				<td>직급</td>
-				<td>-</td>
+				<td>${draft.pPtName}</td>
 				<td>부서</td>
-				<td>-</td>
+				<td>${draft.pDpName}</td>
 			</tr>
 			
 			<tr>

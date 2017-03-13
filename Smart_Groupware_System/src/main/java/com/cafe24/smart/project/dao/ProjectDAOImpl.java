@@ -198,4 +198,25 @@ public class ProjectDAOImpl implements ProjectDAO {
 		return sqlSession.insert("PrDAO.insertEvPr", projectEvaluation);
 	}
 
+	// 평가보고서 완료된 프로젝트만 조회
+	@Override
+	public List<Project> selectByReportPr(String prReport) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PrDAO.selectByReportPr", prReport);
+	}
+
+	// 플젝 참여인원들 평가보고서 조회
+	@Override
+	public List<Evaluation> selectByPrCodeEv(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("PrDAO.selectByPrCodeEv", prCode);
+	}
+
+	//플젝 평가보고서 조회
+	@Override
+	public ProjectEvaluation selectByPrCodePrEv(int prCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("PrDAO.selectByPrCodePrEv", prCode);
+	}
+
 }

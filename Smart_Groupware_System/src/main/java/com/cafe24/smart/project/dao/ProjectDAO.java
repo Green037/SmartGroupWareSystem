@@ -13,9 +13,13 @@ public interface ProjectDAO {
 	List<Project> selectAllPr();
 	List<Project> selectByProgressPr(String progress);
 	List<Project> selectByFinishPr(String progress);
+	List<Project> selectByReportPr(String prReport);
+	List<Project> selectByRequirementPr(Project project);
 	List<ProjectMember> selectByPrCodePm(int prCode);
 	List<Funds> selectByPrCodeFu(int prCode);
+	List<Evaluation> selectByPrCodeEv(int prCode);
 	
+	ProjectEvaluation selectByPrCodePrEv(int prCode);
 	Project selectByPrCodePr(int prCode);
 	Funds selectByFuCode(int fuCode);
 	Map<String, Object> selectByMmCodeMm(int mmCode);
@@ -39,7 +43,5 @@ public interface ProjectDAO {
 	int deletePm(int prCode);
 	int deleteWbs(int prCode);
 	int deleteFu(int prCode);
-
-	List<Project> selectByRequirementPr(Project project);
 
 }

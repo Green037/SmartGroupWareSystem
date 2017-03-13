@@ -47,11 +47,12 @@ public class ApproveRestController {
 		
 		if(result != 0){
 			resultMap.put("check", "성공");
+			//generate mapper에서 document에서 select해와서 resultMap에다 담아줘서 가져옴
 		}else{
 			resultMap.put("check", "실패");
 		}
 		
-		//select값 : 최근 document pk값 들고옥
+		//select값 : 최근 document pk값 들고온다
 		//System.out.println(result);
 		//return값을 map으로 가져와서 입력성공/실패를 같이 넣어 jsp로 전달
 		
@@ -84,14 +85,14 @@ public class ApproveRestController {
 	
 	//결재선 가져오기
 		@RequestMapping(value ="ap/listApr", method = RequestMethod.POST)
-		public List<Approval> apAprListReCtrl(Approval approval){
-			System.out.println("ajax 넘어오니");
-			
-			System.out.println(approval);
+		public List<Approval> apAprListReCtrl(@RequestParam("mmCode") int mmCode){
+//			System.out.println("ajax 넘어오니");			
+//			System.out.println(mmCode);
 			
 			List<Approval> apr = new ArrayList<Approval>();			
-			apr = approveService.apAprListServ(approval);
+			apr = approveService.apAprListServ(mmCode);
 			
+//			System.out.println(apr);
 				
 			return apr;
 		}

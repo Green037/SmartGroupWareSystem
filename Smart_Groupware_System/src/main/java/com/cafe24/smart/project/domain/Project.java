@@ -21,6 +21,24 @@ public class Project {
 	private String prForProgress;
 	private String prFinishCheck;
 	private List<Wbs> wbs;
+	private String prReport;
+	private String mmName;
+
+	public String getMmName() {
+		return mmName;
+	}
+
+	public void setMmName(String mmName) {
+		this.mmName = mmName;
+	}
+
+	public String getPrReport() {
+		return prReport;
+	}
+
+	public void setPrReport(String prReport) {
+		this.prReport = prReport;
+	}
 
 	public List<Wbs> getWbs() {
 		return wbs;
@@ -148,7 +166,7 @@ public class Project {
 				+ prName + ", prMember=" + prMember + ", prMoney=" + prMoney + ", prGoal=" + prGoal + ", prProgress="
 				+ prProgress + ", prCate=" + prCate + ", prRestration=" + prRestration + ", prStartDay=" + prStartDay
 				+ ", prEndDay=" + prEndDay + ", prForProgress=" + prForProgress + ", prFinishCheck=" + prFinishCheck
-				+ ", wbs=" + wbs + "]";
+				+ ", wbs=" + wbs + ", prReport=" + prReport + ", mmName=" + mmName + "]";
 	}
 
 }

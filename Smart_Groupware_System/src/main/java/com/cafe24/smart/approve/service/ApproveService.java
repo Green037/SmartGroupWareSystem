@@ -28,8 +28,8 @@ public interface ApproveService {
 		List<Member> apMmAddServ(Position position, Department department);
 		// [ajax] 기안 페이지 결재선 등록 
 		int apAprAddServ(Approval approval);
-		// [ajax] 기안 페이지 결재선 가져오기
-		List<Approval> apAprListServ(Approval approval);
+		// [ajax] 결재선 가져오기
+		List<Approval> apAprListServ(int mmCode);
 		
 	//기안 등록
 	int apAddServ(Draft draft, Progress progress, String uploadPath);
@@ -42,6 +42,9 @@ public interface ApproveService {
 	
 	//임시 목록 상세보기
 	List<Draft> temContServ(int dftCode);
+	//임시 목록 문서구분 select가져오기
+	String temDocSeleServ(int dftCode);
+	
 
 	//결재/반려/완료 페이지 요청
 	Draft hvContServ(int dftCode);
@@ -53,6 +56,8 @@ public interface ApproveService {
 	int apDocAddServ(Document document,String uploadPath);
 	//문서 양식 목록
 	List<Document> docListServ();
+
+
 
 	
 

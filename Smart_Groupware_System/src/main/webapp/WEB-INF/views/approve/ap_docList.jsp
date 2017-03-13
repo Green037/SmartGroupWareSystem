@@ -28,11 +28,15 @@
 	                cache: false,
 	        		success : function(data) {
 						if(data.check ='성공'){
-							alert('입력되었습니다') 
+							alert('입력되었습니다');
+							$('#putInDocFom').modal('hide');
+							
 						}else{
 							alert('다시 입력해주세요')
 						}
-						$('#putInDocFom').modal('hide');
+						
+						
+						
 	                }
 	             
 	            });
@@ -68,22 +72,24 @@
 					</div> &nbsp;
 					
 					<table class="table table-bordered">
-					
-						<tr>
-							<th>문서번호</th>
-							<th width="600">문서이름</th>
-							<th>Download</th>
-						</tr>
-						
-						<c:forEach var="docList" items="${docList}">
-						
+						<thead>
 							<tr>
-								<td>${docList.docCode}</td>
-								<td>${docList.docFileGroup}</td>
-								<td>경로0[다운로드]</td>
+								<th>문서번호</th>
+								<th width="600">문서이름</th>
+								<th>Download</th>
 							</tr>
-						
-						</c:forEach>
+						</thead>
+						<tbody id="docTbody">
+							<c:forEach var="docList" items="${docList}">
+							
+								<tr>
+									<td>${docList.docCode}</td>
+									<td>${docList.docFileGroup}</td>
+									<td>경로0[다운로드]</td>
+								</tr>
+							
+							</c:forEach>
+						</tbody>
 							
 					</table> 
 					

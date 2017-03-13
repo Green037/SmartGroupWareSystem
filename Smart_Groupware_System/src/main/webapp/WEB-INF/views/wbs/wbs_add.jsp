@@ -68,17 +68,20 @@
 	<center>
 		<h2><span class="glyphicon glyphicon-pencil"> WBS 등록</span></h2>
 	</center>
+	
 	<marquee behavior="alternate">
 		<span style="color:red;">First.</span>
-		<span style="color:blue;"> You must search your project.</span>
+		<span style="color:blue;"> 본인의 프로젝트를 먼저 검색하세요</span>
 		<span style="color:red;">Second.</span>
-		<span style="color:blue;">Check your password and Write your plan in the form.</span>
+		<span style="color:blue;">팀장정보를 체크하고 일치하면 보고서를 작성해주세요</span>
 	</marquee>
+	
 	<!-- <button type="button" id="searchProjectBtn" class="btn btn-primary">내 프로젝트 검색</button> -->
+	
 	<div class="row">
 		<div class="col-md-12">
 			<button class="btn btn-warning orange-circle-button" id="searchProjectBtn">
-				내프로젝트<br />검색<br /><span class="orange-circle-greater-than">></span>
+				내프로젝트<br />검색<br /><span class="orange-circle-greater-than">Go!!</span>
 			</button>
 		</div>   
 	</div>

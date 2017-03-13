@@ -64,12 +64,13 @@ public class ApproveDAOImpl implements ApproveDAO {
 			return sqlSession.insert("AprDAO.insertApr", approval);
 		}
 		
-		// [ajax] 개이별 결재라인 가져오기
+		// [ajax] 개인별 결재라인 가져오기
 		@Override
-		public List<Approval> selectAllApr(Approval approval) {
+		public List<Approval> selectAllApr(int mmCode) {
 			// TODO Auto-generated method stub
-			return sqlSession.selectList("AprDAO.selectByApr", approval);
+			return sqlSession.selectList("AprDAO.selectByApr", mmCode);
 		}
+		
 
 		
 	// 기안 등록 1-1 : draft
@@ -121,27 +122,68 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.update("AprDAO.updateProApv", progress);
 	}
 
-	/*
-	 * // 결재 요청 결재자 가져오기 && [상세보기] :
-	 * 
-	 * @Override public Draft selectCountHv(int dftCode) {
-	 * System.out.println("dao proModifyProApv> test"); return
-	 * sqlSession.selectOne("AprDAO.selectContHv", dftCode); }
-	 */
 
 	// 결재 요청 결재자 가져오기 && [상세보기] :
 	@Override
 	public Draft selectCountHv(int dftCode) {
-		System.out.println("dao selectCountHv> test");
+		//System.out.println("dao selectCountHv> test");
 		return sqlSession.selectOne("AprDAO.selectContHv", dftCode);
 	}
 
+	// 결재 요청 : 기안자 이름 가져오기
+	@Override
+	public String selectDetailMm(int mmCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("AprDAO.selectByMm", mmCode);
+	}
+
+	// 결재 요청 : 기안자 부서 가져오기
+	@Override
+	public String selectDetailDp(int mmCode) {
+		// TODO Auto-generated method stub
+		return  sqlSession.selectOne("AprDAO.selectByDp", mmCode);
+	}
+	
+	// 결재 요청 : 기안자 직급 가져오기
+	@Override
+	public String selectDetailPt(int mmCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("AprDAO.selectByPt", mmCode);
+	}
+		//결재 요청 : 결재자 이름 가져오기
+		@Override
+		public String selectDetailPMn(int proApproval) {
+			// TODO Auto-generated method stub	
+			return sqlSession.selectOne("AprDAO.selectByPMm", proApproval);
+		}
+		// 결재 요청 : 결재자 부서 가져오기
+		@Override
+		public String selectDetailPDp(int proApproval) {
+			// TODO Auto-generated method stub
+			return  sqlSession.selectOne("AprDAO.selectByPDp", proApproval);
+		}
+		// 결재 요청 : 결재자 직급 가져오기
+		@Override
+		public String selectDetailPPt(int proApproval) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectOne("AprDAO.selectByPPt", proApproval);
+		}
+
+
+	
 	// 임시 목록
 	@Override
 	public List<Draft> selectAllTem() {
 		// System.out.println("dao temList> test");
 		return sqlSession.selectList("AprDAO.selectAllTem");
 	}
+	// 임시 목록 [문서분류가져오기]
+
+			@Override
+			public String selectDetailDoc(int dftCode) {
+				// TODO Auto-generated method stub
+				return sqlSession.selectOne("AprDAO.selectByDoc", dftCode);
+			}
 
 	// 임시 [상세보기]
 	@Override
@@ -149,6 +191,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 		// System.out.println("dao temCont> test");
 		return sqlSession.selectList("AprDAO.selectContHv", dftCode);
 	}
+	
 
 	// ------총 결재 목록 : intro 목록
 	@Override
@@ -171,6 +214,9 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.insert("AprDAO.insertDoc", document);
 	}
 
+
+
+	
 
 }
 
