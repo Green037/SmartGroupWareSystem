@@ -42,18 +42,26 @@ public class RewardServiceImpl implements RewardService {
 		return reYearList;
 	}
 
-//	고과내역 조회
+//	고과기록정보조회
 	@Override
-	public List<Reward> reContentServ(int mmCode, String reDate) {
+	public Reward reContentServ(int mmCode, String startDate, String endDate) {
 		
-		System.out.println("RewardServiceImpl pcReContentServ mmCode : " + mmCode);
+		System.out.println("RewardServiceImpl reContentServ mmCode : " + mmCode + ", startDate : " + startDate + 
+								", endDate : " + endDate);
 		
-		List<Reward> reward = null;
-		
-//		return rewardDAO.selectAllRe(mmCode, reDate);
-		return reward;
+		return rewardDAO.selectRe(mmCode, startDate, endDate);
 	}
 
+//	인사부 > 특정 사원 고과내역 조회
+	@Override
+	public Reward reListByReCodeServ(int reCode) {
+		
+		System.out.println("RewardServiceImpl reListByReCodeServ reCode : " + reCode);
+		
+		return rewardDAO.selectByReCodeRe(reCode);
+	}
+
+//	고과기록정보조회시 특정 사원 정보 조회
 	@Override
 	public Member mmContentServ(int mmCode) {
 		
@@ -82,6 +90,4 @@ public class RewardServiceImpl implements RewardService {
 		
 		return rewardDAO.insertRe(reward);
 	}
-
-	
 }

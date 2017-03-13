@@ -10,9 +10,11 @@ import com.cafe24.smart.reward.domain.Reward;
 public interface RewardService {
 	List<Reward>			reListServ();
 	List<Reward>			reListYearServ(int mmCode, String startDate, String endDate);
-	List<Reward>			reContentServ(int mmCode, String reDate);
 	
 	Member					mmContentServ(int mmCode);
+	
+	Reward					reListByReCodeServ(int reCode);
+	Reward					reContentServ(int mmCode, String startDate, String endDate);
 	
 	int						reCountAllServ();
 	

@@ -13,6 +13,14 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 	SqlSessionTemplate sqlSession;
 	
 	@Override
+	public Incentive selectIn(int reCode) {
+		
+		System.out.println("IncentiveDAOImpl selectIn reCode : " + reCode);
+		
+		return sqlSession.selectOne("PaDAO.selectIn", reCode);
+	}
+	
+	@Override
 	public int insertIn(Incentive incentive) {
 		
 		int n = 0;
@@ -26,4 +34,5 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 		return n;
 	}
 
+	
 }

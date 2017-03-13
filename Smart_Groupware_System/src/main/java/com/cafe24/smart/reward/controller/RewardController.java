@@ -1,5 +1,7 @@
 package com.cafe24.smart.reward.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -16,10 +18,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberContent;
 import com.cafe24.smart.member.service.MemberService;
+import com.cafe24.smart.reward.domain.Incentive;
 import com.cafe24.smart.reward.domain.Reward;
 import com.cafe24.smart.reward.service.IncentiveService;
 import com.cafe24.smart.reward.service.RewardService;
@@ -56,22 +60,30 @@ public class RewardController {
 		
 		mmCode = (int) session.getAttribute("mmCode");
 		
-		Reward reward = new Reward();
-		
 		List<Reward> reList = rewardService.reListServ();
 		int rewardCount = rewardService.reCountAllServ();
 		
 		System.out.println("RewardController reListAllCtrl reList : " + reList);
 		
+		List<String> filePullPath = new ArrayList<String>(); 
+		
 		for (int i = 0; i < reList.size(); i++) {
-			reward.setReDocument(reList.get(i).getReDocument()
-					.substring(reList.get(i).getReDocument().lastIndexOf("/") + 1, 
-								reList.get(i).getReDocument().lastIndexOf(".")));
+			filePullPath.add(reList.get(i).getReDocument());
 		}
 		
-		System.out.println("RewardController reListAllCtrl getReDocument : " + reward.getReDocument());
+		model.addAttribute("filePullPath", filePullPath);
 		
-	
+		
+//		filePath로 fileName만 추출하여 다시 List에 담기
+		for (int i = 0; i < reList.size(); i++) {
+			int lastIndex = reList.get(i).getReDocument().lastIndexOf("/");	
+			
+			reList.get(i).setReDocument(reList.get(i).getReDocument().substring(lastIndex + 1));
+			
+			System.out.println("RewardController reListAllCtrl getRedocument : " + 
+									reList.get(i).getReDocument());
+		}
+		
 		model.addAttribute("reList", reList);
 		model.addAttribute("rewardCount", rewardCount);
 		
@@ -108,7 +120,7 @@ public class RewardController {
 		return "reward/re_list";
 	}
 	
-//	고과내역 보기
+//	고과기록정보조회
 	@RequestMapping(value = "re/content", method = RequestMethod.GET)
 	public String reContentCtrl(Model model) {
 		
@@ -116,18 +128,85 @@ public class RewardController {
 		
 		Member member = rewardService.mmContentServ(mmCode);
 		
-		List<Reward> reward = rewardService.reContentServ(mmCode, utilDate.getCurrentDate());
+//		Reward 정보 받아오기
+		Reward reward = rewardService.reContentServ(mmCode, utilDate.getCurrentYearMonth() + "-01", utilDate.getCurrentDate());
+		
+		int rewardCount = 0;
+		
+//		고과정보 있는 경우
+		if (reward != null) {
+			
+			System.out.println("RewardController RewardController member : " + member);
+			System.out.println("RewardController reListYearCtrl rewardCount : " + rewardCount);
+			
+			rewardCount = rewardService.reCountAllServ();
+			
+//			Incentive 정보 받아오기
+			Incentive incentive = incentiveService.inListServ(reward.getReCode());
+			
+//			부서, 직급 정보
+			String dpName = utilMember.getDpName(member.getDpCode());
+			String ptName = utilMember.getPtName(member.getPtCode());
+			
+			model.addAttribute("member", member);
+			model.addAttribute("dpName", dpName);
+			model.addAttribute("ptName", ptName);
+			
+			model.addAttribute("reward", reward);
+			model.addAttribute("incentive", incentive);
+			model.addAttribute("rewardCount", rewardCount);
+			
+			System.out.println("RewardController RewardController model : " + model.toString());
+//		고과 정보 없는 경우
+		} else {
+//			부서, 직급 정보
+			String dpName = utilMember.getDpName(member.getDpCode());
+			String ptName = utilMember.getPtName(member.getPtCode());
+			
+			model.addAttribute("rewardDate", utilDate.getCurrentDate());
+			model.addAttribute("mmCode", mmCode);
+			model.addAttribute("member", member);
+			model.addAttribute("dpName", dpName);
+			model.addAttribute("ptName", ptName);
+			model.addAttribute("rewardCount", rewardCount);
+		}
+	
+		return "reward/re_content";
+	}
+	
+//	인사부 > 특정 사원의 고과내역 보기
+	@RequestMapping(value = "re/mmContent", method = RequestMethod.GET)
+	public String reContentMmCtrl(@RequestParam(value="reCode", required=true) int reCode,
+																			Model model) {
+		
+		System.out.println("RewardController reContentMmCtrl reCode : " + reCode);
+		
+		Reward reward = rewardService.reListByReCodeServ(reCode);
 		int rewardCount = rewardService.reCountAllServ();
 		
-		System.out.println("RewardController RewardController reward : " + reward);
-		System.out.println("RewardController RewardController member : " + member);
-		System.out.println("RewardController reListYearCtrl rewardCount : " + rewardCount);
-	
-		model.addAttribute("member", member);
-//		model.addAttribute("reward", reward);
-		model.addAttribute("rewardCount", rewardCount);
+		System.out.println("RewardController reContentMmCtrl reward : " + reward);
 		
-		System.out.println("RewardController RewardController model : " + model.toString());
+		Member member = rewardService.mmContentServ(reward.getMmCode());
+		
+//		Incentive 정보 받아오기
+		Incentive incentive = incentiveService.inListServ(reward.getReCode());
+		
+//		부서
+		String dpName = utilMember.getDpName(member.getDpCode());
+//		직급
+		String ptName = utilMember.getPtName(member.getPtCode());
+		
+//		filePath로 fileName만 추출하여 다시 List에 담기
+		int lastIndex = reward.getReDocument().lastIndexOf("/");	
+			
+		reward.setReDocument(reward.getReDocument().substring(lastIndex + 1));
+		
+		model.addAttribute("dpName", dpName);
+		model.addAttribute("ptName", ptName);
+		model.addAttribute("member", member);
+		model.addAttribute("incentive", incentive);
+		model.addAttribute("reward", reward);
+		model.addAttribute("rewardCount", rewardCount);
 		
 		return "reward/re_content";
 	}
@@ -135,6 +214,8 @@ public class RewardController {
 //	인사부 > 고과목록 추가 (get)
 	@RequestMapping(value = "re/add", method = RequestMethod.GET)
 	public String reAddFormCtrl(Model model, HttpServletRequest request) {
+		
+		mmCode = (int) session.getAttribute("mmCode");
 		
 		model.addAttribute("reMmCode", mmCode);
 		
@@ -147,6 +228,7 @@ public class RewardController {
 									MultipartHttpServletRequest request, Reward reward) {
 		
 		System.out.println("RewardController reAddProCtrl uploadFile : " + uploadFile);
+		System.out.println("RewardController reAddProCtrl reward : " + reward);
 		
 		UtilFile utilFile = new UtilFile();
 		
@@ -163,6 +245,19 @@ public class RewardController {
 		System.out.println("RewardController reAddProCtrl n : " + n);
 		System.out.println("RewardController reAddProCtrl uploadPath : " + uploadPath);
 		
-		return "reward/re_list";
+		return "reward/re_listAll";
+	}
+	
+//	고과서류 파일 다운로드 (get)
+	@RequestMapping(value = "/re/fileDownload", method = RequestMethod.GET)
+	public ModelAndView reDocumentDown(@RequestParam(value="reCode", required=true) int reCode) {
+		
+		Reward reward = rewardService.reListByReCodeServ(reCode);
+		
+		File downFile = new File(reward.getReDocument());
+		
+		System.out.println("RewardController reDocumentDown reCode : " + reCode);
+		
+		return new ModelAndView("downloadView", "downloadFile", downFile);
 	}
 }

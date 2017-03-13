@@ -1,11 +1,5 @@
 package com.cafe24.smart.payment.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -18,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.smart.insurance.service.InsuranceService;
 import com.cafe24.smart.member.domain.Member;
-import com.cafe24.smart.payment.domain.Pay;
 import com.cafe24.smart.payment.domain.PayContent;
 import com.cafe24.smart.payment.service.PaymentService;
 import com.cafe24.smart.util.UtilDate;
@@ -41,8 +34,6 @@ public class PaymentController {
 //	총무부 > 총급여목록
 	@RequestMapping(value = "pa/listAll", method = RequestMethod.GET)
 	public String paListCtrl() {
-		
-		
 						
 		return "payment/pa_listAll";
 	}
@@ -98,6 +89,6 @@ public class PaymentController {
 		
 		paymentService.pcAddServ(payContent);
 		
-		return "payment/pa_list";
+		return "payment/pa_listAll";
 	}
 }

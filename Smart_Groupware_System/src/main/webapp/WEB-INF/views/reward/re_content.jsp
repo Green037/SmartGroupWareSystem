@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,19 +32,33 @@
 										<!-- 에러가 있으면 날짜 선택 메세지 말고 에러를 출력 -->
 										<!-- 날짜 default : 오늘 / 받기는 날짜를 받지만 자바 코드로 년+월만 추출 -->
 										<span style="color:red; font-size:10pt">날짜를 입력하세요.</span>
-										<input type="date" class="form-control1 ng-invalid ng-invalid-required" placeholder="YYYY-MM-DD">
+										<c:choose>
+											<c:when test="${reward != null}">
+												<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${reward.reDate}" placeholder="YYYY-MM-DD"/>
+											</c:when>
+											<c:otherwise>
+												<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${rewardDate}"  readonly/>
+											</c:otherwise>
+										</c:choose>
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>고과종류</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="전체" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="전체" readonly/>
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>사원번호</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmCode}" disabled>
+											<c:choose>
+												<c:when test="${reward != null}">
+													<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${reward.reCode}" readonly/>
+												</c:when>
+												<c:otherwise>
+													<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${mmCode}" readonly/>
+												</c:otherwise>
+											</c:choose>
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>사원명</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmName}" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmName}" readonly/>
 									</div>
 								</form>
 								<div class="clearfix">&nbsp;</div>
@@ -61,9 +75,9 @@
 									</tr>
 									<tr>
 										<th>부서</th>
-										<td>${member.ctCode}</td>
+										<td>${dpName}</td>
 										<th>직급</th>
-										<td>${member.ptCode}</td>
+										<td>${ptName}</td>
 										<th>재직상태</th>
 										<td>재직</td>
 									</tr>
@@ -85,26 +99,38 @@
 											</tr>
 										</thead>
 										<tbody>
-											<!-- 지급내역 금액만큼 선택하여 tr 늘어나게 하기 -->
-											<tr>
-												<td>1</td>
-												<td>${reward.reCode}</td>
-												<td>프로젝트 완료</td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-											</tr>
+										
+											<c:if test="${reward != null}">
+												<!-- 지급내역 금액만큼 선택하여 tr 늘어나게 하기 -->
+												<tr>
+													<td>1</td>
+													<td>${reward.reCode}</td>
+													<td>프로젝트 완료</td>
+													<td>${reward.reGrade}</td>
+													<td>${reward.reDate}</td>
+													<td><a href="<c:url value='/re/fileDownload?reCode=${reward.reCode}'/>">
+														${reward.reDocument}</a>
+													</td>
+													<td>${reward.reMmCode}</td>
+												</tr>
+											</c:if>
 										</tbody>
 									</table> 
 								</div>
 								<div class="clearfix">&nbsp;</div>
 					
-								<label class="control-label"><b>고과산정 (총 3건)</b></label>
+								<label class="control-label"><b>고과산정 (총 ${rewardCount} 건)</b></label>
 								<table class="table table-bordered">
 									<tr>
 										<th>성과금액</th>
-										<td>1,200,000</td>
+										<c:choose>
+											<c:when test="${incentive != null}">
+												<td>${incentive.inBonus} 원</td>
+											</c:when>
+											<c:otherwise>
+												<td>0 원</td>
+											</c:otherwise>
+										</c:choose>
 									</tr>
 								</table>
 								<div class="clearfix">&nbsp;</div>

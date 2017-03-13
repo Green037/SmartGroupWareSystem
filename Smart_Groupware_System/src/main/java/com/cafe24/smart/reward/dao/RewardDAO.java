@@ -10,9 +10,11 @@ import com.cafe24.smart.reward.domain.Reward;
 public interface RewardDAO {
 	List<Reward>			selectAllRe();
 	List<Reward>			selectAllYearRe(int mmCode, String startDate, String endDate);
-//	List<Reward>			selectAllRe(int mmCode, String reDate);
 	
+	Reward					selectRe(int mmCode, String startDate, String endDate);
+	Reward					selectByReCodeRe(int reCode);
+	
+	int						selectByReDateRe(String reDate);
 	int 					selectAllCountRe();
-	
 	int						insertRe(Reward reward);
 }

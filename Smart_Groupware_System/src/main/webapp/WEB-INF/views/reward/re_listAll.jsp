@@ -40,11 +40,11 @@
 									<c:forEach var="reward" items="${reList}" varStatus="status">
 										<tr>
 											<td>${status.count}</td>
-											<td><a href="<c:url value='/re/content'/>">${reward.reCode}</a></td>
+											<td><a href="<c:url value='/re/mmContent?reCode=${reward.reCode}'/>">${reward.reCode}</a></td>
 											<td>${reward.mmCode}</td>
 											<td>${reward.reGrade}</td>
 											<td>${reward.reDate}</td>
-											<td>${reward.reDocument}</td>
+											<td><a href="<c:url value='/re/fileDownload?reCode=${reward.reCode}'/>">${reward.reDocument}</a></td>
 											<td>${reward.reMmCode}</td>
 										</tr>
 									</c:forEach>

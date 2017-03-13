@@ -20,7 +20,6 @@
 		<result property="inCode" column="in_code"/>
 		<result property="reCode" column="re_code"/>
 		<result property="mmCode" column="mm_code"/>
-		<result property="inKind" column="in_kind"/>
 		<result property="inBonus" column="in_bonus"/>
 		<result property="inPossible" column="in_possible"/>
 		<result property="inDate" column="in_date"/>
@@ -65,7 +64,6 @@
 			incentive (
 				re_code,
 				mm_code,
-				in_kind,
 				in_bonus,
 				in_possible,
 				in_date,
@@ -73,7 +71,6 @@
 		VALUES (
 			#{reCode},
 			#{mmCode},
-			#{inKind},
 			#{inBonus},
 			#{inPossible},
 			#{inDate},

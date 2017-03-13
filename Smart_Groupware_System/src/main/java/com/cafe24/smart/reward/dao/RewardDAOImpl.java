@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.smart.reward.domain.Reward;
+import com.cafe24.smart.util.UtilDate;
 
 @Repository
 public class RewardDAOImpl implements RewardDAO {
@@ -29,6 +30,7 @@ public class RewardDAOImpl implements RewardDAO {
 		return selectAllCountRe;
 	}
 	
+//	인사부 > 총고과목록 조회
 	@Override
 	public List<Reward> selectAllRe() {
 		
@@ -67,27 +69,49 @@ public class RewardDAOImpl implements RewardDAO {
 		return reYearList;
 	}
 	
-//	@Override
-//	public List<Reward> selectAllRe(int mmCode, String reDate) {
-//		
-////		List<Reward> rewardList = new ArrayList<Reward>();
-//		
-//		HashMap<String, Object> params = new HashMap<String, Object>();
-//		
-//		params.put("mmCode", mmCode);
-//		params.put("reDate", reDate);
-//		
-//		System.out.println("RewardDAOImpl selectAllRe mmCode : " + mmCode);
-//		System.out.println("RewardDAOImpl selectAllRe params : " + params);
-//		
-//		List<Reward> rewardList = sqlSession.selectList("ReDAO.selectAllRe", params);		
-//		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
-//		
-//		System.out.println("RewardDAOImpl selectAllRe rewardList : " + rewardList);
-//		System.out.println("RewardDAOImpl selectAllRe selectAllCountRe : " + this.selectAllCountRe);
-//		
-//		return rewardList;
-//	}
+//	인사부 > 특정 고과내역 조회
+	@Override
+	public Reward selectByReCodeRe(int reCode) {
+		
+		System.out.println("RewardDAOImpl reListByReCodeServ reCode : " + reCode);
+		
+		Reward reward = sqlSession.selectOne("ReDAO.selectByReCodeRe", reCode);		
+		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
+		
+		System.out.println("RewardDAOImpl selectByReCodeRe reward : " + reward);
+		System.out.println("RewardDAOImpl selectByReCodeRe selectAllCountRe : " + this.selectAllCountRe);
+		
+		return reward;
+	}
+	
+	@Override
+	public int selectByReDateRe(String reDate) {
+		
+		System.out.println("RewardDAOImpl reListByReCodeServ reDate : " + reDate);
+		
+		return sqlSession.selectOne("ReDAO.selectByReDateRe", reDate);
+	}
+
+	//고과기록정보조회
+	@Override
+	public Reward selectRe(int mmCode, String startDate, String endDate) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("mmCode", mmCode);
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);
+		
+		System.out.println("RewardDAOImpl selectRe mmCode : " + mmCode);
+		System.out.println("RewardDAOImpl selectRe params : " + params);
+		
+		Reward reward = sqlSession.selectOne("ReDAO.selectRe", params);
+		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
+		
+		System.out.println("RewardDAOImpl selectRe reward : " + reward);
+		
+		return reward;
+	}
 
 	@Override
 	public int insertRe(Reward reward) {
@@ -100,6 +124,4 @@ public class RewardDAOImpl implements RewardDAO {
 		
 		return result;
 	}
-
-	
 }

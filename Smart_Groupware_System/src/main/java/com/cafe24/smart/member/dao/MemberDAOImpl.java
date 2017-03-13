@@ -107,11 +107,7 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		System.out.println("MemberDAOImpl selectByMm mmCode : " + mmCode);
 
-		Member member = sqlSession.selectOne("MmDAO.selectByMm", mmCode);
-		
-		System.out.println("MemberDAOImpl selectByMm member : " + member);
-		
-		return member;
+		return sqlSession.selectOne("MmDAO.selectByMm", mmCode);
 	}
 	
 //  사원 등록

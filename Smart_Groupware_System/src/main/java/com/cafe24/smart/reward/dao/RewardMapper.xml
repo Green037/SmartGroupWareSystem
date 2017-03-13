@@ -17,14 +17,13 @@
 		<result property="inCode" column="in_code"/>
 		<result property="reDate" column="re_date"/>
 		<result property="mmCode" column="mm_code"/>
-		<result property="inKind" column="in_kind"/>
 		<result property="inBonus" column="in_bonus"/>
 		<result property="inPossible" column="in_possible"/>
-		<result property="inGroup" column="in_group"/>
 		<result property="inDate" column="in_date"/>
 		<result property="inMmCode" column="in_mmCode"/>
 	</resultMap>
 	
+	<!-- 인사부 > 총고과목록 -->
 	<select id="selectAllRe" parameterType="hashmap" resultMap="resultRe">
 		SELECT SQL_CALC_FOUND_ROWS
 			*
@@ -32,6 +31,7 @@
 			reward;
 	</select>
 	
+	<!-- 연간고과내역조회 -->
 	<select id="selectAllYearRe" parameterType="hashmap" resultMap="resultRe">
 		SELECT SQL_CALC_FOUND_ROWS
 			*
@@ -51,6 +51,56 @@
 		SELECT FOUND_ROWS();
 	</select>
 	
+	<select id="selectByReCodeRe" parameterType="hashmap" resultMap="resultRe">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			reward
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			re_date
+		BETWEEN
+			#{startDate}
+		AND
+			#{endDate};
+	</select>
+	
+	<select id="selectRe" parameterType="hashmap" resultMap="resultRe">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			reward
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			re_date
+		BETWEEN
+			#{startDate}
+		AND
+			#{endDate};
+	</select>
+	
+	<select id="selectByReDateRe" parameterType="String" resultType="int">
+		SELECT
+			re_code
+		FROM
+			reward
+		WHERE
+			re_date = #{reDate}
+	</select>
+	
+	<!-- 특정 성과 조회 (고과코드로) -->
+	<select id="selectIn" parameterType="int" resultMap="resultIn">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			incentive
+		WHERE
+			re_code = #{reCode}
+	</select>
+	
+	<!-- 인사부 > 고과내역추가 -->
 	<insert id="insertRe" parameterType="com.cafe24.smart.reward.domain.Reward">
 		INSERT INTO
 			reward (
@@ -67,25 +117,22 @@
 			#{reMmCode});
 	</insert>
 	
+	<!-- 성과급 추가 -->
 	<insert id="insertIn" parameterType="com.cafe24.smart.reward.domain.Incentive">
 		INSERT INTO
-			reward (
+			incentive (
 				re_date,
 				mm_code,
-				in_kind,
 				in_bonus,
 				in_possible,
-				in_group,
 				in_date,
 				in_mmCode)
 		VALUES (
-			#{reDate},
-			#{mmCode},
-			#{inKind},
+			#{re_date},
+			#{mm_code},
 			#{in_bonus},
-			#{inPossible},
-			#{inGroup},
-			#{inDate},
-			#{inMmCode});
+			#{in_possible},
+			#{in_date},
+			#{in_mmCode});
 	</insert>
 </mapper>
