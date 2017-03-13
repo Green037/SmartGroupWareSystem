@@ -179,4 +179,18 @@ public class ProjectRestController {
 		
 		return projectList;
 	}
+	
+	//프로젝트 리스트 - 포스트요청
+		@RequestMapping(value = "pr/list", method = RequestMethod.POST)
+		public List<Project> prListCtrl(@RequestParam(value="prProgress", defaultValue="0")int prProgress) {
+			System.out.println("h2");
+			System.out.println("넘어온 prProgress값확인 : "+prProgress);
+			List<Project> projectList = new ArrayList<Project>();
+			
+			//모든 프로젝트 내용 조회
+			projectList = projectService.prListServ(prProgress);
+			System.out.println(projectList);
+			
+			return projectList;
+		}
 }

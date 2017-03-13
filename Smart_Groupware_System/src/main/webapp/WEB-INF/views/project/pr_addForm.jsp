@@ -144,6 +144,7 @@
 
 	    $("#add_row").trigger("click");
 	});
+	
 	</script>
 </head> 
 
@@ -207,11 +208,18 @@
                             <div class="row">
 	                            <div class="col-md-6">
 	                                <label for="prMemberCode">팀장</label>
-	                                <input type="text" class="form-control" name="prMemberCode" id="prMemberCode">
+	                                <input type="text" class="form-control" name="prMemberCode" id="prMemberCode" value="${mmMap.mmName}" readonly="readonly">
 	                            </div>
 	                            <div class="col-md-6">
 	                                <label for="dftCode">기안코드</label>
-	                                <input type="text" class="form-control" name="dftCode" id="dftCode" >
+	                                <div>
+		                                <select class="dropselectsec1" name="dftCode" id="dftCode">
+		                                	<option>::선택::</option>
+		                                	<c:forEach var="docList" items="${docList}">
+		                                		<option value="${docList.docCode}">${docList.docFileGroup}</option>
+		                                	</c:forEach>
+		                                </select>
+	                                </div>
 	                            </div>
                         	</div>
 	                        <div class="row">
@@ -227,7 +235,7 @@
 	                        <div class="row">
 	                            <div class="col-md-6">
 	                                <label for="prMoney">프로젝트자금</label>
-	                                <input type="text" class="form-control" name="prMoney" id="prMoney" placeholder="Email">
+	                                <input type="text" class="form-control" name="prMoney" id="prMoney" placeholder="자금 총액을 입력하세요">
 	                           	</div>
 	                            <div class="col-md-6">
 	                                <label for="prProgress">진행상황</label>
@@ -351,7 +359,7 @@
                                 <div class="col-md-8 col-xs-9">
                                     <div class="row">
                                         <div class="col-md-4 col-xs-4 wdth">
-                                            <input type="text" class="form-control" name="mmCode" id="mmCode"/>
+                                            <input type="text" class="form-control" name="mmCode" id="mmCode" value="${mmMap.mmName}" readonly="readonly"/>
                                         </div>
                                         <div class="col-md-4 col-xs-4 wdth">
                                             <select name="pmLevel" id="pmLevel" class="dropselectsec1">

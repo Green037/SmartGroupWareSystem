@@ -19,6 +19,7 @@
 		<result property="prEndDay" column="pr_endDay"/>
 		<result property="prForProgress" column="pr_forProgress"/>
 		<result property="prFinishCheck" column="pr_finishCheck"/>
+		<result property="mmName" column="mm_name"/>
 	</resultMap>
 	
 	<resultMap id="resultPm" type="com.cafe24.smart.project.domain.ProjectMember">
@@ -78,6 +79,25 @@
 		<result property="mmBank" column="mm_bank"/>
 		<result property="mmAccount" column="mm_account"/>
 	</resultMap>
+	<resultMap id="resultEv" type="com.cafe24.smart.project.domain.Evaluation">
+		<result property="evCode" column="ev_code"/>
+		<result property="evIntegrity" column="ev_integrity"/>
+		<result property="evProfessional" column="ev_professional"/>
+		<result property="evSociability" column="ev_sociability"/>
+		<result property="evEval" column="ev_eval"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="evTotalScore" column="ev_totalScore"/>
+		<result property="mmName" column="mm_name"/>
+	</resultMap>
+	<resultMap id="resultPrEv" type="com.cafe24.smart.project.domain.ProjectEvaluation">
+		<result property="prEvCode" column="pr_evCode"/>
+		<result property="prApprovalCheck" column="pr_approvalCheck"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="evPrResult" column="ev_prResult"/>
+		
+	</resultMap>
 	
 	<select id="selectCountPm"
 			parameterType="int"
@@ -129,7 +149,8 @@
 			pr_endDay,
 			pr_forProgress,
 			pr_restration,
-			pr_finishCheck)
+			pr_finishCheck,
+			pr_report)
 		VALUES(
 			#{prMemberCode},
 			#{dftCode},
@@ -143,7 +164,8 @@
 			#{prEndDay},
 			#{prForProgress},
 			now(),
-			#{prFinishCheck})
+			#{prFinishCheck},
+			#{prReport})
 	</insert>
 	
 	<insert id="insertFu"
@@ -215,7 +237,7 @@
 		FROM
 			project
 		WHERE 
-			pr_finishCheck = #{progress} 
+			pr_finishCheck = #{progress}
 	</select>
 	
 	<select id="selectByPrCode"
@@ -250,15 +272,16 @@
 	<update id="updatePr"
 			parameterType="com.cafe24.smart.project.domain.Project">
 		UPDATE project
-			<set>
-				<if test="prName != null">pr_name = #{prName},</if>
-				<if test="prProgress != null">pr_progress = #{prProgress},</if>
-				<if test="prCate != null">pr_cate = #{prCate},</if>
-				<if test="prForProgress != null">pr_forProgress = #{prForProgress},</if>
-				<if test="prMoney != null">pr_money = #{prMoney},</if>
-				<if test="prFinishCheck != null">pr_finishCheck = #{prFinishCheck},</if>
-				<if test="prGoal != null">pr_Goal = #{prGoal}</if>
-			</set>
+			<trim prefix="SET" prefixOverrides=",">
+				<if test="prName != null">			,pr_name = #{prName}</if>
+				<if test="prProgress != null">  	,pr_progress = #{prProgress}</if>
+				<if test="prCate != null">			,pr_cate = #{prCate}</if>
+				<if test="prForProgress != null">	,pr_forProgress = #{prForProgress}</if>
+				<if test="prMoney != null">			,pr_money = #{prMoney},</if>
+				<if test="prFinishCheck != null">	,pr_finishCheck = #{prFinishCheck}</if>
+				<if test="prGoal != null">			,pr_Goal = #{prGoal}</if>
+				<if test="prReport != null">		,pr_report = #{prReport}</if>
+			</trim>
 		WHERE
 			pr_code = #{prCode}
 	</update>
@@ -310,8 +333,9 @@
 			department
 		ON
 			memberManagement.dp_code = department.dp_code
-		WHERE 
-			mm_code = #{mmCode};
+		WHERE
+			mm_code = #{mmCode}
+			
 	</select>
 	
 	<delete id="deletePr"
@@ -455,5 +479,40 @@
 			#{evPrResult})
 	
 	</insert>
+	
+	<select id="selectByReportPr"
+			parameterType="String"
+			resultMap="resultPr">
+		SELECT 
+			project.*
+		FROM
+			project
+		WHERE 
+			pr_report = #{prReport}
+	
+	</select>
+	
+	<select id="selectByPrCodeEv"
+			parameterType="int"
+			resultMap="resultEv">
+		SELECT
+			*
+		FROM 
+			evaluation
+		WHERE
+			pr_code = #{prCode}
+	
+	</select>
+	
+	<select id="selectByPrCodePrEv"
+			parameterType="int"
+			resultMap="resultPrEv">
+		SELECT
+			*
+		FROM 
+			projectEvaluation
+		WHERE
+			pr_code = #{prCode}
+	</select>
 	
 </mapper>

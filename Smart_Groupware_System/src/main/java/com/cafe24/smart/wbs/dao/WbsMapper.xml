@@ -74,6 +74,8 @@
 			project
 		WHERE 
 			pr_memberCode = #{mmCode}
+		AND
+			pr_Report = "미작성"
 	</select>
 	
 	<insert id="insertWbs"
