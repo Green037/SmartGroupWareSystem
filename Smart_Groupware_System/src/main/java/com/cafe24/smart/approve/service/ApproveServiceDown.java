@@ -14,6 +14,7 @@ import org.springframework.web.servlet.view.AbstractView;
 public class ApproveServiceDown extends AbstractView {
 	
     public ApproveServiceDown() {
+    	
         setContentType("applicaiton/download;charset=utf-8");
     }
  

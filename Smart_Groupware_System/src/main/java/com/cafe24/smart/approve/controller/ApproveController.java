@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.service.ApproveService;
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Position;
 import com.cafe24.smart.util.UtilFile;
 
 @Controller
@@ -35,14 +39,17 @@ public class ApproveController {
 		
 		//System.out.println("ctrl dftAdd GET> test");
 		List<Document> doc = new ArrayList<Document>();
-		Map memberMap = new HashMap(); 
+		List<Department> dep = new ArrayList<Department>();
+		List<Position> pos = new ArrayList<Position>();
 		
 		doc = approveService.apAddSelServ();
-		memberMap = approveService.apAddMmSelServ();
-		
+		dep = approveService.apAddMmSelServ();
+		pos = approveService.apADDPosSelServ();
 		
 		//System.out.println(doc);
 		model.addAttribute("doc", doc);
+		model.addAttribute("dep", dep);
+		model.addAttribute("pos", pos);
 		
 		return "/approve/ap_dftAdd";   
 	}
@@ -52,7 +59,7 @@ public class ApproveController {
 	public String apAddCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
 							MultipartHttpServletRequest request,Draft draft, Progress progress){
 			
-		//System.out.println("ctrl dftAdd > test");
+		System.out.println("ctrl dftAdd > test");
 		UtilFile utilFile = new UtilFile();
 		
 		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);
@@ -65,12 +72,15 @@ public class ApproveController {
 		
 	//결재 목록 [대기/반려/완료] : GET 
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
-	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress){	
+	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress, HttpSession session){	
 		//System.out.println("ctrl pgList> test");
 		//System.out.println(apProgress);
 	
+		int mmCode = (int) session.getAttribute("mmCode");
+		System.out.println(mmCode);
+		
 		List<Draft> pgList = new ArrayList<Draft>();
-		pgList = approveService.pgListServ(apProgress);
+		pgList = approveService.pgListServ(apProgress, mmCode);
 		
 		//System.out.println(pgList);
 		model.addAttribute("pgList", pgList);

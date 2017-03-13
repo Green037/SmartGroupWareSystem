@@ -23,9 +23,9 @@
 	<!-- MySql connect -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://rang1536.cafe24.com:3306/rang1536?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
-		<property name="username" value="rang1536"/>
-		<property name="password" value="sora1358"/>  
+<!-- 		<property name="url" value="jdbc:mysql://rang1536.cafe24.com:3306/rang1536?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
+<!-- 		<property name="username" value="rang1536"/> -->
+<!-- 		<property name="password" value="sora1358"/>   -->
 	
 	
 		<!-- 상엽이 
@@ -34,9 +34,15 @@
 		<property name="password" value="bsy63792"/>  -->
 		
 <!-- 		은비씨 -->
+<<<<<<< HEAD
+		<property name="url" value="jdbc:mysql://tsuyu040913.cafe24.com:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>
+		<property name="username" value="tsuyu040913"/>
+ 		<property name="password" value="eunbi3800*"/>
+=======
 <!-- 		<property name="url" value="jdbc:mysql://localhost:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
 <!-- 		<property name="username" value="tsuyu040913"/> -->
 <!--  		<property name="password" value="eunbi3800*"/> -->
+>>>>>>> 6eaaa1a9d9604e83394d02aeb846a07cba82127c
 		
 <!-- 
 		<property name="url" value="jdbc:mysql://localhost:3306/hsa3737?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/>

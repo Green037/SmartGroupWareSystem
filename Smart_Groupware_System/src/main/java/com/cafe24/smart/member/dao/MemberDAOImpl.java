@@ -79,20 +79,37 @@ public class MemberDAOImpl implements MemberDAO {
 	
 //------------------------------------------------------ DB 에서 정보 불러오기 리스트---------------------------------------
 	
+<<<<<<< HEAD
+//  사원 카운트 리스트
+	@Override
+	public int selectTotalMemberCount() {
+		
+		return sqlSession.selectOne("acDAO.selectTotalMemberCount");
+	}	
+	
+	
+// 사원 조회 리스트
+	@Override
+	public List<MemberList> selectAllMm(Map<String, Integer> map) {
+		
+		return sqlSession.selectList("acDAO.selectAllMm", map);
+	}
+=======
 
 	
 // 사원 조건검색 리스트
+>>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
 	
 	
-//	select one member by member code
+//	사원 정보 조회
 	@Override
 	public Member selectByMm(int mmCode) {
 		
-			System.out.println("MemberDAOImpl selectByMm mmCode : " + mmCode);
+		System.out.println("MemberDAOImpl selectByMm mmCode : " + mmCode);
 
 		Member member = sqlSession.selectOne("MmDAO.selectByMm", mmCode);
 		
-			System.out.println("MemberDAOImpl selectByMm member : " + member);
+		System.out.println("MemberDAOImpl selectByMm member : " + member);
 		
 		return member;
 	}
@@ -124,7 +141,6 @@ public class MemberDAOImpl implements MemberDAO {
 		return  sqlSession.insert("MmDAO.insertCr", career);
 	}
 
-	
 // 사원 로그인 
 	@Override
 	public Member mmLogin(Member member) {
@@ -132,6 +148,7 @@ public class MemberDAOImpl implements MemberDAO {
 			//System.out.println("로그인요청시 Dao에서 member 잘 넘겨 받았는지 확인 :"+member.getMmPassword());
 		return sqlSession.selectOne("MmDAO.mmLogin",member);
 	}
+	
 // 개인사원정보조회
 	@Override
 	public MemberContent selectMmContent(int mmCode) {
@@ -156,10 +173,5 @@ public class MemberDAOImpl implements MemberDAO {
 		//System.out.println("쿼리실행전 사원개인정보 조회 코드값 확인 : "+mmCode);
 		return sqlSession.selectList("acDAO.selectMmcontentCr", mmCode);
 	}
-
-
-
-	
-
 	
 }

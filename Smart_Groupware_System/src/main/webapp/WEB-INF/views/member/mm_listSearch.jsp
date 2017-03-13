@@ -17,6 +17,20 @@
 <script src="js/jquery-1.10.2.min.js"></script>
 <script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script type="text/javascript">
+
+$(document).on('click','#mmListSearchBtn',function(){
+	$('#mmListForm').css('display','');
+});
+
+
+
+</script>	
+	
+	
+	
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 </head> 
@@ -107,7 +121,7 @@
 								<tr>
 									<th  colspan = "6">
 									<div class="form-group" align="center">
-										<button type="submit" class="btn btn-default" value="등록" id="searchBtn">검색</button>
+										<button type="button" class="btn btn-default" id="mmListSearchBtn">검색</button>
 										<button type="reset"  class="btn btn-default"  value="다시작성" >다시등록</button>
 										</div>
 									</th>
@@ -115,10 +129,12 @@
 							</table>
 						</form>
                     </div>                  
-                    <div class="validation-form" align="center" style="display:none;">		
+                    
+                    
+                    <div class="validation-form" align="center" id="mmListForm" style="display:none;">		
 					<h3 align="left"><span class="glyphicon glyphicon-user">사원조회 리스트</span> </h3>	
 					<div class="container">
-						<table class="table table-hover" >
+						<table id="mmList" class="table table-hover" >
 							<thead>
 								<tr>
 									<th>사원번호</th>
@@ -128,16 +144,8 @@
 									<th>계약형태</th>
 								</tr>
 							</thead>
-							<tbody>
-								
-									<tr>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-										<td></td>
-									</tr>
-								
+							<tbody id="mmListTbodybutton">
+									
 							</tbody>
 						</table>
 					</div>

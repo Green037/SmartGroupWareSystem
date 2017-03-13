@@ -1,15 +1,25 @@
 package com.cafe24.smart.approve.dao;
 
 import java.util.List;
+
+import java.util.Map;
+
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
+
+import com.cafe24.smart.member.domain.Department;
+import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.Position;
+
 
 @Repository
 public class ApproveDAOImpl implements ApproveDAO {
@@ -19,13 +29,49 @@ public class ApproveDAOImpl implements ApproveDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	// 기안 페이지 요청 : draft
+	// 기안 페이지 요청 : 1-1.draft
 	@Override
 	public List<Document> selectAllDoc() {
 		// System.out.println("dao selectAllDoc> test");
 		return sqlSession.selectList("AprDAO.selectAllDoc");
 	}
 
+	// 기안 페이지 요청 : 1-2.department
+	@Override
+	public List<Department> selectAllApDep() {
+		//System.out.println("dao selectAllApDep> test");
+		return sqlSession.selectList("acDAO.selectDp");
+	}
+	
+	// 기안 페이지 요청 : 1-3. position
+	@Override
+	public List<Position> selectAllApPos() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("acDAO.selectPt");
+	}
+
+		// [ajax] 기안 페이지 요청 : 1-4. 사원번호[이름] 가져오기 
+		@Override
+		public List<Member> selectByApMm( Map<String, Integer> map ) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList("AprDAO.selectContMm", map);
+		}
+
+		// [ajax] 개인별 결재선 등록
+		@Override
+		public int insertApr(Approval approval) {
+			// TODO Auto-generated method stub
+			return sqlSession.insert("AprDAO.insertApr", approval);
+		}
+		
+		// [ajax] 개이별 결재라인 가져오기
+		@Override
+		public List<Approval> selectAllApr(Approval approval) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList("AprDAO.selectByApr", approval);
+		}
+
+		
 	// 기안 등록 1-1 : draft
 	@Override
 	public int insertDft(Draft draft) {
@@ -106,16 +152,16 @@ public class ApproveDAOImpl implements ApproveDAO {
 
 	// ------총 결재 목록 : intro 목록
 	@Override
-	public List<Draft> selectAllPg() {
+	public List<Draft> selectAllPg(int mmCode) {
 		// System.out.println("dao pgList> test" );
 		return sqlSession.selectList("AprDAO.selectAllPg");
 	}
 
 	// ----- 총 목록 : 대기/반려/완료
 	@Override
-	public List<Draft> selectByHv(int progress) {
+	public List<Draft> selectByHv(Map<String, Integer> map) {
 		// System.out.println("dao byHvList> test");
-		return sqlSession.selectList("AprDAO.selectByHv", progress);
+		return sqlSession.selectList("AprDAO.selectByHv", map);
 	}
 
 	// 문서 양식 등록
@@ -124,4 +170,11 @@ public class ApproveDAOImpl implements ApproveDAO {
 		System.out.println("dao insertDoc> test");
 		return sqlSession.insert("AprDAO.insertDoc", document);
 	}
-}
+
+
+
+
+
+	}
+
+

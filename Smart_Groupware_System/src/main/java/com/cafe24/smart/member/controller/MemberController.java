@@ -63,7 +63,7 @@ public class MemberController {
 			//System.out.println("컨트롤러에서 개인정보조회 확인:"+viewMemberContentCr);확인완료
 			return "member/mm_content";
 		}
-	
+		
 	
 	
 	
@@ -73,8 +73,8 @@ public class MemberController {
 		
 		List<Achieve> achieve = memberService.acListServ();
 		List<License> license = memberService.lcListServ();
-		List<Position> position = memberService.PtListServ();
-		List<Department> department = memberService.DpListServ();
+		List<Position> position = memberService.ptListServ();
+		List<Department> department = memberService.dpListServ();
 		List<MajorTypeOfBusiness> majorTypeOfBusiness = memberService.maListServ();
 		List<MinorTypeOfBusiness> minorTypeOfBusiness = memberService.miListServ();
 		
@@ -111,9 +111,9 @@ public class MemberController {
 			//System.out.println("사원등록컨트롤러확인");
 		List<Achieve> achieve = memberService.acListServ();
 		List<License> license = memberService.lcListServ();
-		List<Contract> contract = memberService.CtListServ();
-		List<Position> position = memberService.PtListServ();
-		List<Department> department = memberService.DpListServ();
+		List<Contract> contract = memberService.ctListServ();
+		List<Position> position = memberService.ptListServ();
+		List<Department> department = memberService.dpListServ();
 		List<MajorTypeOfBusiness> majorTypeOfBusiness = memberService.maListServ();
 		List<MinorTypeOfBusiness> minorTypeOfBusiness = memberService.miListServ();
 	

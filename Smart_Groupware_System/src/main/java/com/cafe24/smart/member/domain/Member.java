@@ -2,7 +2,7 @@ package com.cafe24.smart.member.domain;
 
 //사원관리
 public class Member {
-	private int mmCode;	
+	private int mmCode;
 	private int ctCode;
 	private int ptCode;
 	private int dpCode;
@@ -20,23 +20,19 @@ public class Member {
 	private String mmTel;
 	private String mmBank;
 	private String mmAccount;
-	//mapper에 보낼 객체
-	
-	
-	
 
 	public int getMmCode() {
 		return mmCode;
 	}
-	
+
 	public void setMmCode(int mmCode) {
 		this.mmCode = mmCode;
 	}
-	
+
 	public int getCtCode() {
 		return ctCode;
 	}
-	
+
 	public void setCtCode(int ctCode) {
 		this.ctCode = ctCode;
 	}
@@ -148,7 +144,7 @@ public class Member {
 	public String getMmTel() {
 		return mmTel;
 	}
-	
+
 	public void setMmTel(String mmTel) {
 		this.mmTel = mmTel;
 	}
@@ -175,6 +171,6 @@ public class Member {
 				+ ", mmName=" + mmName + ", mmDailyPay=" + mmDailyPay + ", mmJoinDate=" + mmJoinDate + ", mmResignDate="
 				+ mmResignDate + ", mmAnnualLeave=" + mmAnnualLeave + ", mmArmy=" + mmArmy + ", mmEmail=" + mmEmail
 				+ ", mmMarriage=" + mmMarriage + ", mmPassword=" + mmPassword + ", mmSign=" + mmSign + ", mmAddress="
-				+ mmAddress + ", mmTel=" + mmTel + ", mmBank=" + mmBank + ", mmAccount=" + mmAccount +"]";
+				+ mmAddress + ", mmTel=" + mmTel + ", mmBank=" + mmBank + ", mmAccount=" + mmAccount + "]";
 	}
 }
