@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.domain.MemberContent;
 import com.cafe24.smart.member.service.MemberService;
 import com.cafe24.smart.reward.domain.Reward;
 import com.cafe24.smart.reward.service.IncentiveService;
@@ -95,7 +96,7 @@ public class RewardController {
 		System.out.println("RewardController reListYearCtrl reYearList : " + reYearList);
 		System.out.println("RewardController reListYearCtrl rewardCount : " + rewardCount);
 		
-		Member member = memberService.mmContentServ(mmCode);
+		MemberContent member = memberService.mmContentServ(mmCode);
 		
 		String dpName = utilMember.getDpName(member.getDpCode());
 		

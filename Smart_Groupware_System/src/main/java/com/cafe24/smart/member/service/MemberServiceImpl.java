@@ -88,14 +88,7 @@ public class MemberServiceImpl implements MemberService {
 	// -----------------------------------------------------
 
 //	특정 사원 조회
-	@Override
-	public Member mmContentServ(int mmCode) {
-		
-		System.out.println("MemberServiceImpl mmContentServ mmCode : " + mmCode);
-		
-<<<<<<< HEAD
-		return memberDao.selectByMm(mmCode);
-	}
+
 	
 	// 사원 조회 리스트
 	@Override
@@ -122,12 +115,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	// 사원 등록(사원정보,학력등록)
-=======
+
 	//사원 조회 리스트
 	
 	
 	//사원 등록(사원정보,학력등록)
->>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
+
 	@Override
 	public int mmAddServ(Member member, MemberAchieve memberAchieve, MemberLicense memberLicense, Career career) {
 		
@@ -222,11 +215,6 @@ public class MemberServiceImpl implements MemberService {
 
 	// 개인사원정보조회
 	@Override
-<<<<<<< HEAD
-	public MemberContent mmContentServ(MemberContent memberContent) {
-		
-		return memberDao.selectMmContent(memberContent);
-=======
 	public MemberContent mmContentServ(int mmCode) {
 		//System.out.println(mmCode); 확인완료
 		return memberDao.selectMmContent(mmCode);
@@ -248,6 +236,6 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberContent> mmContentCrServ(int mmCode) {
 		//System.out.println(mmCode); 확인완료
 		return memberDao.selectMmcontentCr(mmCode);
->>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
+
 	}
 }

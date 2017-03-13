@@ -37,53 +37,6 @@ public class ApproveServiceImpl implements ApproveService {
 	Date today = new Date (); 
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 	
-	// ----- 메소드 : 파일 업로드
-/*	private TotalInfo getFileInfo(TotalFile totalFile,TotalInfo totalInfo) throws IllegalStateException, IOException{
-		System.out.println("serv fileUpload> test1");
-		
-		File destFile = null;
-		MultipartFile multipartFile = null;
-		
-		//multifile 조건에 따른 분기 : 1.draft의 경로  2. document의 경로 
-		
-		System.out.println("----"+totalFile);
-		
-		if(totalFile.getDftFile()!=null){
-			 multipartFile = totalFile.getDftFile();
-			 System.out.println("draft 파일 등록");
-
-		}else if(totalFile.getDocFile()!=null){
-			 multipartFile = totalFile.getDocFile();
-			 System.out.println("document 파일 등록");
-		}
-		//uuid 적용
-		//----- 상대경로 적용???????????????????????????????
-			
-		절대경로  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
-		
-		String filePath =  "D:/Hong/neon-sts/SmartGroupWareSystem/Smart_Groupware_System/src/main/webapp/WEB-INF/views/approve/file";
-		UUID uuid = UUID.randomUUID();
-		String fileName = uuid.toString().replaceAll("-", "");
-		int index = multipartFile.getOriginalFilename().lastIndexOf(".");
-		String fileExtention = multipartFile.getOriginalFilename().substring(index+1);
-		fileName += "."+fileExtention;
-		destFile = new File(filePath+fileName);
-		multipartFile.transferTo(destFile);
-		
-		//totalInfo에 값 셋팅
-		totalInfo.setDftFileName(fileName);
-		totalInfo.setDftFilePath(filePath);
-		totalInfo.setDftFileExtention(fileExtention);
-		totalInfo.setDftFileOri(multipartFile.getOriginalFilename());
-		
-		totalInfo.setDocFileName(fileName);
-		totalInfo.setDocFilePath(filePath);
-		totalInfo.setDocFileExtention(fileExtention);
-		totalInfo.setDocFileOri(multipartFile.getOriginalFilename());
-		
-		return totalInfo;
-	}
-	*/
 	
 	//기안 요청 : GET ---- DOCUMENT
 	@Override
@@ -481,12 +434,11 @@ public class ApproveServiceImpl implements ApproveService {
 
 		int result = 0;
 		
-<<<<<<< HEAD
-=======
+
 		UtilFile utilFile = new UtilFile();
 
 		
->>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
+
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")+1, uploadPath.lastIndexOf(".")));
 		document.setDocFilePath(uploadPath);

@@ -79,7 +79,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 //------------------------------------------------------ DB 에서 정보 불러오기 리스트---------------------------------------
 	
-<<<<<<< HEAD
+
 //  사원 카운트 리스트
 	@Override
 	public int selectTotalMemberCount() {
@@ -94,11 +94,11 @@ public class MemberDAOImpl implements MemberDAO {
 		
 		return sqlSession.selectList("acDAO.selectAllMm", map);
 	}
-=======
+
 
 	
 // 사원 조건검색 리스트
->>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
+
 	
 	
 //	사원 정보 조회

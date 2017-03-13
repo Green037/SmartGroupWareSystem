@@ -145,38 +145,7 @@
 		<result property="lcType" column="lc_type"/>
 		<result property="lcNote" column="lc_note"/>		
 	</resultMap>
-<<<<<<< HEAD
-	
-	 <!-- 사원 개인정보조회 -->
-			
-	<!--  <select id="selectMmContent" resultMap="resultMmContent">
-			
-	</select>    -->
-			
-	<!--사원 개인정보조회 사원자격증불러오기 -->
-	<!-- <select id="selectMmcontentlc" >
-		SELECT
-				license.lc_name,
-				license.lc_organization,
-				license.lc_type,
-				license.lc_note,
-				memberLicense.ml_issueDate,
-				memberLicense.mm_code
-		FROM 
-				memberLicense
-		JOIN 
-				license 
-		ON 
-			memberLicense.lc_code = license.lc_code
-		JOIN 
-			memberManagement
-		ON 
-				memberLicense.mm_code = memberManagement.mm_code
-		WHERE 
-				memberLicense.mm_code = #{mmCode}
-		
-	</select> -->
-=======
+
 		
 		
 
@@ -310,7 +279,7 @@
 
 		
 		
->>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
+
 
 	<!-- 하위직종 불러오기 -->
 	<select id="selectMi" resultMap="resultMi">

@@ -38,10 +38,9 @@ public interface MemberDAO {
 	Member								mmLogin(Member member); //로그인
 	Member 								selectByMm(int mmCode); // 사원코드 불러오기
 	
-<<<<<<< HEAD
+
 	int 								selectTotalMemberCount(); // 사원조회리스트 전체 행 수
-=======
->>>>>>> 56ac431afa4daac461f9fdd269ce73a7c7001cfe
+
 	int 								insertMm(Member member); // 사원 등록
 	int 								insertMc(MemberAchieve memberAchieve); // 사원 학력 등록
 	int 								insertMl(MemberLicense memberLicense); // 사원 자격증 등록
