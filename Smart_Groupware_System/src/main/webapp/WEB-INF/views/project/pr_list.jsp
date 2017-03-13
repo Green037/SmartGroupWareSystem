@@ -6,23 +6,93 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<link href="<c:url value='/resources/css/evAdd.css'/>" rel="stylesheet" type="text/css"/>
 	<script>
-		$(document).on('click','#putInBtn',function(){
-			$('#putInFor').modal();
-			var prCode = $(this).parent().parent().children('#_prCode').val();
-			var mmCode = ${mmCode}; //로그인된 세션의 사원코드를 변수에 담는다
-			/* console.log(mmCode);
-			console.log(prCode); */
-			$('#prCode').val(prCode);
-			$('#mmCode').val(mmCode);
-		});
-		
-		
-		$(document).on('click','#approvalBtn',function(){
-			
-			$('#approvalForm').attr({action:"<c:url value='/pr/addPm'/>", method:"post"}).submit();
-		});
+	// 프로젝트 참여신청 이벤트
+	$(document).on('click','#putInBtn',function(){
+		$('#putInFor').modal();
+		var prCode = $(this).parent().parent().children('#_prCode').val();
+		var mmCode = ${mmCode}; //로그인된 세션의 사원코드를 변수에 담는다
+		/* console.log(mmCode);
+		console.log(prCode); */
+		$('#prCode').val(prCode);
+		$('#mmCode').val(mmCode);
+	});
 	
+	// 프로젝트 참여인원 팝업창에서 신청시 submit이벤트
+	$(document).on('click','#approvalBtn',function(){
+		
+		$('#approvalForm').attr({action:"<c:url value='/pr/addPm'/>", method:"post"}).submit();
+	});
+	
+	// 모집중 프로젝트 목록조회 이벤트
+	$(document).on('click','#recuitPrBtn',function(){
+		$('#showAll').css('display','none');
+		$('#showRun').css('display','none');
+		$.ajax({
+			url : '/smart/pr/list',
+			data : {'prProgress':1},
+			dataType : 'json',
+			type : 'POST',
+			success : function(data){
+				/* console.log("h2 PrLIST Form!! Ajax");
+				console.log(data); */
+				$('#recuitPr').empty();
+				$('#recuitPr').css('display','');
+				$.each(data, function(i, result){
+					$('#recuitPr').append(`
+						<tr>
+							<td>`+result.prCode+`</td>
+							<td><a href="<c:url value='/pr/detail?prCode=`+result.prCode+`'/>">`+result.prName+`</a></td>
+							<td>`+result.prMemberCode+`</td>
+							<td>`+result.prProgress+`</td>
+							<td>`+result.prCate+`</td>
+							<td>`+result.prStartDay+`</td>
+							<td>
+								<button type="button" id="putInBtn">참여신청</button>
+							</td>
+						</tr>`);
+				});
+			}
+		});
+	});
+	
+	//진행중 프로젝트 목록조회 이벤트
+	$(document).on('click','#runPrBtn',function(){
+		$('#showAll').css('display','none');
+		$('#recuitPr').css('display','none');
+		$.ajax({
+			url : '/smart/pr/list',
+			data : {'prProgress':2},
+			dataType : 'json',
+			type : 'POST',
+			success : function(data){
+				/* console.log("h2 PrLIST Form!! Ajax");
+				console.log(data); */
+				$('#showRun').empty();
+				$('#showRun').css('display','');
+				$.each(data, function(i, result){
+					$('#showRun').append(`
+						<tr>
+							<td>`+result.prCode+`</td>
+							<td><a href="<c:url value='/pr/detail?prCode=`+result.prCode+`'/>">`+result.prName+`</a></td>
+							<td>`+result.prMemberCode+`</td>
+							<td>`+result.prProgress+`</td>
+							<td>`+result.prCate+`</td>
+							<td>`+result.prStartDay+`</td>
+							<td>-</td>
+						</tr>`);
+				});
+			}
+		});
+	});
+	
+	//전체목록보기 이벤트
+	$(document).on('click','#allPrBtn',function(){
+		$('#recuitPr').css('display','none');
+		$('#showRun').css('display','none');
+		$('#showAll').css('display','');
+	});
 	</script>
 </head> 
 
@@ -43,7 +113,22 @@
 	<marquee behavior="alternate">
 		<p style="color:red;">If you click projectName, show detail information.!! </p>
 	</marquee>
-           
+    
+    <div class="row">
+		<div class="col-md-12">
+			<button class="btn btn-primary orange-circle-button" id="recuitPrBtn">
+				팀원모집중<br />목록보기<br /><span class="orange-circle-greater-than">Go!!</span>
+			</button>
+			<button class="btn btn-warning orange-circle-button" id="runPrBtn">
+				진행중인<br />목록보기<br /><span class="orange-circle-greater-than">Go!!</span>
+			</button>
+			<button class="btn btn-success orange-circle-button" id="allPrBtn">
+				전체<br />목록보기<br /><span class="orange-circle-greater-than">Go!!</span>
+			</button>
+		</div>   
+	</div>
+	      
+	<%-- 기존 리스트 선택 버튼.
 	<div class="btn-group btn-group-justified">
 		<a href="<c:url value='/pr/list?prProgress=1'/>" class="btn btn-success">
 			<span class="glyphicon glyphicon-search"></span> 팀원모집중목록보기
@@ -54,7 +139,7 @@
 		<a href="<c:url value='/pr/list?prProgress=3'/>" class="btn btn-success">
 			<span class="glyphicon glyphicon-check"></span> 완료된프로젝트목록보기
 		</a>
-	</div>
+	</div> --%>
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -68,7 +153,7 @@
 				
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="showAll">
 			<c:forEach var="projectList" items="${projectList}">
 				<tr>
 					<input type="hidden" id="_prCode" value="${projectList.prCode}"/>
@@ -90,6 +175,12 @@
 					</c:choose>
 				</tr>
 			</c:forEach>
+		</tbody>
+		<tbody id="showRun" style="display:none;">
+		
+		</tbody>
+		<tbody id="recuitPr" style="display:none;">
+		
 		</tbody>
 	</table>
 </div>

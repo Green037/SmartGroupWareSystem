@@ -62,6 +62,7 @@ public class ProjectServiceImpl implements ProjectService {
 		project = getFinishCheck(project);
 		
      // dao에 각 프로젝트,펀드,인원 테이블에 입력하는 메서드를 선언하고 이곳에서 호출한다.
+		project.setPrReport("미작성"); //첫입력이므로 완료보고서 미작성으로 등록
         int result = projectDao.insertPr(project);
 		//System.out.println("프로젝트 입력결과 : "+result);
 		//System.out.println("최근입력된 코드값 : "+project.getPrCode());
@@ -323,6 +324,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return result;
 	}
 
+	//프로젝트검색
 	@Override
 	public List<Project> prSearchServ(Project project, String prSize) {
 		// prSize 소중대 별로 규모 확인 소-인원4명이하 중- 5~10 대- 11이상 구분하여 다시 셋팅.
@@ -340,6 +342,7 @@ public class ProjectServiceImpl implements ProjectService {
 		return projectDao.selectByRequirementPr(project);
 	}
 
+	//평가보고서 등록
 	@Override
 	public int evAddServ(EvaluationCommand evauationCommand, ProjectEvaluation projectEvaluation) {
 		// 1.프로젝트 보고서의 프로젝트 코드를 변수에 세팅한다.
@@ -350,6 +353,16 @@ public class ProjectServiceImpl implements ProjectService {
 		projectEvaluation.setPrApprovalCheck("미신청"); //최초입력이므로 일단 전자결제 승인체크는 미신청으로 세팅함.
 		int prEvResult = projectDao.insertEvPr(projectEvaluation);
 		System.out.println("플젝 보고서 입력확인 : "+prEvResult);
+		
+		if(prEvResult == 1){ // 입력 성공했으면 프로젝트테이블에 완료보고서 작성컬럼 완료로 업데이트.
+			Project project = new Project();
+			project.setPrCode(projectEvaluation.getPrCode());
+			project.setPrReport("완료");
+		
+			// 업데이트하는 메서드 호출
+			int updatePrResult = projectDao.updatePr(project);
+			System.out.println("완료보고서 등록 프로젝트 테이블 수정여부 확인 : "+updatePrResult);
+		}
 		
 		// 3.인원 평가보고서 데이터 분해하여 배열로 세팅하고 for문 안에서 한세트씩 입력처리.
 		String[] evIntegritys = new String(evauationCommand.getEvIntegritys()).split(",");
@@ -373,6 +386,27 @@ public class ProjectServiceImpl implements ProjectService {
 			System.out.println("인원평가 입력확인"+i+" : "+result);
 		}
 		return prEvResult;
+	}
+
+	// 완료보고서 등록된 프로젝트만 조회
+	@Override
+	public List<Project> prListByReportServ(String prReport) {
+		// TODO Auto-generated method stub
+		return projectDao.selectByReportPr(prReport);
+	}
+
+	// 플젝 참여인원들 평가보고서 조회
+	@Override
+	public List<Evaluation> evDetailServ(int prCode) {
+		// TODO Auto-generated method stub
+		return projectDao.selectByPrCodeEv(prCode);
+	}
+
+	// 플젝 평가보고서 조회
+	@Override
+	public ProjectEvaluation evPrDetailServ(int prCode) {
+		// TODO Auto-generated method stub
+		return projectDao.selectByPrCodePrEv(prCode);
 	}
 	
 }
