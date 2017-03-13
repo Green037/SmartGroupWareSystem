@@ -7,7 +7,12 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<link href="<c:url value='/resources/css/evAdd.css'/>" rel="stylesheet" type="text/css"/>
-	
+	<script>
+		// 완료보고서 작성된 플젝 리스트로 돌아가기 이벤트.
+		$(document).on('click','#evPrListBtn',function(){
+			$('#reloadListForm').attr({action:'<c:url value="/ev/list"/>',method:"get"}).submit();
+		});
+	</script>
 </head> 
 <body>
 <%@ include file="../menu.jsp" %>
@@ -21,16 +26,18 @@
 	<center>
 		<h2><span class="glyphicon glyphicon-pencil"> 평가보고서</span></h2>
 	</center>
-	<div class="row">
-		<div class="col-md-12">
-			<button class="btn btn-success orange-circle-button" id="evPrAddBtn">
-				목록<br />보기<br /><span class="orange-circle-greater-than">Go!!</span>
-			</button>
-			<!-- <button class="btn btn-warning orange-circle-button" id="evApprovalBtn">
-				전자결제<br />바로가기<br /><span class="orange-circle-greater-than">Go!!</span>
-			</button> -->
-		</div>   
-	</div>
+	<form id="reloadListForm">
+		<div class="row">
+			<div class="col-md-12">
+				<button class="btn btn-success orange-circle-button" id="evPrListBtn">
+					목록<br />보기<br /><span class="orange-circle-greater-than">Go!!</span>
+				</button>
+				<!-- <button class="btn btn-warning orange-circle-button" id="evApprovalBtn">
+					전자결제<br />바로가기<br /><span class="orange-circle-greater-than">Go!!</span>
+				</button> -->
+			</div>   
+		</div>
+	</form>
 	<form id="evPrForm">
 		<table class="table table-bordered">
 			<thead>

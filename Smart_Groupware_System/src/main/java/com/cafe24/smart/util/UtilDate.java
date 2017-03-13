@@ -36,6 +36,12 @@ public class UtilDate {
 		return (new SimpleDateFormat("yyyy-MM-dd hh:mm:ss")).format(new Date());
 	}
 	
+	//현재시간 리턴.
+	public String getCurrentTime() {
+		
+		return (new SimpleDateFormat("hh:mm:ss")).format(new Date());
+	}
+	
 	//Date 차 리턴
 	public long getMinusDate(String beginDate, String endDate) {
 		

@@ -1,9 +1,15 @@
 package com.cafe24.smart.commute.service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
-public class CommuteService {
+import com.cafe24.smart.commute.domain.Commute;
+
+@Service
+public interface CommuteService {
+	int addOnTimeServ(Commute commute);
+	int cmCountByTodayServ(Commute commute);
+	int cmOffTimeServ(Commute commute);
 	
-	private static final Logger log = LoggerFactory.getLogger(CommuteService.class);
+	Commute cmOnTimeTodayServ(Commute commute);
+
 }

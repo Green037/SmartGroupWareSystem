@@ -22,7 +22,7 @@
 					$('#prContent').append(`
 						<tr>
 							<td>`+prList.prCode+`</td>
-							<td>`+prList.prName+`</td>
+							<td><a href="<c:url value='/pr/detail?prCode=`+prList.prCode+`'/>">`+prList.prName+`</a></td>
 							<td>`+prList.prMemberCode+`</td>
 							<td>`+prList.prProgress+`</td>
 							<td>`+prList.prCate+`</td>

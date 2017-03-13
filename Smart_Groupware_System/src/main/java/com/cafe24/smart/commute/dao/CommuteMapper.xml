@@ -4,15 +4,82 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="CmDAO">
-	<resultMap id="resultCm" type="Commute">
+	<resultMap id="resultCm" type="com.cafe24.smart.commute.domain.Commute">
 		<result property="cmCode" column="cm_code"/>
 		<result property="mmCode" column="mm_code"/>
 		<result property="cmOnTime" column="cm_onTime"/>
-		<result property="cmOffTime" column="cmOffTime"/>
+		<result property="cmOffTime" column="cm_offTime"/>
 		<result property="cmDate" column="cm_date"/>
 		<result property="cmExceptionInput" column="cm_exceptionInput"/>
+		<result property="cmExceptionReason" column="cm_exceptionReason"/>
 		<result property="cmGoOutTime" column="cm_goOutTime"/>
 		<result property="cmReturnTime" column="cm_returnTime"/>
 	</resultMap>
 	
+	<insert id="insertOnTimeCm"
+			parameterType="com.cafe24.smart.commute.domain.Commute">
+		INSERT INTO commute(
+			mm_code,
+			cm_onTime,
+			cm_date,
+			cm_situation
+			<if test="cmExceptionInput != null and cmExceptionInput != ''">
+				,cm_exceptionInput
+			</if>
+			<if test="cmExceptionReason != null and cmExceptionReason != ''">
+				,cm_exceptionReson
+			</if>
+			)
+		VALUES(
+			#{mmCode},
+			#{cmOnTime},
+			now(),
+			#{cmSituation}
+			<if test="cmExceptionInput != null and cmExceptionInput != ''">
+				,#{cmExceptionInput}
+			</if>
+			<if test="cmExceptionReason != null and cmExceptionReason != ''">
+				,#{cmExceptionReason}
+			</if>
+			)
+	
+	</insert>
+	
+	<select id="selectCountTodayCm"
+			parameterType="com.cafe24.smart.commute.domain.Commute"
+			resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			commute
+		WHERE
+			mm_code=#{mmCode}
+		AND 
+			cm_date=#{cmDate}	
+	</select>
+	
+	<select id="selectOnTimeTodayCm"
+			parameterType="com.cafe24.smart.commute.domain.Commute"
+			resultMap="resultCm">
+		SELECT
+			*
+		FROM
+			commute
+		WHERE
+			mm_code=#{mmCode}
+		AND
+			cm_date=#{cmDate}
+	</select>
+	
+	<update id="updateOnTimeTodayCm"
+			parameterType="com.cafe24.smart.commute.domain.Commute">
+		UPDATE 
+			commute
+		SET
+			cm_offTime = #{cmOffTime},
+			cm_situation = #{cmSituation}
+		WHERE
+			cm_code = #{cmCode}
+	
+	</update>
 </mapper>
