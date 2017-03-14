@@ -12,6 +12,7 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+//	특정 고과 번호의 성과금 보기
 	@Override
 	public Incentive selectIn(int reCode) {
 		
@@ -32,7 +33,5 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 		System.out.println("IncentiveDAOImpl insertIn n : " + n);
 		
 		return n;
-	}
-
-	
+	}	
 }

@@ -14,70 +14,56 @@ public class Incentive {
 		return inCode;
 	}
 
-	public Incentive setInCode(int inCode) {
+	public void setInCode(int inCode) {
 		this.inCode = inCode;
-
-		return this;
 	}
 
 	public int getReCode() {
 		return reCode;
 	}
 
-	public Incentive setReCode(int reCode) {
+	public void setReCode(int reCode) {
 		this.reCode = reCode;
-
-		return this;
 	}
 
 	public int getMmCode() {
 		return mmCode;
 	}
 
-	public Incentive setMmCode(int mmCode) {
+	public void setMmCode(int mmCode) {
 		this.mmCode = mmCode;
-
-		return this;
 	}
 
 	public int getInBonus() {
 		return inBonus;
 	}
 
-	public Incentive setInBonus(int inBonus) {
+	public void setInBonus(int inBonus) {
 		this.inBonus = inBonus;
-
-		return this;
 	}
 
 	public boolean isInPossible() {
 		return inPossible;
 	}
 
-	public Incentive setInPossible(boolean inPossible) {
+	public void setInPossible(boolean inPossible) {
 		this.inPossible = inPossible;
-
-		return this;
 	}
 
 	public String getInDate() {
 		return inDate;
 	}
 
-	public Incentive setInDate(String inDate) {
+	public void setInDate(String inDate) {
 		this.inDate = inDate;
-
-		return this;
 	}
 
 	public int getInMmCode() {
 		return inMmCode;
 	}
 
-	public Incentive setInMmCode(int inMmCode) {
+	public void setInMmCode(int inMmCode) {
 		this.inMmCode = inMmCode;
-
-		return this;
 	}
 
 	@Override

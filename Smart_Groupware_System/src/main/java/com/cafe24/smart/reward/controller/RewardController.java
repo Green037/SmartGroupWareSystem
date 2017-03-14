@@ -176,7 +176,7 @@ public class RewardController {
 	
 //	인사부 > 특정 사원의 고과내역 보기
 	@RequestMapping(value = "re/mmContent", method = RequestMethod.GET)
-	public String reContentMmCtrl(@RequestParam(value="reCode", required=true) int reCode,
+	public String reContentMmCtrl(@RequestParam(value="reCode") int reCode,
 																			Model model) {
 		
 		System.out.println("RewardController reContentMmCtrl reCode : " + reCode);
@@ -189,7 +189,7 @@ public class RewardController {
 		Member member = rewardService.mmContentServ(reward.getMmCode());
 		
 //		Incentive 정보 받아오기
-		Incentive incentive = incentiveService.inListServ(reward.getReCode());
+		Incentive incentive = incentiveService.inListServ(reCode);
 		
 //		부서
 		String dpName = utilMember.getDpName(member.getDpCode());
@@ -250,7 +250,7 @@ public class RewardController {
 	
 //	고과서류 파일 다운로드 (get)
 	@RequestMapping(value = "/re/fileDownload", method = RequestMethod.GET)
-	public ModelAndView reDocumentDown(@RequestParam(value="reCode", required=true) int reCode) {
+	public ModelAndView reDocumentDown(@RequestParam(value="reCode") int reCode) {
 		
 		Reward reward = rewardService.reListByReCodeServ(reCode);
 		
