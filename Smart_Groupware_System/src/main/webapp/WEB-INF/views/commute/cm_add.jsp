@@ -80,6 +80,76 @@
 			}
 		});
 	});
+	
+	//외출등록 
+	$(document).on('click','#cmGoOutBtn',function(){
+		$('#goOut').modal();
+		var mmCode = '${sessionScope.mmCode}';
+		var mmName = '${sessionScope.mmName}';
+		/* console.log('세션코드값, 세션네임값 확인 : '+mmCode+mmName); */
+		$('#mmCode_1').val(mmCode);
+		$('#mmName_1').val(mmName);
+	});
+	
+	//외출등록 버튼 클릭 이벤트 - 기존 출근 기록 가져와서 외출시간 등록하기.
+	$(document).on('click','#goOutBtn',function(){
+		var formData = $('#goOutForm').serialize();
+		console.log(formData); 
+		$.ajax({
+			url : '/smart/cm/addGoOut',
+			data : formData,
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				console.log("H2 ajax form GoOutTime Check!");
+				console.log(data.check); 
+				if(data.check=='성공'){
+					var checkMessage = '외출등록 되었습니다';
+				}else if(data.check=='실패'){
+					var checkMessage = '외출등록에 실패하였습니다';
+				}else{
+					var checkMessage = data.check;
+				}
+				$('#goOut').modal('hide');
+				alert(checkMessage);
+			}
+		});
+	});
+	
+	//외출복귀
+	$(document).on('click','#cmReturnBtn',function(){
+		$('#goReturn').modal();
+		var mmCode = '${sessionScope.mmCode}';
+		var mmName = '${sessionScope.mmName}';
+		/* console.log('세션코드값, 세션네임값 확인 : '+mmCode+mmName); */
+		$('#mmCode_2').val(mmCode);
+		$('#mmName_2').val(mmName);
+	});
+	
+	//외출복귀 버튼 클릭 이벤트 - 기존 외출자 기록 가져와서 외출복귀시간 등록하기.
+	$(document).on('click','#goReturnBtn',function(){
+		var formData = $('#goReturnForm').serialize();
+		console.log(formData); 
+		$.ajax({
+			url : '/smart/cm/addReturn',
+			data : formData,
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				console.log("H2 ajax form returnTime Check!");
+				console.log(data.check); 
+				if(data.check=='성공'){
+					var checkMessage = '외출복귀등록 되었습니다';
+				}else if(data.check=='실패'){
+					var checkMessage = '외출복귀등록에 실패하였습니다';
+				}else{
+					var checkMessage = data.check;
+				}
+				$('#goReturn').modal('hide');
+				alert(checkMessage);
+			}
+		});
+	});
 </script>
 </head> 
 <body>
@@ -105,10 +175,10 @@
             <button type ="button" id="cmOfftimeAddBtn" class="btn btn-sq-lg btn-success">
               <i class="fa fa-user fa-5x"></i><br/> 퇴근 등록 <br>
             </button>
-            <button type="button" class="btn btn-sq-lg btn-warning">
+            <button type="button" id="cmGoOutBtn" class="btn btn-sq-lg btn-warning">
               <i class="fa fa-user fa-5x"></i><br/> 외출 등록 <br>
             </button>
-            <button type="button" class="btn btn-sq-lg btn-danger">
+            <button type="button" id="cmReturnBtn" class="btn btn-sq-lg btn-danger">
               <i class="fa fa-user fa-5x"></i><br/> 외출 복귀 <br>
             </button>
           </p>
@@ -139,6 +209,8 @@
 </div>
 <c:import url="./cm_onTime.jsp"></c:import> <!--팝업창 출근체크  -->
 <c:import url="./cm_offTime.jsp"></c:import> <!--팝업창 퇴근체크  -->
+<c:import url="./cm_goOut.jsp"></c:import> <!--팝업창 외출등록  -->
+<c:import url="./cm_goReturn.jsp"></c:import> <!--팝업창 외출복귀  -->
 
 <%@ include file="../footer.jsp"%>
 </body>
