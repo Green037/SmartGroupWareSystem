@@ -249,7 +249,7 @@ public class RewardController {
 		System.out.println("RewardController reAddProCtrl n : " + n);
 		System.out.println("RewardController reAddProCtrl uploadPath : " + uploadPath);
 		
-		return "redirect:re/add";
+		return "redirect:listAll";
 	}
 	
 //	인사부 > 고과 수정 (get)
@@ -285,7 +285,7 @@ public class RewardController {
 		model.addAttribute("reward", reward);
 		model.addAttribute("rewardCount", rewardCount);
 		
-		return "redirect:re/listAll";
+		return "reward/re_modify";
 	}
 	
 //	인사부 > 고과 수정 (post)
@@ -302,7 +302,7 @@ public class RewardController {
 //		
 //		paymentService.paUpdateServ(payContent);
 		
-		return "redirect:re/listAll";
+		return "redirect:listAll";
 	}
 	
 //	인사부 > 고과 삭제
@@ -313,7 +313,7 @@ public class RewardController {
 //		
 //		paymentService.paRemoveServ(payContent);
 		
-		return "redirect:re/listAll";
+		return "redirect:listAll";
 	}
 	
 //	고과서류 파일 다운로드 (get)

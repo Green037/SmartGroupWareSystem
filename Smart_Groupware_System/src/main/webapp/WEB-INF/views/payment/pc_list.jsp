@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,7 +33,7 @@
 										<!-- 에러가 있으면 날짜 선택 메세지 말고 에러를 출력 -->
 										<!-- 날짜 default : 오늘 / 받기는 날짜를 받지만 자바 코드로 년+월만 추출 -->
 										<span style="color:red; font-size:10pt">연도를 입력하세요.</span>
-										<input type="date" class="form-control1 ng-invalid ng-invalid-required" value="${pcYear}" placeholder="YYYY">
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${pcYear}" placeholder="YYYY">
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>소속</b></label>
@@ -69,51 +72,60 @@
 									<tr>
 										<td>1</td>
 										<td>본봉</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.mmDailyPay}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>1,000,000</td>
 									</tr>
 									<tr>
 										<td>2</td>
 										<td>성과금</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.inAmount}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>1,000,000</td>
 									</tr>
 									<tr>
 										<th colspan="2">계</th>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.mmDailyPay + payList.inAmount}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>100,000</td>
 									</tr>
 								</table> 
@@ -141,85 +153,100 @@
 									<tr>
 										<td>1</td>
 										<td>고용보험</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.eiAmount}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>1,000,000</td>
 									</tr>
 									<tr>
 										<td>2</td>
 										<td>국민건강보험</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.nhiAmount}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>1,000,000</td>
 									</tr>
 									<tr>
 										<td>3</td>
 										<td>산재보험</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.ohiAmount}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>1,000,000</td>
 									</tr>
 									<tr>
 										<td>4</td>
 										<td>연금보험</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.ppAmount}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>1,000,000</td>
 									</tr>
 									<tr>
 										<th colspan="2">계</th>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
-										<td>100,000</td>
+										<c:choose>
+											<c:when test="${payList != null}">
+												<c:forEach var="payList" items="${payList}">
+													<td><fmt:formatNumber value="${payList.eiAmount + payList.nhiAmount + payList.ohiAmount + payList.ppAmount}" pattern="#,###"/></td>
+												</c:forEach>
+												<c:forEach begin="${fn:length(payList) + 1}" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+											<c:when test="${payList == null}">
+												<c:forEach begin="1" end="12">
+													<td>0</td>
+												</c:forEach>
+											</c:when>
+										</c:choose>
 										<td>100,000</td>
 									</tr>
 								</table> 

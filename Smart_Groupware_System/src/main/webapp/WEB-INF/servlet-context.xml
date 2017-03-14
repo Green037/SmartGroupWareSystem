@@ -34,7 +34,7 @@
 		<property name="password" value="bsy63792"/>  -->
 		
 <!-- 		은비씨 -->
-<!--  		<property name="url" value="jdbc:mysql://localhost:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
+<!--  		<property name="url" value="jdbc:mysql://tsuyu040913.cafe24.com:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
 <!--  		<property name="username" value="tsuyu040913"/>  -->
 <!--    		<property name="password" value="eunbi3800*"/> -->
 

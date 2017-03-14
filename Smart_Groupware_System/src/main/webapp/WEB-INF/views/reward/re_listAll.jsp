@@ -14,7 +14,7 @@
 			$("#checkMemberBtn").click(function() {
 				var memberData = $("#mmPassword").val();
 				
-				alert('memberData : ' + memberData);
+// 				console.log('memberData : ' + memberData);
 
 				$.ajax({
 					url: '/smart/re/mmContent',

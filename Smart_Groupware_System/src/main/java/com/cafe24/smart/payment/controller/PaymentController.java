@@ -1,5 +1,6 @@
 package com.cafe24.smart.payment.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -53,6 +54,7 @@ public class PaymentController {
 		List<PayContent> payList = 
 				paymentService.paListServ(mmCode, utilDate.getCurrentYear() + "-01-01", utilDate.getLastDate());
 		
+		System.out.println("PaymentController pcListCtrl 12 - payListSize : " + (12 - payList.size()));
 		System.out.println("PaymentController pcListCtrl member : " + member);
 		System.out.println("PaymentController pcListCtrl payList : " + payList);
 		
@@ -121,6 +123,6 @@ public class PaymentController {
 		
 		paymentService.pcAddServ(payContent);
 		
-		return "redirect:payment/pa_listAll";
+		return "redirect:listAll";
 	}
 }

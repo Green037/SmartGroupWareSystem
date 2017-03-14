@@ -1,3 +1,6 @@
+/**
+ * 2017.03.14 by. EUNBEE GO
+ */
 package com.cafe24.smart.util;
 
 import java.io.File;
@@ -21,6 +24,10 @@ import org.springframework.web.servlet.view.AbstractView;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.reward.domain.Reward;
 
+//@Component > @Service
+//			: 스프링 프레임워크가 관리하는 컴포넌트의 일반적 타입 
+//			: 개발자가 직접 조작이 가능한 클래스의 경우 해당 어노테이션을 붙임
+//			: ( <=> @Bean : 개발자가 조작이 불가능한 외부 라이브러리를 Bean으로 등록시 사용)
 @Component
 public class UtilFile extends AbstractView {
 	String fileName = "";

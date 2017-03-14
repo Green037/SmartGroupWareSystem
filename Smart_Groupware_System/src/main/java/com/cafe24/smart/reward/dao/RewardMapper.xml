@@ -28,7 +28,10 @@
 		SELECT SQL_CALC_FOUND_ROWS
 			*
 		FROM
-			reward;
+			reward
+		ORDER BY
+			re_code
+		ASC;
 	</select>
 	
 	<!-- 연간고과내역조회 -->
