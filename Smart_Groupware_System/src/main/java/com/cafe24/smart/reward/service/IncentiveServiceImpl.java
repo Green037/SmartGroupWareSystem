@@ -44,12 +44,12 @@ public class IncentiveServiceImpl implements IncentiveService {
 		
 		UtilDate utilDate = new UtilDate();
 		
-		incentive.setReCode(rewardDAO.selectByReDateRe(reward.getReDate()))
-				.setMmCode(reward.getMmCode())
-				.setInPossible(false)
-				.setInDate(null)
-				.setInBonus(paymentDAO.selectByPc(reward.getMmCode(), utilDate.getPaymentDate()))
-				.setInMmCode(reward.getReMmCode());
+		incentive.setReCode(rewardDAO.selectByReDateRe(reward.getReDate()));
+		incentive.setMmCode(reward.getMmCode());
+		incentive.setInBonus(paymentDAO.selectByPc(reward.getMmCode(), utilDate.getPaymentDate()));
+		incentive.setInPossible(false);
+		incentive.setInDate(null);		
+		incentive.setInMmCode(reward.getReMmCode());
 		
 		System.out.println("IncentiveServiceImpl inAddServ incentive : " + incentive);
 		

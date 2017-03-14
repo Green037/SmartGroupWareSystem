@@ -15,7 +15,7 @@
 	
 	<resultMap id="resultIn" type="com.cafe24.smart.reward.domain.Incentive">
 		<result property="inCode" column="in_code"/>
-		<result property="reDate" column="re_date"/>
+		<result property="reCode" column="re_code"/>
 		<result property="mmCode" column="mm_code"/>
 		<result property="inBonus" column="in_bonus"/>
 		<result property="inPossible" column="in_possible"/>
@@ -47,25 +47,22 @@
 			#{endDate};
 	</select>
 	
+	<!-- 이전 쿼리의 select 갯수 받아오기 -->
 	<select id="selectAllCountRe" resultType="int">
 		SELECT FOUND_ROWS();
 	</select>
 	
-	<select id="selectByReCodeRe" parameterType="hashmap" resultMap="resultRe">
+	<!-- 인사부 > 특정 고과내역 조회 -->
+	<select id="selectByReCodeRe" parameterType="int" resultMap="resultRe">
 		SELECT SQL_CALC_FOUND_ROWS
 			*
 		FROM
 			reward
 		WHERE
-			mm_code = #{mmCode}
-		AND
-			re_date
-		BETWEEN
-			#{startDate}
-		AND
-			#{endDate};
+			re_code = #{reCode};
 	</select>
 	
+	<!-- 고과기록정보조회 -->
 	<select id="selectRe" parameterType="hashmap" resultMap="resultRe">
 		SELECT SQL_CALC_FOUND_ROWS
 			*
@@ -90,14 +87,14 @@
 			re_date = #{reDate}
 	</select>
 	
-	<!-- 특정 성과 조회 (고과코드로) -->
+	<!-- 고과기록정보조회시 성과금 끌어오기 -->
 	<select id="selectIn" parameterType="int" resultMap="resultIn">
 		SELECT SQL_CALC_FOUND_ROWS
 			*
 		FROM
 			incentive
 		WHERE
-			re_code = #{reCode}
+			re_code = #{reCode};
 	</select>
 	
 	<!-- 인사부 > 고과내역추가 -->

@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.smart.reward.domain.Reward;
-import com.cafe24.smart.util.UtilDate;
 
 @Repository
 public class RewardDAOImpl implements RewardDAO {
@@ -113,6 +112,7 @@ public class RewardDAOImpl implements RewardDAO {
 		return reward;
 	}
 
+//	인사부 > 고과내역 추가
 	@Override
 	public int insertRe(Reward reward) {
 		
