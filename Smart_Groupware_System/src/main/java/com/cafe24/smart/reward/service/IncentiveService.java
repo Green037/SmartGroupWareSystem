@@ -7,4 +7,7 @@ public interface IncentiveService {
 	Incentive			inListServ(int reCode);
 	
 	int					inAddServ(Reward reward);
+	
+	void				inModifyServ(Incentive incentive);
+	void				inRemoveServ(int reCode);
 }

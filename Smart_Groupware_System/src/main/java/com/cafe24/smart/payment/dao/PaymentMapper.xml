@@ -12,31 +12,44 @@
 		<result property="inAmount" column="in_amount"/>
 		<result property="eiAmount" column="ei_amount"/>
 		<result property="nhiAmount" column="nhi_amount"/>
+		<result property="ohiAmount" column="ohi_amount"/>
 		<result property="ppAmount" column="pp_amount"/>
 		<result property="paMmCode" column="pa_mmCode"/>
 	</resultMap>
 	
-	<resultMap id="resultIn" type="com.cafe24.smart.reward.domain.Incentive">
-		<result property="inCode" column="in_code"/>
-		<result property="reCode" column="re_code"/>
-		<result property="mmCode" column="mm_code"/>
-		<result property="inBonus" column="in_bonus"/>
-		<result property="inPossible" column="in_possible"/>
-		<result property="inDate" column="in_date"/>
-		<result property="inMmCode" column="in_mmCode"/>
-	</resultMap>
-	
-	<select id="selectByPc" parameterType="hashmap" resultType="int">
-		SELECT
-			in_amount
+	<select id="selectPc" parameterType="hashmap" resultMap="resultPc">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
 		FROM
 			payContent
 		WHERE
 			mm_code = #{mmCode}
 		AND
-			pc_date = #{reDate};
+			pc_date
+		BETWEEN
+			#{startDate}
+		AND
+			#{endDate};
 	</select>
 	
+	<!-- 월급여조회 -->
+	<select id="selectByPc" parameterType="hashmap" resultMap="resultPc">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			payContent
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			pc_date = #{pcDate};
+	</select>
+	
+	<!-- 이전 쿼리의 select 갯수 받아오기 -->
+	<select id="selectAllCountRe" resultType="int">
+		SELECT FOUND_ROWS();
+	</select>
+	
+	<!-- 총무부 > 급여추가 -->
 	<insert id="insertPc" parameterType="com.cafe24.smart.payment.domain.PayContent">
 		INSERT INTO
 			payContent (
@@ -46,6 +59,7 @@
 				in_amount,
 				ei_amount,
 				nhi_amount,
+				ohi_amount,
 				pp_amount,
 				pa_mmCode)
 		VALUES (
@@ -55,25 +69,18 @@
 			#{inAmount},
 			#{eiAmount},
 			#{nhiAmount},
+			#{ohiAmount},
 			#{ppAmount},
 			#{paMmCode});
 	</insert>
 	
-	<insert id="insertIn" parameterType="com.cafe24.smart.reward.domain.Incentive">
-		INSERT INTO
-			incentive (
-				re_code,
-				mm_code,
-				in_bonus,
-				in_possible,
-				in_date,
-				in_mmCode)
-		VALUES (
-			#{reCode},
-			#{mmCode},
-			#{inBonus},
-			#{inPossible},
-			#{inDate},
-			#{inMmCode});
-	</insert>
+	<update id="updatePc" parameterType="com.cafe24.smart.payment.domain.PayContent">
+		UPDATE
+			payContent
+		SET
+			pc_date = #{pcDate},
+			mm_dailyPay = #{mmDailyPay}
+		WHERE
+			pc_code = #{pcCode};
+	</update>
 </mapper>

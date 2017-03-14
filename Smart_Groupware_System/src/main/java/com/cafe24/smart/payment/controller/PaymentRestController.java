@@ -21,7 +21,7 @@ public class PaymentRestController {
 	
 //	총무부 > 급여내역 추가 > 사원코드 검색 > 특정 사원 정보 select
 	@RequestMapping(value = "pc/mmContent", method = RequestMethod.POST)
-	public Member paMmContentCtrl(@RequestParam(value="mmCode", required=false) int mmCode, Model model) {
+	public Member paMmContentCtrl(@RequestParam(value="mmCode", required=false) int mmCode) {
 			
 		System.out.println("PaymentController paMmContentCtrl mmCode : " + mmCode);
 		

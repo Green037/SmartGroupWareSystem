@@ -90,4 +90,22 @@ public class RewardServiceImpl implements RewardService {
 		
 		return rewardDAO.insertRe(reward);
 	}
+
+//	고과내역 수정
+	@Override
+	public void reModifyServ(Reward reward) {
+		
+		System.out.println("RewardServiceImpl reModifyServ reward : " + reward);
+		
+		rewardDAO.updateRe(reward);
+	}
+
+//	고과내역 삭제
+	@Override
+	public void reRemoveServ(int reCode) {
+		
+		System.out.println("RewardServiceImpl reRemoveServ reCode : " + reCode);
+		
+		rewardDAO.deleteRe(reCode);
+	}
 }

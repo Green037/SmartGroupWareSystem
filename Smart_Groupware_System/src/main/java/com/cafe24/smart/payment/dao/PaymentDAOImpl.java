@@ -19,31 +19,49 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
+	int selectAllCountRe;
+	
+//	이전 쿼리의 총 갯수 조회
 	@Override
-	public List<PayContent> selectAllPa() {
-		List<PayContent> payList = null;
+	public int selectAllCountRe() {
 		
-//		payList = sqlSession.selectList(statement);
-		
-		return null;
+		return selectAllCountRe;
 	}
 	
+//	연간급여내역조회
 	@Override
-	public int selectByPc(int mmCode, String reDate) {
-		
-		System.out.println("PaymentDAOImpl selectByPc mmCode : " + mmCode);
-		System.out.println("PaymentDAOImpl selectByPc reDate : " + reDate);
+	public List<PayContent> selectPa(int mmCode, String startDate, String endDate) {
+	
+		System.out.println("PaymentDAOImpl selectPa mmCode : " + mmCode + ", startDate : " + startDate 
+								+ ", endDate : " + endDate);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("mmCode", mmCode);
-		params.put("reDate", reDate);
+		params.put("startDate", startDate);
+		params.put("endDate", endDate);		
+		
+		return sqlSession.selectList("PaDAO.selectPc", params);
+	}
+	
+//	월급여조회
+	@Override
+	public PayContent selectByPc(int mmCode, String pcDate) {
+		
+		System.out.println("PaymentDAOImpl selectByPc mmCode : " + mmCode);
+		System.out.println("PaymentDAOImpl selectByPc pcDate : " + pcDate);
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("mmCode", mmCode);
+		params.put("pcDate", pcDate);
 		
 		System.out.println("PaymentDAOImpl selectByPc params : " + params);
 		
 		return sqlSession.selectOne("PaDAO.selectByPc", params);
 	}
 	
+//	총무부 > 급여 추가
 	@Override
 	public int insertPc(PayContent payContent) {
 		
@@ -52,4 +70,12 @@ public class PaymentDAOImpl implements PaymentDAO {
 		return sqlSession.insert("PaDAO.insertPc", payContent);
 	}
 
+//	총무부 > 급여 수정
+	@Override
+	public void updatePc(PayContent payContent) {
+		
+		System.out.println("PaymentDAOImpl updatePa payContent : " + payContent);
+		
+		sqlSession.update("PaDAO.updatePc", payContent);
+	}
 }

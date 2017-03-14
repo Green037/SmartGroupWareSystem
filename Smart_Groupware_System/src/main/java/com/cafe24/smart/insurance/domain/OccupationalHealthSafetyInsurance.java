@@ -3,9 +3,10 @@ package com.cafe24.smart.insurance.domain;
 //산재보험
 public class OccupationalHealthSafetyInsurance {
 	private int ohiCode;
+	private double ohiBasic;
 	private int ohiYear;
-	private int ohiExtra;
-	private int ohiHelp;
+	private double ohiExtra;
+	private double ohiHelp;
 
 	public int getOhiCode() {
 		return ohiCode;
@@ -15,6 +16,14 @@ public class OccupationalHealthSafetyInsurance {
 		this.ohiCode = ohiCode;
 	}
 	
+	public double getOhiBasic() {
+		return ohiBasic;
+	}
+
+	public void setOhiBasic(double ohiBasic) {
+		this.ohiBasic = ohiBasic;
+	}
+
 	public int getOhiYear() {
 		return ohiYear;
 	}
@@ -23,25 +32,25 @@ public class OccupationalHealthSafetyInsurance {
 		this.ohiYear = ohiYear;
 	}
 	
-	public int getOhiExtra() {
+	public double getOhiExtra() {
 		return ohiExtra;
 	}
 	
-	public void setOhiExtra(int ohiExtra) {
+	public void setOhiExtra(double ohiExtra) {
 		this.ohiExtra = ohiExtra;
 	}
 	
-	public int getOhiHelp() {
+	public double getOhiHelp() {
 		return ohiHelp;
 	}
 	
-	public void setOhiHelp(int ohiHelp) {
+	public void setOhiHelp(double ohiHelp) {
 		this.ohiHelp = ohiHelp;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "OccupationalHealthSafetyInsurance [ohiCode=" + ohiCode + ", ohiYear=" + ohiYear + ", ohiExtra="
-				+ ohiExtra + ", ohiHelp=" + ohiHelp + "]";
+		return "OccupationalHealthSafetyInsurance [ohiCode=" + ohiCode + ", ohiBasic=" + ohiBasic + ", ohiYear="
+				+ ohiYear + ", ohiExtra=" + ohiExtra + ", ohiHelp=" + ohiHelp + "]";
 	}
 }

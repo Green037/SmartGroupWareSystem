@@ -9,6 +9,7 @@ public class PayContent {
 	private int inAmount;
 	private int eiAmount;
 	private int nhiAmount;
+	private int ohiAmount;
 	private int ppAmount;
 	private int paMmCode;
 
@@ -22,6 +23,14 @@ public class PayContent {
 
 	public int getMmCode() {
 		return mmCode;
+	}
+	
+	public int getOhiAmount() {
+		return ohiAmount;
+	}
+
+	public void setOhiAmount(int ohiAmount) {
+		this.ohiAmount = ohiAmount;
 	}
 
 	public void setMmCode(int mmCode) {
@@ -88,6 +97,6 @@ public class PayContent {
 	public String toString() {
 		return "PayContent [pcCode=" + pcCode + ", mmCode=" + mmCode + ", pcDate=" + pcDate + ", mmDailyPay="
 				+ mmDailyPay + ", inAmount=" + inAmount + ", eiAmount=" + eiAmount + ", nhiAmount=" + nhiAmount
-				+ ", ppAmount=" + ppAmount + ", paMmCode=" + paMmCode + "]";
+				+ ", ohiAmount=" + ohiAmount + ", ppAmount=" + ppAmount + ", paMmCode=" + paMmCode + "]";
 	}
 }

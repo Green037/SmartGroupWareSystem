@@ -1,5 +1,7 @@
 package com.cafe24.smart.payment.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -15,6 +17,7 @@ import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.payment.domain.PayContent;
 import com.cafe24.smart.payment.service.PaymentService;
 import com.cafe24.smart.util.UtilDate;
+import com.cafe24.smart.util.UtilMember;
 
 @Controller
 public class PaymentController {
@@ -30,6 +33,7 @@ public class PaymentController {
 	HttpSession session;
 	
 	UtilDate utilDate = new UtilDate();
+	UtilMember utilMember = new UtilMember();
 	
 //	총무부 > 총급여목록
 	@RequestMapping(value = "pa/listAll", method = RequestMethod.GET)
@@ -41,7 +45,25 @@ public class PaymentController {
 //	연간 급여내역 조회
 	@RequestMapping(value = "pc/list", method = RequestMethod.GET)
 	public String pcListCtrl(Model model) {
-					
+		
+		int mmCode = (int) session.getAttribute("mmCode");
+		
+		Member member = paymentService.pcMmContentServ(mmCode);
+		
+		List<PayContent> payList = 
+				paymentService.paListServ(mmCode, utilDate.getCurrentYear() + "-01-01", utilDate.getLastDate());
+		
+		System.out.println("PaymentController pcListCtrl member : " + member);
+		System.out.println("PaymentController pcListCtrl payList : " + payList);
+		
+//		부서, 직급 정보
+		model.addAttribute("dpName", utilMember.getDpName(member.getDpCode()));
+		model.addAttribute("member", member);
+		model.addAttribute("payList", payList);
+		model.addAttribute("pcYear", utilDate.getCurrentYear());
+		
+		System.out.println("PaymentController pcListCtrl model : " + model);
+		
 		return "payment/pc_list";
 	}
 
@@ -52,11 +74,20 @@ public class PaymentController {
 		int mmCode = (int) session.getAttribute("mmCode");
 		
 		Member member = paymentService.pcMmContentServ(mmCode);
+		PayContent pcList = paymentService.paContentServ(mmCode, utilDate.getPaymentDate());
 		
 		System.out.println("PaymentController pcContentCtrl mmCode : " + mmCode);
 		System.out.println("PaymentController pcContentCtrl member : " + member);
+		System.out.println("PaymentController pcContentCtrl pcList : " + pcList);
 	
 		model.addAttribute("member", member);
+		model.addAttribute("payYear", utilDate.getCurrentYear());
+		model.addAttribute("pcList", pcList);
+//		월급날짜
+		model.addAttribute("payDate", utilDate.getPaymentDate());
+//		부서, 직급 정보
+		model.addAttribute("dpName", utilMember.getDpName(member.getDpCode()));
+		model.addAttribute("ptName", utilMember.getPtName(member.getPtCode()));
 		
 		System.out.println("PaymentController pcContentCtrl model toString : " + model.toString());
 		
@@ -73,6 +104,7 @@ public class PaymentController {
 		model.addAttribute("eiContent", insuranceService.eiContentServ(year));
 		model.addAttribute("nhiContent", insuranceService.nhiContentServ(year));
 		model.addAttribute("ppContent", insuranceService.ppContentServ(year));
+		model.addAttribute("ohiContent", insuranceService.ohiContentServ(year));
 		model.addAttribute("paMmCode", paMmCode);
 		model.addAttribute("paymentDate", utilDate.getPaymentDate());
 		
@@ -89,6 +121,6 @@ public class PaymentController {
 		
 		paymentService.pcAddServ(payContent);
 		
-		return "payment/pa_listAll";
+		return "redirect:payment/pa_listAll";
 	}
 }

@@ -8,9 +8,12 @@ import com.cafe24.smart.payment.domain.PayContent;
 
 @Repository
 public interface PaymentDAO {
-	List<PayContent>		selectAllPa();
+	List<PayContent>		selectPa(int mmCode, String startDate, String endDate);
 	
-	int						selectByPc(int mmCode, String reDate);
+	PayContent		 		selectByPc(int mmCode, String pcDate);
 	
+	int 					selectAllCountRe();
 	int						insertPc(PayContent payContent);
+	
+	void					updatePc(PayContent payContent);
 }

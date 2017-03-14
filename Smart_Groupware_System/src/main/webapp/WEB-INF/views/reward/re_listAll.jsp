@@ -5,6 +5,37 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script>
+		function removeCheck(reCode) {
+// 			console.log('reCode : ' + reCode);
+
+			$("#checkMember").modal();
+			
+			$("#checkMemberBtn").click(function() {
+				var memberData = $("#mmPassword").val();
+				
+				alert('memberData : ' + memberData);
+
+				$.ajax({
+					url: '/smart/re/mmContent',
+					data : {"memberData": memberData, "reCode": reCode},
+					type : 'POST',
+					success : function(data) {
+
+						alert('정말 삭제하시겠습니까?');
+						
+						if (data == true) {
+							$('#checkMember').modal('hide');
+							
+							location.href = "<c:url value='/re/remove'/>";
+						} else {
+							alert('비밀번호가 일치하지 않습니다.');
+						}						
+					}
+				}); 
+			});
+		}
+	</script>
 </head> 
 <body>
 	<%@ include file="../menu.jsp" %>
@@ -35,6 +66,7 @@
 										<th>평가날짜</th>
 										<th>고과서류첨부</th>
 										<th>담당사원코드</th>
+										<th>수정 / 삭제</th>
 									</tr>
 									
 									<c:forEach var="reward" items="${reList}" varStatus="status">
@@ -46,9 +78,16 @@
 											<td>${reward.reDate}</td>
 											<td><a href="<c:url value='/re/fileDownload?reCode=${reward.reCode}'/>">${reward.reDocument}</a></td>
 											<td>${reward.reMmCode}</td>
+											<td>
+												<a href="<c:url value='/re/modify?reCode=${reward.reCode}'/>" class="btn btn-primary">
+													<span class="glyphicon glyphicon-edit"></span> 수정
+												</a>
+												<a href="#" onclick="removeCheck(${reward.reCode})" class="btn btn-primary">
+													<span class="glyphicon glyphicon-trash"></span> 삭제
+												</a>
+											</td>
 										</tr>
 									</c:forEach>
-									
 								</table> 
 								<div class="clearfix">&nbsp;</div>		
 								
@@ -76,6 +115,7 @@
 		</div>
 	</div>
 		
+	<c:import url="./re_checkMemberForm.jsp"></c:import>	
 	<%@ include file="../footer.jsp"%>
 </body>
 </html>

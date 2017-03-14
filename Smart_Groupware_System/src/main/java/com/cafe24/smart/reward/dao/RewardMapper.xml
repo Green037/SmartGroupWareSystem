@@ -78,13 +78,15 @@
 			#{endDate};
 	</select>
 	
-	<select id="selectByReDateRe" parameterType="String" resultType="int">
+	<select id="selectByReDateRe" parameterType="hashmap" resultType="int">
 		SELECT
 			re_code
 		FROM
 			reward
 		WHERE
 			re_date = #{reDate}
+		AND
+			mm_code = #{mmCode};
 	</select>
 	
 	<!-- 고과기록정보조회시 성과금 끌어오기 -->
@@ -118,18 +120,55 @@
 	<insert id="insertIn" parameterType="com.cafe24.smart.reward.domain.Incentive">
 		INSERT INTO
 			incentive (
-				re_date,
+				re_code,
 				mm_code,
 				in_bonus,
 				in_possible,
 				in_date,
 				in_mmCode)
 		VALUES (
-			#{re_date},
-			#{mm_code},
-			#{in_bonus},
-			#{in_possible},
-			#{in_date},
-			#{in_mmCode});
+			#{reCode},
+			#{mmCode},
+			#{inBonus},
+			#{inPossible},
+			#{inDate},
+			#{inMmCode});
 	</insert>
+	
+	<update id="updateRe" parameterType="com.cafe24.smart.reward.domain.Reward">
+		UPDATE
+			reward
+		SET
+			re_grade = #{reGrade},
+			re_date = #{reDate}
+		WHERE
+			re_code = #{reCode};	
+	</update>
+	
+	<update id="updateIn" parameterType="com.cafe24.smart.reward.domain.Incentive">
+		UPDATE
+			incentive
+		SET
+			in_bonus = #{inBonus},
+			in_date = #{inDate}	
+		WHERE
+			re_code = #{reCode};
+	</update>
+	
+	<!-- 고과내역 삭제 -->
+	<delete id="deleteRe" parameterType="int">
+		DELETE
+		FROM
+			reward
+		WHERE
+			re_code = #{reCode};
+	</delete>
+	
+	<delete id="deleteIn" parameterType="int">
+		DELETE
+		FROM
+			incentive
+		WHERE
+			re_code = #{reCode};
+	</delete>
 </mapper>

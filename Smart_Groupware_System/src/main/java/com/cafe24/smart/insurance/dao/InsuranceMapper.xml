@@ -28,6 +28,7 @@
 	<!--산재보험 -->
 	<resultMap id="resultOhi" type="com.cafe24.smart.insurance.domain.OccupationalHealthSafetyInsurance">
 		<result property="ohiCode" column="ohi_code"/>
+		<result property="ohiBasic" column="ohi_basic"/>
 		<result property="ohiYear" column="ohi_year"/>
 		<result property="ohiExtra" column="ohi_extra"/>
 		<result property="ohiHelp" column="ohi_help"/>

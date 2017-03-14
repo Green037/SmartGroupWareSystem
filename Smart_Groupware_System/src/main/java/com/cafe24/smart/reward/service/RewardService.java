@@ -17,6 +17,8 @@ public interface RewardService {
 	Reward					reContentServ(int mmCode, String startDate, String endDate);
 	
 	int						reCountAllServ();
-	
 	int 					reAddServ(String uploadPath, Reward reward);
+	
+	void					reModifyServ(Reward reward);
+	void					reRemoveServ(int reCode);
 }

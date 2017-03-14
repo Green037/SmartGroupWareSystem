@@ -23,6 +23,7 @@ public class RewardDAOImpl implements RewardDAO {
 
 	int selectAllCountRe;
 	
+//	이전 쿼리의 총 갯수 조회
 	@Override
 	public int selectAllCountRe() {
 		
@@ -84,11 +85,16 @@ public class RewardDAOImpl implements RewardDAO {
 	}
 	
 	@Override
-	public int selectByReDateRe(String reDate) {
+	public int selectByReDateRe(int mmCode, String reDate) {
 		
 		System.out.println("RewardDAOImpl reListByReCodeServ reDate : " + reDate);
 		
-		return sqlSession.selectOne("ReDAO.selectByReDateRe", reDate);
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("mmCode", mmCode);
+		params.put("reDate", reDate);
+		
+		return sqlSession.selectOne("ReDAO.selectByReDateRe", params);
 	}
 
 	//고과기록정보조회
@@ -123,5 +129,23 @@ public class RewardDAOImpl implements RewardDAO {
 		System.out.println("RewardDAOImpl insertRe result : " + result);
 		
 		return result;
+	}
+
+//	고과내역 수정
+	@Override
+	public void updateRe(Reward reward) {
+		
+		System.out.println("RewardDAOImpl insertRe reward : " + reward);
+		
+		sqlSession.update("ReDAO.updateRe", reward);
+	}
+
+//	고과내역 삭제
+	@Override
+	public void deleteRe(int reCode) {
+		
+		System.out.println("RewardDAOImpl deleteRe reCode : " + reCode);
+		
+		sqlSession.delete("ReDAO.deleteRe", reCode);
 	}
 }

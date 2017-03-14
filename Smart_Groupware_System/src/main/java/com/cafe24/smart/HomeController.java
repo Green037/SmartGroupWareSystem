@@ -36,13 +36,13 @@ public class HomeController {
 	@RequestMapping(value="/member/mm_login",method=RequestMethod.POST)
 	public String mmLoginCtrl(Member member, HttpSession session) {
 			
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+		Map<String, Object> params = new HashMap<String, Object>();
 			
-		resultMap = memberService.mmLoginServ(member);
+		params = memberService.mmLoginServ(member);
 	
-		if(resultMap.get("check").equals("성공")){
-			session.setAttribute("mmCode", resultMap.get("mmCode"));
-			session.setAttribute("mmName", resultMap.get("mmName"));
+		if(params.get("check").equals("성공")){
+			session.setAttribute("mmCode", params.get("mmCode"));
+			session.setAttribute("mmName", params.get("mmName"));
 		}
 					
 		System.out.println("세션확인 :" + session.getAttribute("mmCode"));

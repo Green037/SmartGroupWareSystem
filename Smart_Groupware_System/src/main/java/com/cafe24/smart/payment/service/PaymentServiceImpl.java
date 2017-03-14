@@ -21,14 +21,25 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	MemberDAO memberDAO;
 	
+//	연간급여내역조회
 	@Override
-	public List<PayContent> paListServ() {
+	public List<PayContent> paListServ(int mmCode, String startDate, String endDate) {
 		
-		System.out.println("PaymentServiceImpl paListServ is called ...");
+		System.out.println("PaymentServiceImpl paListServ mmCode : " + mmCode + ", startDate : " + 
+				", endDate : " + endDate);
 		
-		return null;
+		return paymentDAO.selectPa(mmCode, startDate, endDate);
 	}
 	
+	@Override
+	public PayContent paContentServ(int mmCode, String pcDate) {
+		
+		System.out.println("PaymentServiceImpl paContentServ mmCode : " + mmCode + ", pcDate : " + pcDate);
+		
+		return paymentDAO.selectByPc(mmCode, pcDate);
+	}
+	
+//	월급여조회(사원)
 	@Override
 	public Member pcMmContentServ(int mmCode) {
 	
@@ -37,11 +48,21 @@ public class PaymentServiceImpl implements PaymentService {
 		return memberDAO.selectByMm(mmCode);
 	}
 
+//	총무부 > 급여추가
 	@Override
 	public int pcAddServ(PayContent payContent) {
 		
 		System.out.println("PaymentServiceImpl pcAddServ payContent : " + payContent);
 		
 		return paymentDAO.insertPc(payContent);
+	}
+
+//	총무부 > 급여 수정
+	@Override
+	public void paUpdateServ(PayContent payContent) {
+		
+		System.out.println("PaymentServiceImpl paUpdateServ payContent : " + payContent);
+		
+		paymentDAO.updatePc(payContent);
 	}
 }

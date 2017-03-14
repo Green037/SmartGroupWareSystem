@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.MemberContent;
 import com.cafe24.smart.member.service.MemberService;
+import com.cafe24.smart.payment.service.PaymentService;
 import com.cafe24.smart.reward.domain.Incentive;
 import com.cafe24.smart.reward.domain.Reward;
 import com.cafe24.smart.reward.service.IncentiveService;
@@ -40,6 +41,9 @@ public class RewardController {
 	
 	@Autowired
 	IncentiveService incentiveService;
+	
+	@Autowired
+	PaymentService paymentService;
 	
 	@Autowired
 	MemberService memberService;
@@ -245,7 +249,71 @@ public class RewardController {
 		System.out.println("RewardController reAddProCtrl n : " + n);
 		System.out.println("RewardController reAddProCtrl uploadPath : " + uploadPath);
 		
-		return "reward/re_listAll";
+		return "redirect:re/add";
+	}
+	
+//	인사부 > 고과 수정 (get)
+	@RequestMapping(value = "re/modify", method = RequestMethod.GET)
+	public String reModifyCtrl(@RequestParam(value="reCode") int reCode, Model model) {
+		
+		System.out.println("RewardController reModifyCtrl reCode : " + reCode);
+		
+		Reward reward = rewardService.reListByReCodeServ(reCode);
+		int rewardCount = rewardService.reCountAllServ();
+		
+		System.out.println("RewardController reContentMmCtrl reward : " + reward);
+		
+		Member member = rewardService.mmContentServ(reward.getMmCode());
+		
+//		Incentive 정보 받아오기
+		Incentive incentive = incentiveService.inListServ(reCode);
+		
+//		부서
+		String dpName = utilMember.getDpName(member.getDpCode());
+//		직급
+		String ptName = utilMember.getPtName(member.getPtCode());
+		
+//		filePath로 fileName만 추출하여 다시 List에 담기
+		int lastIndex = reward.getReDocument().lastIndexOf("/");	
+			
+		reward.setReDocument(reward.getReDocument().substring(lastIndex + 1));
+		
+		model.addAttribute("dpName", dpName);
+		model.addAttribute("ptName", ptName);
+		model.addAttribute("member", member);
+		model.addAttribute("incentive", incentive);
+		model.addAttribute("reward", reward);
+		model.addAttribute("rewardCount", rewardCount);
+		
+		return "redirect:re/listAll";
+	}
+	
+//	인사부 > 고과 수정 (post)
+	@RequestMapping(value = "re/modify", method = RequestMethod.POST)
+	public String reModifyProCtrl(Reward reward, Incentive incentive) {
+		
+		System.out.println("RewardController reModifyProCtrl reward : " + reward);
+		System.out.println("RewardController reModifyProCtrl incentive : " + incentive);
+		
+		rewardService.reModifyServ(reward);
+		incentiveService.inModifyServ(incentive);
+		
+//		PayContent payContent = paymentService.paContentServ((int) session.getAttribute("id"), reward.getReDate());
+//		
+//		paymentService.paUpdateServ(payContent);
+		
+		return "redirect:re/listAll";
+	}
+	
+//	인사부 > 고과 삭제
+	@RequestMapping(value = "/re/remove", method = RequestMethod.GET)
+	public String reRemoveCtrl() {
+		
+//		PayContent payContent = paymentService.paContentServ((int) session.getAttribute("id"), reward.getReDate());
+//		
+//		paymentService.paRemoveServ(payContent);
+		
+		return "redirect:re/listAll";
 	}
 	
 //	고과서류 파일 다운로드 (get)

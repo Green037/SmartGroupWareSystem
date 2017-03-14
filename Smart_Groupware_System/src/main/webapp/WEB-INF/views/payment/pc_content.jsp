@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,22 +29,19 @@
 								<form>
 									<div class="col-md-3 form-group1">
 										<label class="control-label"><b>급여연월</b></label>&nbsp;
-										<!-- 에러가 있으면 날짜 선택 메세지 말고 에러를 출력 -->
-										<!-- 날짜 default : 오늘 / 받기는 날짜를 받지만 자바 코드로 년+월만 추출 -->
-										<span style="color:red; font-size:10pt">날짜를 입력하세요.</span>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" placeholder="YYYY-MM-DD">
+										<input type="text"  value="${payDate}" class="form-control1 ng-invalid ng-invalid-required" placeholder="YYYY-MM-DD">
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>급여종류</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="전체" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="전체" readonly>
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>사원번호</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmCode}" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmCode}" readonly>
 									</div>
 									<div class="col-md-3 form-group1 form-last">
 										<label class="control-label"><b>사원명</b></label>
-										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmName}" disabled>
+										<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${member.mmName}" readonly>
 									</div>
 								</form>
 								<div class="clearfix">&nbsp;</div>
@@ -54,14 +53,14 @@
 										<td>${member.mmCode}</td>
 										<th>성명</th>
 										<td>${member.mmName}</td>
-										<th>주민번호</th>
-										<td>900101-2******</td>
+										<th>이메일</th>
+										<td>${member.mmEmail}</td>
 									</tr>
 									<tr>
 										<th>부서</th>
-										<td>회계부</td>
+										<td>${dpName}</td>
 										<th>직급</th>
-										<td>사원</td>
+										<td>${ptName}</td>
 										<th>재직상태</th>
 										<td>재직</td>
 									</tr>
@@ -88,13 +87,17 @@
 											</tr>
 										</thead>
 										<tbody>
-											<!-- 지급내역 금액만큼 선택하여 tr 늘어나게 하기 -->
 											<tr>
 												<td>1</td>
 												<td>본봉</td>
-												<td>20</td>
-												<!-- fmt:format 적용하여 자리대로 끊어줄 것 -->
-												<td align="right">2,000,000</td>
+												<td>${pcList.pcDate}</td>
+												<td><fmt:formatNumber value="${pcList.mmDailyPay}" pattern="#,###"/></td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>성과금</td>
+												<td>${pcList.pcDate}</td>
+												<td><fmt:formatNumber value="${pcList.inAmount}" pattern="#,###"/></td>
 											</tr>
 										</tbody>
 									</table> 
@@ -111,13 +114,29 @@
 											</tr>
 										</thead>
 										<tbody>
-											<!-- 4대보험 금액만큼 선택하여 tr 늘어나게 하기 -->
 											<tr>
 												<td>1</td>
 												<td>고용보험</td>
-												<td>2017</td>
-												<!-- fmt:format 적용하여 자리대로 끊어줄 것 -->
-												<td align="right">10,000</td>
+												<td>${payYear}</td>
+												<td align="right"><fmt:formatNumber value="${pcList.eiAmount}" pattern="#,###"/></td>
+											</tr>
+											<tr>
+												<td>2</td>
+												<td>국민건강보험</td>
+												<td>${payYear}</td>
+												<td align="right"><fmt:formatNumber value="${pcList.nhiAmount}" pattern="#,###"/></td>
+											</tr>
+											<tr>
+												<td>3</td>
+												<td>산재보험 [연구및개발]</td>
+												<td>${payYear}</td>
+												<td align="right"><fmt:formatNumber value="${pcList.ohiAmount}" pattern="#,###"/></td>
+											</tr>
+											<tr>
+												<td>4</td>
+												<td>연금보험</td>
+												<td>${payYear}</td>
+												<td align="right"><fmt:formatNumber value="${pcList.ppAmount}" pattern="#,###"/></td>
 											</tr>
 										</tbody>
 									</table> 
@@ -127,12 +146,12 @@
 								<label class="control-label"><b>지급금액</b></label>
 								<table class="table table-bordered">
 									<tr>
-										<th>총지급액 (<b>3</b> 건)</th>
-										<td align="right">2,000,000</td>
-										<th>공제액 (<b>3</b> 건)</th>
-										<td align="right">800,000</td>
+										<th>총지급액 (총 <b>2</b> 건)</th>
+										<td align="right"><fmt:formatNumber value="${pcList.mmDailyPay + pcList.inAmount}" pattern="#,###"/></td>
+										<th>공제액 (총 <b>4</b> 건)</th>
+										<td align="right"><fmt:formatNumber value="${pcList.eiAmount + pcList.nhiAmount + pcList.ppAmount}" pattern="#,###"/></td>
 										<th>실수령액</th>
-										<td>1,200,000</td>
+										<td><fmt:formatNumber value="${(pcList.mmDailyPay + pcList.inAmount) - (pcList.eiAmount + pcList.nhiAmount + pcList.ppAmount)}" pattern="#,###"/></td>
 									</tr>
 								</table>
 								<div class="clearfix">&nbsp;</div>

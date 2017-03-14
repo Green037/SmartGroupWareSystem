@@ -14,7 +14,10 @@ public interface RewardDAO {
 	Reward					selectRe(int mmCode, String startDate, String endDate);
 	Reward					selectByReCodeRe(int reCode);
 	
-	int						selectByReDateRe(String reDate);
+	int 					selectByReDateRe(int mmCode, String reDate);
 	int 					selectAllCountRe();
 	int						insertRe(Reward reward);
+	
+	void					updateRe(Reward reward);
+	void					deleteRe(int reCode);
 }

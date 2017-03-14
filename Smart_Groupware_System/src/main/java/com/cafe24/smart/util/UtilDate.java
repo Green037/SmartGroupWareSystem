@@ -18,6 +18,12 @@ public class UtilDate {
 		return (new SimpleDateFormat("yyyy")).format(new Date());
 	}
 	
+	//현재 연도 마지막 날짜 리턴 (12-31)
+	public String getLastDate() {
+			
+		return (new SimpleDateFormat("yyyy")).format(new Date()) + "-12-31";
+	}
+	
 	//현재 연도 + 월 리턴
 	public String getCurrentYearMonth() {
 		

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cafe24.smart.payment.dao.PaymentDAO;
+import com.cafe24.smart.payment.domain.PayContent;
 import com.cafe24.smart.reward.dao.IncentiveDAO;
 import com.cafe24.smart.reward.dao.RewardDAO;
 import com.cafe24.smart.reward.domain.Incentive;
@@ -44,9 +45,11 @@ public class IncentiveServiceImpl implements IncentiveService {
 		
 		UtilDate utilDate = new UtilDate();
 		
-		incentive.setReCode(rewardDAO.selectByReDateRe(reward.getReDate()));
+		PayContent payContent = paymentDAO.selectByPc(reward.getMmCode(), utilDate.getPaymentDate());
+		
+		incentive.setReCode(rewardDAO.selectByReDateRe(reward.getMmCode(), reward.getReDate()));
 		incentive.setMmCode(reward.getMmCode());
-		incentive.setInBonus(paymentDAO.selectByPc(reward.getMmCode(), utilDate.getPaymentDate()));
+		incentive.setInBonus(payContent.getInAmount());
 		incentive.setInPossible(false);
 		incentive.setInDate(null);		
 		incentive.setInMmCode(reward.getReMmCode());
@@ -54,5 +57,23 @@ public class IncentiveServiceImpl implements IncentiveService {
 		System.out.println("IncentiveServiceImpl inAddServ incentive : " + incentive);
 		
 		return incentiveDAO.insertIn(incentive);
+	}
+
+//	성과금 수정
+	@Override
+	public void inModifyServ(Incentive incentive) {
+		
+		System.out.println("IncentiveServiceImpl inModifyServ incentive : " + incentive);
+		
+		incentiveDAO.updateIn(incentive);
+	}
+
+//	성과금 삭제
+	@Override
+	public void inRemoveServ(int reCode) {
+		
+		System.out.println("IncentiveServiceImpl inRemoveServ reCode : " + reCode);
+		
+		incentiveDAO.deleteIn(reCode);
 	}	
 }

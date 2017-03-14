@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,9 +30,6 @@
 								<form>
 									<div class="col-md-3 form-group1">
 										<label class="control-label"><b>고과연월</b></label>&nbsp;
-										<!-- 에러가 있으면 날짜 선택 메세지 말고 에러를 출력 -->
-										<!-- 날짜 default : 오늘 / 받기는 날짜를 받지만 자바 코드로 년+월만 추출 -->
-										<span style="color:red; font-size:10pt">날짜를 입력하세요.</span>
 										<c:choose>
 											<c:when test="${reward != null}">
 												<input type="text" class="form-control1 ng-invalid ng-invalid-required" value="${reward.reDate}" placeholder="YYYY-MM-DD"/>
@@ -125,7 +123,7 @@
 										<th>성과금액</th>
 										<c:choose>
 											<c:when test="${incentive != null}">
-												<td>${incentive.inBonus} 원</td>
+												<td><fmt:formatNumber value="${incentive.inBonus}" pattern="#,###"/></td>
 											</c:when>
 											<c:otherwise>
 												<td>0 원</td>
@@ -141,7 +139,7 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 			
 	<%@ include file="../footer.jsp"%>
 

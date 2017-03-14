@@ -18,11 +18,13 @@
 				
 			var eiEmployee = ${eiContent.eiEmployee};
 			var nhiEmployee = ${nhiContent.nhiEmployee};
-			var ppEmployee = ${ppContent.ppEmployee}; 
+			var ppEmployee = ${ppContent.ppEmployee};
+			var ohiEmployee = ${ohiContent.ohiBasic};
 			
 // 			console.log('mmCode : '+ mmCode);
 // 			console.log('eiEmployee : '+ eiEmployee);
 // 			console.log('nhiEmployee : '+ nhiEmployee);
+// 			console.log('ohiEmployee : '+ ohiEmployee);
 				
 			$.ajax({
 				type: 'post',
@@ -48,6 +50,8 @@
 					$('#nhiAmount').val(data.mmDailyPay * nhiEmployee);
 // 					연금보험
 					$('#ppAmount').val(data.mmDailyPay * ppEmployee);
+// 					산재보험
+					$('#ohiAmount').val(data.mmDailyPay * ohiEmployee);
 						
 					sumAmount = data.mmDailyPay - 
 								((data.mmDailyPay * eiEmployee) + (data.mmDailyPay * nhiEmployee) + (data.mmDailyPay * ppEmployee));
@@ -163,6 +167,13 @@
 															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" readOnly/></td>
 															<td><input type="text" class="form-control1" name="middleClasificar" value="연금보험" readOnly/></td>
 															<td><input type="text" class="form-control1" name="ppAmount" id="ppAmount" value="0" readOnly/></td>
+														</tr>
+														<tr>
+															<td>6</td>
+															<td><input type="text" class="form-control1" name="pcSection" value="공제" readOnly/></td>
+															<td><input type="text" class="form-control1" name="pcClasificar" value="4대보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="middleClasificar" value="산재보험" readOnly/></td>
+															<td><input type="text" class="form-control1" name="ohiAmount" id="ohiAmount" value="0" readOnly/></td>
 														</tr>
 														<tr>
 															<th colspan=4>
