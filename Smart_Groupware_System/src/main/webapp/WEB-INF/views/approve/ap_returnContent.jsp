@@ -73,7 +73,7 @@
 				<td>결재진행현황</td>
 				<td>${draft.dftFinalState}</td>
 				<td>파일</td>
-				<td colspan="6">${draft.dftFileOri}</td>
+				<td colspan="6"><a href="<c:url value='/ap/dftDownFile?dftCode=${draft.dftCode}'/>">${draft.dftFileOri}</a></td>
 			</tr>
 		
 			<tr>

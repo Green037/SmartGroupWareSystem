@@ -30,13 +30,20 @@
 						if(data.check ='성공'){
 							alert('입력되었습니다');
 							$('#putInDocFom').modal('hide');
-							
+							console.log('안녕1'+data)
+							$.each(data.selDoc,function(i,resultMap){
+								$('#docTbody').append(`
+										<tr>
+											<td>`+resultMap.docCode+`</td>
+											<td>`+resultMap.docFileGroup+`</td>
+											<td>`+resultMap.docFileOri+`</td>
+											<td><button="button">다운로드</td>
+										</tr>
+										`)
+							})
 						}else{
-							alert('다시 입력해주세요')
-						}
-						
-						
-						
+							alert('다시 입력해주세요');
+						}						
 	                }
 	             
 	            });
@@ -75,6 +82,7 @@
 						<thead>
 							<tr>
 								<th>문서번호</th>
+								<th>문서분류</th>
 								<th width="600">문서이름</th>
 								<th>Download</th>
 							</tr>
@@ -85,7 +93,8 @@
 								<tr>
 									<td>${docList.docCode}</td>
 									<td>${docList.docFileGroup}</td>
-									<td>경로0[다운로드]</td>
+									<td>${docList.docFileOri}</td>
+									<td><a href="<c:url value='/ap/docDownFile?docCode=${docList.docCode}'/>">다운받기</a></td>
 								</tr>
 							
 							</c:forEach>

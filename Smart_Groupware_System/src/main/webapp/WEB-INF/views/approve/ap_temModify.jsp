@@ -5,9 +5,140 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<script>
+	/* 1차 결재선  */
+	$(document).on('focus','#aprApproval1',function(){
+		var department = $('#depSearch1').val();
+		var position = $('#posSearch1').val();
+			console.log(department);
+			console.log(position);
+		$.ajax({
+			url : '/smart/ap/addMm',
+			data : {"dpCode":department, "ptCode":position},
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				console.log('h1');
+				console.log(data);
+				$.each(data, function(i, member){
+					$('#1').after(`
+							<option value="`+member.mmCode+`">`+member.mmName+`</option>
+					`)
+					});
+				}
+			
+		})
+	})
 	
 	
+	/* 2차 결재선 */
+	$(document).on('focus','#aprApproval2',function(){
+		var department = $('#depSearch2').val();
+		var position = $('#posSearch2').val();
+			console.log(department);
+			console.log(position);
+		$.ajax({
+			url : '/smart/ap/addMm',
+			data : {"dpCode":department, "ptCode":position},
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				console.log('h2');
+				console.log(data);
+				$.each(data, function(i, member){
+					$('#2').after(`
+							<option value="`+member.mmCode+`">`+member.mmName+`</option>
+					`)
+					});
+			
+			}
+		})
+	})
 	
+	
+	/* 3차 결재선 */
+	$(document).on('focus','#aprApproval3',function(){
+		var department = $('#depSearch3').val();
+		var position = $('#posSearch3').val();
+			console.log(department);
+			console.log(position);
+		$.ajax({
+			url : '/smart/ap/addMm',
+			data : {"dpCode":department, "ptCode":position},
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				console.log('h3');
+				console.log(data);
+				$.each(data, function(i, member){
+					$('#3').after(`
+							<option value="`+member.mmCode+`">`+member.mmName+`</option>
+					`)
+				});
+			}
+		
+		})
+	})
+	
+		
+	/* 결재라인 저장하기  */
+	$(document).on('click','#aprSaveBtn',function(){
+		console.log('결재선')
+		var data = $('#approvalForm').serialize();
+		console.log(data);
+		$.ajax ({
+			url:'/smart/ap/addApr',
+			type : 'POST',
+			data : data,
+			dataTpye : 'json',
+			success : function(data){
+				console.log('결재선 원');
+				console.log(data);
+				if(data !=0){
+					alert('입력되었습니다') 
+				}else{
+					alert('다시 시도하세요')
+					}
+				}
+			
+		})
+	})
+	
+	 	
+	/* 결재라인 불러오기 */
+	$(document).on('click','#aprGetBtn',function(){
+		$('#putInAprFom').modal();
+		var mmCode = $('#mmCode').val();
+		console.log('h1'+mmCode);
+		
+		$.ajax({
+			url:'/smart/ap/listApr',
+			type : 'POST',
+			data : { 'mmCode' : mmCode },
+			dataTpye : 'json',
+			success : function(data){
+				console.log('성공');
+				$('#aprListForm').empty();
+				console.log(data[0].aprCode);
+				$.each(data,function(i, apr){
+					$('#aprListForm').append(`
+							<tr>
+								<td>`+apr.aprCode+`</td>
+								<td>`+apr.aprApproval1+`</td>
+								<td>`+apr.aprApproval2+`</td>
+								<td>`+apr.aprApproval3+`</td>
+								<td><button = "button">선택</td>
+							</tr>`);
+				})
+			
+			}
+		})
+	
+	})
+	
+	
+	</script>
 </head>
 <body>
 
@@ -29,12 +160,12 @@
 					<h2>저장 문서</h2>
 				</div>
 				<hr />   
-			    <form action="<c:url value='/ap/add'/>" method="post" >
+			    <form action="<c:url value='/ap/add'/>" enctype="multipart/form-data" method="post" >
 			    
 					<div class="row">
 			    		<div class="col-md-8">
 							<div class="form-group form-group-sm">
-							    <input type="hidden" class="form-control" name="mmCode" value="${draft[0].dftCode}" >
+							    <input type="hidden" class="form-control" name="mmCode" value="${draft[0].mmCode}" >
 							</div>
 			            </div>
 			    	</div>
@@ -78,7 +209,10 @@
 						<div class="col-md-8">
 							<div class="form-group form-group-sm">
 							    <label for="firstname" class="control-label">[문서선택]</label>
-							    <input type="file" class="form-control" name="uploadFile">
+						
+							    <div>
+							   		<input type="file" class="form-control" name="uploadFile">
+							    </div>
 							</div>
 			            </div>
 			    	</div>
@@ -104,7 +238,7 @@
 								      
 											<select name="depSearch1" id="depSearch1" class="form-control1">
 											
-												<option value=0>[부서을 선택하세요]</option>
+												<option value=0>${depMap.dep1}</option>
 												<c:forEach var="dep" items="${dep}">
 													<option value="${dep.dpCode}">${dep.dpName}</option>
 												</c:forEach>
@@ -115,7 +249,7 @@
 								        <td>
 								    
 									        <select name="posSearch1" id="posSearch1" class="form-control1">
-												<option value=0>[직급을 선택하세요]</option>
+												<option value=0>${ptMap.pt1}</option>
 												<c:forEach var="pos" items="${pos}">
 													<option value="${pos.ptCode}">${pos.ptName}</option>
 												</c:forEach>											
@@ -124,7 +258,7 @@
 								        </td>
 							        	<td>					        	
 								        	<select name="aprApproval1" id="aprApproval1" class="form-control1">
-													<option id=1 value="${draft[0].aprApproval1}">${draft[0].aprApproval1}</option>
+													<option id=1 value="${draft[0].aprApproval1}">${nameMap.name1}</option>
 													
 											</select>						
 								        </td>
@@ -134,7 +268,7 @@
 								        <th class="row">2차 결재자</th>
 								        <td>				        
 											<select name="depSearch2" id="depSearch2" class="form-control1">
-												<option>[부서을 선택하세요]</option>
+												<option>${depMap.dep2}</option>
 													<c:forEach var="dep" items="${dep}">
 														<option value="${dep.dpCode}">${dep.dpName}</option>
 													</c:forEach>						
@@ -143,7 +277,7 @@
 										</td>
 								        <td>
 									        <select name="posSearch2" id="posSearch2" class="form-control1">
-												<option>직급을 선택하세요</option>
+												<option>${ptMap.pt2}</option>
 													<c:forEach var="pos" items="${pos}">
 														<option value="${pos.ptCode}">${pos.ptName}</option>
 													</c:forEach>															
@@ -152,7 +286,7 @@
 								        </td>
 								        <td>
 								        	<select name="aprApproval2" id="aprApproval2" class="form-control1">
-													<option id=2 value=0>[이름을 선택하세요]</option>
+													<option id=2 value="${draft[0].aprApproval2}">${nameMap.name2}</option>
 										
 											</select>
 								
@@ -163,7 +297,7 @@
 								        <th class="row">3차 결재자</th>
 								        <td>
 											<select name="depSearch3" id="depSearch3" class="form-control1">
-												<option>[부서을 선택하세요]</option>								
+												<option>${depMap.dep3}</option>								
 													<c:forEach var="dep" items="${dep}">
 														<option value="${dep.dpCode}">${dep.dpName}</option>
 													</c:forEach>											
@@ -171,7 +305,7 @@
 										
 								        <td>
 									        <select name="posSearch3" id="posSearch3" class="form-control1">
-												<option>[직급을 선택하세]</option>
+												<option>${ptMap.pt3}</option>
 													<c:forEach var="pos" items="${pos}">
 														<option value="${pos.ptCode}">${pos.ptName}</option>
 													</c:forEach>															
@@ -180,7 +314,7 @@
 								        </td>
 								        <td>
 								        	<select name="aprApproval3" id="aprApproval3" class="form-control1">
-													<option id=3 value=0>[이름을 선택하세요]</option>
+													<option id=3 value="${draft[0].aprApproval3}">${nameMap.name3}</option>
 											</select>
 									
 								        </td>
@@ -198,29 +332,32 @@
 					</div>
 					&nbsp;
 					&nbsp;
+					<hr />  
 					<div class="row">
+						
 			           	 <div class="col-sm-12">
-			                    <button type="submit" class="btn btn-default"  align="center"> 기안 재요청 </button>  
+			                   <button type="submit" class="col-sm-8" align="center"> 기안 재요청 </button>
 			             </div>
+			            
 			        </div>	
+			        
 			    </form>
-			<hr />   
-			<div class="row">
-				<a href="<c:url value='/ap/list?dftCode=${pgList.dftCode}'/>" class="btn btn-primary" >
-						<span class="glyphicon glyphicon-edit"></span> 목록
-				</a>
-				<a href="<c:url value='/ap/add'/>" class="btn btn-primary" >기안신청하기
-				</a>
-			</div>
+			 <hr />  
+				<div class="row">
+					<a href="<c:url value='/ap/list?dftCode=${pgList.dftCode}'/>" class="btn btn-primary" >
+							<span class="glyphicon glyphicon-edit"></span> 결재목록
+					</a>
+					<a href="<c:url value='/ap/temList'/>" class="btn btn-primary" >임시목록
+					</a>
+				</div>
 		
 			</div>
 			
 			&nbsp;
 			&nbsp;
 		
-		
-
-			<!--  body폼 끝 -->
+<c:import url="./ap_aprAdd.jsp"></c:import> <!--팝업창 --> 
+<!--  body폼 끝 -->
 </div>
 </div>
 </div>
