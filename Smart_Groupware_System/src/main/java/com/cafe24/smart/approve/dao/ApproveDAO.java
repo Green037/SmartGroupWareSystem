@@ -64,6 +64,8 @@ public interface ApproveDAO {
 	
 	// 문서 양식 등록
 	int insertDoc(Document document);
+	List<Document> selectListByDoc(Document document);
+	Document selectListByDoc(int docCode);
 	
 
 

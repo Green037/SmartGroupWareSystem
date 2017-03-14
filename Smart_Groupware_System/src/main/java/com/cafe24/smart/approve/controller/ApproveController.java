@@ -1,5 +1,6 @@
 package com.cafe24.smart.approve.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
@@ -69,7 +71,8 @@ public class ApproveController {
 		
 		return "redirect:/ap/list";
 	}
-		
+	
+	
 	//결재 목록 [대기/반려/완료] : GET 
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress, HttpSession session){	
@@ -94,9 +97,12 @@ public class ApproveController {
 	
 		//System.out.println("ctrl hvCont> test");
 		Draft draft = new Draft();
+		Document document = new Document();
 		String url;
 		
 		draft = approveService.hvContServ(dftCode);
+		
+		
 		model.addAttribute("draft", draft);
 		url = draft.getUrl();
 	
@@ -113,6 +119,7 @@ public class ApproveController {
 		
 		return "redirect:/ap/list";  
 	}
+	
 	
 	//임시 문서함 : GET
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
@@ -134,31 +141,40 @@ public class ApproveController {
 		//System.out.println("ctrl temContent> test");
 		List<Draft> draft = new ArrayList<Draft>();	
 		List<Document> doc = new ArrayList<Document>();
-		
 		List<Department> dep = new ArrayList<Department>();
 		List<Position> pos = new ArrayList<Position>();
+		Map nameMap = new HashMap();
+		Map depMap = new HashMap();
+		Map ptMap = new HashMap();
 		String selectDoc = "";
+	
 		
 		doc = approveService.apAddSelServ();
 		dep = approveService.apAddMmSelServ();
 		pos = approveService.apADDPosSelServ();
+		
 		draft = approveService.temContServ(dftCode);
 		selectDoc = approveService.temDocSeleServ(dftCode);
-	
-	
+
+		nameMap = approveService.temContNameServ(draft);
+		depMap = approveService.temContDepServ(draft);
+		ptMap = approveService.temContPtServ(draft); 
+
 		model.addAttribute("draft", draft);
 		model.addAttribute("dep", dep);
 		model.addAttribute("pos", pos);
 		model.addAttribute("doc", doc);
 		model.addAttribute("selectDoc", selectDoc);
-		
+		model.addAttribute("nameMap",nameMap);
+		model.addAttribute("depMap",depMap);
+		model.addAttribute("ptMap",ptMap);
 //		System.out.println(draft);
 		
 		return "/approve/ap_temModify";   
 	}
 
 	
-	//문서함 : GET
+	//문서 양식함 : GET
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)
 	public String apdocListCtrl(Model model){
 	
@@ -171,13 +187,34 @@ public class ApproveController {
 		return "/approve/ap_docList";   
 	}
 	
-	//기안 문서 : 첨부파일 다운로드
-	@RequestMapping(value ="ap/downdftFile", method = RequestMethod.POST)
-	public String apDownDftFile(@RequestParam("dftCode") int dftCode){
-		//----- 다운로드 메서드 추가
-		System.out.println("다운로드 test1");
-		return null;
+	//다운로드 : 기안 : 첨부파일 다운로드
+	@RequestMapping(value ="ap/dftDownFile", method = RequestMethod.GET)
+	public ModelAndView apDftDownDftFile(@RequestParam(value="dftCode", required=true) int dftCode){
+
+//		System.out.println("다운로드 test1");
+		Draft draft = new Draft();
+		draft = approveService.apDownDftServ(dftCode);
+		File downDftFile = new File(draft.getDftFilePath());
+		
+		return new ModelAndView("downloadView", "downloadFile", downDftFile);
 		
 	};
+	
+	//다운로드 : 문서 : 첨부파일 다운로드
+	@RequestMapping(value ="ap/docDownFile", method = RequestMethod.GET)
+	public ModelAndView apDocDownDftFile(@RequestParam(value="docCode", required=true) int docCode){
+		//System.out.println("document 다운로드 test1");
+		
+		Document document = new Document();
+		document = approveService.apDownDocServ(docCode);
+		
+//		System.out.println(document.getDocFileOri());
+//		String downloadFile = document.getDocFileOri();
+		File downFile = new File(document.getDocFilePath());
+		
+		return new ModelAndView("downloadView", "downloadFile", downFile);
+		
+	};
+	
 		
 }

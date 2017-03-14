@@ -32,34 +32,38 @@ public class ApproveRestController {
 	@Autowired
 	private ApproveService approveService;
 
-	//문서양식 등록 : POST
+	// 문서양식 등록 : POST
 	@RequestMapping(value ="ap/addDoc", method = RequestMethod.POST)
 	public Map apDocAddReCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
 							  MultipartHttpServletRequest request, Document document){
 		
 		HashMap resultMap = new HashMap();
+		List<Document> selDoc = new ArrayList<Document>();
 		UtilFile utilFile = new UtilFile();
 		
-		String uploadPath = utilFile.fileUpload(request, uploadFile, document);
-		//System.out.println("ajax - ctrl apDocAddReCtrl> test");
+		String uploadPath = utilFile.fileUpload(request, uploadFile, selDoc);
+		System.out.println("ajax - ctrl apDocAddReCtrl> test");
 
 		int result = approveService.apDocAddServ(document, uploadPath);
 		
 		if(result != 0){
-			resultMap.put("check", "성공");
+			resultMap.put("check","성공");
 			//generate mapper에서 document에서 select해와서 resultMap에다 담아줘서 가져옴
+//			System.out.println("방금입력한document pk값:"+document.getDocCode());
+			selDoc = approveService.apDocSelServ(document);
+			
+//			System.out.println("방금입력한 안녕2"+selDoc);
+			resultMap.put("selDoc", selDoc);
+			
 		}else{
-			resultMap.put("check", "실패");
+			resultMap.put("check","실패");
 		}
-		
-		//select값 : 최근 document pk값 들고온다
-		//System.out.println(result);
-		//return값을 map으로 가져와서 입력성공/실패를 같이 넣어 jsp로 전달
+
 		
 		return resultMap; 
 	}
 	
-	// 결재선 선택
+	// 결재선 web 선택
 	@RequestMapping(value ="ap/addMm", method = RequestMethod.POST)
 	public List<Member> apMmAddReCtrl(Position position, Department department){
 		//System.out.println("rectrl apMmAddReCtrl > tets");
@@ -73,30 +77,37 @@ public class ApproveRestController {
 		return member;
 	}
 	
-	//결재선 등록
-		@RequestMapping(value ="ap/addApr", method = RequestMethod.POST)
-		public int apAprAddReCtrl(Approval approval){
-			int apr = approveService.apAprAddServ(approval);
+	// 결재선 등록
+	@RequestMapping(value ="ap/addApr", method = RequestMethod.POST)
+	public int apAprAddReCtrl(Approval approval){
 			
+		System.out.println(approval);
+		int apr = 0;
+		
+			if(approval.getAprApproval1()==0){
+				apr = 0;
+			}else{
+				apr = approveService.apAprAddServ(approval);
+			}
 			System.out.println(apr);
 				
 			return apr;
 		}
 	
-	//결재선 가져오기
-		@RequestMapping(value ="ap/listApr", method = RequestMethod.POST)
-		public List<Approval> apAprListReCtrl(@RequestParam("mmCode") int mmCode){
-//			System.out.println("ajax 넘어오니");			
-//			System.out.println(mmCode);
+	// 결재선 pop 가져오기
+	@RequestMapping(value ="ap/listApr", method = RequestMethod.POST)
+	public List<Approval> apAprListReCtrl(@RequestParam("mmCode") int mmCode){
+//		System.out.println("ajax 넘어오니");			
+//		System.out.println(mmCode);
+		
+		List<Approval> apr = new ArrayList<Approval>();		
+		apr = approveService.apAprListServ(mmCode);
+
+		System.out.println(apr);
 			
-			List<Approval> apr = new ArrayList<Approval>();			
-			apr = approveService.apAprListServ(mmCode);
-			
-//			System.out.println(apr);
-				
-			return apr;
-		}
-	
+		return apr;
+	}
+
 
 	
 }
