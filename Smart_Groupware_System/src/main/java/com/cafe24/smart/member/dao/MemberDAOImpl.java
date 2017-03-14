@@ -87,6 +87,12 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("acDAO.selectTotalMemberCount");
 	}	
 	
+//	특정 사원 조회
+	@Override
+	public Member selectByMmCode(int mmCode) {
+
+		return sqlSession.selectOne("MmDAO.selectByMm", mmCode);
+	}
 	
 // 사원 조회 리스트
 	@Override
@@ -169,5 +175,4 @@ public class MemberDAOImpl implements MemberDAO {
 		//System.out.println("쿼리실행전 사원개인정보 조회 코드값 확인 : "+mmCode);
 		return sqlSession.selectList("acDAO.selectMmcontentCr", mmCode);
 	}
-	
 }

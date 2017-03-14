@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
-	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>" type="text/javascript"></script>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script>
 		$(document).ready(function() {
 			

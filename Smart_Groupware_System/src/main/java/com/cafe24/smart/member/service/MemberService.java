@@ -27,6 +27,7 @@ public interface MemberService {
 	List<MinorTypeOfBusiness> miListServ(); // 하위업종
 	
 	// 사원조회 리스트
+	Member				mmContentByMmCodeServ(int mmCode);
 
 	Map<String, Object> mmListServ(int currnetPage);
 	// 사원 로그인/ 사원로그인에 필요한 정보와 로그인 성공과 실패분기를 위해 map 타입으로 선언해준다

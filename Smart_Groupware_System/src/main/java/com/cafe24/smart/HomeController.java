@@ -1,9 +1,16 @@
 package com.cafe24.smart;
 
-import java.util.HashMap;
+import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.spec.RSAPublicKeySpec;
 import java.util.Locale;
-import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -14,38 +21,51 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.service.MemberService;
 
 @Controller
 public class HomeController {
 	final static Logger log = LoggerFactory.getLogger(HomeController.class);
 	
-	@Autowired
-	private MemberService memberService;
-	
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model, HttpSession session) {
+	public String home(Locale locale, HttpServletRequest request, 
+							HttpServletResponse response, Model model, HttpSession session)
+														throws Exception, NoSuchAlgorithmException {
 		
-		log.info("home is called ...");
+		session = request.getSession();
+		
+		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
+		
+		generator.initialize(1024);
+		
+		KeyPair keyPair = generator.genKeyPair();
+		KeyFactory keyFactory = KeyFactory.getInstance("RSA");
+		PublicKey publicKey = keyPair.getPublic();
+		PrivateKey privateKey = keyPair.getPrivate();
+		
+//		RSA 개인키
+		session.setAttribute("_RSA_WEB_Key_", privateKey);
+		
+		RSAPublicKeySpec publicSpec = (RSAPublicKeySpec) keyFactory.getKeySpec
+													(publicKey, RSAPublicKeySpec.class);
+		
+		String publicKeyModulus = publicSpec.getModulus().toString(16);
+		String publicKeyExponent = publicSpec.getPublicExponent().toString(16);
+		
+//		로그인 폼 hidden setting
+		request.setAttribute("RSAModulus", publicKeyModulus);
+//		로그인 폼 hidden setting
+		request.setAttribute("RSAExponent", publicKeyExponent);
+		
+		System.out.println("HomeController RSAModulus getAttribute : " + request.getAttribute("RSAModulus"));
+		System.out.println("HomeController RSAExponent getAttribute : " + request.getAttribute("RSAExponent"));
 
 		return "member/mm_login";
 	}	
 	
-	//POST 요청 사원 로그인
-	@RequestMapping(value="/member/mm_login",method=RequestMethod.POST)
-	public String mmLoginCtrl(Member member, HttpSession session) {
-			
-		Map<String, Object> params = new HashMap<String, Object>();
-			
-		params = memberService.mmLoginServ(member);
-	
-		if(params.get("check").equals("성공")){
-			session.setAttribute("mmCode", params.get("mmCode"));
-			session.setAttribute("mmName", params.get("mmName"));
-		}
-					
-		System.out.println("세션확인 :" + session.getAttribute("mmCode"));
+//	로그인 후 home
+	@RequestMapping(value="/member/mm_login",method=RequestMethod.GET)
+	public String mmLoginCtrl() {
 			
 		return "home";
 	}

@@ -88,7 +88,11 @@ public class MemberServiceImpl implements MemberService {
 	// -----------------------------------------------------
 
 //	특정 사원 조회
-
+	@Override
+	public Member mmContentByMmCodeServ(int mmCode) {
+		
+		return memberDao.selectByMmCode(mmCode);
+	}
 	
 	// 사원 조회 리스트
 	@Override

@@ -19,7 +19,7 @@ import com.cafe24.smart.reward.service.RewardService;
 @RestController
 public class RewardRestController {
 
-private static final Logger log = LoggerFactory.getLogger(RewardRestController.class);
+	private static final Logger log = LoggerFactory.getLogger(RewardRestController.class);
 	
 	@Autowired
 	MemberService memberService;

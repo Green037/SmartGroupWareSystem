@@ -37,7 +37,7 @@ public interface MemberDAO {
 	MemberContent						selectMmContent(int mmCode); // 개인사원기본정보조회
 	Member								mmLogin(Member member); //로그인
 	Member 								selectByMm(int mmCode); // 사원코드 불러오기
-	
+	Member								selectByMmCode(int mmCode);
 
 	int 								selectTotalMemberCount(); // 사원조회리스트 전체 행 수
 

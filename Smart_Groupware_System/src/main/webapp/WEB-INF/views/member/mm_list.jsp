@@ -8,8 +8,6 @@
 <script src="<c:url value='/resources/js/jquery-1.10.2.min.js'/>"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
-	
-
 </head> 
 <body>
 
