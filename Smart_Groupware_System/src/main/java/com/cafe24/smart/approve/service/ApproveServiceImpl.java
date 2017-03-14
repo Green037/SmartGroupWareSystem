@@ -1,7 +1,6 @@
 package com.cafe24.smart.approve.service;
 
-import java.io.File;
-import java.io.IOException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,20 +8,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.metadata.GenericTableMetaDataProvider;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.cafe24.smart.approve.dao.ApproveDAO;
 import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.domain.Progress;
-import com.cafe24.smart.approve.domain.TotalFile;
-import com.cafe24.smart.approve.domain.TotalInfo;
 import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.Position;
@@ -65,7 +59,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return approveDAO.selectAllApPos();
 	}
 	
-	// --- AJAX 기안 요청 : GET 
+	// --- [AJAX] 직급/부서명 가져오기 : GET 
 	@Override
 	public List<Member> apMmAddServ(Position position, Department department) {
 
@@ -77,27 +71,31 @@ public class ApproveServiceImpl implements ApproveService {
 		return approveDAO.selectByApMm(map);
 	}
 	
-	// --- AJAX 결재라인 등록 : POST
+	// --- [AJAX] 결재라인 등록 : POST
 	@Override
 	public int apAprAddServ(Approval approval) {
 		System.out.println("ajax 넘어오니1");
 		return approveDAO.insertApr(approval);
 	}
 	
-	// --- ajax 결재라인 가져오기 : POST
+	// --- [AJAZ] 결재라인 가져오기 : POST
 	@Override
 	public List<Approval> apAprListServ(int mmCode) {
 		
 		List<Approval> apr = new ArrayList<Approval>();
-		apr = approveDAO.selectAllApr(mmCode);
-		System.out.println(apr);
+
 		
+		apr = approveDAO.selectAllApr(mmCode);
+		
+		for(int i =0; i<apr.size(); i++){
+		
+			apr.get(i).setAprName1(approveDAO.selectDetailMm(apr.get(i).getAprApproval1()));
+			apr.get(i).setAprName2(approveDAO.selectDetailMm(apr.get(i).getAprApproval2()));
+			apr.get(i).setAprName3(approveDAO.selectDetailMm(apr.get(i).getAprApproval3()));
+		}		
 		return apr;
 	}
 
-
-
- 	
 	
 	//기안 등록 : POST
 	@Override
@@ -200,13 +198,9 @@ public class ApproveServiceImpl implements ApproveService {
 		Draft draft = new Draft();
 		Progress progress= new Progress();
 	
-		//-----결재 신청 정보 가져오기 
-/*		draft = approveDAO.selectContHv(dftCode);*/
-		
+		//-----결재 신청 정보 가져오기 		
 		draft = approveDAO.selectContHv(dftCode);
-
-		
-		System.out.println(draft);
+		System.out.println("목록 상세보기:"+draft);
 		
 			if(draft != null){
 				System.out.println("serv hvDetail> test");
@@ -434,7 +428,8 @@ public class ApproveServiceImpl implements ApproveService {
 	}
 	
 	
-	//임시 목록 :GET
+	
+	// 임시 목록 :GET
 	@Override
 	public List<Draft> temListServ() {
 		//System.out.println("serv temList> test1");
@@ -462,7 +457,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return temList;
 	}
 
-	//임시 상세보기 : GET
+	// 임시 상세보기 : GET
 	@Override
 	public List<Draft> temContServ(int dftCode) {
 		//System.out.println("serv temContent> test1");
@@ -480,14 +475,65 @@ public class ApproveServiceImpl implements ApproveService {
 		return temContent;
 	}
 	
-	//임시 상세보기 : GET = SELECT Document 값 가져오기 
+	// 임시 상세보기 (문서값 가져오기) 
 	@Override
 	public String temDocSeleServ(int dftCode) {
 		
 		return approveDAO.selectDetailDoc(dftCode);
 	}
+	
+	// 임시 상세보기 (이름값 가져오기)
+	@Override
+	public Map temContNameServ(List<Draft> draft) {
+		
+		Map map = new HashMap();
+		String name1 = approveDAO.selectDetailMm(draft.get(0).getAprApproval1());
+		String name2 = approveDAO.selectDetailMm(draft.get(0).getAprApproval2());
+		String name3 = approveDAO.selectDetailMm(draft.get(0).getAprApproval3());
+		map.put("name1", name1);
+		map.put("name2", name2);
+		map.put("name3", name3);
+		
+//		System.out.println("이름값구하기:"+map);
+		
+		return map;
+	}
+	
+	// 임시 상세보기 (직급명 가져오기)
+	@Override
+	public Map temContPtServ(List<Draft> draft) {
+		Map map = new HashMap();
+		String pt1 = approveDAO.selectDetailPt(draft.get(0).getAprApproval1());
+		String pt2 = approveDAO.selectDetailPt(draft.get(0).getAprApproval2());
+		String pt3 = approveDAO.selectDetailPt(draft.get(0).getAprApproval3());
+		map.put("pt1", pt1);
+		map.put("pt2", pt2);
+		map.put("pt3", pt3);
+		
+//		System.out.println("직급명:"+map);
+		
+		return map;
+	}
+	
+	// 임시 상세보기 (부서명 가져오기
+	@Override
+	public Map temContDepServ(List<Draft> draft) {
+		
+		Map map = new HashMap();
+		String dep1 = approveDAO.selectDetailDp(draft.get(0).getAprApproval1());
+		String dep2 = approveDAO.selectDetailDp(draft.get(0).getAprApproval2());
+		String dep3 = approveDAO.selectDetailDp(draft.get(0).getAprApproval3());
+		map.put("dep1", dep1);
+		map.put("dep2", dep2);
+		map.put("dep3", dep3);
+		
+		System.out.println(map);
+		return map;
+	}
 
-	//문서 양식 등록 : POST
+	
+	
+	// 문서 양식 등록: POST
 	@Override
 	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
@@ -503,7 +549,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 
 		document.setDocFileGroup(document.getDocFileGroup());
-		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")+1, uploadPath.lastIndexOf(".")));
+		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("_")+1, uploadPath.lastIndexOf(".")));
 		document.setDocFilePath(uploadPath);
 	
 		//System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
@@ -512,6 +558,14 @@ public class ApproveServiceImpl implements ApproveService {
 
 		return result;
 	}
+
+	// 문서 양식 insert 후select값 가져오기
+	@Override
+	public List<Document> apDocSelServ(Document document) {
+		// TODO Auto-generated method stub
+		return approveDAO.selectListByDoc(document);
+	}
+	
 
 	//문서 양식 목록 : GET
 	@Override
@@ -527,8 +581,19 @@ public class ApproveServiceImpl implements ApproveService {
 
 	}
 
-
-
+	//문서 다운로드 : GET
+	@Override
+	public Document apDownDocServ(int docCode) {
+		// TODO Auto-generated method stub
+		return approveDAO.selectListByDoc(docCode);
+	}
+	
+	//기안 첨부파일 다운로드 : GET
+	@Override
+	public Draft apDownDftServ(int dftCode) {
+		// TODO Auto-generated method stub
+		return approveDAO.selectContHv(dftCode);
+	}
 
 
 	}	

@@ -12,6 +12,28 @@ public class Commute {
 	private String cmExceptionReason;
 	private String cmGoOutTime;
 	private String cmReturnTime;
+	private String cmGoOutReason;
+	private String cmCheckToday;
+	private String mmName;
+	
+	public String getMmName() {
+		return mmName;
+	}
+	public void setMmName(String mmName) {
+		this.mmName = mmName;
+	}
+	public String getCmCheckToday() {
+		return cmCheckToday;
+	}
+	public void setCmCheckToday(String cmCheckToday) {
+		this.cmCheckToday = cmCheckToday;
+	}
+	public String getCmGoOutReason() {
+		return cmGoOutReason;
+	}
+	public void setCmGoOutReason(String cmGoOutReason) {
+		this.cmGoOutReason = cmGoOutReason;
+	}
 	public int getCmCode() {
 		return cmCode;
 	}
@@ -77,7 +99,8 @@ public class Commute {
 		return "Commute [cmCode=" + cmCode + ", mmCode=" + mmCode + ", cmOnTime=" + cmOnTime + ", cmOffTime="
 				+ cmOffTime + ", cmDate=" + cmDate + ", cmExceptionInput=" + cmExceptionInput + ", cmSituation="
 				+ cmSituation + ", cmExceptionReason=" + cmExceptionReason + ", cmGoOutTime=" + cmGoOutTime
-				+ ", cmReturnTime=" + cmReturnTime + "]";
+				+ ", cmReturnTime=" + cmReturnTime + ", cmGoOutReason=" + cmGoOutReason + ", cmCheckToday="
+				+ cmCheckToday + ", mmName=" + mmName + "]";
 	}
 	
 }

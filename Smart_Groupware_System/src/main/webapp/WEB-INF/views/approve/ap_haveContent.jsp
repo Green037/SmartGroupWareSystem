@@ -87,9 +87,8 @@
 				
 				<div class="form-group">
 					<label for="Emailinput" class="col-sm-2 control-label">첨부 파일</label>
-					<div class="col-sm-3">
-						<input style = "width:800px" type="text" class="form-control1" name="uploadFile" id="uploadFile" value="${draft.dftFileOri}" readonly="readonly"> 
-						<button id="dftFileDown" type="button">첨부파일다운로드</button>
+					<div class="col-sm-8">
+						<a href="<c:url value='/ap/dftDownFile?dftCode=${draft.dftCode}'/>">${draft.dftFileOri}</a>
 					</div>																	
 				</div>
 				

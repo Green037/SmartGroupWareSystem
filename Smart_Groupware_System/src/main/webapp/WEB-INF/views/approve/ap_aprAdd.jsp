@@ -27,9 +27,11 @@
 				<div class="form-group">
 					<label for="mmCode">
 						<span class="glyphicon glyphicon-user"></span> 
-						사원번호
+						사원이름
 					</label>
-					<input type="text" class="form-control" name="mmCode" id="mmCode" value="${sessionScope.mmCode}">
+					<input type="hidden" class="form-control" name="mmCode" id="mmCode" value="${sessionScope.mmCode}">
+					<input type="text" class="form-control" name="mmCode" id="mmCode" value="${sessionScope.mmName}">
+					
 				</div>
 	
 			<div class="container">
@@ -48,13 +50,10 @@
 					</tbody>
 				</table>
 			</div>
-				
-
-				&nbsp;
-		
-				<div class="form-group">
-				       <button type="button"  class="btn btn-default btn-success btn-block" id="DocumentBtn">등록</button> 
-				</div>
+			&nbsp;
+			<div class="form-group">
+			       <button type="button"  class="btn btn-default btn-success btn-block" id="DocumentBtn">등록</button> 
+			</div>
 
 	   		</form>	
 		</div>

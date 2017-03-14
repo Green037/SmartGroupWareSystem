@@ -287,9 +287,9 @@
 							<span class="fa fa-angle-right" style="float:right"></span>
 						</a>
 						<ul id="menu-academico-sub">
-							<li id="menu-academico-avaliacoes"><a href="<c:url value='/commute/cm_add'/>">출퇴근등록</a></li>
-							<li id="menu-academico-avaliacoes"><a href="<c:url value='/commute/cm_list'/>">출퇴근기록조회</a></li>
-							<li id="menu-academico-avaliacoes"><a href="<c:url value='/commute/cm_dplist'/>">부서출퇴근기록조회</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/cm/add'/>">출퇴근등록</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/cm/listForm'/>">출퇴근기록조회</a></li>
+							<li id="menu-academico-avaliacoes"><a href="<c:url value='/cm/cmDplist'/>">부서출퇴근기록조회</a></li>
 						</ul>
 					</li>		
 					<li id="menu-academico">

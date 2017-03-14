@@ -121,7 +121,8 @@
 
 <!-- 문서 양식 등록 -->
 <insert id="insertDoc"
-		parameterType="com.cafe24.smart.approve.domain.Document">
+		parameterType="com.cafe24.smart.approve.domain.Document"
+		useGeneratedKeys="true" keyProperty="docCode">
 		INSERT INTO document(
 			doc_fileGroup,
 			doc_fileOri,
@@ -133,6 +134,9 @@
 		    #{docFilePath}
 			 )
 </insert>
+
+
+
 
 <!-- 개인별 결재선 등록 -->
 <insert id="insertApr" 
@@ -168,10 +172,29 @@
 		resultMap="resultDoc">
 		SELECT 
 			doc_code,
-			doc_fileGroup  
+			doc_fileGroup,
+			doc_fileOri,
+			doc_filePath   
 		FROM 
 			document
 </select>
+
+	<!-- insert후 select된 문서 양식 목록 -->
+	<select id="selectListByDoc"
+			resultMap="resultDoc"
+			parameterType="com.cafe24.smart.approve.domain.Document">
+		SELECT 
+			doc_code,
+			doc_fileGroup,
+			doc_fileOri,
+			doc_filePath   
+		FROM 
+			document 
+		WHERE
+			doc_code=#{docCode}	
+			
+	</select>
+
 
 	<!-- 사원번호/이름 가져오기 -->
 	<select id="selectContMm"
@@ -217,19 +240,6 @@
 			pro_approval = #{progress}	
 			
 </select>
-
-
-	<!-- 결재,임시저장 상세보기 : dftCode 가져오기// 결재자 가져오기-->
-	<!-- 		<select id="selectContHv"
-					parameterType="int"
-					resultMap="resultDft">
-					SELECT 
-						*
-					FROM
-						draft
-					WHERE 
-						dft_code = #{dftCode}
-			</select>-->
 	 
 <!-- 결재 상세보기 : proApproval 가져오기-->
 <select id="selectDetailHv"
@@ -246,18 +256,18 @@
 
 </select>
 
-	<!-- 기안자 이름 가져오기 -->
-	<select id="selectByMm"
-			parameterType="int"
-			resultType ="String">
-			SELECT 
-				mm_name
-			FROM
-				memberManagement 
-			WHERE
-				mm_code = #{mmCode}
-	</select>
-	
+			<!-- 기안자 이름 가져오기 -->
+			<select id="selectByMm"
+					parameterType="int"
+					resultType ="String">
+					SELECT 
+						mm_name
+					FROM
+						memberManagement 
+					WHERE
+						mm_code = #{mmCode}
+			</select>
+					
 			<!-- 결재자 이름 가져오기 -->
 			<select id="selectByPMm"
 					parameterType="int"
@@ -271,22 +281,22 @@
 			</select>
 			
 	
-	<!-- 기안자 부서가져오기 -->
-	<select id="selectByDp"
-			parameterType="int"
-			resultType ="String">
-			SELECT 
-				department.dp_name  
-			FROM
-				memberManagement 
-			JOIN
-				department  
-			ON  
-				memberManagement.dp_code = department.dp_code 
-			WHERE
-				mm_code = #{mmCode}
-	
-	</select>
+			<!-- 기안자 부서가져오기 -->
+			<select id="selectByDp"
+					parameterType="int"
+					resultType ="String">
+					SELECT 
+						department.dp_name  
+					FROM
+						memberManagement 
+					JOIN
+						department  
+					ON  
+						memberManagement.dp_code = department.dp_code 
+					WHERE
+						mm_code = #{mmCode}
+			
+			</select>
 	
 		
 			<!-- 결재자 부서가져오기 -->
@@ -308,22 +318,22 @@
 			
 		
 	
-	<!-- 기안자 직급 가져오기 -->
-	<select id="selectByPt"
-			parameterType="int"
-			resultType ="String">
-			SELECT 
-				rankposition.pt_name  
-			FROM
-				memberManagement 
-			JOIN
-				rankposition   
-			ON  
-				memberManagement.pt_code = rankposition.pt_code 
-			WHERE
-				mm_code = #{mmCode}
-	
-	</select>
+			<!-- 기안자 직급 가져오기 -->
+			<select id="selectByPt"
+					parameterType="int"
+					resultType ="String">
+					SELECT 
+						rankposition.pt_name  
+					FROM
+						memberManagement 
+					JOIN
+						rankposition   
+					ON  
+						memberManagement.pt_code = rankposition.pt_code 
+					WHERE
+						mm_code = #{mmCode}
+			
+			</select>
 		
 			<!-- 결재자자 직급 가져오기 -->
 			<select id="selectByPPt"

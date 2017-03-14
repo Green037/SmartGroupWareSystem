@@ -213,9 +213,20 @@ public class ApproveDAOImpl implements ApproveDAO {
 		System.out.println("dao insertDoc> test");
 		return sqlSession.insert("AprDAO.insertDoc", document);
 	}
+	
+	// 문서 양식 등록후 select
+	@Override
+	public List<Document> selectListByDoc(Document document) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("AprDAO.selectListByDoc", document);
+	}
 
-
-
+	//문서 양식 다운로드
+	@Override
+	public Document selectListByDoc(int docCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("AprDAO.selectListByDoc", docCode);
+	}
 	
 
 }

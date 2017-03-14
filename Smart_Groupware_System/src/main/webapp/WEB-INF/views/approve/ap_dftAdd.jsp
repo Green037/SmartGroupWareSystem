@@ -93,8 +93,7 @@
 			success : function(data){
 				console.log('결재선 원');
 				console.log(data);
-				
-				if(data !=null){
+				if(data !=0){
 					alert('입력되었습니다') 
 				}else{
 					alert('다시 시도하세요')
@@ -114,19 +113,19 @@
 			url:'/smart/ap/listApr',
 			type : 'POST',
 			data : { 'mmCode' : mmCode },
-			dataTpye : 'json',
+			dataType : 'json',
 			success : function(data){
 				console.log('성공');
 				$('#aprListForm').empty();
-				console.log(data[0].aprCode);
+				console.log(data[1].aprCode);
 				$.each(data,function(i, apr){
 					$('#aprListForm').append(`
 							<tr>
-								<td>`+apr.aprCode+`</td>
-								<td>`+apr.aprApproval1+`</td>
-								<td>`+apr.aprApproval2+`</td>
-								<td>`+apr.aprApproval3+`</td>
-								<td><button = "button">선택</td>
+								<td id="1">`+apr.aprCode+`</td>
+								<td>`+apr.aprName1+`</td>
+								<td>`+apr.aprName2+`</td>
+								<td>`+apr.aprName3+`</td>
+								<td><button type = "button" id="aprChoBtn">선택</button></td>
 							</tr>`);
 				})
 			
@@ -135,9 +134,23 @@
 	
 	})
 	
-	
-	
+	$(document).on('click','#aprChoBtn', function(){
+		var aprCode = $(this).parent().parent().children('#1').text();
+		console.log(aprCode)
+		
+		$.ajax({
+			url: '/smart/ap/selApr',
+			type : 'POST',
+			dataType : 'json',
+			success : function(data){
+				
+			}
+		})	
+	})
 	</script>
+	
+	<!-- 여기 ajax 추가하기 select값으로 갑가져와서 결재선에 꽂아주기 -->
+	
 </head>
 <body>
 
