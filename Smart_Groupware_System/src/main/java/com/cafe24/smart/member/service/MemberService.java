@@ -28,8 +28,9 @@ public interface MemberService {
 	
 	// 사원조회 리스트
 	Member				mmContentByMmCodeServ(int mmCode);
-
-	Map<String, Object> mmListServ(int currnetPage);
+	
+	//전체사원조회
+	List<Member> mmListServ();
 	// 사원 로그인/ 사원로그인에 필요한 정보와 로그인 성공과 실패분기를 위해 map 타입으로 선언해준다
 	Map<String, Object> mmLoginServ(Member member);
 
@@ -37,11 +38,13 @@ public interface MemberService {
 	// 사원정보, 사원학력,경력사항,자격증 등록
 	int mmAddServ(Member member,MemberAchieve memberAchieve,MemberLicense memberLicense,Career career);
 
-
+	//사원정보 수정
+	int mmModifyeServ(Member member);
 	
 	
+	//사원조건검색
+	List<MemberContent> mmSearchServ(MemberContent memberContent);
 	
-
 	
 	// 개인사원기본정보조회
 	MemberContent mmContentServ(int mmCode);

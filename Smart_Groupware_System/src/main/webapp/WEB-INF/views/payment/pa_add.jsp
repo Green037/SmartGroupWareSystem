@@ -45,16 +45,17 @@
 // 					console.log('mmName : ' + $('#mmName').val());
 						
 //		 			고용보험
-					$('#eiAmount').val(data.mmDailyPay * eiEmployee);						
+					$('#eiAmount').val(Math.round(data.mmDailyPay * eiEmployee));						
 //		 			국민건강보험
-					$('#nhiAmount').val(data.mmDailyPay * nhiEmployee);
+					$('#nhiAmount').val(Math.round(data.mmDailyPay * nhiEmployee));
 // 					연금보험
-					$('#ppAmount').val(data.mmDailyPay * ppEmployee);
+					$('#ppAmount').val(Math.round(data.mmDailyPay * ppEmployee));
 // 					산재보험
-					$('#ohiAmount').val(data.mmDailyPay * ohiEmployee);
+					$('#ohiAmount').val(Math.round(data.mmDailyPay * ohiEmployee));
 						
 					sumAmount = data.mmDailyPay - 
-								((data.mmDailyPay * eiEmployee) + (data.mmDailyPay * nhiEmployee) + (data.mmDailyPay * ppEmployee));
+								((Math.round(data.mmDailyPay * eiEmployee)) + (Math.round(data.mmDailyPay * nhiEmployee))
+												+ (Math.round(data.mmDailyPay * ppEmployee)));
 				
 					$('#pcAmount').val(sumAmount);
 				}

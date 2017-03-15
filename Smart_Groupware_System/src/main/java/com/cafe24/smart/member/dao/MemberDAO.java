@@ -27,10 +27,15 @@ public interface MemberDAO {
 	List<MajorTypeOfBusiness> 			selectMa();
 	List<MinorTypeOfBusiness> 			selectMi();
 	
-	List<MemberList>					selectAllMm(Map<String, Integer> map); // 사원 조회
+	List<Member>					selectAllMm(); // 사원 조회
 	
 	//DB에서 정보 불러오기 리스트 끝
 	
+	
+	int									updateMm(Member member);// 사원정보수정
+	
+	
+	List<MemberContent>					selectMmSearch(MemberContent memberContent); //사원 조건검색
 	List<MemberContent>					selectMmcontentCr(int mmCode);// 개인사원경력사항정보조회
 	List<MemberContent>					selectMmcontentlc(int mmCode);// 개인사원자격증정보조회
 	MemberContent						selectMmContentMc(int mmCode);// 개인사원정보학력조회

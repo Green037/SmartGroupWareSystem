@@ -21,9 +21,36 @@
 <title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 
 <script type="text/javascript">
+	//검색버튼 클릭시 ajax사용하여 조회해서 뿌려주기
 	$(document).on('click','#mmListSearchBtn',function(){
+		$('#mmListTbody').empty();
 		$('#mmListForm').css('display','');
+		var formData = $('#mmSearchForm').serialize();
+		console.log(formData);
+		$.ajax({
+			url : '/smart/member/mm_listSearch',
+			data : formData,
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				/* console.log('H2 Ajax Form Search');
+				console.log(data[0].mmName); */
+				$.each(data, function(i, mmList){
+					$('#mmListTbody').append(`
+							<tr>
+								<td>`+mmList.mmCode+`</td>
+								<td><a href="<c:url value='/member/mm_view?mmCode=`+mmList.mmCode+`'/>">`+mmList.mmName+`</a></td>
+								<td>`+mmList.dpName+`</td>
+								<td>`+mmList.ptName+`</td>
+								<td>`+mmList.ctType+`</td>
+							</tr>
+							`);
+				}); 
+			}
+		});
 	});
+	
+	
 </script>
 
 </head> 
@@ -46,7 +73,7 @@
 <div class="row">
 <div class="col-lg-6">  
 <div class="container">
-	<form action = "<c:url value='/mm_listsearch'/>" method="post" id="mmSearchForm">
+	<form id="mmSearchForm">
 		<table class="table table-bordered">
 			<tr>
 				<th>이름</th>
@@ -56,7 +83,7 @@
 				<th>직급</th>
 				<th>
 					<select name="ptCode" id="ptCode" class="form-control1">
-						<option>:::직급선택:::</option>
+						<option value="0">:::직급선택:::</option>
 						<c:forEach var="position" items="${position}">
 							<option value="${position.ptCode}">${position.ptName}</option>
 						</c:forEach> 
@@ -65,7 +92,7 @@
 				<th>부서</th>
 				<th>
 					<select name="dpCode" id="dpCode" class="form-control1">
-						<option>:::부서선택:::</option>
+						<option value="0">:::부서선택:::</option>
 							<c:forEach var="department" items="${department}">
 								<option value="${department.dpCode}">${department.dpName}</option>
 							</c:forEach> 
@@ -76,7 +103,7 @@
 			<th>최종학력</th>
 			<th>
 				<select name="acCode" id="acCode" class="form-control1">
-					<option>:::학력을 선택하세요:::</option>
+					<option value="0">:::학력을 선택하세요:::</option>
 					<c:forEach var="achieve" items="${achieve}">
 						<option value="${achieve.acCode}">${achieve.acName}</option>
 					</c:forEach>
@@ -84,22 +111,12 @@
 			</th>
 			<th>보유 자격증</th>
 			<td colspan="3">
-				<select multiple="multiple" name="lcCode" id="lcCode" class="form-control1">
+				<select name="lcCode" id="lcCode" class="form-control1">
+					<option value="0">:::자격증을 선택하세요:::</option>
 					<c:forEach var="license" items="${license}">
-					<option value="${license.lcCode}">${license.lcName}</option>
+						<option value="${license.lcCode}">${license.lcName}</option>
 					</c:forEach> 
 				</select>
-			</td>
-		</tr>
-		<tr>
-			<th>입사일</th>
-			<td colspan="5">
-				<div class="col-sm-2">
-					<input type="date" class="form-control1" id="mmJoinDate" name="mmJoinDate" placeholder="사원 입사날짜">
-				</div>
-				<div class="col-sm-2">
-					<input type="date" class="form-control1" id="mmJoinDate" name="mmJoinDate" placeholder="사원 입사날짜">
-				</div>
 			</td>
 		</tr>
 		<tr>
@@ -116,20 +133,22 @@
 	<div class="validation-form" align="center" id="mmListForm" style="display:none;">		
 		<h3 align="left"><span class="glyphicon glyphicon-user">사원조회 리스트</span> </h3>	
 		<div class="container">
-			<table id="mmList" class="table table-hover" >
-				<thead>
-					<tr>
-						<th>사원번호</th>
-						<th>사원 이름</th>
-						<th>소속부서</th>
-						<th>직급</th>
-						<th>계약형태</th>
-					</tr>
-				</thead>
-				<tbody id="mmListTbodybutton">
-						
-				</tbody>
-			</table>
+			<form id="mmListShowForm" >
+				<table id="mmList" class="table table-hover" >
+					<thead>
+						<tr>
+							<th>사원번호</th>
+							<th>사원 이름</th>
+							<th>소속부서</th>
+							<th>직급</th>
+							<th>계약형태</th>
+						</tr>
+					</thead>
+					<tbody id="mmListTbody">
+							
+					</tbody>
+				</table>
+			</form>
 		</div>
 	</div>
 </div>
