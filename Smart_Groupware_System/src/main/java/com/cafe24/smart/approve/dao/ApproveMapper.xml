@@ -15,10 +15,9 @@
 	<resultMap id="resultDoc" type="com.cafe24.smart.approve.domain.Document">
 		<result property="docCode" column="doc_code"/>
 		<result property="docFileGroup" column="doc_fileGroup"/>
-		<result property="docFileName" column="doc_fileName"/>
+		<result property="docGroupIndex" column="doc_groupIndex"/>
 		<result property="docFileOri" column="doc_fileOri"/>
 		<result property="docFilePath" column="doc_filePath"/>
-		<result property="docFileExtention" column="doc_fileName"/>
 	</resultMap>
 		
 	<resultMap id="resultDft" type="com.cafe24.smart.approve.domain.Draft">
@@ -124,11 +123,13 @@
 		parameterType="com.cafe24.smart.approve.domain.Document"
 		useGeneratedKeys="true" keyProperty="docCode">
 		INSERT INTO document(
+			doc_groupIndex,
 			doc_fileGroup,
 			doc_fileOri,
 			doc_filePath
 			) 
 	    VALUES( 
+		    #{docgroupIndex},
 		    #{docFileGroup},
 		    #{docFileOri},
 		    #{docFilePath}
@@ -155,7 +156,7 @@
 			 )
 </insert>
 
-<!-- 개인별 결재선 가져오기 -->
+<!-- 개인별 결재선 가져오기  : 사원[복수]-->
 <select id="selectByApr"
 		resultMap="resultApr">
 		SELECT  
@@ -166,6 +167,17 @@
 			mm_code=#{mmCode}
 </select>
 
+<!-- 개인별 결재선 가져오기 : pk값[단수]-->
+<select id="selectByReApr"
+		resultMap="resultApr"
+		parameterType="int">
+		SELECT  
+			*
+		FROM 
+			approval
+		WHERE
+			apr_code=#{aprCode}
+</select>
 
 <!-- 문서 양식 목록 -->
 <select id="selectAllDoc"
@@ -195,14 +207,15 @@
 			
 	</select>
 
-
 	<!-- 사원번호/이름 가져오기 -->
 	<select id="selectContMm"
 			resultType="com.cafe24.smart.member.domain.Member"
 			parameterType="Map">
 			SELECT 
 				mm_name as mmName,
-				mm_code as mmCode  
+				mm_code as mmCode,
+				dp_code as dpCode,
+				pt_code as ptCode   
 			From 
 				memberManagement 
 			WHERE 
@@ -210,17 +223,48 @@
 			AND 
 				pt_code = #{ptCode}
 	</select>
+	
+	<!-- new 사원별:이름/직급/부서가져오기 -->
+	<select id="selectByPersonal"
+			parameterType="int"
+			resultType="Map">
+		SELECT
+			memberManagement.mm_code as mmCode,
+			memberManagement.mm_name as mmName,
+			department.dp_code as dpCode,
+			department.dp_name as dpName,
+			rankposition.pt_code as ptCode,
+			rankposition.pt_name as ptName
+		FROM
+			memberManagement
+		JOIN
+			department
+		ON
+			memberManagement.dp_code = department.dp_code 
+		JOIN 
+			rankposition
+		ON	
+			memberManagement.pt_code = rankposition.pt_code 
+		WHERE
+			memberManagement.mm_code = #{mmCode}
+		
+	</select>
 		
 
 <!-- 결재 목록 :intro 목록(전체 결재 목록)-->
 <select id="selectAllPg"
-		resultMap="resultDft">
+		resultMap="resultDft"
+		parameterType ="int">
 		SELECT 
 			* 
 		FROM 
-			progress,draft 
+			progress,draft,document   
 		WHERE 
 			progress.dft_code = draft.dft_code
+		AND
+			document.doc_code = draft.doc_code 
+		AND
+			mm_code = #{mmCode} 	
 </select>
 
 
@@ -231,13 +275,15 @@
 		SELECT   
 			*  
 		FROM 
-			progress,draft 
+			progress,draft,document
 		WHERE  
-			pro_state = #{proState}
+			pro_state = #{progress}
 		AND 
 			progress.dft_code = draft.dft_code
 		AND 
-			pro_approval = #{progress}	
+			document.doc_code = draft.doc_code 
+		AND  
+			pro_approval = #{mmCode}	
 			
 </select>
 	 
@@ -279,8 +325,7 @@
 					WHERE
 						mm_code = #{proApproval}
 			</select>
-			
-	
+				
 			<!-- 기안자 부서가져오기 -->
 			<select id="selectByDp"
 					parameterType="int"
@@ -298,7 +343,6 @@
 			
 			</select>
 	
-		
 			<!-- 결재자 부서가져오기 -->
 			<select id="selectByPDp"
 					parameterType="int"
@@ -315,9 +359,7 @@
 						mm_code = #{proApproval}
 			
 			</select>
-			
 		
-	
 			<!-- 기안자 직급 가져오기 -->
 			<select id="selectByPt"
 					parameterType="int"
@@ -440,7 +482,29 @@
 		WHERE
 			dft_code = #{dftCode}
 
-</select>		
+</select>	
+
+<!-- 목록 검색 : doc_code -->
+<select id="selectBySearchGroup" 
+		parameterType="String" 
+		resultMap ="resultDft">
+						
+		SELECT   
+			*
+		FROM  
+			document 	
+		JOIN
+			draft
+		ON 
+			draft.doc_code = document.doc_code
+		JOIN
+			progress 
+		On 
+			draft.dft_code = progress.dft_code  	
+		WHERE
+			doc_fileGroup = #{apGroup}			
+
+</select>	
 		
 </mapper>
 

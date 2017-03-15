@@ -23,8 +23,9 @@ public interface ApproveService {
 		List<Member> apMmAddServ(Position position, Department department);
 		// [ajax] 기안 페이지 결재선 등록 
 		int apAprAddServ(Approval approval);
-		// [ajax] 결재선 가져오기
+		// [ajax] 결재선 가져오기[팝업:목록]/ 결재선 검색[jsp]
 		List<Approval> apAprListServ(int mmCode);
+		Map apAprSelServ(int aprCode);
 		
 	//기안 등록
 	int apAddServ(Draft draft, Progress progress, String uploadPath);
@@ -60,6 +61,11 @@ public interface ApproveService {
 	// 다운로드 (1. 문서	2. 기안첨부파일)
 	Document apDownDocServ(int docCode);
 	Draft apDownDftServ(int dftCode);
+	
+	// List 검색
+	List<Draft> apSearchServ(String apGroup);
+
+	
 	
 	
 	

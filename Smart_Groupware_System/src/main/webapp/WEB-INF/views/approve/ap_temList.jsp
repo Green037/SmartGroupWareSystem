@@ -23,6 +23,33 @@
 					<li>임시 문서함</li>
 				</ol>
 			</div>
+			
+			
+			<form class="form-inline" id="apRequirement">
+						<div class="form-group">
+							<label for="docGroup">분류</label>
+							<select name="apSize">
+								<option>::선택::</option>
+								<option value="인사">인사</option>
+								<option value="급여">급여</option>
+								<option value="프로젝트">프로젝트</option>
+								<option value="고과">고과</option>
+								<option value="출퇴근">출퇴근</option>
+								<option value="근외일정">근외일정</option>
+								<option value="회계">회계</option>
+								<option value="계약">계약</option>
+							</select>
+						</div>
+						
+						<div class="form-group">
+							<label for="temCode">문서번호</label>
+							<input type="text" class="form-control" name="temCode">						
+						</div>
+						
+						<button type="button" class="btn btn-primary" id="searchBtn">
+							<span class="glyphicon glyphicon-search"></span>검색
+						</button>
+			</form>
 	
 			<div class="forms-main">
 				<div class="graph-form">

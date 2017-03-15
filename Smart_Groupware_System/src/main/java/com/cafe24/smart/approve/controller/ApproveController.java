@@ -76,17 +76,19 @@ public class ApproveController {
 	//결재 목록 [대기/반려/완료] : GET 
 	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
 	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress, HttpSession session){	
-		//System.out.println("ctrl pgList> test");
-		//System.out.println(apProgress);
-	
+
 		int mmCode = (int) session.getAttribute("mmCode");
-		System.out.println(mmCode);
+//		System.out.println(mmCode);
 		
 		List<Draft> pgList = new ArrayList<Draft>();
-		pgList = approveService.pgListServ(apProgress, mmCode);
+		List<Document> docList = new ArrayList<Document>();
 		
-		//System.out.println(pgList);
+		pgList = approveService.pgListServ(apProgress, mmCode);
+		docList = approveService.docListServ();
+		
+//		System.out.println(pgList);
 		model.addAttribute("pgList", pgList);
+		model.addAttribute("docList", docList);
 	
 		return "/approve/ap_list";
 	}
@@ -101,7 +103,6 @@ public class ApproveController {
 		String url;
 		
 		draft = approveService.hvContServ(dftCode);
-		
 		
 		model.addAttribute("draft", draft);
 		url = draft.getUrl();

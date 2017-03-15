@@ -7,12 +7,45 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script>
+	/* 최종승인 보고서 가져오는 page  */
 	$(document).on('click','#putInBtn',function(){
 		$('#putInFor').modal();
 		var dftCode = $(this).parent().parent().children('#_dftCode').val();
 		console.log(dftCode);
 		$('#dftCode').val(dftCode);
 	});
+	
+	/* 검색 페이지  */
+	$(document).on('click','#searchBtn',function(){
+		var formData = $('#apRequirement').serialize();
+		$('#apContent').empty();
+		
+		$.ajax({
+			url : '/smart/ap/searchDft',
+			data : formData,
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				console.log('test');
+				console.log(data)
+				originalContent.style.visibility="hidden";
+				$.each(data, function(i,serachList){
+					$('#apContent').append(`
+							<tr>
+								<td>`+serachList.dftCode+`</td>
+								<td>`+serachList.dftTitle+`</td>
+								<td>`+serachList.docFileGroup+`</td>
+								<td>`+serachList.mmName+`</td>
+								<td>`+serachList.pMmName+`</td>
+								<td>`+serachList.dftDate+`</td>
+								<td>`+serachList.proRealTime+`</td>
+								<td>`+serachList.dftFinalState+`</td>
+							</tr>
+							`)
+				})
+			}
+		})
+	})
 	
 	
 	</script>
@@ -35,9 +68,51 @@
 	<center>
 		<h2><span class="glyphicon glyphicon-file"></span> 결재 목록</h2>
 	</center>
-	
-	&nbsp;   
-           
+	<hr/>
+	<!-- 검색조건 -->
+	<form class="form-inline" id="apRequirement">
+		<div class="form-group">
+			<label for="apGroup">분류</label>
+			<select name="apGroup">
+				<option>::분류::</option>
+				<c:forEach var="docList" items="${docList}">
+					<option value ="${docList.docFileGroup}">${docList.docFileGroup}</option>
+				</c:forEach>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="apindex">차수</label>
+			<select name="apProgress">
+				<option>::차수::</option>
+				<option value="1">1차</option>
+				<option value="2">2차</option>
+				<option value="3">3차</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="apSituation">진행상황</label>
+			<select name="apProgress">
+				<option>::진행상황::</option>
+				<option value="0">대기</option>
+				<option value="2">반려</option>
+				<option value="1">완료</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="prStartDay">기안일:</label>
+			<input type="date" class="form-control" id="apStartDay" name="apStartDay">
+		</div>
+		<div class="form-group">
+			<label for="prEndDay">기안일:</label>
+			<input type="date" class="form-control" id="apEndDay" name="apEndDay">
+		</div>
+		
+		<button type="button" class="btn btn-primary" id="searchBtn">
+			<span class="glyphicon glyphicon-search"></span>검색
+		</button>
+	</form>
+	<hr/>
+
 	<div class="btn-group btn-group-justified">
 		<a href="<c:url value='/ap/list?apProgress=1'/>" class="btn btn-success">
 			<span class="glyphicon glyphicon-search"></span> 결재 대기 목록
@@ -49,11 +124,13 @@
 			<span class="glyphicon glyphicon-check"></span> 결재 완료 목록
 		</a>
 	</div>
+	
 	<table class="table table-hover">
 		<thead>
 			<tr>
 				<th>기안번호</th>
 				<th>결재명</th>
+				<th>기안분류</th>
 				<th>기안자</th>
 				<th>결재자</th>
 				<th>기안등록일자</th>
@@ -63,12 +140,21 @@
 				
 			</tr>
 		</thead>
-		<tbody>
+		
+		<tbody id="apContent">
+		
+		
+		
+		</tbody>
+		
+		
+		<tbody id="originalContent" >
 			<c:forEach var="pgList" items="${pgList}">
 				<tr>
 					<input type="hidden" id="dftCode" value="${pgList.dftCode}"/>
 					<td>${pgList.dftCode}</td>
 					<td><a href="<c:url value='/ap/Content?dftCode=${pgList.dftCode}' />">${pgList.dftTitle}</a></td>
+					<td>${pgList.docFileGroup}</td>
 					<td>${pgList.mmName}</td>
 					<td>${pgList.pMmName}</td>
 					<td>${pgList.dftDate}</td>
@@ -97,6 +183,8 @@
 				</tr>
 			</c:forEach>
 		</tbody>
+		
+	
 	</table>
 </div>
 

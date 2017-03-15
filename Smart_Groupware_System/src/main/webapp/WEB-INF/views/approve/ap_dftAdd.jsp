@@ -117,7 +117,7 @@
 			success : function(data){
 				console.log('성공');
 				$('#aprListForm').empty();
-				console.log(data[1].aprCode);
+				console.log(data[0].aprCode);
 				$.each(data,function(i, apr){
 					$('#aprListForm').append(`
 							<tr>
@@ -134,23 +134,36 @@
 	
 	})
 	
+	/* 결재선 화면에 뿌려주기  */
 	$(document).on('click','#aprChoBtn', function(){
 		var aprCode = $(this).parent().parent().children('#1').text();
 		console.log(aprCode)
 		
 		$.ajax({
 			url: '/smart/ap/selApr',
+			data : { 'aprCode' : aprCode },
 			type : 'POST',
 			dataType : 'json',
 			success : function(data){
+				console.log('결재선성공');
+				console.log('이름:'+data.map1.mmName);
+				console.log($('#aprApproval1').val());
+				 $('#depSearch1').val(data.map1.dpCode).attr('selected','selected');
+				 $('#posSearch1').val(data.map1.ptCode).attr('selected','selected'); 
+				 $('#aprApproval1').val(data.map1.mmCode).attr('selected','selected');
+				 
+				 $('#depSearch2').val(data.map2.dpCode).attr('selected','selected');
+				 $('#posSearch2').val(data.map2.ptCode).attr('selected','selected'); 
+				 $('#aprApproval2').val(data.map2.mmCode).attr('selected','selected'); 
+				 
+				 $('#depSearch3').val(data.map3.dpCode).attr('selected','selected');
+				 $('#posSearch3').val(data.map3.ptCode).attr('selected','selected'); 
+				 $('#aprApproval3').val(data.map3.mmCode).attr('selected','selected'); 
 				
 			}
 		})	
 	})
-	</script>
-	
-	<!-- 여기 ajax 추가하기 select값으로 갑가져와서 결재선에 꽂아주기 -->
-	
+	</script>	
 </head>
 <body>
 
@@ -190,9 +203,7 @@
             </div>
     	</div>
     	
-    	<div class="row">
-    		<div class="col-md-8">
-				<div class="form-group form-group-sm">
+    	<div class="form-group form-group-sm">
 				    <label for="firstname" class="control-label">[문서구분]</label>
 				    <select name="docCode" id="docCode" class="form-control1">
 				    	<option value=0>[문서분류를 선택하세요]</option>
@@ -202,9 +213,7 @@
 						</c:forEach>
 													
 					</select>
-				</div>
-            </div>   
-    	</div>
+		</div>
     	<div class ="row">
 			<div class="col-md-8">
 				<div class="form-group form-group-sm">
@@ -227,7 +236,8 @@
 					        <th class="col">직원 이름</th>
 					      </tr>
 					    </thead>
-					    <tbody>
+					    
+					    <tbody id="selectAllAprForm">
 					      <tr>
 					        <th class="row">1차 결재자</th>
 					        <td>
@@ -254,7 +264,7 @@
 					        </td>
 				        	<td>					        	
 					        	<select name="aprApproval1" id="aprApproval1" class="form-control1">
-										<option id=1 value=0>[이름을 선택하세요]</option>
+									<option id=1 value=0>[이름을 선택하세요]</option>
 										
 								</select>						
 					        </td>

@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
+import com.cafe24.smart.approve.domain.Draft;
 import com.cafe24.smart.approve.service.ApproveService;
 import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.Member;
@@ -94,7 +95,7 @@ public class ApproveRestController {
 			return apr;
 		}
 	
-	// 결재선 pop 가져오기
+	// 기안자 사원코드로 결재선 가져오기[복수]
 	@RequestMapping(value ="ap/listApr", method = RequestMethod.POST)
 	public List<Approval> apAprListReCtrl(@RequestParam("mmCode") int mmCode){
 //		System.out.println("ajax 넘어오니");			
@@ -103,11 +104,37 @@ public class ApproveRestController {
 		List<Approval> apr = new ArrayList<Approval>();		
 		apr = approveService.apAprListServ(mmCode);
 
-		System.out.println(apr);
+		//System.out.println(apr);
 			
 		return apr;
 	}
-
-
 	
+	// 결재라인코드(pk값) 결재선 가져오기[단수]
+	@RequestMapping(value="ap/selApr", method = RequestMethod.POST)
+	public Map apAprSelReCtrl(@RequestParam("aprCode") int aprCode){
+		System.out.println("select값 가져오기");
+		
+		Map resultMap = new HashMap();
+		resultMap = approveService.apAprSelServ(aprCode);
+		
+		System.out.println("결재서 resultMap 값 :"+resultMap);
+
+		return resultMap;
+	}
+	
+	//apList에서 검색
+	@RequestMapping(value="ap/searchDft", method = RequestMethod.POST)
+	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam("apGroup") String apGroup){
+		
+		System.out.println("ajax test");
+		Map map = new HashMap();
+		List<Draft> serachList = new ArrayList<Draft>();
+		
+		//System.out.println(apGroup);
+		serachList = approveService.apSearchServ(apGroup);
+		System.out.println("검색:"+serachList);
+		
+		return serachList;
+		
+	}
 }
