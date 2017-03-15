@@ -47,6 +47,7 @@ public class PaymentController {
 						
 		List<PayContent> pcList = paymentService.paListAllServ();
 		int	listCount = paymentService.reCountAllServ();
+		List<Member> member = memberService.
 		
 		System.out.println("PaymentController paListAllCtrl pcList : " + pcList);
 		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
@@ -70,8 +71,7 @@ public class PaymentController {
 					   .setPaSumSalary(pcList.get(i).getInAmount() + pcList.get(i).getMmDailyPay()
 							   			- (pcList.get(i).getEiAmount() + pcList.get(i).getNhiAmount()
 							   					+ pcList.get(i).getPpAmount())) //실급여
-					   .setPaCalculateDate(pcList.get(i).getPcDate().substring(0, 6) + "-20") //급여산정일
-					   .setMmBank(mmBank)
+					   .setPaCalculateDate(pcList.get(i).getPcDate().substring(0, 6) + "-20"); //급여산정일
 				
 			
 				
