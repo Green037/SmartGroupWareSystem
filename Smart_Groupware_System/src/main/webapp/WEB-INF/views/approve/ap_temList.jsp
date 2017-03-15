@@ -5,6 +5,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<script>
+	$(document).on('click','#docSearchBtn', function(){
+		var formData = $('#docRequirement').serialize();
+		console.log('h1'+formData);
+	})
+	
+	</script>
 </head> 
 <body>
 
@@ -25,7 +33,7 @@
 			</div>
 			
 			
-			<form class="form-inline" id="apRequirement">
+			<form class="form-inline" id="docRequirement">
 						<div class="form-group">
 							<label for="docGroup">분류</label>
 							<select name="apSize">
@@ -46,7 +54,7 @@
 							<input type="text" class="form-control" name="temCode">						
 						</div>
 						
-						<button type="button" class="btn btn-primary" id="searchBtn">
+						<button type="button" class="btn btn-primary" id="docSearchBtn">
 							<span class="glyphicon glyphicon-search"></span>검색
 						</button>
 			</form>

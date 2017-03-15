@@ -20,7 +20,7 @@
 		var formData = $('#apRequirement').serialize();
 		console.log(formData)
 		$('#originalContent').empty();
-		
+		$('#apContent').empty();
 		$.ajax({
 			url : '/smart/ap/searchDft',
 			data : formData,

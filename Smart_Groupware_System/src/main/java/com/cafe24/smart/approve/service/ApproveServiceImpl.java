@@ -28,7 +28,7 @@ public class ApproveServiceImpl implements ApproveService {
 	@Autowired
 	private ApproveDAO approveDAO;
 	
-	// ----- 메소드 : 현재 시간 출력
+	// ----- 메서드 : 현재 시간 출력
 	Date today = new Date (); 
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
 
@@ -461,7 +461,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return result;
 	}
 	
-	// 임시 목록 :GET
+	// 임시 목록 
 	@Override
 	public List<Draft> temListServ() {
 		//System.out.println("serv temList> test1");
@@ -488,7 +488,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return temList;
 	}
 
-	// 임시 상세보기 : GET
+	// 임시문서 상세보기 
 	@Override
 	public List<Draft> temContServ(int dftCode) {
 		//System.out.println("serv temContent> test1");
@@ -499,14 +499,11 @@ public class ApproveServiceImpl implements ApproveService {
 		String mmName = approveDAO.selectDetailMm(temContent.get(0).getMmCode());
 		
 		temContent.get(0).setMmName(mmName);
-		
 		//System.out.println(temContent);
-		
-
 		return temContent;
 	}
 	
-	// 임시 상세보기 (문서값 가져오기) 
+	// 임시문서  상세보기 (문서값 가져오기) 
 	@Override
 	public String temDocSeleServ(int dftCode) {
 		return approveDAO.selectDetailDoc(dftCode);
@@ -545,7 +542,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return map;
 	}
 	
-	// 임시 상세보기 (부서명 가져오기
+	// 임시 상세보기 (부서명 가져오기)
 	@Override
 	public Map temContDepServ(List<Draft> draft) {
 		
@@ -561,13 +558,14 @@ public class ApproveServiceImpl implements ApproveService {
 		return map;
 	}
 
-	// 문서 양식 등록: POST
+	// 문서 양식 등록
 	@Override
 	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
 		
 		int result = 0;
 		
+		//파일 업로드를 위한 utilFile 클래스 선언
 		UtilFile utilFile = new UtilFile();
 
 /*		파일 업로드시에 파일분류/이름/경로 저장*/
@@ -576,37 +574,34 @@ public class ApproveServiceImpl implements ApproveService {
 		document.setDocFilePath(uploadPath);
 	
 		//System.out.println("테스트중 : "+uploadPath.lastIndexOf("_"));
-		
 		result = approveDAO.insertDoc(document);
 
 		return result;
 	}
 
-	// 문서 양식 insert 후select값 가져오기
+	// 문서 보관함 양식 insert 후select값 가져오기
 	@Override
 	public List<Document> apDocSelServ(Document document) {
 		return approveDAO.selectListByDoc(document);
 	}
 	
-	//문서 양식 목록 : GET
+	//문서 보관함 목록 
 	@Override
 	public List<Document> docListServ() {
-		
 		//System.out.println("srv docListServ > test1");
 		List<Document> docList = new ArrayList<Document>();
 		docList = approveDAO.selectAllDoc(); // 문서코드/문서구분 불러오기
 		//System.out.println(docList);
-		
 		return docList;
 	}
 
-	//문서 다운로드 : GET
+	//문서 보관함 : 다운로드
 	@Override
 	public Document apDownDocServ(int docCode) {
 		return approveDAO.selectListByDoc(docCode);
 	}
 	
-	//기안 첨부파일 다운로드 : GET
+	//결재 문서 : 첨부파일 다운로드 
 	@Override
 	public Draft apDownDftServ(int dftCode) {
 		return approveDAO.selectContHv(dftCode);
@@ -619,7 +614,9 @@ public class ApproveServiceImpl implements ApproveService {
 //		System.out.println(apGroup);
 		List<Draft> resultDft = new ArrayList<Draft>();
 		// 결재 목록 검색에서 조건 설정
-		resultDft = approveDAO.selectBySearchGroup(docFileGroup);
+		System.out.println("넘어온값 확인draft:"+draft);
+		
+		resultDft = approveDAO.selectBySearchGroup(draft);
 		resultDft =setName(resultDft);
 	
 		return resultDft;

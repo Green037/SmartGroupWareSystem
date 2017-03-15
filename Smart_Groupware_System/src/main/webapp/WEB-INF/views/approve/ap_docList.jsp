@@ -47,7 +47,25 @@
 	                }
 	             
 	            });
-	         });	
+	         });
+			
+		/* 문서 구분 검색 */
+		$(document).on('click','#docSearchBtn',function(){
+			var docFileGroup = $('#docFileGroup').val();
+			console.log('h1'+docFileGroup);
+			$('#docTbody').empty();
+			$('#docSerachTbody').empty();
+			$.ajax({
+				url : '/smart/ap/searchDoc',
+				data : {'docFileGroup':docFileGroup},
+				dataType : 'json',
+				type : 'post',
+				success : function(data){
+					console.log('h2')
+				}
+			})
+			
+		})
 	</script>
 	
 </head> 
@@ -77,23 +95,18 @@
 					<label class="control-label"><b>문서 양식 [건수 : 10건]</b></label>	
 					
 					</div> &nbsp;
-					<form class="form-inline" id="apRequirement">
+					<form class="form-inline" id="docRequirement">
 						<div class="form-group">
-							<label for="docGroup">분류</label>
-							<select name="apSize">
-								<option>::선택::</option>
-								<option value="인사">인사</option>
-								<option value="급여">급여</option>
-								<option value="프로젝트">프로젝트</option>
-								<option value="고과">고과</option>
-								<option value="출퇴근">출퇴근</option>
-								<option value="근외일정">근외일정</option>
-								<option value="회계">회계</option>
-								<option value="계약">계약</option>
+							<label for="docFileGroup">분류</label>
+							<select name="docFileGroup">
+								<option value="0">::분류::</option>
+								<c:forEach var="docList" items="${docList}">
+									<option value ="${docList.docFileGroup}">${docList.docFileGroup}</option>
+								</c:forEach>
 							</select>
 						</div>
 						
-						<button type="button" class="btn btn-primary" id="searchBtn">
+						<button type="button" class="btn btn-primary" id="docSearchBtn">
 							<span class="glyphicon glyphicon-search"></span>검색
 						</button>
 					</form>
@@ -107,6 +120,10 @@
 								<th>Download</th>
 							</tr>
 						</thead>
+						<tbody id="docSerachTbody">
+						
+						
+						</tbody>
 						<tbody id="docTbody">
 							<c:forEach var="docList" items="${docList}">
 							

@@ -79,7 +79,7 @@ public interface ApproveDAO {
 	Document selectListByDoc(int docCode);
 	
 	// 결재 목록 : 검색
-	List<Draft> selectBySearchGroup(String apGroup);
+	List<Draft> selectBySearchGroup(Draft draft);
 	
 
 	

@@ -253,11 +253,10 @@ public class ApproveDAOImpl implements ApproveDAO {
 
 	// 결재목록 : group 검색
 	@Override
-	public List<Draft> selectBySearchGroup(String apGroup) {
-	
-		System.out.println("h1");
-		System.out.println(apGroup);
-		return sqlSession.selectList("AprDAO.selectBySearchGroup", apGroup);
+	public List<Draft> selectBySearchGroup(Draft draft) {
+//		System.out.println("h1");
+//		System.out.println(apGroup);
+		return sqlSession.selectList("AprDAO.selectBySearchGroup", draft);
 	}
 
 

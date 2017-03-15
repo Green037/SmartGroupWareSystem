@@ -174,8 +174,7 @@ public class ApproveController {
 		return "/approve/ap_temModify";   
 	}
 
-	
-	//문서 양식함 : GET
+	//문서 양식 목록 : GET
 	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)
 	public String apdocListCtrl(Model model){
 	

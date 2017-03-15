@@ -38,7 +38,6 @@
 		<result property="dftFilePath" column="dft_filePath"/>
 		<result property="dftFileOri" column="dft_fileOri"/>
 		<result property="docFileGroup" column="doc_fileGroup"/>
-		<result property="docFileGroup" column="doc_fileGroup"/>
 		<result property="mmName" column="mm_name"/>
 		<result property="dpName" column="dp_name"/>
 		<result property="ptName" column="pt_name"/>
@@ -486,9 +485,8 @@
 
 <!-- 목록 검색 : doc_code -->
 <select id="selectBySearchGroup" 
-		parameterType="String" 
-		resultMap ="resultDft">
-						
+		parameterType="com.cafe24.smart.approve.domain.Draft" 
+		resultMap ="resultDft">					
 		SELECT   
 			*
 		FROM  
@@ -500,9 +498,18 @@
 		JOIN
 			progress 
 		On 
-			draft.dft_code = progress.dft_code  	
-		WHERE
-			doc_fileGroup = #{apGroup}			
+			draft.dft_code = progress.dft_code    	
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="!docFileGroup eq 0">
+				AND doc_fileGroup = #{docFileGroup} 
+			</if>  
+			<if test="!dftDegree eq 0">
+				AND dft_degree = #{dftDegree} 
+			</if>   
+			<if test="!proState eq 0">
+				AND pro_state = #{proState} 
+			</if> 
+		</trim>
 
 </select>	
 		
