@@ -24,11 +24,10 @@ public class Draft {
 	private String proRealTime;
 	private String url;
 	private String docFileGroup;
-	
+	private int proState;
 	private String dpName;
 	private String ptName;
 	private String mmName;
-	
 	private String pDpName;
 	private String pPtName;
 	private String pMmName;
@@ -193,6 +192,12 @@ public class Draft {
 	public void setpMmName(String pMmName) {
 		this.pMmName = pMmName;
 	}
+	public int getProState() {
+		return proState;
+	}
+	public void setProState(int proState) {
+		this.proState = proState;
+	}
 	
 	@Override
 	public String toString() {
@@ -202,10 +207,10 @@ public class Draft {
 				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", dftFileOri=" + dftFileOri
 				+ ", dftFilePath=" + dftFilePath + ", proApproval=" + proApproval + ", proApprovalName="
 				+ proApprovalName + ", proReason=" + proReason + ", proRealTime=" + proRealTime + ", url=" + url
-				+ ", docFileGroup=" + docFileGroup + ", dpName=" + dpName + ", ptName=" + ptName + ", mmName=" + mmName
-				+ ", pDpName=" + pDpName + ", pPtName=" + pPtName + ", pMmName=" + pMmName + "]";
+				+ ", docFileGroup=" + docFileGroup + ", proState=" + proState + ", dpName=" + dpName + ", ptName="
+				+ ptName + ", mmName=" + mmName + ", pDpName=" + pDpName + ", pPtName=" + pPtName + ", pMmName="
+				+ pMmName + "]";
 	}
 	
-	
-	
+
 	}

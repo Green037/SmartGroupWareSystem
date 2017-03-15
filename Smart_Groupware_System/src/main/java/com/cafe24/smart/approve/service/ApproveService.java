@@ -63,7 +63,7 @@ public interface ApproveService {
 	Draft apDownDftServ(int dftCode);
 	
 	// List 검색
-	List<Draft> apSearchServ(String apGroup);
+	List<Draft> apSearchServ(Draft draft, String docFileGroup);
 
 	
 	

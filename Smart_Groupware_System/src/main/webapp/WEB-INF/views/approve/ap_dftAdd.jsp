@@ -149,19 +149,23 @@
 				console.log('이름:'+data.map1.mmName);
 				console.log($('#aprApproval1').val());
 				 $('#depSearch1').val(data.map1.dpCode).attr('selected','selected');
-				 $('#posSearch1').val(data.map1.ptCode).attr('selected','selected'); 
+				 $('#posSearch1').val(data.map1.ptCode).attr('selected','selected');
+				 $('#1').after('<option value="'+data.map1.mmCode+'">'+data.map1.mmName+'</option>');
 				 $('#aprApproval1').val(data.map1.mmCode).attr('selected','selected');
 				 
 				 $('#depSearch2').val(data.map2.dpCode).attr('selected','selected');
 				 $('#posSearch2').val(data.map2.ptCode).attr('selected','selected'); 
+				 $('#2').after('<option value="'+data.map2.mmCode+'">'+data.map2.mmName+'</option>');
 				 $('#aprApproval2').val(data.map2.mmCode).attr('selected','selected'); 
 				 
 				 $('#depSearch3').val(data.map3.dpCode).attr('selected','selected');
 				 $('#posSearch3').val(data.map3.ptCode).attr('selected','selected'); 
+				 $('#3').after('<option value="'+data.map3.mmCode+'">'+data.map3.mmName+'</option>');
 				 $('#aprApproval3').val(data.map3.mmCode).attr('selected','selected'); 
 				
 			}
-		})	
+		})
+		
 	})
 	</script>	
 </head>

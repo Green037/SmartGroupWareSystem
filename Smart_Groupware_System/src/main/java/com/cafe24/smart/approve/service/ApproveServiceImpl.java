@@ -466,7 +466,6 @@ public class ApproveServiceImpl implements ApproveService {
 	public List<Draft> temListServ() {
 		//System.out.println("serv temList> test1");
 		
-//		Draft draft = new Draft();
 		List<Draft> temList= new ArrayList<Draft>();
 	
 		temList = approveDAO.selectAllTem();
@@ -510,7 +509,6 @@ public class ApproveServiceImpl implements ApproveService {
 	// 임시 상세보기 (문서값 가져오기) 
 	@Override
 	public String temDocSeleServ(int dftCode) {
-		
 		return approveDAO.selectDetailDoc(dftCode);
 	}
 	
@@ -572,6 +570,7 @@ public class ApproveServiceImpl implements ApproveService {
 		
 		UtilFile utilFile = new UtilFile();
 
+/*		파일 업로드시에 파일분류/이름/경로 저장*/
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("_")+1, uploadPath.lastIndexOf(".")));
 		document.setDocFilePath(uploadPath);
@@ -586,7 +585,6 @@ public class ApproveServiceImpl implements ApproveService {
 	// 문서 양식 insert 후select값 가져오기
 	@Override
 	public List<Document> apDocSelServ(Document document) {
-		// TODO Auto-generated method stub
 		return approveDAO.selectListByDoc(document);
 	}
 	
@@ -605,31 +603,27 @@ public class ApproveServiceImpl implements ApproveService {
 	//문서 다운로드 : GET
 	@Override
 	public Document apDownDocServ(int docCode) {
-		// TODO Auto-generated method stub
 		return approveDAO.selectListByDoc(docCode);
 	}
 	
 	//기안 첨부파일 다운로드 : GET
 	@Override
 	public Draft apDownDftServ(int dftCode) {
-		// TODO Auto-generated method stub
 		return approveDAO.selectContHv(dftCode);
 	}
 
 	// 목록 검색
 	@Override
-	public List<Draft> apSearchServ(String apGroup) {
+	public List<Draft> apSearchServ(Draft draft ,String docFileGroup) {
 		
 //		System.out.println(apGroup);
-		List<Draft> draft = new ArrayList<Draft>();
-		
-		draft = approveDAO.selectBySearchGroup(apGroup);
-		draft =setName(draft);
+		List<Draft> resultDft = new ArrayList<Draft>();
+		// 결재 목록 검색에서 조건 설정
+		resultDft = approveDAO.selectBySearchGroup(docFileGroup);
+		resultDft =setName(resultDft);
 	
-		return draft;
+		return resultDft;
 	}
-
-
 
 	}	
 

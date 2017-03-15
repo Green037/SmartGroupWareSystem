@@ -18,7 +18,8 @@
 	/* 검색 페이지  */
 	$(document).on('click','#searchBtn',function(){
 		var formData = $('#apRequirement').serialize();
-		$('#apContent').empty();
+		console.log(formData)
+		$('#originalContent').empty();
 		
 		$.ajax({
 			url : '/smart/ap/searchDft',
@@ -27,8 +28,8 @@
 			type : 'post',
 			success : function(data){
 				console.log('test');
-				console.log(data)
-				originalContent.style.visibility="hidden";
+				console.log(data[0].dftTitle)
+		/* 		originalContent.style.visibility="hidden"; */
 				$.each(data, function(i,serachList){
 					$('#apContent').append(`
 							<tr>
@@ -42,7 +43,7 @@
 								<td>`+serachList.dftFinalState+`</td>
 							</tr>
 							`)
-				})
+				}) 
 			}
 		})
 	})
@@ -72,39 +73,31 @@
 	<!-- 검색조건 -->
 	<form class="form-inline" id="apRequirement">
 		<div class="form-group">
-			<label for="apGroup">분류</label>
-			<select name="apGroup">
-				<option>::분류::</option>
+			<label for="docFileGroup">분류</label>
+			<select name="docFileGroup">
+				<option value="0">::분류::</option>
 				<c:forEach var="docList" items="${docList}">
 					<option value ="${docList.docFileGroup}">${docList.docFileGroup}</option>
 				</c:forEach>
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="apindex">차수</label>
-			<select name="apProgress">
-				<option>::차수::</option>
+			<label for="dftDegree">차수</label>
+			<select name="dftDegree">
+				<option value="0">::차수::</option>
 				<option value="1">1차</option>
 				<option value="2">2차</option>
 				<option value="3">3차</option>
 			</select>
 		</div>
 		<div class="form-group">
-			<label for="apSituation">진행상황</label>
-			<select name="apProgress">
-				<option>::진행상황::</option>
+			<label for="proState">진행상황</label>
+			<select name="proState">
+				<option value="3">::진행상황::</option>
 				<option value="0">대기</option>
 				<option value="2">반려</option>
 				<option value="1">완료</option>
 			</select>
-		</div>
-		<div class="form-group">
-			<label for="prStartDay">기안일:</label>
-			<input type="date" class="form-control" id="apStartDay" name="apStartDay">
-		</div>
-		<div class="form-group">
-			<label for="prEndDay">기안일:</label>
-			<input type="date" class="form-control" id="apEndDay" name="apEndDay">
 		</div>
 		
 		<button type="button" class="btn btn-primary" id="searchBtn">
