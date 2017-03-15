@@ -3,6 +3,7 @@ package com.cafe24.smart.payment.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.cafe24.smart.insurance.service.InsuranceService;
 import com.cafe24.smart.member.domain.Member;
@@ -19,6 +21,7 @@ import com.cafe24.smart.member.service.MemberService;
 import com.cafe24.smart.payment.domain.PayContent;
 import com.cafe24.smart.payment.domain.PaymentView;
 import com.cafe24.smart.payment.service.PaymentService;
+import com.cafe24.smart.util.Paging;
 import com.cafe24.smart.util.UtilDate;
 import com.cafe24.smart.util.UtilMember;
 
@@ -43,11 +46,37 @@ public class PaymentController {
 	
 //	총무부 > 총급여목록
 	@RequestMapping(value = "pa/listAll", method = RequestMethod.GET)
-	public String paListAllCtrl(Model model) {
-						
-		List<PayContent> pcList = paymentService.paListAllServ();
+	public String paListAllCtrl(Model model, HttpServletRequest request) {
+		
+		int currentPageNo = 1;
+		int recordsPerPage = 0;
+		String url = null;
+		
+		if (request.getParameter("pages") != null) {
+			currentPageNo = Integer.parseInt(request.getParameter("pages"));
+		}
+		
+		if (request.getParameter("lines") != null) {
+			recordsPerPage = Integer.parseInt(request.getParameter("lines"));
+		}
+		
+		System.out.println("PaymentController paListAllCtrl currentPageNo : " + currentPageNo);
+		System.out.println("PaymentController paListAllCtrl recordsPerPage : " + recordsPerPage);
+		
+//		기본 recordsPerPage 설정
+		Paging paging = new Paging(currentPageNo, recordsPerPage);
+		
+		int offset = (paging.getCurrentPageNo() - 1) * paging.getRecordsPerPage();    
+		
+		System.out.println("PaymentController paListAllCtrl offset : " + offset);
+		
+		List<PayContent> pcList = paymentService.paListAllServ(offset, paging.getRecordsPerPage());
+		
+		paging.setNumberOfRecords(paymentService.getPaymentDAO().selectAllCountRe());
+		
+		paging.makePaging();
+		
 		int	listCount = paymentService.reCountAllServ();
-//		List<Member> member = memberService.
 		
 		System.out.println("PaymentController paListAllCtrl pcList : " + pcList);
 		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
@@ -71,14 +100,18 @@ public class PaymentController {
 					   .setPaSumSalary(pcList.get(i).getInAmount() + pcList.get(i).getMmDailyPay()
 							   			- (pcList.get(i).getEiAmount() + pcList.get(i).getNhiAmount()
 							   					+ pcList.get(i).getPpAmount())) //실급여
-					   .setPaCalculateDate(pcList.get(i).getPcDate().substring(0, 6) + "-20"); //급여산정일
-				
-			
+					   .setPaCalculateDate(pcList.get(i).getPcDate().substring(0, 7) + "-20") //급여산정일
+					   .setPaPossible(true) //급여지급여부
+					   .setPaDate(pcList.get(i).getPcDate()) //급여지급일
+					   .setPaMmCode(pcList.get(i).getPaMmCode()); //담당사원코드
 				
 				paList.add(paView);
 				
-				
+				model.addAttribute("paging", paging);
+				model.addAttribute("servletPath","pa/listAll");
 			}
+			
+			model.addAttribute("paList", paList);
 			
 			System.out.println("PaymentController paListAllCtrl paList : " + paList);
 			
@@ -129,6 +162,32 @@ public class PaymentController {
 		model.addAttribute("member", member);
 		model.addAttribute("payYear", utilDate.getCurrentYear());
 		model.addAttribute("pcList", pcList);
+//		월급날짜
+		model.addAttribute("payDate", utilDate.getPaymentDate());
+//		부서, 직급 정보
+		model.addAttribute("dpName", utilMember.getDpName(member.getDpCode()));
+		model.addAttribute("ptName", utilMember.getPtName(member.getPtCode()));
+		
+		System.out.println("PaymentController pcContentCtrl model toString : " + model.toString());
+		
+		return "payment/pc_content";
+	}
+	
+//	총무부 > 총급여목록 > 특정 사원 월급여 조회
+	@RequestMapping(value = "pc/mmContent", method = RequestMethod.GET)
+	public String pcMmContentCtrl(@RequestParam(value="pcCode") int pcCode,
+																	Model model) {
+		
+		PayContent payContent = paymentService.paContentPcCodeServ(pcCode);
+		
+		Member member = paymentService.pcMmContentServ(payContent.getMmCode());
+		
+		System.out.println("PaymentController pcMmContentCtrl member : " + member);
+		System.out.println("PaymentController pcMmContentCtrl payContent : " + payContent);
+	
+		model.addAttribute("member", member);
+		model.addAttribute("payYear", utilDate.getCurrentYear());
+		model.addAttribute("pcList", payContent);
 //		월급날짜
 		model.addAttribute("payDate", utilDate.getPaymentDate());
 //		부서, 직급 정보

@@ -58,7 +58,7 @@
 	<select	id="selectAllMm"
 			resultMap="resultMm">
 	SELECT
-			*
+		*
 	FROM
 		memberManagement	
 	

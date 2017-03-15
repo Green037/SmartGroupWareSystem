@@ -84,7 +84,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int selectTotalMemberCount() {
 		
-		return sqlSession.selectOne("acDAO.selectTotalMemberCount");
+		return sqlSession.selectOne("MmDAO.selectTotalMemberCount");
 	}	
 	
 //	특정 사원 조회
@@ -98,14 +98,8 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public List<Member> selectAllMm() {
 		
-		return sqlSession.selectList("acDAO.selectAllMm");
+		return sqlSession.selectList("AcDAO.selectAllMm");
 	}
-
-
-	
-// 사원 조건검색 리스트
-
-	
 	
 //	사원 정보 조회
 	@Override

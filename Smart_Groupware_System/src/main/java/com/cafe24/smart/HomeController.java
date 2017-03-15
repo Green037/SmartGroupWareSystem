@@ -23,7 +23,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	final static Logger log = LoggerFactory.getLogger(HomeController.class);
-	
+	/**
+	 * @author EUNBEE GO
+	 * @since 2017.03.14
+	 */
 	@RequestMapping(value="/", method = RequestMethod.GET)
 	public String home(Locale locale, HttpServletRequest request, 
 							HttpServletResponse response, Model model, HttpSession session)

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,7 +33,6 @@
 										<th>급여코드</th>
 										<th>사원코드</th>
 										<th>일급</th>
-										<th>근무일</th>
 										<th>성과급</th>
 										<th>기본급</th>
 										<th>실급여</th>
@@ -40,29 +41,46 @@
 										<th>지급여부</th>
 										<th>담당사원</th>
 									</tr>
-										<!-- 목록 수만큼 출력
-											<tr>
-												<td></td>
-											</tr>
-										 -->
+									
+									<c:forEach var="paymentView" items="${paList}" varStatus="status">
+										<tr>
+											<td>${status.count}</td>
+											<td><a href="<c:url value='/pc/mmContent?pcCode=${paymentView.pcCode}'/>">${paymentView.pcCode}</a></td>
+											<td>${paymentView.mmCode}</td>
+											<td><fmt:formatNumber value="${paymentView.mmDailyPay}" pattern="#,###"/></td>
+											<td><fmt:formatNumber value="${paymentView.paIncentive}" pattern="#,###"/></td>
+											<td><fmt:formatNumber value="${paymentView.paSalary}" pattern="#,###"/></td>
+											<td><fmt:formatNumber value="${paymentView.paSumSalary}" pattern="#,###"/></td>
+											<td>${paymentView.paCalculateDate}</td>
+											<td>${paymentView.paDate}</td>
+											<td>${paymentView.paPossible}</td>
+											<td>${paymentView.paMmCode}</td>
+										</tr>
+									</c:forEach>
 								</table> 
 								<div class="clearfix">&nbsp;</div>		
 								
-								<form>
-									<div class="col-md-3 form-group1">
-										<select class="form-control1">
+								<div align="center">
+									<form class="form-inline">
+										<div class="form-group">
+											<select class="form-control1">
 												<option>-옵션 선택-</option>
 												<option value="paCode">급여코드</option>
+												<option value="paCode">일급</option>
+												<option value="paCode">성과급</option>
 												<option>사원코드</option>
-												<option value="paDay">근무일</option>
-												<option value="paCalculateDate">급여산정일</option>
 												<option value="paDate">급여지급일</option>
-												<option>지급여부</option>
-										</select>
-										<input type="text" class="form-control1"/>
-										<a class="btn green">검색</a>
-									</div>
-								</form>
+												<option>담당사원코드</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control1"/>
+										</div>
+										<div class="form-group">
+											<button class="btn btn-primary" type="submit">검색</button>
+										</div>
+									</form>
+								</div>
 								<div class="clearfix">&nbsp;</div>			
 							</div>
 						</div>

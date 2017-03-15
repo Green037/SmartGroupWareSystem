@@ -23,11 +23,16 @@ public class PaymentDAOImpl implements PaymentDAO {
 	
 //	인사팀 > 총급여목록
 	@Override
-	public List<PayContent> selectAllPc() {
+	public List<PayContent> selectAllPc(int offset, int noOfRecords) {
 		
 		System.out.println("PaymentDAOImpl selectAllPc");
 		
-		List<PayContent> pcList = sqlSession.selectList("PaDAO.selectAllPc");
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("offset", offset);
+		params.put("noOfRecords", noOfRecords);
+		
+		List<PayContent> pcList = sqlSession.selectList("PaDAO.selectAllPc", params);
 		this.selectAllCountRe = sqlSession.selectOne("PaDAO.selectAllCountRe");
 		
 		System.out.println("PaymentDAOImpl selectAllPc pcList : " + pcList);
@@ -67,6 +72,15 @@ public class PaymentDAOImpl implements PaymentDAO {
 		System.out.println("PaymentDAOImpl selectByPc params : " + params);
 		
 		return sqlSession.selectOne("PaDAO.selectByPc", params);
+	}
+	
+//	총무부 > 총급여목록 > 특정 급여 조회
+	@Override
+	public PayContent selectByPcCodePc(int pcCode) {
+		
+		System.out.println("PaymentDAOImpl selectByPcCodePc pcCode : " + pcCode);		
+		
+		return sqlSession.selectOne("PaDAO.selectByPcCodePc", pcCode);
 	}
 	
 //	이전 쿼리의 총 갯수 조회

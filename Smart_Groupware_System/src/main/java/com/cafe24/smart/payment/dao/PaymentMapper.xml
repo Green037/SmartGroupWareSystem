@@ -18,11 +18,15 @@
 	</resultMap>
 	
 	<!-- 총무부 > 총급여목록 -->
-	<select id="selectAllPc" resultMap="resultPc">
+	<select id="selectAllPc" parameterType="hashmap" resultMap="resultPc">
 		SELECT SQL_CALC_FOUND_ROWS
 			*
 		FROM
 			payContent
+		ORDER BY
+			pc_code ASC
+		LIMIT
+			#{offset}, #{noOfRecords};
 	</select>
 	
 	<!-- 연간급여내역조회 -->
@@ -39,6 +43,16 @@
 			#{startDate}
 		AND
 			#{endDate};
+	</select>
+	
+	<!-- 총무부 > 총급여목록 > 특정 사원 월급여조회 -->
+	<select id="selectByPcCodePc" parameterType="int" resultMap="resultPc">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			payContent
+		WHERE
+			pc_code = #{pcCode};
 	</select>
 	
 	<!-- 월급여조회 -->

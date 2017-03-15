@@ -91,21 +91,26 @@
 								</table> 
 								<div class="clearfix">&nbsp;</div>		
 								
-								<form>
-									<div class="col-md-3 form-group1">
-										<select class="form-control1">
+								<div align="center">
+									<form class="form-inline">
+										<div class="form-group">
+											<select class="form-control1">
 												<option>-옵션 선택-</option>
-												<option value="paCode">급여코드</option>
+												<option value="paCode">고과코드</option>
 												<option>사원코드</option>
-												<option value="paDay">근무일</option>
-												<option value="paCalculateDate">급여산정일</option>
-												<option value="paDate">급여지급일</option>
-												<option>지급여부</option>
-										</select>
-										<input type="text" class="form-control1"/>
-										<a class="btn green">검색</a>
+												<option value="paDay">평가등급</option>
+												<option value="paCalculateDate">평가날짜</option>
+												<option value="paDate">담당사원코드</option>
+											</select>
+											</div>
+											<div class="form-group">
+												<input type="text" class="form-control1"/>
+											</div>
+											<div class="form-group">
+												<button class="btn btn-primary" type="submit">검색</button>
+											</div>
+										</form>
 									</div>
-								</form>
 								<div class="clearfix">&nbsp;</div>			
 							</div>
 						</div>

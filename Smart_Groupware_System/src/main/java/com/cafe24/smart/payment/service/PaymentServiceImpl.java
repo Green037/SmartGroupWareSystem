@@ -21,13 +21,19 @@ public class PaymentServiceImpl implements PaymentService {
 	@Autowired
 	MemberDAO memberDAO;
 	
+	@Override
+	public PaymentDAO getPaymentDAO() {
+		
+		return paymentDAO;
+	}
+	
 //	총무부 > 총급여목록
 	@Override
-	public List<PayContent> paListAllServ() {
+	public List<PayContent> paListAllServ(int offset, int recordsPerPage) {
 		
 		System.out.println("PaymentServiceImpl paListAllServ");
 		
-		return paymentDAO.selectAllPc();
+		return paymentDAO.selectAllPc(offset, recordsPerPage);
 	}
 	
 //	연간급여내역조회
@@ -54,6 +60,15 @@ public class PaymentServiceImpl implements PaymentService {
 		
 		return paymentDAO.selectAllCountRe();
 	}	
+	
+//	총무부 > 총급여목록 > 특정 급여 조회
+	@Override
+	public PayContent paContentPcCodeServ(int pcCode) {
+
+		System.out.println("PaymentServiceImpl paContentPcCodeServ pcCode : " + pcCode);
+		
+		return paymentDAO.selectByPcCodePc(pcCode);
+	}
 	
 //	월급여조회(사원)
 	@Override

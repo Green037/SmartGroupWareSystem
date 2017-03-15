@@ -1,7 +1,9 @@
-/**
- * 2017.03.14 by. EUNBEE GO
- */
 package com.cafe24.smart.util;
+
+/**
+ * @author EUNBEE GO
+ * @since 2017.03.14
+ */
 
 import java.io.File;
 import java.io.FileInputStream;
