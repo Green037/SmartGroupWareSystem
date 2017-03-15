@@ -47,7 +47,7 @@ public class PaymentController {
 						
 		List<PayContent> pcList = paymentService.paListAllServ();
 		int	listCount = paymentService.reCountAllServ();
-		List<Member> member = memberService.
+//		List<Member> member = memberService.
 		
 		System.out.println("PaymentController paListAllCtrl pcList : " + pcList);
 		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
