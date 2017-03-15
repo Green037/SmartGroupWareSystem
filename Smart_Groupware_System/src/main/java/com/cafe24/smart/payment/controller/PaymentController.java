@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.cafe24.smart.insurance.service.InsuranceService;
 import com.cafe24.smart.member.domain.Member;
+import com.cafe24.smart.member.service.MemberService;
 import com.cafe24.smart.payment.domain.PayContent;
+import com.cafe24.smart.payment.domain.PaymentView;
 import com.cafe24.smart.payment.service.PaymentService;
 import com.cafe24.smart.util.UtilDate;
 import com.cafe24.smart.util.UtilMember;
@@ -31,6 +33,9 @@ public class PaymentController {
 	PaymentService paymentService;
 	
 	@Autowired
+	MemberService memberService;
+	
+	@Autowired
 	HttpSession session;
 	
 	UtilDate utilDate = new UtilDate();
@@ -38,8 +43,47 @@ public class PaymentController {
 	
 //	총무부 > 총급여목록
 	@RequestMapping(value = "pa/listAll", method = RequestMethod.GET)
-	public String paListCtrl() {
+	public String paListAllCtrl(Model model) {
 						
+		List<PayContent> pcList = paymentService.paListAllServ();
+		int	listCount = paymentService.reCountAllServ();
+//		List<Member> member = memberService.
+		
+		System.out.println("PaymentController paListAllCtrl pcList : " + pcList);
+		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
+		
+		List<PaymentView> paList = new ArrayList<PaymentView>();
+		
+//		총급여목록이 null이 아닌 경우
+		if (pcList != null) {
+
+			for (int i = 0; i < pcList.size(); i++) {
+				PaymentView paView = new PaymentView();
+				
+				paView.setPcCode(pcList.get(i).getPcCode()) //급여상세코드
+					   .setMmCode(pcList.get(i).getMmCode()) //사원코드
+					   .setMmDailyPay(pcList.get(i).getMmDailyPay()) //일급
+					   .setPaInsurance(pcList.get(i).getEiAmount()
+					  		 		+ pcList.get(i).getNhiAmount()
+					  		 		+ pcList.get(i).getPpAmount()) //보험총금액
+					   .setPaIncentive(pcList.get(i).getInAmount()) //성과급
+					   .setPaSalary(pcList.get(i).getMmDailyPay() + pcList.get(i).getInAmount()) //기본급
+					   .setPaSumSalary(pcList.get(i).getInAmount() + pcList.get(i).getMmDailyPay()
+							   			- (pcList.get(i).getEiAmount() + pcList.get(i).getNhiAmount()
+							   					+ pcList.get(i).getPpAmount())) //실급여
+					   .setPaCalculateDate(pcList.get(i).getPcDate().substring(0, 6) + "-20"); //급여산정일
+				
+			
+				
+				paList.add(paView);
+				
+				
+			}
+			
+			System.out.println("PaymentController paListAllCtrl paList : " + paList);
+			
+		}
+		
 		return "payment/pa_listAll";
 	}
 	

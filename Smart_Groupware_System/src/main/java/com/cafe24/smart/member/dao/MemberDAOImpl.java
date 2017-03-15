@@ -96,9 +96,9 @@ public class MemberDAOImpl implements MemberDAO {
 	
 // 사원 조회 리스트
 	@Override
-	public List<MemberList> selectAllMm(Map<String, Integer> map) {
+	public List<Member> selectAllMm() {
 		
-		return sqlSession.selectList("acDAO.selectAllMm", map);
+		return sqlSession.selectList("acDAO.selectAllMm");
 	}
 
 
@@ -169,10 +169,24 @@ public class MemberDAOImpl implements MemberDAO {
 		//System.out.println("쿼리실행전 사원개인정보 조회 코드값 확인 : "+mmCode);
 		return sqlSession.selectList("acDAO.selectMmcontentlc", mmCode);
 	}
-
+// 개인사원경력사항조회
 	@Override
 	public List<MemberContent> selectMmcontentCr(int mmCode) {
 		//System.out.println("쿼리실행전 사원개인정보 조회 코드값 확인 : "+mmCode);
 		return sqlSession.selectList("acDAO.selectMmcontentCr", mmCode);
+	}
+// 사원조건검색
+	@Override
+	public List<MemberContent> selectMmSearch(MemberContent memberContent) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("acDAO.selectMmSearch",memberContent);
+		
+		
+	}
+// 사원정보 수정
+	@Override
+	public int updateMm(Member member) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("MmDAO.updateMm",member);
 	}
 }

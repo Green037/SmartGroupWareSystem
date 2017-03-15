@@ -30,7 +30,7 @@ public class HomeRestController {
 	@RequestMapping(value = "mm/loginRSA", method = RequestMethod.POST)
 	@ResponseBody
 //	암호화된 키들을 다시 복호화 하여 DB 값들과 비교 => 있으면 로그인
-	public Map<String, Object> mmLoginRSACtrl(HttpServletRequest request, Map map) {
+	public Map<String, Object> mmLoginRSACtrl(HttpServletRequest request, Map<String, Object> map) {
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -61,6 +61,9 @@ public class HomeRestController {
 //				복호화한 사원코드로 값을 가져와서 DB의 사원 패스워드와 같은지 비교
 				params = memberService.mmLoginServ(member);
 				
+				System.out.println("HomeRestController mmLoginRSACtrl _mmCode : " + _mmCode);
+				System.out.println("HomeRestController mmLoginRSACtrl _mmPassword : " + _mmPassword);
+				
 				if(params != null){
 					System.out.println("mmLoginRSACtrl params not null");
 					
@@ -83,43 +86,60 @@ public class HomeRestController {
 			}
 		}
 		
+		System.out.println("HomeRestController mmLoginRSACtrl params : " + params);
+		
 		return params;
 	}
 	
 	public String decryptRsa(PrivateKey privateKey, String securedValue) {
-		 String decryptedValue = "";
+		
+		String decryptedValue = "";
+		
+		System.out.println("mmLoginRSACtrl decryptRsa privateKey : " + privateKey);
+		System.out.println("mmLoginRSACtrl decryptRsa securedValue : " + securedValue);
+		 
 		 try{
 			Cipher cipher = Cipher.getInstance("RSA");
-		   /**
-			* 암호화 된 값은 byte 배열이다.
-			* 이를 문자열 폼으로 전송하기 위해 16진 문자열(hex)로 변경한다. 
-			* 서버측에서도 값을 받을 때 hex 문자열을 받아서 이를 다시 byte 배열로 바꾼 뒤에 복호화 과정을 수행한다.
-			*/
+		   
+//			 암호화 된 값 : byte 배열
+//			 				이를 문자열 form으로 전송하기 위해 16진 문자열(hex)로 변경 
+//							서버측에서도 값을 받을 때 hex 문자열을 받아 다시 byte 배열로 바꾼 뒤 복호화 과정을 수행
 			byte[] encryptedBytes = hexToByteArray(securedValue);
+			
 			cipher.init(Cipher.DECRYPT_MODE, privateKey);
+			
 			byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-			decryptedValue = new String(decryptedBytes, "utf-8"); // 문자 인코딩 주의.
-		 }catch(Exception e)
-		 {
+			
+			// 문자 인코딩
+			decryptedValue = new String(decryptedBytes, "utf-8");
+		 } catch(Exception e) {
 			e.printStackTrace();
 		 }
-			return decryptedValue;
-	} 
-	
-	/** 
-	 * 16진 문자열을 byte 배열로 변환한다. 
-	 */
-	 public static byte[] hexToByteArray(String hex) {
-		if (hex == null || hex.length() % 2 != 0) {
+		 
+		 System.out.println("mmLoginRSACtrl decryptRsa decryptedValue : " + decryptedValue);
+		
+		 return decryptedValue;
+	}
+	 
+//	 16진 문자열을 byte 배열로 변환
+	public static byte[] hexToByteArray(String hex) {
+		
+		if (hex == null || hex.length() % 2 != 0) {	
 			return new byte[]{};
 		}
 	 
 		byte[] bytes = new byte[hex.length() / 2];
+		
+		System.out.println("mmLoginRSACtrl hexToByteArray bytes : " + bytes);
+		
 		for (int i = 0; i < hex.length(); i += 2) {
 			byte value = (byte)Integer.parseInt(hex.substring(i, i + 2), 16);
+			
 			bytes[(int) Math.floor(i / 2)] = value;
 		}
+		
+		System.out.println("mmLoginRSACtrl hexToByteArray final bytes : " + bytes);
+		
 		return bytes;
 	}
-
 }

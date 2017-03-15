@@ -53,6 +53,17 @@
 		<result property="mmCode" column="mm_code"/>
 	</resultMap>
 	
+	
+	<!-- 전체사원 조회 -->
+	<select	id="selectAllMm"
+			resultMap="resultMm">
+	SELECT
+			*
+	FROM
+		memberManagement	
+	
+	</select>
+	
 	<!-- 특정 사원 정보 조회 -->
 	<select id="selectByMm" parameterType="int" resultMap="resultMm">
 		SELECT
@@ -75,6 +86,36 @@
 			mm_code=#{mmCode}
 
 	</select>
+	
+	
+	<!-- 사원 정보 수정 -->
+	<update id="updateMm"
+			parameterType="com.cafe24.smart.member.domain.Member">
+		UPDATE
+				memberManagement
+		SET
+				ct_code=#{ctCode},
+				pt_code=#{ptCode},
+				dp_code=#{dpCode},
+				mm_name=#{mmName},
+				mm_dailyPay=#{mmDailyPay},
+				mm_JoinDate=#{mmJoinDate},
+				mm_resignDate=#{mmResignDate},
+				mm_annualLeave=#{mmAnnualLeave},
+				mm_army=#{mmArmy},
+				mm_email=#{mmEmail},
+				mm_marriage=#{mmMarriage},
+				mm_password=#{mmPassword},
+				mm_address=#{mmAddress},
+				mm_tel=#{mmTel},
+				mm_bank=#{mmBank},
+				mm_account=#{mmAccount}
+		WHERE
+				mm_code=#{mmCode}
+	</update>
+	
+	
+	
 	
 	<!-- 사원 경력사항 등록 -->
 	<insert id="insertCr" parameterType="com.cafe24.smart.member.domain.Career">

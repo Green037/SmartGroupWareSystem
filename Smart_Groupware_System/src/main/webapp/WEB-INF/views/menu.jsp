@@ -262,9 +262,7 @@
 				</a>
 			</header>
 			<div style="border-top: 1px solid rgba(69, 74, 84, 0.7)"></div>
-			<!--/down-->
 			<div class="down">
-				<a href="index.html"><img src="<c:url value='/resources/images/admin.jpg'/>"></a>
 				<a href="index.html"><span class=" name-caret"><b>${mmName}</b></span></a>
 				<p>님이 로그인 중입니다.</p>
 				<ul>
