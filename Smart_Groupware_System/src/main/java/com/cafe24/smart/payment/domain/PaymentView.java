@@ -2,185 +2,167 @@ package com.cafe24.smart.payment.domain;
 
 //급여
 public class PaymentView {
-	private int paCode;
-	private int pcCode;
-	private int cmCode;
-	private int mmDailyPay;
-	private int paDay;
-	private String inGruop;
-	private int paInsurance;
-	private int paIncentive;
-	private int paSalary;
-	private int paSumSalary;
-	private int paEmployee;
-	private int paOwner;
-	private int finalSalary;
-	private String paCalculateDate;
-	private String mmBank;
-	private String mmAccount;
-	private boolean paPossible;
-	private String paDate;
-	private int paMmCode;
-
-	public int getPaCode() {
-		return paCode;
-	}
-
-	public void setPaCode(int paCode) {
-		this.paCode = paCode;
-	}
+	private int pcCode; // 급여상세코드
+	private int mmCode; // 사원코드
+	private int mmDailyPay; // 일급
+	private int paDay; // 근무일수
+	private int paInsurance; // 보험총금액
+	private int paIncentive; // 성과급
+	private int paSalary; // 기본급
+	private int paSumSalary; // 실급여
+	private String paCalculateDate; // 급여산정일
+	private String mmBank; // 계좌은행
+	private String mmAccount; // 계좌번호
+	private boolean paPossible; // 지급여부
+	private String paDate; // 급여지급일
+	private int paMmCode; // 담당사원코드
 
 	public int getPcCode() {
 		return pcCode;
 	}
-	
-	public void setPcCode(int pcCode) {
+
+	public PaymentView setPcCode(int pcCode) {
 		this.pcCode = pcCode;
+		
+		return this;
 	}
 
-	public int getCmCode() {
-		return cmCode;
+	public int getMmCode() {
+		return mmCode;
 	}
-	
-	public void setCmCode(int cmCode) {
-		this.cmCode = cmCode;
+
+	public PaymentView setMmCode(int mmCode) {
+		this.mmCode = mmCode;
+		
+		return this;
 	}
-	
+
 	public int getMmDailyPay() {
 		return mmDailyPay;
 	}
-	
-	public void setMmDailyPay(int mmDailyPay) {
+
+	public PaymentView setMmDailyPay(int mmDailyPay) {
 		this.mmDailyPay = mmDailyPay;
-	}
 		
+		return this;
+	}
+
 	public int getPaDay() {
 		return paDay;
 	}
 
-	public void setPaDay(int paDay) {
+	public PaymentView setPaDay(int paDay) {
 		this.paDay = paDay;
-	}
-
-	public String getInGruop() {
-		return inGruop;
-	}
-
-	public void setInGruop(String inGruop) {
-		this.inGruop = inGruop;
+		
+		return this;
 	}
 
 	public int getPaInsurance() {
 		return paInsurance;
 	}
-	
-	public void setPaInsurance(int paInsurance) {
+
+	public PaymentView setPaInsurance(int paInsurance) {
 		this.paInsurance = paInsurance;
+		
+		return this;
 	}
 
 	public int getPaIncentive() {
 		return paIncentive;
 	}
 
-	public void setPaIncentive(int paIncentive) {
+	public PaymentView setPaIncentive(int paIncentive) {
 		this.paIncentive = paIncentive;
+		
+		return this;
 	}
 
 	public int getPaSalary() {
 		return paSalary;
 	}
 
-	public void setPaSalary(int paSalary) {
+	public PaymentView setPaSalary(int paSalary) {
 		this.paSalary = paSalary;
+		
+		return this;
 	}
-	
+
 	public int getPaSumSalary() {
 		return paSumSalary;
 	}
 
-	public void setPaSumSalary(int paSumSalary) {
+	public PaymentView setPaSumSalary(int paSumSalary) {
 		this.paSumSalary = paSumSalary;
-	}
-	
-	public int getPaEmployee() {
-		return paEmployee;
+		
+		return this;
 	}
 
-	public void setPaEmployee(int paEmployee) {
-		this.paEmployee = paEmployee;
-	}
-
-	public int getPaOwner() {
-		return paOwner;
-	}
-
-	public void setPaOwner(int paOwner) {
-		this.paOwner = paOwner;
-	}
-	
-	public int getFinalSalary() {
-		return finalSalary;
-	}
-	
-	public void setFinalSalary(int finalSalary) {
-		this.finalSalary = finalSalary;
-	}
-	
 	public String getPaCalculateDate() {
 		return paCalculateDate;
 	}
 
-	public void setPaCalculateDate(String paCalculateDate) {
+	public PaymentView setPaCalculateDate(String paCalculateDate) {
 		this.paCalculateDate = paCalculateDate;
+		
+		return this;
 	}
 
 	public String getMmBank() {
 		return mmBank;
 	}
 
-	public void setMmBank(String mmBank) {
+	public PaymentView setMmBank(String mmBank) {
 		this.mmBank = mmBank;
+		
+		return this;
 	}
-	
+
 	public String getMmAccount() {
 		return mmAccount;
 	}
-	
-	public void setMmAccount(String mmAccount) {
+
+	public PaymentView setMmAccount(String mmAccount) {
 		this.mmAccount = mmAccount;
+		
+		return this;
 	}
-	
+
 	public boolean isPaPossible() {
 		return paPossible;
 	}
 
-	public void setPaPossible(boolean paPossible) {
+	public PaymentView setPaPossible(boolean paPossible) {
 		this.paPossible = paPossible;
+		
+		return this;
 	}
-	
+
 	public String getPaDate() {
 		return paDate;
 	}
-	
-	public void setPaDate(String paDate) {
+
+	public PaymentView setPaDate(String paDate) {
 		this.paDate = paDate;
+		
+		return this;
 	}
-	
+
 	public int getPaMmCode() {
 		return paMmCode;
 	}
 
-	public void setPaMmCode(int paMmCode) {
+	public PaymentView setPaMmCode(int paMmCode) {
 		this.paMmCode = paMmCode;
+		
+		return this;
 	}
 
 	@Override
 	public String toString() {
-		return "PaymentView [paCode=" + paCode + ", pcCode=" + pcCode + ", cmCode=" + cmCode + ", mmDailyPay="
-				+ mmDailyPay + ", paDay=" + paDay + ", inGruop=" + inGruop + ", paInsurance=" + paInsurance
-				+ ", paIncentive=" + paIncentive + ", paSalary=" + paSalary + ", paSumSalary=" + paSumSalary
-				+ ", paEmployee=" + paEmployee + ", paOwner=" + paOwner + ", finalSalary=" + finalSalary
-				+ ", paCalculateDate=" + paCalculateDate + ", mmBank=" + mmBank + ", mmAccount=" + mmAccount
-				+ ", paPossible=" + paPossible + ", paDate=" + paDate + ", paMmCode=" + paMmCode + "]";
+		return "PaymentView [pcCode=" + pcCode + ", mmCode=" + mmCode + ", mmDailyPay="
+				+ mmDailyPay + ", paDay=" + paDay + ", paInsurance=" + paInsurance + ", paIncentive=" + paIncentive
+				+ ", paSalary=" + paSalary + ", paSumSalary=" + paSumSalary + ", paCalculateDate=" + paCalculateDate
+				+ ", mmBank=" + mmBank + ", mmAccount=" + mmAccount + ", paPossible=" + paPossible + ", paDate="
+				+ paDate + ", paMmCode=" + paMmCode + "]";
 	}
 }

@@ -17,6 +17,15 @@
 		<result property="paMmCode" column="pa_mmCode"/>
 	</resultMap>
 	
+	<!-- 총무부 > 총급여목록 -->
+	<select id="selectAllPc" resultMap="resultPc">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			payContent
+	</select>
+	
+	<!-- 연간급여내역조회 -->
 	<select id="selectPc" parameterType="hashmap" resultMap="resultPc">
 		SELECT SQL_CALC_FOUND_ROWS
 			*
