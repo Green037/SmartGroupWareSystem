@@ -21,14 +21,7 @@ public class RewardDAOImpl implements RewardDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	int selectAllCountRe;
-	
-//	이전 쿼리의 총 갯수 조회
-	@Override
-	public int selectAllCountRe() {
-		
-		return selectAllCountRe;
-	}
+	int selectAllCountRe = 0;
 	
 //	인사부 > 총고과목록 조회
 	@Override
@@ -116,6 +109,13 @@ public class RewardDAOImpl implements RewardDAO {
 		System.out.println("RewardDAOImpl selectRe reward : " + reward);
 		
 		return reward;
+	}
+	
+//	이전 쿼리의 총 갯수 조회
+	@Override
+	public int selectAllCountRe() {
+		
+		return selectAllCountRe;
 	}
 
 //	인사부 > 고과내역 추가

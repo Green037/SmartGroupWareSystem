@@ -19,13 +19,21 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	int selectAllCountRe;
+	int selectAllCountRe = 0;
 	
-//	이전 쿼리의 총 갯수 조회
+//	인사팀 > 총급여목록
 	@Override
-	public int selectAllCountRe() {
+	public List<PayContent> selectAllPc() {
 		
-		return selectAllCountRe;
+		System.out.println("PaymentDAOImpl selectAllPc");
+		
+		List<PayContent> pcList = sqlSession.selectList("PaDAO.selectAllPc");
+		this.selectAllCountRe = sqlSession.selectOne("PaDAO.selectAllCountRe");
+		
+		System.out.println("PaymentDAOImpl selectAllPc pcList : " + pcList);
+		System.out.println("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);;
+		
+		return pcList;
 	}
 	
 //	연간급여내역조회
@@ -59,6 +67,13 @@ public class PaymentDAOImpl implements PaymentDAO {
 		System.out.println("PaymentDAOImpl selectByPc params : " + params);
 		
 		return sqlSession.selectOne("PaDAO.selectByPc", params);
+	}
+	
+//	이전 쿼리의 총 갯수 조회
+	@Override
+	public int selectAllCountRe() {
+		
+		return sqlSession.selectOne("PaDAO.selectAllCountRe");
 	}
 	
 //	총무부 > 급여 추가

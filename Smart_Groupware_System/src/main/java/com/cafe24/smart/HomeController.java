@@ -75,6 +75,6 @@ public class HomeController {
 		
 		System.out.println("-------- 로그아웃  세션 종료 --------");
 			
-		return "/member/mm_login";
+		return "redirect:/";
 	}
 }																																																																																				

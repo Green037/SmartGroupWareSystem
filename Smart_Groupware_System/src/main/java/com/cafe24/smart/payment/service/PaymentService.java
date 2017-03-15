@@ -9,6 +9,7 @@ import com.cafe24.smart.payment.domain.PayContent;
 
 @Service
 public interface PaymentService {
+	List<PayContent>			paListAllServ();
 	List<PayContent>			paListServ(int mmCode, String startDate, String endDate);
 	
 	PayContent					paContentServ(int mmCode, String pcDate);
@@ -16,6 +17,7 @@ public interface PaymentService {
 	Member 						pcMmContentServ(int mmCode);
 	
 	int							pcAddServ(PayContent payContent);
+	int							reCountAllServ();						
 	
 	void						paUpdateServ(PayContent payContent);
 }
