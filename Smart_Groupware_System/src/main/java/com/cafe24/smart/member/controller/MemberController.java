@@ -38,9 +38,50 @@ public class MemberController {
 	private MemberService memberService;
 	
 	
+	/*//GET 사원정보수정
+	@RequestMapping(value="member/mm_view", method=RequestMethod.GET)*/
 	
 	
+	//GET 사원 검색리스트 상세보기
+	@RequestMapping(value="member/mm_view", method=RequestMethod.GET)
+	public String mmViewCtrl(Model model, @RequestParam("mmCode")int mmCode){
+		
+		System.out.println("상세보기 확인");
+		
+		MemberContent viewMemberContent = memberService.mmContentServ(mmCode); 
+		MemberContent viewMemberContentMc = memberService.mmContentMcServ(mmCode);
+		List<MemberContent> viewMemberContentLc = memberService.mmContentLcServ(mmCode);
+		List<MemberContent> viewMemberContentCr = memberService.mmContentCrServ(mmCode);
+		
+		model.addAttribute("memberContent", viewMemberContent);
+		model.addAttribute("memberContentMc", viewMemberContentMc);
+		model.addAttribute("memberContentLc", viewMemberContentLc);
+		model.addAttribute("memberContentCr", viewMemberContentCr);
+		
+		
+		return null;
+	}
 	
+	
+	//get 사원 조건검색조회 
+	@RequestMapping(value="member/mm_listSearch", method=RequestMethod.GET)
+	public String mmSearchCtrl(Model model){
+		
+		
+		List<Position> position = memberService.ptListServ();
+		List<Department> department = memberService.dpListServ();
+		List<Contract> contract = memberService.ctListServ();
+		List<Achieve> achieve = memberService.acListServ();
+		List<License> license = memberService.lcListServ();
+	
+		model.addAttribute("position",position);
+		model.addAttribute("department", department);
+		model.addAttribute("contract",contract);
+		model.addAttribute("achieve", achieve);
+		model.addAttribute("license", license);
+		
+		return "member/mm_listSearch";
+	}
 	//GET 요청 사원 개인정보조회
 		@RequestMapping(value="member/mm_content", method=RequestMethod.GET)
 		public String mmContentCtrl(Model model, HttpSession session){
@@ -64,39 +105,14 @@ public class MemberController {
 			return "member/mm_content";
 		}
 		
-	
-	
-	
-	//get 사원 조회 
-	@RequestMapping(value="member/mm_listSearch", method=RequestMethod.GET)
-	public String mmSearchCtrl(Model model){
-		
-		List<Achieve> achieve = memberService.acListServ();
-		List<License> license = memberService.lcListServ();
-		List<Position> position = memberService.ptListServ();
-		List<Department> department = memberService.dpListServ();
-		List<MajorTypeOfBusiness> majorTypeOfBusiness = memberService.maListServ();
-		List<MinorTypeOfBusiness> minorTypeOfBusiness = memberService.miListServ();
-		
-		model.addAttribute("achieve", achieve);
-		model.addAttribute("license", license);
-		model.addAttribute("position",position);
-		model.addAttribute("department", department);
-		model.addAttribute("majorTypeOfBusiness", majorTypeOfBusiness);
-		model.addAttribute("minorTypeOfBusiness", minorTypeOfBusiness);
-		
-		
-		return "member/mm_listSearch";
-	}
-	
 	// post 요청 사원 등록
 		@RequestMapping(value="member/mm_add",method=RequestMethod.POST)
 		public String mmAddCtrl(Member member,MemberAchieve memberAchieve,MemberLicense memberLicense,Career career) {
 			
-			System.out.println("member입력확인"+member);
-			System.out.println("memberAchieve입력확인"+memberAchieve);
-			System.out.println("career입력확인"+career);
-			System.out.println("memberLicense입력확인"+memberLicense);
+			//System.out.println("member입력확인"+member);
+			//System.out.println("memberAchieve입력확인"+memberAchieve);
+			//System.out.println("career입력확인"+career);
+			//System.out.println("memberLicense입력확인"+memberLicense);
 			//경력 입력 메서드호출
 			memberService.mmAddServ(member,memberAchieve,memberLicense,career);
 			//memberService.mmAddServ(Member member, MemberAchieve memberAchieve, , Career career);

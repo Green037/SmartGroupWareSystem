@@ -96,31 +96,13 @@ public class MemberServiceImpl implements MemberService {
 	
 	// 사원 조회 리스트
 	@Override
-	public Map<String, Object> mmListServ(int currentPage) {
-		int pagePerRow = 10;
-		int beginRow = (currentPage - 1) * pagePerRow;
-		int totalRowCount = memberDao.selectTotalMemberCount();
-
-		// lastPage
-		int lastPage = totalRowCount / pagePerRow;
-		if (totalRowCount % pagePerRow != 0) {
-			lastPage++;
-		}
-
-		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("beginRow", beginRow);
-		map.put("pagePerRow", pagePerRow);
-		List<MemberList> mmList = memberDao.selectAllMm(map);
-		Map<String, Object> returnMap = new HashMap<String, Object>();
-		returnMap.put("totalRowCount", totalRowCount);
-		returnMap.put("lastPage", lastPage);
-		returnMap.put("mmList", mmList);
-		return returnMap;
+	public List<Member> mmListServ() {
+		return memberDao.selectAllMm();
+	
 	}
 
-	// 사원 등록(사원정보,학력등록)
+	
 
-	//사원 조회 리스트
 	
 	
 	//사원 등록(사원정보,학력등록)
@@ -241,5 +223,17 @@ public class MemberServiceImpl implements MemberService {
 		//System.out.println(mmCode); 확인완료
 		return memberDao.selectMmcontentCr(mmCode);
 
+	}
+	//사원조건검색
+	@Override
+	public List<MemberContent> mmSearchServ(MemberContent memberContent) {
+		// TODO Auto-generated method stub
+		return memberDao.selectMmSearch(memberContent);
+	}
+
+	@Override
+	public int mmModifyeServ(Member member) {
+		// TODO Auto-generated method stub
+		return memberDao.updateMm(member);
 	}
 }
