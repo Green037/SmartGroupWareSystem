@@ -71,6 +71,15 @@ public class ApproveDAOImpl implements ApproveDAO {
 			return sqlSession.selectList("AprDAO.selectByApr", mmCode);
 		}
 		
+		// [ajax] pk값 결재라인 가져오기
+		@Override
+		public List<Approval> selectbyReApr(int aprCode) {
+			// TODO Auto-generated method stub
+			return sqlSession.selectList("AprDAO.selectByReApr", aprCode);
+		}
+		
+
+		
 
 		
 	// 기안 등록 1-1 : draft
@@ -197,15 +206,22 @@ public class ApproveDAOImpl implements ApproveDAO {
 	@Override
 	public List<Draft> selectAllPg(int mmCode) {
 		// System.out.println("dao pgList> test" );
-		return sqlSession.selectList("AprDAO.selectAllPg");
+		return sqlSession.selectList("AprDAO.selectAllPg", mmCode);
 	}
 
-	// ----- 총 목록 : 대기/반려/완료
-	@Override
-	public List<Draft> selectByHv(Map<String, Integer> map) {
-		// System.out.println("dao byHvList> test");
-		return sqlSession.selectList("AprDAO.selectByHv", map);
-	}
+			// ----- 총 목록 : 대기/반려/완료
+			@Override
+			public List<Draft> selectByHv(Map<String, Integer> map) {
+				// System.out.println("dao byHvList> test");
+				return sqlSession.selectList("AprDAO.selectByHv", map);
+			}
+			
+			// 결재 목록 : 결재자 결재 가능 목록
+			@Override
+			public String selectByApr(int mmCode) {
+				// TODO Auto-generated method stub
+				return sqlSession.selectOne("", mmCode);
+			}
 
 	// 문서 양식 등록
 	@Override
@@ -227,7 +243,24 @@ public class ApproveDAOImpl implements ApproveDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("AprDAO.selectListByDoc", docCode);
 	}
+
+	//개인별 결재선 정보 가져오기
+	@Override
+	public Map selectByPersonal(int mmCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("AprDAO.selectByPersonal", mmCode);
+	}
+
+	// 결재목록 : group 검색
+	@Override
+	public List<Draft> selectBySearchGroup(String apGroup) {
 	
+		System.out.println("h1");
+		System.out.println(apGroup);
+		return sqlSession.selectList("AprDAO.selectBySearchGroup", apGroup);
+	}
+
+
 
 }
 

@@ -119,8 +119,9 @@
 						</div>
 				</div>
 			
+				<!-- 결재자 코드 가져와서 일치할 경우에 submit버튼 나타나게 -->			
 				<Center>
-					<button type="submit" class="btn btn-default">Submit</button>
+					<button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
 				</Center>
 			
 			</form>

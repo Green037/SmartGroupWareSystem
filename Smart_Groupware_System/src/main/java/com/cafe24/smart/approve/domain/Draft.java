@@ -15,9 +15,7 @@ public class Draft {
 	private String dftFinalState;
 	private String dftCheck;
 	private String dftFileOri;
-	private String dftFileName;
 	private String dftFilePath;
-	private String dftFileExtention;
 
 	// ----- view
 	private int proApproval;
@@ -26,6 +24,7 @@ public class Draft {
 	private String proRealTime;
 	private String url;
 	private String docFileGroup;
+	private int proState;
 	private String dpName;
 	private String ptName;
 	private String mmName;
@@ -112,24 +111,14 @@ public class Draft {
 	public void setDftFileOri(String dftFileOri) {
 		this.dftFileOri = dftFileOri;
 	}
-	public String getDftFileName() {
-		return dftFileName;
-	}
-	public void setDftFileName(String dftFileName) {
-		this.dftFileName = dftFileName;
-	}
+	
 	public String getDftFilePath() {
 		return dftFilePath;
 	}
 	public void setDftFilePath(String dftFilePath) {
 		this.dftFilePath = dftFilePath;
 	}
-	public String getDftFileExtention() {
-		return dftFileExtention;
-	}
-	public void setDftFileExtention(String dftFileExtention) {
-		this.dftFileExtention = dftFileExtention;
-	}
+	
 	public int getProApproval() {
 		return proApproval;
 	}
@@ -203,27 +192,25 @@ public class Draft {
 	public void setpMmName(String pMmName) {
 		this.pMmName = pMmName;
 	}
+	public int getProState() {
+		return proState;
+	}
+	public void setProState(int proState) {
+		this.proState = proState;
+	}
+	
 	@Override
 	public String toString() {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode
 				+ ", dftTitle=" + dftTitle + ", dftDegree=" + dftDegree + ", dftDate=" + dftDate + ", aprApproval1="
 				+ aprApproval1 + ", aprApproval2=" + aprApproval2 + ", aprApproval3=" + aprApproval3
 				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", dftFileOri=" + dftFileOri
-				+ ", dftFileName=" + dftFileName + ", dftFilePath=" + dftFilePath + ", dftFileExtention="
-				+ dftFileExtention + ", proApproval=" + proApproval + ", proReason=" + proReason + ", proRealTime="
-				+ proRealTime + ", url=" + url + ", docFileGroup=" + docFileGroup + ", getDftCode()=" + getDftCode()
-				+ ", getAprCode()=" + getAprCode() + ", getDocCode()=" + getDocCode() + ", getMmCode()=" + getMmCode()
-				+ ", getDftTitle()=" + getDftTitle() + ", getDftDegree()=" + getDftDegree() + ", getDftDate()="
-				+ getDftDate() + ", getAprApproval1()=" + getAprApproval1() + ", getAprApproval2()=" + getAprApproval2()
-				+ ", getAprApproval3()=" + getAprApproval3() + ", getDftFinalState()=" + getDftFinalState()
-				+ ", getDftCheck()=" + getDftCheck() + ", getDftFileOri()=" + getDftFileOri() + ", getDftFileName()="
-				+ getDftFileName() + ", getDftFilePath()=" + getDftFilePath() + ", getDftFileExtention()="
-				+ getDftFileExtention() + ", getProApproval()=" + getProApproval() + ", getProReason()="
-				+ getProReason() + ", getProRealTime()=" + getProRealTime() + ", getUrl()=" + getUrl()
-				+ ", getDocFileGroup()=" + getDocFileGroup() + ", getClass()=" + getClass() + ", hashCode()="
-				+ hashCode() + ", toString()=" + super.toString() + "]";
+				+ ", dftFilePath=" + dftFilePath + ", proApproval=" + proApproval + ", proApprovalName="
+				+ proApprovalName + ", proReason=" + proReason + ", proRealTime=" + proRealTime + ", url=" + url
+				+ ", docFileGroup=" + docFileGroup + ", proState=" + proState + ", dpName=" + dpName + ", ptName="
+				+ ptName + ", mmName=" + mmName + ", pDpName=" + pDpName + ", pPtName=" + pPtName + ", pMmName="
+				+ pMmName + "]";
 	}
+	
 
-	
-	
 	}

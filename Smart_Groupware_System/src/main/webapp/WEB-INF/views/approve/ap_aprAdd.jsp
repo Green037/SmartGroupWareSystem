@@ -51,9 +51,7 @@
 				</table>
 			</div>
 			&nbsp;
-			<div class="form-group">
-			       <button type="button"  class="btn btn-default btn-success btn-block" id="DocumentBtn">등록</button> 
-			</div>
+	
 
 	   		</form>	
 		</div>

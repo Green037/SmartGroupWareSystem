@@ -31,6 +31,20 @@ public class ApproveServiceImpl implements ApproveService {
 	// ----- 메소드 : 현재 시간 출력
 	Date today = new Date (); 
 	SimpleDateFormat formatter = new SimpleDateFormat ( "yyyy-MM-dd HH:mm:ss", Locale.KOREA );
+
+	// ----- 메서드 : 결재 목록 이름 셋팅
+	private List<Draft> setName(List<Draft> pgList){
+		
+		for(int i=0; i<pgList.size(); i++){
+			String mmName = approveDAO.selectDetailMm(pgList.get(i).getMmCode());
+			String pMmName = approveDAO.selectDetailPMn(pgList.get(i).getProApproval());
+			
+			pgList.get(i).setMmName(mmName);
+			pgList.get(i).setpMmName(pMmName);
+		}
+		return pgList;
+		
+	}
 	
 	
 	//기안 요청 : GET ---- DOCUMENT
@@ -78,13 +92,11 @@ public class ApproveServiceImpl implements ApproveService {
 		return approveDAO.insertApr(approval);
 	}
 	
-	// --- [AJAZ] 결재라인 가져오기 : POST
+	// --- [AJAZ] 결재라인 가져오기 mmCode : POST
 	@Override
 	public List<Approval> apAprListServ(int mmCode) {
 		
 		List<Approval> apr = new ArrayList<Approval>();
-
-		
 		apr = approveDAO.selectAllApr(mmCode);
 		
 		for(int i =0; i<apr.size(); i++){
@@ -95,8 +107,32 @@ public class ApproveServiceImpl implements ApproveService {
 		}		
 		return apr;
 	}
-
 	
+	//  --- [AJAZ] 결재라인 가져오기 : 사원조회 : POST
+	@Override
+	public Map apAprSelServ(int aprCode) {
+		
+		List<Approval> apr = new ArrayList<Approval>();
+		Map map1 = new HashMap();
+		Map map2 = new HashMap();
+		Map map3 = new HashMap();
+		Map totalMap = new HashMap();
+		
+		apr = approveDAO.selectbyReApr(aprCode);
+		
+		map1 = approveDAO.selectByPersonal(apr.get(0).getAprApproval1());
+		map2 = approveDAO.selectByPersonal(apr.get(0).getAprApproval2());
+		map3 = approveDAO.selectByPersonal(apr.get(0).getAprApproval3());
+		
+		totalMap.put("map1", map1);
+		totalMap.put("map2", map2);
+		totalMap.put("map3", map3);
+		
+		System.out.println("이름부서직급다가져오기:"+totalMap);
+			
+		return totalMap;
+	}
+
 	//기안 등록 : POST
 	@Override
 	public int apAddServ(Draft draft, Progress progress, String uploadPath){
@@ -140,32 +176,34 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	}
 	
-
 	//[총 결재 목록]진행 목록 :GET ---- ######수정######
 	@Override
 	public List<Draft> pgListServ(int apProgress, int mmCode) {
 		System.out.println("serv pgList> test1" );
 		
 		//전체 리스트
+	
 		List<Draft> pgList = new ArrayList<Draft>();
 		//조건별 리스트 목록
-		Map<String, Integer> map = new HashMap<String, Integer>();
-				
+		Map<String, Integer> map = new HashMap<String, Integer>();				
 		int progress;
-		
+	
 		//System.out.println(apProgress);
 		
-		if(apProgress == 1){//결재 대기 목록
+		if(apProgress==1){//결재 대기 목록
 			progress = 0;
 			map.put("progress", progress);
 			map.put("mmCode",mmCode);
 			pgList = approveDAO.selectByHv(map);
+			pgList = setName(pgList);
 			
+					
 		}else if(apProgress==2){//결재 반려 목록
 			progress = 2;
 			map.put("progress", progress);
 			map.put("mmCode",mmCode);
 			pgList = approveDAO.selectByHv(map);
+			pgList = setName(pgList);
 			
 		}else if(apProgress==3){//결재 완료 목록
 			progress = 1;
@@ -173,16 +211,12 @@ public class ApproveServiceImpl implements ApproveService {
 			map.put("mmCode",mmCode);
 			pgList = approveDAO.selectByHv(map);
 			
+			pgList = setName(pgList);
+			
 		}else{
 			pgList = approveDAO.selectAllPg(mmCode);
 			
-			for(int i=0; i<pgList.size(); i++){
-				String mmName = approveDAO.selectDetailMm(pgList.get(i).getMmCode());
-				String pMmName = approveDAO.selectDetailPMn(pgList.get(i).getProApproval());
-				
-				pgList.get(i).setMmName(mmName);
-				pgList.get(i).setpMmName(pMmName);
-			}
+			pgList = setName(pgList);
 		}
 		System.out.println("serv pgList> test2");
 		//System.out.println(pgList);
@@ -427,14 +461,11 @@ public class ApproveServiceImpl implements ApproveService {
 		return result;
 	}
 	
-	
-	
 	// 임시 목록 :GET
 	@Override
 	public List<Draft> temListServ() {
 		//System.out.println("serv temList> test1");
 		
-//		Draft draft = new Draft();
 		List<Draft> temList= new ArrayList<Draft>();
 	
 		temList = approveDAO.selectAllTem();
@@ -478,7 +509,6 @@ public class ApproveServiceImpl implements ApproveService {
 	// 임시 상세보기 (문서값 가져오기) 
 	@Override
 	public String temDocSeleServ(int dftCode) {
-		
 		return approveDAO.selectDetailDoc(dftCode);
 	}
 	
@@ -531,23 +561,16 @@ public class ApproveServiceImpl implements ApproveService {
 		return map;
 	}
 
-	
-	
 	// 문서 양식 등록: POST
 	@Override
 	public int apDocAddServ(Document document, String uploadPath) {
 		System.out.println("serv apDocAddReServ> test1");
 		
-
-	/*	UtilFile utilFile = new UtilFile();*/
-
 		int result = 0;
 		
-
 		UtilFile utilFile = new UtilFile();
 
-		
-
+/*		파일 업로드시에 파일분류/이름/경로 저장*/
 		document.setDocFileGroup(document.getDocFileGroup());
 		document.setDocFileOri(uploadPath.substring(uploadPath.lastIndexOf("_")+1, uploadPath.lastIndexOf(".")));
 		document.setDocFilePath(uploadPath);
@@ -562,11 +585,9 @@ public class ApproveServiceImpl implements ApproveService {
 	// 문서 양식 insert 후select값 가져오기
 	@Override
 	public List<Document> apDocSelServ(Document document) {
-		// TODO Auto-generated method stub
 		return approveDAO.selectListByDoc(document);
 	}
 	
-
 	//문서 양식 목록 : GET
 	@Override
 	public List<Document> docListServ() {
@@ -574,28 +595,35 @@ public class ApproveServiceImpl implements ApproveService {
 		//System.out.println("srv docListServ > test1");
 		List<Document> docList = new ArrayList<Document>();
 		docList = approveDAO.selectAllDoc(); // 문서코드/문서구분 불러오기
-		
 		//System.out.println(docList);
 		
 		return docList;
-
 	}
 
 	//문서 다운로드 : GET
 	@Override
 	public Document apDownDocServ(int docCode) {
-		// TODO Auto-generated method stub
 		return approveDAO.selectListByDoc(docCode);
 	}
 	
 	//기안 첨부파일 다운로드 : GET
 	@Override
 	public Draft apDownDftServ(int dftCode) {
-		// TODO Auto-generated method stub
 		return approveDAO.selectContHv(dftCode);
 	}
 
+	// 목록 검색
+	@Override
+	public List<Draft> apSearchServ(Draft draft ,String docFileGroup) {
+		
+//		System.out.println(apGroup);
+		List<Draft> resultDft = new ArrayList<Draft>();
+		// 결재 목록 검색에서 조건 설정
+		resultDft = approveDAO.selectBySearchGroup(docFileGroup);
+		resultDft =setName(resultDft);
+	
+		return resultDft;
+	}
 
 	}	
-
 
