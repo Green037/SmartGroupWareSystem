@@ -92,26 +92,15 @@
 	<update id="updateMm"
 			parameterType="com.cafe24.smart.member.domain.Member">
 		UPDATE
-				memberManagement
+			memberManagement
 		SET
-				ct_code=#{ctCode},
-				pt_code=#{ptCode},
-				dp_code=#{dpCode},
-				mm_name=#{mmName},
-				mm_dailyPay=#{mmDailyPay},
-				mm_JoinDate=#{mmJoinDate},
-				mm_resignDate=#{mmResignDate},
-				mm_annualLeave=#{mmAnnualLeave},
-				mm_army=#{mmArmy},
-				mm_email=#{mmEmail},
-				mm_marriage=#{mmMarriage},
-				mm_password=#{mmPassword},
-				mm_address=#{mmAddress},
-				mm_tel=#{mmTel},
-				mm_bank=#{mmBank},
-				mm_account=#{mmAccount}
+			mm_email=#{mmEmail},
+			mm_address=#{mmAddress},
+			mm_tel=#{mmTel},
+			mm_bank=#{mmBank},
+			mm_account=#{mmAccount}
 		WHERE
-				mm_code=#{mmCode}
+			mm_code=#{mmCode}
 	</update>
 	
 	

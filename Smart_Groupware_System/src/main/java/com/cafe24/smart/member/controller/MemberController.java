@@ -38,8 +38,25 @@ public class MemberController {
 	private MemberService memberService;
 	
 	
-	/*//GET 사원정보수정
-	@RequestMapping(value="member/mm_view", method=RequestMethod.GET)*/
+	//POST 사원정보수정
+		@RequestMapping(value="member/mm_modify", method=RequestMethod.POST)
+		public String mmModifyCtrl(Model model,Member member){
+			int result = memberService.mmModifyeServ(member);
+			System.out.println("수정값 확인"+result);
+			
+			return "redirect:mm_content";
+		}
+		
+		//GET 사원정보수정
+		@RequestMapping(value="member/mm_modify", method=RequestMethod.GET)
+		public String mmModifyCtrl(Model model,Member member, HttpSession session){
+			int mmCode = (int) session.getAttribute("mmCode");
+			MemberContent viewMemberContent = memberService.mmContentServ(mmCode);
+			
+			model.addAttribute("memberContent", viewMemberContent);
+			return "member/mm_modify";
+		}
+		
 	
 	
 	//GET 사원 검색리스트 상세보기

@@ -16,14 +16,15 @@
 		<div class="left-content">
 			<div class="inner-content">
 				<div class="outter-wp">
-					
-					<div class="sub-heard-part">
-						<ol class="breadcrumb m-b-0">
-							<li><a href="/smart"><b>Home</b></a></li>
-							<li>개인정보조회</li>
-						</ol>
-					</div>
-			
+					<form action="<c:url value='/member/mm_modify'/>" method="GET" >
+						<div class="sub-heard-part">
+							<ol class="breadcrumb m-b-0">
+								<li><a href="/smart"><b>Home</b></a></li>
+								<li>개인정보조회</li>
+								<li><button type="submit" class="btn btn-default">수정</button></li>
+							</ol>
+						</div>
+					</form>
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">

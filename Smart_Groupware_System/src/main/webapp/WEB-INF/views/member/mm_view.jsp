@@ -16,14 +16,14 @@
 		<div class="left-content">
 			<div class="inner-content">
 				<div class="outter-wp">
-					
+					<button type="submit" class="btn btn-default">사원정보수정</button>
 					<div class="sub-heard-part">
 						<ol class="breadcrumb m-b-0">
 							<li><a href="/smart"><b>Home</b></a></li>
 							<li>개인정보조회</li>
 						</ol>
 					</div>
-			
+					
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">
@@ -88,16 +88,14 @@
 										<th>집주소</th>
 										<th>연락처</th>
 										<th>지급계좌</th>
-										<th>계좌번호</th>
-										<th>사인</th>
+										<th colspan="2">계좌번호</th>
 									</tr>
 									<tr>
 										<td>${memberContent.mmEmail}</td>
 										<td>${memberContent.mmAddress}</td>
 										<td>${memberContent.mmTel}</td>
 										<td>${memberContent.mmBank}</td>
-										<td>${memberContent.mmAccount}</td>
-										<td>${memberContent.mmSign}</td>
+										<td colspan="2">${memberContent.mmAccount}</td>
 									</tr>
 								</table> 
 								<div class="clearfix">&nbsp;</div>
@@ -188,7 +186,7 @@
 								</table> 
 								
 							</div>
-								
+
 								<div class="clearfix">&nbsp;</div>
 							</div>
 						</div>
