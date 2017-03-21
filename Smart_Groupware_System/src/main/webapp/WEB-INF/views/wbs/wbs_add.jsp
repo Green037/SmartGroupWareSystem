@@ -11,6 +11,8 @@
 		$(document).on('click','#searchProjectBtn',function(){
 			console.log('h2');
 			$('#checkMember').modal();
+			$('#mmCode').val(31);
+			$('#mmPassword').val(123456);
 		});
 		$(document).on('click','#checkMemberBtn',function(){
 			var params = $('#checkMemberForm').serialize();
