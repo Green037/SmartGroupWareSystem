@@ -120,11 +120,11 @@ public class ApproveRestController {
 	
 	// 검색 : 결재 목록
 	@RequestMapping(value="ap/searchDft", method = RequestMethod.POST)
-	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam("docFileGroup") String docFileGroup){
+	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup){
 		
 //		System.out.println("ajax test");
 		System.out.println("넘어온 값 확인 : "+draft);
-//		System.out.println("넘어온 값 확인 : "+docFileGroup);
+		System.out.println("넘어온 값 확인 : "+docFileGroup);
 		Map map = new HashMap();
 		List<Draft> serachList = new ArrayList<Draft>();
 		
