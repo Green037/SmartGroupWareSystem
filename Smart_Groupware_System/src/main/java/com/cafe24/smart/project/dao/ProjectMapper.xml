@@ -277,9 +277,9 @@
 				<if test="prProgress != null">  	,pr_progress = #{prProgress}</if>
 				<if test="prCate != null">			,pr_cate = #{prCate}</if>
 				<if test="prForProgress != null">	,pr_forProgress = #{prForProgress}</if>
-				<if test="prMoney != null">			,pr_money = #{prMoney},</if>
+				<if test="prMoney != null">			,pr_money = #{prMoney}</if>
 				<if test="prFinishCheck != null">	,pr_finishCheck = #{prFinishCheck}</if>
-				<if test="prGoal != null">			,pr_Goal = #{prGoal}</if>
+				<if test="prGoal != null">			,pr_goal = #{prGoal}</if>
 				<if test="prReport != null">		,pr_report = #{prReport}</if>
 			</trim>
 		WHERE

@@ -615,6 +615,7 @@ public class ApproveServiceImpl implements ApproveService {
 		List<Draft> resultDft = new ArrayList<Draft>();
 		// 결재 목록 검색에서 조건 설정
 		System.out.println("넘어온값 확인draft:"+draft);
+		draft.setDocFileGroup(docFileGroup); //문서분류세팅
 		
 		resultDft = approveDAO.selectBySearchGroup(draft);
 		resultDft =setName(resultDft);

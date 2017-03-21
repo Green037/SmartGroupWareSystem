@@ -41,6 +41,7 @@
 		<result property="mmName" column="mm_name"/>
 		<result property="dpName" column="dp_name"/>
 		<result property="ptName" column="pt_name"/>
+		<result property="proState" column="pro_state"/>
 		
 	</resultMap>
 	
@@ -497,17 +498,17 @@
 			draft.doc_code = document.doc_code
 		JOIN
 			progress 
-		On 
+		ON 
 			draft.dft_code = progress.dft_code    	
 		<trim prefix="WHERE" prefixOverrides="AND">
-			<if test="!docFileGroup eq 0">
-				AND doc_fileGroup = #{docFileGroup} 
+			<if test="!docFileGroup eq '0'">
+				AND document.doc_fileGroup = #{docFileGroup} 
 			</if>  
-			<if test="!dftDegree eq 0">
-				AND dft_degree = #{dftDegree} 
+			<if test="dftDegree != 0">
+				AND draft.dft_degree = #{dftDegree} 
 			</if>   
-			<if test="!proState eq 0">
-				AND pro_state = #{proState} 
+			<if test="proState != 3">
+				AND progress.pro_state = #{proState} 
 			</if> 
 		</trim>
 

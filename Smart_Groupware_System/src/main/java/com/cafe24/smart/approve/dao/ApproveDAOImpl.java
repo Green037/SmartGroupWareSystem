@@ -256,6 +256,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 	public List<Draft> selectBySearchGroup(Draft draft) {
 //		System.out.println("h1");
 //		System.out.println(apGroup);
+		System.out.println("쿼리실행전 최종 draft입력값 확인 : "+draft);
 		return sqlSession.selectList("AprDAO.selectBySearchGroup", draft);
 	}
 

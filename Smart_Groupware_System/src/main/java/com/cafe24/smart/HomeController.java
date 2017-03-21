@@ -67,7 +67,7 @@ public class HomeController {
 	@RequestMapping(value="/member/mm_login",method=RequestMethod.GET)
 	public String mmLoginCtrl() {
 			
-		return "home";
+		return "main";
 	}
 		
 	// 로그 아웃 세션 종료
