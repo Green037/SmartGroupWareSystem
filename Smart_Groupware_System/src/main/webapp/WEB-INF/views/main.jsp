@@ -40,7 +40,7 @@
 <div class="inner-content">
 <div class="outter-wp">	
 <!-- 본문시작 -->
-<h1 style="background-color:blue;color:white;">PortFolio - Smart Groupware-System</h1>
+<h1 align="center" style="background-color:blue;color:white;">Smart Groupware System Info</h1>
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
@@ -58,7 +58,7 @@
               </button>
             </li>
             <li class="option">
-              <button class="material-button option2" type="button" id="projectInfoBtn" data-toggle="tooltip" data-placement="top" title="프로젝트 소개">
+              <button class="material-button option2" type="button" id="projectInfoBtn" data-toggle="tooltip" data-placement="top" title="Project Info">
                 <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
               </button>
             </li>
@@ -76,7 +76,7 @@
 	</div>
 	
 	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="display:none;">
-	<h1 style="background-color:#3a6bc5;color:white;">프로젝트 소개</h1>
+	<h1 align="center" style="background-color:#3a6bc5;color:white;">Project Info</h1>
 		<div class="panel panel-info">
 			<div class="panel-heading" role="tab" id="headingOne">
 				<h4 class="panel-title">
@@ -117,13 +117,13 @@
 			<div class="panel-heading" role="tab" id="headingFour">
 				<h4 class="panel-title">
 				<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-					#4 급여.고과 관리
+					#4 급여 / 고과 관리
 				</a>
 				</h4>
 			</div>
 			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 				<div class="panel-body">
-					근태/프로젝트참여 등의 평가에 따라 인사고과에 반영하고 이를 토대로 성과금 및 급여의 보험료공제, 본인의 급여조회등의 기능을 서비스합니다. 
+					사원들의 근태를 일 수로 계산하여 급여를 산정하고, 프로젝트 성과와 이력 평가를 인사고과에 반영하여 이를 토대로 성과금에 반영합니다. 결재가 이뤄진 후 급여를 이체합니다. 
 				</div>
 			</div>
 		</div>
@@ -132,25 +132,22 @@
 
 <!-- 팀원 정보 -->
 <div class="container" id="memberInfoForm" style="display:none;">
-<h1 style="background-color:#3a6bc5;color:white;">Team-Member Intro</h1>
+<h1 align="center" style="background-color:#3a6bc5;color:white;">Team Member Info</h1>
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
 			<div class="well well-sm">
 				<div class="row">
 					<div class="col-sm-6 col-md-4">
-						<img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+						<img src="<c:url value='/resources/images/eunbeego.jpg'/>" alt="" class="img-rounded img-responsive" />
 					</div>
 					<div class="col-sm-6 col-md-8">
-						<h4>윤재호</h4>
-						<small><cite title="San Francisco, USA">스마트정보교육원<i class="glyphicon glyphicon-map-marker">
-						</i></cite></small>
-						<br /><br />
+						<h4>고은비</h4>
+						<small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+						<br/><br/>
 						<p>
-							<i class="glyphicon glyphicon-envelope"></i><a href="https://github.com/rang1536/">github.com/rang1536
-							<br />
-							<i class="glyphicon glyphicon-globe"></i><a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a>
-							<br />
-							<i class="glyphicon glyphicon-gift"></i>출퇴근,프로젝트담당
+							<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/Green037/">github.com/Green037</a><br/>
+							<i class="glyphicon glyphicon-globe"></i> <a href="http://diaryofgreen.tistory.com/">diaryofgreen.tistory.com</a><br/>
+							<i class="glyphicon glyphicon-gift"></i> 팀장, 인사관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
 						</p>
 					</div>
 				</div>
@@ -163,17 +160,13 @@
                         <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        <h4>윤재호</h4>
-                        <small><cite title="San Francisco, USA">스마트정보교육원<i class="glyphicon glyphicon-map-marker">
-                        </i></cite></small>
-                        <br /><br />
+                        <h4>방상엽</h4>
+                        <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                        <br/><br/>
                         <p>
-                            <i class="glyphicon glyphicon-envelope"></i><a href="https://github.com/rang1536/">github.com/rang1536
-                            <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a>
-                            <br />
-                            <i class="glyphicon glyphicon-gift"></i>출퇴근,프로젝트담당</p>
-                        <!-- Split button -->
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
                     </div>
                 </div>
             </div>
@@ -184,20 +177,16 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive"/>
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>윤재호</h4>
-                        <small><cite title="San Francisco, USA">스마트정보교육원<i class="glyphicon glyphicon-map-marker">
-                        </i></cite></small>
-                        <br /><br />
+                        <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                        <br/><br/>
                         <p>
-                            <i class="glyphicon glyphicon-envelope"></i><a href="https://github.com/rang1536/">github.com/rang1536
-                            <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a>
-                            <br />
-                            <i class="glyphicon glyphicon-gift"></i>출퇴근,프로젝트담당</p>
-                        <!-- Split button -->
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
                     </div>
                 </div>
             </div>
@@ -209,17 +198,13 @@
                         <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
-                        <h4>윤재호</h4>
-                        <small><cite title="San Francisco, USA">스마트정보교육원<i class="glyphicon glyphicon-map-marker">
-                        </i></cite></small>
-                        <br /><br />
+                        <h4>홍수아</h4>
+                        <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                        <br/><br/>
                         <p>
-                            <i class="glyphicon glyphicon-envelope"></i><a href="https://github.com/rang1536/">github.com/rang1536
-                            <br />
-                            <i class="glyphicon glyphicon-globe"></i><a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a>
-                            <br />
-                            <i class="glyphicon glyphicon-gift"></i>출퇴근,프로젝트담당</p>
-                        <!-- Split button -->
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
                     </div>
                 </div>
             </div>
