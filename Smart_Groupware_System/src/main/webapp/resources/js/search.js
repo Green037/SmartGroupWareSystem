@@ -37,7 +37,7 @@ function initSelectOptionRadio(lines, sortItem, sortMethod) {
 	// var select_list_count = "<%=request.getParameter("lines")%>";
 	var select_list_count = getQueryParam("lines");
 	
-	alert("lines = " + lines);
+//	alert("lines = " + lines);
 	
 	var length = document.getElementById("select_list_count").options.length;		
 	
