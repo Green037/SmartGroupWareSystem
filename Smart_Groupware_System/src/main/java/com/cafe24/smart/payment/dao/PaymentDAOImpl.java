@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.smart.payment.domain.PayContent;
+import com.cafe24.smart.util.SearchCriteria;
 
 @Repository
 public class PaymentDAOImpl implements PaymentDAO {
@@ -23,20 +24,44 @@ public class PaymentDAOImpl implements PaymentDAO {
 	
 //	인사팀 > 총급여목록
 	@Override
-	public List<PayContent> selectAllPc(int offset, int noOfRecords) {
+	public List<PayContent> selectAllPc(int offset, int noOfRecord) {
 		
-		System.out.println("PaymentDAOImpl selectAllPc");
+		System.out.println("PaymentDAOImpl selectAllPc offset : " + offset);
+		System.out.println("PaymentDAOImpl selectAllPc noOfRecord : " + noOfRecord);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("offset", offset);
-		params.put("noOfRecords", noOfRecords);
+		params.put("noOfRecord", noOfRecord);
 		
 		List<PayContent> pcList = sqlSession.selectList("PaDAO.selectAllPc", params);
 		this.selectAllCountRe = sqlSession.selectOne("PaDAO.selectAllCountRe");
 		
 		System.out.println("PaymentDAOImpl selectAllPc pcList : " + pcList);
-		System.out.println("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);;
+		System.out.println("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);
+		
+		return pcList;
+	}
+	
+//	인사팀 > 총급여목록 검색 있는 경우
+	@Override
+	public List<PayContent> selectAllSearchPc(int offset, int noOfRecords, SearchCriteria cri) {
+		
+		System.out.println("PaymentDAOImpl selectAllPc offset : " + offset);
+		System.out.println("PaymentDAOImpl selectAllPc noOfRecords : " + noOfRecords);
+		System.out.println("PaymentDAOImpl selectAllPc cri : " + cri);
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+		
+		params.put("offset", offset);
+		params.put("recordsPerPage", noOfRecords);
+		params.put("cri", cri);
+		
+		List<PayContent> pcList = sqlSession.selectList("PaDAO.selectAllSearchPc", params);
+		this.selectAllCountRe = sqlSession.selectOne("PaDAO.selectAllCountRe");
+		
+		System.out.println("PaymentDAOImpl selectAllPc pcList : " + pcList);
+		System.out.println("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);
 		
 		return pcList;
 	}

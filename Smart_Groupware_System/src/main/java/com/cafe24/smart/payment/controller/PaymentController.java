@@ -22,6 +22,7 @@ import com.cafe24.smart.payment.domain.PayContent;
 import com.cafe24.smart.payment.domain.PaymentView;
 import com.cafe24.smart.payment.service.PaymentService;
 import com.cafe24.smart.util.Paging;
+import com.cafe24.smart.util.SearchCriteria;
 import com.cafe24.smart.util.UtilDate;
 import com.cafe24.smart.util.UtilMember;
 
@@ -44,42 +45,72 @@ public class PaymentController {
 	UtilDate utilDate = new UtilDate();
 	UtilMember utilMember = new UtilMember();
 	
-//	총무부 > 총급여목록
+//	총무부 > 총급여목록 (get)
 	@RequestMapping(value = "pa/listAll", method = RequestMethod.GET)
 	public String paListAllCtrl(Model model, HttpServletRequest request) {
 		
 		int currentPageNo = 1;
 		int recordsPerPage = 0;
-		String url = null;
+		String sortItem = "pcCode";
+		String sortMethod = "ASC";
 		
-		if (request.getParameter("pages") != null) {
+		if (request.getParameter("pages") != null) 
 			currentPageNo = Integer.parseInt(request.getParameter("pages"));
-		}
 		
-		if (request.getParameter("lines") != null) {
+		if (request.getParameter("lines") != null) 
 			recordsPerPage = Integer.parseInt(request.getParameter("lines"));
-		}
-		
-		System.out.println("PaymentController paListAllCtrl currentPageNo : " + currentPageNo);
-		System.out.println("PaymentController paListAllCtrl recordsPerPage : " + recordsPerPage);
 		
 //		기본 recordsPerPage 설정
 		Paging paging = new Paging(currentPageNo, recordsPerPage);
 		
+		if (request.getParameter("sort_item") != null)
+			sortItem = request.getParameter("sort_item");
+		
+		if (request.getParameter("sort_method") != null)
+			sortMethod = request.getParameter("sort_method");
+		
+		System.out.println("PaymentController paListAllCtrl currentPageNo : " + currentPageNo);
+		System.out.println("PaymentController paListAllCtrl recordsPerPage : " + recordsPerPage);
+		System.out.println("PaymentController paListAllCtrl sortItem : " + sortItem);
+		System.out.println("PaymentController paListAllCtrl sortMethod : " + sortMethod);
+				
 		int offset = (paging.getCurrentPageNo() - 1) * paging.getRecordsPerPage();    
 		
 		System.out.println("PaymentController paListAllCtrl offset : " + offset);
 		
-		List<PayContent> pcList = paymentService.paListAllServ(offset, paging.getRecordsPerPage());
+		SearchCriteria cri;
 		
-		paging.setNumberOfRecords(paymentService.getPaymentDAO().selectAllCountRe());
+		if (request.getParameter("compare") == null)
+			cri = new SearchCriteria(request.getParameter("keyfield"),
+									request.getParameter("keyword"),
+									"equals");
+		else
+			cri = new SearchCriteria(request.getParameter("keyfield"),
+									request.getParameter("keyword"),
+									request.getParameter("compare"));
+		
+		List<PayContent> pcList;
+		
+		if (cri.getKeyfield() == null || cri.getKeyfield().equals("")) {
+			
+			pcList = paymentService.paListAllServ(offset, paging.getRecordsPerPage());
+		} else {
+			pcList = paymentService.paListAllSearchServ(offset, paging.getRecordsPerPage(), cri);
+		}
+		
+		int	listCount = paymentService.getPaymentDAO().selectAllCountRe();
+		
+		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
+		
+		paging.setNumberOfRecords(listCount);
+		
+		System.out.println("PaymentController paListAllCtrl count : " + paging.getNumberOfRecords());
 		
 		paging.makePaging();
 		
-		int	listCount = paymentService.reCountAllServ();
-		
 		System.out.println("PaymentController paListAllCtrl pcList : " + pcList);
 		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
+		System.out.println("PaymentController paListAllCtrl paging : " + paging);
 		
 		List<PaymentView> paList = new ArrayList<PaymentView>();
 		
@@ -108,13 +139,15 @@ public class PaymentController {
 				paList.add(paView);
 				
 				model.addAttribute("paging", paging);
+				model.addAttribute("sortItem", sortItem);
+				model.addAttribute("sortMethod", sortMethod);
+				model.addAttribute("cri", cri);
 				model.addAttribute("servletPath","pa/listAll");
 			}
 			
 			model.addAttribute("paList", paList);
 			
 			System.out.println("PaymentController paListAllCtrl paList : " + paList);
-			
 		}
 		
 		return "payment/pa_listAll";

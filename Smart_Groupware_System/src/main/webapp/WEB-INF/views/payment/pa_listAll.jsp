@@ -6,8 +6,10 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script type="text/javascript" src="<c:url value='/resources/js/script.js'/>"></script>
+	<script type="text/javascript" src="<c:url value='/resources/js/search.js'/>"></script>
 </head> 
-<body>
+<body onload="initSelectOptionRadio(${paging.recordsPerPage}, '${sortItem}', '${sortMethod}');">
 	<%@ include file="../menu.jsp" %>
 	
 	<!-- contents -->
@@ -26,7 +28,23 @@
 					<div class="forms-main">
 						<div class="graph-form">
 							<div class="validation-form">
-								<label class="control-label"><b>급여목록 (총 10건)</b></label>
+								<label class="control-label"><b>급여목록</b></label>
+								
+								<table width="100%">
+									<tr>
+										<td align="right">
+											<select id="select_count">
+												<option value=3>3개씩 보기</option>
+												<option value=5>5개씩 보기</option>
+												<option value=10>10개씩 보기</option>
+												<option value=20>20개씩 보기</option>
+												<option value=50>50개씩 보기</option>
+											</select>
+										</td>
+									</tr>
+								</table>
+								<div class="clearfix">&nbsp;</div>
+								
 								<table class="table table-bordered">
 									<tr>
 										<th>순번</th>
@@ -58,26 +76,73 @@
 										</tr>
 									</c:forEach>
 								</table> 
+								
+								<!-- Paging -->
+								<table border=0 width=100%>
+									<tr>
+										<td align='right'>
+											<jsp:include page="<c:url value='smart/paging'/>" flush="true">
+												<jsp:param name="recordsPerPage" value="${paging.recordsPerPage}" />
+												<jsp:param name="sortItem" value="${sortItem}" />
+												<jsp:param name="sortMethod" value="${sortMethod}" />
+												<jsp:param name="cri" value="${cri}" />
+												
+											    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+											    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+											    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+											    <jsp:param name="currentPageNo" value="${paging.currentPageNo}" />
+											    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+											    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+											    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+											</jsp:include>
+										</td>
+									</tr>
+								</table>
 								<div class="clearfix">&nbsp;</div>		
 								
 								<div align="center">
-									<form class="form-inline">
+									<form method="post" name="search" class="form-inline">
 										<div class="form-group">
-											<select class="form-control1">
+											<select name="keyfield" class="form-control1">
 												<option>-옵션 선택-</option>
-												<option value="paCode">급여코드</option>
-												<option value="paCode">일급</option>
-												<option value="paCode">성과급</option>
-												<option>사원코드</option>
-												<option value="paDate">급여지급일</option>
-												<option>담당사원코드</option>
+												<option value="paCode"
+													<c:out value="${cri.keyfield eq 'paCode' ? 'selected' : ''}"/>>
+													급여코드
+												</option>
+												<option value="mmDailyPay"
+													<c:out value="${cri.keyfield eq 'mmDailyPay' ? 'selected' : ''}"/>>
+													일급
+												</option>
+												<option value="inAmount"
+													<c:out value="${cri.keyfield eq 'inAmount' ? 'selected' : ''}"/>>
+													성과급
+												</option>
+												<option value="mmCode"
+													<c:out value="${cri.keyfield eq 'mmCode' ? 'selected' : ''}"/>>
+													사원코드
+												</option>
+												<option value="pcDate"
+													<c:out value="${cri.keyfield eq 'pcDate' ? 'selected' : ''}"/>>
+													급여지급일
+												</option>
+												<option value="paMmCode"
+													<c:out value="${cri.keyfield eq 'paDate' ? 'selected' : ''}"/>>
+													담당사원코드
+												</option>
 											</select>
 										</div>
 										<div class="form-group">
-											<input type="text" class="form-control1"/>
+											<input type="radio" name="compare" value="equals"
+												<c:out value="${(cri.compare eq null) || (cri.compare eq 'equals') ? 'checked' : ''}" />>같음
+											<input type="radio" name="compare" value="contains"
+												<c:out value="${cri.compare eq 'contains' ? 'checked' : ''}" />>포함
+										</div>										
+										<div class="form-group">
+											<input type="text" name="keyword" value="${cri.keyword}" class="form-control1"
+												onkeydown = "if (event.keyCode == 13) document.getElementById('btnSearch').click()">
 										</div>
 										<div class="form-group">
-											<button class="btn btn-primary" type="submit">검색</button>
+											<input type="button" id="btnSearch" value="검색" class="form-control1" onclick="searchCheck(form)"/>
 										</div>
 									</form>
 								</div>

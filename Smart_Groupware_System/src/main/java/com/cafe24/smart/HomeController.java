@@ -28,7 +28,7 @@ public class HomeController {
 	 * @since 2017.03.14
 	 */
 	@RequestMapping(value="/", method = RequestMethod.GET)
-	public String home(Locale locale, HttpServletRequest request, 
+	public String homeCtrl(Locale locale, HttpServletRequest request, 
 							HttpServletResponse response, Model model, HttpSession session)
 														throws Exception, NoSuchAlgorithmException {
 		
@@ -72,12 +72,19 @@ public class HomeController {
 		
 	// 로그 아웃 세션 종료
 	@RequestMapping(value="/logout",method=RequestMethod.GET)
-	public String Logout(HttpSession session) {
+	public String mmLogoutCtrl(HttpSession session) {
 			
 		session.invalidate();
 		
 		System.out.println("-------- 로그아웃  세션 종료 --------");
 			
 		return "redirect:/";
+	}
+	
+	// 페이징
+	@RequestMapping(value="/smart/paging",method=RequestMethod.GET)
+	public String PagingCtrl() {
+				
+		return "paging";
 	}
 }																																																																																				

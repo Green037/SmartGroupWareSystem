@@ -10,6 +10,7 @@ import com.cafe24.smart.member.dao.MemberDAO;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.payment.dao.PaymentDAO;
 import com.cafe24.smart.payment.domain.PayContent;
+import com.cafe24.smart.util.SearchCriteria;
 
 @Service
 public class PaymentServiceImpl implements PaymentService {
@@ -31,9 +32,21 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PayContent> paListAllServ(int offset, int recordsPerPage) {
 		
-		System.out.println("PaymentServiceImpl paListAllServ");
+		System.out.println("PaymentServiceImpl paListAllServ offset : " + offset);
+		System.out.println("PaymentServiceImpl paListAllServ recordsPerPage : " + recordsPerPage);
 		
 		return paymentDAO.selectAllPc(offset, recordsPerPage);
+	}
+	
+//	총무부 > 총급여목록 (검색 있는 경우
+	@Override
+	public List<PayContent> paListAllSearchServ(int offset, int recordsPerPage, SearchCriteria cri) {
+		
+		System.out.println("PaymentServiceImpl paListAllServ offset : " + offset);
+		System.out.println("PaymentServiceImpl paListAllServ recordsPerPage : " + recordsPerPage);
+		System.out.println("PaymentServiceImpl paListAllServ cri : " + cri);
+		
+		return paymentDAO.selectAllSearchPc(offset, recordsPerPage, cri);
 	}
 	
 //	연간급여내역조회

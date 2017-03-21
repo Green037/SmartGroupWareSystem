@@ -24,9 +24,50 @@
 		FROM
 			payContent
 		ORDER BY
-			pc_code ASC
+			pc_code
+		ASC
 		LIMIT
-			#{offset}, #{noOfRecords};
+			#{offset}, #{noOfRecord};
+	</select>
+	
+	<!-- 총무부 > 총급여목록 검색 -->
+	<select id="selectAllSearchPc" parameterType="hashmap" resultMap="resultPc">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			payContent
+		WHERE
+			<if test="cri.keyfield != null and cri.keyfield.equals('paCode')">
+				pc_code
+			</if>
+			<if test="cri.keyfield != null and cri.keyfield.equals('mmDailyPay')">
+				mm_dailyPay
+			</if>
+			<if test="cri.keyfield != null and cri.keyfield.equals('age')">
+				age
+			</if>
+			<if test="cri.keyfield != null and cri.keyfield.equals('inAmount')">
+				inAmount
+			</if>
+			<if test="cri.keyfield != null and cri.keyfield.equals('mmCode')">
+				mmCode
+			</if>
+			<if test="cri.keyfield != null and cri.keyfield.equals('pcDate')">
+				pcDate
+			</if>
+			<if test="cri.keyfield != null and cri.keyfield.equals('paMmCode')">
+				paMmCode
+			</if>
+			
+			<if test="cri.compare != null and cri.compare.equals('equals')">
+				= #{cri.keyword}
+			</if>
+			<if test="cri.compare != null and cri.compare.equals('contains')">
+				LIKE CONCAT('%', #{cri.keyword}, '%')
+			</if>
+			<if test="offset != null and recordsPerPage != null">
+				LIMIT #{offset}, #{recordsPerPage}
+			</if>
 	</select>
 	
 	<!-- 연간급여내역조회 -->
