@@ -29,7 +29,6 @@
 			success : function(data){
 				console.log('test');
 				console.log(data[0].dftTitle)
-		/* 		originalContent.style.visibility="hidden"; */
 				$.each(data, function(i,serachList){
 					$('#apContent').append(`
 							<tr>

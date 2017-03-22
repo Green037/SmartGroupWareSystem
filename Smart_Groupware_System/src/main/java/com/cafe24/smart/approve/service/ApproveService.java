@@ -64,6 +64,7 @@ public interface ApproveService {
 	
 	// List 검색
 	List<Draft> apSearchServ(Draft draft, String docFileGroup);
+	List<Document> apSearchDocServ(String docFileGroup);
 
 	
 	

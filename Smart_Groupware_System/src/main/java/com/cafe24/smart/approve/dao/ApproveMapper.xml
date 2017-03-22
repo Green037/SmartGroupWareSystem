@@ -521,7 +521,21 @@
 			</if> 
 		</trim>
 
-</select>	
+</select>
+
+<!-- 임시문서함 목록검색 -->
+<select id="selectBySearchDocGroup" 
+		parameterType="String" 
+		resultMap ="resultDoc">
+		SELECT 
+			*
+		FROM
+			document 
+		WHERE
+			doc_fileGroup =#{docFileGroup}	
+
+</select>
+	
 		
 </mapper>
 

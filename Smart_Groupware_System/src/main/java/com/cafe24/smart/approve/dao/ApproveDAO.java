@@ -80,6 +80,7 @@ public interface ApproveDAO {
 	
 	// 결재 목록 : 검색
 	List<Draft> selectBySearchGroup(Draft draft);
+	List<Document> selectBySearchDoc(String docFileGroup);
 	
 
 	

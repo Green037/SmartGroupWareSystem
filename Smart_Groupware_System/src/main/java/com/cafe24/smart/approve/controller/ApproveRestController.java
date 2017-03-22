@@ -140,12 +140,13 @@ public class ApproveRestController {
 	
 	// 검색 : 문서 양식 목록
 		@RequestMapping(value="ap/searchDoc", method = RequestMethod.POST)
-		public List<Document> apSearchDocListCtrl(@RequestParam("docFileGroup") String docFileGroup){
+		public List<Document> apSearchDocListCtrl(@RequestParam(value="docFileGroup") String docFileGroup){
 			
 //			System.out.println("ajax test");
 			System.out.println("넘어온 값 확인 : "+docFileGroup);
 			
 			List<Document> document = new ArrayList<Document>();
+			document = approveService.apSearchDocServ(docFileGroup);
 			System.out.println("검색:"+document);
 		
 			return document;

@@ -260,6 +260,13 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectBySearchGroup", draft);
 	}
 
+	// 문서양식 : group 검색
+	@Override
+	public List<Document> selectBySearchDoc(String docFileGroup) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("AprDAO.selectBySearchDocGroup", docFileGroup);
+	}
+
 
 
 }

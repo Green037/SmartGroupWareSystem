@@ -51,17 +51,29 @@
 			
 		/* 문서 구분 검색 */
 		$(document).on('click','#docSearchBtn',function(){
-			var docFileGroup = $('#docFileGroup').val();
+			var docFileGroup = $('#docRequirement').serialize();
 			console.log('h1'+docFileGroup);
 			$('#docTbody').empty();
 			$('#docSerachTbody').empty();
 			$.ajax({
 				url : '/smart/ap/searchDoc',
-				data : {'docFileGroup':docFileGroup},
+				data : docFileGroup,
 				dataType : 'json',
 				type : 'post',
 				success : function(data){
 					console.log('h2')
+					console.log(data[0].docCode)
+					$.each(data,function(i,document){
+						$('#docSerachTbody').append(`
+								<tr>
+									<td>`+document.docCode+`</td>
+									<td>`+document.docFileGroup+`</td>
+									<td>`+document.docFileOri+`</td>
+									<td>다운로드</td>
+								</tr>
+								`)
+					})
+				
 				}
 			})
 			
@@ -120,10 +132,12 @@
 								<th>Download</th>
 							</tr>
 						</thead>
+						
 						<tbody id="docSerachTbody">
 						
 						
 						</tbody>
+						
 						<tbody id="docTbody">
 							<c:forEach var="docList" items="${docList}">
 							

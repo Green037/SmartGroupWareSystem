@@ -624,5 +624,14 @@ public class ApproveServiceImpl implements ApproveService {
 		return resultDft;
 	}
 
+
+	@Override
+	public List<Document> apSearchDocServ(String docFileGroup) {
+		System.out.println("문서양식함 serv:"+docFileGroup);
+		List<Document> resultDoc = new ArrayList<Document>();
+		resultDoc = approveDAO.selectBySearchDoc(docFileGroup);
+		return resultDoc;
+	}
+
 	}	
 
