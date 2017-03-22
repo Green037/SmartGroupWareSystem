@@ -7,6 +7,8 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<link href="<c:url value='/resources/css/evAdd.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/button.css'/>" rel="stylesheet" type="text/css"/>
+	
 	<script>
 	// 프로젝트 참여신청 이벤트
 	$(document).on('click','#putInBtn',function(){
@@ -107,14 +109,37 @@
 
 <!-- 본문 -->
 <div class="container">
-	<center>
-		<h2><span class="glyphicon glyphicon-file"></span> 프로젝트 리스트</h2>
-	</center>
-	<marquee behavior="alternate">
-		<p style="color:red;">If you click projectName, show detail information.!! </p>
-	</marquee>
-    
-    <div class="row">
+	<p style="color:red;">프로젝트명을 클릭하면 상세보기 화면으로 연결됩니다!! </p>
+	    
+	<div class="row">
+		<div id="ballMenuContainer">
+			<div id="menuBall1" class="menuBall">
+				<a href="#" id="recuitPrBtn" class="ball blueball">
+					<div class="menuText">
+						모집중
+					</div>
+				</a>
+			</div>
+
+			<div id="menuBall2" class="menuBall">
+				<a href="#" id="runPrBtn" class="ball redball">
+					<div class="menuText">
+						진행중
+					</div>
+				</a>
+			</div>
+
+			<div id="menuBall3" class="menuBall">
+				<a href="#" id="allPrBtn" class="ball greenball">
+					<div class="menuText">
+						전체목록
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+   
+   <!--  <div class="row">
 		<div class="col-md-12">
 			<button class="btn btn-primary orange-circle-button" id="recuitPrBtn">
 				팀원모집중<br />목록보기<br /><span class="orange-circle-greater-than">Go!!</span>
@@ -126,7 +151,7 @@
 				전체<br />목록보기<br /><span class="orange-circle-greater-than">Go!!</span>
 			</button>
 		</div>   
-	</div>
+	</div> -->
 	      
 	<%-- 기존 리스트 선택 버튼.
 	<div class="btn-group btn-group-justified">

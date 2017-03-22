@@ -21,12 +21,20 @@
 	
 	$(document).on('click','#projectInfoBtn',function(){
 		$('#memberInfoForm').css('display','none');
+		$('#reviewForm').css('display','none');
 		$('#accordion').css('display','');
 	});
 	
 	$(document).on('click','#memberInfoBtn',function(){
 		$('#accordion').css('display','none');
+		$('#reviewForm').css('display','none');
 		$('#memberInfoForm').css('display','');
+	});
+	
+	$(document).on('click','#reviewBtn',function(){
+		$('#accordion').css('display','none');
+		$('#memberInfoForm').css('display','none');
+		$('#reviewForm').css('display','');
 	});
 	
 	
@@ -63,7 +71,7 @@
               </button>
             </li>
             <li class="option">
-              <button class="material-button option3" type="button" data-toggle="tooltip" data-placement="right" title="후기">
+              <button class="material-button option3" type="button" id="reviewBtn" data-toggle="tooltip" data-placement="right" title="후기">
                 <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
               </button>
             </li>
@@ -132,6 +140,89 @@
 
 <!-- 팀원 정보 -->
 <div class="container" id="memberInfoForm" style="display:none;">
+<h1 align="center" style="background-color:#3a6bc5;color:white;">Member Review</h1>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<div class="well well-sm">
+				<div class="row">
+					<div class="col-sm-6 col-md-4">
+						<img src="<c:url value='/resources/images/eunbeego.jpg'/>" alt="" class="img-rounded img-responsive" />
+					</div>
+					<div class="col-sm-6 col-md-8">
+						<h4>고은비</h4>
+						<small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+						<br/><br/>
+						<p>
+							<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/Green037/">github.com/Green037</a><br/>
+							<i class="glyphicon glyphicon-globe"></i> <a href="http://diaryofgreen.tistory.com/">diaryofgreen.tistory.com</a><br/>
+							<i class="glyphicon glyphicon-gift"></i> 팀장, 인사관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="<c:url value='/resources/images/img3.jpg'/>" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>방상엽</h4>
+                        <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                        <br/><br/>
+                        <p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="<c:url value='/resources/images/img2.jpg'/>" alt="" class="img-rounded img-responsive"/>
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>윤재호</h4>
+                        <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                        <br/><br/>
+                        <p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i> 팀의중심!<br/>
+							출퇴근관리,프로젝트관리,WBS,메인페이지  
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>홍수아</h4>
+                        <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
+                        <br/><br/>
+                        <p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 후기 -->
+<div class="container" id="reviewForm" style="display:none;">
 <h1 align="center" style="background-color:#3a6bc5;color:white;">Team Member Info</h1>
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
@@ -157,7 +248,7 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/img3.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>방상엽</h4>
@@ -177,16 +268,15 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive"/>
+                        <img src="<c:url value='/resources/images/img2.jpg'/>" alt="" class="img-rounded img-responsive"/>
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>윤재호</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                        	공동작업을 하며 최대한 팀에 맞춰가려고 노력하였으며, 진행간 다른 팀원의 오류나 진행등을 같이 체크해주며 즐겁게 작업하였습니다.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -204,7 +294,7 @@
                         <p>
                         	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
                             <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                            <i class="glyphicon glyphicon-gift"></i> </p>
                     </div>
                 </div>
             </div>

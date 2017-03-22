@@ -7,6 +7,8 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<link href="<c:url value='/resources/css/evAdd.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/button.css'/>" rel="stylesheet" type="text/css"/>
+	
 	<script>
 		$(document).on('click','#searchProjectBtn',function(){
 			console.log('h2');
@@ -81,12 +83,24 @@
 	<!-- <button type="button" id="searchProjectBtn" class="btn btn-primary">내 프로젝트 검색</button> -->
 	
 	<div class="row">
+		<div id="ballMenuContainer">
+			<div id="menuBall1" class="menuBall">
+				<a href="#" id="searchProjectBtn" class="ball blueball">
+					<div class="menuText">
+						검색
+					</div>
+				</a>
+			</div>
+		</div>
+	</div>
+	
+	<!-- <div class="row">
 		<div class="col-md-12">
 			<button class="btn btn-warning orange-circle-button" id="searchProjectBtn">
 				내프로젝트<br />검색<br /><span class="orange-circle-greater-than">Go!!</span>
 			</button>
 		</div>   
-	</div>
+	</div> -->
 	
 	<table id="projectList" class="table table-hover" style="display:none;">
 		<thead>
