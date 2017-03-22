@@ -120,7 +120,7 @@ public class ApproveRestController {
 	
 	// 검색 : 결재 목록
 	@RequestMapping(value="ap/searchDft", method = RequestMethod.POST)
-	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup){
+	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0")String docFileGroup){
 		
 //		System.out.println("ajax test");
 		System.out.println("넘어온 값 확인 : "+draft);
@@ -139,17 +139,33 @@ public class ApproveRestController {
 	}
 	
 	// 검색 : 문서 양식 목록
-		@RequestMapping(value="ap/searchDoc", method = RequestMethod.POST)
-		public List<Document> apSearchDocListCtrl(@RequestParam(value="docFileGroup") String docFileGroup){
-			
-//			System.out.println("ajax test");
-			System.out.println("넘어온 값 확인 : "+docFileGroup);
-			
-			List<Document> document = new ArrayList<Document>();
-			document = approveService.apSearchDocServ(docFileGroup);
-			System.out.println("검색:"+document);
+	@RequestMapping(value="ap/searchDoc", method = RequestMethod.POST)
+	public List<Document> apSearchDocListCtrl(@RequestParam(value="docFileGroup") String docFileGroup){
 		
-			return document;
-			
+//			System.out.println("ajax test");
+		System.out.println("넘어온 값 확인 : "+docFileGroup);
+		
+		List<Document> document = new ArrayList<Document>();
+		document = approveService.apSearchDocServ(docFileGroup);
+		System.out.println("검색:"+document);
+	
+		return document;
+		
+	}
+	
+	// 검색 : 임시 저장목록
+			@RequestMapping(value="ap/searchTem", method = RequestMethod.POST)
+			public List<Draft> apSearchDocListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup){
+				
+//				System.out.println("ajax test");
+				System.out.println("임시 넘어온 값 확인 : "+draft);
+				List<Draft> result = new ArrayList<Draft>();
+				result = approveService.apSearchDftServ(draft);
+				
+				System.out.println("임시 결과"+result);
+				
+				return result;
+				
 		}
+		
 }

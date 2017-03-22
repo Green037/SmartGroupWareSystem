@@ -251,7 +251,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectOne("AprDAO.selectByPersonal", mmCode);
 	}
 
-	// 결재목록 : group 검색
+	// 결재목록 : 검색
 	@Override
 	public List<Draft> selectBySearchGroup(Draft draft) {
 //		System.out.println("h1");
@@ -260,11 +260,18 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectBySearchGroup", draft);
 	}
 
-	// 문서양식 : group 검색
+	// 문서양식 : 검색
 	@Override
 	public List<Document> selectBySearchDoc(String docFileGroup) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("AprDAO.selectBySearchDocGroup", docFileGroup);
+	}
+	
+	// 임시 목록 : 검색
+	@Override
+	public List<Draft> selectBySearchTem(Draft draft) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("AprDAO.selectBySearchTemGroup", draft);
 	}
 
 

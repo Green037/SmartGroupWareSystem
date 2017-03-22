@@ -520,7 +520,6 @@
 				AND progress.pro_state = #{proState} 
 			</if> 
 		</trim>
-
 </select>
 
 <!-- 임시문서함 목록검색 -->
@@ -535,8 +534,27 @@
 			doc_fileGroup =#{docFileGroup}	
 
 </select>
-	
-		
+
+<!-- 임시문서함 목록검색 -->
+<select id="selectBySearchTemGroup"
+		parameterType="String"
+		resultMap ="resultDft">
+		SELECT 
+			*	
+		FROM
+			document 
+		JOIN
+			draft   
+		ON  
+			draft.doc_code = document.doc_code 
+		JOIN
+			progress
+		ON
+			draft.dft_code = progress.dft_code			
+		WHERE
+			doc_fileGroup = #{docFileGroup}
+
+</select>		
 </mapper>
 
 

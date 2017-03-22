@@ -126,14 +126,18 @@ public class ApproveController {
 	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
 	public String temList(Model model,HttpSession session){
 		
-		//System.out.println("ctrl temList> test");
-		
-		System.out.println("임시문서함 사원코드:"+session.getAttribute("mmCode"));
+//		System.out.println("ctrl temList> test");		
+//		System.out.println("임시문서함 사원코드:"+session.getAttribute("mmCode"));
 		int mmCode= (int)session.getAttribute("mmCode");
 		
 		List<Draft> temList = new ArrayList<Draft>();
 		temList = approveService.temListServ(mmCode);
+		
+		List<Document> docList = new ArrayList<Document>();
+		docList = approveService.docListServ();
+	
 		model.addAttribute("temList", temList);
+		model.addAttribute("docList", docList);
 		
 		return "/approve/ap_temList";
 		

@@ -608,7 +608,7 @@ public class ApproveServiceImpl implements ApproveService {
 		return approveDAO.selectContHv(dftCode);
 	}
 
-	// 목록 검색
+	// 목록 검색 : 결재 목록
 	@Override
 	public List<Draft> apSearchServ(Draft draft ,String docFileGroup) {
 		
@@ -624,13 +624,27 @@ public class ApproveServiceImpl implements ApproveService {
 		return resultDft;
 	}
 
-
+	// 목록 검색 : 문서 양식함
 	@Override
 	public List<Document> apSearchDocServ(String docFileGroup) {
-		System.out.println("문서양식함 serv:"+docFileGroup);
+//		System.out.println("문서양식함 serv:"+docFileGroup);
 		List<Document> resultDoc = new ArrayList<Document>();
+		// 문서 양식 조건
 		resultDoc = approveDAO.selectBySearchDoc(docFileGroup);
 		return resultDoc;
+	}
+
+
+	@Override
+	public List<Draft> apSearchDftServ(Draft draft) {
+		System.out.println("임시 검색:"+draft);
+		List<Draft> resultDft = new ArrayList<Draft>();
+		resultDft = approveDAO.selectBySearchTem(draft);
+		
+		//사원 이름과 부서가져오기
+		
+		
+		return null;
 	}
 
 	}	

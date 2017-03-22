@@ -7,11 +7,23 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script>
+	/* 임시목록 검색페이지 */
 	$(document).on('click','#docSearchBtn', function(){
 		var formData = $('#docRequirement').serialize();
-		console.log('h1'+formData);
+		console.log('h1: '+formData);
+		$('#originalContent').empty();
+		$('#searchTem').empty();
+		$.ajax({
+			url : '/smart/ap/searchTem',
+			data : formData,
+			dataType : 'json',
+			type : 'post',
+			success : function(data){
+				console.log('임시')
+			}
+		})
+		
 	})
-	
 	</script>
 </head> 
 <body>
@@ -35,23 +47,18 @@
 			
 			<form class="form-inline" id="docRequirement">
 						<div class="form-group">
-							<label for="docGroup">분류</label>
-							<select name="apSize">
-								<option>::선택::</option>
-								<option value="인사">인사</option>
-								<option value="급여">급여</option>
-								<option value="프로젝트">프로젝트</option>
-								<option value="고과">고과</option>
-								<option value="출퇴근">출퇴근</option>
-								<option value="근외일정">근외일정</option>
-								<option value="회계">회계</option>
-								<option value="계약">계약</option>
+							<label for="docFileGroup">분류</label>
+							<select name="docFileGroup">
+								<option value="0">::분류::</option>
+								<c:forEach var="docList" items="${docList}">
+									<option value ="${docList.docFileGroup}">${docList.docFileGroup}</option>
+								</c:forEach>
 							</select>
 						</div>
 						
 						<div class="form-group">
-							<label for="temCode">문서번호</label>
-							<input type="text" class="form-control" name="temCode">						
+							<label for="dftCode">문서번호</label>
+							<input type="text" class="form-control" name="dftCode" default="0">						
 						</div>
 						
 						<button type="button" class="btn btn-primary" id="docSearchBtn">
@@ -64,30 +71,36 @@
 					<div class="validation-form">						
 						<label class="control-label"><b>저장 목록 [건수 : 10건]</b></label>
 						<table class="table table-bordered">
-							<tr>
-								<th>차수</th>
-								<th>구분</th>
-								<th width="200">문서제목</th>
-								<th>기안자</th>
-								<th>기안부서</th>
-								<th>신청일자</th>
-								<th>파일명</th>
-							</tr>
+							<thead>
+								<tr>
+									<th>차수</th>
+									<th>구분</th>
+									<th width="200">문서제목</th>
+									<th>기안자</th>
+									<th>기안부서</th>
+									<th>신청일자</th>
+									<th>파일명</th>
+								</tr>
+							</thead>
 							
-							<c:forEach var="t" items="${temList}">
+							<tbody id="searchTem">
 							
-							<tr>
-								<td>${t.dftCode}</td>
-								<td>${t.docFileGroup}</td>
-								<td><a href="<c:url value='/ap/temContent?dftCode=${t.dftCode}' />">${t.dftTitle}</a></td>
-								<td>${t.mmName}</td>
-								<td>${t.dpName}</td>
-								<td>${t.dftDate}</td>
-								<td>${t.dftFileOri}</td>
-							</tr>
+							</tbody>
 							
-							</c:forEach>
-							
+							<tbody id="originalContent">
+								<c:forEach var="t" items="${temList}">
+								<tr>
+									<td>${t.dftCode}</td>
+									<td>${t.docFileGroup}</td>
+									<td><a href="<c:url value='/ap/temContent?dftCode=${t.dftCode}' />">${t.dftTitle}</a></td>
+									<td>${t.mmName}</td>
+									<td>${t.dpName}</td>
+									<td>${t.dftDate}</td>
+									<td>${t.dftFileOri}</td>
+								</tr>
+								
+								</c:forEach>
+							</tbody>
 						</table> 
 						<div class="clearfix">&nbsp;</div>				
 			
