@@ -62,7 +62,7 @@ public interface ApproveDAO {
 
 	
 	//임시 목록
-	List<Draft> selectAllTem();
+	List<Draft> selectAllTem(int mmCode);
 	String selectDetailDoc(int dftCode);
 
 	//임시 상세보기

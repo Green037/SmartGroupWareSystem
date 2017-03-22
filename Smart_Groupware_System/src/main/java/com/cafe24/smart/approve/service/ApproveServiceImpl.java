@@ -463,12 +463,13 @@ public class ApproveServiceImpl implements ApproveService {
 	
 	// 임시 목록 
 	@Override
-	public List<Draft> temListServ() {
+	public List<Draft> temListServ(int mmCode) {
 		//System.out.println("serv temList> test1");
 		
 		List<Draft> temList= new ArrayList<Draft>();
+		System.out.println("임시 목록 사원코드 :"+mmCode);
 	
-		temList = approveDAO.selectAllTem();
+		temList = approveDAO.selectAllTem(mmCode);
 //		System.out.println(temList);
 //		System.out.println(temList.get(0).getMmCode());
 		

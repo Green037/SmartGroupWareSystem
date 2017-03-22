@@ -34,7 +34,7 @@ public interface ApproveService {
 	List<Draft> pgListServ(int apProgress, int mmCode);
 
 	//임시 목록
-	List<Draft> temListServ();
+	List<Draft> temListServ(int mmCode);
 	
 	//임시 목록 상세보기
 	List<Draft> temContServ(int dftCode);

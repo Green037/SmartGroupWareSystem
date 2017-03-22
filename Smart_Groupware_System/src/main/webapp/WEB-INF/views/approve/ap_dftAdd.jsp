@@ -207,7 +207,8 @@
             </div>
     	</div>
     	
-    	<div class="form-group form-group-sm">
+    		<div class="row">
+    			<div class="col-md-8">
 				    <label for="firstname" class="control-label">[문서구분]</label>
 				    <select name="docCode" id="docCode" class="form-control1">
 				    	<option value=0>[문서분류를 선택하세요]</option>
@@ -217,6 +218,7 @@
 						</c:forEach>
 													
 					</select>
+				</div>	
 		</div>
     	<div class ="row">
 			<div class="col-md-8">

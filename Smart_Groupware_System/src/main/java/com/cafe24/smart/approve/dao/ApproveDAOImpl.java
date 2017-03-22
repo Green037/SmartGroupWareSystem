@@ -182,9 +182,9 @@ public class ApproveDAOImpl implements ApproveDAO {
 	
 	// 임시 목록
 	@Override
-	public List<Draft> selectAllTem() {
+	public List<Draft> selectAllTem(int mmCode) {
 		// System.out.println("dao temList> test");
-		return sqlSession.selectList("AprDAO.selectAllTem");
+		return sqlSession.selectList("AprDAO.selectAllTem", mmCode);
 	}
 	// 임시 목록 [문서분류가져오기]
 

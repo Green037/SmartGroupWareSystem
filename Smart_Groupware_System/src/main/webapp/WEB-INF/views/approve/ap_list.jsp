@@ -104,6 +104,7 @@
 			<span class="glyphicon glyphicon-search"></span>검색
 		</button>
 	</form>
+	
 	<hr/>
 
 	<div class="btn-group btn-group-justified">

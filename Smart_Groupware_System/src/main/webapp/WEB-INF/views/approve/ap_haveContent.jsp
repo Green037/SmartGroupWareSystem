@@ -99,30 +99,47 @@
 					</div>															
 				</div>
 							
-				<div class="form-group">
-						<label class="col-sm-2 control-label" for="marrycheck">결재여부</label>
-						<div class="col-sm-8">
-							<div class="marry-inline1">
-								<label for="marrycheck"><input type="radio" name="proState" value=1 id="proState" checked="checked"> 승인</label>
+				
+				<c:set var="proApproval" value="${draft.proApproval}"></c:set>
+				<c:choose>
+						<c:when test="${sessionScope.mmCode == proApproval}">
+							<div class="form-group">
+									<label class="col-sm-2 control-label" for="marrycheck">결재여부</label>
+									<div class="col-sm-8">
+										<div class="marry-inline1">
+											<label for="marrycheck"><input type="radio" name="proState" value=1 id="proState" checked="checked"> 승인</label>
+										</div>
+										<div class="marry-inline1">
+											<label for="marrycheck"><input type="radio" name="proState" value=2 id="proState1"> 반려</label>
+										</div>
+									</div>
+							</div>	
+										
+					
+							<div class="form-group">
+									<label for="txtarea1" class="col-sm-2 control-label">반려사유</label>
+									<div class="col-sm-8">
+										<textarea style = "width:800px" name="proReason" id="txtarea1" cols="50" rows="4" class="form-control1"></textarea>
+									</div>
 							</div>
-							<div class="marry-inline1">
-								<label for="marrycheck"><input type="radio" name="proState" value=2 id="proState1"> 반려</label>
-							</div>
-						</div>
-				</div>	
-							
 						
-				<div class="form-group">
-						<label for="txtarea1" class="col-sm-2 control-label">반려사유</label>
-						<div class="col-sm-8">
-							<textarea style = "width:800px" name="proReason" id="txtarea1" cols="50" rows="4" class="form-control1"></textarea>
-						</div>
-				</div>
-			
-				<!-- 결재자 코드 가져와서 일치할 경우에 submit버튼 나타나게 -->			
-				<Center>
-					<button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
-				</Center>
+							<!-- 결재자 코드 가져와서 일치할 경우에 submit버튼 나타나게 -->			
+							<Center>
+								<button id="submitBtn" type="submit" class="btn btn-default">Submit</button>
+							</Center>
+							
+						</c:when>
+					
+				</c:choose>
+			<tr>
+				<td colspan="8" align="center">
+					<div class="btn-group">
+						<a href="<c:url value='/ap/list?dftCode=${pgList.dftCode}'/>" class="btn btn-primary" >
+							<span class="glyphicon glyphicon-edit"></span> 목록
+						</a>
+					</div>
+				</td>
+			</tr>
 			
 			</form>
 		</div>

@@ -77,7 +77,6 @@
 						<a href="<c:url value='/ap/list?dftCode=${pgList.dftCode}'/>" class="btn btn-primary" >
 							<span class="glyphicon glyphicon-edit"></span> 목록
 						</a>
-						<a href="#" class="btn btn-primary" ><span class="glyphicon glyphicon-trash"></span> 삭제</a>
 					</div>
 				</td>
 			</tr>
