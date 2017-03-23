@@ -120,7 +120,7 @@ public class ApproveRestController {
 	
 	// 검색 : 결재 목록
 	@RequestMapping(value="ap/searchDft", method = RequestMethod.POST)
-	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0")String docFileGroup){
+	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup){
 		
 //		System.out.println("ajax test");
 		System.out.println("넘어온 값 확인 : "+draft);
