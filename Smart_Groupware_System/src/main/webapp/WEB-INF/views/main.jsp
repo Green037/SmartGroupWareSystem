@@ -131,7 +131,7 @@
 			</div>
 			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 				<div class="panel-body">
-					사원들의 근태를 일 수로 계산하여 급여를 산정하고, 프로젝트 성과와 이력 평가를 인사고과에 반영하여 이를 토대로 성과금에 반영합니다. 결재가 이뤄진 후 급여를 이체합니다. 
+					사원들의 근태를 일 수로 계산하여 급여를 산정하고, 프로젝트 성과와 이력 평가를 인사고과에 반영하여 이를 토대로 성과금에 적용합니다. 결재가 이뤄진 후 급여를 이체합니다. 
 				</div>
 			</div>
 		</div>
@@ -155,7 +155,7 @@
 						<p>
 							<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/Green037/">github.com/Green037</a><br/>
 							<i class="glyphicon glyphicon-globe"></i> <a href="http://diaryofgreen.tistory.com/">diaryofgreen.tistory.com</a><br/>
-							<i class="glyphicon glyphicon-gift"></i> 팀장, 인사관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
+							<i class="glyphicon glyphicon-gift"></i> 팀장, 급여관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
 						</p>
 					</div>
 				</div>
