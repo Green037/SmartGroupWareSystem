@@ -131,7 +131,7 @@
 			</div>
 			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 				<div class="panel-body">
-					사원들의 근태를 일 수로 계산하여 급여를 산정하고, 프로젝트 성과와 이력 평가를 인사고과에 반영하여 이를 토대로 성과금에 반영합니다. 결재가 이뤄진 후 급여를 이체합니다. 
+					사원들의 근태를 일 수로 계산하여 급여를 산정하고, 프로젝트 성과와 이력 평가를 인사고과에 반영하여 이를 토대로 성과금에 적용합니다. 결재가 이뤄진 후 급여를 이체합니다. 
 				</div>
 			</div>
 		</div>
@@ -155,7 +155,7 @@
 						<p>
 							<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/Green037/">github.com/Green037</a><br/>
 							<i class="glyphicon glyphicon-globe"></i> <a href="http://diaryofgreen.tistory.com/">diaryofgreen.tistory.com</a><br/>
-							<i class="glyphicon glyphicon-gift"></i> 팀장, 인사관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
+							<i class="glyphicon glyphicon-gift"></i> 팀장, 급여관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
 						</p>
 					</div>
 				</div>
@@ -165,16 +165,16 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="<c:url value='/resources/images/img3.jpg'/>" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/bsy.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>방상엽</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/freebsy/">github.com/freebsy</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/freekisuj">blog.naver.com/freekisuj</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i>인사관리,근외일정</p>
                     </div>
                 </div>
             </div>
@@ -249,16 +249,17 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="<c:url value='/resources/images/img3.jpg'/>" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/bsy.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>방상엽</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/freebsy/">github.com/freebsy</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/freekisuj">blog.naver.com/freekisuj</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i>프로젝트를 진행하며 실무경험을 느낄 수 있어서 
+                            								매우 좋은 경험이라 생각하였고 팀원들과의 소통 능력 등 많은 것들을 배울 수 있어서 매우 값진 시간 이었습니다.</p>
                     </div>
                 </div>
             </div>
