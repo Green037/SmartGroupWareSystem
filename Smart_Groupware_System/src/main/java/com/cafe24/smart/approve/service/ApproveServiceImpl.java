@@ -202,14 +202,14 @@ public class ApproveServiceImpl implements ApproveService {
 			progress = 2;
 			map.put("progress", progress);
 			map.put("mmCode",mmCode);
-			pgList = approveDAO.selectByHv(map);
+			pgList = approveDAO.selectByReCom(map);// 다른 검색 조건
 			pgList = setName(pgList);
 			
 		}else if(apProgress==3){//결재 완료 목록
 			progress = 1;
 			map.put("progress", progress);
 			map.put("mmCode",mmCode);
-			pgList = approveDAO.selectByHv(map);
+			pgList = approveDAO.selectByReCom(map); // 다른 검색 조건
 			
 			pgList = setName(pgList);
 			

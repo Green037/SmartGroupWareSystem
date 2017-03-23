@@ -209,11 +209,17 @@ public class ApproveDAOImpl implements ApproveDAO {
 		return sqlSession.selectList("AprDAO.selectAllPg", mmCode);
 	}
 
-			// ----- 총 목록 : 대기/반려/완료
+			// ----- 총 목록 : 대기
 			@Override
 			public List<Draft> selectByHv(Map<String, Integer> map) {
 				// System.out.println("dao byHvList> test");
 				return sqlSession.selectList("AprDAO.selectByHv", map);
+			}
+			// ----- 총 목록: 반려/완료
+			@Override
+			public List<Draft> selectByReCom(Map<String, Integer> map) {
+				// TODO Auto-generated method stub
+				return sqlSession.selectList("AprDAO.selectByReCom", map);
 			}
 			
 			// 결재 목록 : 결재자 결재 가능 목록
@@ -273,6 +279,8 @@ public class ApproveDAOImpl implements ApproveDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("AprDAO.selectBySearchTemGroup", draft);
 	}
+
+
 
 
 

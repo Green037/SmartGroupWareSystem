@@ -72,6 +72,7 @@ public interface ApproveDAO {
 	List<Draft> selectAllPg(int mmCode);
 	//-----총 목록 : 대기/반려/완료
 	List<Draft> selectByHv(Map<String, Integer> map);
+	List<Draft> selectByReCom(Map<String, Integer> map);
 	
 	// 문서 양식 등록
 	int insertDoc(Document document);
@@ -82,6 +83,7 @@ public interface ApproveDAO {
 	List<Draft> selectBySearchGroup(Draft draft);
 	List<Document> selectBySearchDoc(String docFileGroup);
 	List<Draft> selectBySearchTem(Draft draft);
+
 	
 
 	

@@ -293,6 +293,24 @@
 			pro_approval = #{mmCode}	
 			
 </select>
+
+<select id="selectByReCom" 
+		parameterType="Map"
+		resultMap="resultDft">
+		SELECT   
+			*  
+		FROM 
+			progress,draft,document
+		WHERE  
+			pro_state = #{progress}
+		AND 
+			progress.dft_code = draft.dft_code
+		AND 
+			document.doc_code = draft.doc_code 
+		AND  
+			mm_code = #{mmCode}
+
+</select>
 	 
 <!-- 결재 상세보기 : proApproval 가져오기-->
 <select id="selectDetailHv"
