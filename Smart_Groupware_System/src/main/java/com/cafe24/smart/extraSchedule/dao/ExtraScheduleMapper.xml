@@ -13,4 +13,15 @@
 		<result property="exNote" column="es_note"/>
 	</resultMap>
 	
+	
+	<insert id="insertVa"
+			parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule">
+	
+	
+	
+	
+	</insert>
+	
+	
+	
 </mapper>

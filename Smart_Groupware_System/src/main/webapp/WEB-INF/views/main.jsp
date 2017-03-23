@@ -165,16 +165,16 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="<c:url value='/resources/images/img3.jpg'/>" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/bsy.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>방상엽</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/freebsy/">github.com/freebsy</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/freekisuj">blog.naver.com/freekisuj</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i>인사관리,근외일정</p>
                     </div>
                 </div>
             </div>
@@ -248,16 +248,17 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="<c:url value='/resources/images/img3.jpg'/>" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/bsy.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>방상엽</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/freebsy/">github.com/freebsy</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/freekisuj">blog.naver.com/freekisuj</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i>프로젝트를 진행하며 실무경험을 느낄 수 있어서 
+                            								매우 좋은 경험이라 생각하였고 팀원들과의 소통 능력 등 많은 것들을 배울 수 있어서 매우 값진 시간 이었습니다.</p>
                     </div>
                 </div>
             </div>
