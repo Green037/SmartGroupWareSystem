@@ -213,10 +213,10 @@ public class ApproveServiceImpl implements ApproveService {
 			
 			pgList = setName(pgList);
 			
-		}else{
+		}else{// 전체목록
 			pgList = approveDAO.selectAllPg(mmCode);
-			
-			pgList = setName(pgList);
+			pgList = setName(pgList);// 사원정보 셋팅
+//			System.out.println("전체목록 결과값:"+pgList);
 		}
 		System.out.println("serv pgList> test2");
 		//System.out.println(pgList);
@@ -619,7 +619,8 @@ public class ApproveServiceImpl implements ApproveService {
 		draft.setDocFileGroup(docFileGroup); //문서분류세팅
 		
 		resultDft = approveDAO.selectBySearchGroup(draft);
-		resultDft =setName(resultDft);
+		resultDft =setName(resultDft); // 사원이름 셋팅
+		
 	
 		return resultDft;
 	}
