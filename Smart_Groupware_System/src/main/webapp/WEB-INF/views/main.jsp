@@ -80,7 +80,6 @@
 <div class="inner-content">
 <div class="outter-wp">	
 <!-- 본문시작 -->
-<h1 align="center" style="background-color:blue;color:white;">Smart Groupware System Info</h1>
 
 <div class="container">
 	<div class="row">
@@ -335,7 +334,7 @@
 <!-- Wrapper for slides -->
 	<div class="carousel-inner">
 		<div class="item active">
-		<img src="http://placehold.it/1200x400/16a085/ffffff&text=Employee">
+		<img src="<c:url value='/resources/images/project_menu04.png'/>">
 			<div class="carousel-caption">
 				<h3>
 					출퇴근관리 
@@ -358,26 +357,14 @@
 		</div>
 	    <!-- End Item -->
 		<div class="item">
-		<img src="http://placehold.it/1200x400/e67e22/ffffff&text=Projects">
+		<img src="<c:url value='/resources/images/project_menu04.png'/>">
 			<div class="carousel-caption">
-				<h3>
-				프로젝트관리</h3>
-				<p>
-					목록 - Ajax로 진행상황별 조회. 제목 클릭 -> 상세보기 -> 수정,삭제기능<br/>
-					등록 - 프로젝트,총자금,팀장정보 분할등록<br/>
-					검색 - 프로젝트 규모,기간별 조건으로 검색가능. Defalut = 전체조회
-				</p>
-				<h3>
-				WBS</h3>
-				<p>
-					등록 - Ajax로 팀장정보 확인 후 팀장만 WBS 등록 가능<br/>
-					완료보고서 - 팀장만 등록가능. 전자결제 팝업창으로 바로 결제요청가능.
-				</p>
+				
 			</div>
 		</div>
 	<!-- End Item -->
 		<div class="item">
-		<img src="http://placehold.it/1200x400/2980b9/ffffff&text=Approval">
+		<img src="<c:url value='/resources/images/draft_menu.png'/>">
 			<div class="carousel-caption">
 				<h3>
 				전자결제 목록</h3>
@@ -389,7 +376,7 @@
 		</div>
 	<!-- End Item -->
 		<div class="item">
-		<img src="http://placehold.it/1200x400/8e44ad/ffffff&text=Services">
+		<img src="<c:url value='/resources/images/project_menu04.png'/>">
 			<div class="carousel-caption">
 				<h3>
 				Headline</h3>
