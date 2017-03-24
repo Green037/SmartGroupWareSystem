@@ -34,7 +34,7 @@
 		<property name="password" value="bsy63792"/>  -->
 
 <!-- 	은비씨  -->
-<!--  		<property name="url" value="jdbc:mysql://localhost:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
+<!--  		<property name="url" value="jdbc:mysql://127.0.0.1:3306/tsuyu040913?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull"/> -->
 <!--  		<property name="username" value="tsuyu040913"/>  -->
 <!--    		<property name="password" value="eunbi3800*"/> -->
 	
@@ -56,6 +56,7 @@
 				<value>classpath:com/cafe24/smart/approve/dao/ApproveMapper.xml</value>
 				<value>classpath:com/cafe24/smart/wbs/dao/WbsMapper.xml</value>
 				<value>classpath:com/cafe24/smart/commute/dao/CommuteMapper.xml</value>
+				<value>classpath:com/cafe24/smart/extraSchedule/dao/ExtraScheduleMapper.xml</value>
 			</list>
 		</property>
 	</bean>

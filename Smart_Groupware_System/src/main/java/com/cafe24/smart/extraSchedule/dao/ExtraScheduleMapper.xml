@@ -4,23 +4,44 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="EsDAO">
-	<resultMap id="resultEs" type="ExtraSchedule">
+	<resultMap id="resultEs" type="com.cafe24.smart.extraSchedule.domain.ExtraSchedule">
 		<result property="esCode" column="es_code"/>
 		<result property="mmCode" column="mm_code"/>
 		<result property="esStartDate" column="es_startDate"/>
 		<result property="esEndDate" column="es_endDate"/>
-		<result property="exCostSort" column="es_costSort"/>
-		<result property="exNote" column="es_note"/>
+		<result property="esCostSort" column="es_costSort"/>
+		<result property="esNote" column="es_note"/>
 	</resultMap>
 	
 	
 	<insert id="insertVa"
 			parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule">
-	
-	
-	
-	
+		INSERT INTO extraSchedule(
+			mm_code,
+			es_startDate,
+			es_endDate,
+			es_note)
+		VALUES(
+			#{mmCode},
+			#{esStartDate},
+			#{esEndDate},
+			#{esNote});
 	</insert>
+	<insert id="insertWo"
+			parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule">
+		INSERT INTO extraSchedule(
+			mm_code,
+			es_startDate,
+			es_endDate,
+			es_costSort,
+			es_note)
+		VALUES(
+			#{mmCode},
+			#{esStartDate},
+			#{esEndDate},
+			#{esCostSort},
+			#{esNote});
+	</insert> 
 	
 	
 	

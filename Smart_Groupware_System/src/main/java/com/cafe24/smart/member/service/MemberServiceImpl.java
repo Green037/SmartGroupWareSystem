@@ -112,15 +112,15 @@ public class MemberServiceImpl implements MemberService {
 		
 		// System.out.println("mmCode1:"+member.getMmCode());
 		int result = memberDao.insertMm(member);
-		System.out.println("맴버 정보입력 결과 확인 : " + result);
+		//System.out.println("맴버 정보입력 결과 확인 : " + result);
 
 		int mmCode = member.getMmCode();
-		System.out.println("사원정보 입력후 생성된 코드 확인 : " + mmCode);
+		//System.out.println("사원정보 입력후 생성된 코드 확인 : " + mmCode);
 
 		memberAchieve.setMmCode(mmCode);
 		memberDao.insertMc(memberAchieve);
 
-		System.out.println("사원학력입력 확인 :" + memberAchieve);
+		//System.out.println("사원학력입력 확인 :" + memberAchieve);
 
 		// 사원등록 경력사항입력시 값이 여러개일경우 값을 각각 나눌수 있게 배열을 만들어준다.
 		String[] crDataSplit = new String(career.getCrData()).split(",");
@@ -146,7 +146,7 @@ public class MemberServiceImpl implements MemberService {
 			careerSplit.setMmCode(mmCode);
 			// 경력 사항 입력하는 메서드 호출
 			result = memberDao.insertCr(careerSplit);
-			System.out.println("경력 입력 성공확인 : " + result);
+			//System.out.println("경력 입력 성공확인 : " + result);
 			// result = memberDao.insertCr(careerSplit);
 
 		}
@@ -165,7 +165,7 @@ public class MemberServiceImpl implements MemberService {
 			memberLicenseSplit.setMmCode(mmCode);
 
 			result = memberDao.insertMl(memberLicenseSplit);
-			System.out.println("자격증 입력 성공확인" + result);
+			//System.out.println("자격증 입력 성공확인" + result);
 		}
 
 		return 0;
@@ -193,8 +193,8 @@ public class MemberServiceImpl implements MemberService {
 			resultMap.put("check", "아이디불일치");
 		}
 	
-		System.out.println("로그인할때 입력받은 값이 있는지 확인 :" + mmLoginServ.getMmCode());
-		System.out.println("로그인할때 입력받은 값이 있는지 확인 :" + mmLoginServ.getMmPassword());
+		//System.out.println("로그인할때 입력받은 값이 있는지 확인 :" + mmLoginServ.getMmCode());
+		//System.out.println("로그인할때 입력받은 값이 있는지 확인 :" + mmLoginServ.getMmPassword());
 		
 		return resultMap;
 	}
