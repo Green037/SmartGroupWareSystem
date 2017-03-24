@@ -16,6 +16,7 @@
 		$(document).on('click','#DocumentBtn',function(){
 			console.log('h1')
 			var form = $('#DocumentForm')[0];
+			console.log(form);
 	        var formData = new FormData(form);
 	        console.log(formData); 
 	             $.ajax({

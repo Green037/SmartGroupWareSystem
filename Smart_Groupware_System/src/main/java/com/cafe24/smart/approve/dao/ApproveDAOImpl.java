@@ -81,7 +81,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 	// 기안 등록 1-1 : draft
 	@Override
 	public int insertDft(Draft draft) {
-		// System.out.println("dao dftInsert> test");
+		 System.out.println("dao dftInsert> test: 기안입력전 값 최종확인 : "+draft);
 		return sqlSession.insert("AprDAO.insertDft", draft);
 	}
 

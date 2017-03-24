@@ -181,12 +181,21 @@
 			    	
 			    	
 					<div class="row">
-				    		<div class="col-md-8">
-								<div class="form-group form-group-sm">
-								    <label for="firstname" class="control-label">[문서제목]</label>
-								    <input type="text" class="form-control" name="dftTitle" value="${draft[0].dftTitle}">
-								</div>
-				            </div>
+			    		<div class="col-md-8">
+							<div class="form-group form-group-sm">
+							    <label for="firstname" class="control-label">[문서제목]</label>
+							    <input type="text" class="form-control" name="dftTitle" value="${draft[0].dftTitle}">
+							</div>
+			            </div>
+				    </div>
+				    
+				    <div class="row">
+			    		<div class="col-md-8">
+							<div class="form-group form-group-sm">
+							    <label for="firstname" class="control-label">[문서내용]</label>
+							    <input type="text" class="form-control" name="dftContent" value="${draft[0].dftContent}">
+							</div>
+			            </div>
 				    </div>
 							    
 

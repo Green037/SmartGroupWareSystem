@@ -159,7 +159,7 @@
 					<input type="text" name="aprCode" hidden="hidden" value="0">
 				</div>
 				<div class="form-group" align="center">
-					<button type="submit" class="btn btn-primary"> 전자결제신청 </button>
+					<button type="button" class="btn btn-primary" id="appApplyBtn"> 전자결제신청 </button>
 					<button type="reset" class="btn btn-primary" > 다시작성 </button>    
 				</div>
 			</form>

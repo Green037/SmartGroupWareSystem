@@ -37,6 +37,10 @@
 				<td colspan="8" align="center">${draft.dftTitle}</td>
 			</tr>
 			<tr>
+				<td >기안내용</td>
+				<td colspan="8" align="center">${draft.dftContent}</td>
+			</tr>
+			<tr>
 				<td>반려사유</td>
 				<td style="color:red;" colspan="8" align="center">${draft.proReason}</td>
 			</tr>

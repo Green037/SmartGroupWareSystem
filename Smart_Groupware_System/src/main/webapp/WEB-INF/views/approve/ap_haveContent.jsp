@@ -63,6 +63,13 @@
 																
 				</div>
 				<div class="form-group">
+					<label for="dftContent" class="col-sm-2 control-label">기안내용</label>
+					<div class="col-sm-3">
+						<input type="text" class="form-control1" name="dftContent" value="${draft.dftContent}" readonly="readonly"> 													
+					</div>
+																
+				</div>
+				<div class="form-group">
 					<label for="Passwordinput" class="col-sm-2 control-label">작성자</label>
 					<div class="col-sm-3">
 						<input type="text" class="form-control1" name="mmCode" value="${draft.mmCode}" readonly="readonly">

@@ -254,10 +254,18 @@
 					 $('#aprApproval3').val(data.map3.mmCode).attr('selected','selected'); 
 					 $('#putInAprFom').modal('hide'); 
 				}
-				
 			});
-			
 		})
+		
+		// 전자결제 신청 
+		$(document).on('click','#appApplyBtn',function(){
+			var formData = $('#evApprovalForm').serialize();
+			console.log(formData);
+			/* $.ajax({
+				url : 'smart/ap/addApply',
+				data : formData
+			}); */
+		});
 	</script>
 </head> 
 <body>

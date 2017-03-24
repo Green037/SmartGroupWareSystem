@@ -37,6 +37,10 @@
 				<td colspan="8" align="center">${draft.dftTitle}</td>
 			</tr>
 			<tr>
+				<td >기안내용</td>
+				<td colspan="8" align="center">${draft.dftContent}</td>
+			</tr>
+			<tr>
 				<td>분류</td>
 				<td>${draft.docFileGroup}</td>
 				<td></span> 기안등록날자</td>

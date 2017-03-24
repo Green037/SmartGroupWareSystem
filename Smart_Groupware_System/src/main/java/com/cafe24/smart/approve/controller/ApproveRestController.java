@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.cafe24.smart.approve.domain.Approval;
 import com.cafe24.smart.approve.domain.Document;
 import com.cafe24.smart.approve.domain.Draft;
+import com.cafe24.smart.approve.domain.Progress;
 import com.cafe24.smart.approve.service.ApproveService;
 import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.Member;
@@ -191,5 +192,20 @@ public class ApproveRestController {
 		
 		return resultMap;
 	}
+	
+	//기안 등록 : POST 윤재호
+	@RequestMapping(value ="ap/addApply", method = RequestMethod.POST)
+	public String apAddApplyCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
+							MultipartHttpServletRequest request,Draft draft, Progress progress){
+			
+		System.out.println("Ajax 기안등록 ");
+		System.out.println("기안내용넘어왔는지 확인 : "+draft);
+		UtilFile utilFile = new UtilFile();
 		
+		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);
+		
+		int result = approveService.apAddServ(draft, progress, uploadPath);
+		
+		return null;
+	}
 }

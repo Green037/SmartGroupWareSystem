@@ -15,7 +15,6 @@
 	<resultMap id="resultDoc" type="com.cafe24.smart.approve.domain.Document">
 		<result property="docCode" column="doc_code"/>
 		<result property="docFileGroup" column="doc_fileGroup"/>
-		<result property="docGroupIndex" column="doc_groupIndex"/>
 		<result property="docFileOri" column="doc_fileOri"/>
 		<result property="docFilePath" column="doc_filePath"/>
 	</resultMap>
@@ -42,7 +41,7 @@
 		<result property="dpName" column="dp_name"/>
 		<result property="ptName" column="pt_name"/>
 		<result property="proState" column="pro_state"/>
-		
+		<result property="dftContent" column="dft_content"/>
 	</resultMap>
 	
 	<resultMap id="resultPro" type="com.cafe24.smart.approve.domain.Progress">
@@ -78,7 +77,8 @@
 		    dft_finalState,
 		    dft_check,
 		   	dft_filePath,
-		   	dft_fileOri  
+		   	dft_fileOri,
+		   	dft_content  
 			) 
 	    VALUES( 
 	 	    #{aprCode},
@@ -93,7 +93,8 @@
 	 	    #{dftFinalState},
             #{dftCheck},
             #{dftFilePath},
-            #{dftFileOri}
+            #{dftFileOri},
+            #{dftContent}
 	        )
 </insert>
 
@@ -123,17 +124,15 @@
 		parameterType="com.cafe24.smart.approve.domain.Document"
 		useGeneratedKeys="true" keyProperty="docCode">
 		INSERT INTO document(
-			doc_groupIndex,
 			doc_fileGroup,
 			doc_fileOri,
 			doc_filePath
 			) 
 	    VALUES( 
-		    #{docgroupIndex},
 		    #{docFileGroup},
 		    #{docFileOri},
 		    #{docFilePath}
-			 )
+			)
 </insert>
 
 

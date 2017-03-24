@@ -16,7 +16,7 @@ public class Draft {
 	private String dftCheck;
 	private String dftFileOri;
 	private String dftFilePath;
-	private String dftContext;
+	private String dftContent;
 
 	// ----- view
 	private int proApproval;
@@ -119,13 +119,13 @@ public class Draft {
 	public void setDftFilePath(String dftFilePath) {
 		this.dftFilePath = dftFilePath;
 	}
-	public String getDftContext() {
-		return dftContext;
-	}
-	public void setDftContext(String dftContext) {
-		this.dftContext = dftContext;
-	}
 	
+	public String getDftContent() {
+		return dftContent;
+	}
+	public void setDftContent(String dftContent) {
+		this.dftContent = dftContent;
+	}
 	public int getProApproval() {
 		return proApproval;
 	}
@@ -205,19 +205,17 @@ public class Draft {
 	public void setProState(int proState) {
 		this.proState = proState;
 	}
-	
 	@Override
 	public String toString() {
 		return "Draft [dftCode=" + dftCode + ", aprCode=" + aprCode + ", docCode=" + docCode + ", mmCode=" + mmCode
 				+ ", dftTitle=" + dftTitle + ", dftDegree=" + dftDegree + ", dftDate=" + dftDate + ", aprApproval1="
 				+ aprApproval1 + ", aprApproval2=" + aprApproval2 + ", aprApproval3=" + aprApproval3
 				+ ", dftFinalState=" + dftFinalState + ", dftCheck=" + dftCheck + ", dftFileOri=" + dftFileOri
-				+ ", dftFilePath=" + dftFilePath + ", proApproval=" + proApproval + ", proApprovalName="
-				+ proApprovalName + ", proReason=" + proReason + ", proRealTime=" + proRealTime + ", url=" + url
-				+ ", docFileGroup=" + docFileGroup + ", proState=" + proState + ", dpName=" + dpName + ", ptName="
-				+ ptName + ", mmName=" + mmName + ", pDpName=" + pDpName + ", pPtName=" + pPtName + ", pMmName="
-				+ pMmName + "]";
+				+ ", dftFilePath=" + dftFilePath + ", dftContent=" + dftContent + ", proApproval=" + proApproval
+				+ ", proApprovalName=" + proApprovalName + ", proReason=" + proReason + ", proRealTime=" + proRealTime
+				+ ", url=" + url + ", docFileGroup=" + docFileGroup + ", proState=" + proState + ", dpName=" + dpName
+				+ ", ptName=" + ptName + ", mmName=" + mmName + ", pDpName=" + pDpName + ", pPtName=" + pPtName
+				+ ", pMmName=" + pMmName + "]";
 	}
 	
-
 	}

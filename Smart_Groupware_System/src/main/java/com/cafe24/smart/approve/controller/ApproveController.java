@@ -62,6 +62,7 @@ public class ApproveController {
 							MultipartHttpServletRequest request,Draft draft, Progress progress){
 			
 //		System.out.println("ctrl dftAdd > test");
+		System.out.println("기안내용넘어왔는지 확인 : "+draft);
 		UtilFile utilFile = new UtilFile();
 		
 		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);

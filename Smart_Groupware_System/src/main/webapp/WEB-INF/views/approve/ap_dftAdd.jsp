@@ -213,7 +213,7 @@
     		<div class="col-md-8">
 				<div class="form-group form-group-sm">
 				    <label for="firstname" class="control-label">[기안내용]</label>
-				    <input type="textarea" class="form-control" name="dftContext">
+				    <input type="text" class="form-control" name="dftContent">
 				</div>
             </div>
     	</div>
