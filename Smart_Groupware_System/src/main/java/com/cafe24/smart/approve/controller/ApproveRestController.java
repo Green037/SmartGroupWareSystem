@@ -79,20 +79,20 @@ public class ApproveRestController {
 	// 결재선 : 결재선 등록,즐겨찾기
 	@RequestMapping(value ="ap/addApr", method = RequestMethod.POST)
 	public int apAprAddReCtrl(Approval approval){
-			
-//		System.out.println(approval);
-		int apr = 0;
-		
-			//결재선이 모두 null일 경우 조건
-			if(approval.getAprApproval1()==0){
-				apr = 0;
-			}else{
-				apr = approveService.apAprAddServ(approval);
-			}
-//			System.out.println(apr);
 				
-			return apr;
+		System.out.println(approval);
+		int apr = 0;
+	
+		//결재선이 모두 null일 경우 조건
+		if(approval.getAprApproval1()==0){
+			apr = 0;
+		}else{
+			apr = approveService.apAprAddServ(approval);
 		}
+		System.out.println(apr);
+			
+		return apr;
+	}
 	
 	// 결재선 : list에서 view_db에서 사원코드로 저장된 결재선 가져오기 [복수]
 	@RequestMapping(value ="ap/listApr", method = RequestMethod.POST)
@@ -154,18 +154,42 @@ public class ApproveRestController {
 	}
 	
 	// 검색 : 임시 저장목록
-			@RequestMapping(value="ap/searchTem", method = RequestMethod.POST)
-			public List<Draft> apSearchDocListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup){
-				
+	@RequestMapping(value="ap/searchTem", method = RequestMethod.POST)
+	public List<Draft> apSearchDocListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup){
+		
 //				System.out.println("ajax test");
-				System.out.println("임시 넘어온 값 확인 : "+draft);
-				List<Draft> result = new ArrayList<Draft>();
-				result = approveService.apSearchDftServ(draft);
+		System.out.println("임시 넘어온 값 확인 : "+draft);
+		List<Draft> result = new ArrayList<Draft>();
+		result = approveService.apSearchDftServ(draft);
+		
+		System.out.println("임시 결과"+result);
+		
+		return result;
 				
-				System.out.println("임시 결과"+result);
-				
-				return result;
-				
-		}
+	}
+	
+	// 전자결제 팝업창 기본데이터 요청 : 윤재호
+	@RequestMapping(value="ap/evApproval", method = RequestMethod.POST)
+	public Map<String, Object> evAppReqData(){
+		System.out.println("평가보고서 팝업데이터요청 ajax Ctrl");
+		
+		// 1.문서종류, 결제부서, 직급 정보를 조회한다
+		List<Document> doc = new ArrayList<Document>(); //문서종류
+		List<Department> dep = new ArrayList<Department>(); //부서
+		List<Position> pos = new ArrayList<Position>(); //직급
+		
+		doc = approveService.apAddSelServ();
+		dep = approveService.apAddMmSelServ();
+		pos = approveService.apADDPosSelServ();
+		
+		// 2.map에 담아 뷰로 값 리턴한다
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("doc", doc);
+		resultMap.put("dep", dep);
+		resultMap.put("pos", pos);
+		System.out.println("조회데이터 최종확인: "+resultMap);
+		
+		return resultMap;
+	}
 		
 }
