@@ -16,6 +16,7 @@ public class Draft {
 	private String dftCheck;
 	private String dftFileOri;
 	private String dftFilePath;
+	private String dftContext;
 
 	// ----- view
 	private int proApproval;
@@ -117,6 +118,12 @@ public class Draft {
 	}
 	public void setDftFilePath(String dftFilePath) {
 		this.dftFilePath = dftFilePath;
+	}
+	public String getDftContext() {
+		return dftContext;
+	}
+	public void setDftContext(String dftContext) {
+		this.dftContext = dftContext;
 	}
 	
 	public int getProApproval() {

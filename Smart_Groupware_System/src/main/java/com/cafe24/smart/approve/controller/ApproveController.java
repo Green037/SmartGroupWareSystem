@@ -61,7 +61,7 @@ public class ApproveController {
 	public String apAddCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
 							MultipartHttpServletRequest request,Draft draft, Progress progress){
 			
-		System.out.println("ctrl dftAdd > test");
+//		System.out.println("ctrl dftAdd > test");
 		UtilFile utilFile = new UtilFile();
 		
 		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);

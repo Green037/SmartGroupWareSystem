@@ -118,6 +118,7 @@
 				console.log('성공');
 				$('#aprListForm').empty();
 				console.log(data[0].aprCode);
+				
 				$.each(data,function(i, apr){
 					$('#aprListForm').append(`
 							<tr>
@@ -127,8 +128,7 @@
 								<td>`+apr.aprName3+`</td>
 								<td><button type = "button" id="aprChoBtn">선택</button></td>
 							</tr>`);
-				})
-			
+				})		
 			}
 		})
 	
@@ -162,6 +162,8 @@
 				 $('#posSearch3').val(data.map3.ptCode).attr('selected','selected'); 
 				 $('#3').after('<option value="'+data.map3.mmCode+'">'+data.map3.mmName+'</option>');
 				 $('#aprApproval3').val(data.map3.mmCode).attr('selected','selected'); 
+				 
+				 $('#aprCode').val(aprCode);
 				
 			}
 		})
@@ -207,18 +209,27 @@
             </div>
     	</div>
     	
-    		<div class="row">
-    			<div class="col-md-8">
-				    <label for="firstname" class="control-label">[문서구분]</label>
-				    <select name="docCode" id="docCode" class="form-control1">
-				    	<option value=0>[문서분류를 선택하세요]</option>
-						
-						<c:forEach var="doc" items="${doc}">
-							<option value="${doc.docCode}">${doc.docFileGroup}</option>  
-						</c:forEach>
-													
-					</select>
-				</div>	
+    	<div class="row">
+    		<div class="col-md-8">
+				<div class="form-group form-group-sm">
+				    <label for="firstname" class="control-label">[기안내용]</label>
+				    <input type="textarea" class="form-control" name="dftContext">
+				</div>
+            </div>
+    	</div>
+    	
+    	<div class="row">
+   			<div class="col-md-8">
+			    <label for="firstname" class="control-label">[문서구분]</label>
+			    <select name="docCode" id="docCode" class="form-control1">
+			    	<option value=0>[문서분류를 선택하세요]</option>
+					
+					<c:forEach var="doc" items="${doc}">
+						<option value="${doc.docCode}">${doc.docFileGroup}</option>  
+					</c:forEach>
+												
+				</select>
+			</div>	
 		</div>
     	<div class ="row">
 			<div class="col-md-8">
@@ -345,7 +356,7 @@
 		
 		<div class="row">
 			<div class="col-sm-12">
-				 <input type="text" name="aprCode" hidden="hidden" value="0">
+				 <input type="text" name="aprCode" id="aprCode"  hidden="hidden" value="0">
 			</div>	 
 		</div> 
 		
@@ -363,7 +374,7 @@
 		</div>
     	
     	<div class="row">
-           <div class="form-group" align="center">
+           <div class="form-group" >
                     <button type="submit" class="btn btn-default"> Submit </button>
                     <button type="reset" class="btn btn-default" > reset </button>    
            </div>

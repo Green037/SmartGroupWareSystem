@@ -127,10 +127,7 @@
 		
 		<tbody id="apContent">
 		
-		
-		
 		</tbody>
-		
 		
 		<tbody id="originalContent" >
 			<c:forEach var="pgList" items="${pgList}">
@@ -144,15 +141,13 @@
 					<td>${pgList.dftDate}</td>
 					<td>${pgList.proRealTime}</td>
 					<td>${pgList.dftFinalState}</td>
-					
-			
 				</tr>
 			</c:forEach>
 		</tbody>
-		
-	
 	</table>
+
 </div>
+
 
  
 <c:import url="./ap_comPrint.jsp"></c:import> <!--팝업창 --> 

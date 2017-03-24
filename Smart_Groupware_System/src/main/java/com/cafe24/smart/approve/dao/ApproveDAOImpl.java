@@ -77,11 +77,7 @@ public class ApproveDAOImpl implements ApproveDAO {
 			// TODO Auto-generated method stub
 			return sqlSession.selectList("AprDAO.selectByReApr", aprCode);
 		}
-		
-
-		
-
-		
+				
 	// 기안 등록 1-1 : draft
 	@Override
 	public int insertDft(Draft draft) {

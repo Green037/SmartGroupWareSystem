@@ -136,7 +136,7 @@ public class ApproveServiceImpl implements ApproveService {
 	//기안 등록 : POST
 	@Override
 	public int apAddServ(Draft draft, Progress progress, String uploadPath){
-		System.out.println("serv Dft>  test1");
+//		System.out.println("serv Dft>  test1");
 		
 		UtilFile utilFile = new UtilFile();
 		
@@ -144,18 +144,20 @@ public class ApproveServiceImpl implements ApproveService {
 //		System.out.println(uploadPath.substring(127));
 //		System.out.println(draft.getDftFileOri());
 		
+		System.out.println("aprCode 넘어온값"+draft.getAprCode());
+	
+		
 		draft.setDftFileOri(uploadPath.substring(uploadPath.lastIndexOf("/")));
 		draft.setDftFilePath(uploadPath);
-		draft.setAprCode(0);
+		draft.setAprCode(draft.getAprCode());
 		draft.setDftDegree(1);
 		draft.setDftDate(formatter.format(today));
 		draft.setDftFinalState(draft.getDftDegree()+"차미결재대기");
 		
 		int result = approveDAO.insertDft(draft);
-		System.out.println("serv Dft> test2");	
+		System.out.println("넘어온값 middle :"+result);
 		
-		// apr_code default값 기본 설정 = 아무값없음 비교
-
+//		System.out.println("serv Dft> test2");	
 			if(result != 0){				
 				progress.setProTime(draft.getDftDate());
 				progress.setDftCode(draft.getDftCode());
@@ -167,13 +169,13 @@ public class ApproveServiceImpl implements ApproveService {
 				int resultPg = approveDAO.insertPg(progress);
 				// System.out.println("----- serv total Insert> success");
 				result = resultPg;
+				
+				System.out.println("넘어온값total:"+result);
+				
 			}else{
 			System.out.println("fail");
-				// alert 경고 창 뜨기[실패했습니다]
 				}
-		
 		return result;
-	
 	}
 	
 	//[총 결재 목록]진행 목록 :GET ---- ######수정######

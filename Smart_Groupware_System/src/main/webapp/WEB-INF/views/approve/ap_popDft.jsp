@@ -10,6 +10,7 @@
 <div class="modal fade" id="putInForDft" role="dialog">
 <div class="modal-dialog">
 
+
 <!-- 본문 시작 -->
 <div class="modal-content">
 
