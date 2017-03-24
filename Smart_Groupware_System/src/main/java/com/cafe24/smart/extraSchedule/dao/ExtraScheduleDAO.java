@@ -1,5 +1,11 @@
 package com.cafe24.smart.extraSchedule.dao;
 
-public interface ExtraScheduleDAO {
 
+import com.cafe24.smart.extraSchedule.domain.ExtraSchedule;
+
+public interface ExtraScheduleDAO {
+	
+	int insertVa(ExtraSchedule extraSchedule);
+	int insertWo(ExtraSchedule extraSchedule);
+	
 }
