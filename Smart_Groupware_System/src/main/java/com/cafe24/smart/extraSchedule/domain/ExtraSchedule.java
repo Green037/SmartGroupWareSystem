@@ -6,7 +6,7 @@ public class ExtraSchedule {
 	private int mmCode;
 	private String esStartDate;
 	private String esEndDate;
-	private boolean esCostSort;
+	private String esCostSort;
 	private String esNote;
 	
 	public int getEsCode() {
@@ -41,11 +41,11 @@ public class ExtraSchedule {
 		this.esEndDate = esEndDate;
 	}
 	
-	public boolean isEsCostSort() {
+	public String isEsCostSort() {
 		return esCostSort;
 	}
 
-	public void setEsCostSort(boolean esCostSort) {
+	public void setEsCostSort(String esCostSort) {
 		this.esCostSort = esCostSort;
 	}
 
