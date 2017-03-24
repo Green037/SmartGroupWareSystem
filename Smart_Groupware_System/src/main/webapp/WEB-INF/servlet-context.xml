@@ -56,6 +56,7 @@
 				<value>classpath:com/cafe24/smart/approve/dao/ApproveMapper.xml</value>
 				<value>classpath:com/cafe24/smart/wbs/dao/WbsMapper.xml</value>
 				<value>classpath:com/cafe24/smart/commute/dao/CommuteMapper.xml</value>
+				<value>classpath:com/cafe24/smart/extraSchedule/dao/ExtraScheduleMapper.xml</value>
 			</list>
 		</property>
 	</bean>

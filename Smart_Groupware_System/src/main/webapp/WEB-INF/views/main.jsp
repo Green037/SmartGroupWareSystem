@@ -205,16 +205,17 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/image_hsa.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>홍수아</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/hsa3737/">github.com/hsa3737</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/hsa3737">blog.naver.com/hsa3737</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i>전자결재, 문서함</p>
+                            
                     </div>
                 </div>
             </div>
@@ -286,16 +287,15 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/image_hsa.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>홍수아</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> </p>
+                        	프로젝트를 진행하면서, 미숙했던 부분에 대해서 다시 한번 완벽하게 공부 할 수 있게 되어 뜻깊은 시간이었습니다.
+                        </p>
                     </div>
                 </div>
             </div>

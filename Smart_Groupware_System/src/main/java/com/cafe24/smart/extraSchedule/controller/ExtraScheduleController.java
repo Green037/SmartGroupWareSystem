@@ -12,13 +12,10 @@ public class ExtraScheduleController {
 	private static final Logger log = LoggerFactory.getLogger(ExtraScheduleController.class);
 	
 	
-	//GET 요청 근외일정 등록
+	//GET 요청 근외일정 등록-폼이동
 	@RequestMapping(value ="extraSchedule/es_add", method = RequestMethod.GET)
 		public String esAddCtrl(){
 			
-		
-				return "extraSchedule/es_add";
-			
+				return "extraSchedule/es_add";	
 		}
-	
 }
