@@ -255,18 +255,18 @@
 		<!--/sidebar-menu-->
 		<div class="sidebar-menu" style="position:fixed ; z-index:999999;">
 			<header class="logo">
-				<a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span>
-				</a> <a href="/smart"> <span id="logo">
+				<a href="<c:url value='/member/mm_login'/>" class="sidebar-icon"> <span class="fa fa-bars"></span>
+				</a> <a href="/member/mm_login"> <span id="logo">
 						<h1><span class="glyphicon glyphicon-globe" aria-hidden="true"></span> Smart</h1>
 				</span> <!--<img id="logo" src="" alt="Logo"/>-->
 				</a>
 			</header>
 			<div style="border-top: 1px solid rgba(69, 74, 84, 0.7)"></div>
 			<div class="down">
-				<a href="index.html"><span class=" name-caret"><b>${mmName}</b></span></a>
+				<a href="<c:url value='/member/mm_content'/>"><span class=" name-caret"><b>${mmName}</b></span></a>
 				<p>님이 로그인 중입니다.</p>
 				<ul>
-					<li><a class="tooltips" href="index.html"><span>Profile</span><i
+					<li><a class="tooltips" href="<c:url value='/member/mm_content'/>"><span>Profile</span><i
 							class="lnr lnr-user"></i></a></li>
 					
 					<li><a class="tooltips" href="<c:url value='/logout'/>"><span>Logout</span><i class="lnr lnr-power-switch"></i></a></li>

@@ -6,13 +6,14 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<link href="<c:url value='/resources/css/mainView.css'/>" rel="stylesheet" type="text/css"/>
+	<link href="<c:url value='/resources/css/mainAni.css'/>" rel="stylesheet" type="text/css"/>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
 	
 	<script>
 	$(document).ready(function () {
 		$('[data-toggle="tooltip"]').tooltip();
-	    $('.material-button-toggle').on("click", function () {
+		$('.material-button-toggle').on("click", function () {
 	        $(this).toggleClass('open');
 	        $('.option').toggleClass('scale-on');
 	        
@@ -20,23 +21,54 @@
 	});
 	
 	$(document).on('click','#projectInfoBtn',function(){
+		$('#menualForm').css('display','none');
 		$('#memberInfoForm').css('display','none');
 		$('#reviewForm').css('display','none');
 		$('#accordion').css('display','');
 	});
 	
 	$(document).on('click','#memberInfoBtn',function(){
+		$('#menualForm').css('display','none');
 		$('#accordion').css('display','none');
 		$('#reviewForm').css('display','none');
 		$('#memberInfoForm').css('display','');
 	});
 	
 	$(document).on('click','#reviewBtn',function(){
+		$('#menualForm').css('display','none');
 		$('#accordion').css('display','none');
 		$('#memberInfoForm').css('display','none');
 		$('#reviewForm').css('display','');
 	});
 	
+	$(document).on('click','#menualBtn',function(){
+		$('#menualForm').css('display','');
+	});
+	
+	// 케러셀. 이벤트핸들러
+	$(document).ready( function() {
+	    $('#myCarousel').carousel({
+	    	interval:   4000
+		});
+		
+		var clickEvent = false;
+		$('#myCarousel').on('click', '.nav a', function() {
+				clickEvent = true;
+				$('.nav li').removeClass('active');
+				$(this).parent().addClass('active');		
+		}).on('slid.bs.carousel', function(e) {
+			if(!clickEvent) {
+				var count = $('.nav').children().length -1;
+				var current = $('.nav li.active');
+				current.removeClass('active').next().addClass('active');
+				var id = parseInt(current.data('slide-to'));
+				if(count == id) {
+					$('.nav li').first().addClass('active');	
+				}
+			}
+			clickEvent = false;
+		});
+	});
 	
 	</script>
 </head> 
@@ -49,6 +81,7 @@
 <div class="outter-wp">	
 <!-- 본문시작 -->
 <h1 align="center" style="background-color:blue;color:white;">Smart Groupware System Info</h1>
+
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12 col-sm-6 col-md-6">
@@ -76,8 +109,8 @@
               </button>
             </li>
           </ul>
-          <button class="material-button material-button-toggle" type="button">
-            <span class="fa fa-plus" aria-hidden="true"></span>
+          <button class="material-button material-button-toggle" type="button" id="menualBtn">
+            <span aria-hidden="true">클릭!!</span>
           </button>
         </div>
       </div>
@@ -297,7 +330,87 @@
         </div>
     </div>
 </div>
-
+<div class="container" id="menualForm" style="display:none;">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!-- Wrapper for slides -->
+	<div class="carousel-inner">
+		<div class="item active">
+		<img src="http://placehold.it/1200x400/16a085/ffffff&text=Employee">
+			<div class="carousel-caption">
+				<h3>
+					출퇴근관리 
+				</h3>
+				<p>
+					출퇴근등록 - Ajax를 사용하여 SinglePage로 출근,퇴근,외출 등록 구현.<br/>
+					출퇴근조회 - 로그인된 개인기록만 조회(날짜입력필수)<br/>
+					부서출퇴근기록조회 - 부서별 출퇴근 조회
+				</p>
+				<h3>
+					인사관리
+				</h3>
+				<p>
+					출퇴근등록 - Ajax를 사용하여 SinglePage로 출근,퇴근,외출 등록 구현.<br/>
+					출퇴근조회 - 로그인된 개인기록만 조회(날짜입력필수)<br/>
+					부서출퇴근기록조회 - 부서별 출퇴근 조회
+				</p>
+				
+			</div>
+		</div>
+	    <!-- End Item -->
+		<div class="item">
+		<img src="http://placehold.it/1200x400/e67e22/ffffff&text=Projects">
+			<div class="carousel-caption">
+				<h3>
+				프로젝트관리</h3>
+				<p>
+					목록 - Ajax로 진행상황별 조회. 제목 클릭 -> 상세보기 -> 수정,삭제기능<br/>
+					등록 - 프로젝트,총자금,팀장정보 분할등록<br/>
+					검색 - 프로젝트 규모,기간별 조건으로 검색가능. Defalut = 전체조회
+				</p>
+				<h3>
+				WBS</h3>
+				<p>
+					등록 - Ajax로 팀장정보 확인 후 팀장만 WBS 등록 가능<br/>
+					완료보고서 - 팀장만 등록가능. 전자결제 팝업창으로 바로 결제요청가능.
+				</p>
+			</div>
+		</div>
+	<!-- End Item -->
+		<div class="item">
+		<img src="http://placehold.it/1200x400/2980b9/ffffff&text=Approval">
+			<div class="carousel-caption">
+				<h3>
+				전자결제 목록</h3>
+				<p>
+					임시목록 - 결제요청된 문서중 반려자료 보관.
+					결재목록 - 결제대기중인 문서목록. 결제자만 
+				</p>
+			</div>
+		</div>
+	<!-- End Item -->
+		<div class="item">
+		<img src="http://placehold.it/1200x400/8e44ad/ffffff&text=Services">
+			<div class="carousel-caption">
+				<h3>
+				Headline</h3>
+				<p>
+				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+				tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. Lorem
+				ipsum dolor sit amet, consetetur sadipscing elitr.</p>
+			</div>
+		</div>
+	<!-- End Item -->
+	</div>
+<!-- End Carousel Inner -->
+	<ul class="nav nav-pills nav-justified">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"><a href="#">인사관리<small>사용설명서</small></a></li>
+		<li data-target="#myCarousel" data-slide-to="1"><a href="#">프로젝트<small>사용설명서</small></a></li>
+		<li data-target="#myCarousel" data-slide-to="2"><a href="#">전자결제<small>사용설명서</small></a></li>
+		<li data-target="#myCarousel" data-slide-to="3"><a href="#">인사,고과<small>사용설명서</small></a></li>
+	</ul>
+</div>
+<!-- End Carousel -->
+</div>
 <!-- 본문끝 -->
 </div>				
 </div>
