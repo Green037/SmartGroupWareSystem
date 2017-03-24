@@ -237,9 +237,7 @@
 						<small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
 						<br/><br/>
 						<p>
-							<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/Green037/">github.com/Green037</a><br/>
-							<i class="glyphicon glyphicon-globe"></i> <a href="http://diaryofgreen.tistory.com/">diaryofgreen.tistory.com</a><br/>
-							<i class="glyphicon glyphicon-gift"></i> 팀장, 인사관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
+							팀원 간의 의견 조율과 협동이 얼마나 중요한지 배웠습니다. 요구 사항 분석부터 단위 테스트까지 실무에서 활용할 수 있는 기술을 배웠으며, 다양한 시각으로 코드를 바라볼 수 있게 된 계기가 됐습니다.
 						</p>
 					</div>
 				</div>
@@ -256,10 +254,7 @@
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/freebsy/">github.com/freebsy</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/freekisuj">blog.naver.com/freekisuj</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i>프로젝트를 진행하며 실무경험을 느낄 수 있어서 
-                            								매우 좋은 경험이라 생각하였고 팀원들과의 소통 능력 등 많은 것들을 배울 수 있어서 매우 값진 시간 이었습니다.</p>
+                        	프로젝트를 진행하며 실무경험을 느낄 수 있어서 매우 좋은 경험이라 생각하였고 팀원들과의 소통 능력 등 많은 것들을 배울 수 있어서 매우 값진 시간 이었습니다.</p>
                     </div>
                 </div>
             </div>
@@ -294,7 +289,7 @@
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	프로젝트를 진행하면서, 미숙했던 부분에 대해서 다시 한번 완벽하게 공부 할 수 있게 되어 뜻깊은 시간이었습니다.
+                        	프로젝트를 진행하면서, 미숙했던 부분에 대해 다시 한번 완벽하게 공부 할 수 있게 되어 뜻 깊은 시간이었습니다.
                         </p>
                     </div>
                 </div>
