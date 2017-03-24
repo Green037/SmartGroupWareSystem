@@ -50,6 +50,46 @@ $(document).on('click','#VaAddBtn',function(){
 		}
 	});
 });
+//출장신청 
+$(document).on('click','#esWorkOutBtn',function(){
+	$('#goWorkout').modal();
+	var mmCode = '${sessionScope.mmCode}';
+	var mmName = '${sessionScope.mmName}';
+	/* console.log('세션코드값, 세션네임값 확인 : '+mmCode+mmName); */
+	$('#mmCode_2').val(mmCode);
+	$('#mmName_2').val(mmName);
+});
+
+//출장신청 버튼 클릭 이벤트 
+$(document).on('click','#WoAddBtn',function(){
+	var formData = $('#WoAddForm').serialize();
+	console.log(formData); 
+	if($('#esStartDate2').val() == null || $('#esStartDate2').val() == '' ){
+		alert('시작일을 입력하세요')
+		return;
+	}else if($('#esEndDate2').val() == null || $('#esEndDate2').val() == '' ){
+		alert('종료일을 입력하세요')
+		return;
+	}
+	$.ajax({
+		url : '/smart/es/addEsWo',
+		data : formData,
+		dataType : 'json',
+		type : 'post',
+		success : function(data){
+			console.log("H2 ajax form esVaAdd Check!");
+			console.log(data.check);
+			
+			if(data.check =='성공'){
+				var checkMessage = '출장신청이 등록되었습니다';
+			}else if(data.check =='실패'){
+				var checkMessage = '출장신청에 실패하였습니다';
+			}
+			$('#goWorkout').modal('hide');
+			alert(checkMessage);  
+		}
+	});
+});
 
 
 </script>	
@@ -77,7 +117,7 @@ $(document).on('click','#VaAddBtn',function(){
 	          	 <button type="button" id="esVaAddBtn" class="btn btn-sq-lg btn-warning">
 	              	<i class="fa fa-user fa-5x"></i><br/> 연차 신청 <br>
 	             </button>
-            	<button type="button" id="esOutWorkBtn" class="btn btn-sq-lg btn-danger">
+            	<button type="button" id="esWorkOutBtn" class="btn btn-sq-lg btn-danger">
               		<i class="fa fa-user fa-5x"></i><br/> 출장 신청 <br>
             	</button>
           	</p>
@@ -110,7 +150,7 @@ $(document).on('click','#VaAddBtn',function(){
 </div>
 </div>
 <c:import url="./es_vacation.jsp"></c:import> <!--팝업창  연차신청  -->
-
+<c:import url="./es_workout.jsp"></c:import> <!--팝업창  연차신청  -->
 
 <%@ include file="../footer.jsp"%>
 </body>

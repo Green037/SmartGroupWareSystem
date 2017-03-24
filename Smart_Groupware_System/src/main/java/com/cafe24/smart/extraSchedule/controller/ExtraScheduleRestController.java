@@ -40,4 +40,25 @@ public class ExtraScheduleRestController {
 		return reMap;
 		
 	}
+	
+	//출장 등록 POST
+		@RequestMapping(value = "es/addEsWo", method = RequestMethod.POST)
+		public Map<String, Object> esWoAddCtrl(ExtraSchedule extraSchedule){
+			System.out.println("출장등록값확인:"+extraSchedule);
+			int result = extraScheduleService.addEsWoServ(extraSchedule);
+			
+			Map<String, Object> reMap = new HashMap<String, Object>();
+		
+			//입력여부 비교하여 성공,실패 체크후 리턴해주기
+			if(result != 0){
+				reMap.put("check", "성공");
+			}else{
+				reMap.put("check", "실패");
+			}
+			
+			return reMap;
+			
+		}
+	
+	
 }

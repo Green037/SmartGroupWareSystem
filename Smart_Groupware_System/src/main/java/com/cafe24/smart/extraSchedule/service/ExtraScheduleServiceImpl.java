@@ -18,6 +18,13 @@ public class ExtraScheduleServiceImpl implements ExtraScheduleService{
 		//System.out.println("연차신청등록확인"+extraSchedule);
 		return extraScheduleDao.insertVa(extraSchedule);
 	}
+
+	//출장신청
+	@Override
+	public int addEsWoServ(ExtraSchedule extraSchedule) {
+		// TODO Auto-generated method stub
+		return extraScheduleDao.insertWo(extraSchedule);
+	}
 	
 	
 	

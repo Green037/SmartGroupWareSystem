@@ -20,7 +20,14 @@ public class ExtraScheduleDAOImpl implements ExtraScheduleDAO {
 	@Override
 	public int insertVa(ExtraSchedule extraSchedule) {
 		// TODO Auto-generated method stub
-		System.out.println("쿼리전 최종 값 확인 : "+extraSchedule);
+		//System.out.println("쿼리전 최종 값 확인 : "+extraSchedule);
 		return sqlSession.insert("EsDAO.insertVa", extraSchedule);
+	}
+
+	@Override
+	public int insertWo(ExtraSchedule extraSchedule) {
+		// TODO Auto-generated method stub
+		System.out.println("쿼리전 최종 값 확인 : "+extraSchedule);
+		return sqlSession.insert("EsDAO.insertWo", extraSchedule);
 	}
 }
