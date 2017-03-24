@@ -7,13 +7,6 @@
 	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
 	<script>
-	/* 최종승인 보고서 가져오는 page  */
-	$(document).on('click','#putInBtn',function(){
-		$('#putInFor').modal();
-		var dftCode = $(this).parent().parent().children('#_dftCode').val();
-		console.log(dftCode);
-		$('#dftCode').val(dftCode);
-	});
 	
 	/* 검색 페이지  */
 	$(document).on('click','#searchBtn',function(){
@@ -74,7 +67,7 @@
 		<div class="form-group">
 			<label for="docFileGroup">분류</label>
 			<select name="docFileGroup">
-				<option value="0">::분류::</option>
+				<option value="문서없음">::분류::</option>
 				<c:forEach var="docList" items="${docList}">
 					<option value ="${docList.docFileGroup}">${docList.docFileGroup}</option>
 				</c:forEach>
@@ -128,9 +121,7 @@
 				<th>결재자</th>
 				<th>기안등록일자</th>
 				<th>최근결재일자</th>
-				<th>결재진황현황</th>
-				<th>출력</th>
-				
+				<th>결재진황현황</th>				
 			</tr>
 		</thead>
 		
@@ -154,25 +145,7 @@
 					<td>${pgList.proRealTime}</td>
 					<td>${pgList.dftFinalState}</td>
 					
-					<c:choose>
-							<c:when test="${pgList.dftFinalState eq '3차결재최종승인'}">
-								<td>
-									<button type="button" id="putInBtn">인쇄</button>
-								</td>
-							</c:when>
-							<c:when test="${pgList.dftFinalState eq '2차결재최종승인'}">
-								<td>
-									<button type="button" id="putInBtn">인쇄</button>
-								</td>
-							</c:when>
-							<c:when test="${pgList.dftFinalState eq '1차결재최종승인'}">
-								<td>
-									<button type="button" id="putInBtn">인쇄</button>
-								</td>
-							</c:when>
-					
-					</c:choose>
-						
+			
 				</tr>
 			</c:forEach>
 		</tbody>

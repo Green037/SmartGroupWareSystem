@@ -131,7 +131,7 @@
 			</div>
 			<div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
 				<div class="panel-body">
-					사원들의 근태를 일 수로 계산하여 급여를 산정하고, 프로젝트 성과와 이력 평가를 인사고과에 반영하여 이를 토대로 성과금에 반영합니다. 결재가 이뤄진 후 급여를 이체합니다. 
+					사원들의 근태를 일 수로 계산하여 급여를 산정하고, 프로젝트 성과와 이력 평가를 인사고과에 반영하여 이를 토대로 성과금에 적용합니다. 결재가 이뤄진 후 급여를 이체합니다. 
 				</div>
 			</div>
 		</div>
@@ -155,7 +155,7 @@
 						<p>
 							<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/Green037/">github.com/Green037</a><br/>
 							<i class="glyphicon glyphicon-globe"></i> <a href="http://diaryofgreen.tistory.com/">diaryofgreen.tistory.com</a><br/>
-							<i class="glyphicon glyphicon-gift"></i> 팀장, 인사관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
+							<i class="glyphicon glyphicon-gift"></i> 팀장, 급여관리, 고과관리, 파일 업로드/다운로드, 로그인시 RSA 암호화
 						</p>
 					</div>
 				</div>
@@ -205,16 +205,17 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/image_hsa.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>홍수아</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> 출퇴근,프로젝트담당</p>
+                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/hsa3737/">github.com/hsa3737</a><br/>
+                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/hsa3737">blog.naver.com/hsa3737</a><br/>
+                            <i class="glyphicon glyphicon-gift"></i>전자결재, 문서함</p>
+                            
                     </div>
                 </div>
             </div>
@@ -286,16 +287,15 @@
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
-                        <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" />
+                        <img src="<c:url value='/resources/images/image_hsa.jpg'/>" alt="" class="img-rounded img-responsive" />
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>홍수아</h4>
                         <small><cite title="San Francisco, USA">스마트정보교육원 <i class="glyphicon glyphicon-map-marker"></i></cite></small>
                         <br/><br/>
                         <p>
-                        	<i class="glyphicon glyphicon-envelope"></i> <a href="https://github.com/rang1536/">github.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-globe"></i> <a href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br/>
-                            <i class="glyphicon glyphicon-gift"></i> </p>
+                        	프로젝트를 진행하면서, 미숙했던 부분에 대해서 다시 한번 완벽하게 공부 할 수 있게 되어 뜻깊은 시간이었습니다.
+                        </p>
                     </div>
                 </div>
             </div>

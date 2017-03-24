@@ -255,7 +255,7 @@
 <select id="selectAllPg"
 		resultMap="resultDft"
 		parameterType ="int">
-			SELECT 
+		SELECT 
 			*
 		 FROM
 		 	progress
@@ -510,7 +510,7 @@
 		ON 
 			draft.dft_code = progress.dft_code    	
 		<trim prefix="WHERE" prefixOverrides="AND">
-			<if test="!docFileGroup.equals('0')">
+			<if test="!docFileGroup.equals('문서없음')">
 				AND document.doc_fileGroup = #{docFileGroup} 
 			</if>  
 			<if test="dftDegree != 0">
