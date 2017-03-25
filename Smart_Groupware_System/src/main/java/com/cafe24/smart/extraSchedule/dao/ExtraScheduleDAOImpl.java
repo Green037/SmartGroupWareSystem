@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.cafe24.smart.extraSchedule.domain.ExtraSchedule;
+import com.cafe24.smart.member.domain.Member;
 
 @Repository
 public class ExtraScheduleDAOImpl implements ExtraScheduleDAO {
@@ -40,4 +41,19 @@ public class ExtraScheduleDAOImpl implements ExtraScheduleDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("EsDAO.selectPersonalEs", extraSchedule);
 	}
+	
+	//부서 해당 직원 조회
+	@Override
+	public List<Member> selectByDpCodeMm(int dpCode) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("EsDAO.selectByDpCodeMm", dpCode);
+	}
+	// 부서별 근외조회
+	@Override
+	public List<ExtraSchedule> selectDpEs(Map<String, Object> paramMap) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("EsDAO.selectDpEs", paramMap);
+	}
+	
+	
 }

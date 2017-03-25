@@ -51,7 +51,7 @@
 				,cm_exceptionInput
 			</if>
 			<if test="cmExceptionReason != null and cmExceptionReason != ''">
-				,cm_exceptionReson
+				,cm_exceptionReason
 			</if>
 			)
 		VALUES(

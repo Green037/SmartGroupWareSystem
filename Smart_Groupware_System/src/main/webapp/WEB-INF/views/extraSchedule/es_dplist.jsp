@@ -10,13 +10,13 @@
 	// 검색버튼 클릭 이벤트 - ajax로 검색결과 들고 와서 뿌려주기
 	$(document).on('click','#searchBtn',function(){
 		//입력값 유효성겁사 - 사원명 제외 null인정안함.
-		//var startDay = $('#cmStartDay').val();
+		//var startDay = $('#esStartDate').val();
 		var dpCode = $('#dpCode').val();
 		/* console.log(dpCode); */
-		if($('#cmStartDay').val() == null || $('#cmStartDay').val() == ''){
+		if($('#esStartDate').val() == null || $('#esStartDate').val() == ''){
 			alert('시작일을 입력하세요');
 			return;
-		}else if($('#cmEndDay').val() == null || $('#cmEndDay').val() == ''){
+		}else if($('#esEndDate').val() == null || $('#esEndDate').val() == ''){
 			alert('종료일을 입력하세요');
 			return;
 		}else if($('#dpCode').val() == ':부서선택:'){
@@ -25,30 +25,30 @@
 		}
 				
 		//입력값으로 근태 조회해오기
-		var formData = $('#cmSearchForm').serialize();
-		$('#cmContent').empty();
+		var formData = $('#esSearchForm').serialize();
+		$('#esContent').empty();
 		$.ajax({
-			url : '/smart/cm/searchAll',
+			url : '/smart/es/searchAll',
 			data : formData,
 			dataType : 'json',
 			type : 'post',
 			success : function(data){
 				console.log('h2');
-				console.log(data[0].cmCode);
-				$.each(data, function(i, cmList){
-					$('#cmContent').append(`
+				console.log(data[0].esCode);
+				$.each(data, function(i, esList){
+					$('#esContent').append(`
 						<tr>
-							<td>`+cmList.cmCode+`</td>
-							<td>`+cmList.mmName+`</td>
-							<td>`+cmList.cmOnTime+`</td>
-							<td>`+cmList.cmOffTime+`</td>
-							<td>`+cmList.cmDate+`</td>
-							<td>`+cmList.cmCheckToday+`</td>
+							<td>`+esList.esCode+`</td>
+							<td>`+esList.mmName+`</td>
+							<td>`+esList.esStartDate+`</td>
+							<td>`+esList.esEndDate+`</td>
+							<td>`+esList.esCostSort+`</td>
+							<td>`+esList.esNote+`</td>
 						</tr>`);
 				}); 
 			}
 		});
-		$('#cmTable').css('display',''); 
+		$('#esTable').css('display',''); 
 	});
 	
 	//사원 포커스 이벤트
@@ -56,7 +56,7 @@
 		var dpCode = $('#dpCode').val();
 		$('#mmCode').empty();
 		$.ajax({
-			url : '/smart/cm/searchMm',
+			url : '/smart/es/searchMm',
 			data : {'dpCode':dpCode},
 			dataType : 'json',
 			type : 'post',
@@ -86,22 +86,22 @@
 <div class="validation-form">
 <div class="container">
 	<center>
-		<h2><span class="glyphicon glyphicon-search"> 근태 조회</span></h2>
+		<h2><span class="glyphicon glyphicon-search"> 부서 근외조회</span></h2>
 	</center>
 	<br/>
 	
 	<button type="button" class="btn btn-success btn-success btn-block">
 		<span class="glyphicon glyphicon-search"></span>
-		 출퇴근이력을 검색하실 기간과 부서를 입력해주세요.
+		 근외이력을 검색하실 기간과 부서를 입력해주세요.
 	</button>
 	
-	<form id="cmSearchForm">
+	<form id="esSearchForm">
 		<table class="table table-hover">
 			<tr>
 				<td>시작일</td>
-				<td><input type="date"  id="cmStartDay" name="cmStartDay" class="form-control"></td>
+				<td><input type="date"  id="esStartDate" name="esStartDate" class="form-control"></td>
 				<td>종료일</td>
-				<td><input type="date"  id="cmEndDay" name="cmEndDay" class="form-control"></td>
+				<td><input type="date"  id="esEndDate" name="esEndDate" class="form-control"></td>
 			</tr>
 			<tr>
 				<td>부서</td>
@@ -130,18 +130,18 @@
 </div>
 </div>
 </div>	
-	<table class="table table-hover" id="cmTable" style="display:none;">
+	<table class="table table-hover" id="esTable" style="display:none;">
 		<thead>
 			<tr>
 				<th>코드</th>
 				<th>사원이름</th>
-				<th>출근시간</th>
-				<th>퇴근시간</th>
-				<th>날짜</th>
-				<th>근태체크</th>
+				<th>시작일</th>
+				<th>종료일</th>
+				<th>비용</th>
+				<th>분류</th>
 			</tr>
 		</thead>
-		<tbody id="cmContent">
+		<tbody id="esContent">
 			
 		</tbody>
 	</table>
