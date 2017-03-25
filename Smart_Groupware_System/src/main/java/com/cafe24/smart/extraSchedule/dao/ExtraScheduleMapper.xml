@@ -43,6 +43,27 @@
 			#{esNote});
 	</insert> 
 	
+	<select id="selectPersonalEs"
+			parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"
+			resultMap="resultEs">
+		SELECT 
+			*
+		FROM
+			extraSchedule
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="!esStartDate.equals('') and esEndDate.equals('')">
+					AND es_startDate >= #{esStartDate}
+			</if>
+			<if test="!esStartDate.equals('') and esEndDate.equals('')">
+					AND es_endDate >= #{esEndDate}
+			</if>
+			<if test="!esStartDate.equals('') and !esEndDate.equals('')">
+					AND es_startDate >= #{esStartDate} AND es_endDate <![CDATA[ <= ]]> #{esEndDate}
+			</if>
+		</trim>
+	
+	</select>
+	
 	
 	
 </mapper>

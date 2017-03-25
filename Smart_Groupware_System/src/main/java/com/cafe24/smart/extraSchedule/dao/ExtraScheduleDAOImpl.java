@@ -1,5 +1,8 @@
 package com.cafe24.smart.extraSchedule.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,11 +26,18 @@ public class ExtraScheduleDAOImpl implements ExtraScheduleDAO {
 		//System.out.println("쿼리전 최종 값 확인 : "+extraSchedule);
 		return sqlSession.insert("EsDAO.insertVa", extraSchedule);
 	}
-
+	
+	//출장 신청
 	@Override
 	public int insertWo(ExtraSchedule extraSchedule) {
 		// TODO Auto-generated method stub
 		System.out.println("쿼리전 최종 값 확인 : "+extraSchedule);
 		return sqlSession.insert("EsDAO.insertWo", extraSchedule);
+	}
+	// 근외 조회
+	@Override
+	public List<ExtraSchedule> selectPersonalEs(ExtraSchedule extraSchedule) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("EsDAO.selectPersonalEs", extraSchedule);
 	}
 }

@@ -310,7 +310,7 @@
 						</a>
 						<ul id="menu-academico-sub">
 							<li id="menu-academico-avaliacoes"><a href="<c:url value='/extraSchedule/es_add'/>">근외일정등록</a></li>
-							<li id="menu-academico-boletim"><a href="#">근외일정조회</a></li>
+							<li id="menu-academico-boletim"><a href="<c:url value='/extraSchedule/es_listSearch'/>">근외일정조회</a></li>
 							<li id="menu-academico-boletim"><a href="#">부서근외일정조회</a></li>
 						</ul>
 					</li>

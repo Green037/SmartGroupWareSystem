@@ -103,7 +103,7 @@ public class MemberController {
 		@RequestMapping(value="member/mm_content", method=RequestMethod.GET)
 		public String mmContentCtrl(Model model, HttpSession session){
 			int mmCode = (int) session.getAttribute("mmCode");// 세션에 담겨져있는 값을 가져와 mmCode 변수에 담아준다.
-			System.out.println("세션 코드값 확인 : "+mmCode);
+			//System.out.println("세션 코드값 확인 : "+mmCode);
 			
 			// 사원조회 매서드 호출
 			MemberContent viewMemberContent = memberService.mmContentServ(mmCode); 

@@ -18,4 +18,12 @@ public class ExtraScheduleController {
 			
 				return "extraSchedule/es_add";	
 		}
+	//GET 개인 출퇴근 조회
+		@RequestMapping(value="extraSchedule/es_listSearch", method=RequestMethod.GET)
+		public String cmListCtrl(){
+					
+			return "/extraSchedule/es_list";
+		}
+	
+	
 }
