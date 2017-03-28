@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="WbsDAO">
+	<resultMap id="resultWbs" type="com.cafe24.smart.wbs.domain.Wbs">
+		<result property="wbsCode" column="wbs_code"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="wbsCate" column="wbs_cate"/>
+		<result property="wbsName" column="wbs_name"/>
+		<result property="wbsContents" column="wbs_contents"/>
+		<result property="wbsStartDate" column="wbs_startDate"/>
+		<result property="wbsEndDate" column="wbs_endDate"/>
+		<result property="wbsWorkingDays" column="wbs_workingDays"/>
+		<result property="wbsUncompletedReason" column="wbs_uncompletedReason"/>
+		<result property="wbsFinalEndDate" column="wbs_finalEndDate"/>
+		<result property="wbsProgress" column="wbs_progress"/>
+	</resultMap>
+	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" column="mm_code"/>
+		<result property="ctCode" column="ct_code"/>
+		<result property="ptCode" column="pt_code"/>
+		<result property="dpCode" column="dp_code"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="mmJoinDate" column="mm_joinDate"/>
+		<result property="mmResignDate" column="mm_resignDate"/>
+		<result property="mmAnnualLeave" column="mm_annualLeave"/>
+		<result property="mmArmy" column="mm_army"/>
+		<result property="mmEmail" column="mm_email"/>
+		<result property="mmMarriage" column="mm_marriage"/>
+		<result property="mmPassword" column="mm_password"/>
+		<result property="mmSign" column="mm_sign"/>
+		<result property="mmAddress" column="mm_address"/>
+		<result property="mmTel" column="mm_tel"/>
+		<result property="mmBank" column="mm_bank"/>
+		<result property="mmAccount" column="mm_account"/>
+	</resultMap>
+	<resultMap id="resultPr" type="com.cafe24.smart.project.domain.Project">
+		<result property="prCode" column="pr_code"/>
+		<result property="prMemberCode" column="pr_memberCode"/>
+		<result property="dftCode" column="dft_code"/>
+		<result property="prName" column="pr_name"/>
+		<result property="prMember" column="pr_member"/>
+		<result property="prMoney" column="pr_money"/>
+		<result property="prGoal" column="pr_goal"/>
+		<result property="prProgress" column="pr_progress"/>
+		<result property="prCate" column="pr_cate"/>
+		<result property="prRestration" column="pr_resitration"/>
+		<result property="prStartDay" column="pr_startDay"/>
+		<result property="prEndDay" column="pr_endDay"/>
+		<result property="prForProgress" column="pr_forProgress"/>
+		<result property="prFinishCheck" column="pr_finishCheck"/>
+	</resultMap>
+	
+	<select id="selectByMmCodeMm"
+			parameterType="com.cafe24.smart.member.domain.Member"
+			resultMap="resultMm">
+		SELECT 
+			*
+		FROM 
+			memberManagement
+		WHERE
+			mm_code = #{mmCode} 
+	</select>
+	
+	<select id="selectByMmCodePr"
+			parameterType="int"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM 
+			project
+		WHERE 
+			pr_memberCode = #{mmCode}
+		AND
+			pr_Report = "미작성"
+	</select>
+	
+	<insert id="insertWbs"
+			parameterType="com.cafe24.smart.wbs.domain.Wbs">
+		INSERT INTO wbs(
+			pr_code,
+			wbs_cate,
+			wbs_name,
+			wbs_contents,
+			wbs_startDate,
+			wbs_endDate,
+			wbs_workingDays,
+			wbs_progress,
+			wbs_status)
+		VALUES(
+			#{prCode},
+			#{wbsCate},
+			#{wbsName},
+			#{wbsContents},
+			#{wbsStartDate},
+			#{wbsEndDate},
+			#{wbsWorkingDays},
+			#{wbsProgress},
+			#{wbsStatus})
+	</insert>
+	
+	<select id="selectByPrCodeWbs"
+			parameterType="int"
+			resultMap="resultWbs">
+		SELECT 
+			*
+		FROM 
+			wbs
+		WHERE 
+			pr_code = #{prCode}
+	</select>
+	
+	<select id="selectByWbsCodeWbs"
+			parameterType="int"
+			resultMap="resultWbs">
+		SELECT
+			*
+		FROM
+			wbs
+		WHERE
+			wbs_code = #{wbsCode}
+	</select>
+	
+	<update id="updateWbs"
+			parameterType="com.cafe24.smart.wbs.domain.Wbs">
+		UPDATE wbs
+			<set>
+				<if test="wbsName != null">wbs_name=#{wbsName},</if>
+				<if test="wbsContents != null">wbs_contents=#{wbsContents},</if>
+				<if test="wbsStartDate != null">wbs_startDate=#{wbsStartDate},</if>
+				<if test="wbsEndDate != null">wbs_endDate=#{wbsEndDate},</if>
+				<if test="wbsProgress != null">wbs_progress=#{wbsProgress},</if>
+				<if test="wbsUncompletedReason != null">wbs_uncompletedReason=#{wbsUncompletedReason},</if>
+				<if test="wbsFinalEndDate != ''">wbs_finalEndDate=#{wbsFinalEndDate},</if>
+				<if test="wbsStatus != null">wbs_status=#{wbsStatus},</if>
+				<if test="wbsWorkingDays != null">wbs_workingDays=#{wbsWorkingDays}</if>
+			</set>
+		WHERE 
+			wbs_code = #{wbsCode}
+	</update>
+</mapper>

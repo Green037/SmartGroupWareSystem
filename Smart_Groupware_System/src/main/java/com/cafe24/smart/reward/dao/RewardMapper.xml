@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="ReDAO">
+	<resultMap id="resultRe" type="com.cafe24.smart.reward.domain.Reward">
+		<result property="reCode" column="re_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="reGrade" column="re_grade"/>
+		<result property="reDate" column="re_date"/>
+		<result property="reDocument" column="re_document"/>
+		<result property="reMmCode" column="re_mmCode"/>
+	</resultMap>
+	
+	<resultMap id="resultIn" type="com.cafe24.smart.reward.domain.Incentive">
+		<result property="inCode" column="in_code"/>
+		<result property="reCode" column="re_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="inBonus" column="in_bonus"/>
+		<result property="inPossible" column="in_possible"/>
+		<result property="inDate" column="in_date"/>
+		<result property="inMmCode" column="in_mmCode"/>
+	</resultMap>
+	
+	<!-- 인사부 > 총고과목록 -->
+	<select id="selectAllRe" parameterType="hashmap" resultMap="resultRe">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			reward
+		ORDER BY
+			re_code
+		ASC;
+	</select>
+	
+	<!-- 연간고과내역조회 -->
+	<select id="selectAllYearRe" parameterType="hashmap" resultMap="resultRe">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			reward
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			re_date
+		BETWEEN
+			#{startDate}
+		AND
+			#{endDate};
+	</select>
+	
+	<!-- 이전 쿼리의 select 갯수 받아오기 -->
+	<select id="selectAllCountRe" resultType="int">
+		SELECT FOUND_ROWS();
+	</select>
+	
+	<!-- 인사부 > 특정 고과내역 조회 -->
+	<select id="selectByReCodeRe" parameterType="int" resultMap="resultRe">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			reward
+		WHERE
+			re_code = #{reCode};
+	</select>
+	
+	<!-- 고과기록정보조회 -->
+	<select id="selectRe" parameterType="hashmap" resultMap="resultRe">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			reward
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			re_date
+		BETWEEN
+			#{startDate}
+		AND
+			#{endDate};
+	</select>
+	
+	<select id="selectByReDateRe" parameterType="hashmap" resultType="int">
+		SELECT
+			re_code
+		FROM
+			reward
+		WHERE
+			re_date = #{reDate}
+		AND
+			mm_code = #{mmCode};
+	</select>
+	
+	<!-- 고과기록정보조회시 성과금 끌어오기 -->
+	<select id="selectIn" parameterType="int" resultMap="resultIn">
+		SELECT SQL_CALC_FOUND_ROWS
+			*
+		FROM
+			incentive
+		WHERE
+			re_code = #{reCode};
+	</select>
+	
+	<!-- 인사부 > 고과내역추가 -->
+	<insert id="insertRe" parameterType="com.cafe24.smart.reward.domain.Reward">
+		INSERT INTO
+			reward (
+				mm_code,
+				re_grade,
+				re_date,
+				re_document,
+				re_mmCode)
+		VALUES (
+			#{mmCode},
+			#{reGrade},
+			#{reDate},
+			#{reDocument},
+			#{reMmCode});
+	</insert>
+	
+	<!-- 성과급 추가 -->
+	<insert id="insertIn" parameterType="com.cafe24.smart.reward.domain.Incentive">
+		INSERT INTO
+			incentive (
+				re_code,
+				mm_code,
+				in_bonus,
+				in_possible,
+				in_date,
+				in_mmCode)
+		VALUES (
+			#{reCode},
+			#{mmCode},
+			#{inBonus},
+			#{inPossible},
+			#{inDate},
+			#{inMmCode});
+	</insert>
+	
+	<update id="updateRe" parameterType="com.cafe24.smart.reward.domain.Reward">
+		UPDATE
+			reward
+		SET
+			re_grade = #{reGrade},
+			re_date = #{reDate}
+		WHERE
+			re_code = #{reCode};	
+	</update>
+	
+	<update id="updateIn" parameterType="com.cafe24.smart.reward.domain.Incentive">
+		UPDATE
+			incentive
+		SET
+			in_bonus = #{inBonus},
+			in_date = #{inDate}	
+		WHERE
+			re_code = #{reCode};
+	</update>
+	
+	<!-- 고과내역 삭제 -->
+	<delete id="deleteRe" parameterType="int">
+		DELETE
+		FROM
+			reward
+		WHERE
+			re_code = #{reCode};
+	</delete>
+	
+	<delete id="deleteIn" parameterType="int">
+		DELETE
+		FROM
+			incentive
+		WHERE
+			re_code = #{reCode};
+	</delete>
+</mapper>

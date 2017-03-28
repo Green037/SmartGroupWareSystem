@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<mapper namespace="acDAO">
+		<resultMap id="resultAc" type="com.cafe24.smart.member.domain.Achieve">
+			<result property="acCode" column="ac_code"/>
+			<result property="acName" column="ac_name"/>
+		</resultMap>
+		
+		<resultMap id="resultLc" type="com.cafe24.smart.member.domain.License">
+			<result property="lcCode" column="lc_code"/>
+			<result property="lcName" column="lc_name"/>
+		</resultMap>
+		
+		<resultMap id="resultCt" type="com.cafe24.smart.member.domain.Contract">
+			<result property="ctCode" column="ct_code"/>
+			<result property="ctType" column="ct_type"/>
+		</resultMap>
+		
+		<resultMap id="resultPt" type="com.cafe24.smart.member.domain.Position">
+			<result property="ptCode" column="pt_code"/>
+			<result property="ptName" column="pt_name"/>
+		</resultMap>
+		
+		<resultMap id="resultDp" type="com.cafe24.smart.member.domain.Department">
+			<result property="dpCode" column="dp_code"/>
+			<result property="dpName" column="dp_name"/>
+		</resultMap>
+		
+		<resultMap id="resultMa" type="com.cafe24.smart.member.domain.MajorTypeOfBusiness">
+			<result property="maCode" column="ma_code"/>
+			<result property="maType" column="ma_type"/>
+		</resultMap>
+		
+		<resultMap id="resultMi" type="com.cafe24.smart.member.domain.MinorTypeOfBusiness">
+			<result property="miCode" column="mi_code"/>
+			<result property="miType" column="mi_type"/>
+		</resultMap>
+		
+ 		<resultMap id="selectMmList" type="com.cafe24.smart.member.domain.MemberList">
+			<result property="mmCode" column="mm_code"/>
+			<result property="dpCode" column="dp_code"/>
+			<result property="ptCode" column="pt_code"/>
+			<result property="dpName" column="dp_name"/>
+			<result property="ptName" column="pt_name"/>
+			<result property="mmName" column="mm_name"/>
+		</resultMap> 
+		
+		<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" column="mm_code"/>
+		<result property="ctCode" column="ct_code"/>
+		<result property="ptCode" column="pt_code"/>
+		<result property="dpCode" column="dp_code"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="mmJoinDate" column="mm_joinDate"/>
+		<result property="mmResignDate" column="mm_resignDate"/>
+		<result property="mmAnnualLeave" column="mm_annualLeave"/>
+		<result property="mmArmy" column="mm_army"/>
+		<result property="mmEmail" column="mm_email"/>
+		<result property="mmMarriage" column="mm_marriage"/>
+		<result property="mmPassword" column="mm_password"/>
+		<result property="mmSign" column="mm_sign"/>
+		<result property="mmAddress" column="mm_address"/>
+		<result property="mmTel" column="mm_tel"/>
+		<result property="mmBank" column="mm_bank"/>
+		<result property="mmAccount" column="mm_account"/>
+	</resultMap>
+	
+	<resultMap id="resultMc" type="com.cafe24.smart.member.domain.MemberAchieve" >
+		<result property="acCode" column="ac_code"/>
+		<result property="mcSchoolName" column="mc_schoolName"/>
+		<result property="mcAdmissionDate" column="mc_admissionDate"/>
+		<result property="mcGraduationDate" column="mc_graduationDate"/>
+		<result property="mcMajor" column="mc_major"/>
+		<result property="mcJumsu" column="mc_jumsu"/>
+		<result property="mcGrade" column="mc_grade"/>
+		<result property="mmCode" column="mm_code"/>
+	</resultMap>
+	
+	<resultMap id="resultMl" type="com.cafe24.smart.member.domain.MemberLicense" >
+		<result property="lcCode" column="lc_code"/>
+		<result property="mlIssueDate" column="ml_issueDate"/>
+		<result property="mmCode" column="mm_code"/>
+	</resultMap>
+	
+	<resultMap id="resultCr" type="com.cafe24.smart.member.domain.Career" >
+		<result property="maCode" column="ma_code"/>
+		<result property="miCode" column="mi_code"/>
+		<result property="crData" column="cr_data"/>
+		<result property="crService" column="cr_service"/>
+		<result property="crPastJoinDay" column="cr_pastJoinDay"/>
+		<result property="crPastResignDay" column="cr_pastResignDay"/>
+		<result property="crResponsibility" column="cr_responsibility"/>
+		<result property="mmCode" column="mm_code"/>
+	</resultMap>
+	
+	<resultMap id="selectMmContent" type="com.cafe24.smart.member.domain.MemberContent">
+		<result property="mmCode" column="mm_code"/>
+		<result property="ctCode" column="ct_code"/>
+		<result property="ptCode" column="pt_code"/>
+		<result property="dpCode" column="dp_code"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="mmJoinDate" column="mm_joinDate"/>
+		<result property="mmResignDate" column="mm_resignDate"/>
+		<result property="mmAnnualLeave" column="mm_annualLeave"/>
+		<result property="mmArmy" column="mm_army"/>
+		<result property="mmEmail" column="mm_email"/>
+		<result property="mmMarriage" column="mm_marriage"/>
+		<result property="mmSign" column="mm_sign"/>
+		<result property="mmAddress" column="mm_address"/>
+		<result property="mmTel" column="mm_tel"/>
+		<result property="mmBank" column="mm_bank"/>
+		<result property="mmAccount" column="mm_account"/>
+		<result property="mcCode" column="ma_code"/>
+		<result property="acCode" column="ac_code"/>
+		<result property="acName" column="ac_name"/>
+		<result property="mcSchoolName" column="mc_schoolName"/>
+		<result property="mcAdmissionDate" column="mc_admissionDate"/>
+		<result property="mcGraduationDate" column="mc_graduationDate"/>
+		<result property="mcMajor" column="mc_major"/>
+		<result property="mcJumsu" column="mc_jumsu"/>
+		<result property="mcGrade" column="mc_grade"/>
+		<result property="crCode" column="cr_code"/>
+		<result property="maCode" column="ma_code"/>
+		<result property="maType" column="ma_type"/>
+		<result property="miCode" column="mi_code"/>
+		<result property="miType" column="mi_type"/>
+		<result property="crData" column="cr_data"/>
+		<result property="crService" column="cr_service"/>
+		<result property="crPastJoinDay" column="cr_pastJoinDay"/>
+		<result property="crPastResignDay" column="cr_pastResignDay"/>
+		<result property="crResponsibility" column="cr_responsibility"/>
+		<result property="mlCode" column="ml_code"/>
+		<result property="lcCode" column="lc_code"/>
+		<result property="mlIssueDate" column="ml_issueDate"/>
+		<result property="ctType" column="ct_type"/>
+		<result property="ptName" column="pt_name"/>
+		<result property="dpName" column="dp_name"/>
+		<result property="lcName" column="lc_name"/>
+		<result property="lcOrganization" column="lc_organization"/>
+		<result property="lcType" column="lc_type"/>
+		<result property="lcNote" column="lc_note"/>		
+	</resultMap>
+
+		
+		
+		<!-- 사원검색리스트 상세보기 -->
+		<select id="">
+		
+		
+		
+		</select>
+		
+		
+
+		 <!-- 사원 조건검색조회 -->
+		<select id="selectMmSearch"
+				parameterType="com.cafe24.smart.member.domain.MemberContent"
+				resultMap="selectMmContent">
+			SELECT
+					memberManagement.mm_code,
+					memberManagement.mm_name,
+					department.dp_name,
+					contract.ct_type,
+					rankposition.pt_name
+			FROM
+					memberManagement
+			JOIN
+					department
+			ON
+					department.dp_code = memberManagement.dp_code
+			JOIN
+					contract
+			ON
+					contract.ct_code = memberManagement.ct_code
+			JOIN
+					rankposition
+			ON
+					rankposition.pt_code = memberManagement.pt_code
+			<trim prefix="WHERE" prefixOverrides="AND">
+				<if test="dpCode !=null and dpCode != 0" >
+					AND department.dp_code	= #{dpCode}
+				</if>
+				<if test="ptCode !=null and ptCode != 0">
+					AND rankposition.pt_code = #{ptCode}
+				</if>
+				<if test="mmName!=null and mmName != ''">
+					AND memberManagement.mm_name like CONCAT('%',#{mmName},'%')
+				</if>
+				<if test="acCode !=null and acCode != 0">
+					AND memberManagement.mm_code in (select memberAchieve.mm_code from memberAchieve WHERE memberAchieve.ac_code = #{acCode})
+				</if>
+				<if test="lcCode !=null and lcCode != 0">
+					AND memberManagement.mm_code in (select memberLicense.mm_code from memberLicense where memberLicense.lc_code = #{lcCode})
+				</if>
+			</trim>
+		
+		</select>	
+
+		 <!-- 사원 개인정보조회 -->
+		<select id="selectMmContent" 
+				parameterType="int"
+				resultMap="selectMmContent">
+		
+			SELECT
+					memberManagement.mm_code,
+					memberManagement.mm_name,
+					department.dp_name,
+					rankposition.pt_name,
+					contract.ct_type,
+					memberManagement.mm_joinDate,
+					memberManagement.mm_resignDate,
+					memberManagement.mm_army,
+					memberManagement.mm_marriage,
+					memberManagement.mm_annualLeave,
+					memberManagement.mm_email,
+					memberManagement.mm_address,
+					memberManagement.mm_tel,
+					memberManagement.mm_bank,
+					memberManagement.mm_account,
+					memberManagement.mm_sign
+				FROM 
+					memberManagement
+				JOIN
+					department
+				ON 
+					memberManagement.dp_code = department.dp_code
+				JOIN
+					rankposition
+				ON
+					memberManagement.pt_code = rankposition.pt_code
+				JOIN
+					contract
+				ON
+					memberManagement.ct_code = contract.ct_code
+				WHERE memberManagement.mm_code = #{mmCode}	
+		</select>    
+		
+		<!-- 사원개인학력정보조회 -->
+		<select	id="selectMmContentMc"
+				parameterType="int"
+				resultMap="selectMmContent">
+		
+		SELECT
+				achieve.ac_name,
+				memberAchieve.mc_schoolName,
+				memberAchieve.mc_admissionDate,
+				memberAchieve.mc_graduationDate,
+				memberAchieve.mc_major,
+				memberAchieve.mc_jumsu,
+				memberAchieve.mc_grade
+		FROM 	
+				memberAchieve
+		JOIN	
+				achieve
+		ON 		
+				achieve.ac_code = memberAchieve.ac_code
+		WHERE 
+				memberAchieve.mm_code = #{mmCode}
+	
+		</select>
+		
+		
+		<!--사원 개인정보조회 사원자격증불러오기 -->
+
+		 <select id="selectMmcontentlc" 
+		 		 parameterType="int"
+		 		 resultMap="selectMmContent">
+
+		  
+
+			SELECT
+					license.lc_name,
+					license.lc_organization,
+					license.lc_type,
+					license.lc_note,
+					memberLicense.ml_issueDate,
+					memberLicense.mm_code
+			FROM 
+					memberLicense
+			JOIN 
+					license 
+			ON 
+					memberLicense.lc_code = license.lc_code
+			JOIN 
+					memberManagement
+			ON 
+					memberLicense.mm_code = memberManagement.mm_code
+			WHERE 
+					memberLicense.mm_code = #{mmCode}
+		
+
+		</select>  
+		
+		<!-- 사원개인경력사항정보조회 -->
+		<select id="selectMmcontentCr" 
+		 		parameterType="int"
+		 		resultMap="selectMmContent">
+			
+			SELECT
+					career.cr_data,
+					career.cr_service,
+					career.cr_pastJoinDay,
+					career.cr_pastResignDay,
+					career.cr_responsibility,
+					majorTypeOfBusiness.ma_type,
+					minorTypeOfBusiness.mi_type
+			FROM	
+					career
+			JOIN	
+					majorTypeOfBusiness
+			ON		
+					career.ma_code =	majorTypeOfBusiness.ma_code
+			JOIN	
+					minorTypeOfBusiness
+			ON		
+					career.mi_code =	minorTypeOfBusiness.mi_code
+			WHERE 
+					career.mm_code = #{mmCode}
+		
+		</select>
+ 
+
+		
+		
+
+
+	<!-- 하위직종 불러오기 -->
+	<select id="selectMi" resultMap="resultMi">
+		SELECT 
+			mi_code,
+			mi_type
+		FROM 
+			minorTypeOfBusiness
+	</select>
+		
+	<!-- 상위직종 불러오기 -->
+	<select id="selectMa" resultMap="resultMa">
+		SELECT 
+			ma_code,
+			ma_type
+		FROM 
+			majorTypeOfBusiness
+	</select>
+		
+	<!-- 부서 불러오기 -->
+	<select id="selectDp" resultMap="resultDp">
+		SELECT 
+			dp_code,
+			dp_name
+		FROM 
+			department
+		
+	</select>
+	<!-- 개인부서 불러오기 -->
+	<select id="selectDpByDpCode" parameterType="int" resultMap="resultDp">
+		SELECT 
+			dp_code,
+			dp_name
+		FROM 
+			department
+		WHERE
+			dp_code=#{dpCode}
+	</select>
+	
+	<!-- 직급 불러오기 -->
+	<select id="selectPt" resultMap="resultPt">
+		SELECT 
+			pt_code,
+			pt_name
+		FROM 
+			rankposition
+	</select>
+		
+		
+	<!--계약형태 불러오기 -->
+	<select id="selectCt" resultMap="resultCt">
+		SELECT 
+			ct_code,
+			ct_type
+		FROM 
+			contract
+	</select>
+	
+	<!-- 학력 불러오기 -->	
+	<select id="selectAc" resultMap="resultAc">
+		SELECT 
+			ac_code,
+			ac_name
+		FROM 
+			achieve
+	</select>
+	<!-- 자격증 불러오기 -->	
+	<select id="selectLc" resultMap="resultLc" >
+		SELECT
+			lc_code,
+			lc_name
+		FROM
+			license
+	</select>
+</mapper>

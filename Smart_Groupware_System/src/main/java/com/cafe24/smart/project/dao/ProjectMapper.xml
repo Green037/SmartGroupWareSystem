@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="PrDAO">
+	<resultMap id="resultPr" type="com.cafe24.smart.project.domain.Project">
+		<result property="prCode" column="pr_code"/>
+		<result property="prMemberCode" column="pr_memberCode"/>
+		<result property="dftCode" column="dft_code"/>
+		<result property="prName" column="pr_name"/>
+		<result property="prMember" column="pr_member"/>
+		<result property="prMoney" column="pr_money"/>
+		<result property="prGoal" column="pr_goal"/>
+		<result property="prProgress" column="pr_progress"/>
+		<result property="prCate" column="pr_cate"/>
+		<result property="prRestration" column="pr_resitration"/>
+		<result property="prStartDay" column="pr_startDay"/>
+		<result property="prEndDay" column="pr_endDay"/>
+		<result property="prForProgress" column="pr_forProgress"/>
+		<result property="prFinishCheck" column="pr_finishCheck"/>
+		<result property="mmName" column="mm_name"/>
+	</resultMap>
+	
+	<resultMap id="resultPm" type="com.cafe24.smart.project.domain.ProjectMember">
+		<result property="pmCode" column="pm_code"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="pmLevel" column="pm_level"/>
+		<result property="pmField" column="pm_field"/>
+		<result property="pmStartDate" column="pm_startDate"/>
+		<result property="pmEndDate" column="pm_endDate"/>
+		<result property="pmNote" column="pm_note"/>
+		<result property="pmApproval" column="pm_approval"/>
+		<result property="mmName" column="mm_name"/>
+	</resultMap>
+	
+	<resultMap id="resultFu" type="com.cafe24.smart.project.domain.Funds">
+		<result property="fuCode" column="fu_code"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="fuHistory" column="fu_history"/>
+		<result property="fuExpectedMoney" column="fu_expectedMoney"/>
+		<result property="fuUsedMoney" column="fu_usedMoney"/>
+		<result property="fuAddReason" column="fu_addReason"/>
+		<result property="fuDraftCheck" column="fu_draftCheck"/>
+		<result property="fuAddMoney" column="fu_addMoney"/>
+	</resultMap>
+	
+	<resultMap id="resulWbs" type="com.cafe24.smart.wbs.domain.Wbs">
+		<result property="wbsCode" column="wbs_code"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="wbsCate" column="wbs_cate"/>
+		<result property="wbsName" column="wbs_name"/>
+		<result property="wbsContents" column="wbs_contents"/>
+		<result property="wbsStartDate" column="wbs_startDate"/>
+		<result property="wbsEndDate" column="wbs_endDate"/>
+		<result property="wbsWorkingDays" column="wbs_workingDays"/>
+		<result property="wbsUncompletedReason" column="wbs_uncompletedReason"/>
+		<result property="wbsFinalEndDate" column="wbs_finalEndDate"/>
+	</resultMap>
+	
+	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" column="mm_code"/>
+		<result property="ctCode" column="ct_code"/>
+		<result property="ptCode" column="pt_code"/>
+		<result property="dpCode" column="dp_code"/>
+		<result property="mmName" column="mm_name"/>
+		<result property="mmDailyPay" column="mm_dailyPay"/>
+		<result property="mmJoinDate" column="mm_joinDate"/>
+		<result property="mmResignDate" column="mm_resignDate"/>
+		<result property="mmAnnualLeave" column="mm_annualLeave"/>
+		<result property="mmArmy" column="mm_army"/>
+		<result property="mmEmail" column="mm_email"/>
+		<result property="mmMarriage" column="mm_marriage"/>
+		<result property="mmPassword" column="mm_password"/>
+		<result property="mmSign" column="mm_sign"/>
+		<result property="mmAddress" column="mm_address"/>
+		<result property="mmTel" column="mm_tel"/>
+		<result property="mmBank" column="mm_bank"/>
+		<result property="mmAccount" column="mm_account"/>
+	</resultMap>
+	<resultMap id="resultEv" type="com.cafe24.smart.project.domain.Evaluation">
+		<result property="evCode" column="ev_code"/>
+		<result property="evIntegrity" column="ev_integrity"/>
+		<result property="evProfessional" column="ev_professional"/>
+		<result property="evSociability" column="ev_sociability"/>
+		<result property="evEval" column="ev_eval"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="evTotalScore" column="ev_totalScore"/>
+		<result property="mmName" column="mm_name"/>
+	</resultMap>
+	<resultMap id="resultPrEv" type="com.cafe24.smart.project.domain.ProjectEvaluation">
+		<result property="prEvCode" column="pr_evCode"/>
+		<result property="prApprovalCheck" column="pr_approvalCheck"/>
+		<result property="prCode" column="pr_code"/>
+		<result property="mmCode" column="mm_code"/>
+		<result property="evPrResult" column="ev_prResult"/>
+		
+	</resultMap>
+	
+	<select id="selectCountPm"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+		AND pm_approval = "승인"
+	</select>
+	
+	<select id="selectByPrCodeFu"
+			parameterType="int"
+			resultMap="resultFu">
+		SELECT 
+			*
+		FROM
+			funds
+		WHERE 
+			pr_code = #{prCode} 
+	</select>
+	
+	<select id="selectByFuCode"
+			parameterType="int"
+			resultMap="resultFu">
+		SELECT 
+			*
+		FROM
+			funds
+		WHERE 
+			fu_code = #{fuCode} 
+	</select>
+	
+	<insert id="insertPr" 
+			parameterType="com.cafe24.smart.project.domain.Project" 
+			useGeneratedKeys="true" keyProperty="prCode">
+		INSERT INTO project(
+			pr_memberCode,
+			dft_code,
+			pr_name,
+			pr_member,
+			pr_money,
+			pr_goal,
+			pr_progress,
+			pr_cate,
+			pr_startDay,
+			pr_endDay,
+			pr_forProgress,
+			pr_restration,
+			pr_finishCheck,
+			pr_report)
+		VALUES(
+			#{prMemberCode},
+			#{dftCode},
+			#{prName},
+			#{prMember},
+			#{prMoney},
+			#{prGoal},
+			#{prProgress},
+			#{prCate},
+			#{prStartDay},
+			#{prEndDay},
+			#{prForProgress},
+			now(),
+			#{prFinishCheck},
+			#{prReport})
+	</insert>
+	
+	<insert id="insertFu"
+			parameterType="com.cafe24.smart.project.domain.Funds">
+		INSERT INTO funds(
+			pr_code,
+			fu_history,
+			fu_expectedMoney)
+		VALUES(
+			#{prCode},
+			#{fuHistory},
+			#{fuExpectedMoney})
+	</insert>
+	
+	<insert id="insertPm"
+			parameterType="com.cafe24.smart.project.domain.ProjectMember">
+		INSERT INTO projectMember(
+			pr_code,
+			mm_code,
+			pm_level,
+			pm_note,
+			pm_approval
+			<if test="pmStartDate != null and pmStartDate != ''">
+				,pm_startDate
+			</if>
+			<if test="pmField != null">
+				,pm_field
+			</if>
+			)
+		VALUES(
+			#{prCode},
+			#{mmCode},
+			#{pmLevel},
+			#{pmNote},
+			#{pmApproval}
+			<if test="pmStartDate != null and pmStartDate != ''">
+				,#{pmStartDate}
+			</if>
+			<if test="pmField != null">
+				,#{pmField}
+			</if>
+			)
+	</insert>
+	
+	<select id="selectAll"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM
+			project
+	</select>
+	
+	<select id="selectByProgress"
+			parameterType="String"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM
+			project
+		WHERE 
+			pr_progress = #{progress} 
+	</select>
+	
+	<select id="selectByFinish"
+			parameterType="String"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM
+			project
+		WHERE 
+			pr_finishCheck = #{progress}
+	</select>
+	
+	<select id="selectByPrCode"
+			parameterType="int"
+			resultMap="resultPr">
+		SELECT 
+			*
+		FROM
+			project
+		WHERE 
+			pr_code = #{prCode} 
+	</select>
+	
+	<select id="selectByPrCodePm"
+			parameterType="int"
+			resultMap="resultPm">
+		SELECT 
+			projectMember.*, 
+			memberManagement.mm_name
+		FROM
+			projectMember
+		LEFT JOIN
+			memberManagement
+		ON 
+			projectMember.mm_code = memberManagement.mm_code
+		WHERE 
+			pr_code = #{prCode} 
+	</select>
+	
+	
+	
+	<update id="updatePr"
+			parameterType="com.cafe24.smart.project.domain.Project">
+		UPDATE project
+			<trim prefix="SET" prefixOverrides=",">
+				<if test="prName != null">			,pr_name = #{prName}</if>
+				<if test="prProgress != null">  	,pr_progress = #{prProgress}</if>
+				<if test="prCate != null">			,pr_cate = #{prCate}</if>
+				<if test="prForProgress != null">	,pr_forProgress = #{prForProgress}</if>
+				<if test="prMoney != null">			,pr_money = #{prMoney}</if>
+				<if test="prFinishCheck != null">	,pr_finishCheck = #{prFinishCheck}</if>
+				<if test="prGoal != null">			,pr_goal = #{prGoal}</if>
+				<if test="prReport != null">		,pr_report = #{prReport}</if>
+			</trim>
+		WHERE
+			pr_code = #{prCode}
+	</update>
+	
+	<update id="updateByApprovalPm"
+			parameterType="com.cafe24.smart.project.domain.ProjectMember">
+		UPDATE projectMember
+		SET
+			pm_approval = #{pmApproval},
+			pm_startDate = now()
+		WHERE
+			pm_code = #{pmCode}
+	</update>
+	
+	
+	
+	<update id="updateFu"
+			parameterType="com.cafe24.smart.project.domain.Funds">
+		UPDATE funds
+		SET
+			fu_history = #{fuHistory},
+			fu_expectedMoney = #{fuExpectedMoney},
+			fu_usedMoney = #{fuUsedMoney}
+		WHERE
+			fu_code = #{fuCode}
+	</update>
+	
+	<select id="selectByMmCodeMm"
+			parameterType="int"
+			resultType="HashMap">
+		SELECT 
+			memberManagement.mm_name as mmName,
+			memberManagement.mm_email as mmEmail,
+			memberManagement.mm_tel as mmTel,
+			department.dp_name as dpName,
+			rankposition.pt_name as ptName,
+			contract.ct_type as ctType
+		FROM 
+			memberManagement
+		LEFT JOIN 
+			rankposition
+		ON 
+			memberManagement.pt_code = rankposition.pt_code
+		LEFT JOIN 
+			contract
+		ON 
+			memberManagement.ct_code = contract.ct_code
+		LEFT JOIN
+			department
+		ON
+			memberManagement.dp_code = department.dp_code
+		WHERE
+			mm_code = #{mmCode}
+			
+	</select>
+	
+	<delete id="deletePr"
+			parameterType="int">
+		DELETE 
+		FROM 
+			project
+		WHERE
+			pr_code = #{prCode} 
+	</delete>
+	
+	<delete id="deletePm"
+			parameterType="int">
+		DELETE
+		FROM 
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+	
+	<delete id="deleteWbs"
+			parameterType="int">
+		DELETE
+		FROM 
+			wbs
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+	
+	<delete id="deleteFu"
+			parameterType="int">
+		DELETE
+		FROM 
+			funds
+		WHERE
+			pr_code = #{prCode}
+	</delete>
+
+	<select id="selectCountWbs"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			wbs
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	<select id="selectCountFu"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			funds
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	<select id="selectAllCountPm"
+			parameterType="int"
+			resultType="int">
+		SELECT 
+			COUNT(*)
+		FROM
+			projectMember
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	
+	
+	<select id="selectByRequirementPr"
+			parameterType="com.cafe24.smart.project.domain.Project"
+			resultMap="resultPr">
+		
+			SELECT 
+				*
+			FROM
+				project
+			<trim prefix="WHERE" prefixOverrides="AND">
+				<if test="prMember eq 0">
+					AND pr_member > 0
+				</if>
+				<if test="prMember gt 0 and prMember lt 5">
+					AND pr_member <![CDATA[ < ]]> 5
+				</if>
+				<if test="prMember gt 4 and prMember lt 11">
+					AND pr_member > 4 AND pr_member <![CDATA[ < ]]> 11
+				</if>
+				<if test="prMember gt 10">
+					AND pr_member > 10
+				</if>
+				<if test="!prProgress.equals('::선택::')">
+					AND pr_progress = #{prProgress}
+				</if>
+				<if test="!prStartDay.equals('') and prEndDay.equals('')">
+					AND pr_startDay >= #{prStartDay}
+				</if>
+				<if test="prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
+				</if>
+				<if test="!prStartDay.equals('') and !prEndDay.equals('')">
+					AND pr_startDay >= #{prStartDay} AND pr_endDay <![CDATA[ <= ]]> #{prEndDay}
+				</if>
+			</trim>
+	</select>
+	
+	<insert id="insertEv"
+			parameterType="com.cafe24.smart.project.domain.Evaluation">
+			
+		INSERT INTO evaluation(
+			ev_integrity,
+			ev_professional,
+			ev_sociability,
+			ev_eval,
+			pr_code,
+			mm_code,
+			ev_totalScore)
+		VALUES(
+			#{evIntegrity},
+			#{evProfessional},
+			#{evSociability},
+			#{evEval},
+			#{prCode},
+			#{mmCode},
+			#{evTotalScore})
+	
+	</insert>
+	
+	<insert id="insertEvPr"
+			parameterType="com.cafe24.smart.project.domain.ProjectEvaluation">
+		
+		INSERT INTO projectEvaluation(
+			pr_approvalCheck,
+			pr_code,
+			mm_code,
+			ev_prResult)
+		VALUES(
+			#{prApprovalCheck},
+			#{prCode},
+			#{mmCode},
+			#{evPrResult})
+	
+	</insert>
+	
+	<select id="selectByReportPr"
+			parameterType="String"
+			resultMap="resultPr">
+		SELECT 
+			project.*
+		FROM
+			project
+		WHERE 
+			pr_report = #{prReport}
+	
+	</select>
+	
+	<select id="selectByPrCodeEv"
+			parameterType="int"
+			resultMap="resultEv">
+		SELECT
+			*
+		FROM 
+			evaluation
+		WHERE
+			pr_code = #{prCode}
+	
+	</select>
+	
+	<select id="selectByPrCodePrEv"
+			parameterType="int"
+			resultMap="resultPrEv">
+		SELECT
+			*
+		FROM 
+			projectEvaluation
+		WHERE
+			pr_code = #{prCode}
+	</select>
+	
+</mapper>
