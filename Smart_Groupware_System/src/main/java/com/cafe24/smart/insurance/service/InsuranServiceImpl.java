@@ -20,7 +20,7 @@ public class InsuranServiceImpl implements InsuranceService {
 	@Override
 	public EmployeementInsurance eiContentServ(int eiYear) {
 		
-		System.out.println("InsuranServiceImpl eiContentServ eiYear : " + eiYear);
+		log.debug("InsuranServiceImpl eiContentServ eiYear : " + eiYear);
 		
 		return insuranceDAO.selectByEi(eiYear);
 	}
@@ -28,7 +28,7 @@ public class InsuranServiceImpl implements InsuranceService {
 	@Override
 	public NationalHealthInsurance nhiContentServ(int nhiYear) {
 		
-		System.out.println("InsuranServiceImpl nhiContentServ nhiYear : " + nhiYear);
+		log.debug("InsuranServiceImpl nhiContentServ nhiYear : " + nhiYear);
 		
 		return insuranceDAO.selectByNhi(nhiYear);
 	}
@@ -36,7 +36,7 @@ public class InsuranServiceImpl implements InsuranceService {
 	@Override
 	public OccupationalHealthSafetyInsurance ohiContentServ(int ohiYear) {
 		
-		System.out.println("InsuranServiceImpl ohiContentServ ohiYear : " + ohiYear);
+		log.debug("InsuranServiceImpl ohiContentServ ohiYear : " + ohiYear);
 		
 		return insuranceDAO.selectByOhi(ohiYear);
 	}
@@ -44,7 +44,7 @@ public class InsuranServiceImpl implements InsuranceService {
 	@Override
 	public PensionInsurance ppContentServ(int ppYear) {
 	
-		System.out.println("InsuranServiceImpl ppContentServ ppYear : " + ppYear);
+		log.debug("InsuranServiceImpl ppContentServ ppYear : " + ppYear);
 		
 		return insuranceDAO.selectByPp(ppYear);
 	}

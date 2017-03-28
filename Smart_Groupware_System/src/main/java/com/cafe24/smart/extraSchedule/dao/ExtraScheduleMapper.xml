@@ -4,93 +4,57 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="EsDAO">
-	<resultMap id="resultEs" type="com.cafe24.smart.extraSchedule.domain.ExtraSchedule">
-		<result property="esCode" column="es_code"/>
-		<result property="mmCode" column="mm_code"/>
-		<result property="esStartDate" column="es_startDate"/>
-		<result property="esEndDate" column="es_endDate"/>
-		<result property="esCostSort" column="es_costSort"/>
-		<result property="esNote" column="es_note"/>
-		<result property="mmName" column="mm_name"/>
+	<resultMap id="resultEs" 					type="com.cafe24.smart.extraSchedule.domain.ExtraSchedule">
+		<result property="esCode" 				column="es_code"/>
+		<result property="mmCode" 				column="mm_code"/>
+		<result property="esStartDate" 			column="es_startDate"/>
+		<result property="esEndDate" 			column="es_endDate"/>
+		<result property="esCostSort" 			column="es_costSort"/>
+		<result property="esNote" 				column="es_note"/>
+		<result property="mmName" 				column="mm_name"/>
 	</resultMap>
 	
-	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
-		<result property="mmCode" column="mm_code"/>
-		<result property="ctCode" column="ct_code"/>
-		<result property="ptCode" column="pt_code"/>
-		<result property="dpCode" column="dp_code"/>
-		<result property="mmName" column="mm_name"/>
-		<result property="mmDailyPay" column="mm_dailyPay"/>
-		<result property="mmJoinDate" column="mm_joinDate"/>
-		<result property="mmResignDate" column="mm_resignDate"/>
-		<result property="mmAnnualLeave" column="mm_annualLeave"/>
-		<result property="mmArmy" column="mm_army"/>
-		<result property="mmEmail" column="mm_email"/>
-		<result property="mmMarriage" column="mm_marriage"/>
-		<result property="mmPassword" column="mm_password"/>
-		<result property="mmSign" column="mm_sign"/>
-		<result property="mmAddress" column="mm_address"/>
-		<result property="mmTel" column="mm_tel"/>
-		<result property="mmBank" column="mm_bank"/>
-		<result property="mmAccount" column="mm_account"/>
+	<resultMap id="resultMm" 					type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" 				column="mm_code"/>
+		<result property="ctCode"				column="ct_code"/>
+		<result property="ptCode" 				column="pt_code"/>
+		<result property="dpCode" 				column="dp_code"/>
+		<result property="mmName" 				column="mm_name"/>
+		<result property="mmDailyPay" 			column="mm_dailyPay"/>
+		<result property="mmJoinDate" 			column="mm_joinDate"/>
+		<result property="mmResignDate" 		column="mm_resignDate"/>
+		<result property="mmAnnualLeave" 		column="mm_annualLeave"/>
+		<result property="mmArmy" 				column="mm_army"/>
+		<result property="mmEmail" 				column="mm_email"/>
+		<result property="mmMarriage" 			column="mm_marriage"/>
+		<result property="mmPassword" 			column="mm_password"/>
+		<result property="mmSign" 				column="mm_sign"/>
+		<result property="mmAddress" 			column="mm_address"/>
+		<result property="mmTel" 				column="mm_tel"/>
+		<result property="mmBank" 				column="mm_bank"/>
+		<result property="mmAccount" 			column="mm_account"/>
 	</resultMap>
 	
-	
-	<insert id="insertVa"
-			parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"
-			useGeneratedKeys="true" keyProperty="esCode">
-		INSERT INTO extraSchedule(
-			mm_code,
-			es_startDate,
-			es_endDate,
-			es_note)
-		VALUES(
-			#{mmCode},
-			#{esStartDate},
-			#{esEndDate},
-			#{esNote});
-	</insert>
-	<insert id="insertWo"
-			parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"
-			useGeneratedKeys="true" keyProperty="esCode">
-		INSERT INTO extraSchedule(
-			mm_code,
-			es_startDate,
-			es_endDate,
-			es_costSort,
-			es_note)
-		VALUES(
-			#{mmCode},
-			#{esStartDate},
-			#{esEndDate},
-			#{esCostSort},
-			#{esNote});
-	</insert> 
-	
-	<select id="selectPersonalEs"
-			parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"
-			resultMap="resultEs">
+	<select id="selectPersonalEs" parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"
+												resultMap="resultEs">
 		SELECT 
 			*
 		FROM
 			extraSchedule
-		<trim prefix="WHERE" prefixOverrides="AND">
-			<if test="!esStartDate.equals('') and esEndDate.equals('')">
-					AND es_startDate >= #{esStartDate}
-			</if>
-			<if test="!esStartDate.equals('') and esEndDate.equals('')">
-					AND es_endDate >= #{esEndDate}
-			</if>
-			<if test="!esStartDate.equals('') and !esEndDate.equals('')">
-					AND es_startDate >= #{esStartDate} AND es_endDate <![CDATA[ <= ]]> #{esEndDate}
-			</if>
-		</trim>
+			<trim prefix="WHERE" prefixOverrides="AND">
+				<if test="!esStartDate.equals('') and esEndDate.equals('')">
+						AND es_startDate >= #{esStartDate}
+				</if>
+				<if test="!esStartDate.equals('') and esEndDate.equals('')">
+						AND es_endDate >= #{esEndDate}
+				</if>
+				<if test="!esStartDate.equals('') and !esEndDate.equals('')">
+						AND es_startDate >= #{esStartDate} AND es_endDate <![CDATA[ <= ]]> #{esEndDate}
+				</if>
+			</trim>
 	</select>
 	
-	<select id="selectByDpCodeMm"
-			parameterType="int"
-			resultMap="resultMm">
-		
+	<select id="selectByDpCodeMm" parameterType="int" resultMap="resultMm">	
 		SELECT 
 			*
 		FROM
@@ -99,9 +63,7 @@
 			dp_code = #{dpCode}
 	</select>
 	
-	<select id="selectByDpEs"
-			parameterType="HashMap"
-			resultMap="resultEs">
+	<select id="selectByDpEs" parameterType="HashMap" resultMap="resultEs">
 		SELECT 
 			extraSchedule.*,
 			memberManagement.mm_name
@@ -120,12 +82,9 @@
 		<if test="mmCode != 0">
 			AND extraSchedule.mm_code = #{mmCode}
 		</if>
-		
 	</select>
 	
-	<select id="selectEs"
-			parameterType="int"
-			resultMap="resultEs">
+	<select id="selectEs" parameterType="int" resultMap="resultEs">
 		SELECT 
 			extraSchedule.*,
 			memberManagement.mm_name
@@ -139,4 +98,33 @@
 			extraSchedule.es_code = #{esCode}
 	</select>
 	
+	<insert id="insertVa" parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"
+										useGeneratedKeys="true" keyProperty="esCode">
+		INSERT INTO extraSchedule(
+			mm_code,
+			es_startDate,
+			es_endDate,
+			es_note)
+		VALUES(
+			#{mmCode},
+			#{esStartDate},
+			#{esEndDate},
+			#{esNote});
+	</insert>
+	
+	<insert id="insertWo" parameterType="com.cafe24.smart.extraSchedule.domain.ExtraSchedule"
+										useGeneratedKeys="true" keyProperty="esCode">
+		INSERT INTO extraSchedule(
+			mm_code,
+			es_startDate,
+			es_endDate,
+			es_costSort,
+			es_note)
+		VALUES(
+			#{mmCode},
+			#{esStartDate},
+			#{esEndDate},
+			#{esCostSort},
+			#{esNote});
+	</insert> 
 </mapper>

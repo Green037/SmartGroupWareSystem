@@ -69,14 +69,14 @@ public class PaymentController {
 		if (request.getParameter("sort_method") != null)
 			sortMethod = request.getParameter("sort_method");
 		
-		System.out.println("PaymentController paListAllCtrl currentPageNo : " + currentPageNo);
-		System.out.println("PaymentController paListAllCtrl recordsPerPage : " + recordsPerPage);
-		System.out.println("PaymentController paListAllCtrl sortItem : " + sortItem);
-		System.out.println("PaymentController paListAllCtrl sortMethod : " + sortMethod);
+		log.debug("PaymentController paListAllCtrl currentPageNo : " + currentPageNo);
+		log.debug("PaymentController paListAllCtrl recordsPerPage : " + recordsPerPage);
+		log.debug("PaymentController paListAllCtrl sortItem : " + sortItem);
+		log.debug("PaymentController paListAllCtrl sortMethod : " + sortMethod);
 				
 		int offset = (paging.getCurrentPageNo() - 1) * paging.getRecordsPerPage();    
 		
-		System.out.println("PaymentController paListAllCtrl offset : " + offset);
+		log.debug("PaymentController paListAllCtrl offset : " + offset);
 		
 		SearchCriteria cri;
 		
@@ -100,17 +100,17 @@ public class PaymentController {
 		
 		int	listCount = paymentService.getPaymentDAO().selectAllCountRe();
 		
-		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
+		log.debug("PaymentController paListAllCtrl listCount : " + listCount);
 		
 		paging.setNumberOfRecords(listCount);
 		
-		System.out.println("PaymentController paListAllCtrl count : " + paging.getNumberOfRecords());
+		log.debug("PaymentController paListAllCtrl count : " + paging.getNumberOfRecords());
 		
 		paging.makePaging();
 		
-		System.out.println("PaymentController paListAllCtrl pcList : " + pcList);
-		System.out.println("PaymentController paListAllCtrl listCount : " + listCount);
-		System.out.println("PaymentController paListAllCtrl paging : " + paging);
+		log.debug("PaymentController paListAllCtrl pcList : " + pcList);
+		log.debug("PaymentController paListAllCtrl listCount : " + listCount);
+		log.debug("PaymentController paListAllCtrl paging : " + paging);
 		
 		List<PaymentView> paList = new ArrayList<PaymentView>();
 		
@@ -147,7 +147,7 @@ public class PaymentController {
 			
 			model.addAttribute("paList", paList);
 			
-			System.out.println("PaymentController paListAllCtrl paList : " + paList);
+			log.debug("PaymentController paListAllCtrl paList : " + paList);
 		}
 		
 		return "payment/pa_listAll";
@@ -164,9 +164,9 @@ public class PaymentController {
 		List<PayContent> payList = 
 				paymentService.paListServ(mmCode, utilDate.getCurrentYear() + "-01-01", utilDate.getLastDate());
 		
-		System.out.println("PaymentController pcListCtrl 12 - payListSize : " + (12 - payList.size()));
-		System.out.println("PaymentController pcListCtrl member : " + member);
-		System.out.println("PaymentController pcListCtrl payList : " + payList);
+		log.debug("PaymentController pcListCtrl 12 - payListSize : " + (12 - payList.size()));
+		log.debug("PaymentController pcListCtrl member : " + member);
+		log.debug("PaymentController pcListCtrl payList : " + payList);
 		
 //		부서, 직급 정보
 		model.addAttribute("dpName", utilMember.getDpName(member.getDpCode()));
@@ -174,7 +174,7 @@ public class PaymentController {
 		model.addAttribute("payList", payList);
 		model.addAttribute("pcYear", utilDate.getCurrentYear());
 		
-		System.out.println("PaymentController pcListCtrl model : " + model);
+		log.debug("PaymentController pcListCtrl model : " + model);
 		
 		return "payment/pc_list";
 	}
@@ -188,9 +188,9 @@ public class PaymentController {
 		Member member = paymentService.pcMmContentServ(mmCode);
 		PayContent pcList = paymentService.paContentServ(mmCode, utilDate.getPaymentDate());
 		
-		System.out.println("PaymentController pcContentCtrl mmCode : " + mmCode);
-		System.out.println("PaymentController pcContentCtrl member : " + member);
-		System.out.println("PaymentController pcContentCtrl pcList : " + pcList);
+		log.debug("PaymentController pcContentCtrl mmCode : " + mmCode);
+		log.debug("PaymentController pcContentCtrl member : " + member);
+		log.debug("PaymentController pcContentCtrl pcList : " + pcList);
 	
 		model.addAttribute("member", member);
 		model.addAttribute("payYear", utilDate.getCurrentYear());
@@ -201,7 +201,7 @@ public class PaymentController {
 		model.addAttribute("dpName", utilMember.getDpName(member.getDpCode()));
 		model.addAttribute("ptName", utilMember.getPtName(member.getPtCode()));
 		
-		System.out.println("PaymentController pcContentCtrl model toString : " + model.toString());
+		log.debug("PaymentController pcContentCtrl model toString : " + model.toString());
 		
 		return "payment/pc_content";
 	}
@@ -215,8 +215,8 @@ public class PaymentController {
 		
 		Member member = paymentService.pcMmContentServ(payContent.getMmCode());
 		
-		System.out.println("PaymentController pcMmContentCtrl member : " + member);
-		System.out.println("PaymentController pcMmContentCtrl payContent : " + payContent);
+		log.debug("PaymentController pcMmContentCtrl member : " + member);
+		log.debug("PaymentController pcMmContentCtrl payContent : " + payContent);
 	
 		model.addAttribute("member", member);
 		model.addAttribute("payYear", utilDate.getCurrentYear());
@@ -227,7 +227,7 @@ public class PaymentController {
 		model.addAttribute("dpName", utilMember.getDpName(member.getDpCode()));
 		model.addAttribute("ptName", utilMember.getPtName(member.getPtCode()));
 		
-		System.out.println("PaymentController pcContentCtrl model toString : " + model.toString());
+		log.debug("PaymentController pcContentCtrl model toString : " + model.toString());
 		
 		return "payment/pc_content";
 	}
@@ -246,7 +246,7 @@ public class PaymentController {
 		model.addAttribute("paMmCode", paMmCode);
 		model.addAttribute("paymentDate", utilDate.getPaymentDate());
 		
-		System.out.println("PaymentController paAddCtrl attribute model : " + model);
+		log.debug("PaymentController paAddCtrl attribute model : " + model);
 		
 		return "payment/pa_add";
 	}
@@ -255,7 +255,7 @@ public class PaymentController {
 	@RequestMapping(value = "pa/add", method = RequestMethod.POST)
 	public String paAddProCtrl(PayContent payContent) {	
 		
-		System.out.println("PaymentController paAddProCtrl payContent : " + payContent);
+		log.debug("PaymentController paAddProCtrl payContent : " + payContent);
 		
 		paymentService.pcAddServ(payContent);
 		

@@ -12,7 +12,6 @@ public class ProjectMember {
 	private String pmNote;
 	private String pmApproval;
 	private String mmName;
-	
 
 	public String getMmName() {
 		return mmName;
@@ -100,5 +99,4 @@ public class ProjectMember {
 				+ ", pmField=" + pmField + ", pmStartDate=" + pmStartDate + ", pmEndDate=" + pmEndDate + ", pmNote="
 				+ pmNote + ", pmApproval=" + pmApproval + ", mmName=" + mmName + "]";
 	}
-
 }

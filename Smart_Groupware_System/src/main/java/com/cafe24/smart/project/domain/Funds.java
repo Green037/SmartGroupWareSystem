@@ -22,11 +22,11 @@ public class Funds {
 	public int getFuCode() {
 		return fuCode;
 	}
-	
+
 	public void setFuCode(int fuCode) {
 		this.fuCode = fuCode;
 	}
-	
+
 	public int getPrCode() {
 		return prCode;
 	}
@@ -38,11 +38,11 @@ public class Funds {
 	public String getFuHistory() {
 		return fuHistory;
 	}
-	
+
 	public void setFuHistory(String fuHistory) {
 		this.fuHistory = fuHistory;
 	}
-	
+
 	public String getFuExpectedMoney() {
 		return fuExpectedMoney;
 	}
@@ -54,15 +54,15 @@ public class Funds {
 	public int getFuUsedMoney() {
 		return fuUsedMoney;
 	}
-	
+
 	public void setFuUsedMoney(int fuUsedMoney) {
 		this.fuUsedMoney = fuUsedMoney;
 	}
-	
+
 	public String getFuAddReason() {
 		return fuAddReason;
 	}
-	
+
 	public void setFuAddReason(String fuAddReason) {
 		this.fuAddReason = fuAddReason;
 	}
@@ -81,5 +81,4 @@ public class Funds {
 				+ fuExpectedMoney + ", fuUsedMoney=" + fuUsedMoney + ", fuAddReason=" + fuAddReason + ", fuDraftCheck="
 				+ fuDraftCheck + ", fuAddMoney=" + fuAddMoney + "]";
 	}
-	
 }

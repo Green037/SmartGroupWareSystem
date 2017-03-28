@@ -30,200 +30,183 @@ import com.cafe24.smart.util.UtilFile;
 
 @Controller
 public class ApproveController {
-	private static final Logger logger = LoggerFactory.getLogger(ApproveController.class);
-	
+	private static final Logger log = LoggerFactory.getLogger(ApproveController.class);
+
 	@Autowired
 	private ApproveService approveService;
-	
-	//기안 등록 : GET
-	@RequestMapping(value ="ap/add", method = RequestMethod.GET)
-	public String Add(Model model){
-		
-		//System.out.println("ctrl dftAdd GET> test");
+
+	// 기안 등록 : GET
+	@RequestMapping(value = "ap/add", method = RequestMethod.GET)
+	public String add(Model model) {
+
+		// log.debug("ctrl dftAdd GET> test");
 		List<Document> doc = new ArrayList<Document>();
 		List<Department> dep = new ArrayList<Department>();
 		List<Position> pos = new ArrayList<Position>();
-		
+
 		doc = approveService.apAddSelServ();
 		dep = approveService.apAddMmSelServ();
 		pos = approveService.apADDPosSelServ();
-		
-		//System.out.println(doc);
+
+		// log.debug(doc);
 		model.addAttribute("doc", doc);
 		model.addAttribute("dep", dep);
 		model.addAttribute("pos", pos);
-		
-		return "/approve/ap_dftAdd";   
-	}
-	
-	//기안 등록 : POST
-	@RequestMapping(value ="ap/add", method = RequestMethod.POST)
-	public String apAddCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
-							MultipartHttpServletRequest request,Draft draft, Progress progress){
-			
-//		System.out.println("ctrl dftAdd > test");
-		System.out.println("기안내용넘어왔는지 확인 : "+draft);
-		UtilFile utilFile = new UtilFile();
-		
-		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);
-		System.out.println("ctrl apAddCtrl> test2 :"+uploadPath);
 
+		log.debug("ApproveController add model : " + model);
+		
+		return "/approve/ap_dftAdd";
+	}
+
+	// 기안 등록 : POST
+	@RequestMapping(value = "ap/add", method = RequestMethod.POST)
+	public String apAddCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
+					MultipartHttpServletRequest request, Draft draft, Progress progress) {
+
+		// log.debug("ctrl dftAdd > test");
+		log.debug("ApproveController apAddCtrl : " + draft);
+		
+		UtilFile utilFile = new UtilFile();
+
+		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);
 		int result = approveService.apAddServ(draft, progress, uploadPath);
 		
+		log.debug("ApproveController apAddCtrl uploadPath :" + uploadPath);
+		log.debug("ApproveController apAddCtrl result :" + result);
+
 		return "redirect:/ap/list";
 	}
-	
-	
-	//결재 목록 [대기/반려/완료] : GET 
-	@RequestMapping(value ="ap/list", method = RequestMethod.GET)
-	public String apProListCtrl(Model model, @RequestParam(value="apProgress", defaultValue="0") int apProgress, HttpSession session){	
+
+	// 결재 목록 [대기/반려/완료] : GET
+	@RequestMapping(value = "ap/list", method = RequestMethod.GET)
+	public String apProListCtrl(Model model, @RequestParam(value = "apProgress", defaultValue = "0") int apProgress,
+			HttpSession session) {
 
 		int mmCode = (int) session.getAttribute("mmCode");
-//		System.out.println(mmCode);
 		
-		List<Draft> pgList = new ArrayList<Draft>();
-		List<Document> docList = new ArrayList<Document>();
+		log.debug("ApproveController apProListCtrl mmCode :" + mmCode);
+
+		List<Draft> pgList = approveService.pgListServ(apProgress, mmCode);
+		List<Document> docList = approveService.docListServ();
+
+		log.debug("ApproveController apProListCtrl pgList :" + pgList);
+		log.debug("ApproveController apProListCtrl docList :" + docList);
 		
-		pgList = approveService.pgListServ(apProgress, mmCode);
-		docList = approveService.docListServ();
-		
-//		System.out.println(pgList);
 		model.addAttribute("pgList", pgList);
 		model.addAttribute("docList", docList);
-	
+
 		return "/approve/ap_list";
 	}
 
-	//결재 상세보기[대기/반려/완료] : GET
-	@RequestMapping(value="ap/Content", method=RequestMethod.GET)
-	public String apHvDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
-	
-		//System.out.println("ctrl hvCont> test");
+	// 결재 상세보기[대기/반려/완료] : GET
+	@RequestMapping(value = "ap/Content", method = RequestMethod.GET)
+	public String apHvDetailCtrl(Model model, @RequestParam("dftCode") int dftCode) {
+		
+		log.debug("ApproveController apHvDetailCtrl dftCode :" + dftCode);
+		
 		Draft draft = new Draft();
-		Document document = new Document();
-		String url;
 		
 		draft = approveService.hvContServ(dftCode);
-		
+
 		model.addAttribute("draft", draft);
-		url = draft.getUrl();
-	
-		return url;
-	
-	}	
 
-	//결재 요청[승인/반려] : POST
-	@RequestMapping(value ="ap/proAdd", method = RequestMethod.POST)
-	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode){
+		log.debug("ApproveController apHvDetailCtrl model :" + model);
+		
+		return draft.getUrl();
+	}
 
-		//System.out.println("ctrl proAdd> test");
+	// 결재 요청[승인/반려] : POST
+	@RequestMapping(value = "ap/proAdd", method = RequestMethod.POST)
+	public String proAdd(Draft draft, Progress progress, @RequestParam("dftCode") int dftCode) {
+
+		log.debug("ApproveController proAdd dftCode :" + dftCode);
+		
 		int result = approveService.apProAddServ(draft, progress, dftCode);
 		
-		return "redirect:/ap/list";  
+		log.debug("ApproveController proAdd result :" + result);
+
+		return "redirect:/ap/list";
 	}
-	
-	
-	//임시 문서함 : GET
-	@RequestMapping(value="ap/temList", method=RequestMethod.GET)
-	public String temList(Model model,HttpSession session){
-		
-//		System.out.println("ctrl temList> test");		
-//		System.out.println("임시문서함 사원코드:"+session.getAttribute("mmCode"));
-		int mmCode= (int)session.getAttribute("mmCode");
-		
-		List<Draft> temList = new ArrayList<Draft>();
-		temList = approveService.temListServ(mmCode);
-		
-		List<Document> docList = new ArrayList<Document>();
-		docList = approveService.docListServ();
-	
+
+	// 임시 문서함 : GET
+	@RequestMapping(value = "ap/temList", method = RequestMethod.GET)
+	public String temList(Model model, HttpSession session) {
+
+		int mmCode = (int) session.getAttribute("mmCode");
+
+		List<Draft> temList = approveService.temListServ(mmCode);
+		List<Document> docList = approveService.docListServ();
+
+		log.debug("ApproveController proAdd temList :" + temList);
+		log.debug("ApproveController proAdd docList :" + docList);
+
 		model.addAttribute("temList", temList);
 		model.addAttribute("docList", docList);
-		
+
 		return "/approve/ap_temList";
-		
 	}
-	
-	//임시 문서함 상세보기 : GET
-	@RequestMapping(value ="ap/temContent", method = RequestMethod.GET)
-	public String aptemDetailCtrl(Model model,@RequestParam("dftCode") int dftCode){
-	
-		//System.out.println("ctrl temContent> test");
-		List<Draft> draft = new ArrayList<Draft>();	
-		List<Document> doc = new ArrayList<Document>();
-		List<Department> dep = new ArrayList<Department>();
-		List<Position> pos = new ArrayList<Position>();
+
+	// 임시 문서함 상세보기 : GET
+	@RequestMapping(value = "ap/temContent", method = RequestMethod.GET)
+	public String aptemDetailCtrl(Model model, @RequestParam("dftCode") int dftCode) {
+
+		log.debug("ApproveController aptemDetailCtrl dftCode :" + dftCode);
+		
+		List<Draft> draft = approveService.temContServ(dftCode);
+		
 		Map nameMap = new HashMap();
-		Map depMap = new HashMap();
-		Map ptMap = new HashMap();
-		String selectDoc = "";
-	
 		
-		doc = approveService.apAddSelServ();
-		dep = approveService.apAddMmSelServ();
-		pos = approveService.apADDPosSelServ();
+		log.debug("ApproveController aptemDetailCtrl draft :" + draft);
 		
-		draft = approveService.temContServ(dftCode);
-		selectDoc = approveService.temDocSeleServ(dftCode);
-
-		nameMap = approveService.temContNameServ(draft);
-		depMap = approveService.temContDepServ(draft);
-		ptMap = approveService.temContPtServ(draft); 
-
 		model.addAttribute("draft", draft);
-		model.addAttribute("dep", dep);
-		model.addAttribute("pos", pos);
-		model.addAttribute("doc", doc);
-		model.addAttribute("selectDoc", selectDoc);
-		model.addAttribute("nameMap",nameMap);
-		model.addAttribute("depMap",depMap);
-		model.addAttribute("ptMap",ptMap);
-//		System.out.println(draft);
+		model.addAttribute("dep", approveService.apAddMmSelServ());
+		model.addAttribute("pos", approveService.apADDPosSelServ());
+		model.addAttribute("doc", approveService.apAddSelServ());
+		model.addAttribute("selectDoc", approveService.temDocSeleServ(dftCode));
+		model.addAttribute("nameMap", approveService.temContNameServ(draft));
+		model.addAttribute("depMap", approveService.temContDepServ(draft));
+		model.addAttribute("ptMap", approveService.temContPtServ(draft));
 		
-		return "/approve/ap_temModify";   
+		return "/approve/ap_temModify";
 	}
 
-	//문서 양식 목록 : GET
-	@RequestMapping(value ="ap/docList", method = RequestMethod.GET)
-	public String apdocListCtrl(Model model){
-	
-		//System.out.println("ctrl apdocListCtrl> test");
+	// 문서 양식 목록 : GET
+	@RequestMapping(value = "ap/docList", method = RequestMethod.GET)
+	public String apdocListCtrl(Model model) {
+
+		// log.debug("ctrl apdocListCtrl> test");
 		List<Document> docList = new ArrayList<Document>();
-		
+
 		docList = approveService.docListServ();
 		model.addAttribute("docList", docList);
-		
-		return "/approve/ap_docList";   
-	}
-	
-	//다운로드 : 기안 : 첨부파일 다운로드
-	@RequestMapping(value ="ap/dftDownFile", method = RequestMethod.GET)
-	public ModelAndView apDftDownDftFile(@RequestParam(value="dftCode", required=true) int dftCode){
 
-//		System.out.println("다운로드 test1");
+		return "/approve/ap_docList";
+	}
+
+	// 다운로드 : 기안 : 첨부파일 다운로드
+	@RequestMapping(value = "ap/dftDownFile", method = RequestMethod.GET)
+	public ModelAndView apDftDownDftFile(@RequestParam(value = "dftCode", required = true) int dftCode) {
+
+		// log.debug("다운로드 test1");
 		Draft draft = new Draft();
 		draft = approveService.apDownDftServ(dftCode);
 		File downDftFile = new File(draft.getDftFilePath());
-		
+
 		return new ModelAndView("downloadView", "downloadFile", downDftFile);
-		
-	};
-	
-	//다운로드 : 문서 : 첨부파일 다운로드
-	@RequestMapping(value ="ap/docDownFile", method = RequestMethod.GET)
-	public ModelAndView apDocDownDftFile(@RequestParam(value="docCode", required=true) int docCode){
-		//System.out.println("document 다운로드 test1");
-		
+	}
+
+	// 다운로드 : 문서 : 첨부파일 다운로드
+	@RequestMapping(value = "ap/docDownFile", method = RequestMethod.GET)
+	public ModelAndView apDocDownDftFile(@RequestParam(value = "docCode", required = true) int docCode) {
+		// log.debug("document 다운로드 test1");
+
 		Document document = new Document();
 		document = approveService.apDownDocServ(docCode);
-		
-//		System.out.println(document.getDocFileOri());
-//		String downloadFile = document.getDocFileOri();
+
+		// log.debug(document.getDocFileOri());
+		// String downloadFile = document.getDocFileOri();
 		File downFile = new File(document.getDocFilePath());
-		
+
 		return new ModelAndView("downloadView", "downloadFile", downFile);
-		
-	};
-	
-		
+	}
 }

@@ -26,8 +26,8 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public List<PayContent> selectAllPc(int offset, int noOfRecord) {
 		
-		System.out.println("PaymentDAOImpl selectAllPc offset : " + offset);
-		System.out.println("PaymentDAOImpl selectAllPc noOfRecord : " + noOfRecord);
+		log.debug("PaymentDAOImpl selectAllPc offset : " + offset);
+		log.debug("PaymentDAOImpl selectAllPc noOfRecord : " + noOfRecord);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -37,8 +37,8 @@ public class PaymentDAOImpl implements PaymentDAO {
 		List<PayContent> pcList = sqlSession.selectList("PaDAO.selectAllPc", params);
 		this.selectAllCountRe = sqlSession.selectOne("PaDAO.selectAllCountRe");
 		
-		System.out.println("PaymentDAOImpl selectAllPc pcList : " + pcList);
-		System.out.println("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);
+		log.debug("PaymentDAOImpl selectAllPc pcList : " + pcList);
+		log.debug("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);
 		
 		return pcList;
 	}
@@ -47,9 +47,9 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public List<PayContent> selectAllSearchPc(int offset, int noOfRecords, SearchCriteria cri) {
 		
-		System.out.println("PaymentDAOImpl selectAllPc offset : " + offset);
-		System.out.println("PaymentDAOImpl selectAllPc noOfRecords : " + noOfRecords);
-		System.out.println("PaymentDAOImpl selectAllPc cri : " + cri);
+		log.debug("PaymentDAOImpl selectAllPc offset : " + offset);
+		log.debug("PaymentDAOImpl selectAllPc noOfRecords : " + noOfRecords);
+		log.debug("PaymentDAOImpl selectAllPc cri : " + cri);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -60,8 +60,8 @@ public class PaymentDAOImpl implements PaymentDAO {
 		List<PayContent> pcList = sqlSession.selectList("PaDAO.selectAllSearchPc", params);
 		this.selectAllCountRe = sqlSession.selectOne("PaDAO.selectAllCountRe");
 		
-		System.out.println("PaymentDAOImpl selectAllPc pcList : " + pcList);
-		System.out.println("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);
+		log.debug("PaymentDAOImpl selectAllPc pcList : " + pcList);
+		log.debug("PaymentDAOImpl selectAllPc selectAllCountRe : " + this.selectAllCountRe);
 		
 		return pcList;
 	}
@@ -70,7 +70,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public List<PayContent> selectPa(int mmCode, String startDate, String endDate) {
 	
-		System.out.println("PaymentDAOImpl selectPa mmCode : " + mmCode + ", startDate : " + startDate 
+		log.debug("PaymentDAOImpl selectPa mmCode : " + mmCode + ", startDate : " + startDate 
 								+ ", endDate : " + endDate);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
@@ -86,15 +86,15 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public PayContent selectByPc(int mmCode, String pcDate) {
 		
-		System.out.println("PaymentDAOImpl selectByPc mmCode : " + mmCode);
-		System.out.println("PaymentDAOImpl selectByPc pcDate : " + pcDate);
+		log.debug("PaymentDAOImpl selectByPc mmCode : " + mmCode);
+		log.debug("PaymentDAOImpl selectByPc pcDate : " + pcDate);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
 		params.put("mmCode", mmCode);
 		params.put("pcDate", pcDate);
 		
-		System.out.println("PaymentDAOImpl selectByPc params : " + params);
+		log.debug("PaymentDAOImpl selectByPc params : " + params);
 		
 		return sqlSession.selectOne("PaDAO.selectByPc", params);
 	}
@@ -103,7 +103,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public PayContent selectByPcCodePc(int pcCode) {
 		
-		System.out.println("PaymentDAOImpl selectByPcCodePc pcCode : " + pcCode);		
+		log.debug("PaymentDAOImpl selectByPcCodePc pcCode : " + pcCode);		
 		
 		return sqlSession.selectOne("PaDAO.selectByPcCodePc", pcCode);
 	}
@@ -119,7 +119,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public int insertPc(PayContent payContent) {
 		
-		System.out.println("PaymentDAOImpl insertPc payContent : " + payContent);
+		log.debug("PaymentDAOImpl insertPc payContent : " + payContent);
 		
 		return sqlSession.insert("PaDAO.insertPc", payContent);
 	}
@@ -128,7 +128,7 @@ public class PaymentDAOImpl implements PaymentDAO {
 	@Override
 	public void updatePc(PayContent payContent) {
 		
-		System.out.println("PaymentDAOImpl updatePa payContent : " + payContent);
+		log.debug("PaymentDAOImpl updatePa payContent : " + payContent);
 		
 		sqlSession.update("PaDAO.updatePc", payContent);
 	}

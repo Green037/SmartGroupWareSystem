@@ -168,5 +168,4 @@ public class Project {
 				+ ", prEndDay=" + prEndDay + ", prForProgress=" + prForProgress + ", prFinishCheck=" + prFinishCheck
 				+ ", wbs=" + wbs + ", prReport=" + prReport + ", mmName=" + mmName + "]";
 	}
-
 }

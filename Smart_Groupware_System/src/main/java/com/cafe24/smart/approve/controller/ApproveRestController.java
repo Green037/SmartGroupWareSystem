@@ -23,172 +23,141 @@ import com.cafe24.smart.approve.service.ApproveService;
 import com.cafe24.smart.member.domain.Department;
 import com.cafe24.smart.member.domain.Member;
 import com.cafe24.smart.member.domain.Position;
-import com.cafe24.smart.project.controller.ProjectController;
 import com.cafe24.smart.util.UtilFile;
 
 @RestController
 public class ApproveRestController {
 
-	private static final Logger log = LoggerFactory.getLogger(ProjectController.class);
+	private static final Logger log = LoggerFactory.getLogger(ApproveRestController.class);
 	
 	@Autowired
 	private ApproveService approveService;
 
 	// 문서양식 등록 : POST
 	@RequestMapping(value ="ap/addDoc", method = RequestMethod.POST)
-	public Map apDocAddReCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
-							  MultipartHttpServletRequest request, Document document){
+	public Map<String, Object> apDocAddReCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
+							  MultipartHttpServletRequest request, Document document) {
 		
-		HashMap resultMap = new HashMap();
+		Map<String, Object> resultMap = new HashMap<String, Object>();
 		List<Document> selDoc = new ArrayList<Document>();
 		UtilFile utilFile = new UtilFile();
+		
 		// 파일 업로드 
 		String uploadPath = utilFile.fileUpload(request, uploadFile, selDoc);
-//		System.out.println("ajax - ctrl apDocAddReCtrl> test");
+
+		log.debug("ApproveRestController apDocAddReCtrl uploadPath : " + uploadPath);
 		
 		int result = approveService.apDocAddServ(document, uploadPath);
 		
 		//파일 업로드 db 입력 여부 
-		if(result != 0){
+		if(result != 0) {
 			resultMap.put("check","성공");
+			
 //			generate mapper에서 document에서 select해와서 resultMap에다 담아줘서 가져옴
-//			System.out.println("방금입력한document pk값:"+document.getDocCode());
 			selDoc = approveService.apDocSelServ(document);
 			
-//			System.out.println("방금입력 된 값:"+selDoc);
 			resultMap.put("selDoc", selDoc);			
-		}else{
-			resultMap.put("check","실패");
+		} else {
+			resultMap.put("check", "실패");
 		}
+		
+		log.debug("ApproveRestController apDocAddReCtrl resultMap : " + resultMap);
+		
 		return resultMap; 
 	}
 	
 	// 결재선 : 브라우저 내에서 선택하여 사원코드/이름값 가져오기
 	@RequestMapping(value ="ap/addMm", method = RequestMethod.POST)
-	public List<Member> apMmAddReCtrl(Position position, Department department){
-		//System.out.println("rectrl apMmAddReCtrl > tets");
+	public List<Member> apMmAddReCtrl(Position position, Department department) {
 		
-		List<Member> member = new ArrayList<Member>();		
-		//System.out.println(position);
-		//System.out.println(department);
-		member = approveService.apMmAddServ(position,department);
-
+		log.debug("ApproveRestController apMmAddReCtrl position : " + position + ", department : " + department);
 		
-		return member;
+		return approveService.apMmAddServ(position,department);
 	}
 	
 	// 결재선 : 결재선 등록,즐겨찾기
 	@RequestMapping(value ="ap/addApr", method = RequestMethod.POST)
-	public int apAprAddReCtrl(Approval approval){
+	public int apAprAddReCtrl(Approval approval) {
 				
-		System.out.println(approval);
+		log.debug("ApproveRestController apAprAddReCtrl approval : " + approval);
+		
 		int apr = 0;
 	
 		//결재선이 모두 null일 경우 조건
-		if(approval.getAprApproval1()==0){
-			apr = 0;
-		}else{
+		if(approval.getAprApproval1() != 0) {
 			apr = approveService.apAprAddServ(approval);
 		}
-		System.out.println(apr);
-			
+		
+		log.debug("ApproveRestController apAprAddReCtrl apr : " + apr);
+		
 		return apr;
 	}
 	
 	// 결재선 : list에서 view_db에서 사원코드로 저장된 결재선 가져오기 [복수]
 	@RequestMapping(value ="ap/listApr", method = RequestMethod.POST)
-	public List<Approval> apAprListReCtrl(@RequestParam("mmCode") int mmCode){		
-//		System.out.println(mmCode);
+	public List<Approval> apAprListReCtrl(@RequestParam("mmCode") int mmCode) {		
 		
-		List<Approval> apr = new ArrayList<Approval>();		
-		apr = approveService.apAprListServ(mmCode);
-
-		//System.out.println(apr);	
-		return apr;
+		log.debug("ApproveRestController apAprListReCtrl mmCode : " + mmCode);
+		
+		return approveService.apAprListServ(mmCode);
 	}
 	
 	// 결재선 : (pk값) 결재선 가져오기[단수]
 	@RequestMapping(value="ap/selApr", method = RequestMethod.POST)
-	public Map apAprSelReCtrl(@RequestParam("aprCode") int aprCode){
-//		System.out.println("select값 가져오기");
+	public Map apAprSelReCtrl(@RequestParam("aprCode") int aprCode) {
 		
-		Map resultMap = new HashMap();
-		resultMap = approveService.apAprSelServ(aprCode);
-		
-//		System.out.println("결재서 resultMap 값 :"+resultMap);
-		return resultMap;
+		log.debug("ApproveRestController apAprSelReCtrl aprCode : " + aprCode);
+	
+		return approveService.apAprSelServ(aprCode);
 	}
 	
 	// 검색 : 결재 목록
 	@RequestMapping(value="ap/searchDft", method = RequestMethod.POST)
-	public List<Draft> apSearchListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="문서없음") String docFileGroup){
+	public List<Draft> apSearchListCtrl(Draft draft,
+						@RequestParam(value="docFileGroup", defaultValue="문서없음") String docFileGroup) {
 		
-//		System.out.println("ajax test");
-		System.out.println("넘어온 값 확인 : "+draft);
-		System.out.println("넘어온 값 확인 : "+docFileGroup);
-		Map map = new HashMap();
-		List<Draft> serachList = new ArrayList<Draft>();
+		log.debug("ApproveRestController apSearchListCtrl draft : " + draft);
+		log.debug("ApproveRestController apSearchListCtrl docFileGroup : " + docFileGroup);
 		
-		System.out.println("form:"+draft);
-		
-		//System.out.println(docFileGroup);
-		serachList = approveService.apSearchServ(draft ,docFileGroup);
-		System.out.println("검색:"+serachList);
-	
-		return serachList;
-		
+		return approveService.apSearchServ(draft ,docFileGroup);
 	}
 	
 	// 검색 : 문서 양식 목록
-	@RequestMapping(value="ap/searchDoc", method = RequestMethod.POST)
-	public List<Document> apSearchDocListCtrl(@RequestParam(value="docFileGroup") String docFileGroup){
+	@RequestMapping(value = "ap/searchDoc", method = RequestMethod.POST)
+	public List<Document> apSearchDocListCtrl(@RequestParam(value="docFileGroup") String docFileGroup) {
 		
-//			System.out.println("ajax test");
-		System.out.println("넘어온 값 확인 : "+docFileGroup);
-		
-		List<Document> document = new ArrayList<Document>();
-		document = approveService.apSearchDocServ(docFileGroup);
-		System.out.println("검색:"+document);
+		log.debug("ApproveRestController apSearchDocListCtrl docFileGroup : " + docFileGroup);
 	
-		return document;
-		
+		return approveService.apSearchDocServ(docFileGroup);	
 	}
 	
 	// 검색 : 임시 저장목록
-	@RequestMapping(value="ap/searchTem", method = RequestMethod.POST)
-	public List<Draft> apSearchDocListCtrl(Draft draft, @RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup){
+	@RequestMapping(value = "ap/searchTem", method = RequestMethod.POST)
+	public List<Draft> apSearchDocListCtrl(Draft draft,
+							@RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup) {
 		
-//				System.out.println("ajax test");
-		System.out.println("임시 넘어온 값 확인 : "+draft);
-		List<Draft> result = new ArrayList<Draft>();
-		result = approveService.apSearchDftServ(draft);
+		log.debug("ApproveRestController apSearchDocListCtrl draft : " + draft + ", docFileGroup : " + docFileGroup);
 		
-		System.out.println("임시 결과"+result);
-		
-		return result;
-				
+		return approveService.apSearchDftServ(draft);
 	}
 	
 	// 전자결제 팝업창 기본데이터 요청 : 윤재호
-	@RequestMapping(value="ap/evApproval", method = RequestMethod.POST)
-	public Map<String, Object> evAppReqData(){
-		System.out.println("평가보고서 팝업데이터요청 ajax Ctrl");
+	@RequestMapping(value ="ap/evApproval", method = RequestMethod.POST)
+	public Map<String, Object> evAppReqData() {
 		
 		// 1.문서종류, 결제부서, 직급 정보를 조회한다
-		List<Document> doc = new ArrayList<Document>(); //문서종류
-		List<Department> dep = new ArrayList<Department>(); //부서
-		List<Position> pos = new ArrayList<Position>(); //직급
-		
-		doc = approveService.apAddSelServ();
-		dep = approveService.apAddMmSelServ();
-		pos = approveService.apADDPosSelServ();
+		List<Document> doc = approveService.apAddSelServ(); //문서종류
+		List<Department> dep = approveService.apAddMmSelServ(); //부서
+		List<Position> pos = approveService.apADDPosSelServ(); //직급
 		
 		// 2.map에 담아 뷰로 값 리턴한다
 		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
 		resultMap.put("doc", doc);
 		resultMap.put("dep", dep);
 		resultMap.put("pos", pos);
-		System.out.println("조회데이터 최종확인: "+resultMap);
+		
+		log.debug("ApproveRestController evAppReqData resultMap : " + resultMap);
 		
 		return resultMap;
 	}
@@ -196,10 +165,12 @@ public class ApproveRestController {
 	//기안 등록 : POST 윤재호
 	@RequestMapping(value ="ap/addApply", method = RequestMethod.POST)
 	public String apAddApplyCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
-							MultipartHttpServletRequest request,Draft draft, Progress progress){
+							MultipartHttpServletRequest request, Draft draft, Progress progress){
 			
-		System.out.println("Ajax 기안등록 ");
-		System.out.println("기안내용넘어왔는지 확인 : "+draft);
+
+		log.debug("ApproveRestController apAddApplyCtrl draft : " + draft);
+		log.debug("ApproveRestController apAddApplyCtrl progress : " + progress);
+		
 		UtilFile utilFile = new UtilFile();
 		
 		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);

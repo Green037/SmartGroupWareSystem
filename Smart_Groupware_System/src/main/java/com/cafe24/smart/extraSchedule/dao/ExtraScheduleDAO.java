@@ -10,13 +10,12 @@ import com.cafe24.smart.member.domain.Member;
 
 public interface ExtraScheduleDAO {
 	
-	int insertVa(ExtraSchedule extraSchedule);
-	int insertWo(ExtraSchedule extraSchedule);
+	List<ExtraSchedule> 					selectPersonalEs(ExtraSchedule extraSchedule);
+	List<ExtraSchedule> 					selectDpEs(Map<String, Object> paramMap);
+	List<Member> 							selectByDpCodeMm(int dpCode);
 	
-	ExtraSchedule selectEs(int esCode);
+	ExtraSchedule 							selectEs(int esCode);
 	
-	List<ExtraSchedule> selectPersonalEs(ExtraSchedule extraSchedule);
-	List<ExtraSchedule> selectDpEs(Map<String, Object> paramMap);
-	List<Member> selectByDpCodeMm(int dpCode);
-	
+	int 									insertVa(ExtraSchedule extraSchedule);
+	int 									insertWo(ExtraSchedule extraSchedule);	
 }

@@ -4,17 +4,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="PaDAO">
-	<resultMap id="resultPc" type="com.cafe24.smart.payment.domain.PayContent">
-		<result property="pcCode" column="pc_code"/>
-		<result property="mmCode" column="mm_code"/>
-		<result property="pcDate" column="pc_date"/>
-		<result property="mmDailyPay" column="mm_dailyPay"/>
-		<result property="inAmount" column="in_amount"/>
-		<result property="eiAmount" column="ei_amount"/>
-		<result property="nhiAmount" column="nhi_amount"/>
-		<result property="ohiAmount" column="ohi_amount"/>
-		<result property="ppAmount" column="pp_amount"/>
-		<result property="paMmCode" column="pa_mmCode"/>
+	<resultMap id="resultPc" 					type="com.cafe24.smart.payment.domain.PayContent">
+		<result property="pcCode" 				column="pc_code"/>
+		<result property="mmCode" 				column="mm_code"/>
+		<result property="pcDate" 				column="pc_date"/>
+		<result property="mmDailyPay" 			column="mm_dailyPay"/>
+		<result property="inAmount" 			column="in_amount"/>
+		<result property="eiAmount"				column="ei_amount"/>
+		<result property="nhiAmount" 			column="nhi_amount"/>
+		<result property="ohiAmount" 			column="ohi_amount"/>
+		<result property="ppAmount" 			column="pp_amount"/>
+		<result property="paMmCode" 			column="pa_mmCode"/>
 	</resultMap>
 	
 	<!-- 총무부 > 총급여목록 -->

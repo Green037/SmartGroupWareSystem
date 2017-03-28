@@ -15,85 +15,111 @@ public class Commute {
 	private String cmGoOutReason;
 	private String cmCheckToday;
 	private String mmName;
-	
+
 	public String getMmName() {
 		return mmName;
 	}
+
 	public void setMmName(String mmName) {
 		this.mmName = mmName;
 	}
+
 	public String getCmCheckToday() {
 		return cmCheckToday;
 	}
+
 	public void setCmCheckToday(String cmCheckToday) {
 		this.cmCheckToday = cmCheckToday;
 	}
+
 	public String getCmGoOutReason() {
 		return cmGoOutReason;
 	}
+
 	public void setCmGoOutReason(String cmGoOutReason) {
 		this.cmGoOutReason = cmGoOutReason;
 	}
+
 	public int getCmCode() {
 		return cmCode;
 	}
+
 	public void setCmCode(int cmCode) {
 		this.cmCode = cmCode;
 	}
+
 	public int getMmCode() {
 		return mmCode;
 	}
+
 	public void setMmCode(int mmCode) {
 		this.mmCode = mmCode;
 	}
+
 	public String getCmOnTime() {
 		return cmOnTime;
 	}
+
 	public void setCmOnTime(String cmOnTime) {
 		this.cmOnTime = cmOnTime;
 	}
+
 	public String getCmOffTime() {
 		return cmOffTime;
 	}
+
 	public void setCmOffTime(String cmOffTime) {
 		this.cmOffTime = cmOffTime;
 	}
+
 	public String getCmDate() {
 		return cmDate;
 	}
+
 	public void setCmDate(String cmDate) {
 		this.cmDate = cmDate;
 	}
+
 	public String getCmExceptionInput() {
 		return cmExceptionInput;
 	}
+
 	public void setCmExceptionInput(String cmExceptionInput) {
 		this.cmExceptionInput = cmExceptionInput;
 	}
+
 	public String getCmSituation() {
 		return cmSituation;
 	}
+
 	public void setCmSituation(String cmSituation) {
 		this.cmSituation = cmSituation;
 	}
+
 	public String getCmExceptionReason() {
 		return cmExceptionReason;
 	}
+
 	public void setCmExceptionReason(String cmExceptionReason) {
 		this.cmExceptionReason = cmExceptionReason;
 	}
+
 	public String getCmGoOutTime() {
 		return cmGoOutTime;
 	}
+
 	public void setCmGoOutTime(String cmGoOutTime) {
 		this.cmGoOutTime = cmGoOutTime;
 	}
+
 	public String getCmReturnTime() {
 		return cmReturnTime;
 	}
+
 	public void setCmReturnTime(String cmReturnTime) {
 		this.cmReturnTime = cmReturnTime;
 	}
+
 	@Override
 	public String toString() {
 		return "Commute [cmCode=" + cmCode + ", mmCode=" + mmCode + ", cmOnTime=" + cmOnTime + ", cmOffTime="
@@ -102,5 +128,4 @@ public class Commute {
 				+ ", cmReturnTime=" + cmReturnTime + ", cmGoOutReason=" + cmGoOutReason + ", cmCheckToday="
 				+ cmCheckToday + ", mmName=" + mmName + "]";
 	}
-	
 }

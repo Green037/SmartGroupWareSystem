@@ -10,13 +10,13 @@ import com.cafe24.smart.member.domain.Member;
 
 @Service
 public interface ExtraScheduleService {
-	int addEsVaServ(ExtraSchedule extraSchedule);
-	int addEsWoServ(ExtraSchedule extraSchedule);
 	
-	ExtraSchedule esListServ(int esCode);
+	List<ExtraSchedule> 						esPersonalListServ(ExtraSchedule extraSchedule);
+	List<Member> 								esSearchMmServ(int dpCode);
+	List<ExtraSchedule> 						esDpListServ(String startDate, String endDate, int dpCode, int mmCode);
 	
+	ExtraSchedule 								esListServ(int esCode);
 	
-	List<ExtraSchedule> esPersonalListServ(ExtraSchedule extraSchedule);
-	List<Member> esSearchMmServ(int dpCode);
-	List<ExtraSchedule> esDpListServ(String startDate, String endDate, int dpCode, int mmCode);
+	int 										addEsVaServ(ExtraSchedule extraSchedule);
+	int 										addEsWoServ(ExtraSchedule extraSchedule);	
 }

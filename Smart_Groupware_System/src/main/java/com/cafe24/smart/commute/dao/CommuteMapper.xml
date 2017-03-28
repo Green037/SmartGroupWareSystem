@@ -4,140 +4,44 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="CmDAO">
-	<resultMap id="resultCm" type="com.cafe24.smart.commute.domain.Commute">
-		<result property="cmCode" column="cm_code"/>
-		<result property="mmCode" column="mm_code"/>
-		<result property="cmOnTime" column="cm_onTime"/>
-		<result property="cmOffTime" column="cm_offTime"/>
-		<result property="cmDate" column="cm_date"/>
-		<result property="cmExceptionInput" column="cm_exceptionInput"/>
-		<result property="cmExceptionReason" column="cm_exceptionReason"/>
-		<result property="cmGoOutTime" column="cm_goOutTime"/>
-		<result property="cmReturnTime" column="cm_returnTime"/>
-		<result property="cmGoOutReason" column="cm_goOutReason"/>
-		<result property="cmSituation" column="cm_situation"/>
-		<result property="cmCheckToday" column="cm_checkToday"/>
-		<result property="mmName" column="mm_name"/>
-	</resultMap>
-	<resultMap id="resultMm" type="com.cafe24.smart.member.domain.Member">
-		<result property="mmCode" column="mm_code"/>
-		<result property="ctCode" column="ct_code"/>
-		<result property="ptCode" column="pt_code"/>
-		<result property="dpCode" column="dp_code"/>
-		<result property="mmName" column="mm_name"/>
-		<result property="mmDailyPay" column="mm_dailyPay"/>
-		<result property="mmJoinDate" column="mm_joinDate"/>
-		<result property="mmResignDate" column="mm_resignDate"/>
-		<result property="mmAnnualLeave" column="mm_annualLeave"/>
-		<result property="mmArmy" column="mm_army"/>
-		<result property="mmEmail" column="mm_email"/>
-		<result property="mmMarriage" column="mm_marriage"/>
-		<result property="mmPassword" column="mm_password"/>
-		<result property="mmSign" column="mm_sign"/>
-		<result property="mmAddress" column="mm_address"/>
-		<result property="mmTel" column="mm_tel"/>
-		<result property="mmBank" column="mm_bank"/>
-		<result property="mmAccount" column="mm_account"/>
+	<resultMap id="resultCm" 						type="com.cafe24.smart.commute.domain.Commute">
+		<result property="cmCode" 					column="cm_code"/>
+		<result property="mmCode" 					column="mm_code"/>
+		<result property="cmOnTime" 				column="cm_onTime"/>
+		<result property="cmOffTime" 				column="cm_offTime"/>
+		<result property="cmDate" 					column="cm_date"/>
+		<result property="cmExceptionInput" 		column="cm_exceptionInput"/>
+		<result property="cmExceptionReason" 		column="cm_exceptionReason"/>
+		<result property="cmGoOutTime" 				column="cm_goOutTime"/>
+		<result property="cmReturnTime" 			column="cm_returnTime"/>
+		<result property="cmGoOutReason" 			column="cm_goOutReason"/>
+		<result property="cmSituation" 				column="cm_situation"/>
+		<result property="cmCheckToday" 			column="cm_checkToday"/>
+		<result property="mmName" 					column="mm_name"/>
 	</resultMap>
 	
-	<insert id="insertOnTimeCm"
-			parameterType="com.cafe24.smart.commute.domain.Commute">
-		INSERT INTO commute(
-			mm_code,
-			cm_onTime,
-			cm_date,
-			cm_situation
-			<if test="cmExceptionInput != null and cmExceptionInput != ''">
-				,cm_exceptionInput
-			</if>
-			<if test="cmExceptionReason != null and cmExceptionReason != ''">
-				,cm_exceptionReson
-			</if>
-			)
-		VALUES(
-			#{mmCode},
-			#{cmOnTime},
-			now(),
-			#{cmSituation}
-			<if test="cmExceptionInput != null and cmExceptionInput != ''">
-				,#{cmExceptionInput}
-			</if>
-			<if test="cmExceptionReason != null and cmExceptionReason != ''">
-				,#{cmExceptionReason}
-			</if>
-			)
+	<resultMap id="resultMm" 						type="com.cafe24.smart.member.domain.Member">
+		<result property="mmCode" 					column="mm_code"/>
+		<result property="ctCode" 					column="ct_code"/>
+		<result property="ptCode" 					column="pt_code"/>
+		<result property="dpCode" 					column="dp_code"/>
+		<result property="mmName" 					column="mm_name"/>
+		<result property="mmDailyPay" 				column="mm_dailyPay"/>
+		<result property="mmJoinDate" 				column="mm_joinDate"/>
+		<result property="mmResignDate" 			column="mm_resignDate"/>
+		<result property="mmAnnualLeave" 			column="mm_annualLeave"/>
+		<result property="mmArmy" 					column="mm_army"/>
+		<result property="mmEmail" 					column="mm_email"/>
+		<result property="mmMarriage" 				column="mm_marriage"/>
+		<result property="mmPassword" 				column="mm_password"/>
+		<result property="mmSign" 					column="mm_sign"/>
+		<result property="mmAddress" 				column="mm_address"/>
+		<result property="mmTel" 					column="mm_tel"/>
+		<result property="mmBank" 					column="mm_bank"/>
+		<result property="mmAccount" 				column="mm_account"/>
+	</resultMap>
 	
-	</insert>
-	
-	<select id="selectCountTodayCm"
-			parameterType="com.cafe24.smart.commute.domain.Commute"
-			resultType="int">
-		SELECT
-			COUNT(*)
-		FROM
-			commute
-		WHERE
-			mm_code=#{mmCode}
-		AND 
-			cm_date=#{cmDate}	
-	</select>
-	
-	<select id="selectOnTimeTodayCm"
-			parameterType="com.cafe24.smart.commute.domain.Commute"
-			resultMap="resultCm">
-		SELECT
-			*
-		FROM
-			commute
-		WHERE
-			mm_code=#{mmCode}
-		AND
-			cm_date=#{cmDate}
-	</select>
-	
-	<update id="updateOnTimeTodayCm"
-			parameterType="com.cafe24.smart.commute.domain.Commute">
-		UPDATE 
-			commute
-		SET
-			cm_offTime = #{cmOffTime},
-			cm_situation = #{cmSituation},
-			cm_checkToday = #{cmCheckToday}
-		WHERE
-			cm_code = #{cmCode}
-	
-	</update>
-	
-	<update id="updateGoOutTodayCm"
-			parameterType="com.cafe24.smart.commute.domain.Commute">
-		UPDATE 
-			commute
-		SET
-			cm_goOutTime = #{cmGoOutTime},
-			cm_situation = #{cmSituation}
-			<if test="cmGoOutReason != null and cmGoOutReason != ''">
-				,cm_goOutReason = #{cmGoOutReason}
-			</if>
-		WHERE
-			cm_code = #{cmCode}
-	
-	</update>
-	
-	<update id="updateReturnTodayCm"
-			parameterType="com.cafe24.smart.commute.domain.Commute">
-		UPDATE 
-			commute
-		SET
-			cm_returnTime = #{cmReturnTime},
-			cm_situation = #{cmSituation}
-		WHERE
-			cm_code = #{cmCode}
-	
-	</update>
-	
-	<select id="selectPersonalCm"
-			parameterType="HashMap"
-			resultMap="resultCm">
+	<select id="selectPersonalCm" parameterType="HashMap" resultMap="resultCm">
 		SELECT 
 			*
 		FROM
@@ -147,26 +51,19 @@
 		AND 
 			cm_date >= #{startDay}
 		AND
-			cm_date <![CDATA[ <= ]]> #{endDay}
-	
+			cm_date <![CDATA[ <= ]]> #{endDay};
 	</select>
 	
-	<select id="selectByDpCodeMm"
-			parameterType="int"
-			resultMap="resultMm">
-		
+	<select id="selectByDpCodeMm" parameterType="int" resultMap="resultMm">
 		SELECT 
 			*
 		FROM
 			memberManagement
 		WHERE
-			dp_code = #{dpCode}
+			dp_code = #{dpCode};
 	</select>
 	
-	<select id="selectByDpCm"
-			parameterType="HashMap"
-			resultMap="resultCm">
-		
+	<select id="selectByDpCm" parameterType="HashMap" resultMap="resultCm">
 		SELECT 
 			commute.*,
 			memberManagement.mm_name
@@ -186,4 +83,89 @@
 			AND commute.mm_code = #{mmCode}
 		</if>
 	</select>
+	
+	<select id="selectCountTodayCm" parameterType="com.cafe24.smart.commute.domain.Commute"
+																		resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			commute
+		WHERE
+			mm_code = #{mmCode}
+		AND 
+ 			cm_date = #{cmDate};	
+	</select>
+	
+	<select id="selectOnTimeTodayCm" parameterType="com.cafe24.smart.commute.domain.Commute"
+			resultMap="resultCm">
+		SELECT
+			*
+		FROM
+			commute
+		WHERE
+			mm_code = #{mmCode}
+		AND
+			cm_date = #{cmDate};
+	</select>
+	
+	<insert id="insertOnTimeCm" parameterType="com.cafe24.smart.commute.domain.Commute">
+		INSERT INTO commute (
+			mm_code,
+			cm_onTime,
+			cm_date,
+			cm_situation
+			<if test="cmExceptionInput != null and cmExceptionInput != ''">
+				,cm_exceptionInput
+			</if>
+			<if test="cmExceptionReason != null and cmExceptionReason != ''">
+				,cm_exceptionReson
+			</if>
+			)
+		VALUES (
+			#{mmCode},
+			#{cmOnTime},
+			now(),
+			#{cmSituation}
+			<if test="cmExceptionInput != null and cmExceptionInput != ''">
+				,#{cmExceptionInput}
+			</if>
+			<if test="cmExceptionReason != null and cmExceptionReason != ''">
+				,#{cmExceptionReason}
+			</if>
+			);
+	</insert>
+	
+	<update id="updateOnTimeTodayCm" parameterType="com.cafe24.smart.commute.domain.Commute">
+		UPDATE 
+			commute
+		SET
+			cm_offTime = #{cmOffTime},
+			cm_situation = #{cmSituation},
+			cm_checkToday = #{cmCheckToday}
+		WHERE
+			cm_code = #{cmCode};
+	</update>
+	
+	<update id="updateGoOutTodayCm" parameterType="com.cafe24.smart.commute.domain.Commute">
+		UPDATE 
+			commute
+		SET
+			cm_goOutTime = #{cmGoOutTime},
+			cm_situation = #{cmSituation}
+			<if test="cmGoOutReason != null and cmGoOutReason != ''">
+				,cm_goOutReason = #{cmGoOutReason}
+			</if>
+		WHERE
+			cm_code = #{cmCode};
+	</update>
+	
+	<update id="updateReturnTodayCm" parameterType="com.cafe24.smart.commute.domain.Commute">
+		UPDATE 
+			commute
+		SET
+			cm_returnTime = #{cmReturnTime},
+			cm_situation = #{cmSituation}
+		WHERE
+			cm_code = #{cmCode};	
+	</update>
 </mapper>

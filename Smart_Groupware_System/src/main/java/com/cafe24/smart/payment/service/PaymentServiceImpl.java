@@ -32,8 +32,8 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PayContent> paListAllServ(int offset, int recordsPerPage) {
 		
-		System.out.println("PaymentServiceImpl paListAllServ offset : " + offset);
-		System.out.println("PaymentServiceImpl paListAllServ recordsPerPage : " + recordsPerPage);
+		log.debug("PaymentServiceImpl paListAllServ offset : " + offset);
+		log.debug("PaymentServiceImpl paListAllServ recordsPerPage : " + recordsPerPage);
 		
 		return paymentDAO.selectAllPc(offset, recordsPerPage);
 	}
@@ -42,9 +42,9 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PayContent> paListAllSearchServ(int offset, int recordsPerPage, SearchCriteria cri) {
 		
-		System.out.println("PaymentServiceImpl paListAllServ offset : " + offset);
-		System.out.println("PaymentServiceImpl paListAllServ recordsPerPage : " + recordsPerPage);
-		System.out.println("PaymentServiceImpl paListAllServ cri : " + cri);
+		log.debug("PaymentServiceImpl paListAllServ offset : " + offset);
+		log.debug("PaymentServiceImpl paListAllServ recordsPerPage : " + recordsPerPage);
+		log.debug("PaymentServiceImpl paListAllServ cri : " + cri);
 		
 		return paymentDAO.selectAllSearchPc(offset, recordsPerPage, cri);
 	}
@@ -53,7 +53,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PayContent> paListServ(int mmCode, String startDate, String endDate) {
 		
-		System.out.println("PaymentServiceImpl paListServ mmCode : " + mmCode + ", startDate : " + 
+		log.debug("PaymentServiceImpl paListServ mmCode : " + mmCode + ", startDate : " + 
 				", endDate : " + endDate);
 		
 		return paymentDAO.selectPa(mmCode, startDate, endDate);
@@ -62,7 +62,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public PayContent paContentServ(int mmCode, String pcDate) {
 		
-		System.out.println("PaymentServiceImpl paContentServ mmCode : " + mmCode + ", pcDate : " + pcDate);
+		log.debug("PaymentServiceImpl paContentServ mmCode : " + mmCode + ", pcDate : " + pcDate);
 		
 		return paymentDAO.selectByPc(mmCode, pcDate);
 	}
@@ -78,7 +78,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public PayContent paContentPcCodeServ(int pcCode) {
 
-		System.out.println("PaymentServiceImpl paContentPcCodeServ pcCode : " + pcCode);
+		log.debug("PaymentServiceImpl paContentPcCodeServ pcCode : " + pcCode);
 		
 		return paymentDAO.selectByPcCodePc(pcCode);
 	}
@@ -87,7 +87,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public Member pcMmContentServ(int mmCode) {
 	
-		System.out.println("PaymentServiceImpl pcMmContentCtrl mmCode : " + mmCode);
+		log.debug("PaymentServiceImpl pcMmContentCtrl mmCode : " + mmCode);
 		
 		return memberDAO.selectByMm(mmCode);
 	}
@@ -96,7 +96,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public int pcAddServ(PayContent payContent) {
 		
-		System.out.println("PaymentServiceImpl pcAddServ payContent : " + payContent);
+		log.debug("PaymentServiceImpl pcAddServ payContent : " + payContent);
 		
 		return paymentDAO.insertPc(payContent);
 	}
@@ -105,7 +105,7 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public void paUpdateServ(PayContent payContent) {
 		
-		System.out.println("PaymentServiceImpl paUpdateServ payContent : " + payContent);
+		log.debug("PaymentServiceImpl paUpdateServ payContent : " + payContent);
 		
 		paymentDAO.updatePc(payContent);
 	}

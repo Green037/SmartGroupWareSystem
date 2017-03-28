@@ -9,15 +9,17 @@ import com.cafe24.smart.member.domain.Member;
 
 @Service
 public interface CommuteService {
-	int addOnTimeServ(Commute commute);
-	int cmCountByTodayServ(Commute commute);
-	int cmOffTimeServ(Commute commute);
-	int cmGoOutServ(Commute commute);
-	int cmReturnServ(Commute commute);
 	
-	List<Commute> cmPersonalListServ(int mmCode, String startDay, String endDay);
-	Commute cmOnTimeTodayServ(Commute commute);
-	List<Member> cmSearchMmServ(int dpCode);
-	List<Commute> cmDpListServ(String startDay, String endDay, int dpCode, int mmCode);
-
+	List<Commute> 						cmPersonalListServ(int mmCode, String startDay, String endDay);
+	List<Commute> 						cmDpListServ(String startDay, String endDay, int dpCode, int mmCode);
+	List<Member> 						cmSearchMmServ(int dpCode);
+	
+	Commute 							cmOnTimeTodayServ(Commute commute);
+	
+	int 								cmCountByTodayServ(Commute commute);
+	int 								cmOffTimeServ(Commute commute);
+	int 								cmGoOutServ(Commute commute);
+	int 								cmReturnServ(Commute commute);	
+	
+	int 								addOnTimeServ(Commute commute);
 }
