@@ -3,60 +3,57 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
-<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
-<script src="<c:url value='/resources/js/bootstrap.min.js'/>" type="text/javascript"></script>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
-<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
-<link href="<c:url value='/resources/css/landing-page.css'/>" rel="stylesheet">
-<link href="<c:url value='/resources/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-<link href="<c:url value='/resources/css/mainBtnBtn.css'/>" rel="stylesheet">
-
-
-<script>
-	/*근태,근외관리 */
-	$(document).on('click','#commuteMenuBtn',function(){
-		$('#mainMenu').css('display','none');
-		$('#commute').css('display','');
-	});
-	
-	/*메인메뉴  */
-	$(document).on('click','#mainMoveBtn',function(){
-		$('#commute').css('display','none');
-		$('#member').css('display','none');
-		$('#project').css('display','none');
-		$('#payment').css('display','none');
-		$('#approval').css('display','none');
-		$('#mainMenu').css('display','');
-	});
-	
-	/*인사관리  */
-	$(document).on('click','#memberMenuBtn',function(){
-		$('#mainMenu').css('display','none');
-		$('#member').css('display','');
-	});
-	
-	/*프로젝트  */
-	$(document).on('click','#projectMenuBtn',function(){
-		$('#mainMenu').css('display','none');
-		$('#project').css('display','');
-	});
-	
-	/*인사,고과  */
-	$(document).on('click','#paymentMenuBtn',function(){
-		$('#mainMenu').css('display','none');
-		$('#payment').css('display','');
-	});
-	
-	/*전자결제  */
-	$(document).on('click','#approvalMenuBtn',function(){
-		$('#mainMenu').css('display','none');
-		$('#approval').css('display','');
-	});
-</script>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>스마트 그룹웨어 시스템 (ver 1.1.0)</title>
+	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
+	<script src="<c:url value='/resources/js/bootstrap.min.js'/>" type="text/javascript"></script>
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
+	<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
+	<link href="<c:url value='/resources/css/landing-page.css'/>" rel="stylesheet">
+	<link href="<c:url value='/resources/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+	<link href="<c:url value='/resources/css/mainBtnBtn.css'/>" rel="stylesheet">
+	<script>
+		/* 근태,근외관리 */
+		$(document).on('click','#commuteMenuBtn',function(){
+			$('#mainMenu').css('display','none');
+			$('#commute').css('display','');
+		});
+		
+		/* 메인메뉴  */
+		$(document).on('click','#mainMoveBtn',function(){
+			$('#commute').css('display','none');
+			$('#member').css('display','none');
+			$('#project').css('display','none');
+			$('#payment').css('display','none');
+			$('#approval').css('display','none');
+			$('#mainMenu').css('display','');
+		});
+		
+		/* 인사관리  */
+		$(document).on('click','#memberMenuBtn',function(){
+			$('#mainMenu').css('display','none');
+			$('#member').css('display','');
+		});
+		
+		/* 프로젝트  */
+		$(document).on('click','#projectMenuBtn',function(){
+			$('#mainMenu').css('display','none');
+			$('#project').css('display','');
+		});
+		
+		/* 인사,고과  */
+		$(document).on('click','#paymentMenuBtn',function(){
+			$('#mainMenu').css('display','none');
+			$('#payment').css('display','');
+		});
+		
+		/* 전자결제  */
+		$(document).on('click','#approvalMenuBtn',function(){
+			$('#mainMenu').css('display','none');
+			$('#approval').css('display','');
+		});
+	</script>
 <body>
 <!-- 상단 네비게이션 바 -->
 <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
@@ -246,7 +243,7 @@
 	<div class="row" id="payment" style="display:none;">
 		<div class="col-md-12">
 			<br/><br/><br/>
-		<!-- 총무부,인사부 일시에 급여나 고과 메뉴 추가 보이기 -->
+			<!-- 총무부,인사부 일시에 급여나 고과 메뉴 추가 보이기 -->
 			<c:choose>
 				<c:when test="${dpName eq '총무부'}">
 					<a href="<c:url value='/pa/listAll'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-level-up glyphsize"></span> <br/><br/>총급여목록</a>
@@ -277,17 +274,16 @@
 	</div>
 	<div class="row" id="approval" style="display:none;">
 		<div class="col-md-12">
-			<!-- dred -->
 			<br/><br/><br/>
 			<a href="<c:url value='/ap/add'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-log-in glyphsize"></span> <br/><br/>전자결제신청</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="<c:url value='/ap/list?apProgress=0'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt glyphsize"></span><br/><br />결제대기목록</a>
+			<a href="<c:url value='/ap/list?apProgress=0'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-list-alt glyphsize"></span><br/><br/>결제대기목록</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="<c:url value='/ap/temList'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-inbox glyphsize"></span> <br/>결제문서<br/>임시보관함</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="<c:url value='/ap/docList'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-download-alt glyphsize"></span> <br/>기본양식<br/>문서함</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="#" class="btn btn-success" role="button" id="mainMoveBtn"><span class="glyphicon glyphicon-play-circle glyphsize"></span> <br/>메인페이지<br /> 이동</a>
+			<a href="#" class="btn btn-success" role="button" id="mainMoveBtn"><span class="glyphicon glyphicon-play-circle glyphsize"></span> <br/>메인페이지<br/> 이동</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		</div>
 	</div>
@@ -296,7 +292,5 @@
 </div>
 </div>
 </div>
-<!--상단끝  -->
-
 </body>
 </html>

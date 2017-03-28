@@ -4,23 +4,23 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="ReDAO">
-	<resultMap id="resultRe" type="com.cafe24.smart.reward.domain.Reward">
-		<result property="reCode" column="re_code"/>
-		<result property="mmCode" column="mm_code"/>
-		<result property="reGrade" column="re_grade"/>
-		<result property="reDate" column="re_date"/>
-		<result property="reDocument" column="re_document"/>
-		<result property="reMmCode" column="re_mmCode"/>
+	<resultMap id="resultRe" 						type="com.cafe24.smart.reward.domain.Reward">
+		<result property="reCode" 					column="re_code"/>
+		<result property="mmCode" 					column="mm_code"/>
+		<result property="reGrade" 					column="re_grade"/>
+		<result property="reDate" 					column="re_date"/>
+		<result property="reDocument" 				column="re_document"/>
+		<result property="reMmCode" 				column="re_mmCode"/>
 	</resultMap>
 	
-	<resultMap id="resultIn" type="com.cafe24.smart.reward.domain.Incentive">
-		<result property="inCode" column="in_code"/>
-		<result property="reCode" column="re_code"/>
-		<result property="mmCode" column="mm_code"/>
-		<result property="inBonus" column="in_bonus"/>
-		<result property="inPossible" column="in_possible"/>
-		<result property="inDate" column="in_date"/>
-		<result property="inMmCode" column="in_mmCode"/>
+	<resultMap id="resultIn" 						type="com.cafe24.smart.reward.domain.Incentive">
+		<result property="inCode" 					column="in_code"/>
+		<result property="reCode" 					column="re_code"/>
+		<result property="mmCode" 					column="mm_code"/>
+		<result property="inBonus" 					column="in_bonus"/>
+		<result property="inPossible" 				column="in_possible"/>
+		<result property="inDate" 					column="in_date"/>
+		<result property="inMmCode" 				column="in_mmCode"/>
 	</resultMap>
 	
 	<!-- 인사부 > 총고과목록 -->

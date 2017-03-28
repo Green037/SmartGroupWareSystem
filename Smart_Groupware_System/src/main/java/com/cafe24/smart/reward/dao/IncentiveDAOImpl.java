@@ -1,6 +1,8 @@
 package com.cafe24.smart.reward.dao;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -8,6 +10,8 @@ import com.cafe24.smart.reward.domain.Incentive;
 
 @Repository
 public class IncentiveDAOImpl implements IncentiveDAO {
+	
+	private static final Logger log = LoggerFactory.getLogger(IncentiveDAOImpl.class);
 
 	@Autowired
 	SqlSessionTemplate sqlSession;
@@ -16,7 +20,7 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 	@Override
 	public Incentive selectIn(int reCode) {
 		
-		System.out.println("IncentiveDAOImpl selectIn reCode : " + reCode);
+		log.debug("IncentiveDAOImpl selectIn reCode : " + reCode);
 		
 		return sqlSession.selectOne("ReDAO.selectIn", reCode);
 	}
@@ -27,11 +31,11 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 		
 		int n = 0;
 		
-		System.out.println("IncentiveDAOImpl insertIn incentive : " + incentive);
+		log.debug("IncentiveDAOImpl insertIn incentive : " + incentive);
 		
 		n = sqlSession.insert("ReDAO.insertIn", incentive);
 		
-		System.out.println("IncentiveDAOImpl insertIn n : " + n);
+		log.debug("IncentiveDAOImpl insertIn n : " + n);
 		
 		return n;
 	}
@@ -40,7 +44,7 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 	@Override
 	public void updateIn(Incentive incentive) {
 		
-		System.out.println("IncentiveDAOImpl updateIn incentive : " + incentive);
+		log.debug("IncentiveDAOImpl updateIn incentive : " + incentive);
 		
 		sqlSession.update("ReDAO.updateIn", incentive);
 	}
@@ -48,7 +52,7 @@ public class IncentiveDAOImpl implements IncentiveDAO {
 	@Override
 	public void deleteIn(int reCode) {
 		
-		System.out.println("IncentiveDAOImpl deleteIn reCode : " + reCode);
+		log.debug("IncentiveDAOImpl deleteIn reCode : " + reCode);
 		
 		sqlSession.delete("ReDAO.deleteIn", reCode);
 	}	

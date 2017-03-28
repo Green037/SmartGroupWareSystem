@@ -35,11 +35,11 @@ public class Wbs {
 	public int getWbsCode() {
 		return wbsCode;
 	}
-	
+
 	public void setWbsCode(int wbsCode) {
 		this.wbsCode = wbsCode;
 	}
-	
+
 	public int getPrCode() {
 		return prCode;
 	}
@@ -63,7 +63,7 @@ public class Wbs {
 	public void setWbsName(String wbsName) {
 		this.wbsName = wbsName;
 	}
-	
+
 	public String getWbsContents() {
 		return wbsContents;
 	}
@@ -128,5 +128,4 @@ public class Wbs {
 				+ wbsUncompletedReason + ", wbsFinalEndDate=" + wbsFinalEndDate + ", wbsStatus=" + wbsStatus
 				+ ", wbsProgresses=" + wbsProgresses + "]";
 	}
-	
 }

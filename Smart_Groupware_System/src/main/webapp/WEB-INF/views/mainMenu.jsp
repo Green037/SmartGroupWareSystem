@@ -3,14 +3,11 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-!-- Bootstrap Core CSS -->
-    <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
+	<link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
 
-    <!-- Custom CSS -->
     <link href="<c:url value='/resources/css/landing-page.css'/>" rel="stylesheet">
     <link href="<c:url value='/resources/css/mainBtnBtn.css'/>" rel="stylesheet">
 
-    <!-- Custom Fonts -->
     <link href="<c:url value='/resources/font-awesome/css/font-awesome.min.css'/>" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 	<script src="<c:url value='/resources/js/jquery-3.1.1.min.js'/>"></script>
@@ -18,7 +15,6 @@
 	<script>
 	$(document).ready(function () {
 		$('[data-toggle="tooltip"]').tooltip();
-		
 	});
 	</script>
 </head>
@@ -138,7 +134,6 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			</div>
 		</div>
-		
 	</div>
 	</section>
 </div>
@@ -146,10 +141,5 @@
 </div>
 </div>
 </div>
-       <!-- /.container -->
-</div>
-   <!-- /.intro-header -->
-
-
 </body>
 </html>

@@ -114,7 +114,7 @@ public class ApproveRestController {
 	// 검색 : 결재 목록
 	@RequestMapping(value="ap/searchDft", method = RequestMethod.POST)
 	public List<Draft> apSearchListCtrl(Draft draft,
-						@RequestParam(value="docFileGroup", defaultValue="문서없음") String docFileGroup) {
+					@RequestParam(value="docFileGroup", defaultValue="문서없음") String docFileGroup) {
 		
 		log.debug("ApproveRestController apSearchListCtrl draft : " + draft);
 		log.debug("ApproveRestController apSearchListCtrl docFileGroup : " + docFileGroup);
@@ -134,9 +134,10 @@ public class ApproveRestController {
 	// 검색 : 임시 저장목록
 	@RequestMapping(value = "ap/searchTem", method = RequestMethod.POST)
 	public List<Draft> apSearchDocListCtrl(Draft draft,
-							@RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup) {
+						@RequestParam(value="docFileGroup", defaultValue="0") String docFileGroup) {
 		
-		log.debug("ApproveRestController apSearchDocListCtrl draft : " + draft + ", docFileGroup : " + docFileGroup);
+		log.debug("ApproveRestController apSearchDocListCtrl draft : " + draft + 
+							", docFileGroup : " + docFileGroup);
 		
 		return approveService.apSearchDftServ(draft);
 	}
@@ -176,6 +177,8 @@ public class ApproveRestController {
 		String uploadPath = utilFile.fileUpload(request, uploadFile, draft);
 		
 		int result = approveService.apAddServ(draft, progress, uploadPath);
+		
+		log.debug("ApproveRestController evAppReqData result : " + result);
 		
 		return null;
 	}

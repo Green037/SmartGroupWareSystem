@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-!-- Bootstrap Core CSS -->
+	<!-- Bootstrap Core CSS -->
     <link href="<c:url value='/resources/css/bootstrap.min.css'/>" rel="stylesheet">
 
     <!-- Custom CSS -->

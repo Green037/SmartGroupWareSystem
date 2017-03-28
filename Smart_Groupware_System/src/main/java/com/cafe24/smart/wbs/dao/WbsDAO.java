@@ -10,10 +10,12 @@ import com.cafe24.smart.wbs.domain.Wbs;
 
 @Repository
 public interface WbsDAO {
-	Member selectByMmCodeMm(Member member);
-	List<Project> selectByMmCodePr(int mmCode);
-	int insertWbs(Wbs wbs);
-	List<Wbs> selectByPrCodeWbs(int prCode);
-	Wbs selectByWbsCodeWbs(int wbsCode);
-	int updateWbs(Wbs wbs);
+	List<Project> 				selectByMmCodePr(int mmCode);
+	List<Wbs> 					selectByPrCodeWbs(int prCode);
+	
+	Member 						selectByMmCodeMm(Member member);
+	Wbs 						selectByWbsCodeWbs(int wbsCode);
+	
+	int 						insertWbs(Wbs wbs);
+	int 						updateWbs(Wbs wbs);
 }

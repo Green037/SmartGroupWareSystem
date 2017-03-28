@@ -360,6 +360,8 @@ public class ProjectController {
 		model.addAttribute("prEval", prEval);
 		model.addAttribute("evalList", evalList);
 		
+		log.debug("ProjectController evDetailCtrl model : " + model);
+		
 		return "project/ev_detail";
 	}
 }

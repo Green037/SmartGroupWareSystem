@@ -15,6 +15,7 @@ import com.cafe24.smart.reward.domain.Reward;
 
 @Service
 public class RewardServiceImpl implements RewardService {
+	
 	private static final Logger log = LoggerFactory.getLogger(RewardServiceImpl.class);
 	
 	@Autowired
@@ -34,7 +35,7 @@ public class RewardServiceImpl implements RewardService {
 	@Override
 	public List<Reward> reListYearServ(int mmCode, String startDate, String endDate) {
 		
-		System.out.println("RewardServiceImpl reListYearServ mmCode : " + mmCode
+		log.debug("RewardServiceImpl reListYearServ mmCode : " + mmCode
 					+ ", startDate : " + startDate + ", endDate : " + endDate);
 		
 		List<Reward> reYearList = rewardDAO.selectAllYearRe(mmCode, startDate, endDate);
@@ -46,7 +47,7 @@ public class RewardServiceImpl implements RewardService {
 	@Override
 	public Reward reContentServ(int mmCode, String startDate, String endDate) {
 		
-		System.out.println("RewardServiceImpl reContentServ mmCode : " + mmCode + ", startDate : " + startDate + 
+		log.debug("RewardServiceImpl reContentServ mmCode : " + mmCode + ", startDate : " + startDate + 
 								", endDate : " + endDate);
 		
 		return rewardDAO.selectRe(mmCode, startDate, endDate);
@@ -56,7 +57,7 @@ public class RewardServiceImpl implements RewardService {
 	@Override
 	public Reward reListByReCodeServ(int reCode) {
 		
-		System.out.println("RewardServiceImpl reListByReCodeServ reCode : " + reCode);
+		log.debug("RewardServiceImpl reListByReCodeServ reCode : " + reCode);
 		
 		return rewardDAO.selectByReCodeRe(reCode);
 	}
@@ -65,7 +66,7 @@ public class RewardServiceImpl implements RewardService {
 	@Override
 	public Member mmContentServ(int mmCode) {
 		
-		System.out.println("RewardServiceImpl mmContentServ mmCode : " + mmCode);
+		log.debug("RewardServiceImpl mmContentServ mmCode : " + mmCode);
 		
 		return memberDAO.selectByMm(mmCode);
 	}
@@ -81,12 +82,12 @@ public class RewardServiceImpl implements RewardService {
 	@Override
 	public int reAddServ(String uploadPath, Reward reward) {
 		
-		System.out.println("RewardServiceImpl reAddServ uploadPath : " + uploadPath);
-		System.out.println("RewardServiceImpl reAddServ reward : " + reward);
+		log.debug("RewardServiceImpl reAddServ uploadPath : " + uploadPath);
+		log.debug("RewardServiceImpl reAddServ reward : " + reward);
 		
 		reward.setReDocument(uploadPath);
 		
-		System.out.println("RewardServiceImpl reAddServ getRedocument : " + reward.getReDocument());
+		log.debug("RewardServiceImpl reAddServ getRedocument : " + reward.getReDocument());
 		
 		return rewardDAO.insertRe(reward);
 	}
@@ -95,7 +96,7 @@ public class RewardServiceImpl implements RewardService {
 	@Override
 	public void reModifyServ(Reward reward) {
 		
-		System.out.println("RewardServiceImpl reModifyServ reward : " + reward);
+		log.debug("RewardServiceImpl reModifyServ reward : " + reward);
 		
 		rewardDAO.updateRe(reward);
 	}
@@ -104,7 +105,7 @@ public class RewardServiceImpl implements RewardService {
 	@Override
 	public void reRemoveServ(int reCode) {
 		
-		System.out.println("RewardServiceImpl reRemoveServ reCode : " + reCode);
+		log.debug("RewardServiceImpl reRemoveServ reCode : " + reCode);
 		
 		rewardDAO.deleteRe(reCode);
 	}

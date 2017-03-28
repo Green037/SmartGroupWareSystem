@@ -41,15 +41,15 @@ public class RewardRestController {
 	public boolean reMmContentCtrl(@RequestParam(value="memberData", required=true) String memberData,
 									@RequestParam(value="reCode", required=true) int reCode) {
 			
-		System.out.println("PaymentController reMmContentCtrl memberData : " + memberData);
+		log.debug("PaymentController reMmContentCtrl memberData : " + memberData);
 		
 		int id = (int) session.getAttribute("mmCode");
 		
-		System.out.println("PaymentController reMmContentCtrl id : " + id);
+		log.debug("PaymentController reMmContentCtrl id : " + id);
 		
 		Member member = paymentService.pcMmContentServ(id);
 		
-		System.out.println("PaymentController reMmContentCtrl member : " + member);
+		log.debug("PaymentController reMmContentCtrl member : " + member);
 	
 		if (member.getMmPassword().equals(memberData)) {
 			rewardService.reRemoveServ(reCode);

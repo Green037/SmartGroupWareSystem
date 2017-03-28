@@ -38,20 +38,25 @@ public class WbsController {
 	//WBS 등록 - 폼요청 겟방식
 	@RequestMapping(value = "wbs/addForm", method = RequestMethod.GET)
 	public String wbsAddCtrl(Model model, @RequestParam("prCode") int prCode) {
-		/*System.out.println("H2 Wbs AddForm CTRL!!");
-		System.out.println("넘어온 프로젝트 코드값 확인 :"+prCode);*/
-		// prCode로 프로젝트 내용 조회하여 view로 포워드한다.
 		
+		log.debug("WbsController wbsAddCtrl prCode : " + prCode);
+		
+		// prCode로 프로젝트 내용 조회하여 view로 포워드한다.
 		Map<String, Object> mmMap = new HashMap<String, Object>();
 		
 		Project project = new Project();
+		
 		project = projectService.prDetailServ(prCode); // 프로젝트 상세조회.
-		//System.out.println(project);
+		
+		log.debug("WbsController wbsAddCtrl project : " + project);
 		
 		int pmCount = projectService.pmCountServ(prCode); // 프로젝트 참여인원카운트.
-		//System.out.println(pmCount);
+		
+		log.debug("WbsController wbsAddCtrl pmCount : " + pmCount);
+		
 		mmMap = projectService.mmDetailServ(project.getPrMemberCode()); //팀장정보
 		
+		log.debug("WbsController wbsAddCtrl mmMap : " + mmMap);
 		
 		//view에 뿌려줄 값 세팅.
 		model.addAttribute("project", project);
@@ -64,14 +69,14 @@ public class WbsController {
 	//WBS 등록처리 -> 포스트요청.
 	@RequestMapping(value = "wbs/addWbs", method = RequestMethod.POST)
 	public String wbsAddCtrl(Model model, Wbs wbs) {
-		/*System.out.println("h2 Wbs Add POST!!");
-		System.out.println(wbs);*/
+		
+		log.debug("WbsController wbsAddCtrl wbs : " + wbs);
 		
 		//wbs 등록처리 메서드 호출. 성공여부 리턴값 뷰로 포워딩~!
 		String result = wbsService.wbsAddServ(wbs);
-		//System.out.println("wbs입력결과 : "+result);
+		
+		log.debug("WbsController wbsAddCtrl result : " + result);
 		
 		return "mainIndex";
 	}	
-
 }

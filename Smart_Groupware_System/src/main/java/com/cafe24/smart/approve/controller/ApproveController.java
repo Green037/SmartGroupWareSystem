@@ -2,9 +2,7 @@ package com.cafe24.smart.approve.controller;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -40,15 +38,10 @@ public class ApproveController {
 	public String add(Model model) {
 
 		// log.debug("ctrl dftAdd GET> test");
-		List<Document> doc = new ArrayList<Document>();
-		List<Department> dep = new ArrayList<Department>();
-		List<Position> pos = new ArrayList<Position>();
+		List<Document> doc = approveService.apAddSelServ();
+		List<Department> dep = approveService.apAddMmSelServ();
+		List<Position> pos = approveService.apADDPosSelServ();
 
-		doc = approveService.apAddSelServ();
-		dep = approveService.apAddMmSelServ();
-		pos = approveService.apADDPosSelServ();
-
-		// log.debug(doc);
 		model.addAttribute("doc", doc);
 		model.addAttribute("dep", dep);
 		model.addAttribute("pos", pos);
@@ -63,7 +56,6 @@ public class ApproveController {
 	public String apAddCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
 					MultipartHttpServletRequest request, Draft draft, Progress progress) {
 
-		// log.debug("ctrl dftAdd > test");
 		log.debug("ApproveController apAddCtrl : " + draft);
 		
 		UtilFile utilFile = new UtilFile();
@@ -79,8 +71,8 @@ public class ApproveController {
 
 	// 결재 목록 [대기/반려/완료] : GET
 	@RequestMapping(value = "ap/list", method = RequestMethod.GET)
-	public String apProListCtrl(Model model, @RequestParam(value = "apProgress", defaultValue = "0") int apProgress,
-			HttpSession session) {
+	public String apProListCtrl(Model model,
+			@RequestParam(value = "apProgress", defaultValue = "0") int apProgress, HttpSession session) {
 
 		int mmCode = (int) session.getAttribute("mmCode");
 		
@@ -150,13 +142,11 @@ public class ApproveController {
 	@RequestMapping(value = "ap/temContent", method = RequestMethod.GET)
 	public String aptemDetailCtrl(Model model, @RequestParam("dftCode") int dftCode) {
 
-		log.debug("ApproveController aptemDetailCtrl dftCode :" + dftCode);
+		log.debug("ApproveController aptemDetailCtrl dftCode : " + dftCode);
 		
 		List<Draft> draft = approveService.temContServ(dftCode);
 		
-		Map nameMap = new HashMap();
-		
-		log.debug("ApproveController aptemDetailCtrl draft :" + draft);
+		log.debug("ApproveController aptemDetailCtrl draft : " + draft);
 		
 		model.addAttribute("draft", draft);
 		model.addAttribute("dep", approveService.apAddMmSelServ());
@@ -174,10 +164,12 @@ public class ApproveController {
 	@RequestMapping(value = "ap/docList", method = RequestMethod.GET)
 	public String apdocListCtrl(Model model) {
 
-		// log.debug("ctrl apdocListCtrl> test");
 		List<Document> docList = new ArrayList<Document>();
 
 		docList = approveService.docListServ();
+		
+		log.debug("ApproveController apdocListCtrl docList : " + docList);
+		
 		model.addAttribute("docList", docList);
 
 		return "/approve/ap_docList";
@@ -187,9 +179,14 @@ public class ApproveController {
 	@RequestMapping(value = "ap/dftDownFile", method = RequestMethod.GET)
 	public ModelAndView apDftDownDftFile(@RequestParam(value = "dftCode", required = true) int dftCode) {
 
-		// log.debug("다운로드 test1");
+		log.debug("ApproveController apDftDownDftFile dftCode : " + dftCode);
+		
 		Draft draft = new Draft();
+		
 		draft = approveService.apDownDftServ(dftCode);
+		
+		log.debug("ApproveController apDftDownDftFile draft : " + draft);
+		
 		File downDftFile = new File(draft.getDftFilePath());
 
 		return new ModelAndView("downloadView", "downloadFile", downDftFile);
@@ -198,13 +195,15 @@ public class ApproveController {
 	// 다운로드 : 문서 : 첨부파일 다운로드
 	@RequestMapping(value = "ap/docDownFile", method = RequestMethod.GET)
 	public ModelAndView apDocDownDftFile(@RequestParam(value = "docCode", required = true) int docCode) {
-		// log.debug("document 다운로드 test1");
-
+		
+		log.debug("ApproveController apDocDownDftFile docCode : " + docCode);
+		
 		Document document = new Document();
+		
 		document = approveService.apDownDocServ(docCode);
+		
+		log.debug("ApproveController apDocDownDftFile document : " + document);
 
-		// log.debug(document.getDocFileOri());
-		// String downloadFile = document.getDocFileOri();
 		File downFile = new File(document.getDocFilePath());
 
 		return new ModelAndView("downloadView", "downloadFile", downFile);

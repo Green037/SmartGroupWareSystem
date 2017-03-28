@@ -30,8 +30,8 @@ public class RewardDAOImpl implements RewardDAO {
 		List<Reward> reList = sqlSession.selectList("ReDAO.selectAllRe");		
 		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
 		
-		System.out.println("RewardDAOImpl selectAllRe reList : " + reList);
-		System.out.println("RewardDAOImpl selectAllRe selectAllCountRe : " + this.selectAllCountRe);
+		log.debug("RewardDAOImpl selectAllRe reList : " + reList);
+		log.debug("RewardDAOImpl selectAllRe selectAllCountRe : " + this.selectAllCountRe);
 		
 		return reList;
 	}
@@ -40,7 +40,7 @@ public class RewardDAOImpl implements RewardDAO {
 	@Override
 	public List<Reward> selectAllYearRe(int mmCode, String startDate, String endDate) {
 		
-		System.out.println("RewardDAOImpl selectAllYearRe mmCode : " + mmCode + ", startDate : " + startDate + ", endDate : " + endDate);
+		log.debug("RewardDAOImpl selectAllYearRe mmCode : " + mmCode + ", startDate : " + startDate + ", endDate : " + endDate);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -48,16 +48,16 @@ public class RewardDAOImpl implements RewardDAO {
 		params.put("startDate", startDate);
 		params.put("endDate", endDate);
 		
-		System.out.println("RewardDAOImpl selectAllYearRe params : " + params);
+		log.debug("RewardDAOImpl selectAllYearRe params : " + params);
 		
 		List<Reward> reYearList = sqlSession.selectList("ReDAO.selectAllYearRe", params);
 		
-		System.out.println("RewardDAOImpl selectAllYearRe reYearList : " + reYearList);
+		log.debug("RewardDAOImpl selectAllYearRe reYearList : " + reYearList);
 		
 		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
 		
 		
-		System.out.println("RewardDAOImpl selectAllYearRe selectAllCountRe : " + this.selectAllCountRe);
+		log.debug("RewardDAOImpl selectAllYearRe selectAllCountRe : " + this.selectAllCountRe);
 		
 		return reYearList;
 	}
@@ -66,13 +66,13 @@ public class RewardDAOImpl implements RewardDAO {
 	@Override
 	public Reward selectByReCodeRe(int reCode) {
 		
-		System.out.println("RewardDAOImpl reListByReCodeServ reCode : " + reCode);
+		log.debug("RewardDAOImpl reListByReCodeServ reCode : " + reCode);
 		
 		Reward reward = sqlSession.selectOne("ReDAO.selectByReCodeRe", reCode);		
 		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
 		
-		System.out.println("RewardDAOImpl selectByReCodeRe reward : " + reward);
-		System.out.println("RewardDAOImpl selectByReCodeRe selectAllCountRe : " + this.selectAllCountRe);
+		log.debug("RewardDAOImpl selectByReCodeRe reward : " + reward);
+		log.debug("RewardDAOImpl selectByReCodeRe selectAllCountRe : " + this.selectAllCountRe);
 		
 		return reward;
 	}
@@ -80,7 +80,7 @@ public class RewardDAOImpl implements RewardDAO {
 	@Override
 	public int selectByReDateRe(int mmCode, String reDate) {
 		
-		System.out.println("RewardDAOImpl reListByReCodeServ reDate : " + reDate);
+		log.debug("RewardDAOImpl reListByReCodeServ reDate : " + reDate);
 		
 		Map<String, Object> params = new HashMap<String, Object>();
 		
@@ -100,13 +100,13 @@ public class RewardDAOImpl implements RewardDAO {
 		params.put("startDate", startDate);
 		params.put("endDate", endDate);
 		
-		System.out.println("RewardDAOImpl selectRe mmCode : " + mmCode);
-		System.out.println("RewardDAOImpl selectRe params : " + params);
+		log.debug("RewardDAOImpl selectRe mmCode : " + mmCode);
+		log.debug("RewardDAOImpl selectRe params : " + params);
 		
 		Reward reward = sqlSession.selectOne("ReDAO.selectRe", params);
 		this.selectAllCountRe = sqlSession.selectOne("ReDAO.selectAllCountRe");
 		
-		System.out.println("RewardDAOImpl selectRe reward : " + reward);
+		log.debug("RewardDAOImpl selectRe reward : " + reward);
 		
 		return reward;
 	}
@@ -122,11 +122,11 @@ public class RewardDAOImpl implements RewardDAO {
 	@Override
 	public int insertRe(Reward reward) {
 		
-		System.out.println("RewardDAOImpl insertRe reward : " + reward);
+		log.debug("RewardDAOImpl insertRe reward : " + reward);
 		
 		int result = sqlSession.insert("ReDAO.insertRe", reward);
 		
-		System.out.println("RewardDAOImpl insertRe result : " + result);
+		log.debug("RewardDAOImpl insertRe result : " + result);
 		
 		return result;
 	}
@@ -135,7 +135,7 @@ public class RewardDAOImpl implements RewardDAO {
 	@Override
 	public void updateRe(Reward reward) {
 		
-		System.out.println("RewardDAOImpl insertRe reward : " + reward);
+		log.debug("RewardDAOImpl insertRe reward : " + reward);
 		
 		sqlSession.update("ReDAO.updateRe", reward);
 	}
@@ -144,7 +144,7 @@ public class RewardDAOImpl implements RewardDAO {
 	@Override
 	public void deleteRe(int reCode) {
 		
-		System.out.println("RewardDAOImpl deleteRe reCode : " + reCode);
+		log.debug("RewardDAOImpl deleteRe reCode : " + reCode);
 		
 		sqlSession.delete("ReDAO.deleteRe", reCode);
 	}

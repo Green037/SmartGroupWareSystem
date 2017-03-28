@@ -30,7 +30,7 @@ public class IncentiveServiceImpl implements IncentiveService {
 	@Override
 	public Incentive inListServ(int reCode) {
 		
-		System.out.println("IncentiveServiceImpl inListServ reCode : " + reCode);
+		log.debug("IncentiveServiceImpl inListServ reCode : " + reCode);
 		
 		return incentiveDAO.selectIn(reCode);
 	}
@@ -39,7 +39,7 @@ public class IncentiveServiceImpl implements IncentiveService {
 	@Override
 	public int inAddServ(Reward reward) {
 		
-		System.out.println("IncentiveServiceImpl inAddServ reward : " + reward);
+		log.debug("IncentiveServiceImpl inAddServ reward : " + reward);
 		
 		Incentive incentive = new Incentive();
 		
@@ -54,7 +54,7 @@ public class IncentiveServiceImpl implements IncentiveService {
 		incentive.setInDate(null);		
 		incentive.setInMmCode(reward.getReMmCode());
 		
-		System.out.println("IncentiveServiceImpl inAddServ incentive : " + incentive);
+		log.debug("IncentiveServiceImpl inAddServ incentive : " + incentive);
 		
 		return incentiveDAO.insertIn(incentive);
 	}
@@ -63,7 +63,7 @@ public class IncentiveServiceImpl implements IncentiveService {
 	@Override
 	public void inModifyServ(Incentive incentive) {
 		
-		System.out.println("IncentiveServiceImpl inModifyServ incentive : " + incentive);
+		log.debug("IncentiveServiceImpl inModifyServ incentive : " + incentive);
 		
 		incentiveDAO.updateIn(incentive);
 	}
@@ -72,7 +72,7 @@ public class IncentiveServiceImpl implements IncentiveService {
 	@Override
 	public void inRemoveServ(int reCode) {
 		
-		System.out.println("IncentiveServiceImpl inRemoveServ reCode : " + reCode);
+		log.debug("IncentiveServiceImpl inRemoveServ reCode : " + reCode);
 		
 		incentiveDAO.deleteIn(reCode);
 	}	

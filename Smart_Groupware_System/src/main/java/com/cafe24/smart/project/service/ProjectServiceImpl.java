@@ -397,6 +397,10 @@ public class ProjectServiceImpl implements ProjectService {
 	// 프로젝트검색
 	@Override
 	public List<Project> prSearchServ(Project project, String prSize) {
+		
+		log.debug("ProjectServiceImpl prSearchServ project : " + project);
+		log.debug("ProjectServiceImpl prSearchServ prSize : " + prSize);
+		
 		// prSize 소중대 별로 규모 확인 소-인원4명이하 중- 5~10 대- 11이상 구분하여 다시 셋팅.
 		if (prSize.equals("소")) {
 			project.setPrMember(3);
@@ -407,32 +411,41 @@ public class ProjectServiceImpl implements ProjectService {
 		} else if (prSize.equals("::선택::")) {
 			project.setPrMember(0);
 		}
+		
 		// 입력값 null여부는 쿼리로 해결하고 처리한다. 입력값이 하나도 없다면 전체조회.
-
 		return projectDao.selectByRequirementPr(project);
 	}
 
 	// 평가보고서 등록
 	@Override
 	public int evAddServ(EvaluationCommand evauationCommand, ProjectEvaluation projectEvaluation) {
+		
+		log.debug("ProjectServiceImpl evAddServ evauationCommand : " + evauationCommand);
+		log.debug("ProjectServiceImpl evAddServ projectEvaluation : " + projectEvaluation);
+		
 		// 1.프로젝트 보고서의 프로젝트 코드를 변수에 세팅한다.
 		int prCode = projectEvaluation.getPrCode();
-		System.out.println("서비스레이어 prCode 값 확인 : " + prCode);
 
+		log.debug("ProjectServiceImpl evAddServ prCode : " + prCode);
+		
 		// 2.프로젝트 보고서 입력처리하는 매서드 호출.
-		projectEvaluation.setPrApprovalCheck("미신청"); // 최초입력이므로 일단 전자결제 승인체크는
-														// 미신청으로 세팅함.
+		projectEvaluation.setPrApprovalCheck("미신청"); 
+		
+		// 최초입력이므로 일단 전자결제 승인체크는 미신청으로 세팅함.
 		int prEvResult = projectDao.insertEvPr(projectEvaluation);
-		System.out.println("플젝 보고서 입력확인 : " + prEvResult);
+		
+		log.debug("ProjectServiceImpl evAddServ prEvResult : " + prEvResult);
 
 		if (prEvResult == 1) { // 입력 성공했으면 프로젝트테이블에 완료보고서 작성컬럼 완료로 업데이트.
 			Project project = new Project();
+			
 			project.setPrCode(projectEvaluation.getPrCode());
 			project.setPrReport("완료");
 
 			// 업데이트하는 메서드 호출
 			int updatePrResult = projectDao.updatePr(project);
-			System.out.println("완료보고서 등록 프로젝트 테이블 수정여부 확인 : " + updatePrResult);
+			
+			log.debug("ProjectServiceImpl evAddServ updatePrResult : " + updatePrResult);
 		}
 
 		// 3.인원 평가보고서 데이터 분해하여 배열로 세팅하고 for문 안에서 한세트씩 입력처리.
@@ -445,6 +458,7 @@ public class ProjectServiceImpl implements ProjectService {
 
 		for (int i = 0; i < mmCodes.length; i++) {
 			Evaluation evaluation = new Evaluation();
+			
 			evaluation.setMmCode(Integer.parseInt(mmCodes[i]));
 			evaluation.setEvIntegrity(Integer.parseInt(evIntegritys[i]));
 			evaluation.setEvProfessional(Integer.parseInt(evProfessionals[i]));
@@ -452,9 +466,12 @@ public class ProjectServiceImpl implements ProjectService {
 			evaluation.setEvEval(evEvals[i]);
 			evaluation.setEvTotalScore(Integer.parseInt(evTotalScores[i]));
 			evaluation.setPrCode(prCode);
+			
+			log.debug("ProjectServiceImpl evAddServ evaluation : " + evaluation.toString());
 
 			int result = projectDao.insertEv(evaluation);
-			System.out.println("인원평가 입력확인" + i + " : " + result);
+			
+			log.debug("ProjectServiceImpl evAddServ result : " + result);
 		}
 		
 		log.debug("ProjectServiceImpl evAddServ prEvResult : " + prEvResult);

@@ -67,7 +67,7 @@ public class RewardController {
 		List<Reward> reList = rewardService.reListServ();
 		int rewardCount = rewardService.reCountAllServ();
 		
-		System.out.println("RewardController reListAllCtrl reList : " + reList);
+		log.debug("RewardController reListAllCtrl reList : " + reList);
 		
 		List<String> filePullPath = new ArrayList<String>(); 
 		
@@ -84,14 +84,14 @@ public class RewardController {
 			
 			reList.get(i).setReDocument(reList.get(i).getReDocument().substring(lastIndex + 1));
 			
-			System.out.println("RewardController reListAllCtrl getRedocument : " + 
+			log.debug("RewardController reListAllCtrl getRedocument : " + 
 									reList.get(i).getReDocument());
 		}
 		
 		model.addAttribute("reList", reList);
 		model.addAttribute("rewardCount", rewardCount);
 		
-		System.out.println("RewardController reListAllCtrl model : " + model);
+		log.debug("RewardController reListAllCtrl model : " + model);
 						
 		return "reward/re_listAll";
 	}
@@ -109,8 +109,8 @@ public class RewardController {
 		List<Reward> reYearList = rewardService.reListYearServ(mmCode, startDate, endDate);
 		int rewardCount = rewardService.reCountAllServ();
 		
-		System.out.println("RewardController reListYearCtrl reYearList : " + reYearList);
-		System.out.println("RewardController reListYearCtrl rewardCount : " + rewardCount);
+		log.debug("RewardController reListYearCtrl reYearList : " + reYearList);
+		log.debug("RewardController reListYearCtrl rewardCount : " + rewardCount);
 		
 		MemberContent member = memberService.mmContentServ(mmCode);
 		
@@ -140,8 +140,8 @@ public class RewardController {
 //		고과정보 있는 경우
 		if (reward != null) {
 			
-			System.out.println("RewardController RewardController member : " + member);
-			System.out.println("RewardController reListYearCtrl rewardCount : " + rewardCount);
+			log.debug("RewardController RewardController member : " + member);
+			log.debug("RewardController reListYearCtrl rewardCount : " + rewardCount);
 			
 			rewardCount = rewardService.reCountAllServ();
 			
@@ -160,7 +160,7 @@ public class RewardController {
 			model.addAttribute("incentive", incentive);
 			model.addAttribute("rewardCount", rewardCount);
 			
-			System.out.println("RewardController RewardController model : " + model.toString());
+			log.debug("RewardController RewardController model : " + model.toString());
 //		고과 정보 없는 경우
 		} else {
 //			부서, 직급 정보
@@ -183,12 +183,12 @@ public class RewardController {
 	public String reContentMmCtrl(@RequestParam(value="reCode") int reCode,
 																			Model model) {
 		
-		System.out.println("RewardController reContentMmCtrl reCode : " + reCode);
+		log.debug("RewardController reContentMmCtrl reCode : " + reCode);
 		
 		Reward reward = rewardService.reListByReCodeServ(reCode);
 		int rewardCount = rewardService.reCountAllServ();
 		
-		System.out.println("RewardController reContentMmCtrl reward : " + reward);
+		log.debug("RewardController reContentMmCtrl reward : " + reward);
 		
 		Member member = rewardService.mmContentServ(reward.getMmCode());
 		
@@ -231,8 +231,8 @@ public class RewardController {
 	public String reAddProCtrl(@RequestParam("uploadFile") MultipartFile uploadFile,
 									MultipartHttpServletRequest request, Reward reward) {
 		
-		System.out.println("RewardController reAddProCtrl uploadFile : " + uploadFile);
-		System.out.println("RewardController reAddProCtrl reward : " + reward);
+		log.debug("RewardController reAddProCtrl uploadFile : " + uploadFile);
+		log.debug("RewardController reAddProCtrl reward : " + reward);
 		
 		UtilFile utilFile = new UtilFile();
 		
@@ -246,8 +246,8 @@ public class RewardController {
 			incentiveService.inAddServ(reward);
 		}
 		
-		System.out.println("RewardController reAddProCtrl n : " + n);
-		System.out.println("RewardController reAddProCtrl uploadPath : " + uploadPath);
+		log.debug("RewardController reAddProCtrl n : " + n);
+		log.debug("RewardController reAddProCtrl uploadPath : " + uploadPath);
 		
 		return "redirect:listAll";
 	}
@@ -256,12 +256,12 @@ public class RewardController {
 	@RequestMapping(value = "re/modify", method = RequestMethod.GET)
 	public String reModifyCtrl(@RequestParam(value="reCode") int reCode, Model model) {
 		
-		System.out.println("RewardController reModifyCtrl reCode : " + reCode);
+		log.debug("RewardController reModifyCtrl reCode : " + reCode);
 		
 		Reward reward = rewardService.reListByReCodeServ(reCode);
 		int rewardCount = rewardService.reCountAllServ();
 		
-		System.out.println("RewardController reContentMmCtrl reward : " + reward);
+		log.debug("RewardController reContentMmCtrl reward : " + reward);
 		
 		Member member = rewardService.mmContentServ(reward.getMmCode());
 		
@@ -292,8 +292,8 @@ public class RewardController {
 	@RequestMapping(value = "re/modify", method = RequestMethod.POST)
 	public String reModifyProCtrl(Reward reward, Incentive incentive) {
 		
-		System.out.println("RewardController reModifyProCtrl reward : " + reward);
-		System.out.println("RewardController reModifyProCtrl incentive : " + incentive);
+		log.debug("RewardController reModifyProCtrl reward : " + reward);
+		log.debug("RewardController reModifyProCtrl incentive : " + incentive);
 		
 		rewardService.reModifyServ(reward);
 		incentiveService.inModifyServ(incentive);
@@ -324,7 +324,7 @@ public class RewardController {
 		
 		File downFile = new File(reward.getReDocument());
 		
-		System.out.println("RewardController reDocumentDown reCode : " + reCode);
+		log.debug("RewardController reDocumentDown reCode : " + reCode);
 		
 		return new ModelAndView("downloadView", "downloadFile", downFile);
 	}

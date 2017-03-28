@@ -10,10 +10,13 @@ import com.cafe24.smart.wbs.domain.Wbs;
 
 @Service
 public interface WbsService {
-	int checkMemberServ(Member member);
-	List<Project> prListServ(int mmCode);
-	String wbsAddServ(Wbs wbs);
-	List<Wbs> wbsListServ(int prCode);
-	Wbs wbsDetailServ(int wbsCode);
-	Wbs wbsModifyServ(Wbs wbs);
+	List<Project> 				prListServ(int mmCode);
+	List<Wbs> 					wbsListServ(int prCode);
+	
+	Wbs 						wbsDetailServ(int wbsCode);
+	Wbs 						wbsModifyServ(Wbs wbs);
+	
+	int 						checkMemberServ(Member member);
+	
+	String 						wbsAddServ(Wbs wbs);	
 }
