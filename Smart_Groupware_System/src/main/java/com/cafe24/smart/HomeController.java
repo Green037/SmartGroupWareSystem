@@ -25,7 +25,7 @@ public class HomeController {
 	final static Logger log = LoggerFactory.getLogger(HomeController.class);
 
 	/**
-	 * @author EUNBEE GO
+	 * @author GREEN GO
 	 * @since 2017.03.14
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
