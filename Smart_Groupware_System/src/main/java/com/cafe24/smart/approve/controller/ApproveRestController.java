@@ -82,7 +82,7 @@ public class ApproveRestController {
 		log.debug("ApproveRestController apAprAddReCtrl approval : " + approval);
 		
 		int apr = 0;
-	
+		System.out.println(approval.getAprApproval1());
 		//결재선이 모두 null일 경우 조건
 		if(approval.getAprApproval1() != 0) {
 			apr = approveService.apAprAddServ(approval);

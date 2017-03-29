@@ -66,7 +66,7 @@
 <div class="sub-heard-part">
 	<ol class="breadcrumb m-b-0">
 		<li><a href="<c:url value='/main/mainIndex'/>">Home</a></li>
-		<li class="active">근태조회(개인)</li>
+		<li class="active">프로젝트검색</li>
 	</ol>
 </div>
 

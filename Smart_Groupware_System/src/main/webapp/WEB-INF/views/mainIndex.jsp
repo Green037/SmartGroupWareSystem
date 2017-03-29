@@ -155,8 +155,8 @@
 						<li><a href="<c:url value='/pc/list'/>">연간고과내역조회</a></li>
 					</ul>
        			</li>
-            </ul>
-        </div>
+       		</ul>
+       	</div>
     </div>
 </nav>
 <!-- 상단 -->
@@ -165,6 +165,9 @@
 <div class="row">
 <div class="col-lg-12">
 <div class="row">
+	<p align="right" style="color:red;">
+		<a href="<c:url value='/logout'/>"><span style="color:red;font-size:1.5em" class="glyphicon glyphicon-off red"></span><span style="color:red;font-size:1.5em">LogOut</span></a>
+	</p>
 	<div class="col-md-12">
 		<h2>Smart Groupware-System</h2>
 		<p>I needed dashboard buttons for a project without having to make lots of different images to use as buttons, as the new CMS was going to be bootstrap based i decided to make them with glyphicons in custom sized buttons.</p>
@@ -198,9 +201,9 @@
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="<c:url value='/extraSchedule/es_add'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-log-in glyphsize"></span> <br/><br />연차/출장등록</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="<c:url value='/extraSchedule/es_listSearch'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-search glyphsize"></span><br/><br />근태조회(개인)</a>
+			<a href="<c:url value='/extraSchedule/es_listSearch'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-search glyphsize"></span><br/>근외일정<br />조회(개인)</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="<c:url value='/extraSchedule/es_dplist'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-zoom-in glyphsize"></span> <br/><br/>근태조회(부서)</a>
+			<a href="<c:url value='/extraSchedule/es_dplist'/>" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-zoom-in glyphsize"></span> <br/>근외일정<br/>조회(부서)</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			<a href="#" class="btn btn-success" role="button" id="mainMoveBtn"><span class="glyphicon glyphicon-play-circle glyphsize"></span> <br/>메인페이지<br /> 이동</a>
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
