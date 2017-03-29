@@ -266,7 +266,7 @@
 									href="https://github.com/rang1536/">github.com/rang1536</a><br />
 								<i class="glyphicon glyphicon-globe"></i> <a
 									href="http://blog.naver.com/rang1536">blog.naver.com/rang1536</a><br />
-								<i class="glyphicon glyphicon-gift"></i> 팀의중심!<br />
+<!-- 								<i class="glyphicon glyphicon-gift"></i> 팀의중심!<br /> -->
 								출퇴근관리, 프로젝트관리, WBS, 메인페이지
 							</p>
 						</div>

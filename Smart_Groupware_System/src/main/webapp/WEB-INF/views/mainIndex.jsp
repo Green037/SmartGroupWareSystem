@@ -134,6 +134,10 @@
 								<li><a href="<c:url value='/pa/listAll'/>">총급여목록</a></li>
 								<li><a href="<c:url value='/pa/add'/>">급여내역추가</a></li>
 							</c:when>
+							<c:when test="${mmCode eq 2}">
+								<li><a href="<c:url value='/pa/listAll'/>">총급여목록</a></li>
+								<li><a href="<c:url value='/pa/add'/>">급여내역추가</a></li>
+							</c:when>
 						</c:choose>
 						<!--  일반사원공개메뉴-->
 						<li><a href="<c:url value='/pc/content'/>">급여내역조회(월)</a></li>
@@ -146,6 +150,10 @@
 						<!-- 인사부직원만 공개되는 메뉴 -->
 						<c:choose>
 							<c:when test="${dpName eq '인사부'}">
+								<li><a href="<c:url value='/re/listAll'/>">총고과목록</a></li>
+								<li><a href="<c:url value='/re/add'/>">고과내역추가</a></li>
+							</c:when>
+							<c:when test="${mmCode eq 2}">
 								<li><a href="<c:url value='/re/listAll'/>">총고과목록</a></li>
 								<li><a href="<c:url value='/re/add'/>">고과내역추가</a></li>
 							</c:when>
