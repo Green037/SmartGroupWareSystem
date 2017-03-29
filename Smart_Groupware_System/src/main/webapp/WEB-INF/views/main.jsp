@@ -392,7 +392,7 @@
 			</ul>
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<c:url value='/resources/images/project_menu04.png'/>">
+					<img src="<c:url value='/resources/images/Management_menu01.png'/>">
 					<div class="carousel-caption"></div>
 				</div>
 				<!-- End Item -->
