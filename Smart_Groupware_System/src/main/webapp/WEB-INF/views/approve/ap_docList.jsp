@@ -72,7 +72,7 @@
 									<td>`+document.docCode+`</td>
 									<td>`+document.docFileGroup+`</td>
 									<td>`+document.docFileOri+`</td>
-									<td>다운로드</td>
+									<td><a href="<c:url value='/ap/docDownFile?docCode=`+document.docCode+`'/>" class="btn-success">다운받기</td>
 								</tr>
 								`)
 					})

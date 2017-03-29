@@ -84,6 +84,9 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="row">
+						<p align="right" style="color:red;">
+							<a href="<c:url value='/logout'/>"><span style="color:red;font-size:1.5em" class="glyphicon glyphicon-off red"></span><span style="color:red;font-size:1.5em">LogOut</span></a>
+						</p>
 						<div class="col-md-12">
 							<h2>Smart Groupware-System</h2>
 							<p>I needed dashboard buttons for a project without having to
@@ -389,7 +392,7 @@
 			</ul>
 			<div class="carousel-inner">
 				<div class="item active">
-					<img src="<c:url value='/resources/images/project_menu04.png'/>">
+					<img src="<c:url value='/resources/images/Management_menu01.png'/>">
 					<div class="carousel-caption"></div>
 				</div>
 				<!-- End Item -->

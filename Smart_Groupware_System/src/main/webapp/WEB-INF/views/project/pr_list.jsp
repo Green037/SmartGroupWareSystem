@@ -55,7 +55,7 @@
 							<td>`+result.prCate+`</td>
 							<td>`+result.prStartDay+`</td>
 							<td>
-								<button type="button" id="putInBtn">참여신청</button>
+								<button type="button" id="putInBtn" class="btn-info">참여신청</button>
 							</td>
 						</tr>`);
 				});
@@ -173,7 +173,7 @@
 										<c:choose>
 											<c:when test="${projectList.prProgress eq '모집중'}">
 												<td>
-													<button type="button" id="putInBtn">참여신청</button>
+													<button type="button" id="putInBtn" class="btn-info">참여신청</button>
 												</td>
 											</c:when>
 											<c:when test="${projectList.prProgress eq '모집완료'}">
@@ -191,42 +191,6 @@
 							</tbody>
 						</table>
 					</div>
-					<!-- <div class="tab-pane fade" id="tab2primary">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>코드</th>
-									<th>프로젝트명</th>
-									<th>팀장</th>
-									<th>인원모집상황</th>
-									<th>분류</th>
-									<th>시작일</th>
-									<th>#</th>
-								</tr>
-							</thead>
-							<tbody id="showRun" style="display:none;">
-							
-							</tbody>
-						</table>
-					</div>
-					<div class="tab-pane fade" id="tab3primary">
-						<table class="table table-hover">
-							<thead>
-								<tr>
-									<th>코드</th>
-									<th>프로젝트명</th>
-									<th>팀장</th>
-									<th>인원모집상황</th>
-									<th>분류</th>
-									<th>시작일</th>
-									<th>#</th>
-								</tr>
-							</thead>
-							<tbody id="recuitPr" style="display:none;">
-							
-							</tbody>
-						</table>
-					</div> -->
 				</div>
 			</div>
 		</div>

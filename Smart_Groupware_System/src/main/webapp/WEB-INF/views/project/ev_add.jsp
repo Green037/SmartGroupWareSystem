@@ -295,7 +295,7 @@
 <div class="sub-heard-part">
 	<ol class="breadcrumb m-b-0">
 		<li><a href="<c:url value='/main/mainIndex'/>">Home</a></li>
-		<li class="active">WBS등록</li>
+		<li class="active">평가보고서등록</li>
 	</ol>
 </div>
 <div class="container">
@@ -333,11 +333,11 @@
 	<div class="row">
 		<div class="col-md-12" align="center">
 			<a href="#" class="btn btn-info" id="searchProjectBtn" role="button"><span class="glyphicon glyphicon-zoom-in glyphsize"></span> <br/>내프로젝트<br/>검색하기</a>
-			<a href="#" class="btn btn-info" id="evApprovalBtn" role="button"><span class="glyphicon glyphicon-zoom-in glyphsize"></span> <br/>전자결제<br/>바로가기</a>
+			<a href="#" class="btn btn-info" id="evApprovalBtn" role="button"><span class="glyphicon glyphicon-ok-sign glyphsize"></span> <br/>전자결제<br/>바로가기</a>
 		</div>   
 	</div>
 </div>
-
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <c:import url="../wbs/wbs_checkMemberForm.jsp"></c:import>	<!--팝업창 팀장확인  -->
 <c:import url="./ap_form.jsp"></c:import> <!-- 팝업창 전자결제 -->
 <c:import url="../approve/ap_aprAdd.jsp"></c:import> <!-- 팝업창, 결제라인불러오기 -->

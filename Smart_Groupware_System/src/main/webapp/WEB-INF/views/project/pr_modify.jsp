@@ -406,7 +406,7 @@
 		</div>
 	</div>
 </div>
-
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <c:import url="./pm_addList.jsp"></c:import> <!-- 팝업창 참여인원 추가 지원자 리스트 -->
 <c:import url="./fu_modifyList.jsp"></c:import> <!-- 팝업창 자금상세내역 리스트 -->
 <c:import url="./fu_modifyForm.jsp"></c:import> <!-- 팝업창 자금수정폼 -->

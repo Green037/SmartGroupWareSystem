@@ -165,7 +165,7 @@
 				 $('#aprApproval3').val(data.map3.mmCode).attr('selected','selected'); 
 				 
 				 $('#aprCode').val(aprCode);
-				
+				 $('#putInAprFom').modal('hide');
 			}
 		})
 	})
@@ -209,7 +209,20 @@
 					<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-up"></i></span>
 				</div>
 			<div class="panel-body">
-				<form role="form" id="evApprovalForm">
+				<form role="form" id="approvalForm">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-12">
+							<label for="mmCode">
+								<span class="glyphicon glyphicon-save red"></span> 
+								임시보관함에 저장기능
+							</label>
+							<br/>
+							<input type="radio" name="dftCheck" value="true" checked="checked"/>사용
+							<input type="radio" name="dftCheck" value="false" />사용하지않음
+						</div>
+					</div>	
+				</div>
 				<div class="form-group">
 					<div class="row">
 						<div class="col-md-12">
@@ -240,6 +253,9 @@
 								문서구분
 							</label>
 							<select name="docCode" id="docCode" class="form-control">
+								<c:forEach var="doc" items="${doc}">
+									<option value="${doc.docCode}">${doc.docFileGroup}</option>
+								</c:forEach>
 								
 							</select>
 						</div>

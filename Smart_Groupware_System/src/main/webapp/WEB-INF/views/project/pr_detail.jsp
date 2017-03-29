@@ -244,7 +244,7 @@
 	</div>
 </div>
 
-
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <c:import url="./pm_list.jsp"></c:import> <!--팝업창, 참여인원리스트  -->
 <c:import url="./fu_list.jsp"></c:import> <!--팝업창, 자금상세리스트  -->
 <c:import url="../wbs/wbs_checkMemberForm.jsp"></c:import> <!--팝업창, 수정삭제시 사원정보체크 -->

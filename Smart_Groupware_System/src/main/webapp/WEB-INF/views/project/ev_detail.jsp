@@ -18,6 +18,7 @@
 			url : '/smart/ap/evApproval',
 			dataType : 'json',
 			type : 'post',
+			cache : false,
 			success : function(data){
 				/* console.log('평가보고서 전자결제 ajax폼'); */
 				$('#docCode').empty();
@@ -218,9 +219,9 @@
 	});
 	
 	// 완료보고서 작성된 플젝 리스트로 돌아가기 이벤트.
-	$(document).on('click','#evPrListBtn',function(){
-		$('#reloadListForm').attr({action:'<c:url value="/ev/list"/>',method:"get"}).submit();
-	});
+	/* $(document).on('click','#evPrListBtn',function(){
+		$('#reloadListForm').attr({action:'<c:url value="/ev/list"/>',method:"post"}).submit();
+	}); */
 	
 	$(document).ready(function(){
 		$('#mainMenu').css('display','none');
@@ -251,19 +252,14 @@
 		<li class="active">완료보고서 상세보기</li>
 	</ol>
 </div>	
+
 <div class="container">
-	<form id="reloadListForm">
-		<div class="row">
-			<div class="col-md-12">
-				<button class="btn btn-info orange-circle-button" id="evPrListBtn">
-					목록<br />보기<br /><span class="orange-circle-greater-than">Go!!</span>
-				</button>
-				<button class="btn btn-info orange-circle-button" id="evApprovalBtn">
-					전자결제<br />바로가기<br /><span class="orange-circle-greater-than">Go!!</span>
-				</button>
-			</div>   
-		</div>
-	</form>
+	<div class="row">
+		<div class="col-md-12" align="center">
+			<a href="<c:url value="/ev/list"/>" class="btn btn-info" id="evPrListBtn" role="button"><span class="glyphicon glyphicon-step-backward glyphsize"></span> <br/>리스트<br/>돌아가기</a>
+			<a href="#" class="btn btn-info" id="evApprovalBtn" role="button"><span class="glyphicon glyphicon-ok-sign glyphsize"></span> <br/>전자결제<br/>바로가기</a>
+		</div>   
+	</div>
 </div>
 
 <div class="container">

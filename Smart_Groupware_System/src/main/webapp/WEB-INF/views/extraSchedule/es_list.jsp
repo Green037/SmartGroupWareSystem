@@ -109,57 +109,7 @@
 		
 	</tbody>
 </table>
-<!-- 본문 -->
-<%-- <div class="forms-main">
-<div class="graph-form">
-<div class="validation-form">
-<div class="container">
-	<center>
-		<h2><span class="glyphicon glyphicon-search"> 근외 조회</span></h2>
-	</center>
-	<br/>
-	
-	<button type="button" class="btn btn-success btn-success btn-block">
-		<span class="glyphicon glyphicon-search"></span>
-		 검색하실 근외기간을 입력해주세요.
-	</button>
-	
-	<form class="form-inline" id="esSearchForm">
-		<div class="form-group">
-			<label for="esStartDate">시작일:</label>
-			<input type="date" class="form-control" id="esStartDate" name="esStartDate">
-		</div>
-		<div class="form-group">
-			<label for="esEndDate">종료일:</label>
-			<input type="date" class="form-control" id="esEndDate" name="esEndDate">
-		</div>
-		
-		<button type="button" class="btn btn-primary" id="searchBtn">
-			<span class="glyphicon glyphicon-search"></span>검색
-		</button>
-	</form>
-	<br/><br/><br/><br/>
-</div>
-</div>
-</div>
-</div>	
-	<table class="table table-hover" id="esTable" style="display:none;">
-		<thead>
-			<tr>
-				<th>코드</th>
-				<th>사원이름</th>
-				<th>시작일</th>
-				<th>종료일</th>
-				<th>비용</th>
-				<th>분류</th>
-			</tr>
-		</thead>
-		<tbody id="esContent">
-			
-		</tbody>
-	</table> --%>
-	
-<!-- 본문끝 -->
+
 <script src="<c:url value='/resources/js/bootstrap.min.js'/>" type="text/javascript"></script> 
 </body>
 </html>
